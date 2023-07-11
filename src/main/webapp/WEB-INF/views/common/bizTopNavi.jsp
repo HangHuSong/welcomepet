@@ -26,7 +26,7 @@
 			<div class="row text-center align-items-center">
 				<div class="col-3 fs-3 fw-bold">
 					<a class="btn" href="../biz/main"> <img class="w-100"
-						src="/welcomepet/resources/image/logo.png">
+						src="/welcomepet/resources/img/logo.png">
 					</a>
 				</div>
 				<div class="col"></div>
@@ -43,14 +43,14 @@
 							</ul>
 						</div>
 					</div>
-					<%-- <div class="col-1">
+					<div class="col-1">
 						<div class="dropdown">
 							<button class="btn" type="button" data-bs-toggle="dropdown">
 								<div class="row">
 									<div class="col fs-4">
 										<i class="far fa-bell fa-lg px-2 position-relative"><span
 											class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-											style="font-size: 12px;" id="alarmNum">${alarmData.orderAlarmNum}</span></i>
+											style="font-size: 12px;" id="alarmNum">0</span></i>
 									</div>
 								</div>
 								<div class="row">
@@ -58,41 +58,9 @@
 								</div>
 							</button>
 							<ul class="dropdown-menu" style="width: 450px;" id="alarmUl">
-								<c:if test="${alarmData.orderAlarmNum eq 0}">
-									<li>새 알림이 없습니다.</li>
-								</c:if>
-								<c:if test="${alarmData.orderAlarmNum > 0}">
-									<li class="dropdown-item btn" onclick='readAlarm(event)' data-value="all">전체읽기</li>
-									<c:forEach items="${alarmData.orderAlarmDataList}"
-										var="orderAlarmData">
-										<li class="dropdown-item btn my-2"
-											onclick="readAlarm(event)">
-											<div class="row">
-												<div class="col-3">
-													<input type="hidden" name="order_alarm_no" value="${orderAlarmData.orderAlarmDto.order_alarm_no}">
-													<input type="hidden" name="order_product_no" value="${orderAlarmData.orderProductDto.order_product_no}">
-													<img class="w-100 px-2 align-self-center rounded-4"
-														src="/uploadFiles/productThumbnailImg/${orderAlarmData.productDto.product_thumbnail}">
-												</div>
-												<div class="col ps-0">
-													<div class="row">
-														<div class="col text-wrap" style="font-size: 15px;">${orderAlarmData.productOptionDto.product_option_name}</div>
-													</div>
-													<div class="row">
-														<div class="col" style="font-size: 12px;">수량:
-															${orderAlarmData.orderProductDto.order_product_quantity}</div>
-													</div>
-													<div class="row">
-														<div class="col" style="font-size: 12px;">${orderAlarmData.orderAlarmDto.order_alarm_noti_date}</div>
-													</div>
-												</div>
-											</div>
-										</li>
-									</c:forEach>
-								</c:if>
 							</ul>
 						</div>
-					</div>--%>
+					</div>
 				</c:if> 
 				<c:if test="${empty bizUser }">
 					<div class="col">
@@ -107,7 +75,7 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-		/* var intervalAlarm=setInterval(getAlarm,1000);
+		var intervalAlarm=setInterval(getAlarm,100);
 		
 		function getAlarm(){
 			const xhr = new XMLHttpRequest();
@@ -117,6 +85,13 @@
 					const response=JSON.parse(xhr.responseText);
 					
 					var alarmNum=document.getElementById("alarmNum");
+					if(alarmNum.innerText==0){
+						const alarmUl=document.getElementById("alarmUl");
+						alarmUl.innerHTML='';
+						
+						const li=document.createElement("li");
+						li.innerText='새 알림이 없습니다.';
+					}
 					if(alarmNum.innerText<response.orderAlarmNum){
 						const alarmUl=document.getElementById("alarmUl");
 						alarmUl.innerHTML='';
@@ -255,7 +230,7 @@
 			xhr.open("post", "./updateAlarmChecked");
 			xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 			xhr.send("alarmNoList="+alarmNoList);
-		}*/
+		}
 		/* let bizUser = null;
 		getSession();
 

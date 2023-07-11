@@ -180,7 +180,7 @@
 																	<span class="px-2"><i class="fas fa-won-sign"></i></span>
 																	주문완료
 																</div>
-																<div class="col text-primary fs-4 fw-bold text-center">1</div>
+																<div class="col text-primary fs-4 fw-bold text-center">${orderStatusNumData.orderCompleteNum }</div>
 															</div>
 														</div>
 													</div>
@@ -191,7 +191,7 @@
 																	<span class="px-2"><i class="fas fa-box"></i></span>
 																	배송준비중
 																</div>
-																<div class="col text-primary fs-4 fw-bold text-center">1</div>
+																<div class="col text-primary fs-4 fw-bold text-center">${orderStatusNumData.prepareShippingNum }</div>
 															</div>
 														</div>
 													</div>
@@ -202,7 +202,7 @@
 																	<span class="px-2"><i class="fas fa-truck"></i></span>
 																	배송중
 																</div>
-																<div class="col text-primary fs-4 fw-bold text-center">1</div>
+																<div class="col text-primary fs-4 fw-bold text-center">${orderStatusNumData.inShippingNum }</div>
 															</div>
 														</div>
 													</div>
@@ -213,7 +213,7 @@
 																	<span class="px-2"><i
 																		class="fas fa-check-circle"></i></span> 배송완료
 																</div>
-																<div class="col text-primary fs-4 fw-bold text-center">23</div>
+																<div class="col text-primary fs-4 fw-bold text-center">${orderStatusNumData.ShippingCompleteNum }</div>
 															</div>
 														</div>
 													</div>
@@ -228,15 +228,15 @@
 												<div class="col">
 													<div class="row py-3 align-items-center border-bottom">
 														<div class="col">취소요청</div>
-														<div class="col text-primary fs-4 fw-bold text-center">1</div>
+														<div class="col text-primary fs-4 fw-bold text-center">${cancelRefundExchangeNumData.cancelRequestNum }</div>
 													</div>
 													<div class="row py-3 align-items-center border-bottom">
 														<div class="col">환불요청</div>
-														<div class="col text-primary fs-4 fw-bold text-center">1</div>
+														<div class="col text-primary fs-4 fw-bold text-center">${cancelRefundExchangeNumData.returnRequestNum }</div>
 													</div>
 													<div class="row py-3 align-items-center">
 														<div class="col">교환요청</div>
-														<div class="col text-primary fs-4 fw-bold text-center">1</div>
+														<div class="col text-primary fs-4 fw-bold text-center">${cancelRefundExchangeNumData.exchangeRequestNum }</div>
 													</div>
 												</div>
 											</div>
@@ -253,77 +253,116 @@
 										</div>
 									</div>
 									<div class="row">
-										<div class="col my-3 py-3 mx-3 bg-white border">
+										<div class="col-4 my-3 py-3 mx-3 bg-white border">
 											<div class="row">
-												<div class="col">상품리뷰</div>
+												<div class="col fs-5 fw-bold">판매현황</div>
 											</div>
-											<div class="row">
+											<div class="row my-2">
 												<div class="col">
-													<table class="table">
-														<thead>
-															<tr>
-																<th scope="col">#</th>
-																<th scope="col">First</th>
-																<th scope="col">Last</th>
-																<th scope="col">Handle</th>
-															</tr>
-														</thead>
-														<tbody>
-															<tr>
-																<th scope="row">1</th>
-																<td>Mark</td>
-																<td>Otto</td>
-																<td>@mdo</td>
-															</tr>
-															<tr>
-																<th scope="row">2</th>
-																<td>Jacob</td>
-																<td>Thornton</td>
-																<td>@fat</td>
-															</tr>
-															<tr>
-																<th scope="row">3</th>
-																<td colspan="2">Larry the Bird</td>
-																<td>@twitter</td>
-															</tr>
-														</tbody>
-													</table>
+													<div class="row">
+														<div class="col align-self-center">오늘 결제금액</div>
+														<div class="col">
+															<span class="fs-4">${paymentData.todayPayment }</span> <span>원</span>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col"></div>
+														<div class="col">
+															<span class="text-danger" style="font-size: 12px;">어제대비
+																${paymentData.purchaseAmountOnedayIncreasePercentage }%<i
+																class="fas fa-caret-up"></i>
+															</span>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="row my-2">
+												<div class="col">
+													<div class="row">
+														<div class="col align-self-center">이번주 결제금액</div>
+														<div class="col">
+															<span class="fs-4">${paymentData.thisWeekPayment }</span>
+															<span>원</span>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col"></div>
+														<div class="col">
+															<span class="text-danger" style="font-size: 12px;">저번주대비
+																${paymentData.purchaseAmountOneweekIncreasePercentage }%<i
+																class="fas fa-caret-up"></i>
+															</span>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="row my-2">
+												<div class="col">
+													<div class="row">
+														<div class="col align-self-center">오늘 결제건수</div>
+														<div class="col">
+															<span class="fs-4">${paymentData.todayOrderCount }</span>
+															<span>건</span>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col"></div>
+														<div class="col">
+															<span class="text-danger" style="font-size: 12px;">어제대비
+																${paymentData.orderCountOnedayIncreasePercentage }%<i
+																class="fas fa-caret-up"></i>
+															</span>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="row my-2">
+												<div class="col">
+													<div class="row">
+														<div class="col align-self-center">이번주 결제건수</div>
+														<div class="col">
+															<span class="fs-4">${paymentData.thisWeekOrderCount }</span>
+															<span>건</span>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col"></div>
+														<div class="col">
+															<span class="text-danger" style="font-size: 12px;">저번주대비
+																${paymentData.orderCountOneweekIncreasePercentage }%<i
+																class="fas fa-caret-up"></i>
+															</span>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
-										<div class="col my-3 py-3 mx-3 bg-white border">
-											<div class="row">
-												<div class="col">상품문의</div>
+										<div class="col-7 my-3 py-3 mx-3 bg-white border">
+											<div class="row mb-2">
+												<div class="col fs-5 fw-bold">TOP5 상품</div>
 											</div>
 											<div class="row">
 												<div class="col">
-													<table class="table">
-														<thead>
+													<table class="table text-center">
+														<thead class="table-success">
 															<tr>
-																<th scope="col">#</th>
-																<th scope="col">First</th>
-																<th scope="col">Last</th>
-																<th scope="col">Handle</th>
+																<th scope="col" class="col-1">랭킹</th>
+																<th scope="col">상품</th>
+																<th scope="col" class="col-2">총주문건수</th>
+																<th scope="col" class="col-2">총판매량</th>
 															</tr>
 														</thead>
 														<tbody>
-															<tr>
-																<th scope="row">1</th>
-																<td>Mark</td>
-																<td>Otto</td>
-																<td>@mdo</td>
-															</tr>
-															<tr>
-																<th scope="row">2</th>
-																<td>Jacob</td>
-																<td>Thornton</td>
-																<td>@fat</td>
-															</tr>
-															<tr>
-																<th scope="row">3</th>
-																<td colspan="2">Larry the Bird</td>
-																<td>@twitter</td>
-															</tr>
+															<c:forEach
+																items="${top5ProductData.top5ProductOptionList }"
+																var="top5Product" varStatus="idx">
+																<tr>
+																	<th scope="row">${idx.count }</th>
+																	<td class="text-start">${top5Product.PRODUCT_OPTION_NAME}</td>
+																	<td>${top5Product.ORDERCOUNT}</td>
+																	<td>${top5Product.SUMQUANTITY}</td>
+																</tr>
+															</c:forEach>
 														</tbody>
 													</table>
 												</div>
@@ -380,7 +419,7 @@
 			data : {
 				labels : [ "이번달 구매확정금액", "다음 등급까지 남은금액" ],
 				datasets : [ {
-					data : [ 150000, 350000 ],
+					data : [ ${storeGradeData.purchaseConfirmationNum}, ${storeGradeData.remainingAmountToNextGrade} ],
 					backgroundColor : [ 'rgb(26, 188, 156)',
 							'rgb(240, 243, 243)' ]
 				} ]

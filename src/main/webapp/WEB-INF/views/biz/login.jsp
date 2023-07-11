@@ -28,7 +28,7 @@
 				<div class="row my-4">
 					<div class="col"></div>
 					<div class="col-8">
-						<img class="w-100" src="/welcomepet/resources/image/logo.png">
+						<img class="w-100" src="/welcomepet/resources/img/logo.png">
 					</div>
 					<div class="col"></div>
 				</div>
@@ -70,7 +70,7 @@
 					<div class="col d-grid justify-content-center">
 
 						<button class="btn" onclick="getAuthCode()">
-							<img src="/welcomepet/resources/image/kakao_login.png">
+							<img src="/welcomepet/resources/img/kakao_login.png">
 						</button>
 					</div>
 				</div>

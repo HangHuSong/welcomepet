@@ -68,6 +68,16 @@ public interface OrderSqlMapper {
 
 	public int countOrderProductByBizNoAndStatusNo(@Param(value = "biz_no") int biz_no,@Param(value = "order_product_status_no") int order_product_status_no);
 
+	public int sumOrderProductPaymentByBizNoAndDate(@Param(value = "biz_no") int biz_no,@Param(value = "date") String date);
+
+	public int countOrderProductByBizNoAndDate(@Param(value = "biz_no") int biz_no, @Param(value = "date") String date);
+
+	public int sumWeeklyOrderProductPaymentByBizNoAndDate(@Param(value = "biz_no") int biz_no, @Param(value = "date") String date);
+
+	public int countWeeklyOrderProductPaymentByBizNoAndDate(@Param(value = "biz_no") int biz_no, @Param(value = "date") String date);
+
+	public List<Map<String,Object>> getTop5OrderProductByBizNo(int biz_no);//주문건수기준 정렬
+
 	
 
 }

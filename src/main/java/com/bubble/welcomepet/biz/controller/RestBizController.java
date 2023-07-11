@@ -78,18 +78,18 @@ public class RestBizController {
 	}
 	
 	
-//	@RequestMapping("updateAlarmChecked")
-//	public void updateAlarmChecked(@RequestParam("alarmNoList") int[] alarmNoList) {
-//		bizService.updateAlarmChecked(alarmNoList);
-//	}
-//	
-//	@RequestMapping("getAlarm")
-//	public Map<String,Object> getAlarm(HttpSession session) {
-//		BizDto bizUser=(BizDto) session.getAttribute("bizUser");
-//		Map<String, Object> response=bizService.getAlarmData(bizUser.getBiz_no());
-//		
-//		return response;
-//	}
+	@RequestMapping("updateAlarmChecked")
+	public void updateAlarmChecked(@RequestParam("alarmNoList") int[] alarmNoList) {
+		bizService.updateAlarmChecked(alarmNoList);
+	}
+	
+	@RequestMapping("getAlarm")
+	public Map<String,Object> getAlarm(HttpSession session) {
+		BizDto bizUser=(BizDto) session.getAttribute("bizUser");
+		Map<String, Object> response=bizService.getAlarmData(bizUser.getBiz_no());
+		
+		return response;
+	}
 	
 	@RequestMapping("kakaoLoginProcess")
 	public void kakaoLoginProcess(BizDto kakaoLoginUser, HttpSession session ) {

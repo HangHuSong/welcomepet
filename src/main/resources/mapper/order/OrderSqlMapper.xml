@@ -13,43 +13,147 @@
 		product_option po WHERE po.product_no IN (SELECT p.product_no FROM
 		product p WHERE p.biz_no=#{biz_no}))
 	</select>
-	<select id="getOrderProductByNo" resultType="com.bubble.welcomepet.dto.OrderProductDto">
+	<select id="getOrderProductByNo"
+		resultType="com.bubble.welcomepet.dto.OrderProductDto">
 		SELECT * FROM order_product
-		WHERE order_product_no=#{order_product_no}
+		WHERE
+		order_product_no=#{order_product_no}
 	</select>
-	
+
 	<update id="updateOrderStatusNoByNo">
 		UPDATE order_product SET
 		order_product_status_no=#{order_product_status_no} WHERE
 		order_product_no=#{order_product_no}
 	</update>
 
-	<select id="getSettlementProductListByDateAndBizNo" resultType="com.bubble.welcomepet.dto.OrderProductDto">
+	<select id="getSettlementProductListByDateAndBizNo"
+		resultType="com.bubble.welcomepet.dto.OrderProductDto">
 		SELECT op.* FROM order_product op,orders o,product
 		p,product_option po WHERE order_product_status_no=6 AND
 		op.orders_no=o.orders_no
 		AND
 		TO_CHAR(ADD_MONTHS(TRUNC(o.orders_date+14),1),'yyyy-MM')=TO_CHAR(TO_DATE(#{year}||'-'||#{month},'yyyy-MM'),'yyyy-MM')
 		AND op.product_option_no=po.product_option_no
-		AND po.product_no=p.product_no
+		AND
+		po.product_no=p.product_no
 		AND p.biz_no=#{biz_no}
 	</select>
 	<select id="getSalesByNoAndDate" resultType="int">
-		SELECT NVL(SUM(op.order_product_price*op.order_product_quantity),0) FROM order_product op,orders o,product
-		p,product_option po WHERE order_product_status_no=6 AND
+		SELECT
+		NVL(SUM(op.order_product_price*op.order_product_quantity),0) FROM
+		order_product op,orders o,product
+		p,product_option po WHERE
+		order_product_status_no=6 AND
 		op.orders_no=o.orders_no
 		AND
 		TO_CHAR(ADD_MONTHS(TRUNC(o.orders_date+14),1),'yyyy-MM')=TO_CHAR(TO_DATE(#{year}||'-'||#{month},'yyyy-MM'),'yyyy-MM')
 		AND op.product_option_no=po.product_option_no
-		AND po.product_no=p.product_no
+		AND
+		po.product_no=p.product_no
 		AND p.biz_no=#{biz_no}
 	</select>
-	<select id="countOrderProductByBizNoAndStatusNo" resultType="int">
-		SELECT COUNT(*) FROM order_product op 
-		WHERE op.order_product_status_no=#{order_product_status_no}
-		AND op.product_option_no IN 
-			(SELECT po.product_option_no FROM product_option po WHERE po.product_no IN
-				(SELECT p.product_no FROM product p WHERE p.biz_no=#{biz_no})) 
+	<select id="countOrderProductByBizNoAndStatusNo"
+		resultType="int">
+		SELECT COUNT(*) FROM order_product op
+		WHERE
+		op.order_product_status_no=#{order_product_status_no}
+		AND
+		op.product_option_no IN
+		(SELECT po.product_option_no FROM
+		product_option po WHERE po.product_no IN
+		(SELECT p.product_no FROM
+		product p WHERE p.biz_no=#{biz_no}))
+	</select>
+	<select id="sumOrderProductPaymentByBizNoAndDate"
+		resultType="int">
+		SELECT
+		NVL(SUM(op.order_product_price*op.order_product_quantity),0)
+		FROM
+		order_product op,orders o,product p, product_option po
+		WHERE
+		op.orders_no=o.orders_no
+		AND
+		to_char(o.orders_date,'yyyy-MM-dd')=#{date}
+		AND
+		po.product_option_no=op.product_option_no
+		AND
+		p.product_no=po.product_no
+		AND p.biz_no=#{biz_no}
+	</select>
+	<select id="countOrderProductByBizNoAndDate" resultType="int">
+		SELECT
+		COUNT(*) FROM order_product op,orders o,product p, product_option po
+		WHERE op.orders_no=o.orders_no
+		AND
+		to_char(o.orders_date,'yyyy-MM-dd')=#{date}
+		AND
+		po.product_option_no=op.product_option_no
+		AND
+		p.product_no=po.product_no
+		AND p.biz_no=#{biz_no}
+	</select>
+	<select id="sumWeeklyOrderProductPaymentByBizNoAndDate"
+		resultType="int">
+		SELECT NVL(t.totalprice,0) FROM (SELECT
+		to_char(to_date(#{date},'yyyy-MM-dd'),'WW') AS weeknum FROM dual) wn
+		LEFT JOIN (
+		SELECT to_char(o.orders_date,'WW')
+		orderdateweeknum,SUM(op.order_product_price*op.order_product_quantity)
+		totalprice FROM order_product op,orders o,product p, product_option po
+		WHERE op.orders_no=o.orders_no
+		AND
+		po.product_option_no=op.product_option_no
+		AND
+		p.product_no=po.product_no
+		AND p.biz_no=#{biz_no}
+		GROUP BY
+		to_char(o.orders_date,'WW')
+		) t
+		ON wn.weeknum=t.orderdateweeknum
+	</select>
+	<select id="countWeeklyOrderProductPaymentByBizNoAndDate"
+		resultType="int">
+		SELECT wn.weeknum ,NVL(t.ordercount,0) FROM (SELECT
+		to_char(to_date(#{date},'yyyy-MM-dd'),'WW') AS weeknum FROM dual)
+		wn
+		LEFT JOIN (
+		SELECT to_char(o.orders_date,'WW')
+		orderdateweeknum,count(*) ordercount FROM
+		order_product op,orders
+		o,product p, product_option po
+		WHERE op.orders_no=o.orders_no
+		AND
+		po.product_option_no=op.product_option_no
+		AND
+		p.product_no=po.product_no
+		AND p.biz_no=#{biz_no}
+		GROUP BY
+		to_char(o.orders_date,'WW')
+		) t
+		ON wn.weeknum=t.orderdateweeknum
+	</select>
+
+	<select id="getTop5OrderProductByBizNo" resultType="Map">
+		<![CDATA[
+		SELECT
+		po2.*,t3.ordercount ordercount,t3.sumquantity sumquantity FROM
+		product_option po2,
+		(SELECT t2.productoption product_option_no,t2.ordercount
+		ordercount,t2.sumquantity sumquantity
+		FROM (SELECT t1.productoption productoption,t1.ordercount
+		ordercount,t1.sumquantity sumquantity, ROWNUM RNUM
+		FROM (SELECT op.product_option_no productoption,COUNT(*)
+		ordercount,SUM(op.order_product_quantity) sumquantity FROM
+		order_product op,product_option po,product p
+		WHERE op.product_option_no=po.product_option_no
+		AND p.product_no=po.product_no
+		AND p.biz_no=#{biz_no}
+		GROUP BY op.product_option_no
+		ORDER BY ordercount desc,sumquantity desc) t1) t2
+		WHERE t2.rnum<=5) t3
+		WHERE po2.product_option_no=t3.product_option_no
+		ORDER BY ordercount DESC,sumquantity DESC
+		]]>
 	</select>
 	<!-- 주문 -->
 	<select id="getOrderByNo"
@@ -138,22 +242,26 @@
 		WHERE
 		order_product_status_no=#{order_product_status_no}
 	</select>
-	
+
 	<!-- 주문알람 -->
-	<select id="getOrderAlarmByBizNoAndIsChecked" resultType="com.bubble.welcomepet.dto.OrderAlarmDto">
+	<select id="getOrderAlarmByBizNoAndIsChecked"
+		resultType="com.bubble.welcomepet.dto.OrderAlarmDto">
 		SELECT * FROM order_alarm
-		WHERE biz_no=#{biz_no} AND order_alarm_is_checked=#{order_alarm_is_checked}
+		WHERE biz_no=#{biz_no} AND
+		order_alarm_is_checked=#{order_alarm_is_checked}
 	</select>
 	<select id="countOrderAlarmByBizNoAndIsChecked" resultType="int">
 		SELECT COUNT(*) FROM order_alarm
-		WHERE biz_no=#{biz_no} AND order_alarm_is_checked=#{order_alarm_is_checked}
+		WHERE biz_no=#{biz_no} AND
+		order_alarm_is_checked=#{order_alarm_is_checked}
 	</select>
 	<update id="updateAlarmCheckedTo1">
 		UPDATE order_alarm SET order_alarm_is_checked=1
-		WHERE order_alarm_no=#{order_alarm_no}
+		WHERE
+		order_alarm_no=#{order_alarm_no}
 	</update>
-	
-	
+
+
 	<!-- 통계 -->
 	<select id="getDailySalesByBizNo" resultType="Map">
 		<![CDATA[

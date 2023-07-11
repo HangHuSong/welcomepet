@@ -60,21 +60,21 @@ public class BizController {
 			model.addAttribute("bizApprovalDto", bizApprovalDto);
 		}
 		else if(bizUser.getBiz_status_no() == 4) {
-//			Map<String, Object> alarmData=bizService.getAlarmData(bizUser.getBiz_no());
+			Map<String, Object> alarmData=bizService.getAlarmData(bizUser.getBiz_no());
 			Map<String,Object> newRequestNumData=bizService.getNewRequestData(bizUser.getBiz_no());
-//			Map<String,Object> orderNumData=bizService.getOrderNumData(bizUser.getBiz_no());
-//			Map<String,Object> cancelNumData=bizService.getCancelNumData(bizUser.getBiz_no());
-//			Map<String,Object> storeGradeData=bizService.getStoreGradeData(bizUser.getBiz_no());
-//			Map<String,Object> review5data=bizService.get5ReviewData(bizUser.getBiz_no());
-//			Map<String,Object> inquiry5data=bizService.get5InquiryData(bizUser.getBiz_no());
+			Map<String,Object> orderStatusNumData=bizService.getOrderNumData(bizUser.getBiz_no());
+			Map<String,Object> cancelRefundExchangeNumData=bizService.getCancelRefundExchangeNumDataData(bizUser.getBiz_no());
+			Map<String,Object> storeGradeData=bizService.getPurchaseConfirmationAndremainingAmountToNextGradeData(bizUser.getBiz_no());
+			Map<String,Object> paymentData=bizService.getTodayAndWeeklyPaymentData(bizUser.getBiz_no());
+			Map<String,Object> top5ProductData=bizService.getTop5ProductData(bizUser.getBiz_no());
 			
-//			model.addAttribute("alarmData", alarmData);
+			model.addAttribute("alarmData", alarmData);
 			model.addAttribute("newRequestNumData", newRequestNumData);
-//			model.addAttribute("orderNumData", orderNumData);
-//			model.addAttribute("cancelNumData", cancelNumData);
-//			model.addAttribute("storeGradeData", storeGradeData);
-//			model.addAttribute("reviewData", review5data);
-//			model.addAttribute("inquiryData", inquiry5data);
+			model.addAttribute("orderStatusNumData", orderStatusNumData);
+			model.addAttribute("cancelRefundExchangeNumData", cancelRefundExchangeNumData);
+			model.addAttribute("storeGradeData", storeGradeData);
+			model.addAttribute("paymentData", paymentData);
+			model.addAttribute("top5ProductData", top5ProductData);
 		}
 
 		return "biz/main";
@@ -231,7 +231,7 @@ public class BizController {
 	@RequestMapping("orderManage")
 	public String orderManage(HttpSession session, Model model) {
 		BizDto bizUser = (BizDto) session.getAttribute("bizUser");
-		
+
 		List<Map<String, Object>> newOrderList = bizService.getOrderListByBizNoAndOrderStatusNo(bizUser.getBiz_no(),
 				1);
 
