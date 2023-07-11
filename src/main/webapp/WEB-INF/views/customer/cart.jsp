@@ -14,7 +14,7 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-<title>장바구니</title>
+<title>장바구니1</title>
 <style type="text/css">
 .product-thum {
 	height: 6em;
