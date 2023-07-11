@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.bubble.welcomepet.settlement.mapper.SettlementSqlMapper">
+	<!-- 정산 -->
+	<select id="createSettlementPk" resultType="int">
+		SELECT
+		settlement_request_seq.NEXTVAL FROM dual
+	</select>
+	<insert id="createSettlementRequest">
+		INSERT INTO settlement_request VALUES(
+		#{settlement_request_no},
+		#{statement_no},
+		1,
+		#{biz_account_no},
+		SYSDATE
+		)
+	</insert>
+	<select id="getSettlementRequestByStatementNo"
+		resultType="com.bubble.welcomepet.dto.SettlementRequestDto">
+		SELECT * FROM settlement_request
+		WHERE
+		statement_no=#{statement_no}
+	</select>
+
+	<!-- 명세표 -->
+	<select id="getStatementListByBizNo"
+		resultType="com.bubble.welcomepet.dto.StatementDto">
+		SELECT * FROM statement
+		WHERE biz_no=#{biz_no}
+	</select>
+
+
+	<!-- 정산처리 -->
+	<select id="getSettlememtProcessBySettlementRequestNo"
+		resultType="com.bubble.welcomepet.dto.SettlementProcessDto">
+		SELECT * FROM settlement_process
+		WHERE
+		settlement_request_no=#{settlement_request_no}
+	</select>
+	
+	<select id="getSettlementByOrdersDate" resultType="int">
+		SELECT
+		sp.settlement_process_date FROM settlement_process
+		sp,settlement_request sr,statement s
+		WHERE sp.settlement_request_no=sr.settlement_request_no
+		AND s.statement_no=sr.statement_no
+		AND s.statement_year=EXTRACT(YEAR FROM
+		TO_DATE(#{orders_date},'yyyy-MM-dd'))
+		AND s.statement_month=EXTRACT(MONTH FROM
+		TO_DATE(#{orders_date},'yyyy-MM-dd'))
+	</select>
+</mapper>

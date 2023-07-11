@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bubble.welcomepet.customer.mapper.CustomerSqlMapper">
+	<!-- 고객 -->
+	<select id="getCustomerByNo" resultType="com.bubble.welcomepet.dto.CustomerDto">
+		SELECT * FROM customer WHERE customer_no=#{customer_no}	
+	</select>
+	<select id="getCustomerByOrderProductNo" resultType="com.bubble.welcomepet.dto.CustomerDto">
+		SELECT * FROM customer c,order_product op,orders o
+		WHERE op.orders_no=o.orders_no
+		AND c.customer_no=o.customer_no
+		AND op.order_product_no=#{order_product_no}
+	</select>
+	
+	
+	<select id="createCustomerPK" resultType="int">
+		SELECT customer_seq.nextval FROM dual
+	</select>
+	
+	<!-- 회원가입 -->
+
+	<!-- 로그인 정보 불러오기 -->
+	<select id="findCustomerByIdAndPw" resultType="com.bubble.welcomepet.dto.CustomerDto">
+		SELECT * FROM customer
+    	WHERE customer_id = #{customer_id} 
+    	AND customer_pw = #{customer_pw}
+	</select>
+	
+
+	
+<!-- 	<select id="customer_no" resultType="com.bubble.welcomepet.dto.CustomerDto">
+		SELECT * FROM customer
+		WHERE customer_no = #{customer_no}
+	</select> -->
+	
+	<!-- customerDto에서 닉네임 불러오기 -->
+	<select id="getByCustomerNo" resultType="com.bubble.welcomepet.dto.CustomerDto">
+		SELECT * FROM customer
+		WHERE customer_no = #{customer_no}
+	</select>
+	
+
+</mapper>

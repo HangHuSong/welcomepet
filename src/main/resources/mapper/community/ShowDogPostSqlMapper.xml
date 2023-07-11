@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bubble.welcomepet.community.mapper.ShowDogPostSqlMapper">
+	
+	<select id="createShowDogPostPK" resultType="int">
+	 SELECT show_dog_post_seq.nextval from dual
+	</select>	
+	
+	<!-- 게시글 리스트 -->
+	<select id="getAllList" resultType="com.bubble.welcomepet.dto.ShowDogPostDto">
+	 SELECT * FROM show_dog_post
+	 ORDER BY show_dog_post_no DESC
+	</select>
+	
+	<!-- 조회수 -->
+	<update id="increaseViewByPostNo">
+	 UPDATE show_dog_post 
+	 SET show_dog_post_view_count = show_dog_post_view_count+1
+     WHERE show_dog_post_no = #{show_dog_post_no}
+	</update>
+	
+	<!-- 새 글 작성하기 -->
+	<insert id="insertShowDogPostContent"> 
+	 INSERT INTO show_dog_post VALUES(
+	 #{show_dog_post_no}, 
+	 #{customer_no}, 
+	 #{show_dog_post_title}, 
+	 #{show_dog_post_content}, 
+	 #{show_dog_post_view_count}, 
+	 SYSDATE
+	 )
+	</insert>
+	<!-- 이미지 업로드하기 -->
+	<insert id="insertPostImages">
+	 INSERT INTO show_dog_post_images VALUES(
+	 show_dog_post_images_seq.nextval, 
+	 #{show_dog_post_no}, 
+	 #{show_dog_post_images_name}, 
+	 #{show_dog_post_images_link}
+	 )
+	</insert>
+	
+	<!-- 글번호에 맞는 이미지 찾아서 보이기 -->
+	<select id="findImagesByPostId" resultType="com.bubble.welcomepet.dto.ShowDogPostImagesDto">
+	 SELECT * FROM show_dog_post_images 
+	 WHERE show_dog_post_no = #{show_dog_post_no}
+	</select>
+	
+	<!-- 이미지 수 세기 -->
+	<select id="countImageByPostNo" resultType="int">
+	 SELECT COUNT(*) FROM show_dog_post_images
+     WHERE show_dog_post_no = #{show_dog_post_no}
+	</select>
+	
+	<!-- 게시글 번호 찾기 -->
+	<select id="findByPostNo" resultType="com.bubble.welcomepet.dto.ShowDogPostDto">
+	 SELECT * FROM show_dog_post
+	 WHERE show_dog_post_no = #{show_dog_post_no}
+	</select>
+	
+	<!-- 글 삭제 -->
+	<delete id="deleteByPostNo">
+	 DELETE FROM show_dog_post
+     WHERE show_dog_post_no = #{show_dog_post_no}
+	</delete>
+	
+	<!-- 글 수정 -->
+	<update id="updateByPostNo">
+	 UPDATE show_dog_post 
+	 SET show_dog_post_title = #{show_dog_post_title},
+	 	 show_dog_post_content = #{show_dog_post_content}
+     WHERE show_dog_post_no = #{show_dog_post_no}
+	</update>
+	<!-- 글 수정: 이미지도 -->
+	<!-- 선 삭제 -->
+	<delete id="updateImagesByDelete">
+	 DELETE FROM show_dog_post_images
+	 WHERE show_dog_post_no = #{show_dog_post_no}
+	</delete>
+	<!-- 후 수정 -->
+<!-- 	<update id="updateByPostImagesNo">
+	 UPDATE show_dog_post_images
+	 SET show_dog_post_images_name = #{show_dog_post_images_name},
+	 	 show_dog_post_images_link = #{show_dog_post_images_link}
+	 WHERE show_dog_post_images_no = #{show_dog_post_images_no}
+	</update> -->
+<!-- 	<select id="selectByImagesNo" resultType="com.bubble.welcomepet.dto.ShowDogPostImagesDto">
+	 SELECT * FROM show_dog_post_images
+	 WHERE show_dog_post_images_no = #{show_dog_post_images_no}
+	</select> -->
+	
+	
+	<!-- 댓글 작성 -->
+	<insert id="insertShowDogPostComment">
+	 INSERT INTO show_dog_comment VALUES(
+     show_dog_comment_seq.nextval, 
+     #{show_dog_post_no}, 
+     #{customer_no}, 
+     #{show_dog_comment_content}, 
+     SYSDATE
+	 )
+	</insert>
+	
+	<!-- 댓글리스트 찾기 -->
+	<select id="findComment" resultType="com.bubble.welcomepet.dto.ShowDogCommentDto">
+	 SELECT * FROM show_dog_comment
+	 WHERE show_dog_post_no = #{show_dog_post_no}
+	</select>
+	
+	
+<!-- 	<select id="findComment" resultType="com.bubble.welcomepet.dto.ShowDogCommentDto">
+	 SELECT * FROM show_dog_comment
+	 WHERE show_dog_post_no = #{show_dog_post_no}
+	 <choose>
+	  <when test="commentOrder == 'recent'">
+	   	
+	  </when>
+	 </choose>
+	</select>
+	
+	댓글 최근등록순
+	<select id="orderCommentByDesc" resultType="com.bubble.welcomepet.dto.ShowDogCommentDto">
+	 SELECT * FROM show_dog_comment 
+	 ORDER BY show_dog_comment_reg_date DESC
+	</select>
+
+	댓글 오래된순
+	<select id="orderCommentByASC" resultType="com.bubble.welcomepet.dto.ShowDogCommentDto">
+	 SELECT * FROM show_dog_comment 
+ 	 ORDER BY show_dog_comment_reg_date ASC
+	</select> -->
+	
+	<!-- 댓글 개수 -->
+	<select id="countCommentByPostNo" resultType="int">
+	 SELECT COUNT(*) FROM show_dog_comment 
+	 WHERE show_dog_post_no = #{show_dog_post_no}
+	</select>
+	<!-- <select id="getCommentCountByPostNo" resultType="int">
+	SELECT COUNT(*)
+	FROM show_dog_comment
+	WHERE show_dog_post_no = #{show_dog_post_no} 
+	</select> -->
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteByCommentNo">
+	 DELETE show_dog_comment 
+	 WHERE show_dog_comment_no = #{show_dog_comment_no}
+	</delete>
+	
+	<!-- insert 좋아요 -->
+	<insert id="insertLike">
+	 INSERT INTO show_dog_post_likes VALUES(
+	 	show_dog_post_likes_seq.nextval,
+	 	#{show_dog_post_no},
+	 	#{customer_no}
+	 	)
+	</insert>
+	
+	<!-- 좋아요 수 -->
+	<select id="findLikeByNo" resultType="int">
+	 SELECT COUNT(*) FROM show_dog_post_likes
+	 WHERE show_dog_post_no = #{show_dog_post_no}
+	</select>
+	
+	<!-- 좋아요 중복금지: 좋아요 했나 -->
+	<select id="findLikeByCustNo" resultType="int">
+	 SELECT COUNT(*) FROM show_dog_post_likes
+	 WHERE show_dog_post_no = #{show_dog_post_no}
+	 	AND customer_no = #{customer_no}
+	</select>
+	
+	<!-- 좋아요 중복금지: 좋아요 중복삭제 -->
+	<delete id="deleteDupliLike">
+	 DELETE FROM show_dog_post_likes
+	 WHERE show_dog_post_no = #{show_dog_post_no} 
+	 	AND customer_no = #{customer_no}
+	</delete>
+	
+	<select id="chooseBestList" resultType="com.bubble.welcomepet.dto.ShowDogPostDto">
+     <![CDATA[
+     SELECT * FROM (
+     SELECT * FROM show_dog_post
+     ORDER BY show_dog_post_view_count DESC)
+	 WHERE ROWNUM <= 3
+	 ]]>
+	</select>
+	
+	
+	
+</mapper>

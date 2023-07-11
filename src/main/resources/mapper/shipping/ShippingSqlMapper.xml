@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.bubble.welcomepet.shipping.mapper.ShippingSqlMapper">
+	<!-- 택배사 -->
+	<select id="getAllShippingCompany"
+		resultType="com.bubble.welcomepet.dto.ShippingCompanyDto">
+		SELECT * FROM shipping_company
+	</select>
+	<select id="getShippingCompanyByNo"
+		resultType="com.bubble.welcomepet.dto.ShippingCompanyDto">
+		SELECT * FROM shipping_company
+		WHERE shipping_company_no=#{shipping_company_no}
+	</select>
+
+	<!-- 배송 -->
+	<insert id="createShipping">
+		INSERT INTO shipping VALUES(
+		shipping_seq.NEXTVAL,
+		#{shipping_company_no},
+		#{order_product_no},
+		#{shipping_tracking_no}
+		)
+	</insert>
+	<select id="countShippingByOrderProductNo" resultType="int">
+		SELECT
+		COUNT(*) FROM shipping WHERE order_product_no=#{order_product_no}
+	</select>
+	<select id="getShippingByOrderProductNo" resultType="com.bubble.welcomepet.dto.ShippingDto">
+		SELECT * FROM shipping WHERE
+		order_product_no=#{order_product_no}
+		ORDER BY shipping_no DESC
+	</select>
+</mapper>

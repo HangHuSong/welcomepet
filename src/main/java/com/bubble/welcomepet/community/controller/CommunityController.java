@@ -1,0 +1,358 @@
+package com.bubble.welcomepet.community.controller;
+
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.bubble.welcomepet.community.service.CommunityServiceImpl;
+import com.bubble.welcomepet.dto.CustomerDto;
+import com.bubble.welcomepet.dto.DogDto;
+import com.bubble.welcomepet.dto.ShowDogCommentDto;
+import com.bubble.welcomepet.dto.ShowDogPostDto;
+import com.bubble.welcomepet.dto.ShowDogPostImagesDto;
+import com.bubble.welcomepet.dto.ShowDogPostLikesDto;
+
+
+@Controller
+@RequestMapping("/community/*")
+public class CommunityController {
+	
+	@Autowired
+	private CommunityServiceImpl communityServiceImpl;
+	
+//	로그인 후 홈화면으로(나중에 삭제)
+	@RequestMapping("home")
+	public String AfterLoginGoToHome() {
+		return "community/home";
+	}
+	
+//	스냅 연결
+	@RequestMapping("snap")
+	public String showCommunityMain(Model model) {
+//		List<Map<String, Object>> list = communityServiceImpl.getSnapList();
+//		
+//		model.addAttribute("list",list);
+		
+		return "community/snap";
+	}
+
+//	스냅상세 연결
+//	@RequestMapping("snapContent")
+//	public String showSnapContent() {
+////		Map<String, Object> map = communityService.getSnapPost(snap_board_no);
+//////		게시글 내용 보이기
+////		model.addAttribute("postData", map);
+//		
+//		return "community/snapContent";
+//	}
+	
+//	@RequestMapping("snapUpload")
+//	public String showSnapUpload() {
+//		return "community/snapUpload";
+//	}
+	
+//	스냅업로드하기
+//	@RequestMapping("uploadSnapProcess")
+//	public String snapUpload(HttpSession session, SnapListDto params) {
+////		기억해야할것: 고객의 반려견을 선택 후 커뮤니티로 들어옴
+//		DogDto sessionDog = (DogDto)session.getAttribute("sessionDog");
+//		
+//		int dog_no = sessionDog.getDog_no();
+//		params.setDog_no(dog_no);
+//		
+//		communityServiceImpl.showSnapUpload(params);
+//		
+//		return "redirect:./snap";
+//	}
+	
+////////////////////////////////////////////////////////////////////////////////
+//	반려견 자랑게시판 - showDogPost
+	@RequestMapping("showDogPostList")
+	public String showDogPostList(Model model) {
+		List<Map<String, Object>> list = communityServiceImpl.getDogPostList();		
+		model.addAttribute("list",list);
+
+		List<Map<String, Object>> bestList = communityServiceImpl.getBestPostList();		
+		model.addAttribute("bestList",bestList);
+		
+//		댓글 개수 세기 > 여긴 안되네 
+//		int countComment = communityServiceImpl.countCommentByPostNo(show_dog_post_no);
+//		model.addAttribute("countComment", countComment);
+		
+		return "community/showDogPostList";
+	}
+	
+	
+//	게시글 상세보기
+	@RequestMapping("showDogPost")
+	public String showDogPost(Model model, int show_dog_post_no, HttpSession session, ShowDogPostLikesDto showDogPostLikesDto, 
+							  @RequestParam(defaultValue = "recent") String commentOrder){
+//	  //고객 세션 불러오기
+		CustomerDto customerUser = (CustomerDto)session.getAttribute("customerUser"); 
+		
+		int customerNo = customerUser.getCustomer_no();
+		showDogPostLikesDto.setCustomer_no(customerNo);
+//	  //여기까지 고객session 불러오기
+		
+//		조회수 증가
+		communityServiceImpl.increaseView(show_dog_post_no);
+//  	사진 불러오는 map		
+		Map<String, Object> map = communityServiceImpl.bringShowDogPost(show_dog_post_no);		
+		model.addAttribute("postData", map);
+		
+		
+//	  //댓글보이기
+		List<Map<String, Object>> list = communityServiceImpl.bringCommentByPostNo(show_dog_post_no);
+		model.addAttribute("commentData",list);	
+		
+//		댓글 개수 세기
+		int countComment = communityServiceImpl.countCommentByPostNo(show_dog_post_no);
+		model.addAttribute("countComment", countComment);
+		
+//	  //좋아요 개수
+		int countLike = communityServiceImpl.bringLikeByPostNo(show_dog_post_no);	
+		model.addAttribute("countLike", countLike);
+//	  //좋아요 눌렀는지 췤
+		int checkWhetherLike = communityServiceImpl.checkWhetherLike(showDogPostLikesDto);
+		model.addAttribute("checkWhetherLike", checkWhetherLike);
+		
+		System.out.println(show_dog_post_no);
+//		System.out.println("좋아요 들어갔나: " + checkWhetherLike);
+	   
+//		좋아요 중복방지
+//		CustomerDto customerUser = (CustomerDto)session.getAttribute("customerUser");
+//		int customer_no = customerUser.getCustomer_no();
+//		showDogPostLikesDto.setCustomer_no(customer_no);
+		
+		return "community/showDogPost";
+	}
+	
+//	좋아요 
+	@RequestMapping("doLikeProcess")
+	public String dolike(HttpSession session, ShowDogPostLikesDto showDogPostLikesDto) {
+		CustomerDto customerUser = (CustomerDto)session.getAttribute("customerUser"); 
+		
+		int customerNo = customerUser.getCustomer_no();
+		showDogPostLikesDto.setCustomer_no(customerNo);
+		
+		communityServiceImpl.insertLike(showDogPostLikesDto);
+		
+		System.out.println("좋아요 정보: " + showDogPostLikesDto);
+		
+		return "redirect:./showDogPost?show_dog_post_no=" + showDogPostLikesDto.getShow_dog_post_no();
+	}
+	
+//	좋아요(count): 게시글 상세보기랑 같은 페이지라서 안되는듯
+//	@RequestMapping("showDogPost")
+//	public String countLike(Model model, int show_dog_post_no) {
+//		
+//		int countLike = communityServiceImpl.bringLikeByPostNo(show_dog_post_no);
+//		model.addAttribute("countLike", countLike);
+//		
+//		return "community/showDogPost";
+//	}
+		
+		
+//	새 글쓰기
+	@RequestMapping("showDogUpload")
+	public String showDogUpload() {
+		return "community/showDogUpload";
+	}	
+		
+	@RequestMapping("showDogUploadProcess")											 /*파일 여러개 받기[배열]*/
+	public String doShowDogUpload(HttpSession session, ShowDogPostDto showDogPostDto, MultipartFile[] show_dog_post_images_name) {
+		
+		CustomerDto customerUser = (CustomerDto)session.getAttribute("customerUser");
+			
+		System.out.println("새글쓰기 컨트롤러 서블릿(process) 작동");
+		System.out.println(showDogPostDto);
+		
+//		닉네임 불러오기
+		int customer_no = customerUser.getCustomer_no();
+		showDogPostDto.setCustomer_no(customer_no);
+		
+		System.out.println("닉네임 불러옴?: " + showDogPostDto);
+		
+//		이미지 업로드하기
+		List<ShowDogPostImagesDto> postImageDtoList = new ArrayList<>();
+		/* 만약 입력된것이 없으면 for문 반복하기 */
+		if(show_dog_post_images_name != null) {
+				/* 타입 변수명 : 배열 or 컬렉션 */
+			for(MultipartFile multipartFile : show_dog_post_images_name) {
+				/* multipartFile이 비어있으면 continue */
+				if(multipartFile.isEmpty()) {
+					continue;
+				}
+				/* rootFolder : 이미지 업로드 시 파일이 저장될 기본폴더의 경로*/
+//				String rootFolder = "C:/Users/SSS/Desktop/last/source/postImages";
+//				<img src="/Users/SSS/Desktop/last/source/postImages2023/${showImages.show_dog_post_images_link}" alt="사진 어디감">
+				String rootFolder = "C:/uploadFiles/petImages/";
+				
+				/*날짜별 폴더생성 로직*/
+				SimpleDateFormat createFolderByDate = new SimpleDateFormat("yyyy/MM/dd");
+				String today = createFolderByDate.format(new Date());
+				
+				/*File: API, 파일 속성(ex: 숨김, 공개)*/
+				File targetFolder = new File(rootFolder + today);
+				if(!targetFolder.exists()) {
+					/* mkdirs: 부모 디렉토리 만들기 */
+					targetFolder.mkdirs();
+				}
+				
+				/*저장파일명 만들기*/
+				String fileName = UUID.randomUUID().toString();
+				fileName += "_" + System.currentTimeMillis();
+				
+				/* 확장자 추출하기(substring: 문자 자르는 API) */
+				String originalFileName = multipartFile.getOriginalFilename();
+				String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
+				
+				/*이건 뭐지*/
+				String saveFileName = today + "/" + fileName + ext;
+
+				/*문법오류 피하기용: 무슨 오류?*/
+				try {
+					multipartFile.transferTo(new File(rootFolder + saveFileName));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+				ShowDogPostImagesDto showDogPostImagesDto = new ShowDogPostImagesDto();
+				showDogPostImagesDto.setShow_dog_post_images_name(originalFileName);
+				
+				showDogPostImagesDto.setShow_dog_post_images_link(saveFileName);
+				System.out.println(showDogPostImagesDto);
+				postImageDtoList.add(showDogPostImagesDto);
+			}
+		}
+		communityServiceImpl.showDogUpload(showDogPostDto, postImageDtoList);
+//		select * from show_dog_post_images where show_dog_post_no = 1
+		return "redirect:./showDogPost?show_dog_post_no=" + showDogPostDto.getShow_dog_post_no();
+	}
+	
+//	게시글 수정
+	@RequestMapping("showDogUpdate")
+	public String updatePost(Model model, int show_dog_post_no) {
+		Map<String, Object> map = communityServiceImpl.bringShowDogPost(show_dog_post_no);
+		model.addAttribute("postData", map);
+		
+		return "community/showDogUpdate";
+	}
+	
+	@RequestMapping("showDogUpdateProcess")						   
+	public String updatePostProcess(ShowDogPostDto showDogPostDto, MultipartFile[] show_dog_post_images_name) {
+		
+		System.out.println("Controller.updatePostProcess: " + showDogPostDto);
+//		System.out.println(show_dog_post_images_name);
+		
+//		이미지 삭제 후 수정하기
+		List<ShowDogPostImagesDto> postImageDtoList = new ArrayList<>();
+		/* 만약 입력된것이 없으면 for문 반복하기 */
+		if(show_dog_post_images_name != null) {
+				/* 타입 변수명 : 배열 or 컬렉션 */
+			for(MultipartFile multipartFile : show_dog_post_images_name) {
+				/* multipartFile이 비어있으면 continue */
+				if(multipartFile.isEmpty()) {
+					continue;
+				}
+				/* rootFolder : 이미지 업로드 시 파일이 저장될 기본폴더의 경로*/
+//				String rootFolder = "C:/Users/SSS/Desktop/last/source/postImages";
+//				<img src="/Users/SSS/Desktop/last/source/postImages2023/${showImages.show_dog_post_images_link}" alt="사진 어디감">
+				String rootFolder = "C:/uploadFiles/petImages/";
+				
+				/*날짜별 폴더생성 로직*/
+				SimpleDateFormat createFolderByDate = new SimpleDateFormat("yyyy/MM/dd");
+				String today = createFolderByDate.format(new Date());
+				
+				/*File: API, 파일 속성(ex: 숨김, 공개)*/
+				File targetFolder = new File(rootFolder + today);
+				if(!targetFolder.exists()) {
+					/* mkdirs: 부모 디렉토리 만들기 */
+					targetFolder.mkdirs();
+				}
+				
+				/*저장파일명 만들기*/
+				String fileName = UUID.randomUUID().toString();
+				fileName += "_" + System.currentTimeMillis();
+				
+				/* 확장자 추출하기(substring: 문자 자르는 API) */
+				String originalFileName = multipartFile.getOriginalFilename();
+				String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
+				
+				/*이건 뭐지*/
+				String saveFileName = today + "/" + fileName + ext;
+
+				/*문법오류 피하기용: 무슨 오류?*/
+				try {
+					multipartFile.transferTo(new File(rootFolder + saveFileName));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+				ShowDogPostImagesDto showDogPostImagesDto = new ShowDogPostImagesDto();
+				showDogPostImagesDto.setShow_dog_post_images_name(originalFileName);
+				
+				showDogPostImagesDto.setShow_dog_post_images_link(saveFileName);
+				System.out.println(showDogPostImagesDto);
+				postImageDtoList.add(showDogPostImagesDto);
+			}
+		}
+		communityServiceImpl.updatePost(showDogPostDto, postImageDtoList);
+		
+		return "redirect:./showDogPost?show_dog_post_no=" + showDogPostDto.getShow_dog_post_no();
+	}	
+	
+	
+//	게시글 삭제
+	@RequestMapping("showDogDeleteProcess")
+	public String deletePost(int show_dog_post_no) {
+		communityServiceImpl.deletePost(show_dog_post_no);
+		return "redirect:./showDogPostList";
+	}
+	
+	
+//	댓글 작성하기
+	@RequestMapping("writeCommentProcess")
+	public String writeComment(HttpSession session, ShowDogCommentDto showDogCommentDto) {
+		CustomerDto customerUser = (CustomerDto)session.getAttribute("customerUser");
+		
+		System.out.println("누구 session: " + showDogCommentDto);
+		
+		int customer_no = customerUser.getCustomer_no();
+		showDogCommentDto.setCustomer_no(customer_no);
+		
+		communityServiceImpl.insertComment(showDogCommentDto);
+		
+		return "redirect:./showDogPost?show_dog_post_no=" + showDogCommentDto.getShow_dog_post_no();
+	}
+	
+//	댓글 삭제
+//	@RequestMapping("deleteCommentProcess")
+//	public String deleteComment(int show_dog_comment_no) {
+//		
+//		System.out.println("컨트롤:"+ show_dog_comment_no);
+//		
+//		communityServiceImpl.deleteComment(show_dog_comment_no);
+//		
+//		return "redirect:./showDogPost?show_dog_post_no=" + show_dog_comment_no;
+//	}
+		
+
+
+		
+
+////////////////////////////////////////////////////////////////////////////////	
+}

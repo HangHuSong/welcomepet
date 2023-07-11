@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.bubble.welcomepet.customer.mapper.CustomerMapper">
+
+
+	<select id="createCustomerPk" resultType="int">
+		select customer_seq.nextval from dual
+	</select>
+
+	<insert id="registCustomer">
+		INSERT INTO customer VALUES(
+		#{customer_no},
+		#{customer_id},
+		#{customer_pw},
+		#{customer_name},
+		#{customer_birth},
+		#{customer_nickname},
+		#{customer_gender},
+		#{customer_phone},
+		0,
+		SYSDATE
+		)
+	</insert>
+
+	<select id="getCustomerInfoByNo"
+		resultType="com.bubble.welcomepet.dto.CustomerDto">
+		SELECT * FROM customer
+		WHERE customer_no = #{customer_no}
+	</select>
+	
+	<select id="checkCustomerId" resultType="int">
+		select count(*) from customer where customer_id = #{customer_id}
+	</select>
+	
+
+	<select id="loginCustomerByIdAndPw"
+		resultType="com.bubble.welcomepet.dto.CustomerDto">
+		SELECT * FROM customer
+		WHERE customer_id = #{customer_id}
+		AND customer_pw = #{customer_pw}
+	</select>
+
+	<update id="updateCustomerInfo">
+		UPDATE customer
+		SET customer_nickname =
+		#{customer_nickname}, customer_name = #{customer_name}
+		,customer_pw =
+		#{customer_pw} ,customer_phone = #{customer_phone}, customer_birth =
+		#{customer_birth}
+		WHERE customer_no = #{customer_no}
+	</update>
+
+
+	<!-- 주소 관련 -->
+
+	<select id="getCustomerAddress"
+		resultType="com.bubble.welcomepet.dto.CustomerAddressDto">
+		SELECT * FROM customer_address
+		WHERE customer_no = #{customer_no}
+	</select>
+	<select id="getAddressByAddressNo"
+		resultType="com.bubble.welcomepet.dto.CustomerAddressDto">
+		SELECT * FROM customer_address
+		WHERE customer_address_no =
+		#{customer_address_no}
+	</select>
+	
+		<select id="mainAddress"
+		resultType="com.bubble.welcomepet.dto.CustomerAddressDto">
+		SELECT * FROM customer_address
+		WHERE customer_address_default = 1 and customer_no = #{customer_no}
+	</select>
+	
+	<insert id="addCustomerAddress">
+		INSERT INTO customer_address VALUES(
+		customer_address_seq.nextval,
+		#{customer_no},
+		#{customer_address_name},
+		#{customer_address_receiver},
+		#{customer_address_main},
+		#{customer_address_detail},
+		#{customer_address_phone},
+		#{customer_address_default}
+		)
+	</insert>
+	
+	<update id="updateCustomerAddress">
+		UPDATE customer_address
+		SET customer_address_name =
+		#{customer_address_name},
+		customer_address_receiver = #{customer_address_receiver}
+		,customer_address_main = #{customer_address_main} ,
+		customer_address_detail = #{customer_address_detail},
+		customer_address_phone = #{customer_address_phone}
+		WHERE
+		customer_address_no = #{customer_address_no}
+	</update>
+	
+	<update id="updateMainAddress">
+	 UPDATE customer_address 
+		SET customer_address_default = CASE WHEN customer_address_no = #{customer_address_no} THEN 1 ELSE 0 END
+        where customer_no = #{customer_no}
+	</update>
+
+	<!-- 반려견 관련 -->
+
+	<insert id="registDog">
+		INSERT INTO dog VALUES(
+		dog_seq.nextval,
+		#{customer_no},
+		#{dog_breed_no},
+		#{dog_name},
+		#{dog_gender},
+		#{dog_image},
+		#{dog_weight},
+		#{dog_introduction},
+		#{dog_birth}
+		)
+	</insert>
+
+	<select id="getDogByCutomerNo"
+		resultType="com.bubble.welcomepet.dto.DogDto">
+		SELECT * FROM dog
+		WHERE customer_no = #{customer_no}
+	</select>
+
+
+
+	<!-- 장바구니 관련 -->
+
+	<select id="getCartByCutomerNo"
+		resultType="com.bubble.welcomepet.dto.CartDto">
+		SELECT * FROM cart
+		WHERE customer_no = #{customer_no}
+	</select>
+
+	<delete id="deleteCart">
+		delete from cart
+		where cart_no = #{cart_no}
+	</delete>
+	
+	<insert id="addCart">
+	 INSERT INTO cart values(
+		cart_seq.nextval,
+		#{customer_no},
+		#{product_option_no},
+		#{product_amount},
+		SYSDATE
+		)	
+	</insert>
+	
+	<!-- 찜 관련 -->
+	
+	<select id="getTotalWishCount" resultType="int">
+		select count(*) from product_wish_list WHERE product_no = #{product_no}
+	</select>
+	
+	<insert id="addWish">
+		INSERT INTO product_wish_list values(
+		product_wish_list_seq.nextval,
+		#{customer_no},
+		#{product_no},
+		SYSDATE
+		)	
+	</insert>
+	
+	<delete id="deleteWish">
+		DELETE FROM product_wish_list where product_no = #{product_no} 
+		and customer_no = #{customer_no}
+	</delete>
+	
+	<select id="getWishList" resultType="com.bubble.welcomepet.dto.ProductWishDto">
+		select * from product_wish_list where customer_no = #{customer_no}
+	</select>
+	
+	<select id="countMyWish" resultType="int">
+		SELECT COUNT(*) FROM product_wish_list
+		WHERE product_no = #{product_no}
+		AND customer_no = #{customer_no}
+	</select>
+
+	<!-- 검색 관련 -->
+
+	<select id="getSearchByCutomerNo"
+		resultType="com.bubble.welcomepet.dto.CustomerSearchDto">
+		SELECT * FROM customer_search
+		WHERE customer_no = #{customer_no}   ORDER BY search_date DESC 
+    		<![CDATA[     
+     WHERE ROWNUM <= 4 ]]>
+	</select>
+
+	<insert id="addCustomerSearch">
+		INSERT INTO customer_Search VALUES(
+		customer_search_seq.nextval,
+		#{customer_no},
+		#{search_content},
+		SYSDATE
+		)
+	</insert>
+	
+	
+	<select id="searchProduct" resultType="com.bubble.welcomepet.dto.ProductDto">
+	select * from product where product_name like '%' ||#{searchWord}|| '%'
+	</select>
+	 
+
+	<!-- 상품 관련 -->
+
+	<select id="getProductInfoByNo"
+		resultType="com.bubble.welcomepet.dto.ProductDto">
+		select * from product where product_no = #{product_no}
+	</select>
+	
+	<select id="getImgByProductNo"
+	resultType="com.bubble.welcomepet.dto.ProductDetailImageDto">
+	 select * from product_detail_image where product_no = #{product_no}
+	</select>
+
+	<select id="getProductInfoByCategory"
+		resultType="com.bubble.welcomepet.dto.ProductDto">
+		select * from Product where sub_category_no=
+		#{sub_category_no}
+	</select>
+
+	<select id="topSaleProduct"
+		resultType="com.bubble.welcomepet.dto.ProductDto">
+		SELECT * FROM ( SELECT *
+		FROM product
+		ORDER BY product_discount_rate DESC)
+    		<![CDATA[     
+     WHERE ROWNUM <= 3  	]]>
+	</select>
+
+	<select id="getProductInfoByMainCategory"
+		resultType="com.bubble.welcomepet.dto.ProductDto">
+		select * from product where sub_category_no in (select sub_category_no from
+		sub_category where main_category_no = #{main_category_no})
+	</select>
+	
+	<select id="getSubCategory" resultType="com.bubble.welcomepet.dto.CategoryDto">
+	select * from sub_category where sub_category_no = #{sub_category_no}
+	</select>
+		<select id="getSubCategoryByMainCategory" resultType="com.bubble.welcomepet.dto.CategoryDto">
+	select * from sub_category where main_category_no = #{main_category_no}
+	</select>
+	
+	<select id="getMainCategory" resultType="com.bubble.welcomepet.dto.CategoryDto">
+	select * from main_category where main_category_no = #{main_category_no}
+	</select>
+	
+	<select id="getProductOptionByNo" resultType="com.bubble.welcomepet.dto.ProductOptionDto">
+		select * from product_option where product_no = #{product_no}
+	</select>
+	
+		<select id="getOptionInfoByNo" resultType="com.bubble.welcomepet.dto.ProductOptionDto">
+		select * from product_option where product_option_no = #{product_option_no}
+	</select>
+
+	<!-- 주문 관련 -->
+	
+	<select id="createOrdersPk" resultType="int">
+		select orders_seq.nextval from dual
+	</select>
+	
+	<insert id="AddOrders">
+		INSERT INTO orders VALUES(
+		#{orders_no},
+		#{customer_no},
+		#{orders_payment_method},
+		#{orders_total_price},
+		SYSDATE,
+		#{orders_address_name},
+		#{orders_receiver_name},
+		#{orders_address_phone},
+		#{orders_address},
+		#{orders_detail_address},
+		#{orders_shipping_message}
+		)
+	</insert>
+	
+	<update id="updateProductStatus">
+		UPDATE order_product
+		SET order_product_status_no = #{order_product_status_no}
+		WHERE order_product_no = #{order_product_no}
+	</update>
+	
+	<insert id="AddOrderProduct">
+		INSERT INTO order_product VALUES(
+		order_product_seq.nextval,
+		#{orders_no},
+		#{product_option_no},
+		1,
+		#{order_product_quantity},
+		#{order_product_price},
+		#{order_product_used_point}
+		)
+	</insert>
+	
+	<select id="getCustomerOrder" resultType="com.bubble.welcomepet.dto.OrdersDto"> 
+		select * from orders where 
+		customer_no = #{customer_no}
+	
+	</select>
+	
+	<select id="getOrderByNo" resultType="com.bubble.welcomepet.dto.OrdersDto"> 
+		select * from orders where 
+		orders_no = #{orders_no}
+	
+	</select>
+	
+	<select id="getOrderProduct" resultType="com.bubble.welcomepet.dto.OrderProductDto">
+	 select * from order_product where orders_no = #{orders_no}
+	</select>
+
+	<select id="getProductStatus" resultType="String">
+		select order_product_status_name from order_product_status where order_product_status_no = #{order_product_status_no}
+	</select>
+	
+	<select id="getOrderProductByNo" resultType="com.bubble.welcomepet.dto.OrderProductDto">
+		select * from order_product where order_product_no = #{order_product_no}
+	</select>	
+	
+	<!-- 리뷰 관련 -->
+	
+	<select id="createReviewPk" resultType="int">
+		select product_review_seq.nextval from dual
+	</select>	
+	
+	<insert id="writeReview">
+	 insert into product_review values (
+		#{product_review_no},
+		#{customer_no},
+		#{order_product_no},
+		#{product_option_no},
+		#{product_review_context},
+		#{product_review_rating}, 
+	 	SYSDATE
+	 )
+	</insert>
+	
+	<delete id="deleteReview">
+		DELETE FROM product_review where product_review_no = #{product_review_no} 
+		
+	</delete>
+	
+	<update id="updateReview">
+		update product_review 
+		set product_review_context = #{product_review_context},
+		product_review_rating = #{product_review_rating},
+		where product_review_no = #{product_review_no}
+	</update>
+	
+	<select id="getCustomerReview" resultType="com.bubble.welcomepet.dto.ProductReviewDto">
+		select * from product_review where customer_no = #{customer_no}
+	
+	</select>
+	
+	<select id="getReviewImg" resultType="com.bubble.welcomepet.dto.ProductReviewImagesDto">
+		select * from product_review_images where product_review_no = #{product_review_no}
+	</select>
+
+	<insert id="uploadReviewImg">
+		insert into product_review_images values (
+		product_review_images_seq.nextval,
+		#{product_review_no},
+		#{product_review_images_link}
+		)
+	</insert>
+	
+	<select id="getProductReview" resultType="com.bubble.welcomepet.dto.ProductReviewImagesDto">
+		select * from product_review where product_option_no in (
+			select product_option_no from product_option
+			where product_no = #{product_no}
+			)
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

@@ -1,0 +1,166 @@
+package com.bubble.welcomepet.board.controller;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;import org.springframework.core.OrderComparator;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.bubble.welcomepet.customer.service.CustomerService;
+import com.bubble.welcomepet.dto.CategoryDto;
+import com.bubble.welcomepet.dto.CustomerAddressDto;
+import com.bubble.welcomepet.dto.CustomerDto;
+import com.bubble.welcomepet.dto.CustomerSearchDto;
+import com.bubble.welcomepet.dto.OrderProductDto;
+import com.bubble.welcomepet.dto.OrdersDto;
+import com.bubble.welcomepet.dto.ProductDetailImageDto;
+
+@Controller
+@RequestMapping("/board/*")
+public class BoardController {
+	
+	@Autowired
+	private CustomerService customerService;
+	
+	@RequestMapping("main")
+	public String mainPage(Model model) {
+		List<Map<String,Object>> list = customerService.topSaleProduct();
+		model.addAttribute("topSaleProduct", list);
+		return "board/main";
+	}
+	
+	// 검색 
+	
+	@RequestMapping("search")
+	public String searchPage(HttpSession session, Model model) {
+		CustomerDto sessionUser = (CustomerDto) session.getAttribute("customerUser");
+		if(sessionUser == null) { 
+			return "board/search";
+		} else  {
+		int customer_no = sessionUser.getCustomer_no();
+		List<Map<String,Object>> list = customerService.getSearchByCutomerNo(customer_no);
+		model.addAttribute("customerInfo", sessionUser);
+		model.addAttribute("searchInfo", list);
+		return "board/search"; }
+		
+	}
+	@RequestMapping("searchProduct")
+	public String search(Model model, String searchWord, HttpSession session, CustomerSearchDto customerSearchDto) {
+		
+		CustomerDto sessionUser = (CustomerDto) session.getAttribute("customerUser");
+		
+		List<Map<String,Object>> list = customerService.searchProduct(searchWord);
+		int count = customerService.searchProduct(searchWord).size();
+		model.addAttribute("productCount", count);
+		model.addAttribute("searchWord", searchWord);
+		model.addAttribute("productInfo", list);
+		if(sessionUser != null) { 
+			int customer_no = sessionUser.getCustomer_no();
+			System.out.println(customer_no);
+			System.out.println(searchWord);
+			customerSearchDto.setCustomer_no(customer_no);
+			customerSearchDto.setSearch_content(searchWord);
+			customerService.addSearch(customerSearchDto);
+		} 
+
+		return "board/searchProduct";
+	}
+	
+	// 주문
+
+	
+	@RequestMapping("orders")
+	public String orders(OrdersDto orderDto,OrderProductDto orderProductDto) {
+
+		customerService.addOrders(orderDto, orderProductDto);
+
+		return "board/payPage";
+		
+	}
+	
+	@RequestMapping("buyPage")
+	public String buyPage(Model model, int product_option_no, int product_amount, 
+			HttpSession session)  {
+		Map<String, Object> map = customerService.getProductbyOption(product_option_no);
+		CustomerDto sessionUser = (CustomerDto) session.getAttribute("customerUser");
+		if(sessionUser == null) { 
+			return "customer/login";
+		} else  {
+			int customer_no = sessionUser.getCustomer_no();
+			CustomerDto customerDto = customerService.getCustomerInfo(customer_no);
+			CustomerAddressDto mainAddress = customerService.mainAddress(customer_no);
+			List<Map<String,Object>> addressList = customerService.getCustomerAddress(customer_no);
+			model.addAttribute("addressList", addressList);
+			model.addAttribute("mainAddress", mainAddress);
+			model.addAttribute("sessionUser", customerDto);
+			model.addAttribute("product_amount", product_amount);
+			model.addAttribute("data", map);
+		return "board/buyPage";
+		}
+	}
+	
+	// 상품
+	
+	@RequestMapping("productDetail")
+	public String productDetail(Model model, int product_no) {
+		
+		Map<String, Object> map = customerService.getByProductNo(product_no);
+	
+		model.addAttribute("data", map);
+		
+		return "board/productDetail";
+		
+	}
+	
+	@RequestMapping("categoryProduct")
+	public String categoryProduct(Model model, Integer sub_category_no, Integer main_category_no) {
+		
+		if(sub_category_no == null) {
+			
+			List<Map<String,Object>> list = customerService.getProductInfoByMainCategory(main_category_no);
+			List<Map<String,Object>> list2 = customerService.getSubCategoryByMain(main_category_no);
+					
+			CategoryDto categoryDto2 = customerService.getMainCategory(main_category_no);
+			
+			int mainCateNo = categoryDto2.getMain_category_no();
+			int count = customerService.getProductInfoByMainCategory(main_category_no).size();
+			String mainCategoryName = categoryDto2.getMain_category_name();
+			String subCategoryName = "전체";
+			
+			model.addAttribute("mainCateNo", mainCateNo);
+			model.addAttribute("subCategoryName", subCategoryName);
+			model.addAttribute("mainCategoryName", mainCategoryName);
+			model.addAttribute("productCount", count);
+			model.addAttribute("categoryInfo", list2);
+			model.addAttribute("productInfo", list);
+			return "board/categoryProduct";
+			
+		}
+		CategoryDto categoryDto = customerService.getSubCategory(sub_category_no);
+		CategoryDto categoryDto2 = customerService.getMainCategory(main_category_no);
+		
+		String mainCategoryName = categoryDto2.getMain_category_name();
+		String subCategoryName = categoryDto.getSub_category_name();
+		int mainCateNo = categoryDto2.getMain_category_no();
+		
+		List<Map<String,Object>> list = customerService.getProductInfoByCategory(sub_category_no);
+		List<Map<String,Object>> list2 = customerService.getSubCategoryByMain(main_category_no);
+		int count = customerService.getProductInfoByCategory(sub_category_no).size();
+		
+		model.addAttribute("mainCateNo", mainCateNo);
+		model.addAttribute("mainCategoryName", mainCategoryName);
+		model.addAttribute("subCategoryName", subCategoryName);
+		model.addAttribute("productCount", count);
+		model.addAttribute("categoryInfo", list2);
+		model.addAttribute("productInfo", list);
+		return "board/categoryProduct";
+
+	}
+	
+	
+}
+ 

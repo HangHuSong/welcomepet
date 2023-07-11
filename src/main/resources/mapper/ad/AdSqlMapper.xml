@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bubble.welcomepet.ad.mapper.AdSqlMapper">
+	<!-- 광고 결제내역 -->
+	<select id="createAdPaymentPk" resultType="int">
+		SELECT
+		ad_payment_seq.nextval from dual
+	</select>
+	<insert id="createAdPayment">
+		INSERT INTO ad_payment VALUES(
+		#{ad_payment_no},
+		#{biz_no},
+		#{ad_category_no},
+		#{ad_payment_tid},
+		#{ad_payment_method_type},
+		#{ad_payment_price},
+		#{ad_payment_quantity},
+		#{ad_payment_created_date},
+		#{ad_payment_approved_date}
+		)
+	</insert>
+
+	<!-- 광고상품 -->
+	<insert id="createAdProduct">
+		INSERT INTO ad_product VALUES(
+		ad_product_seq.NEXTVAL,
+		#{ad_category_no},
+		#{product_no},
+		#{ad_payment_no},
+		#{ad_product_start_date},
+		#{ad_product_end_date}
+		)
+	</insert>
+	<select id="getAdProductByBizNo" resultType="com.bubble.welcomepet.dto.AdProductDto">
+		SELECT ap.* FROM ad_product ap WHERE ap.product_no IN (SELECT p.product_no FROM product p WHERE p.biz_no=#{biz_no})
+		AND ad_product_end_date>=SYSDATE
+	</select>
+	
+	<!-- 광고카테고리 -->
+	<select id="getAdCategoryByNo" resultType="com.bubble.welcomepet.dto.AdCategoryDto">
+		SELECT * FROM ad_category WHERE ad_category_no=#{ad_category_no}	
+	</select>
+	
+	
+	<select id="getAllAdCategory" resultType="com.bubble.welcomepet.dto.AdCategoryDto">
+		SELECT * FROM ad_category
+	</select>
+	
+</mapper>

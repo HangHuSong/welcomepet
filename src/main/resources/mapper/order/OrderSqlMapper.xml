@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.bubble.welcomepet.order.mapper.OrderSqlMapper">
+
+	<!-- 주문상품 -->
+	<select id="getOrderProductByBizNoAndStatusNo"
+		resultType="com.bubble.welcomepet.dto.OrderProductDto">
+		SELECT * FROM order_product op WHERE
+		op.order_product_status_no=#{order_product_status_no} AND
+		op.product_option_no IN (SELECT po.product_option_no FROM
+		product_option po WHERE po.product_no IN (SELECT p.product_no FROM
+		product p WHERE p.biz_no=#{biz_no}))
+	</select>
+	<select id="getOrderProductByNo" resultType="com.bubble.welcomepet.dto.OrderProductDto">
+		SELECT * FROM order_product
+		WHERE order_product_no=#{order_product_no}
+	</select>
+	
+	<update id="updateOrderStatusNoByNo">
+		UPDATE order_product SET
+		order_product_status_no=#{order_product_status_no} WHERE
+		order_product_no=#{order_product_no}
+	</update>
+
+	<select id="getSettlementProductListByDateAndBizNo" resultType="com.bubble.welcomepet.dto.OrderProductDto">
+		SELECT op.* FROM order_product op,orders o,product
+		p,product_option po WHERE order_product_status_no=6 AND
+		op.orders_no=o.orders_no
+		AND
+		TO_CHAR(ADD_MONTHS(TRUNC(o.orders_date+14),1),'yyyy-MM')=TO_CHAR(TO_DATE(#{year}||'-'||#{month},'yyyy-MM'),'yyyy-MM')
+		AND op.product_option_no=po.product_option_no
+		AND po.product_no=p.product_no
+		AND p.biz_no=#{biz_no}
+	</select>
+	<select id="getSalesByNoAndDate" resultType="int">
+		SELECT NVL(SUM(op.order_product_price*op.order_product_quantity),0) FROM order_product op,orders o,product
+		p,product_option po WHERE order_product_status_no=6 AND
+		op.orders_no=o.orders_no
+		AND
+		TO_CHAR(ADD_MONTHS(TRUNC(o.orders_date+14),1),'yyyy-MM')=TO_CHAR(TO_DATE(#{year}||'-'||#{month},'yyyy-MM'),'yyyy-MM')
+		AND op.product_option_no=po.product_option_no
+		AND po.product_no=p.product_no
+		AND p.biz_no=#{biz_no}
+	</select>
+	<select id="countOrderProductByBizNoAndStatusNo" resultType="int">
+		SELECT COUNT(*) FROM order_product op 
+		WHERE op.order_product_status_no=#{order_product_status_no}
+		AND op.product_option_no IN 
+			(SELECT po.product_option_no FROM product_option po WHERE po.product_no IN
+				(SELECT p.product_no FROM product p WHERE p.biz_no=#{biz_no})) 
+	</select>
+	<!-- 주문 -->
+	<select id="getOrderByNo"
+		resultType="com.bubble.welcomepet.dto.OrdersDto">
+		SELECT * FROM orders WHERE orders_no=#{orders_no}
+	</select>
+
+	<select id="getOrderMonthByBizNo" resultType="java.lang.Integer">
+	<![CDATA[
+		SELECT
+		EXTRACT(MONTH FROM (SELECT MIN(o.orders_date+14) 
+        FROM orders o,order_product op,product_option po,product p
+		WHERE op.orders_no=o.orders_no
+		AND op.product_option_no =po.product_option_no
+        AND p.product_no=po.product_no
+        AND p.biz_no=#{biz_no}))+LEVEL FROM dual
+        CONNECT BY LEVEL<=EXTRACT(MONTH FROM (SELECT MAX(o.orders_date+14) 
+        FROM orders o,order_product op,product_option po,product p
+		WHERE op.orders_no=o.orders_no
+		AND op.product_option_no =po.product_option_no
+        AND p.product_no=po.product_no
+        AND p.biz_no=#{biz_no}))-EXTRACT(MONTH FROM (SELECT MIN(o.orders_date+14) 
+        FROM orders o,order_product op,product_option po,product p
+		WHERE op.orders_no=o.orders_no
+		AND op.product_option_no =po.product_option_no
+        AND p.product_no=po.product_no
+        AND p.biz_no=#{biz_no}))
+	]]>
+	</select>
+
+	<select id="getOrderYearByBizNo" resultType="java.lang.Integer">
+	<![CDATA[
+		SELECT EXTRACT(YEAR FROM (SELECT MIN(o.orders_date+14)
+		FROM orders o,order_product op
+		WHERE op.orders_no=o.orders_no
+		AND op.product_option_no IN (SELECT po.product_option_no FROM
+		product_option po WHERE po.product_no IN (SELECT p.product_no FROM
+		product p WHERE p.biz_no=#{biz_no}))))+LEVEL-1 AS order_year
+		FROM dual
+		CONNECT BY LEVEL <= (EXTRACT(YEAR FROM (SELECT MAX(o.orders_date+14) FROM orders
+		o,order_product op
+		WHERE op.orders_no=o.orders_no
+		AND op.product_option_no IN (SELECT po.product_option_no FROM
+		product_option po WHERE po.product_no IN (SELECT p.product_no FROM
+		product p WHERE p.biz_no=#{biz_no})))) - EXTRACT(YEAR FROM (SELECT
+		MIN(o.orders_date+14) FROM orders o,order_product op
+		WHERE op.orders_no=o.orders_no
+		AND op.product_option_no IN (SELECT po.product_option_no FROM
+		product_option po WHERE po.product_no IN (SELECT p.product_no FROM
+		product p WHERE p.biz_no=#{biz_no})))))+1
+		]]>
+	</select>
+
+
+
+	<!-- 교환 -->
+	<select id="getExchangeByOrderProductNo"
+		resultType="com.bubble.welcomepet.dto.ExchangeDto">
+		SELECT * FROM exchange
+		WHERE
+		order_product_no=#{order_product_no}
+	</select>
+
+	<!-- 환불 -->
+	<select id="getReturnByOrderProductNo"
+		resultType="com.bubble.welcomepet.dto.ReturnDto">
+		SELECT * FROM return
+		WHERE
+		order_product_no=#{order_product_no}
+	</select>
+
+	<!-- 교환환불사유 -->
+	<select id="getReturnExchangeReasonByNo"
+		resultType="com.bubble.welcomepet.dto.ReturnExchangeReasonDto">
+		SELECT * FROM return_exchange_reason
+		WHERE
+		return_exchange_reason_no=#{return_exchange_reason_no}
+	</select>
+
+
+
+	<!-- 주문상품상태 -->
+	<select id="getOrderStatusByNo"
+		resultType="com.bubble.welcomepet.dto.OrderProductStatusDto">
+		SELECT * FROM order_product_status
+		WHERE
+		order_product_status_no=#{order_product_status_no}
+	</select>
+	
+	<!-- 주문알람 -->
+	<select id="getOrderAlarmByBizNoAndIsChecked" resultType="com.bubble.welcomepet.dto.OrderAlarmDto">
+		SELECT * FROM order_alarm
+		WHERE biz_no=#{biz_no} AND order_alarm_is_checked=#{order_alarm_is_checked}
+	</select>
+	<select id="countOrderAlarmByBizNoAndIsChecked" resultType="int">
+		SELECT COUNT(*) FROM order_alarm
+		WHERE biz_no=#{biz_no} AND order_alarm_is_checked=#{order_alarm_is_checked}
+	</select>
+	<update id="updateAlarmCheckedTo1">
+		UPDATE order_alarm SET order_alarm_is_checked=1
+		WHERE order_alarm_no=#{order_alarm_no}
+	</update>
+	
+	
+	<!-- 통계 -->
+	<select id="getDailySalesByBizNo" resultType="Map">
+		<![CDATA[
+			SELECT TO_CHAR(d.d_date,'yyyy-MM-dd') order_date, NVL(t.t_daily_sales,0)
+			daily_sales
+			FROM
+			(SELECT SYSDATE-LEVEL AS d_date FROM DUAL CONNECT BY
+			LEVEL<=6) d
+			LEFT JOIN
+			(SELECT
+			TO_CHAR(o.orders_date,'yyyy-MM-dd')
+			t_order_date,SUM(op.order_product_price*op.order_product_quantity)
+			t_daily_sales FROM order_product op, orders o
+			WHERE
+			op.order_product_status_no NOT IN (2,7,8,9,10)
+			AND
+			op.orders_no=o.orders_no
+			AND op.product_option_no IN (SELECT
+			po.product_option_no FROM
+			product_option po WHERE po.product_no IN
+			(SELECT p.product_no FROM
+			product p WHERE p.biz_no=#{biz_no}))
+			AND
+			o.orders_date>=(SYSDATE - 6)
+			GROUP BY
+			TO_CHAR(o.orders_date,'yyyy-MM-dd')) t
+			ON
+			t.t_order_date=TO_CHAR(d.d_date,'yyyy-MM-dd')
+			ORDER BY d.d_date
+		]]>
+	</select>
+
+	<select id="getWeekDaySalesByBizNo" resultType="Map">
+		SELECT w.weekday
+		weekday, t.avgsales weekdaySales FROM weekday w
+		LEFT JOIN
+		(SELECT
+		day_of_week,AVG(sales) avgsales FROM
+		(SELECT TO_CHAR(o.orders_date,
+		'IW') AS week_number,
+		TO_CHAR(o.orders_date, 'D') AS day_of_week,
+		SUM(op.order_product_price*op.order_product_quantity) sales
+		FROM orders
+		o,order_product op
+		WHERE op.product_option_no IN (SELECT
+		po.product_option_no FROM
+		product_option po,product p WHERE
+		po.product_no=p.product_no AND
+		p.biz_no=#{biz_no})
+		AND
+		op.orders_no=o.orders_no
+		GROUP BY TO_CHAR(o.orders_date,
+		'IW'),TO_CHAR(o.orders_date, 'D'))
+		GROUP BY day_of_week) t
+		ON
+		w.weeknum=t.day_of_week
+		ORDER BY w.weeknum
+	</select>
+
+	<select id="getMonthlySalesByBizNo" resultType="Map">
+		<![CDATA[
+			SELECT l.l_month||'월' month , AVG(NVL(t.t_monthlysales,0)) monthlysales FROM (SELECT LEVEL l_month FROM DUAL CONNECT BY LEVEL<=12) l 
+			LEFT JOIN
+			(SELECT TO_CHAR(o.orders_date,'yyyy-MM') t_month ,SUM(op.order_product_price*op.order_product_quantity) t_monthlysales FROM orders o ,order_product op
+			WHERE o.orders_no=op.orders_no
+			AND op.product_option_no IN (SELECT po.product_option_no FROM product_option po,product p WHERE p.product_no=po.product_no AND p.biz_no=#{biz_no})
+			GROUP BY TO_CHAR(o.orders_date,'yyyy-MM')) t
+			ON l.l_month=TO_CHAR(TO_DATE(t.t_month,'yyyy-MM'),'FMMM')
+			GROUP BY l.l_month||'월',l.l_month
+			ORDER BY l.l_month
+		]]>
+	</select>
+
+	<select id="getSubCategorySalesByBizNo" resultType="Map">
+		SELECT
+		sc.sub_category_name AS SUBCATEGORYNAME
+		,SUM(op.order_product_price*op.order_product_quantity) AS SALES FROM
+		order_product op,product_option po,product p,sub_category sc
+		WHERE
+		op.product_option_no = po.product_option_no
+		AND
+		po.product_no=p.product_no
+		AND p.biz_no=#{biz_no}
+		AND
+		sc.sub_category_no=p.sub_category_no
+		AND op.order_product_status_no NOT
+		IN (2,7)
+		GROUP BY sc.sub_category_name
+		ORDER BY sc.sub_category_name
+	</select>
+	<select id="getSubCategoryRefundByBizNo" resultType="Map">
+		SELECT
+		t1.t1_sub_category_name AS SUBCATEGORYNAME,NVL(t2.t2_sales,0) AS SALES
+		FROM (SELECT
+		sc1.sub_category_name AS t1_sub_category_name FROM
+		order_product
+		op1,product_option po1,product p1,sub_category sc1
+		WHERE
+		op1.product_option_no = po1.product_option_no
+		AND
+		po1.product_no=p1.product_no
+		AND p1.biz_no=#{biz_no}
+		AND
+		sc1.sub_category_no=p1.sub_category_no
+		AND op1.order_product_status_no
+		NOT IN (2,7)
+		GROUP BY sc1.sub_category_name) t1
+		LEFT JOIN
+		(SELECT
+		sc.sub_category_name AS
+		t2_sub_category_name
+		,SUM(op.order_product_price*op.order_product_quantity)
+		AS t2_sales FROM
+		order_product op,product_option po,product p,sub_category
+		sc
+		WHERE
+		op.product_option_no = po.product_option_no
+		AND
+		po.product_no=p.product_no
+		AND p.biz_no=#{biz_no}
+		AND
+		sc.sub_category_no=p.sub_category_no
+		AND op.order_product_status_no = 7
+		GROUP BY sc.sub_category_name) t2
+		ON
+		t2.t2_sub_category_name=t1.t1_sub_category_name
+		ORDER BY
+		t1.t1_sub_category_name
+	</select>
+
+	<select id="getProductSalesByBizNo" resultType="Map">
+		SELECT
+		p.product_name AS
+		PRODUCTNAME,SUM(op.order_product_price*op.order_product_quantity) AS
+		SALES FROM order_product op,product_option po,product p
+		WHERE
+		op.product_option_no = po.product_option_no
+		AND
+		po.product_no=p.product_no
+		AND p.biz_no=#{biz_no}
+		AND
+		op.order_product_status_no
+		NOT IN (2,7)
+		GROUP BY p.product_name
+		ORDER BY
+		p.product_name
+
+	</select>
+	<select id="getProductRefundByBizNo" resultType="Map">
+		SELECT
+		t1.t1_product_name AS PRODUCTNAME ,NVL(t2.t2_sales,0) AS SALES FROM
+		(SELECT p.product_name AS t1_product_name FROM order_product
+		op,product_option po,product p
+		WHERE op.product_option_no =
+		po.product_option_no
+		AND po.product_no=p.product_no
+		AND p.biz_no=1
+		AND
+		op.order_product_status_no NOT IN (2,7)
+		GROUP BY p.product_name) t1
+		LEFT JOIN
+		(SELECT p.product_name AS
+		t2_product_name,SUM(op.order_product_price*op.order_product_quantity)
+		AS t2_sales FROM order_product op,product_option po,product p
+		WHERE
+		op.product_option_no = po.product_option_no
+		AND
+		po.product_no=p.product_no
+		AND p.biz_no=1
+		AND op.order_product_status_no
+		= 7
+		GROUP BY p.product_name) t2
+		ON t1.t1_product_name=t2.t2_product_name
+		ORDER BY t1.t1_product_name
+	</select>
+</mapper>

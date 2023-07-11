@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.bubble.welcomepet.product.mapper.ProductSqlMapper">
+
+	<select id="createProductPk" resultType="int">
+		SELECT
+		product_seq.nextval FROM dual
+	</select>
+	<select id="getProductByNo"
+		resultType="com.bubble.welcomepet.dto.ProductDto">
+		SELECT * FROM product
+		WHERE product_no=#{product_no}
+	</select>
+	<select id="getProductByBizNo"
+		resultType="com.bubble.welcomepet.dto.ProductDto">
+		SELECT * FROM product
+		WHERE biz_no=#{biz_no}
+	</select>
+	<insert id="createProduct">
+		INSERT INTO product VALUES(
+		#{product_no},
+		#{biz_no},
+		#{sub_category_no},
+		#{product_name},
+		#{product_thumbnail},
+		#{product_description},
+		#{product_price},
+		#{product_shipping_price},
+		#{product_discount_rate}
+		)
+	</insert>
+	<update id="updateProductSubCategory">
+		UPDATE product SET sub_category_no=#{sub_category_no}
+		WHERE product_no=#{product_no}
+	</update>
+	<update id="updateProductName">
+		UPDATE product SET product_name=#{product_name}
+		WHERE
+		product_no=#{product_no}
+	</update>
+	<update id="updatProductDescription">
+		UPDATE product SET
+		product_description=#{product_description}
+		WHERE
+		product_no=#{product_no}
+	</update>
+	<update id="updateProductDiscount">
+		UPDATE product SET
+		product_discount_rate=#{product_discount_rate}
+		WHERE
+		product_no=#{product_no}
+	</update>
+	<update id="updateProductShippingPrice">
+		UPDATE product SET
+		product_shipping_price=#{product_shipping_price}
+		WHERE
+		product_no=#{product_no}
+	</update>
+	<update id="updateProductPrice">
+		UPDATE product SET product_price=#{product_price}
+		WHERE product_no=#{product_no}
+	</update>
+	<update id="deleteThumbnailImg">
+		UPDATE product SET product_thumbnail=null
+		WHERE
+		product_no=#{product_no}
+	</update>
+	<update id="updateProductThumbnail">
+		UPDATE product SET
+		product_thumbnail=#{product_thumbnail}
+		WHERE product_no=#{product_no}
+	</update>
+	
+
+	<!-- 상품 메인이미지 -->
+	<select id="createProductMainImagePk" resultType="int">
+		SELECT
+		product_main_image_seq.nextval FROM dual
+	</select>
+
+	<insert id="createMainImg">
+		INSERT INTO product_main_image VALUES(
+		#{product_main_image_no},
+		#{product_no},
+		#{product_main_image_link}
+		)
+	</insert>
+
+	<select id="getMainImageByProductNo"
+		resultType="com.bubble.welcomepet.dto.ProductMainImageDto">
+		SELECT * FROM product_main_image
+		WHERE
+		product_no=#{product_no}
+	</select>
+
+	<delete id="deleteMainImage">
+		DELETE FROM product_main_image
+		WHERE
+		product_no=#{product_no}
+	</delete>
+
+	<!-- 상품 상세이미지 -->
+	<select id="createProductDetailImagePk" resultType="int">
+		SELECT
+		product_detail_image_seq.nextval FROM dual
+	</select>
+
+	<insert id="createDetailImg">
+		INSERT INTO product_detail_image VALUES(
+		#{product_detail_image_no},
+		#{product_no},
+		#{product_detail_image_link}
+		)
+	</insert>
+	<delete id="deleteDetailImage">
+		DELETE FROM product_detail_image
+		WHERE
+		product_no=#{product_no}
+	</delete>
+	<select id="getDetailImageByProductNo"
+		resultType="com.bubble.welcomepet.dto.ProductDetailImageDto">
+		SELECT * FROM product_detail_image
+		WHERE
+		product_no=#{product_no}
+	</select>
+
+
+	<!-- 상품옵션 -->
+	<select id="countLowStockNumByBizNo" resultType="int">
+	<![CDATA[
+		SELECT COUNT(*) FROM product_option po
+		WHERE po.product_option_stock_quantity<=10
+		AND po.product_no IN (SELECT p.product_no FROM product p WHERE p.biz_no=#{biz_no})
+	]]>
+	</select>
+	<select id="getProductOptionByNo"
+		resultType="com.bubble.welcomepet.dto.ProductOptionDto">
+		SELECT * FROM product_option
+		WHERE
+		product_option_no=#{product_option_no}
+	</select>
+	<select id="getProductOptionByProductNo"
+		resultType="com.bubble.welcomepet.dto.ProductOptionDto">
+		SELECT * FROM product_option
+		WHERE product_no=#{product_no}
+	</select>
+
+	<insert id="createProductOption">
+		INSERT INTO product_option VALUES(
+		product_option_seq.nextval,
+		#{product_no},
+		#{product_option_name},
+		#{product_option_price},
+		#{product_option_stock_quantity},
+		sysdate
+		)
+	</insert>
+	<select id="countProductOptionByProductNo" resultType="int">
+		SELECT
+		COUNT(*) FROM product_option
+		WHERE product_no=#{product_no}
+	</select>
+
+	<update id="updateOptionName">
+		UPDATE product_option SET
+		product_option_name=#{product_option_name}
+		WHERE
+		product_option_no=#{product_option_no}
+	</update>
+	<update id="updateOptionPrice">
+		UPDATE product_option SET
+		product_option_price=#{product_option_price}
+		WHERE
+		product_option_no=#{product_option_no}
+	</update>
+	<update id="updateOptionStock">
+		UPDATE product_option SET
+		product_option_stock_quantity=#{product_option_stock_quantity}
+		WHERE
+		product_option_no=#{product_option_no}
+	</update>
+
+	<!-- 상품문의 -->
+	<select id="countInquiryByBizNoAndNotReplied" resultType="int">
+		SELECT COUNT(*) FROM product_inquiry pi
+		WHERE pi.product_no IN
+		(SELECT p.biz_no FROM product p WHERE p.biz_no=#{biz_no})
+		AND
+		pi.product_inquiry_no NOT IN (SELECT pir.product_inquiry_no FROM
+		product_inquiry_reply pir)
+	</select>
+	<select id="getNewProductInquiryByBizNo"
+		resultType="com.bubble.welcomepet.dto.ProductInquiryDto">
+		SELECT * FROM product_inquiry pi
+		WHERE pi.product_no IN
+		(SELECT p.biz_no FROM product p WHERE p.biz_no=#{biz_no})
+		AND
+		pi.product_inquiry_no NOT IN (SELECT pir.product_inquiry_no FROM
+		product_inquiry_reply pir)
+	</select>
+
+	<select id="getCompleteProductInquiryByBizNo"
+		resultType="com.bubble.welcomepet.dto.ProductInquiryDto">
+		SELECT * FROM product_inquiry pi
+		WHERE pi.product_no IN
+		(SELECT p.biz_no FROM product p WHERE p.biz_no=#{biz_no})
+		AND
+		pi.product_inquiry_no IN (SELECT pir.product_inquiry_no FROM
+		product_inquiry_reply pir)
+	</select>
+
+	<!-- 상품문의 답변 -->
+	<insert id="createInquiryReply">
+		INSERT INTO product_inquiry_reply VALUES(
+		product_inquiry_reply_seq.NEXTVAL,
+		#{product_inquiry_no},
+		#{product_inquiry_reply_context},
+		SYSDATE
+		)
+	</insert>
+
+
+	<select id="getProductInquiryReplyByInquiryNo"
+		resultType="com.bubble.welcomepet.dto.ProductInquiryReplyDto">
+		SELECT * FROM product_inquiry_reply
+		WHERE
+		product_inquiry_no=#{product_inquiry_no}
+	</select>
+
+	<!-- 메인 카테고리 -->
+	<select id="getMainCategoryByNo"
+		resultType="com.bubble.welcomepet.dto.MainCategoryDto">
+		SELECT * FROM main_category
+		WHERE
+		main_category_no=#{main_category_no}
+	</select>
+	<select id="getAllMainCategory"
+		resultType="com.bubble.welcomepet.dto.MainCategoryDto">
+		SELECT * FROM main_category
+	</select>
+
+	<!-- 서브카테고리 -->
+	<select id="getSubCategoryByNo"
+		resultType="com.bubble.welcomepet.dto.SubCategoryDto">
+		SELECT * FROM sub_category
+		WHERE
+		sub_category_no=#{sub_category_no}
+	</select>
+
+	<select id="getSubCategoryByMainCategoryNo"
+		resultType="com.bubble.welcomepet.dto.SubCategoryDto">
+		SELECT * FROM sub_category
+		WHERE
+		main_category_no=#{main_category_no}
+	</select>
+
+
+
+	<!-- 상품리뷰 -->
+	<select id="getProductReviewByBizNo"
+		resultType="com.bubble.welcomepet.dto.ProductReviewDto">
+		SELECT pr.* FROM product_review pr,product_option po,product p
+		WHERE pr.product_option_no =po.product_option_no
+		AND p.product_no=po.product_no
+		AND p.biz_no=#{biz_no}
+	</select>
+	<select id="getReviewListByDateAndBizNo" resultType="com.bubble.welcomepet.dto.ProductReviewDto">
+		SELECT pr.* FROM product_review pr,product_option po,product p
+		WHERE pr.product_option_no =po.product_option_no
+		AND p.product_no=po.product_no
+		AND p.biz_no=#{biz_no}
+		AND TO_CHAR(pr.product_review_reg_date,'yyyy.MM.dd') BETWEEN #{start_date} AND #{end_date}
+	</select>
+	
+	<!-- 리뷰이미지 -->
+	<select id="getProductReviewImagesByReviewNo" resultType="com.bubble.welcomepet.dto.ProductReviewImagesDto">
+		SELECT * FROM product_review_images WHERE product_review_no=#{product_review_no}
+	</select>
+	
+	<!-- 리뷰좋아요 -->
+	<select id="countProductReviewLikesByReviewNo" resultType="int">
+		SELECT COUNT(*) FROM product_review_likes WHERE product_review_no=#{product_review_no}
+	</select>
+	<!-- <resultMap type="com.bubble.welcomepet.dto.ProductReviewDto" id="reviewResultMap"> 
+		<id property="product_review_no" column="product_review_no"/> </resultMap> 
+		<select id="getProductReviewByBizNo" resultMap="reviewResultMap"> </select> -->
+
+</mapper>

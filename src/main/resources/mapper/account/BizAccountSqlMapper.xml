@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.bubble.welcomepet.account.mapper.BizAccountSqlMapper">
+	<!-- 은행 -->
+	<select id="getAllBank" resultType="com.bubble.welcomepet.dto.BankDto">
+		SELECT * FROM bank
+	</select>
+	<select id="getBankByNo" resultType="com.bubble.welcomepet.dto.BankDto">
+		SELECT * FROM bank
+		WHERE bank_no=#{bank_no}
+	</select>
+	
+	
+	<!-- 계좌 -->
+	<insert id="createBizAccount">
+		INSERT INTO biz_account VALUES(
+		#{biz_account_no},
+		#{bank_no},
+		#{biz_no},
+		#{biz_account_num}
+		)
+	</insert>
+	<select id="createBizAccountPk" resultType="int">
+		SELECT biz_account_seq.NEXTVAL FROM dual
+	</select>
+	<select id="getBizAccountByBizNo" resultType="com.bubble.welcomepet.dto.BizAccountDto">
+		SELECT * FROM biz_account
+		WHERE biz_no=#{biz_no}
+	</select>
+	<select id="getBizAccountByNo" resultType="com.bubble.welcomepet.dto.BizAccountDto">
+		SELECT * FROM biz_account
+		WHERE biz_account_no=#{biz_account_no}
+	</select>
+</mapper>

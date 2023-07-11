@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bubble.welcomepet.admin.mapper.AdminSqlMapper">
+		<select id="getEmpByNoAndPw" resultType="com.bubble.welcomepet.dto.EmpDto">
+			SELECT *
+			FROM emp
+			WHERE emp_no = #{emp_no}
+			AND emp_pw = #{emp_pw}
+		</select>
+	
+		<select id="getAllBiz" resultType="com.bubble.welcomepet.dto.BizDto">
+			SELECT *
+			FROM biz
+			ORDER BY biz_no
+		</select>
+
+	<!-- CUSTOMER -->
+	
+		<select id="getCustomerByNo" resultType="com.bubble.welcomepet.dto.CustomerDto">
+			SELECT *
+			FROM customer
+			WHERE customer_no = #{customer_no}
+		</select>
+		
+		<select id="getAllCustomer" resultType="com.bubble.welcomepet.dto.CustomerDto">
+		    SELECT *
+		    FROM (
+		        SELECT customer.*, ROWNUM rnum
+		        FROM customer
+		        WHERE 1 = 1
+		        <if test="searchType != null and searchWord != null">
+		            <choose>
+		                <when test="searchType == 'customer_no'">
+		                    AND customer_no LIKE '%' || #{searchWord} || '%'
+		                </when>
+		                <when test="searchType == 'customer_nickname'">
+		                    AND customer_nickname LIKE '%' || #{searchWord} || '%'
+		                </when>
+		                <when test="searchType == 'customer_phone'">
+		                    AND customer_phone LIKE '%' || #{searchWord} || '%'
+		                </when>
+		                <when test="searchType == 'customer_name'">
+		                    AND customer_name LIKE '%' || #{searchWord} || '%'
+		                </when>
+		            </choose>
+		        </if>
+		    )
+		    <![CDATA[
+		    WHERE rnum >= ((#{page}-1)*10)+1 AND rnum <= #{page} * 10
+		    ]]>
+		</select>
+		
+		<select id="getCustomerCount" resultType="int">
+		    SELECT COUNT(*)
+		    FROM customer
+		    WHERE 1 = 1
+		    <if test="searchType != null and searchWord != null">
+		        <choose>
+		            <when test="searchType == 'customer_no'">
+		                AND customer_no LIKE '%' || #{searchWord} || '%'
+		            </when>
+		            <when test="searchType == 'customer_nickname'">
+		                AND customer_nickname LIKE '%' || #{searchWord} || '%'
+		            </when>
+		            <when test="searchType == 'customer_phone'">
+		                AND customer_phone LIKE '%' || #{searchWord} || '%'
+		            </when>
+		            <when test="searchType == 'customer_name'">
+		                AND customer_name LIKE '%' || #{searchWord} || '%'
+		            </when>
+		        </choose>
+		    </if>
+		</select>
+
+		<select id="getCustomerDetail" resultType="com.bubble.welcomepet.dto.CustomerDto">
+			SELECT *
+			FROM customer
+			WHERE customer_no = #{customer_no}
+		</select>		
+		
+		<select id="getInquirys" resultType="com.bubble.welcomepet.dto.CsInquiryDto">
+			SELECT *
+		    FROM (
+		        SELECT cs_inquiry.*, ROWNUM rnum
+		        FROM cs_inquiry
+		        WHERE 1 = 1
+		        <if test="searchType != null and searchWord != null">
+		            <choose>
+		                <when test="searchType == 'cs_inquiry_no'">
+		                    AND cs_inquiry_no LIKE '%' || #{searchWord} || '%'
+		                </when>
+		                <when test="searchType == 'cs_inquiry_title'">
+		                    AND cs_inquiry_title LIKE '%' || #{searchWord} || '%'
+		                </when>
+		            </choose>
+		        </if>
+		    )
+		    <![CDATA[
+		    WHERE rnum >= ((#{page}-1)*10)+1 AND rnum <= #{page} * 10
+		    ]]>
+		</select>
+
+		<select id="getInquiryCount" resultType="int">
+			SELECT COUNT(*)
+		    FROM cs_inquiry
+		    WHERE 1 = 1
+		    <if test="searchType != null and searchWord != null">
+		        <choose>
+		            <when test="searchType == 'cs_inquiry_no'">
+		                    AND cs_inquiry_no LIKE '%' || #{searchWord} || '%'
+		                </when>
+		                <when test="searchType == 'cs_inquiry_title'">
+		                    AND cs_inquiry_title LIKE '%' || #{searchWord} || '%'
+		                </when>
+		        </choose>
+		    </if>
+		</select>
+		
+		<select id="getInquiryByNo" resultType="com.bubble.welcomepet.dto.CsInquiryDto">
+			SELECT *
+			FROM cs_inquiry
+			WHERE cs_inquiry_no = #{cs_inquiry_no}
+		</select>
+		
+		<select id="getCustomerByInquiryNo" resultType="com.bubble.welcomepet.dto.CustomerDto">
+			SELECT *
+			FROM customer
+			WHERE customer_no = #{customer_no}
+		</select>
+		
+		<insert id="replyInquiryByEmp">
+			INSERT INTO cs_inquiry_reply
+			VALUES(
+				reply_seq.nextval,
+				#{emp_no},
+				#{cs_inquiry_no},
+				#{cs_inquiry_reply_context},
+				SYSDATE
+			)
+		</insert>
+		
+		<update id="changeInquiryStatus">
+			UPDATE cs_inquiry
+			SET cs_inquiry_status = 1
+			WHERE cs_inquiry_no = #{cs_inquiry_no}
+		</update>
+		
+		<select id="getInquiryReplyByNo" resultType="com.bubble.welcomepet.dto.CsInquiryReplyDto">
+			SELECT *
+			FROM cs_inquiry_reply
+			WHERE cs_inquiry_no = #{cs_inquiry_no}
+		</select>
+		
+		<select id="getEmpByNo" resultType="com.bubble.welcomepet.dto.EmpDto">
+			SELECT *
+			FROM emp
+			WHERE emp_no = #{emp_no}
+		</select>
+		
+		<insert id="banCustomerThreeDays">
+			INSERT INTO customer_ban
+			VALUES(
+				customer_ban_seq.nextval,
+				#{customer_no},
+				SYSDATE,
+				SYSDATE + 3,
+				#{ban_reason},
+				#{emp_no}
+			)
+		</insert>
+		
+		<insert id="banCustomerForever">
+			INSERT INTO customer_ban
+			VALUES(
+				customer_ban_seq.nextval,
+				#{customer_no},
+				SYSDATE,
+				TO_DATE('29991231', 'YYYYMMDD'),
+				#{ban_reason},
+				#{emp_no}
+			)
+		</insert>
+		
+		<select id="getBanHistory" resultType="com.bubble.welcomepet.dto.CustomerBanDto">
+			SELECT *
+			FROM customer_ban
+			WHERE customer_no = #{customer_no}
+		</select>
+		
+		<select id="getBizByNo" resultType="com.bubble.welcomepet.dto.BizDto">
+			SELECT *
+			FROM biz
+			WHERE biz_no = #{biz_no}
+		</select>
+		
+		<select id="getSubCategory" resultType="com.bubble.welcomepet.dto.SubCategoryDto">
+			SELECT *
+			FROM sub_category
+			WHERE sub_category_no = #{sub_category_no}
+		</select>
+		
+		<select id="getMainCategory" resultType="com.bubble.welcomepet.dto.MainCategoryDto">
+			SELECT *
+			FROM main_category
+			WHERE main_category_no = #{main_category_no}
+		</select>
+		
+		<select id="checkApprovalByNo" resultType="int">
+			SELECT COUNT(*)
+			FROM biz_approval_request
+			WHERE biz_no = #{biz_no}
+		</select>
+		
+		<select id="getApprovalRequestByNo" resultType="com.bubble.welcomepet.dto.BizApprovalRequestDto">
+			SELECT *
+			FROM biz_approval_request
+			WHERE biz_no = #{biz_no}
+		</select>
+		
+		<insert id="confirmApproval">
+			INSERT INTO biz_approval VALUES(
+				biz_approval_seq.nextval,
+				#{biz_approval_request_no},
+				#{emp_no},
+				1,
+				#{biz_message},
+				#{emp_memo},
+				SYSDATE
+			)
+		</insert>
+		
+		<update id="confirmBizApproval">
+			UPDATE biz
+			SET biz_status_no = 1
+			WHERE biz_no = #{biz_no}
+		</update>
+		
+		<update id="rejectBizApproval">
+			UPDATE biz
+			SET biz_status_no = 2
+			WHERE biz_no = #{biz_no}
+		</update>
+		
+		<insert id="rejectApproval">
+			INSERT INTO biz_approval VALUES(
+				biz_approval_seq.nextval,
+				#{biz_approval_request_no},
+				#{emp_no},
+				2,
+				#{biz_message},
+				#{emp_memo},
+				SYSDATE
+				)
+		</insert>
+		
+		<select id="getBizApprovalRequestByNo" resultType="com.bubble.welcomepet.dto.BizApprovalRequestDto">
+			SELECT *
+			FROM biz_approval_request
+			WHERE biz_approval_request_no = #{biz_approval_request_no}
+		</select>
+		
+		
+		<select id="getBizHistory" resultType="com.bubble.welcomepet.dto.BizApprovalDto">
+			SELECT * 
+			FROM biz_approval
+			WHERE biz_approval_request_no ＝ #{biz_approval_request_no}
+		</select>
+		
+		<select id="getBizStatus" resultType="com.bubble.welcomepet.dto.BizStatusDto">
+			SELECT *
+			FROM biz_status
+			WHERE biz_status_no = #{biz_status_no}
+		</select>
+		
+		<select id="getBizStatusName" resultType="com.bubble.welcomepet.dto.BizStatusDto">
+			SELECT *
+			FROM biz_status
+		</select>
+		
+		<select id="getCouponList" resultType="com.bubble.welcomepet.dto.CouponListDto">
+			SELECT *
+			FROM coupon_list
+			WHERE customer_no = #{customer_no}
+		</select>
+		
+		<select id="getCouponTemplate" resultType="com.bubble.welcomepet.dto.CouponTemplateDto">
+			SELECT * 
+			FROM coupon_template
+			WHERE template_no = #{template_no}
+		</select>
+		
+		<select id="getCustomerPoint" resultType="com.bubble.welcomepet.dto.CustomerPointDto">
+			SELECT *
+			FROM customer_point
+			WHERE customer_no = #{customer_no}
+		</select>
+		
+		<select id="getOrderProducts" resultType="com.bubble.welcomepet.dto.OrderProductDto">
+			SELECT *
+			FROM order_product
+		</select>
+		
+		<select id="getOrderProduct" resultType="com.bubble.welcomepet.dto.ProductDto">
+			SELECT *
+			FROM product_option
+			WHERE product_option_no = #{product_option_no}
+		</select>
+		
+		<select id="getOrderProductStatus" resultType="com.bubble.welcomepet.dto.OrderProductStatusDto">
+			SELECT *
+			FROM order_product_status
+			WHERE order_product_status_no = #{order_product_status_no}
+		</select>
+		
+		<select id="getOrder" resultType="com.bubble.welcomepet.dto.OrdersDto">
+			SELECT *
+			FROM orders
+			WHERE orders_no = #{orders_no}
+		</select>
+		<select id="getOrderProductList" resultType="com.bubble.welcomepet.dto.OrderProductDto">
+			SELECT *
+			FROM order_product
+			WHERE biz_no = #{biz_no}
+		</select>
+		
+		<select id="getTotalSale" resultType="int">
+			SELECT NVL(SUM(NVL(op.order_product_price,0)),0)
+			FROM order_product op
+			    INNER JOIN order_product_status ops on op.order_product_status = ops.order_product_status_no
+			    INNER JOIN orders o ON op.order_no = o.order_no
+			    INNER JOIN product p on op.product_no = p.product_no
+			    INNER JOIN biz b on b.biz_no = p.biz_no
+			WHERE op.order_product_status = 6
+			AND o.order_date BETWEEN TRUNC(ADD_MONTHS(SYSDATE, -1), 'MM') AND LAST_DAY(ADD_MONTHS(SYSDATE, -1))
+			AND p.biz_no = #{biz_no}
+		</select>
+	
+		<insert id="scheduleStatement">
+			INSERT INTO statement VALUES(
+				statement_seq.nextval,
+				#{biz_no},
+				#{statement_year},
+				#{statement_month},
+				#{statement_total_sales},
+				#{statement_commission},
+				#{statement_price},
+				SYSDATE
+			)
+		</insert>
+		
+		<select id="getStatements" resultType="com.bubble.welcomepet.dto.StatementDto">
+			SELECT *
+			FROM statement
+			WHERE statement_no = #{statement_no}
+		</select>
+		
+		<select id="checkRequestByNo" resultType="int">
+			SELECT COUNT(*)
+			FROM settlement_request
+			WHERE statement_no = #{statement_no}
+		</select>
+		
+		<select id="getSettlementRequest" resultType="com.bubble.welcomepet.dto.SettlementRequestDto">
+			SELECT *
+			FROM settlement_request
+		</select>
+		
+		<select id="checkProcess" resultType="int">
+			SELECT COUNT(*)
+			FROM settlement_process
+			WHERE settlement_request_no = #{settlement_request_no}
+		</select>
+		
+		<select id="getSettlementRequestByNo" resultType="com.bubble.welcomepet.dto.SettlementRequestDto">
+			SELECT *
+			FROM settlement_request
+			WHERE settlement_request_no = #{settlement_request_no}
+		</select>
+		
+		<select id="getBizAccountByNo" resultType="com.bubble.welcomepet.dto.BizAccountDto">
+			SELECT *
+			FROM biz_account
+			WHERE biz_account_no = #{biz_account_no}
+		</select>
+		
+		<select id="getBankByNo" resultType="com.bubble.welcomepet.dto.BankDto">
+			SELECT *
+			FROM bank
+			WHERE bank_no = #{bank_no}
+		</select>
+		
+		<select id="getStatementByNo" resultType="com.bubble.welcomepet.dto.StatementDto">
+			SELECT *
+			FROM statement
+			WHERE statement_no = #{statement_no}
+		</select>
+		
+		<insert id="settlementProcess">
+			INSERT INTO settlement_process VALUES(
+				settlement_process_seq.nextval,
+				#{settlement_request_no},
+				#{settlement_process_emp_memo},
+				#{settlement_process_evidence},
+				SYSDATE
+			)
+		</insert>
+		
+		<select id="checkInquiryReply" resultType="int">
+			SELECT COUNT(*)
+			FROM cs_inquiry_reply
+			WHERE cs_inquiry_no = #{cs_inquiry_no}
+		</select>
+		
+		<select id="getSettlementProcessByRequestNo" resultType="com.bubble.welcomepet.dto.SettlementProcessDto">
+			SELECT *
+			FROM settlement_process
+			WHERE settlement_request_no = #{settlement_request_no}
+		</select>
+		
+		<select id="getShowDogList" resultType="com.bubble.welcomepet.dto.ShowDogPostDto">
+			SELECT * 
+			FROM show_dog_post
+		</select>
+		
+		<select id="getShowDogComments" resultType="com.bubble.welcomepet.dto.ShowDogCommentDto">
+			SELECT *
+			FROM show_dog_comment
+			WHERE show_dog_post_no = #{show_dog_post_no}
+		</select>
+		
+		<select id="getShowDogDetail" resultType="com.bubble.welcomepet.dto.ShowDogPostDto">
+			SELECT *
+			FROM show_dog_post
+			WHERE show_dog_post_no = #{show_dog_post_no}
+		</select>
+		
+		<select id="getShowDogCommentCount" resultType="int">
+			SELECT COUNT(*)
+			FROM show_dog_comment
+			WHERE show_dog_post_no = #{show_dog_post_no}
+		</select>
+		
+		<select id="getBizStatusByBizNo" resultType="com.bubble.welcomepet.dto.BizStatusDto">
+			SELECT bs.*
+			FROM biz_status bs
+				INNER JOIN biz b on b.biz_status_no = bs.biz_status_no
+			WHERE b.biz_no = #{biz_no}
+		</select>
+		
+		<select id="getBizApprovalRequest" resultType="com.bubble.welcomepet.dto.BizApprovalRequestDto">
+			SELECT *
+			FROM biz_approval_request
+		</select>
+		
+		<select id="getProductOptionByNo" resultType="com.bubble.welcomepet.dto.ProductOptionDto">
+			SELECT *
+			FROM product_option
+			WHERE product_option_no = #{product_option_no}
+		</select>
+		
+		<select id="getProductByNo" resultType="com.bubble.welcomepet.dto.ProductDto">
+			SELECT *
+			FROM product
+			WHERE product_no = #{product_no}
+		</select>
+</mapper>

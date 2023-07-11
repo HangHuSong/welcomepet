@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bubble.welcomepet.snap.mapper.SnapSqlMapper">
+
+	<select id="getCustomerDogList" resultType="com.bubble.welcomepet.dto.DogDto">
+		SELECT *
+		FROM dog
+		WHERE customer_no = #{customer_no}
+	</select>
+	
+	<select id="createPk" resultType="int">
+		SELECT snap_board_seq.NEXTVAL FROM DUAL
+	</select>
+	<!-- 스냅 글쓰기  -->
+	<insert id="postSnap">
+		INSERT INTO snap_board VALUES(
+			#{snap_board_no},
+			#{dog_no},
+			#{snap_board_content},
+			0,
+			SYSDATE,
+			#{snap_location},
+			#{snap_thumbnail}
+		)
+	</insert>
+	
+	<insert id="insertSnapImage">
+		INSERT INTO snap_images VALUES(
+			snap_images_seq.nextval,
+			#{snap_board_no},
+			#{snap_image_link}
+		)
+	</insert>
+	<!-- 스냅 글쓰기 끝 -->
+	
+	<!-- 스냅 불러오기 -->
+	<select id="getSnapList" resultType="com.bubble.welcomepet.dto.SnapBoardDto">
+		SELECT *
+		FROM snap_board
+		ORDER BY snap_board_no DESC
+	</select>
+	
+	<select id="getSnapDogByDogNo" resultType="com.bubble.welcomepet.dto.DogDto">
+		SELECT *
+		FROM dog
+		WHERE dog_no = #{dog_no}
+	</select>
+	
+	<select id="getSnapImagesBySnapBoardNo" resultType="com.bubble.welcomepet.dto.SnapImagesDto">
+		SELECT *
+		FROM snap_images
+		WHERE snap_board_no = #{snap_board_no}
+	</select>
+	
+	<!-- 스냅 좋아요 개수 -->
+	<select id="countLikeBySnapBoardNo" resultType="int">
+		SELECT COUNT(*)
+		FROM snap_board_likes
+		WHERE snap_board_no = #{snap_board_no}
+	</select>
+	
+	<!-- 스냅 좋아요 -->
+	<insert id="snapLikeByCustomer">
+		INSERT INTO snap_board_likes VALUES(
+			snap_board_likes_seq.NEXTVAL,
+			#{snap_board_no},
+			#{customer_no}
+		)
+	</insert>
+	
+	<!-- 스냅 좋아요 취소 -->
+	<delete id="snapUnLikeByCustomer">
+		DELETE FROM snap_board_likes
+		WHERE snap_board_no = #{snap_board_no}
+		AND customer_no = #{customer_no}
+	</delete>
+	
+	<!-- 좋아요 유효성 -->
+	<select id="checkLike" resultType="int">
+		SELECT COUNT(*)
+		FROM snap_board_likes
+		WHERE snap_board_no = #{snap_board_no}
+		AND customer_no = #{customer_no}
+	</select>
+	
+	<select id="getSnapBySnapBoardNo" resultType="com.bubble.welcomepet.dto.SnapBoardDto">
+		SELECT *
+		FROM snap_board
+		WHERE snap_board_no = #{snap_board_no}
+	</select>
+	
+	<!-- 스냅 댓글 작성 -->
+	<insert id="snapComment">
+		INSERT INTO snap_board_comment VALUES(
+			snap_board_comment_seq.nextval,
+			#{snap_board_no},
+			#{customer_no},
+			#{snap_board_comment_content},
+			SYSDATE
+		)
+	</insert>
+	
+	<select id="getSnapCommentsBySnapBoardNo" resultType="com.bubble.welcomepet.dto.SnapBoardCommentDto">
+		SELECT *
+		FROM snap_board_comment
+		WHERE snap_board_no = #{snap_board_no}
+		ORDER BY snap_board_comment_no DESC
+	</select>
+	
+	<select id="getCustomerByNo" resultType="com.bubble.welcomepet.dto.CustomerDto">
+		SELECT *
+		FROM customer
+		WHERE customer_no = #{customer_no}
+	</select>
+	
+	<!-- 조회수 증가 -->
+	<update id="snapViewCount">
+		UPDATE snap_board
+		SET snap_board_view_count = snap_board_view_count + 1
+		WHERE snap_board_no = #{snap_board_no} 
+	</update>
+	
+	
+	<!-- dog 프로필 글 가져오기 -->
+	<select id="getSnapByDogNo" resultType="com.bubble.welcomepet.dto.SnapBoardDto">
+		SELECT *
+		FROM snap_board
+		WHERE dog_no = #{dog_no}
+		ORDER BY snap_board_no DESC 
+	</select>
+</mapper>
