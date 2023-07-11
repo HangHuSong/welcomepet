@@ -13,7 +13,7 @@
 
 	<div class="container text-center">
 		<h1>HOME : 임시</h1>
-		${customerUser1.12customer_nickname}님
+		${customerUser1.12customer_n13213ickname}님
 	</div>
 
 <%-- mobileStyle --%>
