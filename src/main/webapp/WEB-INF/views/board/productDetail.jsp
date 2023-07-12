@@ -230,7 +230,7 @@ function changeInputForUpdateReview(targetElement){
 	
 	const tempStar = reviewStar.innerText;
 	
-	const tempValue = reviewContext.innerText;
+	const tempValue = reviewContext	.innerText;
 	
 	reivewContext.innerHTML = "";
 	
@@ -380,7 +380,8 @@ function refreshTotalWishCount(){
 		        menu.appendChild(optionItem);
 
 		        const optionDiv = document.createElement("div");
-		        optionDiv.classList.add("row","mt-2");
+		        optionDiv.classList.add("row","mt-2","option-no");
+		        optionDiv.setAttribute("optionNo", option.product_option_no);
 		        optionItem.appendChild(optionDiv);
 		        
 		        const optionCol1 = document.createElement("div");
@@ -401,7 +402,7 @@ function refreshTotalWishCount(){
 		        optionDiv.appendChild(optionPriceCol);
 
 		        const optionPrice = document.createElement("span");
-		        optionName.classList.add("option-price");
+		        optionPrice.classList.add("option-price");
 		        optionPrice.textContent = option.product_option_price ;
 		        optionPriceCol.appendChild(optionPrice);
 		        
@@ -429,106 +430,150 @@ function refreshTotalWishCount(){
 		  xhr.send();
 		}
 	
-	
+	const selectedOptions = [];	
  // 선택 처리 함수
 function handleOptionSelect(event) {
-  const selectedOptions = [];
 
+  const showTotalPrice = document.getElementById("showTotalPrice");
   const optionItem = event.target.closest("li");
   const optionName = optionItem.querySelector(".option-name").textContent;
   const optionPrice = optionItem.querySelector(".option-price").textContent;
+  
+  const optionNo = optionItem.querySelector(".option-no").getAttribute("optionNo");
+  console.log(selectedOptions);
 
+  const optionOuter = document.createElement("div");
+  optionOuter.classList.add("row");
+  optionContainer.appendChild(optionOuter);
 
-		
-     const optionOuter =  document.createElement("div");
-     optionOuter.classList.add("row");
+  const optionCol1 = document.createElement("div");
+  optionCol1.classList.add("col-1");
+  optionOuter.appendChild(optionCol1);
+
+  const optionDiv = document.createElement("div");
+  optionDiv.classList.add("col", "mt-2", "border", "rounded-2");
+  optionDiv.style.backgroundColor = "rgb(244, 247, 250)";
+  optionOuter.appendChild(optionDiv);
+
+  const optionRow = document.createElement("div");
+  optionRow.classList.add("row");
+  optionDiv.appendChild(optionRow);
+
+  const optionCol = document.createElement("div");
+  optionCol.classList.add("col-10");
+  optionCol.innerText = optionName;
+  optionRow.appendChild(optionCol);
+
+  const deleteCol = document.createElement("div");
+  deleteCol.classList.add("col-2");
+  optionRow.appendChild(deleteCol);
+
+  const quantityRow = document.createElement("div");
+  quantityRow.classList.add("row", "mt-2");
+  optionRow.appendChild(quantityRow);
+
+  const quantityCol = document.createElement("div");
+  quantityCol.classList.add("col-6");
+  quantityRow.appendChild(quantityCol);
+  
+  const priceCol = document.createElement("div");
+  priceCol.classList.add("col-6", "text-end", "fw-bold");
+  priceCol.innerText = optionPrice +"원";
+  quantityRow.appendChild(priceCol);
+
+  const buttonGroup = document.createElement("div");
+  buttonGroup.classList.add("input-group");
+  quantityCol.appendChild(buttonGroup);
+
+  const decreaseButton = document.createElement("button");
+  decreaseButton.classList.add("btn", "btn-outline-secondary");
+  decreaseButton.textContent = "-";
+  decreaseButton.addEventListener("click", function () {
+    if (quantityInput.value > 1) {
+      quantityInput.value = parseInt(quantityInput.value) - 1;
+    }
+    if (quantityInput.value === "1") {
+      decreaseButton.disabled = true;
+    }
+    selectedOptionData.product_amount = quantityInput.value;
+    updatePrice();
+    updateTotalPrice(selectedOptions);
+  });
+  buttonGroup.appendChild(decreaseButton);
+
+  const quantityInput = document.createElement("input");
+  quantityInput.type = "number";
+  quantityInput.classList.add("form-control");
+  quantityInput.min = "1";
+  quantityInput.value = "1";
+  buttonGroup.appendChild(quantityInput);
+
+  const increaseButton = document.createElement("button");
+  increaseButton.classList.add("btn", "btn-outline-secondary");
+  increaseButton.textContent = "+";
+  increaseButton.addEventListener("click", function () {
+    quantityInput.value = parseInt(quantityInput.value) + 1;
+    decreaseButton.disabled = false;
+    selectedOptionData.product_amount = quantityInput.value;
+    updatePrice();
+    updateTotalPrice(selectedOptions);
+  });
+  buttonGroup.appendChild(increaseButton);
+  
+  
+  const selectedOptionData = {
+	product_option_no : optionNo,
+    optionName : optionName,
+    optionPrice: optionPrice,
+    product_amount: quantityInput.value
+  };
+
+  selectedOptions.push(selectedOptionData);
+  updateTotalPrice(selectedOptions);
+  
+  const deleteButton = document.createElement("span");
+  deleteButton.classList.add("bi", "bi-x", "text-end");
+  deleteCol.appendChild(deleteButton);
+
+  deleteButton.addEventListener("click", function () {
+    optionContainer.removeChild(optionOuter);
+    const index = selectedOptions.indexOf(selectedOptionData);
+    if (index > -1) {
+      selectedOptions.splice(index, 1);
+      updatePrice();
+      updateTotalPrice(selectedOptions);
+    }
     
-     optionContainer.appendChild(optionOuter);
-     
-     const optionCol1 = document.createElement("div");
-     optionCol1.classList.add("col-1");
-     optionOuter.appendChild(optionCol1);
-     
-     
-     const optionDiv = document.createElement("div");
-     optionDiv.classList.add("col","mt-2", "border", "rounded-2");
-     optionDiv.style.backgroundColor = "rgb(244, 247, 250)";
-     optionOuter.appendChild(optionDiv);
-     
-     const optionRow = document.createElement("div");
-     optionRow.classList.add("row")
-     optionDiv.appendChild(optionRow);                                                                                                                                    
-     
-     const optionCol = document.createElement("div");
-     optionCol.classList.add("col-10");
-     optionCol.innerText = optionName;
-     optionRow.appendChild(optionCol);
+    console.log("Selected Options: ", selectedOptions);
+  });
 
-     const deleteCol = document.createElement("div");
-     deleteCol.classList.add("col-2");
-     optionRow.appendChild(deleteCol);
-     
-     const quantityRow = document.createElement("div");
-     quantityRow.classList.add("row", "mt-2");
-     optionRow.appendChild(quantityRow);     
-     
-     const quantityCol = document.createElement("div");
-     quantityCol.classList.add("col-6");
-     quantityRow.appendChild(quantityCol);
+  quantityInput.addEventListener("input", function () {
+    if (quantityInput.value <= 0) {
+      quantityInput.value = 1; // 최소값인 1로 설정
+    }
+    selectedOptionData.product_amount = quantityInput.value;
+    updatePrice();
+  });
+  
+  function updatePrice() {
+    const optionPriceValue = parseFloat(optionPrice);
+    const quantity = parseInt(quantityInput.value);
+    const totalPrice = optionPriceValue * quantity;
+    priceCol.textContent = totalPrice + "원";
+  }
+  
+  function updateTotalPrice(selectedOptions) {
+	  let totalPrice = 0;
 
-     const quantityInput = document.createElement("input");
-     quantityInput.type = "number";
-     quantityInput.classList.add("form-control");
-     quantityInput.min = "1";
-     quantityInput.value = "1";
-     quantityCol.appendChild(quantityInput);
-     
-     const decreaseButton = document.createElement("button");
-     decreaseButton.classList.add("btn", "btn-secondary");
-     decreaseButton.textContent = "-";
-     decreaseButton.addEventListener("click", function () {
-       if (quantityInput.value > 1) {
-         quantityInput.value = parseInt(quantityInput.value) - 1;
-         selectedOptionData.quantity = quantityInput.value;
-       }
-     });
-     quantityCol.appendChild(decreaseButton);
-
-     const increaseButton = document.createElement("button");
-     increaseButton.classList.add("btn", "btn-secondary");
-     increaseButton.textContent = "+";
-     increaseButton.addEventListener("click", function () {
-       quantityInput.value = parseInt(quantityInput.value) + 1;
-       selectedOptionData.quantity = quantityInput.value;
-     });
-     quantityCol.appendChild(increaseButton);
-     
-     const optionCol2 = document.createElement("div");
-     optionCol2.classList.add("col-1");
-     optionOuter.appendChild(optionCol2);
-     
-     const selectedOptionData = {
-    		    optionName: optionName,
-    		    optionPrice: optionPrice,
-    		    quantity: quantityInput.value
-    		  };
-     
-        selectedOptions.push(selectedOptionData);  
-        
-        const deleteButton = document.createElement("span");
-        deleteButton.classList.add("bi", "bi-x","text-end"); 
-        deleteCol.appendChild(deleteButton);
-
-        deleteButton.addEventListener("click", function () {
-          optionContainer.removeChild(optionOuter);
-          const index = selectedOptions.indexOf(selectedOptionData);
-          if (index > -1) {
-            selectedOptions.splice(index, 1);
-          }
-          console.log("Selected Options: ", selectedOptions);
-        });
-
-      }
+	  // 선택된 옵션들의 가격과 수량을 반복하여 총 가격 계산
+	  for (const option of selectedOptions) {
+	    const optionPrice = parseFloat(option.optionPrice);
+	    const optionQuantity = parseInt(option.product_amount);
+	    totalPrice += optionPrice * optionQuantity;
+	  }
+	  showTotalPrice.textContent = totalPrice + "원";
+  }
+}
  
 function addOption() {
 	
@@ -546,6 +591,7 @@ window.addEventListener("DOMContentLoaded", function(){
 });
 
 </script>
+
 <style type="text/css">
 .product-thum {
 	width: 100%;
@@ -723,7 +769,7 @@ window.addEventListener("DOMContentLoaded", function(){
 										<div class="offcanvas offcanvas-bottom dde"
 											style="height: auto;" tabindex="-1" id="offcanvasBottom"
 											aria-labelledby="offcanvasBottomLabel">
-											<form action="./buyPage">
+										
 											<div class="row mt-3">
 												<div class="col text-center fw-bold">상품 선택</div>
 											</div>
@@ -731,32 +777,14 @@ window.addEventListener("DOMContentLoaded", function(){
 												<div class="row" id="optionRow">
 													<div class="col-1"></div>
 													<div class="col" id ="colOption">
-														<select class="form-select" name="product_option_no">
-											<option> 선택해주세요 </option>
-											<c:forEach items="${data.optionList}" var="map">
-												<option value="${map.product_option_no} "> 
-											${map.product_option_name} &nbsp;&nbsp;&nbsp; ${map.product_option_price}원</option>
-																</c:forEach>
-														</select>
+
 													</div>
 													<div class="col-1"></div>
 												</div>
 												<div class="row mt-3" id="optionContainer" >
 												
 												</div>
-												<div class="row mt-3">
-													<div class="col-1"></div>
-													<div class="col-6">
-														<input class="form-input" type="number" min="1"
-															name="product_amount">
-													</div>
-													<div class="col-4 text-end">
-														<div class="row"></div>
-														<div class="row">
-															<div class="col fw-bold">${data.productInfo.product_price - data.salePrice}원
-															</div>
-														</div>
-													</div>
+
 													<div class="col-1"></div>
 												</div>
 
@@ -766,8 +794,7 @@ window.addEventListener("DOMContentLoaded", function(){
 													<div class="col-6">총 상품 금액</div>
 													<div class="col-4 text-end">
 														<div class="row">
-															<div class="col fw-bold fs-4">${data.productInfo.product_price - data.salePrice}원
-															</div>
+															<div class="col fw-bold fs-4" id="showTotalPrice">0원</div>               
 														</div>
 													</div>
 													<div class="col-1"></div>
@@ -786,7 +813,7 @@ window.addEventListener("DOMContentLoaded", function(){
 												</div>
 												<div class="row mt-3"></div> 
 											</div>
-												</form>
+										
 										</div>
 									</div>
 								</div>
