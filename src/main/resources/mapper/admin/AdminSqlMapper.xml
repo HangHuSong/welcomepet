@@ -12,7 +12,8 @@
 		<select id="getAllBiz" resultType="com.bubble.welcomepet.dto.BizDto">
 			SELECT *
 			FROM biz
-			ORDER BY biz_no
+			WHERE biz_status_no = 3
+			ORDER BY biz_no DESC
 		</select>
 
 	<!-- CUSTOMER -->
