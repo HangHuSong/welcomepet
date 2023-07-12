@@ -350,64 +350,99 @@ function refreshTotalWishCount(){
 			xhr.send();
 			
 		}			
- function getProductOption() {
-	 
-		const xhr = new XMLHttpRequest();
+	function getProductOption() {
+		  const xhr = new XMLHttpRequest();
+
+		  xhr.onreadystatechange = function() {
+		    if (xhr.readyState == 4 && xhr.status == 200) {
+		      const response = JSON.parse(xhr.responseText);
+		      // js 작업..
+					
+		      const dropdown = document.createElement("div");
+		      dropdown.classList.add("dropdown");
+		      colOption.appendChild(dropdown);
+
+		      const button = document.createElement("button");
+		      button.classList.add("btn", "dropdown-toggle", "border","w-100", "text-start");
+		      button.type = "button";
+		      button.id = "optionDropdown";
+		      button.dataset.bsToggle = "dropdown";
+		      button.textContent = "선택해주세요";
+		      dropdown.appendChild(button);
+
+		      const menu = document.createElement("ul");
+		      menu.classList.add("dropdown-menu");
+		      menu.setAttribute("aria-labelledby", "optionDropdown");
+		      dropdown.appendChild(menu);
+
+		      for (option of response.map.optionList) {
+		        const optionItem = document.createElement("li");
+		        menu.appendChild(optionItem);
+
+		        const optionDiv = document.createElement("div");
+		        optionDiv.classList.add("row","mt-2");
+		        optionItem.appendChild(optionDiv);
+		        
+		        const optionCol1 = document.createElement("div");
+		        optionCol1.classList.add("col-1");
+		        optionDiv.appendChild(optionCol1);
+
+		        const optionNameCol = document.createElement("div");
+		        optionNameCol.classList.add("col");
+		        optionDiv.appendChild(optionNameCol);
+
+		        const optionName = document.createElement("span");
+		        optionName.classList.add("option-name");
+		        optionName.textContent = option.product_option_name;
+		        optionNameCol.appendChild(optionName);
+
+		        const optionPriceCol = document.createElement("div");
+		        optionPriceCol.classList.add("col", "text-end","fw-bold");
+		        optionDiv.appendChild(optionPriceCol);
+
+		        const optionPrice = document.createElement("span");
+		        optionName.classList.add("option-price");
+		        optionPrice.textContent = option.product_option_price ;
+		        optionPriceCol.appendChild(optionPrice);
+		        
+		        const optionPrice2 = document.createElement("span");
+		        optionPrice2.textContent = "원";
+
+		        optionPriceCol.appendChild(optionPrice2);
+		        
+		        const optionCol2 = document.createElement("div");
+		        optionCol2.classList.add("col-1");
+		        optionDiv.appendChild(optionCol2);
+		        
+		       
+		      }
+		    
+		      
+		      menu.addEventListener("click", handleOptionSelect);
+		    }
+		   
+		  }
 		
-		xhr.onreadystatechange = function(){
-			if(xhr.readyState == 4 && xhr.status == 200){
-				const response = JSON.parse(xhr.responseText);
-				// js 작업..
 
-	            const selectElement = document.createElement("select");
-	            selectElement.classList.add("form-select");
-	            selectElement.name = "product_option_no";
-	            colOption.appendChild(selectElement);
-
-	            const defaultOption = document.createElement("option");
-	            defaultOption.innerText = "선택해주세요";
-	            selectElement.appendChild(defaultOption);
-
-	            for (option of response.map.optionList) {
-	                const optionElement = document.createElement("option");
-	                optionElement.value = option.product_option_no;
-
-	                const optionText = document.createElement("span");
-	                optionText.innerText = option.product_option_name + ' / ';
-	                optionElement.appendChild(optionText);
-
-	                const priceText = document.createElement("span");
-	                priceText.innerText = option.product_option_price + ' 원';
-	                priceText.classList.add("text-end");
-	                optionElement.appendChild(priceText);
-
-	                selectElement.appendChild(optionElement);
-	            }
-
-
-
-
-	            // 선택 이벤트 리스너 등록
-	            selectElement.addEventListener("change", handleOptionSelect);
-
-	            document.getElementById("colOption").appendChild(selectElement);
-	        }
-	    }
-
-	    //get
-	    xhr.open("get", "./getProductOption?product_no=" + productNo);
-	    xhr.send();
-	}
+		  //get
+		  xhr.open("get", "./getProductOption?product_no=" + productNo);
+		  xhr.send();
+		}
+	
+	
  // 선택 처리 함수
- function handleOptionSelect(event) {
-     const selectedOptions = []; 
+function handleOptionSelect(event) {
+  const selectedOptions = [];
 
-	    const selectedOption = event.target.options[event.target.selectedIndex];
-	    const selectedOptionInfo = selectedOption.innerText;
+  const optionItem = event.target.closest("li");
+  const optionName = optionItem.querySelector(".option-name").textContent;
+  const optionPrice = optionItem.querySelector(".option-price").textContent;
+
 
 		
      const optionOuter =  document.createElement("div");
      optionOuter.classList.add("row");
+    
      optionContainer.appendChild(optionOuter);
      
      const optionCol1 = document.createElement("div");
@@ -417,7 +452,7 @@ function refreshTotalWishCount(){
      
      const optionDiv = document.createElement("div");
      optionDiv.classList.add("col","mt-2", "border", "rounded-2");
-     
+     optionDiv.style.backgroundColor = "rgb(244, 247, 250)";
      optionOuter.appendChild(optionDiv);
      
      const optionRow = document.createElement("div");
@@ -425,13 +460,21 @@ function refreshTotalWishCount(){
      optionDiv.appendChild(optionRow);                                                                                                                                    
      
      const optionCol = document.createElement("div");
-     optionCol.classList.add("col-6");
-     optionCol.innerText = selectedOptionInfo;
+     optionCol.classList.add("col-10");
+     optionCol.innerText = optionName;
      optionRow.appendChild(optionCol);
+
+     const deleteCol = document.createElement("div");
+     deleteCol.classList.add("col-2");
+     optionRow.appendChild(deleteCol);
+     
+     const quantityRow = document.createElement("div");
+     quantityRow.classList.add("row", "mt-2");
+     optionRow.appendChild(quantityRow);     
      
      const quantityCol = document.createElement("div");
-     quantityCol.classList.add("col");
-     optionRow.appendChild(quantityCol);
+     quantityCol.classList.add("col-6");
+     quantityRow.appendChild(quantityCol);
 
      const quantityInput = document.createElement("input");
      quantityInput.type = "number";
@@ -440,19 +483,52 @@ function refreshTotalWishCount(){
      quantityInput.value = "1";
      quantityCol.appendChild(quantityInput);
      
+     const decreaseButton = document.createElement("button");
+     decreaseButton.classList.add("btn", "btn-secondary");
+     decreaseButton.textContent = "-";
+     decreaseButton.addEventListener("click", function () {
+       if (quantityInput.value > 1) {
+         quantityInput.value = parseInt(quantityInput.value) - 1;
+         selectedOptionData.quantity = quantityInput.value;
+       }
+     });
+     quantityCol.appendChild(decreaseButton);
+
+     const increaseButton = document.createElement("button");
+     increaseButton.classList.add("btn", "btn-secondary");
+     increaseButton.textContent = "+";
+     increaseButton.addEventListener("click", function () {
+       quantityInput.value = parseInt(quantityInput.value) + 1;
+       selectedOptionData.quantity = quantityInput.value;
+     });
+     quantityCol.appendChild(increaseButton);
+     
      const optionCol2 = document.createElement("div");
-     optionCol1.classList.add("col-1");
+     optionCol2.classList.add("col-1");
      optionOuter.appendChild(optionCol2);
      
      const selectedOptionData = {
-             optionInfo: selectedOptionInfo,
-             quantity: quantityInput.value
-         	};
+    		    optionName: optionName,
+    		    optionPrice: optionPrice,
+    		    quantity: quantityInput.value
+    		  };
      
         selectedOptions.push(selectedOptionData);  
         
-        console.log("Selected Options: ", selectedOptions);
-       }
+        const deleteButton = document.createElement("span");
+        deleteButton.classList.add("bi", "bi-x","text-end"); 
+        deleteCol.appendChild(deleteButton);
+
+        deleteButton.addEventListener("click", function () {
+          optionContainer.removeChild(optionOuter);
+          const index = selectedOptions.indexOf(selectedOptionData);
+          if (index > -1) {
+            selectedOptions.splice(index, 1);
+          }
+          console.log("Selected Options: ", selectedOptions);
+        });
+
+      }
  
 function addOption() {
 	
