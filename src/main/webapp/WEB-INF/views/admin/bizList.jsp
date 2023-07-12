@@ -69,7 +69,6 @@
                     a4.href = "./bizDetail?biz_no=" + biz.bizDto.biz_no;
                     a4.className = "text-decoration-none text-dark";
                     a4.innerText = biz.bizStatusDto.biz_status_name;
-                    
                     td4.appendChild(a4);
                     tr.appendChild(td4);
 

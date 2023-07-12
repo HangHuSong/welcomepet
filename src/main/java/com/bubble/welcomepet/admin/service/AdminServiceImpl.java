@@ -27,7 +27,8 @@ public class AdminServiceImpl {
 		List<Map<String, Object>> list = new ArrayList<>();
 		for (BizDto bizDto : bizList) {
 			Map<String, Object> map = new HashMap<String, Object>();
-			BizStatusDto bizStatusDto = adminSqlMapper.getBizStatus(bizDto.getBiz_status_no());
+			BizStatusDto bizStatusDto =
+			adminSqlMapper.getBizStatus(bizDto.getBiz_status_no());
 			map.put("bizStatusDto", bizStatusDto);
 			map.put("bizDto", bizDto);
 			list.add(map);
