@@ -30,45 +30,7 @@ public class CommunityServiceImpl {
 	@Autowired
 	private ShowDogPostSqlMapper showDogPostSqlMapper;
 
-////	스냅 리스트 불러오기
-//	public List<Map<String, Object>> getSnapList() {
-//		List<Map<String, Object>> list = new ArrayList<>();
-//		
-//		List<SnapListDto> snapDtoList = snapSqlMapper.findAllList();
-//			for(SnapListDto snapListDto : snapDtoList)	{
-//				Map<String, Object> map = new HashMap<>();
-//				int dog_no = snapListDto.getDog_no();
-//
-////				DogDto에서 반려견 정보찾기				
-//				DogDto dogDto = customerSqlMapper.findByDogNumber(dog_no);
-//				
-//				map.put("snapListDto", snapListDto);
-//				map.put("dogDto", dogDto);
-//				
-//				list.add(map);
-//			}
-//		return list;
-//	}
 
-////	스냅 업로드하기(insert)
-//	public void showSnapUpload(SnapListDto snapListDto) {
-//		snapSqlMapper.insertSnapContent(snapListDto);
-//	}
-
-//	스냅 내용 불러오기
-//	public Map<String, Object> getSnapPost(int dog_no) {
-//		Map<String, Object> map = new HashMap<>();
-//		
-//		SnapListDto snaplistDto = snapSqlMapper.findByDogNumber(dog_no);
-//		DogDto dogDto = customerSqlMapper.findByDogNumber(dogDto.getDog_no());
-//		
-//		map.put("snapListDto", snapListDto);
-//		map.put("dogDto", dogDto);
-//		
-//		return map;
-//	}
-	
-//////////////////////////////////////////////////////////
 //	반려견 자랑게시판 첫 화면 불러오기
 	public List<Map<String, Object>> getDogPostList() {
 		
@@ -147,7 +109,6 @@ public class CommunityServiceImpl {
 //		------------- 업로드한 이미지 보이기 -------------
 		List<ShowDogPostImagesDto> postImageDtoList = showDogPostSqlMapper.findImagesByPostId(show_dog_post_no);
 		
-//		map.put
 		map.put("showDogPostDto", showDogPostDto);
 		map.put("customerDto", customerDto);
 		map.put("postImageDtoList", postImageDtoList);
@@ -178,12 +139,6 @@ public class CommunityServiceImpl {
 	
 //	좋아요(count)
 	public int bringLikeByPostNo(int show_dog_post_no) {
-//		만약 댓글리스트를 불러와서 한다면
-//		List<Map<String, Object>> list = new ArrayList<>();
-//				
-//		List<ShowDogPostLikesDto> showDogPostLikeList = showDogPostSqlMapper.findLikeByNo(show_dog_post_no);
-//		int count = showDogPostLikeList.size();
-//		return count;	
 		
 		int showDogPostLikes = showDogPostSqlMapper.findLikeByNo(show_dog_post_no);	
 		

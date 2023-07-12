@@ -42,43 +42,11 @@ public class CommunityController {
 //	스냅 연결
 	@RequestMapping("snap")
 	public String showCommunityMain(Model model) {
-//		List<Map<String, Object>> list = communityServiceImpl.getSnapList();
-//		
-//		model.addAttribute("list",list);
 		
 		return "community/snap";
 	}
 
-//	스냅상세 연결
-//	@RequestMapping("snapContent")
-//	public String showSnapContent() {
-////		Map<String, Object> map = communityService.getSnapPost(snap_board_no);
-//////		게시글 내용 보이기
-////		model.addAttribute("postData", map);
-//		
-//		return "community/snapContent";
-//	}
-	
-//	@RequestMapping("snapUpload")
-//	public String showSnapUpload() {
-//		return "community/snapUpload";
-//	}
-	
-//	스냅업로드하기
-//	@RequestMapping("uploadSnapProcess")
-//	public String snapUpload(HttpSession session, SnapListDto params) {
-////		기억해야할것: 고객의 반려견을 선택 후 커뮤니티로 들어옴
-//		DogDto sessionDog = (DogDto)session.getAttribute("sessionDog");
-//		
-//		int dog_no = sessionDog.getDog_no();
-//		params.setDog_no(dog_no);
-//		
-//		communityServiceImpl.showSnapUpload(params);
-//		
-//		return "redirect:./snap";
-//	}
-	
-////////////////////////////////////////////////////////////////////////////////
+
 //	반려견 자랑게시판 - showDogPost
 	@RequestMapping("showDogPostList")
 	public String showDogPostList(Model model) {
@@ -87,10 +55,6 @@ public class CommunityController {
 
 		List<Map<String, Object>> bestList = communityServiceImpl.getBestPostList();		
 		model.addAttribute("bestList",bestList);
-		
-//		댓글 개수 세기 > 여긴 안되네 
-//		int countComment = communityServiceImpl.countCommentByPostNo(show_dog_post_no);
-//		model.addAttribute("countComment", countComment);
 		
 		return "community/showDogPostList";
 	}
@@ -155,16 +119,6 @@ public class CommunityController {
 		return "redirect:./showDogPost?show_dog_post_no=" + showDogPostLikesDto.getShow_dog_post_no();
 	}
 	
-//	좋아요(count): 게시글 상세보기랑 같은 페이지라서 안되는듯
-//	@RequestMapping("showDogPost")
-//	public String countLike(Model model, int show_dog_post_no) {
-//		
-//		int countLike = communityServiceImpl.bringLikeByPostNo(show_dog_post_no);
-//		model.addAttribute("countLike", countLike);
-//		
-//		return "community/showDogPost";
-//	}
-		
 		
 //	새 글쓰기
 	@RequestMapping("showDogUpload")

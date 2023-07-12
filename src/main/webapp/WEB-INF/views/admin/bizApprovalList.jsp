@@ -35,11 +35,22 @@
 			<%@ include file="../common/adminTab.jsp" %>
 			<div class="col-1"></div>
 			<div class="col-9">
+				<pre>
+				
+				</pre>
 				<div class="row mt-5">
-					<h1>입점 대기중</h1>
-					<c:forEach items="${list }" var="l">
-						${l.bizApprovalRequestDto.biz_approval_request_no}
-					</c:forEach>
+					<table>
+						<thead>
+							<tr>
+								<td>123142</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>

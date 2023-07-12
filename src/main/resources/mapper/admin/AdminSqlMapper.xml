@@ -225,7 +225,7 @@
 				biz_approval_seq.nextval,
 				#{biz_approval_request_no},
 				#{emp_no},
-				1,
+				3,
 				#{biz_message},
 				#{emp_memo},
 				SYSDATE
@@ -234,13 +234,13 @@
 		
 		<update id="confirmBizApproval">
 			UPDATE biz
-			SET biz_status_no = 1
+			SET biz_status_no = 3
 			WHERE biz_no = #{biz_no}
 		</update>
 		
 		<update id="rejectBizApproval">
 			UPDATE biz
-			SET biz_status_no = 2
+			SET biz_status_no = 5
 			WHERE biz_no = #{biz_no}
 		</update>
 		
@@ -249,7 +249,7 @@
 				biz_approval_seq.nextval,
 				#{biz_approval_request_no},
 				#{emp_no},
-				2,
+				5,
 				#{biz_message},
 				#{emp_memo},
 				SYSDATE
