@@ -68,19 +68,8 @@
                     const a4 = document.createElement("a");
                     a4.href = "./bizDetail?biz_no=" + biz.bizDto.biz_no;
                     a4.className = "text-decoration-none text-dark";
-
-                    if (biz.bizDto.biz_status_no == 1) {
-                        a4.innerText = biz.bizStatusDto.biz_status_name;
-                    } else if (biz.bizDto.biz_status_no == 2) {
-                        a4.innerText = biz.bizStatusDto.biz_status_name;
-                    } else if (biz.bizDto.biz_status_no == 3) {
-                        a4.innerText = biz.bizStatusDto.biz_status_name;
-                    } else if (biz.bizDto.biz_status_no == 4) {
-                        a4.innerText = biz.bizStatusDto.biz_status_name;
-                    } else if (biz.bizDto.biz_status_no == 5) {
-                        a4.innerText = biz.bizStatusDto.biz_status_name;
-                    }
-
+                    a4.innerText = biz.bizStatusDto.biz_status_name;
+                    
                     td4.appendChild(a4);
                     tr.appendChild(td4);
 
