@@ -18,7 +18,7 @@
 
 	<div class="row align-items-center">
 		<div class="col">
-			<div class="row py-4" style="background-color:rgb(19,22,28);">
+			<div class="row py-4" style="background-color: rgb(19, 22, 28);">
 				<div class="col">
 					<div class="row">
 						<div class="col">
@@ -39,12 +39,13 @@
 					</div>
 				</div>
 			</div>
-			<div class="row" style="background-color:rgb(29,33,42);">
+			<div class="row text-start"
+				style="background-color: rgb(29, 33, 42);">
 				<div class="col">
 					<div class="row my-4">
 						<div class="col">
 							<div class="row">
-								<div class="col fw-bold fs-5 text-white">
+								<div class="col fw-bold fs-5 text-white px-4">
 									판매 관리<i class="fas fa-angle-down"></i>
 								</div>
 							</div>
@@ -83,7 +84,7 @@
 					<div class="row my-4">
 						<div class="col align-middle">
 							<div class="row">
-								<div class="col fw-bold fs-5 text-white">
+								<div class="col fw-bold fs-5 text-white px-4">
 									상품 관리<i class="fas fa-angle-down"></i>
 								</div>
 							</div>
@@ -116,7 +117,7 @@
 					<div class="row my-4">
 						<div class="col">
 							<div class="row">
-								<div class="col fw-bold fs-5 text-white">
+								<div class="col fw-bold fs-5 text-white px-4">
 									정산 관리<i class="fas fa-angle-down"></i>
 								</div>
 							</div>
@@ -144,7 +145,7 @@
 					<div class="row my-4">
 						<div class="col">
 							<div class="row">
-								<div class="col fw-bold fs-5 text-white">
+								<div class="col fw-bold fs-5 text-white px-4">
 									문의/리뷰 관리<i class="fas fa-angle-down"></i>
 								</div>
 							</div>
@@ -165,7 +166,7 @@
 					<div class="row my-4">
 						<div class="col">
 							<div class="row">
-								<div class="col fw-bold fs-5 text-white">
+								<div class="col fw-bold fs-5 text-white px-4">
 									통계 및 분석<i class="fas fa-angle-down"></i>
 								</div>
 							</div>
