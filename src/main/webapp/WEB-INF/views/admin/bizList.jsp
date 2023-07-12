@@ -95,9 +95,7 @@
 
     // 페이지 로드 시 Ajax 요청 수행
     window.addEventListener("DOMContentLoaded", function() {
-		
 		getBizList();
-		
 	});
 </script>
 </head>
