@@ -19,7 +19,7 @@
 <script>
  <%-- ajax --%>
   <%-- 댓글리스트 --%>
-   function commentList(){
+   /* function commentList(){
 	   const xhr = new XMLHttpRequest();
 	   xhr.onreadystatechange == function(){
 		   if(xhr.readyState == 4 && xhr.status == 200){
@@ -30,7 +30,7 @@
 	   
 	   xhr.open("get", "./getcommentList?boardId=" + boardId);
 	   xhr.send();
-   }
+   } */
  
  <%-- ajax --%>
 </script>
@@ -67,13 +67,29 @@
 				 		 ${postData.showDogPostDto.show_dog_post_title}			 		 
 				 		</div>
 				 		<%-- : --%>
-				 		<div class="col-2 text-end dropdown">
-						  <a class="text-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-						    <i class="bi bi-three-dots-vertical"></i>
-						  </a>
+				 		<div class="col-2 text-end">
+							<div class="dropdown">
+							  <a class="bi bi-three-dots-vertical text-secondary dropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
+							
+							  <ul class="dropdown-menu">
+							  	<c:choose>
+							  	<%-- 글쓴이일때 --%>
+							  	<c:when test="${!empty customerUser && customerUser.customer_no eq postData.customerDto.customer_no}">
+							     <li><a class="dropdown-item" href="./showDogUpdate?show_dog_post_no=${postData.showDogPostDto.show_dog_post_no}">수정</a></li>
+							     <li><a class="dropdown-item" href="./showDogDeleteProcess?show_dog_post_no=${postData.showDogPostDto.show_dog_post_no}">삭제</a></li>
+							    </c:when>
+							    <%-- 글쓴이 아닐때 --%>
+							    <c:otherwise>
+							     <li><a class="dropdown-item" href="#">신고</a></li>
+							    </c:otherwise>
+							    </c:choose> 
+							  </ul>
+							  
+							</div>
+						  <%-- 
 						  <ul class="dropdown-menu">
-						  	<c:choose>
-						  	 <%-- 글쓴이일때 --%>
+						  	<c:choose>--%>
+						  	 <%-- 글쓴이일때 
 						     <c:when test="${!empty customerUser && customerUser.customer_no eq postData.customerDto.customer_no}">
 						     <li><a class="dropdown-item" type="button" 
 						    	    href="./showDogUpdate?show_dog_post_no=${postData.showDogPostDto.show_dog_post_no}">수정</a>
@@ -81,13 +97,13 @@
 						     <li><a class="dropdown-item" type="button"
 						    	    href="./showDogDeleteProcess?show_dog_post_no=${postData.showDogPostDto.show_dog_post_no}">삭제</a>
 						     </li>
-						     </c:when>
-						     <%-- 글쓴이 아닐때 --%>
+						     </c:when>--%>
+						     <%-- 글쓴이 아닐때 
 						     <c:otherwise>
 						     <li><a class="dropdown-item" type="button">신고</a></li>
 						     </c:otherwise>
 						    </c:choose>
-						  </ul>
+						  </ul>--%>
 						</div>
 						
 						<%-- 상세글 정보 --%>		 		
@@ -315,5 +331,6 @@ aria-controls="offcanvasBottom">Toggle bottom offcanvas</button>
 <%-- mobileStyle --%>
   <jsp:include page="../common/bottomTabStyle.jsp"></jsp:include>
 <%-- ----------- --%>  
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 </html>
