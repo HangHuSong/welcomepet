@@ -19,7 +19,7 @@
 <script>
  <%-- ajax --%>
   <%-- 댓글리스트 --%>
-   /* function commentList(){
+   function commentList(){
 	   const xhr = new XMLHttpRequest();
 	   xhr.onreadystatechange == function(){
 		   if(xhr.readyState == 4 && xhr.status == 200){
@@ -30,7 +30,7 @@
 	   
 	   xhr.open("get", "./getcommentList?boardId=" + boardId);
 	   xhr.send();
-   } */
+   }
  
  <%-- ajax --%>
 </script>
