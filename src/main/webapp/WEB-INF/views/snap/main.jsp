@@ -12,8 +12,12 @@
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 <title>Snap</title>
 <style type="text/css">
+	body {
+    	font-family: 'Montserrat', sans-serif;
+	}
 	a {
     text-decoration: none;
     color: inherit;        
@@ -135,8 +139,10 @@
                     dogProfileLink.href = "./dogProfile?dog_no=" + data.dogDto.dog_no;
                     dogProfileLink.innerText = data.dogDto.dog_name;
                     dogProfile.appendChild(dogProfileLink);
-                    cardBody.appendChild(dogProfile);
+                    
+                    
 
+                    cardBody.appendChild(dogProfile);
                     card.appendChild(cardBody);
                     col.appendChild(card);
 
@@ -231,31 +237,35 @@
 
                 // Like and viewCount
                 const snapDetailContent = document.getElementById("snapDetailContent");
-                snapDetailContent.innerHTML = "";
-                const row1 = document.createElement("div");
-                row1.classList.add("row");
-                row1.classList.add("mt-2");
-                const col1 = document.createElement("div")
-                col1.classList.add("col");
-                const span = document.createElement("span");
-                span.innerText = " " + response.countLike + " ";
-                const i = document.createElement("i");
-                i.id = "heart-" + response.snapDetail.snap_board_no;
-                if (response.checkLike == 0) {
-                    i.classList.add("bi");
-                    i.classList.add("bi-heart");
-                    i.style.color = "#ff2465";
-                    i.dataset.snapBoardNo = response.snapDetail.snap_board_no;
-                    i.onclick = like.bind(null, response.snapDetail.snap_board_no);
-                } else {
-                    i.classList.add("bi");
-                    i.classList.add("bi-heart-fill");
-                    i.style.color = "#ff2465";
-                    i.dataset.snapBoardNo = response.snapDetail.snap_board_no;
-                    i.onclick = unLike.bind(null, response.snapDetail.snap_board_no);
-                }
-                span.appendChild(i);
-                col1.appendChild(span);
+				snapDetailContent.innerHTML = "";
+				const row1 = document.createElement("div");
+				row1.classList.add("row");
+				row1.classList.add("mt-2");
+				const col1 = document.createElement("div");
+				col1.classList.add("col-3");
+				const spanIcon = document.createElement("span");
+				const spanNum = document.createElement("span");
+				
+				spanNum.innerText = " " + response.countLike + " ";
+				
+				const i = document.createElement("i");
+				i.id = "heart-" + response.snapDetail.snap_board_no;
+				if (response.checkLike == 0) {
+				    i.classList.add("bi");
+				    i.classList.add("bi-heart");
+				    i.style.color = "#ff2465";
+				    i.dataset.snapBoardNo = response.snapDetail.snap_board_no;
+				    i.onclick = like.bind(null, response.snapDetail.snap_board_no);
+				} else {
+				    i.classList.add("bi");
+				    i.classList.add("bi-heart-fill");
+				    i.style.color = "#ff2465";
+				    i.dataset.snapBoardNo = response.snapDetail.snap_board_no;
+				    i.onclick = unLike.bind(null, response.snapDetail.snap_board_no);
+				}
+				spanIcon.appendChild(i);
+				col1.appendChild(spanIcon);
+				col1.appendChild(spanNum);
                 
                 const br = document.createElement("br");
                 col1.appendChild(br);
@@ -263,16 +273,24 @@
                 const col2 = document.createElement("div")
                 col2.classList.add("col", "d-grid","text-end");
                 
-                const span2 = document.createElement("span");
-                span2.classList.add("text-end");
+                const locIcon = document.createElement("i");
+                locIcon.classList.add("bi","bi-geo-alt-fill");
+                const locString = document.createElement("span");
+                locString.innerText = response.snapDetail.snap_location;
+                col2.appendChild(locIcon);
+                col2.appendChild(locString);
                 
+                const span2Icon = document.createElement("span");
+                const span2Num = document.createElement("span");
+
+                span2Num.innerText = " " + response.snapDetail.snap_board_view_count;
+
                 const readIcon = document.createElement("i");
                 readIcon.classList.add("bi" ,"bi-eye");
-                
-                span2.innerText = response.snapDetail.snap_board_view_count + " ";
-                span2.appendChild(readIcon);
-                
-                col1.appendChild(span2);
+
+                span2Icon.appendChild(readIcon);
+                col1.appendChild(span2Icon);
+                col1.appendChild(span2Num);
 
                 row1.appendChild(col1);
                 row1.appendChild(col2);
@@ -442,7 +460,7 @@
             <div class="modal-body">
                 <!-- Snap detail content -->
                 <div class="container">
-                    <div class="row mt-1">
+                    <div class="row">
                         <div class="col">
                             <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
                                 <div id="imgBox" class="carousel-inner">
@@ -460,7 +478,7 @@
                     </div>
 
                     <!-- snapBoardDto / customerDto -->
-                    <div class="row mt-2">
+                    <div class="row mt-1">
                         <div class="col" id="snapDetailContent"></div>
                     </div>
                 </div>

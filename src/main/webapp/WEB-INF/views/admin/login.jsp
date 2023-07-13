@@ -7,6 +7,12 @@
     <title>로그인</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
+<style>
+	#adminLogo{
+		height: 150px;
+		width: auto;
+	}
+</style>
 <body>
     <div class="container">
     	<pre>
@@ -24,7 +30,7 @@
             <div class="col-6">
                 <div class="row mb-5">
                     <div class="col text-center">
-                        <h1>Dogmin</h1>
+                        <h1><img id="adminLogo" src="/welcomepet/resources/img/adminLogo.png"></h1>
                     </div>
                 </div>
                 <div class="card">
@@ -38,7 +44,7 @@
                                 <label class="form-label">비밀번호</label>
                                 <input type="password" class="form-control" name="emp_pw">
                             </div>
-                            <button class="btn btn-primary">로그인</button>
+                            <button class="btn btn-outline-dark">로그인</button>
                         </form>
                     </div>
                 </div>

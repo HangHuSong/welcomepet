@@ -110,7 +110,7 @@
 			<div class="col-4">
 				<div class="row">
 					<div class="col text-center">
-						<span style="font-size: 15px; font-weight: bold;"> ${dogDto.dog_name}</span>
+						<span style="font-size: 15px;"> ${dogDto.dog_name}</span>
 					</div>
 				</div>
 				<div class="row">

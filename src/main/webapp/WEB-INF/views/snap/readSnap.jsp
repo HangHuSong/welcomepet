@@ -195,7 +195,7 @@
 				<input id="commentContentBox" type="text" class="form-control">
 			</div>
 			<div class="col d-grid">
-				<button onclick="registerComment()" class="btn btn-warning bi bi-box-arrow-in-up-left"></button>
+				<button onclick="registerComment()" class="btn btn- bi bi-box-arrow-in-up-left"></button>
 			</div>
 		</div>
 		<!-- 댓글 리스트 ajax -->
