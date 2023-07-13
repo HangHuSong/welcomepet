@@ -14,7 +14,28 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+	
 <title>결제</title>
+
+<script>
+  function calculateProductPrice() {
+    let totalPrice = 0;
+    <c:forEach var="item" items="${data}" varStatus="status">
+      const price = (${item.optionInfo.product_option_price} - ${item.salePrice}) * ${product_amount[status.index]};
+      totalPrice += price;
+    </c:forEach>
+    return totalPrice;
+  }
+
+  
+  document.addEventListener("DOMContentLoaded", function() {
+    const totalPrice = calculateProductPrice();
+    document.getElementById("totalPrice").innerText = totalPrice.toLocaleString() + "원";
+    document.getElementById("ordersTotalPrice").value = totalPrice;
+  });
+</script>
+
+
 <style type="text/css">
 .product-thum {
 	height: 5em;
@@ -30,7 +51,7 @@
 	<form action="./orders" method="post">
 		<input type="hidden" name="customer_no"
 			value="${sessionUser.customer_no}">
-
+	
 		<div class="container align-items-center justify-content-center">
 
 			<div class="row  mt-2 align-items-center">
@@ -50,6 +71,9 @@
 			</div>
 			<div id="buyPageContainer">
 			<c:forEach var="item" items="${data}" varStatus="status">
+			 <input type="hidden" name="orderProductDtoList[${status.index}].order_product_quantity" value="${product_amount[status.index]}">
+        <input type="hidden" name="orderProductDtoList[${status.index}].order_product_price" value="${(item.optionInfo.product_option_price - item.salePrice) * product_amount[status.index]}">
+        <input type="hidden" name="orderProductDtoList[${status.index}].product_option_no" value="${item.optionInfo.product_option_no}">
 			    <div class="row mt-2">
 			        <div class="col-1"></div>
 			        <div class="col-10 border rounded-2">
@@ -81,7 +105,8 @@
 			            <div class="row mt-1 ">
 			            <div class="col " style="font-size: 0.9em;"> 적립금 사용</div>
 			            	<div class="col justify-content-end " style="font-size: 0.8em;"> 
-			            	<input class="form-control text-end" type="number" name="order_product_used_point" value="0" style="height: 25px; width: 125px; margin-left: auto; font-size: 1em;">
+			            	<input class="form-control text-end" type="number" name="orderProductDtoList[${status.index}].order_product_used_point" value="0" 
+			            	style="height: 25px; width: 125px; margin-left: auto; font-size: 1em;" min="0", max="${sessionUser.customer_point }">
 							</div>
 			            </div>
 			            <div class="row">
@@ -272,6 +297,10 @@
 					<div class="col text-end">원</div>
 				</div>
 				<div class="row mt-2">
+					<div class="col">적립금 할인</div>
+					<div class="col text-end">0원</div>
+				</div>				
+				<div class="row mt-2">
 					<div class="col">쿠폰 할인</div>
 					<div class="col text-end">0원</div>
 				</div>
@@ -287,10 +316,9 @@
 			<div class="col-1"></div>
 			<div class="col">최종 결제 금액</div>
 			<div class="col text-end">
-				<input type="hidden" name="orders_total_price"
+				<input type="hidden" name="orders_total_price" id="ordersTotalPrice"
 					value="">
-				<strong>
-				</strong>
+ 				<strong id="totalPrice"></strong>
 			</div>
 			<div class="col-1"></div>
 		</div>
@@ -362,6 +390,9 @@
 		</div>
 	</form>
 	<div class="row mt-2"></div>
+
+
+
 
 
 	<script

@@ -80,12 +80,12 @@ public class BoardController {
 
 	
 	@RequestMapping("orders")
-	public String orders(OrdersDto orderDto,OrderProductDto orderProductDto) {
+	public String orders(@RequestParam("orderProductDtoList") List<OrderProductDto> orderProductDtoList,
+			OrdersDto orderDto) {
 
-		customerService.addOrders(orderDto, orderProductDto);
+		customerService.addOrders(orderDto, orderProductDtoList);
 
 		return "board/payPage";
-		
 	}
 	
 	@RequestMapping("buyPage")
