@@ -284,13 +284,13 @@ public class CustomerController {
 		}
 	}
 	
-	@RequestMapping("addCart")
-	public String addCart(HttpSession session, Model model, CartDto cartDto) {
-		
-		customerService.addCart(cartDto);
-		return "redirect:./cart";
-	}
-	
+//	@RequestMapping("addCart")
+//	public String addCart(HttpSession session, Model model, CartDto cartDto) {
+//		
+//		customerService.addCart(cartDto);
+//		return "redirect:./cart";
+//	}
+//	
 	@RequestMapping("deleteCart")
 	public String deleteCart(int cart_no) {
 		customerService.deleteCart(cart_no);

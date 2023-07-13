@@ -1,5 +1,7 @@
 package com.bubble.welcomepet.board.controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -8,7 +10,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;import org.springframework.core.OrderComparator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bubble.welcomepet.customer.service.CustomerService;
 import com.bubble.welcomepet.dto.CategoryDto;
@@ -18,6 +22,8 @@ import com.bubble.welcomepet.dto.CustomerSearchDto;
 import com.bubble.welcomepet.dto.OrderProductDto;
 import com.bubble.welcomepet.dto.OrdersDto;
 import com.bubble.welcomepet.dto.ProductDetailImageDto;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 @RequestMapping("/board/*")
@@ -83,25 +89,43 @@ public class BoardController {
 	}
 	
 	@RequestMapping("buyPage")
-	public String buyPage(Model model, int product_option_no, int product_amount, 
-			HttpSession session)  {
-		Map<String, Object> map = customerService.getProductbyOption(product_option_no);
-		CustomerDto sessionUser = (CustomerDto) session.getAttribute("customerUser");
-		if(sessionUser == null) { 
-			return "customer/login";
-		} else  {
-			int customer_no = sessionUser.getCustomer_no();
-			CustomerDto customerDto = customerService.getCustomerInfo(customer_no);
-			CustomerAddressDto mainAddress = customerService.mainAddress(customer_no);
-			List<Map<String,Object>> addressList = customerService.getCustomerAddress(customer_no);
-			model.addAttribute("addressList", addressList);
-			model.addAttribute("mainAddress", mainAddress);
-			model.addAttribute("sessionUser", customerDto);
-			model.addAttribute("product_amount", product_amount);
-			model.addAttribute("data", map);
-		return "board/buyPage";
-		}
+	public String buyPage(Model model,
+	        @RequestParam("selectedOptions") String selectedOptionsJson,
+	        HttpSession session) {
+
+	    CustomerDto sessionUser = (CustomerDto) session.getAttribute("customerUser");
+	    int customer_no = sessionUser.getCustomer_no();
+	    CustomerDto customerDto = customerService.getCustomerInfo(customer_no);
+	    CustomerAddressDto mainAddress = customerService.mainAddress(customer_no);
+	    List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+	    List<Integer> amountList = new ArrayList<>();
+
+	    ObjectMapper objectMapper = new ObjectMapper();
+
+	    try {
+	        List<Map<String, String>> selectedOptions = objectMapper.readValue(selectedOptionsJson, new TypeReference<List<Map<String, String>>>() {});
+	        for (Map<String, String> option : selectedOptions) {
+	            int product_option_no = Integer.parseInt(option.get("product_option_no"));
+	            int product_amount = Integer.parseInt(option.get("product_amount"));
+	            Map<String, Object> map = customerService.getProductbyOption(product_option_no);
+	            amountList.add(product_amount);
+	            list.add(map);
+
+	        }
+	    } catch (IOException e) {
+	        // JSON 파싱 오류 처리
+	        e.printStackTrace();
+	    }
+
+	    model.addAttribute("addressList", customerService.getCustomerAddress(customer_no));
+	    model.addAttribute("mainAddress", mainAddress);
+	    model.addAttribute("sessionUser", customerDto);
+	    model.addAttribute("product_amount", amountList);
+	    model.addAttribute("data", list);
+
+	    return "board/buyPage";
 	}
+
 	
 	// 상품
 	

@@ -10,6 +10,8 @@ import java.util.UUID;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.bubble.welcomepet.customer.service.CustomerService;
+import com.bubble.welcomepet.dto.CartDto;
+import com.bubble.welcomepet.dto.CustomerAddressDto;
 import com.bubble.welcomepet.dto.CustomerDto;
 import com.bubble.welcomepet.dto.ProductReviewDto;
 import com.bubble.welcomepet.dto.ProductWishDto;
@@ -28,6 +32,23 @@ public class RestBoardController {
 	
 	@Autowired
 	private CustomerService customerService;
+	
+	@RequestMapping("addCart")
+	public void addCart(@RequestBody List<Map<String, String>> selectedOptions, HttpSession session) {
+	    CustomerDto sessionUser = (CustomerDto) session.getAttribute("customerUser");
+	    List<CartDto> cartDtoList = new ArrayList<>();
+
+	    for (Map<String, String> option : selectedOptions) {
+	        CartDto cartDto = new CartDto();
+	        cartDto.setCustomer_no(sessionUser.getCustomer_no());
+	        cartDto.setProduct_option_no(Integer.parseInt(option.get("product_option_no")));
+	        cartDto.setProduct_amount(Integer.parseInt(option.get("product_amount")));
+	        cartDtoList.add(cartDto);
+	        customerService.addCart(cartDto);
+	    }
+
+	}
+	
 	
 	
 	// 리뷰 관련
@@ -125,6 +146,8 @@ public class RestBoardController {
 		map.put("result", "success");
 		return map;
 	}
+	
+
 	
 	@RequestMapping("registerReview")
 	public Map<String, Object> registerReview(HttpSession session, @RequestPart("reviewImagies") MultipartFile[] reviewImagies,

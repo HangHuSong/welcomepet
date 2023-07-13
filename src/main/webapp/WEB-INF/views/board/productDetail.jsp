@@ -477,7 +477,7 @@ function handleOptionSelect(event) {
   quantityRow.appendChild(quantityCol);
   
   const priceCol = document.createElement("div");
-  priceCol.classList.add("col-6", "text-end", "fw-bold");
+  priceCol.classList.add("col-6", "text-end", "fw-bold", "align-items-center");
   priceCol.innerText = optionPrice +"원";
   quantityRow.appendChild(priceCol);
 
@@ -517,6 +517,7 @@ function handleOptionSelect(event) {
     selectedOptionData.product_amount = quantityInput.value;
     updatePrice();
     updateTotalPrice(selectedOptions);
+    
   });
   buttonGroup.appendChild(increaseButton);
   
@@ -573,12 +574,52 @@ function handleOptionSelect(event) {
 	  }
 	  showTotalPrice.textContent = totalPrice + "원";
   }
+
 }
- 
-function addOption() {
+
+function insertCart() {
+	  
+		if(!mySessionId) {
+			console.log("로그인 해야함");
+			return;
+		}
+		console.log(selectedOptions);
+	    const xhr = new XMLHttpRequest();
+	    xhr.open("POST", "./addCart");
+	    xhr.setRequestHeader("Content-Type", "application/json");
+	    xhr.onreadystatechange = function() {
+	        if (xhr.readyState === XMLHttpRequest.DONE) {
+	            if (xhr.status === 200) {
+	                // 성공적으로 처리된 경우
+	                console.log("Cart added successfully");
+	            } else {
+	                // 처리 중 오류가 발생한 경우
+	                console.error("Failed to add cart");
+	            }
+	        }
+	    };
+	    xhr.send(JSON.stringify(selectedOptions));
+	}
 	
-}
-			
+function buyNow() {
+	  if (!mySessionId) {
+	    console.log("로그인 해야함");
+	    return;
+	  }
+
+	  const form = document.createElement("form");
+	  form.method = "POST";
+	  form.action = "./buyPage"; // buyPage URL 설정
+
+	  const selectedOptionsInput = document.createElement("input");
+	  selectedOptionsInput.type = "hidden";
+	  selectedOptionsInput.name = "selectedOptions";
+	  selectedOptionsInput.value = JSON.stringify(selectedOptions);
+	  form.appendChild(selectedOptionsInput);
+
+	  document.body.appendChild(form);
+	  form.submit();
+	}
 			
 
 window.addEventListener("DOMContentLoaded", function(){
@@ -803,10 +844,11 @@ window.addEventListener("DOMContentLoaded", function(){
 													<div class="col-1"></div>
 													<div class="col-5 d-grid gap-2">
 														<button class="btn btn-outline-primary btn-lg"
-															type="button">장바구니</button>
+															type="button" onclick="insertCart()">장바구니</button>
 													</div>
 													<div class="col-5 d-grid gap-2">
-														<button class="btn btn-primary btn-lg" type="submit" 
+														<button class="btn btn-primary btn-lg" type="button" 
+														onclick="buyNow()"
 														>바로구매</button>
 													</div>
 													<div class="col-1"></div>
@@ -818,8 +860,9 @@ window.addEventListener("DOMContentLoaded", function(){
 									</div>
 								</div>
 							</div>
+							<div class="col-1"></div>
 						</div>
-						<div class="col-1"></div>
+						
 					</div>
 				</div>
 			</div>

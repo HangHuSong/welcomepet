@@ -34,11 +34,11 @@
 		<div class="container align-items-center justify-content-center">
 
 			<div class="row  mt-2 align-items-center">
-				<div class="col-1 d-flex ">
+				<div class="col-1 ">
 					<a class="btn bi bi-arrow-left fs-4" role="button"
 						onclick="history.back()"> </a>
 				</div>
-				<div class="col fw-bold" style="text-align: center;">결제</div>
+				<div class="col-10 fw-bold" style="text-align: center;">결제</div>
 				<div class="col-1"></div>
 			</div>
 
@@ -48,53 +48,64 @@
 				<div class="col "></div>
 				<div class="row mt-2 "></div>
 			</div>
-			<div class="row">
-				<div class="col-1"></div>
-				<div class="col-10 border rounded-2">
-					<div class="row mt-2 ">
-						<div class="col-4 embed-responsive embed-responsive-4by3">
-							<img
-								src="/uploadFiles/WelcomePet/${data.productInfo.product_thumbnail}"
-								class="embed-responsive-item product-thum" alt="...">
-						</div>
-						<div class="col">
-							<div class="row mt-1 fw-bold">
-								<input type="hidden" name="product_option_no"
-									value="${data.optionInfo.product_option_no}">
+			<div id="buyPageContainer">
+			<c:forEach var="item" items="${data}" varStatus="status">
+			    <div class="row mt-2">
+			        <div class="col-1"></div>
+			        <div class="col-10 border rounded-2">
+			            <div class="row mt-2">
+			                <div class="col-4 embed-responsive embed-responsive-4by3">
+			                    <img src="/uploadFiles/WelcomePet/${item.productInfo.product_thumbnail}" class="embed-responsive-item product-thum" alt="...">
+			                </div>
+			                <div class="col">
+			                    <div class="row mt-1 fw-bold">
 
-								<div class="col">${data.optionInfo.product_option_name}</div>
-							</div>
-							<div class="row mt-2">
-								<div class="col">${data.productInfo.product_description}</div>
-							</div>
-							<div class="row mt-2">
-								<div class="col fw-bold">${data.optionInfo.product_option_price - data.salePrice}원</div>
-								<input type="hidden" name="order_product_price"
-									value="${data.optionInfo.product_option_price - data.salePrice}">
-								<div class="col">/ ${product_amount}개</div>
-								<input type="hidden" name="order_product_quantity"
-									value="${product_amount}">
-							</div>
-						</div>
-					</div>
-					<div class="row mt-3 border-top"></div>
-					<div class="row mt-3 ">
-						<div class="col-6">총 상품 금액</div>
-						<div class="col text-end text-primary fw-bold">
-							${(data.optionInfo.product_option_price - data.salePrice) * product_amount}원
-						</div>
-					</div>
-					<div class="row ">
-						<div class="col-6">배송비</div>
-						<div class="col text-end">
-							+${data.productInfo.product_shipping_price}원</div>
-					</div>
-					<div class="row mt-2"></div>
+			                        <div class="col" style="font-size: 0.8em;">${item.productInfo.product_name}</div>
+			                    </div>
+			                    <div class="row mt-1 fw-bold">
 
+			                        <div class="col text-secondary" style="font-size: 0.7em;">${item.optionInfo.product_option_name}</div>
+			                         <div class="col text-secondary text-end" style="font-size: 0.8em;"><del><span> ${item.optionInfo.product_option_price * product_amount[status.index]}</span>원</del></div>
+			                    </div>			                    
+			                    <div class="row fw-bold">
+			                        <div class="col text-secondary" style="font-size: 0.7em;">수량 <span>${product_amount[status.index]}</span>개</div>
+			                       <div class="col fw-bold text-end"> <span>${(item.optionInfo.product_option_price - item.salePrice) * product_amount[status.index]}</span>원</div>
+			                    </div>
 
-				</div>
+			                </div>
+			            </div>
+			            <div class="row mt-2">
+			            <div class="col " style="font-size: 0.9em;"> 적립금 혜택 </div>
+			            	<div class="col text-end text-primary fw-bold" style="font-size: 0.8em;">  <span>${((item.optionInfo.product_option_price - item.salePrice) * product_amount[status.index] * 0.03)}</span>원 적립</div>
+			            </div>
+			            <div class="row mt-1 ">
+			            <div class="col " style="font-size: 0.9em;"> 적립금 사용</div>
+			            	<div class="col justify-content-end " style="font-size: 0.8em;"> 
+			            	<input class="form-control text-end" type="number" name="order_product_used_point" value="0" style="height: 25px; width: 125px; margin-left: auto; font-size: 1em;">
+							</div>
+			            </div>
+			            <div class="row">
+			            <div class="col text-secondary text-end" style="font-size: 0.7em;"> 
+			            사용가능 적립금 : <span>${sessionUser.customer_point }원</span> </div>
+			            </div>			            			            
+			            <div class="row mt-3 border-top"></div>
+			            <div class="row mt-3 fw-bold">
+			                <div class="col-6">총 상품 금액</div>
+			                <div class="col text-end text-primary ">
+			                    ${(item.optionInfo.product_option_price - item.salePrice) * product_amount[status.index]}원
+			                </div>
+			            </div>
+			            <div class="row" style="font-size: 0.9em;">
+			                <div class="col-6">배송비</div>
+			                <div class="col text-end text-secondary">
+			                    +${item.productInfo.product_shipping_price}원
+			                </div>
+			            </div>
+			            <div class="row mt-2"></div>
+			        </div>
+			    </div>
+			</c:forEach>
 			</div>
-
 			<div class="row mt-2 empty"></div>
 
 			<div class="row">
@@ -134,7 +145,8 @@
 								변경</button>
 						</div>
 					</div>
-					<div class="row mt-3 text-secondary" style="font-size: 0.9em;">
+					<div class="row  mt-2 border rounded-2">
+					<div class="row mt-2 " style="font-size: 0.9em;">
 						<div class="col">${mainAddress.customer_address_name }</div>
 						<input type="hidden" name="orders_address_name"
 							value="${mainAddress.customer_address_name }">
@@ -163,9 +175,12 @@
 								name="orders_shipping_message" placeholder="배송 요청사항">
 						</div>
 					</div>
+					<div class="row mt-2"></div>
+				</div>
 				</div>
 				<div class="col-1"></div>
 			</div>
+			
 
 			<div class="row mt-2 empty"></div>
 
@@ -239,7 +254,7 @@
 				<div class="row mt-2">
 					<div class="col">총 상품 금액</div>
 					<div class="col text-end">
-						${(data.optionInfo.product_option_price - data.salePrice) * product_amount}원
+						원
 
 					</div>
 				</div>
@@ -248,13 +263,13 @@
 					<div class="col text-secondary" style="font-size: 0.9em;">상품
 						금액</div>
 					<div class="col text-end">
-						${(data.optionInfo.product_option_price) * product_amount}원</div>
+						</div>
 				</div>
 				<div class="row ">
 					<div class="col-1"></div>
 					<div class="col text-secondary" style="font-size: 0.9em;">상품
 						할인</div>
-					<div class="col text-end">${(data.salePrice) * product_amount}원</div>
+					<div class="col text-end">원</div>
 				</div>
 				<div class="row mt-2">
 					<div class="col">쿠폰 할인</div>
@@ -263,7 +278,7 @@
 				<div class="row mt-2">
 					<div class="col">총 배송비</div>
 					<div class="col text-end">
-						${data.productInfo.product_shipping_price}원</div>
+						</div>
 				</div>
 			</div>
 		</div>
@@ -273,8 +288,8 @@
 			<div class="col">최종 결제 금액</div>
 			<div class="col text-end">
 				<input type="hidden" name="orders_total_price"
-					value="${(data.optionInfo.product_option_price - data.salePrice) * product_amount - 0 + data.productInfo.product_shipping_price}">
-				<strong>${(data.optionInfo.product_option_price - data.salePrice) * product_amount - 0 + data.productInfo.product_shipping_price}원
+					value="">
+				<strong>
 				</strong>
 			</div>
 			<div class="col-1"></div>
@@ -294,7 +309,7 @@
 							</div>
 							<div class="col text-end">
 								<span class="text-end text-primary">
-									${((data.optionInfo.product_option_price - data.salePrice) * product_amount - 0)*0.03}원
+									원
 								</span>
 							</div>
 
@@ -307,13 +322,13 @@
 							<div class="row text-secondary" style="font-size: 0.9em;">
 								<div class="col">구매 확정 시 적립</div>
 								<div class="col text-end">
-									+${((data.optionInfo.product_option_price - data.salePrice) * product_amount - 0)*0.01}원
+									+원
 								</div>
 							</div>
 							<div class="row text-secondary" style="font-size: 0.9em;">
 								<div class="col">리뷰 작성 시 적립</div>
 								<div class="col text-end">
-									+${((data.optionInfo.product_option_price - data.salePrice) * product_amount - 0)*0.02}원
+									원
 								</div>
 							</div>
 						</div>
@@ -334,7 +349,7 @@
 						<div class="d-grid gap-2">
 							<button class="btn btn-primary btn-lg" type="submit">
 								<div class="row fs-5">
-									<div class="col text-center">${(data.optionInfo.product_option_price - data.salePrice) * product_amount - 0 + data.productInfo.product_shipping_price}원
+									<div class="col text-center">원
 										결제하기</div>
 								</div>
 							</button>
