@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>showDogPostLikes.jsp</title>
+<title>showDogPostLikes</title>
 <%------ bootstrap ------%>
 <%-- viewport --%>
 <meta name="viewport" content="width=device-width, initial-scale=1">
