@@ -43,6 +43,11 @@
         height: 300px;
         object-fit: cover;
     }
+    #snapModalTop{
+    	width: auto;
+    	height: 50px;
+    	
+    }
 </style>
 <script type="text/javascript">
 
@@ -233,7 +238,7 @@
                 const col1 = document.createElement("div")
                 col1.classList.add("col");
                 const span = document.createElement("span");
-                span.innerText = "좋아요 " + response.countLike + " ";
+                span.innerText = " " + response.countLike + " ";
                 const i = document.createElement("i");
                 i.id = "heart-" + response.snapDetail.snap_board_no;
                 if (response.checkLike == 0) {
@@ -251,19 +256,23 @@
                 }
                 span.appendChild(i);
                 col1.appendChild(span);
+                
+                const br = document.createElement("br");
+                col1.appendChild(br);
 
                 const col2 = document.createElement("div")
-                col2.classList.add("col", "d-grid");
+                col2.classList.add("col", "d-grid","text-end");
                 
                 const span2 = document.createElement("span");
                 span2.classList.add("text-end");
                 
                 const readIcon = document.createElement("i");
-                readIcon.classList.add("bi" ,"bi-hand-index-fill");
-                span2.appendChild(readIcon);
-                span2.innerText = " " + response.snapDetail.snap_board_view_count;
+                readIcon.classList.add("bi" ,"bi-eye");
                 
-                col2.appendChild(span2);
+                span2.innerText = response.snapDetail.snap_board_view_count + " ";
+                span2.appendChild(readIcon);
+                
+                col1.appendChild(span2);
 
                 row1.appendChild(col1);
                 row1.appendChild(col2);
@@ -427,12 +436,13 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
+            	<img id="snapModalTop" src="/welcomepet/resources/img/logo.png">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <!-- Snap detail content -->
                 <div class="container">
-                    <div class="row mt-3">
+                    <div class="row mt-1">
                         <div class="col">
                             <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
                                 <div id="imgBox" class="carousel-inner">

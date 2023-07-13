@@ -164,23 +164,26 @@
 			</div>
 		</div>
 		
-		<div class="row mt-2">
+		<div class="row mt-2 mb-2">
 			<div class="col">
 				<c:choose>
 		    		<c:when test="${checkLike == 0}">
-				    	<p><i style="font-size: 20px; color: #ff2465;" class="bi bi-heart" onclick="location.href='./readSnapLike?snap_board_no=${snapBoardDto.snap_board_no}'"></i> ${countLike}</p>
+				    	<i style="font-size: 20px; color: #ff2465;" class="bi bi-heart" onclick="location.href='./readSnapLike?snap_board_no=${snapBoardDto.snap_board_no}'"></i> ${countLike}
 		    		</c:when>
 		    		<c:otherwise>
-				    	<p><i style="font-size: 20px; color: #ff2465;" class="bi bi-heart-fill" onclick="location.href='./readSnapUnLike?snap_board_no=${snapBoardDto.snap_board_no}'"></i> ${countLike}</p>					    		
+				    	<i style="font-size: 20px; color: #ff2465;" class="bi bi-heart-fill" onclick="location.href='./readSnapUnLike?snap_board_no=${snapBoardDto.snap_board_no}'"></i> ${countLike}					    		
 		    		</c:otherwise>
 		    	</c:choose>
+		    	<i class="bi bi-eye"></i> ${snapBoardDto.snap_board_view_count}
+		    	<br>
+		    	<i class="bi bi-geo-alt-fill"></i> ${snapBoardDto.snap_location}
 			</div>
-			<div class="col text-end">
+			<%-- <div class="col text-end">
 				조회수  ${snapBoardDto.snap_board_view_count}
-			</div>
+			</div> --%>
 		</div>
 		
-		<div class="row mb-5">
+		<div class="row mt-5 mb-5">
 			<div class="col">
 				${snapBoardDto.snap_board_content}
 			</div>
@@ -192,7 +195,7 @@
 				<input id="commentContentBox" type="text" class="form-control">
 			</div>
 			<div class="col d-grid">
-				<button onclick="registerComment()" class="bi bi-box-arrow-in-up-left"></button>
+				<button onclick="registerComment()" class="btn btn-warning bi bi-box-arrow-in-up-left"></button>
 			</div>
 		</div>
 		<!-- 댓글 리스트 ajax -->
