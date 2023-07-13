@@ -192,24 +192,7 @@ public class AdminController {
 		return "redirect:./customerDetail?customer_no=" + params.getCustomer_no();
 	}
 
-	@RequestMapping("bizApproval")
-	public String bizApproval(HttpSession session, BizApprovalDto bizApprovalDto, BizApprovalRequestDto params,
-			@RequestParam("buttonType") String buttonType) {
 
-		EmpDto empDto = (EmpDto) session.getAttribute("sessionUser");
-
-		BizApprovalRequestDto bizApprovalRequestDto = adminService.getBizApprovalRequestByNo(params.getBiz_approval_request_no());
-		int biz_no = bizApprovalRequestDto.getBiz_no();
-		bizApprovalDto.setEmp_no(empDto.getEmp_no());
-		bizApprovalDto.setBiz_approval_request_no(bizApprovalRequestDto.getBiz_approval_request_no());
-
-		if (buttonType.equals("confirm")) {
-			adminService.confirmApproval(bizApprovalDto, biz_no);
-		} else {
-			adminService.rejectApproval(bizApprovalDto, biz_no);
-		}
-		return "redirect:./biz";
-	}
 
 //	@RequestMapping("orderList")
 //	public String orders(Model model) {
@@ -304,5 +287,24 @@ public class AdminController {
 		List<Map<String, Object>> list = adminService.getBizApprovalRequest();
 		model.addAttribute("list", list);
 		return "admin/bizApprovalList";
+	}
+	
+	@RequestMapping("bizApproval")
+	public String bizApproval(HttpSession session, BizApprovalDto bizApprovalDto, BizApprovalRequestDto params,
+			@RequestParam("buttonType") String buttonType) {
+
+		EmpDto empDto = (EmpDto) session.getAttribute("sessionUser");
+
+		BizApprovalRequestDto bizApprovalRequestDto = adminService.getBizApprovalRequestByNo(params.getBiz_approval_request_no());
+		int biz_no = bizApprovalRequestDto.getBiz_no();
+		bizApprovalDto.setEmp_no(empDto.getEmp_no());
+		bizApprovalDto.setBiz_approval_request_no(bizApprovalRequestDto.getBiz_approval_request_no());
+
+		if (buttonType.equals("confirm")) {
+			adminService.confirmApproval(bizApprovalDto, biz_no);
+		} else {
+			adminService.rejectApproval(bizApprovalDto, biz_no);
+		}
+		return "redirect:./bizApprovalList";
 	}
 }

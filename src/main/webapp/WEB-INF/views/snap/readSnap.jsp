@@ -58,6 +58,9 @@
 					
 					const col1 = document.createElement("div");
 					col1.classList.add("col");
+					col1.classList.add("text-primary");
+					col1.classList.add("fw-bold");
+					col1.classList.add("fs-5");
 					
 					const span1 = document.createElement("span");
 					span1.style.fontSize = "12px";
@@ -83,12 +86,14 @@
 			        
 			        const row2 = document.createElement("div");
 			        row2.classList.add("row");
+			        row2.classList.add("mt-2");
 			        
 			        const col3 = document.createElement("div");
 			        col3.classList.add("col");
 			        
 			        const span3 = document.createElement("span");
 			        span3.style.fontSize = "15px";
+			        span3.classList.add("text-break");
 			        span3.innerText = data.snapBoardCommentDto.snap_board_comment_content;
 			        
 			        col3.appendChild(span3);

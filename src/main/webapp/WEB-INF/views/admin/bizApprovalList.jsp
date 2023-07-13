@@ -32,7 +32,7 @@
         <%@ include file="../common/adminHead.jsp" %>
             <div class="row">
                 <%@ include file="../common/adminTab.jsp" %>
-
+					<div class="col-1"></div>
                     <div class="col-9">
                         <div class="container mt-5">
 					        <h2 class="mt-4 mb-4">biz 입점 승인 관리</h2>
@@ -43,13 +43,16 @@
 					                <div class="col">관리자 메모</div>
 					                <div class="col-2"></div>
 					            </div>
-					            <form action="./bizApproval" method="post">
+					            <c:forEach items="${list}" var="i">
+					            <form action="./bizApproval?biz_approval_request_no=${i.bizApprovalRequestDto.biz_approval_request_no}" method="post">
+					            	<input type="hidden" name="biz_approval_request_no" ${i.bizApprovalRequestDto.biz_approval_request_no}>
+					            	<input type="hidden" name="biz_approval_request_no" ${i.bizApprovalRequestDto.biz_no}>
 					            	<div class="row border py-2">
-						            
 						                <div class="col-2 d-flex justify-content-center align-items-center">
-						                    <img src="http://via.placeholder.com/200x200" class="img-thumbnail" id="biz_approval_request_document" data-bs-toggle="modal" data-bs-target="#businessLicenseModal">
+						                    <img src="/uploadFiles/bizDocument/${i.bizApprovalRequestDto.biz_approval_request_document}" class="img-thumbnail" id="biz_approval_request_document" data-bs-toggle="modal" data-bs-target="#businessLicenseModal">
 						                </div>
-						                <div class="col d-flex align-items-center">010-12-15478</div>
+						                <div class="col d-flex align-items-center">${i.bizApprovalRequestDto.biz_approval_request_brn}</div>
+						             
 						                <div class="col">
 						                    <textarea class="form-control" style="height: 140px;" name="biz_approval_message"></textarea>
 						                </div>
@@ -62,9 +65,9 @@
 						                        <button name="buttonType" value="reject" class="btn btn-danger">거절</button>
 						                    </div>
 						                </div>
-						           
 					           		</div>
 					            </form>
+					            </c:forEach>
 					    </div>
                     </div>
             </div>
@@ -77,7 +80,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <img src="http://via.placeholder.com/200x200" alt="">
+                <img src="/uploadFiles/bizDocument/${i.bizApprovalRequestDto.biz_approval_request_document}">
             </div>
         </div>
     </div>
