@@ -15,11 +15,13 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <title></title>
 <style type="text/css">
-	.profileImage {
+	#profileImage {
 		width: 80px;
-		height: 80px;
+		height: auto;
 		border-radius: 50%;
 		overflow: hidden;
+		
+		object-fit: cover;
 	}
 	.img{
 		width: 125px;
@@ -90,10 +92,14 @@
 		<!-- dog profile img -->
 		<div class="row mx-1 mt-2 align-items-center">
 			<div class="col">
-				<div class="profileImage">
-				<img src="/uploadFiles/WelcomePet/${dogDto.dog_image}" style="width: 100%; height: 100%;">
-				</div>		
-			</div>
+			    <div class="row">
+			      <div class="col">
+			        <div id="profileImage" style="width: 80px; height: 80px; border-radius: 50%; overflow: hidden;">
+			          <img src="/uploadFiles/WelcomePet/${dogDto.dog_image}" style="width: 100%; height: 100%; object-fit: cover;">
+			        </div>
+			      </div>
+			    </div>
+			  </div>
 			<div class="col text-center">
 				<div class="row">
 					<div class="col">
@@ -114,7 +120,7 @@
 				</div>
 				<div class="row mt-1">
 					<div class="col">
-						<span>게시물</span>
+						<span>팔로우</span>
 					</div>
 				</div>
 			</div>
@@ -126,35 +132,40 @@
 				</div>
 				<div class="row mt-1">
 					<div class="col">
-						<span>게시물</span>
+						<span>팔로잉</span>
 					</div>
 				</div>
 			</div>
 		</div>
 		
 		<div class="row mt-2">
-			<div class="col-4">
+			<div class="col">
 				<div class="row">
-					<div class="col text-center">
+					<div class="col-4 text-center fw-bold">
 						<span style="font-size: 15px;"> ${dogDto.dog_name}</span>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col text-center">
-						<span style="font-size: 13px; color: gray;"><fmt:formatDate value="${dogDto.dog_birth}" pattern="M월d일"/></span>
+					<div class="col-4 text-center">
+						<i class="bi bi-balloon-heart-fill"></i><span style="font-size: 13px; color: gray;"><fmt:formatDate value="${dogDto.dog_birth}" pattern="M월 d일"/></span>
 					</div>
 				</div>
 			</div>
 		</div>
 		
-		<div class="row my-2">
+		<div class="row mt-3">
 			<div class="col-auto">
 				<p class="text-break" style="font-size: 14px;">${dogDto.dog_introduction}</p>
 			</div>
 		</div>
 		
 		<div class="row">
-		
+			<div class="col d-grid">
+				<button class="btn btn-outline-dark bi bi-person-plus-fill"> 팔로우</button>
+			</div>
+			<div class="col d-grid">
+				<button class="btn btn-outline-dark bi bi-chat-left-dots"> 메시지</button>
+			</div>
 		</div>
 											
 		<div class="row mt-1 border-top"></div>
