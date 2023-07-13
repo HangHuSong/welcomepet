@@ -75,7 +75,10 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-		var intervalAlarm=setInterval(getAlarm,100);
+		if(${bizUser.biz_status_no eq 4}){
+			var intervalAlarm=setInterval(getAlarm,100);	
+		}
+		
 		
 		function getAlarm(){
 			const xhr = new XMLHttpRequest();

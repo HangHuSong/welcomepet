@@ -396,7 +396,7 @@
 						<div class="row text-center">
 							<div class="col align-self-center">사업자 등록 등본</div>
 							<div class="col align-self-center py-3">
-								<img
+								<img class="w-100"
 									src="/uploadFiles/bizDocument/${bizApprovalRequestDto.biz_approval_request_document }">
 							</div>
 						</div>
