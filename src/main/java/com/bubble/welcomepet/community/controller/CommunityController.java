@@ -43,7 +43,7 @@ public class CommunityController {
 	@RequestMapping("snap")
 	public String showCommunityMain(Model model) {
 		
-		return "community/snap";
+		return "../snap/main";
 	}
 
 
