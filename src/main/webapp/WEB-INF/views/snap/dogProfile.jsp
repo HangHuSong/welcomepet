@@ -89,20 +89,46 @@
 		
 		<!-- dog profile img -->
 		<div class="row mx-1 mt-2 align-items-center">
-			<div class="col-4">
+			<div class="col">
 				<div class="profileImage">
 				<img src="/uploadFiles/WelcomePet/${dogDto.dog_image}" style="width: 100%; height: 100%;">
 				</div>		
 			</div>
-			<div class="col-4 text-center">
-				<span><i class="bi bi-person-plus-fill"></i></span>
-				<br>
-				<span>10</span>
+			<div class="col text-center">
+				<div class="row">
+					<div class="col">
+						<span class="fw-bold">10</span>
+					</div>
+				</div>
+				<div class="row mt-1">
+					<div class="col">
+						<span>게시물</span>
+					</div>
+				</div>
 			</div>
-			<div class="col-4 text-center">
-				<span>게시물</span>
-				<br>
-				<span>10</span>
+			<div class="col text-center">
+				<div class="row">
+					<div class="col">
+						<span class="fw-bold">10</span>
+					</div>
+				</div>
+				<div class="row mt-1">
+					<div class="col">
+						<span>게시물</span>
+					</div>
+				</div>
+			</div>
+			<div class="col text-center">
+				<div class="row">
+					<div class="col">
+						<span class="fw-bold">10</span>
+					</div>
+				</div>
+				<div class="row mt-1">
+					<div class="col">
+						<span>게시물</span>
+					</div>
+				</div>
 			</div>
 		</div>
 		
@@ -123,10 +149,13 @@
 		
 		<div class="row my-2">
 			<div class="col-auto">
-				<p style="font-size: 14px;">${dogDto.dog_introduction}</p>
+				<p class="text-break" style="font-size: 14px;">${dogDto.dog_introduction}</p>
 			</div>
 		</div>
 		
+		<div class="row">
+		
+		</div>
 											
 		<div class="row mt-1 border-top"></div>
 		

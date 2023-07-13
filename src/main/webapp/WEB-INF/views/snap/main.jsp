@@ -426,7 +426,7 @@
 
     window.addEventListener("DOMContentLoaded", function () {
         getSessionId();
-        getSnapList();
+        
     });
 </script>
 </head>
@@ -442,12 +442,53 @@
 		<div class="row mt-1 border-top"></div>
 		
 		<div class="row mb-5" id="listBox">
-			<div class="col" id="snapListBox"></div>
+		    <div class="col" id="snapListBox">
+		        <div class="row mt-2 my-4 justify-content-center">
+		            <c:forEach var="data" items="${list}">
+		                <div class="col-6 col-md-6 my-1">
+		                    <div class="card">
+		                        <div class="image-wrapper">
+		                            <a href="javascript:void(0);" onclick="readSnap(${data.snapBoardDto.snap_board_no});">
+		                                <img src="/uploadFiles/thumbnail/${data.snapBoardDto.snap_thumbnail}" class="card-img-top" id="thumbnailImg">
+		                            </a>
+		                            <div class="like-button">
+		                                <c:choose>
+		                                    <c:when test="${data.checkLike == 0}">
+		                                        <i id="heart-${data.snapBoardDto.snap_board_no}" class="bi bi-heart-fill" style="font-size: 20px; color: #ffffff; background: transparent;"
+		                                           data-snapBoardNo="${data.snapBoardDto.snap_board_no}" onclick="like(${data.snapBoardDto.snap_board_no});"></i>
+		                                    </c:when>
+		                                    <c:otherwise>
+		                                        <i id="heart-${data.snapBoardDto.snap_board_no}" class="bi bi-heart-fill" style="font-size: 20px; color: #ff2465; background: transparent;"
+		                                           data-snapBoardNo="${data.snapBoardDto.snap_board_no}" onclick="unLike(${data.snapBoardDto.snap_board_no});"></i>
+		                                    </c:otherwise>
+		                                </c:choose>
+		                            </div>
+		                        </div>
+		                        <div class="card-body">
+			                        <div class="row">
+			                        	<div class="col">
+			                        		<span>
+				                                <a href="./dogProfile?dog_no=${data.dogDto.dog_no}">${data.dogDto.dog_name}</a>
+				                            </span>
+			                        	</div>
+			                        </div>
+		                            <div class="row">
+		                            	<div class="col">
+		                            		<span><i class="bi bi-geo-alt-fill"></i></span>
+		                            		<span class="text-break">${data.snapBoardDto.snap_location}</span>
+		                            	</div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+		            </c:forEach>
+		        </div>
+		    </div>
 		</div>
-		
+	</div>
 		<jsp:include page="../common/bottomNavi.jsp"></jsp:include>
 		
-	</div> 
+	
 	
 <!-- Modal -->
 <div class="modal fade" id="snapDetailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

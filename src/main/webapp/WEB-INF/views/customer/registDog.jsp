@@ -35,12 +35,7 @@
 								placeholder="반려견 이름">
 						</div>
 					</div>
-					<div class="row mt-3">
-						<div class="col ">
-							<input class="form-control" type="text" name="dog_profile_id"
-								placeholder="반려견 프로필 아이디">
-						</div>
-					</div>
+					
 					<div class="row mt-3">
 						<div class="col ">
 							<input class="form-control" type="text" name="dog_weight"
