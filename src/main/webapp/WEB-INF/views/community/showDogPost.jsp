@@ -17,7 +17,22 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">--%>
 <%------ bootstrap ------%>
 <script>
-
+ <%-- ajax --%>
+  <%-- 댓글리스트 --%>
+   function commentList(){
+	   const xhr = new XMLHttpRequest();
+	   xhr.onreadystatechange == function(){
+		   if(xhr.readyState == 4 && xhr.status == 200){
+			   const response = JSON.parse(xhr.responseText);
+			   console.log(response);
+		   }
+	   }
+	   
+	   xhr.open("get", "./getcommentList?boardId=" + boardId);
+	   xhr.send();
+   }
+ 
+ <%-- ajax --%>
 </script>
 
 <style>
