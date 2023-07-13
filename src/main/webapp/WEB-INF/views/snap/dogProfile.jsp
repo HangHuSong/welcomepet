@@ -95,7 +95,7 @@
 				</div>		
 			</div>
 			<div class="col-4 text-center">
-				<span>팔로워</span>
+				<span><i class="bi bi-person-plus-fill"></i></span>
 				<br>
 				<span>10</span>
 			</div>
@@ -109,13 +109,13 @@
 		<div class="row mt-2">
 			<div class="col-4">
 				<div class="row">
-					<div class="col-auto">
+					<div class="col text-center">
 						<span style="font-size: 15px; font-weight: bold;"> ${dogDto.dog_name}</span>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col d-grid">
-						<span style="font-size: 13px; color: gray;"><fmt:formatDate value="${dogDto.dog_birth}" pattern="MM월dd월"/></span>
+					<div class="col text-center">
+						<span style="font-size: 13px; color: gray;"><fmt:formatDate value="${dogDto.dog_birth}" pattern="M월d일"/></span>
 					</div>
 				</div>
 			</div>

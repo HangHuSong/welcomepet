@@ -254,9 +254,15 @@
 
                 const col2 = document.createElement("div")
                 col2.classList.add("col", "d-grid");
+                
                 const span2 = document.createElement("span");
                 span2.classList.add("text-end");
-                span2.innerText = "조회수 " + response.snapDetail.snap_board_view_count;
+                
+                const readIcon = document.createElement("i");
+                readIcon.classList.add("bi" ,"bi-hand-index-fill");
+                span2.appendChild(readIcon);
+                span2.innerText = " " + response.snapDetail.snap_board_view_count;
+                
                 col2.appendChild(span2);
 
                 row1.appendChild(col1);
@@ -276,8 +282,7 @@
                 row2.appendChild(col3);
                 snapDetailContent.appendChild(row2);
                 
-                const hr = document.createElement("hr");
-                snapDetailContent.appendChild(hr);
+                
                 
 				// insert comment
                 const commentFormRow = document.createElement("div");
@@ -298,7 +303,7 @@
 	            commentSubmitBtnCol.classList.add("col", "d-grid");
 	            const commentSubmitBtn = document.createElement("button");
 	            commentSubmitBtn.onclick = function() { registerComment(response.snapDetail.snap_board_no); };
-	            commentSubmitBtn.classList.add("bi", "bi-box-arrow-in-up-left");
+	            commentSubmitBtn.classList.add("bi", "bi-box-arrow-in-up-left", "btn", "btn-info");
 	            commentSubmitBtnCol.appendChild(commentSubmitBtn);
 	            commentForm.appendChild(commentContentBoxCol);
 	            commentForm.appendChild(commentSubmitBtnCol);
@@ -310,9 +315,10 @@
                     const row4 = document.createElement("div");
                     row4.classList.add("row");
                     row4.classList.add("border-top");
+                    row4.classList.add("mb-2");
 
                     const col5 = document.createElement("div");
-                    col5.classList.add("col");
+                    col5.classList.add("col", "text-primary", "fw-bold", "fs-5");
 
                     const span3 = document.createElement("span");
                     span3.style.fontSize = "12px";
@@ -339,7 +345,7 @@
                     snapDetailContent.appendChild(row4);
 
                     const row5 = document.createElement("div");
-                    row5.classList.add("row");
+                    row5.classList.add("row","mb-2");
 
                     const col7 = document.createElement("div");
                     col7.classList.add("col");

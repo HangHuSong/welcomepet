@@ -226,8 +226,8 @@
 				#{biz_approval_request_no},
 				#{emp_no},
 				3,
-				#{biz_message},
-				#{emp_memo},
+				#{biz_approval_message},
+				#{biz_approval_emp_memo},
 				SYSDATE
 			)
 		</insert>
@@ -250,8 +250,8 @@
 				#{biz_approval_request_no},
 				#{emp_no},
 				5,
-				#{biz_message},
-				#{emp_memo},
+				#{biz_approval_message},
+				#{biz_approval_emp_memo},
 				SYSDATE
 				)
 		</insert>
