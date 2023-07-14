@@ -18,14 +18,13 @@
 <%------ bootstrap ------%>
 <script>
  <%-- ajax --%>
-  <%-- 댓글쓰기 --%> 
-  function registerComment(){
+  <%-- 댓글쓰기 
+   function registerComment(){
 	  if(!mySessionId){
 		  /* 로그인 안되어있으면 */
 		  return;
-	  }
 	  
-	  const commentTextBox = document.getElementById("commentTextBox");
+	  	  const commentTextBox = document.getElementById("commentTextBox");
 	  const commentTextValue = commentTextBox.value;
 	  
 	  const xhr = new XHLHttpRequest();
@@ -39,69 +38,39 @@
 			  
 		  }
 	  }
-	  
+   
 	  /* 댓글등록 */
-	  xhr.open("post", "./registerComment");
+	  xhr.open("post", "./registerComment"); 
 	  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	  xhr.send("board_id = " + boardId + "&comment_text = " + commentTextValue);
   }
+  --%> 
+
   
-  <%-- 댓글리스트 --%>
-   function commentList(){
-	   const xhr = new XMLHttpRequest();
-	   xhr.onreadystatechange == function(){
-		   if(xhr.readyState == 4 && xhr.status == 200){
-			   const response = JSON.parse(xhr.responseText);
+  <%-- 댓글리스트 --%>  
+  function commentList(){
+	  const xmlHttpRequest = new XMLHttpRequest();
+	  xmlHttpRequest.onreadystatechange = function(){
+		  	/* 4: 서버로부터 응답이 완료 &&(AND) 200: 서버의 Http 응답이 성공적인 상태 */
+		  if(xmlHttpRequest == 4 && xmlHttpRequest.status == 200){
+			  const response = JSON.parse(xmlHttpRequest.responseText);
+			  
+			  /* 역할:  */
+			  document.getElementById("commentContent").innerHTML = "";
+			  
+			  for(data of response.commentData){
+// 				  const row1 = document.createElement("div");
+// 				  row1.classList.add("row");
+				  
+// 				  document.getElementById("commentContent").appendChild(row1);
+			  }
+			  
+		  }	  
+	  }
+  }
+  
 			   
-			   /* console.log(response); */
-			   
-			   document.getElementById("commentListBox").innerHTML = "";
-			   
-			   /* js작업 */
-			   for(data of response.commentData){
-				const row1 = document.createElement("div");   
-				row1.classList.add("row");
-				
-				/* const colCommentBox는 document~를 생성한다*/
-				const colCommentBox = document.createElement("div");   
-				colCommentBox.classList.add("fw-bold");
-				/* 데이터 세팅 */
-				colCommentBox.innerText = data.commentDto.comment_text;
-				row1.appendChild(colCommentBox);
-				
-				const colNickname = document.createElement("div");
-				colNickname.classList.add("col");
-				colNickname.classList.add("text-end");
-				colNickname.classList.add("dropdown");
-				colNickname.classList.add("pe-3");
-				/* 데이터 세팅 */
-				colNickname.innerText = data.memberDto.nickname;
-				row1.appendChild(colNickname);
-				
-				const colNickname = document.createElement("div");
-				colNickname.classList.add("col");
-				colNickname.classList.add("text-end");
-				colNickname.classList.add("dropdown");
-				colNickname.classList.add("pe-3");
-				/* 데이터 세팅 */
-				colNickname.innerText = data.memberDto.nickname;
-				row1.appendChild(colNickname);
-				
-				if(mySessionId != null && data.commentDto.member_id){
-					const colDelete = document.createElement("div");
-					colDelete.classList.add("col-1");
-					colDelete.innerText = "삭제";
-					row1.appendChild(colDelete);
-					
-					const colUpdate = document.createElement("div");
-					colUpdate.classList.add("col-1");
-					colUpdate.innerText = "수정";
-					row1.appendChild(colUpdate);
-					
-				}
-				document.getElementById("commentListBox").appendChild(row1);
-				
-			   }
+  
 			   
 <%-- 			   <div class="col-12">
 				  <c:forEach items="${commentData}" var="commentData">
@@ -152,7 +121,7 @@
 		   }
 	   }
 	   
-	   xhr.open("get", "./getcommentList?boardId=" + boardId);
+	   xhr.open("get", "./showDogPost?show_dog_post_no=" + show_dog_post_no);
 	   xhr.send();
    }
    
@@ -259,7 +228,7 @@
 							 </span>			 	 	 	
 							 
 							 <span>
-							  댓글 ${countComment}
+							  댓글수 ${countComment}
 							 </span>
 							 	 
 				 		</div> 		
@@ -315,16 +284,13 @@
 	<div class="row">	
 		 <%-- 댓글 정렬--%>
 		 <div class="col-12 fw-bold text-secondary mb-3" style="font-size: 10pt;">
-		   <%-- 최근순 
-		   <a href="./showDogPost?show_dog_post_no=${commentData.showDogCommentDto.show_dog_post_no}&commentOrder=recent">최신순</a>--%>
-		   <%-- 오래된순 
-		   <a href="./showDogPost?show_dog_post_no=${commentData.showDogCommentDto.show_dog_post_no}&commentOrder='recent'">최신순</a>--%>
 		   <button>등록순</button>
 		   <button>최신순</button>
 		 </div>		 
-		 		 
+		 
+		 <%-- 여기서부터 328줄인가 주석 --%>		 
 		 <div class="col-12">
-		  <c:forEach items="${commentData}" var="commentData">
+		  <%-- forEach자리 --%>
 		  <div class="row border-bottom py-3">
 		 	<%-- 프사 --%>
 			 <div class="col-auto ps-3 pe-0 text-end">
@@ -334,11 +300,44 @@
 			 <%-- 댓글 데이터 --%>
 			 <div class="col">
 				  <div class="row">
+				  	<%-- 댓글 닉네임 --%>
+				  	<div class="col fw-bold" style="font-size: 10pt;" id="commentNickName">닉네임</div>
+				  	<%-- 댓글 수정 삭제 --%>
+<%-- 				  	<div class="col text-end dropdown pe-3"> 	 
+				  	</div> --%>  	
+				  	<%-- 댓글 수정 삭제 --%>
+				  </div>
+				 
+				  <div class="row">
+				   <%-- 댓글 내용 comment_content  --%>
+				   <div class="col-12" id="commentContent">
+				   </div>
+				   <%-- 장식용 답글쓰기 --%>
+				   <div class="col text-secondary" style="font-size: 10pt;">
+				   <button>답글쓰기</button>
+				   </div>
+				  </div>
+			 </div>
+		  </div>
+		  <%-- /forEach자리 --%>
+		 </div>
+		 
+		 <%-- <div class="col-12">
+		  <c:forEach items="${commentData}" var="commentData">
+		  <div class="row border-bottom py-3">
+		 	프사
+			 <div class="col-auto ps-3 pe-0 text-end">
+			  <img class="rounded-circle" src="https://dummyimage.com/3*3" alt="...">
+			 </div>
+			 
+			 댓글 데이터
+			 <div class="col">
+				  <div class="row">
 				  	<div class="col fw-bold" style="font-size: 10pt;">
 				  	 ${commentData.customerDto.customer_nickname}
 				  	</div>
 				  	
-				  	<%-- 댓글 수정 삭제 --%>
+				  	댓글 수정 삭제
 				  	<div class="col text-end dropdown pe-3">
 				 	 <a class="text-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 				 	  <i class="bi bi-three-dots-vertical"></i>
@@ -353,6 +352,7 @@
 					 	 <li><a class="dropdown-item" type="button">신고</a></li>
 				 	 </ul>
 				  	</div>  	
+				  	댓글 수정 삭제
 				  </div>
 				 
 				  <div class="row">
@@ -367,7 +367,7 @@
 			 </div>
 		  </div>
 		  </c:forEach>
-		 </div>
+		 </div> --%> 
 		 
 
 		<div class="col mt-2">	 
