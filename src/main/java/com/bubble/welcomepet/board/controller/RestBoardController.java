@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +23,9 @@ import com.bubble.welcomepet.customer.service.CustomerService;
 import com.bubble.welcomepet.dto.CartDto;
 import com.bubble.welcomepet.dto.CustomerAddressDto;
 import com.bubble.welcomepet.dto.CustomerDto;
+import com.bubble.welcomepet.dto.OrderProductDto;
+import com.bubble.welcomepet.dto.OrderRequestDto;
+import com.bubble.welcomepet.dto.OrdersDto;
 import com.bubble.welcomepet.dto.ProductReviewDto;
 import com.bubble.welcomepet.dto.ProductWishDto;
 import com.bubble.welcomepet.dto.ProductReviewImagesDto;
@@ -48,6 +52,22 @@ public class RestBoardController {
 	    }
 
 	}
+	
+
+	// 주문 
+	@RequestMapping("orders")
+	public  Map<String, Object> orders(@RequestBody OrderRequestDto orderRequestDto) { 
+	    List<OrderProductDto> orderProductDtoList = orderRequestDto.getOrderProductDtoList();
+	    OrdersDto ordersDto = orderRequestDto.getOrdersDto();
+		System.out.println("어쩌꾸");
+		Map<String , Object> map = new HashMap<>();
+	    customerService.addOrders(ordersDto, orderProductDtoList);
+
+	    
+	    map.put("result", "success");
+	    return map;
+	}
+	
 	
 	
 	

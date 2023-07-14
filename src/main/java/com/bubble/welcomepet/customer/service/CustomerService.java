@@ -351,8 +351,11 @@ public class CustomerService {
 	public void addOrders(OrdersDto ordersDto,  List<OrderProductDto> orderProductDtoList) {
 		int orders_no = customerMapper.createOrdersPk();
 		ordersDto.setOrders_no(orders_no);
+
 		customerMapper.AddOrders(ordersDto);
+		
 	    for (OrderProductDto orderProductDto : orderProductDtoList) {
+	    	System.out.println(orderProductDto.getOrder_product_price());
 	        orderProductDto.setOrders_no(orders_no);
 	        customerMapper.AddOrderProduct(orderProductDto);
 	    }

@@ -118,7 +118,58 @@
 
 		  updateTotalUsedPoint(); // 초기화 함수 호출
 		});
-		  
+		
+		function submitOrderForm() {
+			  var orderProductDtoList = [];
+			  <%-- orderProductDtoList에 데이터 추가하는 부분 --%>
+			  <c:forEach var="item" items="${data}" varStatus="status">
+			    var orderProduct = {
+			      order_product_quantity: '${product_amount[status.index]}',
+			      order_product_price: ('${item.optionInfo.product_option_price}' - '${item.salePrice}') * '${product_amount[status.index]}',
+			      product_option_no: '${item.optionInfo.product_option_no}',
+			      order_product_used_point: document.getElementById('point-${status.index}').value
+			    };
+			    orderProductDtoList.push(orderProduct);
+			  </c:forEach>
+
+			  var ordersDto = {
+			    customer_no: '${sessionUser.customer_no}',
+			    orders_address_name: '${mainAddress.customer_address_name}',
+			    orders_receiver_name: '${mainAddress.customer_address_receiver}',
+			    orders_address_phone: '${mainAddress.customer_address_phone}',
+			    orders_address: '${mainAddress.customer_address_main}',
+			    orders_detail_address: '${mainAddress.customer_address_detail}',
+			    orders_shipping_message: '${orders_shipping_message}',
+			    orders_payment_method: '3433'
+			  };
+			  
+			  var requestData = {
+					  orderProductDtoList: orderProductDtoList,
+					  ordersDto: ordersDto
+					};
+			  var xhr = new XMLHttpRequest();
+			  xhr.open("POST", "./orders");
+			  xhr.setRequestHeader("Content-Type", "application/json");
+			  xhr.onreadystatechange = function() {
+			      if (xhr.readyState === XMLHttpRequest.DONE) {
+			          if (xhr.status === 200) {
+			              
+			              var response = JSON.parse(xhr.responseText);
+			              console.log(response);
+			              // 추가적인 처리 작업 수행
+			          } else {
+			              // 처리 중 오류가 발생한 경우
+			              console.error("Failed to process the request");
+			              console.log(orderProductDtoList);
+			              console.log(ordersDto);
+			          }
+			      }
+			  };
+
+			  
+			  xhr.send(JSON.stringify(requestData));	
+		
+		} 
 </script>
 
 
@@ -159,9 +210,11 @@
 			</div>
 			<div id="buyPageContainer">
 			<c:forEach var="item" items="${data}" varStatus="status">
-			 <input type="hidden" name="orderProductDtoList[${status.index}].order_product_quantity" value="${product_amount[status.index]}">
-        <input type="hidden" name="orderProductDtoList[${status.index}].order_product_price" value="${(item.optionInfo.product_option_price - item.salePrice) * product_amount[status.index]}">
-        <input type="hidden" name="orderProductDtoList[${status.index}].product_option_no" value="${item.optionInfo.product_option_no}">
+			   		
+					<input type="hidden" name="orderProductDtoList[${status.index}].order_product_quantity" value="${product_amount[status.index]}">
+					<input type="hidden" name="orderProductDtoList[${status.index}].order_product_price" value="${(item.optionInfo.product_option_price - item.salePrice) * product_amount[status.index]}">
+					<input type="hidden" name="orderProductDtoList[${status.index}].product_option_no" value="${item.optionInfo.product_option_no}">
+
 			    <div class="row mt-2">
 			        <div class="col-1"></div>
 			        <div class="col-10 border rounded-2">
@@ -356,7 +409,6 @@
 					</div>
 					<div class="row">
 						<div class="col">결제수단 리스트들</div>
-						<input type="hidden" name="orders_payment_method" value="신용카드">
 					</div>
 				</div>
 				<div class="col-1"></div>
@@ -465,7 +517,7 @@
 					<div class="col-1"></div>
 					<div class="col">
 						<div class="d-grid gap-2">
-							<button class="btn btn-primary btn-lg" type="submit">
+							<button class="btn btn-primary btn-lg" type="button" onclick="submitOrderForm()" >
 								<div class="row fs-5">
 									<div class="col text-center" id="finalPrice"></div>
 								</div>
