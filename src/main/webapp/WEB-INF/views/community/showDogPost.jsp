@@ -18,19 +18,154 @@
 <%------ bootstrap ------%>
 <script>
  <%-- ajax --%>
+  <%-- 댓글쓰기 --%> 
+  function registerComment(){
+	  if(!mySessionId){
+		  /* 로그인 안되어있으면 */
+		  return;
+	  }
+	  
+	  const commentTextBox = document.getElementById("commentTextBox");
+	  const commentTextValue = commentTextBox.value;
+	  
+	  const xhr = new XHLHttpRequest();
+	  
+	  xhr.onreadystatechange = function(){
+		  if(xhr.readyState == 4 && xhr.status == 200){
+			  const response = JSON.parse(xhr.responseText);
+			  
+			  commentTextBox.value = "";
+			  reloadCommentList(); 
+			  
+		  }
+	  }
+	  
+	  /* 댓글등록 */
+	  xhr.open("post", "./registerComment");
+	  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	  xhr.send("board_id = " + boardId + "&comment_text = " + commentTextValue);
+  }
+  
   <%-- 댓글리스트 --%>
    function commentList(){
 	   const xhr = new XMLHttpRequest();
 	   xhr.onreadystatechange == function(){
 		   if(xhr.readyState == 4 && xhr.status == 200){
 			   const response = JSON.parse(xhr.responseText);
-			   console.log(response);
+			   
+			   /* console.log(response); */
+			   
+			   document.getElementById("commentListBox").innerHTML = "";
+			   
+			   /* js작업 */
+			   for(data of response.commentData){
+				const row1 = document.createElement("div");   
+				row1.classList.add("row");
+				
+				/* const colCommentBox는 document~를 생성한다*/
+				const colCommentBox = document.createElement("div");   
+				colCommentBox.classList.add("fw-bold");
+				/* 데이터 세팅 */
+				colCommentBox.innerText = data.commentDto.comment_text;
+				row1.appendChild(colCommentBox);
+				
+				const colNickname = document.createElement("div");
+				colNickname.classList.add("col");
+				colNickname.classList.add("text-end");
+				colNickname.classList.add("dropdown");
+				colNickname.classList.add("pe-3");
+				/* 데이터 세팅 */
+				colNickname.innerText = data.memberDto.nickname;
+				row1.appendChild(colNickname);
+				
+				const colNickname = document.createElement("div");
+				colNickname.classList.add("col");
+				colNickname.classList.add("text-end");
+				colNickname.classList.add("dropdown");
+				colNickname.classList.add("pe-3");
+				/* 데이터 세팅 */
+				colNickname.innerText = data.memberDto.nickname;
+				row1.appendChild(colNickname);
+				
+				if(mySessionId != null && data.commentDto.member_id){
+					const colDelete = document.createElement("div");
+					colDelete.classList.add("col-1");
+					colDelete.innerText = "삭제";
+					row1.appendChild(colDelete);
+					
+					const colUpdate = document.createElement("div");
+					colUpdate.classList.add("col-1");
+					colUpdate.innerText = "수정";
+					row1.appendChild(colUpdate);
+					
+				}
+				document.getElementById("commentListBox").appendChild(row1);
+				
+			   }
+			   
+<%-- 			   <div class="col-12">
+				  <c:forEach items="${commentData}" var="commentData">
+				  <div class="row border-bottom py-3">
+				 	프사
+					 <div class="col-auto ps-3 pe-0 text-end">
+					  <img class="rounded-circle" src="https://dummyimage.com/3*3" alt="...">
+					 </div>
+					 
+					 댓글 데이터
+					 <div class="col">
+						  <div class="row">
+						  	<div class="col fw-bold" style="font-size: 10pt;">
+						  	 ${commentData.customerDto.customer_nickname}
+						  	</div>
+						  	
+						  	댓글 수정 삭제
+						  	<div class="col text-end dropdown pe-3">
+						 	 <a class="text-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+						 	  <i class="bi bi-three-dots-vertical"></i>
+						 	 </a>
+						 	 <ul class="dropdown-menu">
+						 	 	<c:if test="${!empty customerUser && customerUser.customer_no eq commentData.customerDto.customer_no}">
+							 	 <li><a class="dropdown-item" type="button">수정</a></li>
+							 	 <li><a class="dropdown-item" type="button"
+							 	 		href="./deleteCommentProcess?show_dog_post_no=${commentData.showDogCommentDto.show_dog_post_no}">삭제</a>
+							 	 </li>
+							 	</c:if> 
+							 	 <li><a class="dropdown-item" type="button">신고</a></li>
+						 	 </ul>
+						  	</div>  	
+						  </div>
+						 
+						  <div class="row">
+						   <div class="col-12">
+						    ${commentData.showDogCommentDto.show_dog_comment_content}
+						   </div>
+						   <div class="col text-secondary" style="font-size: 10pt;">
+						    <fmt:formatDate value="${commentData.showDogCommentDto.show_dog_comment_reg_date}" pattern="yy.MM.dd"/>
+						    답글쓰기
+						   </div>
+						  </div>
+					 </div>
+				  </div>
+				  </c:forEach>
+				 </div> --%>
+			     
 		   }
 	   }
 	   
 	   xhr.open("get", "./getcommentList?boardId=" + boardId);
 	   xhr.send();
    }
+   
+   
+   
+   /* 여기가 시작지점이래 */
+   window.addEventListener("DOMContentLoaded", function(){
+	   getSessionId();
+	   reloadCommentList();
+	   
+	   /* 3초마다 한번씩 reload */
+	   setInterval(reloadCommentList, 3000);
+   });
  
  <%-- ajax --%>
 </script>
