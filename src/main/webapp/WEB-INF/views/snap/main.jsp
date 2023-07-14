@@ -27,14 +27,10 @@
 	    color: inherit;       
 	}
 	
-	#thumbnailImg{
-		width: 161.5px;
-		height: 161.5px;
-		object-fit: cover;
-	}
-	.image-wrapper {
-		position: relative;
-		display: inline-block;
+	#thumbnail{
+		object-fit: cover; 
+		width: 387px; 
+		height: 375px;
 	}
 
 	.like-button {
@@ -51,6 +47,16 @@
     	width: auto;
     	height: 50px;
     	
+    }
+    #profileImg {
+    	width : 40px;
+    	height : 40px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    #followBtn{
+        color: white;
+        background-color: orange;
     }
 </style>
 <script type="text/javascript">
@@ -167,8 +173,8 @@
                 const response = JSON.parse(xhr.responseText);
                 if (response.status == "success") {
                     const heartIcon = document.getElementById("heart-" + snap_board_no);
-                    heartIcon.classList.remove("bi-heart");
-                    heartIcon.classList.add("bi-heart-fill");
+                    heartIcon.classList.remove("bi-suit-heart");
+                    heartIcon.classList.add("bi-suit-heart-fill");
                     heartIcon.onclick = function () { unLike(snap_board_no); };
 					
                     getSnapList();
@@ -188,8 +194,8 @@
                 const response = JSON.parse(xhr.responseText);
                 if (response.status == "success") {
                     let heartIcon = document.getElementById("heart-" + snap_board_no);
-                    heartIcon.classList.remove("bi-heart-fill");
-                    heartIcon.classList.add("bi-heart");
+                    heartIcon.classList.remove("bi-suit-heart-fill");
+                    heartIcon.classList.add("bi-suit-heart");
                     heartIcon.onclick = function () { like(snap_board_no); };
                     getSnapList();
                 }
@@ -436,55 +442,63 @@
 		
 		<div class="row">
 			<div class="col text-end">
-				<a href="./postSnap"><i style="width: 16px; height: 16px;" class="bi bi-plus-square"></i></a>
-			</div>
+				<button onclick="location.href='./postSnap'"class="btn bi bi-plus-square fs-3"></button>
+            </div>
 		</div>
-		<div class="row mt-1 border-top"></div>
 		
-		<div class="row mb-5" id="listBox">
-		    <div class="col" id="snapListBox">
-		        <div class="row mt-2 my-4 justify-content-center">
-		            <c:forEach var="data" items="${list}">
-		                <div class="col-6 col-md-6 my-1">
-		                    <div class="card">
-		                        <div class="image-wrapper">
-		                            <a href="javascript:void(0);" onclick="readSnap(${data.snapBoardDto.snap_board_no});">
-		                                <img src="/uploadFiles/thumbnail/${data.snapBoardDto.snap_thumbnail}" class="card-img-top" id="thumbnailImg">
-		                            </a>
-		                            <div class="like-button">
-		                                <c:choose>
-		                                    <c:when test="${data.checkLike == 0}">
-		                                        <i id="heart-${data.snapBoardDto.snap_board_no}" class="bi bi-heart-fill" style="font-size: 20px; color: #ffffff;"
-		                                           data-snapBoardNo="${data.snapBoardDto.snap_board_no}" onclick="like(${data.snapBoardDto.snap_board_no});"></i>
-		                                    </c:when>
-		                                    <c:otherwise>
-		                                        <i id="heart-${data.snapBoardDto.snap_board_no}" class="bi bi-heart-fill" style="font-size: 20px; color: #ff2465;"
-		                                           data-snapBoardNo="${data.snapBoardDto.snap_board_no}" onclick="unLike(${data.snapBoardDto.snap_board_no});"></i>
-		                                    </c:otherwise>
-		                                </c:choose>
-		                            </div>
-		                        </div>
-		                        <div class="card-body">
-			                        <div class="row">
-			                        	<div class="col">
-			                        		<span>
-				                                <a href="./dogProfile?dog_no=${data.dogDto.dog_no}">${data.dogDto.dog_name}</a>
-				                            </span>
-			                        	</div>
-			                        </div>
-		                            <div class="row">
-		                            	<div class="col">
-		                            		<span><i class="bi bi-geo-alt-fill"></i></span>
-		                            		<span class="text-break">${data.snapBoardDto.snap_location}</span>
-		                            	</div>
-		                            </div>
-		                        </div>
-		                    </div>
-		                </div>
-		            </c:forEach>
-		        </div>
-		    </div>
-		</div>
+		<c:forEach items="${list}" var="data">
+			<div class="row mt-1 mb-1">
+				<div class="col">
+					<div class="row border-bottom border-top align-items-center justify-content-center" style="height: 60px;">
+						<div class="col">
+							<img id="profileImg" src="/uploadFiles/WelcomePet/${data.dogDto.dog_image}" >
+							<span onclick="location.href = './dogProfile?dog_no=${data.dogDto.dog_no}';" style="font-size: 16px;" class="mx-1 my-1">${data.dogDto.dog_name}</span>
+						</div>
+						<div class="col d-flex justify-content-end">
+		                    <button id="followBtn" class="btn bi bi-person-plus-fill"> 팔로우</button>
+		                </div>    
+					</div>
+				</div>
+				<div class="row p-0">
+                    <div class="col-12 px-0">
+       			   		<a href="javascript:void(0);" onclick="readSnap(${data.snapBoardDto.snap_board_no});">
+                        	<img src="/uploadFiles/thumbnail/${data.snapBoardDto.snap_thumbnail}" id="thumbnail" >
+                       	</a>
+                    </div>
+                </div>
+				<div class="row mt-1 px-0">
+                    <div class="col mx-2">
+                    	<c:choose>
+                    		<c:when test="${data.checkLike == 0}">
+                    			<i id="heart-${data.snapBoardDto.snap_board_no}" class="bi bi-suit-heart fs-2" style="font-size: 20px; color: #ff2465;"
+                                data-snapBoardNo="${data.snapBoardDto.snap_board_no}" onclick="like(${data.snapBoardDto.snap_board_no});"></i>
+                    		</c:when>
+                    		<c:otherwise>
+                                <i id="heart-${data.snapBoardDto.snap_board_no}" class="bi bi-suit-heart-fill fs-2" style="font-size: 20px; color: #ff2465;"
+                                   data-snapBoardNo="${data.snapBoardDto.snap_board_no}" onclick="unLike(${data.snapBoardDto.snap_board_no});"></i>
+                            </c:otherwise>
+                    	</c:choose>
+                        <i class="bi bi-chat mx-2 fs-2"></i>
+                        <i class="bi bi-send fs-2"></i>
+                    </div>
+                    <div class="col px-0 p-0 text-end">
+                        <i class="bi bi-bookmark fs-2"></i>
+                    </div>
+                </div>
+                <div class="row my-1">
+                    <div class="col">
+                        <span style="font-size: 14px;">좋아요 ${data.countLike}개</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <i class="bi bi-geo-alt-fill fs-5"></i><span class="fs-6 mx-2">${data.snapBoardDto.snap_location}</span>
+                    </div>
+                </div>
+			</div>
+		</c:forEach>
+		
+		
 	</div>
 		<jsp:include page="../common/bottomNavi.jsp"></jsp:include>
 		
