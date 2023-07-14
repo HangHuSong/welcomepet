@@ -454,11 +454,11 @@
 		                            <div class="like-button">
 		                                <c:choose>
 		                                    <c:when test="${data.checkLike == 0}">
-		                                        <i id="heart-${data.snapBoardDto.snap_board_no}" class="bi bi-heart-fill" style="font-size: 20px; color: #ffffff; background: transparent;"
+		                                        <i id="heart-${data.snapBoardDto.snap_board_no}" class="bi bi-heart-fill" style="font-size: 20px; color: #ffffff;"
 		                                           data-snapBoardNo="${data.snapBoardDto.snap_board_no}" onclick="like(${data.snapBoardDto.snap_board_no});"></i>
 		                                    </c:when>
 		                                    <c:otherwise>
-		                                        <i id="heart-${data.snapBoardDto.snap_board_no}" class="bi bi-heart-fill" style="font-size: 20px; color: #ff2465; background: transparent;"
+		                                        <i id="heart-${data.snapBoardDto.snap_board_no}" class="bi bi-heart-fill" style="font-size: 20px; color: #ff2465;"
 		                                           data-snapBoardNo="${data.snapBoardDto.snap_board_no}" onclick="unLike(${data.snapBoardDto.snap_board_no});"></i>
 		                                    </c:otherwise>
 		                                </c:choose>

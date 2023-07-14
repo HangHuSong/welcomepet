@@ -153,7 +153,7 @@
 			</div>
 		</div>
 		
-		<div class="row mt-3">
+		<div class="row mx-1 mt-2">
 			<div class="col-auto">
 				<p class="text-break" style="font-size: 14px;">${dogDto.dog_introduction}</p>
 			</div>
@@ -161,10 +161,10 @@
 		
 		<div class="row">
 			<div class="col d-grid">
-				<button class="btn btn-outline-dark bi bi-person-plus-fill"> 팔로우</button>
+				<button class="btn btn-outline-dark bi bi-person-plus-fill btn-sm"> 팔로우</button>
 			</div>
 			<div class="col d-grid">
-				<button class="btn btn-outline-dark bi bi-chat-left-dots"> 메시지</button>
+				<button class="btn btn-outline-dark bi bi-send btn-sm"> 메시지</button>
 			</div>
 		</div>
 											
