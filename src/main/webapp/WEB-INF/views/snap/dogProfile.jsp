@@ -29,6 +29,10 @@
 		overflow: hidden;
 		object-fit: cover;
 	}
+	#btn{
+		color: white;
+		background-color: orange;
+	}
 </style>
 </head>
 <body>
@@ -147,7 +151,7 @@
 				</div>
 				<div class="row">
 					<div class="col-4 text-center">
-						<i class="bi bi-balloon-heart-fill"></i><span style="font-size: 13px; color: gray;"><fmt:formatDate value="${dogDto.dog_birth}" pattern="M월 d일"/></span>
+						<i class="bi bi-gift-fill fs-6"></i><span style="font-size: 13px; color: gray;"><fmt:formatDate value="${dogDto.dog_birth}" pattern="M월 d일"/></span>
 					</div>
 				</div>
 			</div>
@@ -161,10 +165,10 @@
 		
 		<div class="row">
 			<div class="col d-grid">
-				<button class="btn btn-outline-dark bi bi-person-plus-fill btn-sm"> 팔로우</button>
+				<button id="btn" class="btn bi bi-person-plus-fill btn-sm"> 팔로우</button>
 			</div>
 			<div class="col d-grid">
-				<button class="btn btn-outline-dark bi bi-send btn-sm"> 메시지</button>
+				<button id="btn" class="btn bi bi-send btn-sm"> 메시지</button>
 			</div>
 		</div>
 											
