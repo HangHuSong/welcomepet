@@ -492,7 +492,7 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <i class="bi bi-geo-alt-fill fs-5"></i><span class="fs-6 mx-2">${data.snapBoardDto.snap_location}</span>
+                        <i class="bi bi-geo-alt-fill fs-5"></i><span style="font-size: 13px;"class="mx-1">${data.snapBoardDto.snap_location}</span>
                     </div>
                 </div>
 			</div>
