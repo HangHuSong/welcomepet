@@ -18,10 +18,10 @@
 <title>결제</title>
 
 <script>
-  function calculateProductPrice() {
+  function calculateTotalPrice() {
     let totalPrice = 0;
     <c:forEach var="item" items="${data}" varStatus="status">
-      const price = (${item.optionInfo.product_option_price} - ${item.salePrice}) * ${product_amount[status.index]};
+      var price = (${item.optionInfo.product_option_price} - ${item.salePrice}) * ${product_amount[status.index]};
       totalPrice += price;
     </c:forEach>
     return totalPrice;
@@ -29,10 +29,40 @@
 
   
   document.addEventListener("DOMContentLoaded", function() {
-    const totalPrice = calculateProductPrice();
+    const totalPrice = calculateTotalPrice();
     document.getElementById("totalPrice").innerText = totalPrice.toLocaleString() + "원";
     document.getElementById("ordersTotalPrice").value = totalPrice;
   });
+  
+  function calculateProductPrice() {
+	    let totalPrice = 0;
+	    <c:forEach var="item" items="${data}" varStatus="status">
+	      var price = (${item.optionInfo.product_option_price}) * ${product_amount[status.index]};
+	      totalPrice += price;
+	    </c:forEach>
+	    return totalPrice;
+	  }
+
+	  
+	  document.addEventListener("DOMContentLoaded", function() {
+	    const totalPrice = calculateProductPrice();
+	    document.getElementById("productTotalPrice").innerText = totalPrice.toLocaleString() + "원";
+	  });
+	  
+	  function calculateSalePrice() {
+		    let totalSalePrice = 0;
+		    <c:forEach var="item" items="${data}" varStatus="status">
+		      var salePrice = ${item.salePrice} * ${product_amount[status.index]};
+		      totalSalePrice += salePrice;
+		    </c:forEach>
+		    return totalSalePrice;
+		  }
+			
+		  
+		  document.addEventListener("DOMContentLoaded", function() {
+		    const totalSalePrice = calculateSalePrice();
+		    document.getElementById("totalSalePrice").innerText = "-" + totalSalePrice.toLocaleString() + "원";
+		  });
 </script>
 
 
@@ -65,6 +95,7 @@
 
 			<div class="row mt-2 border-bottom "></div>
 			<div class="row mt-2 ">
+			<div class=" col-1"></div>
 				<div class="col-7 fw-bold">주문상품</div>
 				<div class="col "></div>
 				<div class="row mt-2 "></div>
@@ -209,45 +240,58 @@
 
 			<div class="row mt-2 empty"></div>
 
-			<div class="row">
-				<div class="col-1"></div>
-				<div class="col">
-					<div class="row mt-2">
 
-						<div class="col">
-							<strong>주문 쿠폰/ 적립금</strong>
-						</div>
-					</div>
-					<div class="row mt-2">
-						<div class="col">
-							<input class="form-control" type="number" value="0" readonly>
-						</div>
-						<div class="col">
-							<button type="button" class="btn btn-primary btn">쿠폰 조회</button>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							사용가능 <span class="text-primary">0장</span>
-						</div>
-					</div>
-					<div class="row mt-2">
-						<div class="col">
-							<input class="form-control" type="number"
-								name="order_product_used_point" value="0"
-								>
-						</div>
-						<div class="col">
-							<button type="button" class="btn btn-primary btn">모두 사용</button>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							보유적립금 <span class="text-primary">${sessionUser.customer_point }원</span>
+		<div class="row">
+			<div class="accordion accordion-flush mx-0 px-0 " id="accordionFlush3">
+				<div class="accordion-item mx-0 px-0">
+					<h2 class="accordion-header" id="flush-headingTwo">
+						<button class="accordion-button collapsed " type="button"
+							data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
+							aria-expanded="false" aria-controls="flush-collapseTwo">
+							<div class="col">
+								<strong> 쿠폰/할인/적립금</strong>
+							</div>
+							<div class="col text-end fw-bold" style="font-size: 0.8em;">
+								<span class="text-end text-danger" > SAVE</span>
+								<span class="text-end text-primary" > 33000원</span>
+							</div>
+						</button>
+					</h2>
+					<div id="flush-collapseTwo" class="accordion-collapse collapse"
+						aria-labelledby="flush-headingTwo"
+						data-bs-parent="#accordionFlush3">
+						<div class="accordion-body" style="font-size: 0.9em;">
+							<div class="row mt-2  ps-0 " >
+								<div class="col " >상품할인</div>
+								<div class="col text-end text-primary" id="totalSalePrice"></div>
+							</div>
+							<div class="row mt-2">
+								<div class="col">적립금 할인</div>
+								<div class="col text-end">0원</div>
+							</div>				
+							<div class="row mt-2">
+								<div class="col">쿠폰 할인</div>
+								<div class="col text-end">0원</div>
+							</div>
+							<div class="row mt-3">
+								<div class="col-3"> 쿠폰 </div>
+							<div class="col text-end">
+							  <div class="input-group" >
+							    <input class="form-control text-end" type="number" value="0" readonly style="height: 30px; width: 50px;">
+							    <button type="button" class="btn btn-secondary btn-sm" style="height: 30px;">쿠폰 조회</button>
+							  </div>
+							</div>
+							</div>
+							<div class="row mt-3  fw-bold">
+								<div class="col">할인 합계</div>
+								<div class="col text-end">0원</div>
+							</div>							
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>
+
 			<div class="row mt-2 empty"></div>
 
 			<div class="row">
@@ -283,27 +327,14 @@
 
 					</div>
 				</div>
-				<div class="row mt-2">
+				<div class="row mt-2 text-secondary" style="font-size: 0.9em;" >
 					<div class="col-1"></div>
-					<div class="col text-secondary" style="font-size: 0.9em;">상품
+					<div class="col ">상품 
 						금액</div>
-					<div class="col text-end">
+					<div class="col text-end" id="productTotalPrice">
 						</div>
 				</div>
-				<div class="row ">
-					<div class="col-1"></div>
-					<div class="col text-secondary" style="font-size: 0.9em;">상품
-						할인</div>
-					<div class="col text-end">원</div>
-				</div>
-				<div class="row mt-2">
-					<div class="col">적립금 할인</div>
-					<div class="col text-end">0원</div>
-				</div>				
-				<div class="row mt-2">
-					<div class="col">쿠폰 할인</div>
-					<div class="col text-end">0원</div>
-				</div>
+
 				<div class="row mt-2">
 					<div class="col">총 배송비</div>
 					<div class="col text-end">
@@ -333,11 +364,11 @@
 							data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
 							aria-expanded="false" aria-controls="flush-collapseOne">
 							<div class="col">
-								<strong>적립금 혜택 </strong>
+								<strong>적립금 혜택 </strong>                        
 							</div>
 							<div class="col text-end">
 								<span class="text-end text-primary">
-									원
+									
 								</span>
 							</div>
 
@@ -350,13 +381,13 @@
 							<div class="row text-secondary" style="font-size: 0.9em;">
 								<div class="col">구매 확정 시 적립</div>
 								<div class="col text-end">
-									+원
+									
 								</div>
 							</div>
 							<div class="row text-secondary" style="font-size: 0.9em;">
 								<div class="col">리뷰 작성 시 적립</div>
 								<div class="col text-end">
-									원
+									
 								</div>
 							</div>
 						</div>
