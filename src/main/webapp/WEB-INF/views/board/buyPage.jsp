@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,52 +19,108 @@
 <title>결제</title>
 
 <script>
-  function calculateTotalPrice() {
-    let totalPrice = 0;
-    <c:forEach var="item" items="${data}" varStatus="status">
-      var price = (${item.optionInfo.product_option_price} - ${item.salePrice}) * ${product_amount[status.index]};
-      totalPrice += price;
-    </c:forEach>
-    return totalPrice;
-  }
-
   
-  document.addEventListener("DOMContentLoaded", function() {
-    const totalPrice = calculateTotalPrice();
-    document.getElementById("totalPrice").innerText = totalPrice.toLocaleString() + "원";
-    document.getElementById("ordersTotalPrice").value = totalPrice;
-  });
   
-  function calculateProductPrice() {
-	    let totalPrice = 0;
-	    <c:forEach var="item" items="${data}" varStatus="status">
-	      var price = (${item.optionInfo.product_option_price}) * ${product_amount[status.index]};
-	      totalPrice += price;
-	    </c:forEach>
-	    return totalPrice;
-	  }
+	function calculateProductPrice() {
+	  let totalProductPrice = 0;
+	  <c:forEach var="item" items="${data}" varStatus="status">  
+	    var price = (${item.optionInfo.product_option_price}) * ${product_amount[status.index]};
+	    totalProductPrice += price;
+	  </c:forEach>
+	  return totalProductPrice;
+	}
 
-	  
-	  document.addEventListener("DOMContentLoaded", function() {
-	    const totalPrice = calculateProductPrice();
-	    document.getElementById("productTotalPrice").innerText = totalPrice.toLocaleString() + "원";
-	  });
-	  
-	  function calculateSalePrice() {
-		    let totalSalePrice = 0;
-		    <c:forEach var="item" items="${data}" varStatus="status">
-		      var salePrice = ${item.salePrice} * ${product_amount[status.index]};
-		      totalSalePrice += salePrice;
-		    </c:forEach>
-		    return totalSalePrice;
-		  }
-			
-		  
-		  document.addEventListener("DOMContentLoaded", function() {
-		    const totalSalePrice = calculateSalePrice();
-		    document.getElementById("totalSalePrice").innerText = "-" + totalSalePrice.toLocaleString() + "원";
+	function calculateProductSalePrice() {
+	  let totalProductSalePrice = 0;
+	  <c:forEach var="item" items="${data}" varStatus="status">
+	    var salePrice = ${item.salePrice} * ${product_amount[status.index]};
+	    totalProductSalePrice += salePrice;
+	  </c:forEach>
+	  return totalProductSalePrice;
+	}
+	
+	function calculateShippingPrice() {
+		  let totalShippingPrice = 0;
+		  let calculatedBizNos = [];
+
+		  <c:forEach var="item" items="${data}" varStatus="status">
+		    if (!calculatedBizNos.includes("${item.productInfo.biz_no}")) {
+		      totalShippingPrice += ${item.productInfo.product_shipping_price};
+		      calculatedBizNos.push("${item.productInfo.biz_no}"); 
+		    }
+		  </c:forEach>
+
+		  return totalShippingPrice;
+		}
+
+	function calculateTotalUsedPoint() {
+		  let totalUsedPoint = 0;
+		  const inputs = document.querySelectorAll('input[name^="orderProductDtoList"]');
+		  inputs.forEach(input => {
+		    const usedPoint = parseInt(input.value);
+		    if (!isNaN(usedPoint) && usedPoint > 0) {
+		      totalUsedPoint += usedPoint;
+		    }
 		  });
+		  return totalUsedPoint;
+		}
+	
+	function updateTotalUsedPoint() {
+		  const totalProductPrice = calculateProductPrice();
+		  const totalProductSalePrice = calculateProductSalePrice();
+		  let totalUsedPoint = calculateTotalUsedPoint();
+		  const totalShippingPrice = calculateShippingPrice();
+		  const totalSalePrice = totalUsedPoint + totalProductSalePrice;
+		  const totalPrice = totalProductPrice - totalSalePrice;
+		  const addPoint = totalPrice * 0.03;
+		  const buyPoint = totalPrice * 0.01;
+		  const reviewPoint = totalPrice * 0.02;
+		  const finalPrice = totalPrice + totalShippingPrice;
+		  document.getElementById("totalShippingPrice").innerText = totalShippingPrice.toLocaleString() + "원";
+		  document.getElementById("productTotalPrice").innerText = totalProductPrice.toLocaleString() + "원";
+		  document.getElementById("totalProductSalePrice").innerText = totalProductSalePrice.toLocaleString() + "원";
+		  document.getElementById("totalSalePrice").innerText = totalSalePrice.toLocaleString() + "원";
+		  document.getElementById("totalSalePrice2").innerText = "-" + totalSalePrice.toLocaleString() + "원";
+		  document.getElementById("totalSalePrice3").innerText = "-" + totalSalePrice.toLocaleString() + "원";
+		  document.getElementById("totalUsedPoint").innerText = totalUsedPoint.toLocaleString() + "원";
+		  document.getElementById("totalPrice").innerText = finalPrice.toLocaleString() + "원";
+		  document.getElementById("finalPrice").innerText = finalPrice.toLocaleString() + "원 결제하기";
+		  document.getElementById("addPoint").innerText = "최대 " + addPoint.toLocaleString() + "원";
+		  document.getElementById("buyPoint").innerText = "+ " + buyPoint.toLocaleString() + "원";
+		  document.getElementById("reviewPoint").innerText = "+ " +  reviewPoint.toLocaleString() + "원";
+		  document.getElementById("ordersTotalPrice").value = finalPrice;
+		}
+
+		document.addEventListener("DOMContentLoaded", function() {
+		  const totalProductPrice = calculateProductPrice();
+		  const totalProductSalePrice = calculateProductSalePrice();
+		  let totalUsedPoint = calculateTotalUsedPoint();
+		  const totalShippingPrice = calculateShippingPrice();
+		  const totalSalePrice = totalUsedPoint + totalProductSalePrice;
+		  const totalPrice = totalProductPrice - totalSalePrice;
+		  const finalPrice = totalPrice + totalShippingPrice;
+		  document.getElementById("totalShippingPrice").innerText = totalShippingPrice.toLocaleString() + "원";	
+		  document.getElementById("productTotalPrice").innerText = totalProductPrice.toLocaleString() + "원";
+		  document.getElementById("totalProductSalePrice").innerText = totalProductSalePrice.toLocaleString() + "원";
+		  document.getElementById("totalSalePrice").innerText = totalSalePrice.toLocaleString() + "원";
+		  document.getElementById("totalSalePrice2").innerText = "-" + totalSalePrice.toLocaleString() + "원";
+		  document.getElementById("totalSalePrice3").innerText = "-" + totalSalePrice.toLocaleString() + "원";
+		  document.getElementById("totalUsedPoint").innerText = totalUsedPoint.toLocaleString() + "원";
+		  document.getElementById("finalPrice").innerText = finalPrice.toLocaleString() + "원 결제하기";
+		  document.getElementById("totalPrice").innerText = finalPrice.toLocaleString() + "원";
+		  document.getElementById("ordersTotalPrice").value = finalPrice;
+
+		  const inputs = document.querySelectorAll('input[name^="orderProductDtoList"]');
+		  inputs.forEach(input => {
+		    input.addEventListener("input", updateTotalUsedPoint);
+		    input.value = "";
+		  });
+
+		  updateTotalUsedPoint(); // 초기화 함수 호출
+		});
+		  
 </script>
+
 
 
 <style type="text/css">
@@ -136,8 +193,9 @@
 			            <div class="row mt-1 ">
 			            <div class="col " style="font-size: 0.9em;"> 적립금 사용</div>
 			            	<div class="col justify-content-end " style="font-size: 0.8em;"> 
-			            	<input class="form-control text-end" type="number" name="orderProductDtoList[${status.index}].order_product_used_point" value="0" 
-			            	style="height: 25px; width: 125px; margin-left: auto; font-size: 1em;" min="0", max="${sessionUser.customer_point }">
+			            	<input class="form-control text-end"  id="point-${status.index}"  type="number" name="orderProductDtoList[${status.index}].order_product_used_point" value="0" 
+			            	style="height: 25px; width: 125px; margin-left: auto; font-size: 1em;" min="0"
+			            	  oninput="updateTotalUsedPoint()">
 							</div>
 			            </div>
 			            <div class="row">
@@ -151,12 +209,7 @@
 			                    ${(item.optionInfo.product_option_price - item.salePrice) * product_amount[status.index]}원
 			                </div>
 			            </div>
-			            <div class="row" style="font-size: 0.9em;">
-			                <div class="col-6">배송비</div>
-			                <div class="col text-end text-secondary">
-			                    +${item.productInfo.product_shipping_price}원
-			                </div>
-			            </div>
+
 			            <div class="row mt-2"></div>
 			        </div>
 			    </div>
@@ -252,8 +305,8 @@
 								<strong> 쿠폰/할인/적립금</strong>
 							</div>
 							<div class="col text-end fw-bold" style="font-size: 0.8em;">
-								<span class="text-end text-danger" > SAVE</span>
-								<span class="text-end text-primary" > 33000원</span>
+								<span class="text-end text-danger" id="saleRate"> SAVE</span>
+								<span class="text-end text-primary" id="totalSalePrice"> 0원</span>
 							</div>
 						</button>
 					</h2>
@@ -263,15 +316,15 @@
 						<div class="accordion-body" style="font-size: 0.9em;">
 							<div class="row mt-2  ps-0 " >
 								<div class="col " >상품할인</div>
-								<div class="col text-end text-primary" id="totalSalePrice"></div>
+								<div class="col text-end text-primary" id="totalProductSalePrice"></div>
 							</div>
 							<div class="row mt-2">
 								<div class="col">적립금 할인</div>
-								<div class="col text-end">0원</div>
+								<div class="col text-end" id="totalUsedPoint">0원</div>
 							</div>				
 							<div class="row mt-2">
 								<div class="col">쿠폰 할인</div>
-								<div class="col text-end">0원</div>
+								<div class="col text-end" id="couponSale">0원</div>
 							</div>
 							<div class="row mt-3">
 								<div class="col-3"> 쿠폰 </div>
@@ -284,7 +337,7 @@
 							</div>
 							<div class="row mt-3  fw-bold">
 								<div class="col">할인 합계</div>
-								<div class="col text-end">0원</div>
+								<div class="col text-end text-primary" id="totalSalePrice2">0원</div>
 							</div>							
 						</div>
 					</div>
@@ -321,10 +374,8 @@
 			</div>
 			<div class="row mt-2 border-top">
 				<div class="row mt-2">
-					<div class="col">총 상품 금액</div>
-					<div class="col text-end">
-						원
-
+					<div class="col ms-2">총 상품 금액</div>
+					<div class="col text-end" id="totalProductPrice">
 					</div>
 				</div>
 				<div class="row mt-2 text-secondary" style="font-size: 0.9em;" >
@@ -334,18 +385,26 @@
 					<div class="col text-end" id="productTotalPrice">
 						</div>
 				</div>
+				<div class="row mt-2 text-secondary" style="font-size: 0.9em;" >
+					<div class="col-1"></div>
+					<div class="col ">할인 합계</div>
+					<div class="col text-end" >
+								<span class="text-end text-danger" id="saleRate"> SAVE</span>
+								<span class="text-end text-primary" id="totalSalePrice3"> 0원</span>					
+						</div>
+				</div>				
 
 				<div class="row mt-2">
-					<div class="col">총 배송비</div>
-					<div class="col text-end">
+					<div class="col ms-2">총 배송비</div>
+					<div class="col text-end" id="totalShippingPrice">
 						</div>
 				</div>
 			</div>
 		</div>
 		<div class="row border-top mt-2"></div>
-		<div class="row mt-2 fw-bold" style="font-size: 1.3em;">
-			<div class="col-1"></div>
-			<div class="col">최종 결제 금액</div>
+		<div class="row mt-2 fw-bold" style="font-size: 1.2em;">
+			
+			<div class="col ms-3">최종 결제 금액</div>
 			<div class="col text-end">
 				<input type="hidden" name="orders_total_price" id="ordersTotalPrice"
 					value="">
@@ -357,36 +416,36 @@
 		<div class="row mt-2 empty"></div>
 
 		<div class="row">
-			<div class="accordion accordion-flush" id="accordionFlushExample">
+			<div class="accordion accordion-flush" id="accordionFlushPoint">
 				<div class="accordion-item">
-					<h2 class="accordion-header" id="flush-headingOne">
+					<h2 class="accordion-header" id="flush-headingPoint">
 						<button class="accordion-button collapsed " type="button"
-							data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
-							aria-expanded="false" aria-controls="flush-collapseOne">
+							data-bs-toggle="collapse" data-bs-target="#flush-collapsePoint"
+							aria-expanded="false" aria-controls="flush-collapsePoint">
 							<div class="col">
 								<strong>적립금 혜택 </strong>                        
 							</div>
 							<div class="col text-end">
-								<span class="text-end text-primary">
+								<span class="text-end text-primary fw-bold" id="addPoint">
 									
 								</span>
 							</div>
 
 						</button>
 					</h2>
-					<div id="flush-collapseOne" class="accordion-collapse collapse"
-						aria-labelledby="flush-headingOne"
-						data-bs-parent="#accordionFlushExample">
+					<div id="flush-collapsePoint" class="accordion-collapse collapse show"
+						aria-labelledby="flush-headingPoint"
+						data-bs-parent="#accordionFlushPoint">
 						<div class="accordion-body">
 							<div class="row text-secondary" style="font-size: 0.9em;">
 								<div class="col">구매 확정 시 적립</div>
-								<div class="col text-end">
+								<div class="col text-end" id="buyPoint">
 									
 								</div>
 							</div>
 							<div class="row text-secondary" style="font-size: 0.9em;">
 								<div class="col">리뷰 작성 시 적립</div>
-								<div class="col text-end">
+								<div class="col text-end" id="reviewPoint">
 									
 								</div>
 							</div>
@@ -408,8 +467,7 @@
 						<div class="d-grid gap-2">
 							<button class="btn btn-primary btn-lg" type="submit">
 								<div class="row fs-5">
-									<div class="col text-center">원
-										결제하기</div>
+									<div class="col text-center" id="finalPrice"></div>
 								</div>
 							</button>
 						</div>
