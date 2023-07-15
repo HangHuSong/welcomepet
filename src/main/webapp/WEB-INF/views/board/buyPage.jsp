@@ -140,7 +140,8 @@
 			    orders_address: '${mainAddress.customer_address_main}',
 			    orders_detail_address: '${mainAddress.customer_address_detail}',
 			    orders_shipping_message: '${orders_shipping_message}',
-			    orders_payment_method: '3433'
+			    orders_total_price: document.getElementById("ordersTotalPrice").value,
+			    orders_payment_method: '카카오페이'
 			  };
 			  
 			  var requestData = {
@@ -156,12 +157,15 @@
 			              
 			              var response = JSON.parse(xhr.responseText);
 			              console.log(response);
+			              
+			              window.location.href = "./payPage.jsp"; 
 			              // 추가적인 처리 작업 수행
 			          } else {
 			              // 처리 중 오류가 발생한 경우
 			              console.error("Failed to process the request");
 			              console.log(orderProductDtoList);
 			              console.log(ordersDto);
+			              
 			          }
 			      }
 			  };

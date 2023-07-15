@@ -157,7 +157,7 @@
 								</div>
 								<div class="row ">
 									<div class="col-3">배송요청사항</div>
-									<div class="col text-end">${ordersDto.shipping_message}</div>
+									<div class="col text-end">${ordersDto.orders_shipping_message}</div>
 								</div>	
 							</div>
 						</div>

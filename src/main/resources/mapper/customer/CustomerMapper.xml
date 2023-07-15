@@ -281,6 +281,16 @@
 		)
 	</insert>
 	
+	<insert id="addOrderAlarm">
+		INSERT INTO order_alarm VALUES (
+		order_alarm_seq.nextval,
+		#{biz_no},
+		#{order_product_no},
+		0,
+		SYSDATE
+		)
+	</insert>
+	
 	<update id="updateProductStatus">
 		UPDATE order_product
 		SET order_product_status_no = #{order_product_status_no}

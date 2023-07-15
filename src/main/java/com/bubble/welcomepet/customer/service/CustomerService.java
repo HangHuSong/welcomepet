@@ -9,12 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bubble.welcomepet.customer.mapper.CustomerMapper;
+import com.bubble.welcomepet.customer.mapper.CustomerSqlMapper;
 import com.bubble.welcomepet.dto.CartDto;
 import com.bubble.welcomepet.dto.CategoryDto;
 import com.bubble.welcomepet.dto.CustomerAddressDto;
 import com.bubble.welcomepet.dto.CustomerDto;
 import com.bubble.welcomepet.dto.CustomerSearchDto;
 import com.bubble.welcomepet.dto.DogDto;
+import com.bubble.welcomepet.dto.OrderAlarmDto;
 import com.bubble.welcomepet.dto.OrderProductDto;
 import com.bubble.welcomepet.dto.OrdersDto;
 import com.bubble.welcomepet.dto.ProductDto;
@@ -355,7 +357,17 @@ public class CustomerService {
 		customerMapper.AddOrders(ordersDto);
 		
 	    for (OrderProductDto orderProductDto : orderProductDtoList) {
-	    	System.out.println(orderProductDto.getOrder_product_price());
+	    	
+	    	int product_option_no = orderProductDto.getProduct_option_no();
+	    	int order_product_no = orderProductDto.getOrder_product_no();
+			ProductOptionDto productOptionDto = customerMapper.getOptionInfoByNo(product_option_no);
+			int product_no = productOptionDto.getProduct_no();
+			ProductDto productDto = customerMapper.getProductInfoByNo(product_no);
+			int biz_no = productDto.getBiz_no();
+			OrderAlarmDto orderAlarmDto = new OrderAlarmDto();
+			orderAlarmDto.setBiz_no(biz_no);
+			orderAlarmDto.setOrder_product_no(order_product_no);
+			customerMapper.addOrderAlarm(orderAlarmDto);
 	        orderProductDto.setOrders_no(orders_no);
 	        customerMapper.AddOrderProduct(orderProductDto);
 	    }

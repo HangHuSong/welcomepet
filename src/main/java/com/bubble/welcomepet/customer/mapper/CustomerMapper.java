@@ -8,6 +8,7 @@ import com.bubble.welcomepet.dto.CustomerAddressDto;
 import com.bubble.welcomepet.dto.CustomerDto;
 import com.bubble.welcomepet.dto.CustomerSearchDto;
 import com.bubble.welcomepet.dto.DogDto;
+import com.bubble.welcomepet.dto.OrderAlarmDto;
 import com.bubble.welcomepet.dto.OrderProductDto;
 import com.bubble.welcomepet.dto.OrdersDto;
 import com.bubble.welcomepet.dto.ProductDto;
@@ -110,6 +111,8 @@ public interface CustomerMapper {
 	public void updateProductStatus(OrderProductDto orderProductDto);
 	
 	public OrderProductDto getOrderProductByNo(int order_product_no);
+	
+	public void addOrderAlarm(OrderAlarmDto orderAlarmDto);
 	
 	// 리뷰
 	public int createReviewPk();

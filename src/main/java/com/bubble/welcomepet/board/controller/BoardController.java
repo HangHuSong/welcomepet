@@ -116,6 +116,12 @@ public class BoardController {
 
 	    return "board/buyPage";
 	}
+	
+	@RequestMapping("payPage")
+	public String payPage() {
+		
+		return "board/payPage";
+	}
 
 	
 	// 상품
