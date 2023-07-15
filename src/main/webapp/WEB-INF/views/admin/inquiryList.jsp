@@ -34,7 +34,7 @@
 			<div class="col-1" ></div>
 				<div class="col-9">
 					<form action="./inquiryList" method="get">
-		                <div class="row mt-4">
+		                <div class="row mt-5">
 		                	<div class="col-2">
 		                		<select name="searchType" class="form-select">
 		                			<option value="cs_inquiry_no" selected="selected">IDX</option>
@@ -57,7 +57,6 @@
                                     <th scope="col">IDX</th>
                                     <th scope="col">제목</th>
                                     <th scope="col">처리상태</th>
-                                    <th scope="col">처리자</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -70,11 +69,9 @@
 						            	<c:choose>
 							            	<c:when test="${list.csInquiryDto.cs_inquiry_status eq 0}">
 							            		<td>처리 대기</td>
-							            		<td></td>
 							            	</c:when>
 							            	<c:otherwise>
 							            		<td>답변 완료</td>
-							            		<td>${list.empDto.emp_name }</td>
 							            	</c:otherwise>
 										</c:choose>
 							        </tr>	

@@ -20,6 +20,7 @@
 	padding-top: 20px;
 }
 
+
 </style>
 </head>
 
@@ -28,7 +29,7 @@
 		<%@ include file="../common/adminHead.jsp" %>
 		<div class="row">
 			<%@ include file="../common/adminTab.jsp" %>
-			<div class="col-1"></div>
+			<div class="col-2"></div>
 			<div class="col-6">
                 <div class="row my-5">
                     <div class="col-md-12 text-center">
@@ -103,7 +104,6 @@
                         <div class="col-md-12 text-center">
                         	<c:choose>
                         		<c:when test="${map.csInquiryDto.cs_inquiry_status > 0}">
-                        			<a href="./inquiryList" class="btn btn-outline-dark">뒤로 가기</a>
                         			<a href="./inquiryList" class="btn btn-outline-dark">뒤로 가기</a>
                         		</c:when>
                         		<c:otherwise>
