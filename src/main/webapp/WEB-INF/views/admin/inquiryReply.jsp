@@ -51,7 +51,7 @@
                             <label>문의 날짜</label>
                         </div>
                         <div class="col-md-10">
-                            <input value="<fmt:formatDate value="${map.csInquiryDto.cs_inquiry_date}" pattern="yy.MM.dd-HH:mm:ss"/>" type="text" class="form-control" readonly>
+                            <input value="<fmt:formatDate value="${map.csInquiryDto.cs_inquiry_date}" pattern="yyyy.MM.dd HH:mm:ss"/>" type="text" class="form-control" readonly>
                         </div>
                     </div>
                     <div class="row my-4">
@@ -77,7 +77,7 @@
                         <div class="col-md-10">
                         	<c:choose>
                         		<c:when test="${map.csInquiryDto.cs_inquiry_status > 0}">
-                        			<input value="답변완료 / <fmt:formatDate value="${map.csInquiryReplyDto.cs_inquiry_reply_date}" pattern="yy.MM.dd-HH:mm:ss"/> / ${map.empDto.emp_name}" type="text" class="form-control" readonly>
+                        			<input value="답변완료 / <fmt:formatDate value="${map.csInquiryReplyDto.cs_inquiry_reply_date}" pattern="yyyy.MM.dd HH:mm:ss"/> / ${map.empDto.emp_name}" type="text" class="form-control" readonly>
                         		</c:when>
                         		<c:otherwise>
                         			<input value="미처리" type="text" class="form-control" readonly>
@@ -111,7 +111,6 @@
                            			<button class="btn btn-outline-dark">답변 등록</button>
                         		</c:otherwise>
                         	</c:choose>
-                            
                         </div>
                     </div>
                 </form>

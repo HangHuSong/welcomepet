@@ -23,7 +23,10 @@
             text-decoration: none;
         }
 
-        .
+        .img-thumbnail{
+        	width: 120px;
+        	height: 120px;
+        }
     </style>
 </head>
 
@@ -73,18 +76,18 @@
             </div>
     </div>
     <div class="modal fade" id="businessLicenseModal" tabindex="-1" aria-labelledby="businessLicenseModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="businessLicenseModalLabel">사업자 등록증</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <img src="/uploadFiles/bizDocument/${i.bizApprovalRequestDto.biz_approval_request_document}">
-            </div>
-        </div>
-    </div>
-</div>
+	    <div class="modal-dialog modal-dialog-centered">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <h5 class="modal-title" id="businessLicenseModalLabel">사업자 등록증</h5>
+	                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	            </div>
+	            <div class="modal-body">
+	                <img src="/uploadFiles/bizDocument/${i.bizApprovalRequestDto.biz_approval_request_document}">
+	            </div>
+	        </div>
+	    </div>
+	</div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
