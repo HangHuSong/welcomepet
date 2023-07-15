@@ -29,45 +29,93 @@
 		<div class="row">
 			<%@ include file="../common/adminTab.jsp" %>
 			<div class="col-1"></div>
-			<div class="col-9">
-				<pre>
-				
-				<input type="hidden" name="cs_inquiry_no" value="${map.csInquiryDto.cs_inquiry_no}">
-				</pre>
-				<h4>${map.csInquiryDto.cs_inquiry_title}</h4>
-				<br>
-				<p>${map.csInquiryDto.cs_inquiry_context}</p>
-				<br>
-				<h6>${map.customerDto.customer_nickname}</h6>
-				<h6 class="text-end"><fmt:formatDate value="${map.csInquiryDto.cs_inquiry_date}" pattern="yy.MM.dd-HH:mm:ss"/></h6>
-				<br>
-				<br>
-					<c:if test="${map.csInquiryDto.cs_inquiry_status > 0}">
-						<div class="row">
-							<div class="col-8">
-								${map.csInquiryReplyDto.cs_inquiry_reply_context}
-							</div>
-							<div class="col text-end">
-						        <fmt:formatDate value="${map.csInquiryReplyDto.cs_inquiry_reply_date}" pattern="yy.MM.dd-HH:mm:ss"/>
-							</div>
-						</div>
-					</c:if>
-					<c:if test="${map.csInquiryDto.cs_inquiry_status eq 0}">
-						<form action="writeReply" method="post">
-							<input type="hidden" name="cs_inquiry_no" value="${map.csInquiryDto.cs_inquiry_no}">
-							<div class="row">
-								<div class="col">
-									<textarea name="cs_inquiry_reply_context" rows="10" cols="10" class="form-control"></textarea>
-								</div>
-							</div>
-							<div class="row mt-2">
-								<div class="col text-end">
-									<button class="btn btn-primary">등록</button>
-								</div>
-							</div>
-						</form>
-					</c:if>
-			</div>
+			<div class="col-6">
+                <div class="row my-5">
+                    <div class="col-md-12 text-center">
+                        <h2 class="fw-bold">1:1 문의 답변 등록하기</h2>
+                    </div>
+                </div>
+                <form action="writeReply" method="post">
+                	<input type="hidden" name="cs_inquiry_no" value="${map.csInquiryDto.cs_inquiry_no}">
+                    <div class="row my-4">
+                        <div class="col-md-2">
+                            <label>고객 번호</label>
+                        </div>
+                        <div class="col-md-10">
+                            <input value="${map.csInquiryDto.customer_no}" type="text" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <div class="row my-4">
+                        <div class="col-md-2">
+                            <label>문의 날짜</label>
+                        </div>
+                        <div class="col-md-10">
+                            <input value="<fmt:formatDate value="${map.csInquiryDto.cs_inquiry_date}" pattern="yy.MM.dd-HH:mm:ss"/>" type="text" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <div class="row my-4">
+                        <div class="col-md-2">
+                            <label>문의 제목</label>
+                        </div>
+                        <div class="col-md-10">
+                            <input value="${map.csInquiryDto.cs_inquiry_title}" type="text" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <div class="row my-4">
+                        <div class="col-md-2">
+                            <label>문의 내용</label>
+                        </div>
+                        <div class="col-md-10">
+                            <textarea class="form-control" rows="5" readonly>${map.csInquiryDto.cs_inquiry_context}</textarea>
+                        </div>
+                    </div>
+                    <div class="row my-4">
+                        <div class="col-md-2">
+                            <label>답변 여부</label>
+                        </div>
+                        <div class="col-md-10">
+                        	<c:choose>
+                        		<c:when test="${map.csInquiryDto.cs_inquiry_status > 0}">
+                        			<input value="답변완료 / <fmt:formatDate value="${map.csInquiryReplyDto.cs_inquiry_reply_date}" pattern="yy.MM.dd-HH:mm:ss"/> / ${map.empDto.emp_name}" type="text" class="form-control" readonly>
+                        		</c:when>
+                        		<c:otherwise>
+                        			<input value="미처리" type="text" class="form-control" readonly>
+                        		</c:otherwise>
+                        	</c:choose>
+                        </div>
+                    </div>
+                    <div class="row my-4">
+                        <div class="col-md-2">
+                            <label>답변</label>
+                        </div>
+                        <div class="col-md-10">
+                        	<c:choose>
+                        		<c:when test="${map.csInquiryDto.cs_inquiry_status > 0}">
+                        			<textarea name="cs_inquiry_reply_context" class="form-control" rows="5" readonly>${map.csInquiryReplyDto.cs_inquiry_reply_context}</textarea>
+                        		</c:when>
+                        		<c:otherwise>
+                        			<textarea name="cs_inquiry_reply_context" class="form-control" rows="5"></textarea>
+                        		</c:otherwise>
+                        	</c:choose>
+                        </div>
+                    </div>
+                    <div class="row my-4">
+                        <div class="col-md-12 text-center">
+                        	<c:choose>
+                        		<c:when test="${map.csInquiryDto.cs_inquiry_status > 0}">
+                        			<a href="./inquiryList" class="btn btn-outline-dark">뒤로 가기</a>
+                        			<a href="./inquiryList" class="btn btn-outline-dark">뒤로 가기</a>
+                        		</c:when>
+                        		<c:otherwise>
+                        			<a href="./inquiryList" class="btn btn-outline-dark">뒤로 가기</a>
+                           			<button class="btn btn-outline-dark">답변 등록</button>
+                        		</c:otherwise>
+                        	</c:choose>
+                            
+                        </div>
+                    </div>
+                </form>
+            </div>
 		</div>
 	</div>
 	<script

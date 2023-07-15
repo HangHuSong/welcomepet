@@ -80,7 +80,7 @@
         xhr.send();
     }
 
-    function getSnapList() {
+    /* function getSnapList() {
         const xhr = new XMLHttpRequest();
 
         xhr.onreadystatechange = function () {
@@ -164,7 +164,7 @@
         }
         xhr.open("get", "./getSnapList");
         xhr.send();
-    }
+    } */
 
     function like(snap_board_no) {
         const xhr = new XMLHttpRequest();
@@ -177,7 +177,7 @@
                     heartIcon.classList.add("bi-suit-heart-fill");
                     heartIcon.onclick = function () { unLike(snap_board_no); };
 					
-                    getSnapList();
+                    
                 }
             }
         }
@@ -197,7 +197,7 @@
                     heartIcon.classList.remove("bi-suit-heart-fill");
                     heartIcon.classList.add("bi-suit-heart");
                     heartIcon.onclick = function () { like(snap_board_no); };
-                    getSnapList();
+                    
                 }
             }
         }
@@ -336,7 +336,8 @@
 	            commentSubmitBtnCol.classList.add("col", "d-grid");
 	            const commentSubmitBtn = document.createElement("button");
 	            commentSubmitBtn.onclick = function() { registerComment(response.snapDetail.snap_board_no); };
-	            commentSubmitBtn.classList.add("bi", "bi-box-arrow-in-up-left", "btn", "btn-info");
+	            commentSubmitBtn.classList.add("bi", "bi-box-arrow-in-up-left", "btn");
+	            commentSubmitBtn.style.backgroundColor = "orange";
 	            commentSubmitBtnCol.appendChild(commentSubmitBtn);
 	            commentForm.appendChild(commentContentBoxCol);
 	            commentForm.appendChild(commentSubmitBtnCol);

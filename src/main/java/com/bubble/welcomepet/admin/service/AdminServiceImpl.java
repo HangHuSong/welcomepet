@@ -78,8 +78,8 @@ public class AdminServiceImpl {
 	public Map<String, Object> getInquiryByNo(int cs_inquiry_no) {
 		Map<String, Object> map = new HashMap<>();
 		CsInquiryDto csInquiryDto = adminSqlMapper.getInquiryByNo(cs_inquiry_no);
+		CustomerDto customerDto = adminSqlMapper.getCustomerByInquiryNo(csInquiryDto.getCustomer_no());
 		if (csInquiryDto != null) {
-			CustomerDto customerDto = adminSqlMapper.getCustomerByInquiryNo(csInquiryDto.getCustomer_no());
 			CsInquiryReplyDto csInquiryReplyDto = adminSqlMapper.getInquiryReplyByNo(cs_inquiry_no);
 			if (csInquiryReplyDto != null) {
 				int emp_no = csInquiryReplyDto.getEmp_no();
@@ -87,8 +87,8 @@ public class AdminServiceImpl {
 				map.put("empDto", empDto);
 			}
 			map.put("csInquiryReplyDto", csInquiryReplyDto);
-			map.put("customerDto", customerDto);
 		}
+		map.put("customerDto", customerDto);
 		map.put("csInquiryDto", csInquiryDto);
 
 		return map;

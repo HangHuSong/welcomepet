@@ -151,7 +151,7 @@
 				</div>
 				<div class="row">
 					<div class="col-4 text-center">
-						<i class="bi bi-gift-fill fs-6"></i><span style="font-size: 13px; color: gray;"><fmt:formatDate value="${dogDto.dog_birth}" pattern="M월 d일"/></span>
+						<span style="font-size: 13px; color: gray;"><fmt:formatDate value="${dogDto.dog_birth}" pattern="M월 d일"/></span>
 					</div>
 				</div>
 			</div>
