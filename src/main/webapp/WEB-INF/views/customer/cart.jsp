@@ -17,7 +17,7 @@
 <title>장바구니1</title>
 <style type="text/css">
 .product-thum {
-	height: 6em;
+	height: 5em;
 }
 .small-font {
 	font-size: 0.9em;
@@ -49,51 +49,61 @@
 		<c:set var="salePrice" value="0" />
 
 		<c:forEach items="${cartInfo}" var="map">
+		  <input type="hidden" value="${map.productOptionInfo.product_option_no}"> 
 			<div
-				class="row mt-3 border-bottom embed-responsive embed-responsive-4by3">
+				class="row mt-3 border-bottom embed-responsive embed-responsive-1by1">
 				<div class="row">
-					<div class="col-1"></div>
-					<div class="col-4">
+				<div class="col-1">
+				 <input type="checkbox" class="form-check-input" name="selectedItems" value="${map.productOptionInfo.product_option_no}:${map.cartInfo.product_amount}" onclick="updateSelectedOptions(this)">
+				</div>
+					<div class="col-3">
 						<img
 							src="/uploadFiles/WelcomePet/${map.productInfo.product_thumbnail}"
 							class="embed-responsive-item product-thum" alt="...">
 					</div>
-					<div class="col-5">
+					<div class="col">
+						<div class="row mt-1 align-items-start">
+							<div class="col fw-bold" style="font-size: 0.9em;">${map.productInfo.product_name}</div>
+							<div class="col-1 text-end">
+							  <i class="bi bi-x fs-3 py-0 text-secondary" onclick="location.href='./deleteCart?cart_no=${map.cartInfo.cart_no}'"
+							 	style="position: relative; top: -5px; left: -5px;"></i>
+							  </div>
+						</div>					
 						<div class="row mt-1">
-							<div class="col fw-bold">${map.productInfo.product_name}</div>
-						</div>
-						<div class="row mt-1">
-							<div class="col small-font" >${map.productOptionInfo.product_option_name}</div>
-						</div>						
-						<div class="row mt-2">
 							<div class="col">
-								<del>${map.productOptionInfo.product_option_price}원 </del>
-							</div>
-
-						</div>
-						<div class="row">  
-							<div class="col-1"></div>
-							<div class="col">${map.productInfo.product_price - map.salePrice}원</div>
+							<span class="text-secondary" id=""><del>${(map.productOptionInfo.product_option_price) * map.cartInfo.product_amount}원</del></span>
+								<span class="fw-bold ps-1" id="">${(map.productInfo.product_price - map.salePrice) * map.cartInfo.product_amount}원</span>
+								</div>
 						</div>
 						<c:set var="totalPrice"
 							value="${totalPrice + (map.productInfo.product_price * map.cartInfo.product_amount)}" />
 						<c:set var="salePrice" value="${salePrice + (map.salePrice)}" />
 					</div>
 					<div class="col-1">
-						<a class="btn bi bi-x fs-3 px-0 py-0" role="button"
-							href="./deleteCart?cart_no=${map.cartInfo.cart_no}"> </a>
+
 					</div>
-					<div class="col-1"></div>
 				</div>
-				<div class="row mt-1">
-					<div class="col-1"></div>
-					<div class="col-2"></div>
-					<div class="col text-end">
-						<div class="btn-group btn-sm" role="group"
-							aria-label="Basic outlined example">
-							<button type="button" class="btn btn-outline-primary">-</button>
+				 <div class="row mt-3">
+				 <div class="col-1"></div>
+				<div class="col ps-2 ms-2 border rounded-2 d-flex align-items-center" 
+						style="background-color: rgb(244, 247, 250); height: 4em; font-size: 0.9em;">
+						<span class="ps-2">${map.productOptionInfo.product_option_name}</span>
+					</div>
+				<div class="col-1"></div>
+				 </div>
+				<div class="row mt-2">
+					<div class="col"> </div>
+					<div class="col">
+						<button type="button" class="btn btn-outline-secondary" 
+						style="width: 5em; height: 2.3em; "
+						>  <span   style="font-size: 0.8em; color: black; font-weight: 500;">옵션변경 </span></button>
+					 </div>
+					<div class="col ">
+						<div class="btn-group btn-sm " role="group"
+							aria-label="Basic outlined example" style="width: 4.5em; height: 2.3em; ">
+							<button type="button" class="btn btn-outline-secondary fw-bold" style="font-size: 1.2em;">-</button>
 							<button type="button" class="btn btn-outline-secondary">${map.cartInfo.product_amount}</button>
-							<button type="button" class="btn btn-outline-primary">+</button>
+							<button type="button" class="btn btn-outline-secondary fw-bold" style="font-size: 1.2em;">+</button>
 						</div>
 					</div>
 					<div class="col-1"></div>
@@ -114,6 +124,7 @@
 					<div class="row">
 						<div class="col">할인 금액</div>
 						<div class="col text-end">${salePrice}원</div>
+						
 					</div>
 					<div class="row mt-2 border-top fw-bold ">
 						<div class="col">총 결제 금액</div>

@@ -592,6 +592,7 @@ function insertCart() {
 	            if (xhr.status === 200) {
 	                // 성공적으로 처리된 경우
 	                console.log("Cart added successfully");
+	                showModal(); 
 	            } else {
 	                // 처리 중 오류가 발생한 경우
 	                console.error("Failed to add cart");
@@ -600,6 +601,35 @@ function insertCart() {
 	    };
 	    xhr.send(JSON.stringify(selectedOptions));
 	}
+	
+function showModal() {
+    // 모달창 열기
+    const modal = document.getElementById("myModal");
+    modal.style.display = "block";
+
+
+    const closeBtn = document.getElementById("closeModalBtn");
+    closeBtn.addEventListener("click", function () {
+        closeModal();
+    });
+
+
+    const moveToCartBtn = document.getElementById("moveToCartBtn");
+    moveToCartBtn.addEventListener("click", function () {
+        moveToCart();
+    });
+}
+
+function closeModal() {
+
+    const modal = document.getElementById("myModal");
+    modal.style.display = "none";
+}
+
+function moveToCart() {
+
+    window.location.href = "../customer/cart";
+}	
 	
 function buyNow() {
 	  if (!mySessionId) {
@@ -867,7 +897,17 @@ window.addEventListener("DOMContentLoaded", function(){
 				</div>
 			</div>
 		</div>
-	</div>
+		
+		
+	<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>장바구니로 이동하시겠습니까?</p>
+    <button id="moveToCartBtn">예</button>
+    <button id="closeModalBtn">아니오</button>
+  </div>
+</div>
+	
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
