@@ -59,12 +59,18 @@
 			  document.getElementById("commentContent").innerHTML = "";
 			  
 			  for(data of response.commentData){
-// 				  const row1 = document.createElement("div");
-// 				  row1.classList.add("row");
-				  
-// 				  document.getElementById("commentContent").appendChild(row1);
+ 				 const row1 = document.createElement("div");
+ 				 row1.classList.add("row");
+
+				 const colNickname = document.createElement("div");
+				 colNickname.classList.add("col");
+				 colNickname.classList.add("fw-bold");
+				 colNickname.style.fontSize("13px");
+				 //commentNickname.id("commentNickname");
+				 row1.appendChild(colNickname);
+ 				 
+ 				 document.getElementById("commentContent").appendChild(row1);
 			  }
-			  
 		  }	  
 	  }
   }
@@ -120,7 +126,7 @@
 			     
 		   }
 	   }
-	   
+	 //get방식 
 	   xhr.open("get", "./showDogPost?show_dog_post_no=" + show_dog_post_no);
 	   xhr.send();
    }
