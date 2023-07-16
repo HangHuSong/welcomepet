@@ -20,7 +20,8 @@
 }
 .subcate {
     background-color: rgb(244, 247, 250);
-   	font-size : small;
+   	font-size : 0.8em;
+
 }
 
 </style>
@@ -52,33 +53,34 @@
 	</div>
 </div>
 
-		<div class="row mt-2 border_bottom text-center fw-bold fs-6">
+		<div class="row mt-2 border_bottom text-center fw-bold align-items-center" style="font-size: 0.9em;">
 			<div class="col-3" onclick="location.href='./categoryProduct?main_category_no=1'">사료</div>
 			<div class="col-3" onclick="location.href='./categoryProduct?main_category_no=2'">간식</div>
 			<div class="col-3" onclick="location.href='./categoryProduct?main_category_no=3'">용품</div>
 			<div class="col-3" onclick="location.href='./categoryProduct?main_category_no=4'">스타일</div>
 		</div>
-		<div class="row subcate mt-2">
-		<div class="col-3" onclick="location.href='./categoryProduct?main_category_no=${mainCateNo}'">
-		 전체 </div>
-			<c:forEach items="${categoryInfo}" var="map">
-			<div class="col-3" onclick="location.href='./categoryProduct?main_category_no=${map.categoryDto.main_category_no}&sub_category_no=${map.categoryDto.sub_category_no }'">
-			${map.categoryDto.sub_category_name } </div>
-			</c:forEach>
-		
+		<div class="row subcate mt-2 align-items-center text-center" style="overflow-x: auto; white-space: nowrap;">
+		  <div class="col-3" onclick="location.href='./categoryProduct?main_category_no=${mainCateNo}'">
+		    전체
+		  </div>
+		  <c:forEach items="${categoryInfo}" var="map">
+		    <div class="col-3 py-2" onclick="location.href='./categoryProduct?main_category_no=${map.categoryDto.main_category_no}&sub_category_no=${map.categoryDto.sub_category_no }'">
+		      ${map.categoryDto.sub_category_name}
+		    </div>
+		  </c:forEach>
 		</div>
-		<div class="row mt-3">
-		<div class="col">
+		<div class="row mt-3 text-secondary" style="font-size: 0.8em;">
+		<div class="col ">
 			${mainCategoryName} > ${subCategoryName} </div>	
 		</div>
-		<div class="row mt-1">
+		<div class="row mt-1 text-secondary" style="font-size: 0.8em;">
 		<div class="col"> 
 			${productCount}개의 상품 </div>
 		</div>
-		<div class="row mt-2">
+		<div class="row mt-2 ps-1">
 			<c:forEach items="${productInfo}" var="map">
 				<div
-					class="col-6 mt-3 border-bottom embed-responsive embed-responsive-4by3"
+					class="col-6 mt-3 py-2 embed-responsive embed-responsive-4by3"
 					onclick="location.href='./productDetail?product_no=${map.productInfo.product_no}'">
 					<div class="row">
 					<div class="col">

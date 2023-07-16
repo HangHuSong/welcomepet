@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -175,9 +176,14 @@ function reloadReviewList() {
 			
 					console.log(totalRating);
 					console.log(reviewCount);
-					const productRating = (totalRating / reviewCount).toFixed(1);
+					var productRating = (totalRating / reviewCount).toFixed(1);
+					if (isNaN(productRating)) {
+						  productRating = 0;
+						}
 					console.log(productRating);
-					
+					document.getElementById("productRatingSpan3").innerText= "("+reviewCount+")";
+					document.getElementById("totalRatingSpan").innerText= productRating;
+					 
 
 
 					  // 별점을 표시하기 위한 <span> 요소들
@@ -192,6 +198,7 @@ function reloadReviewList() {
 					  const productRatingSpan2 = document.createElement("span");
 					  productRatingSpan2.classList.add("px-2");
 					  productRatingSpan2.innerText = reviewCount+"개의 평가";
+					
 					  
 					  colProductRating.appendChild(productRatingSpan2);
 			
@@ -680,23 +687,32 @@ window.addEventListener("DOMContentLoaded", function(){
 .dropdown-menu {
 	min-width: 100% !important;
 }
-.review-image {
- width: 60px;
- height: 60px;
 
+.review-image {
+	width: 60px;
+	height: 60px;
 }
+
 .star-icon {
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  background-image: url('/uploadFiles/WelcomePet/icons/star-empty.png');
-  background-size: cover;
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	background-image: url('/uploadFiles/WelcomePet/icons/star-empty.png');
+	background-size: cover;
 }
 
 .filled {
-  background-image: url('/uploadFiles/WelcomePet/icons/star.png');
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	background-size: cover;
+	background-image: url('/uploadFiles/WelcomePet/icons/star.png');
 }
 
+.empty {
+	height: 0.8em;
+	background-color: rgb(244, 247, 250);
+}
 </style>
 </head>
 <body>
@@ -735,17 +751,26 @@ window.addEventListener("DOMContentLoaded", function(){
 		<div class="row mt-2">
 			<div class="col fw-bold">${data.productInfo.product_name}</div>
 		</div>
+		 <div class="row mt-2">
+		 <div class="col">
+		  <span class="filled"></span>
+		 <span id="totalRatingSpan"></span>
+		  <span id="productRatingSpan3"></span>
+		  </div>
+		 </div> 
+		 
 		<c:choose>
 			<c:when test="${data.productInfo.product_discount_rate != 0}">
-				<div class="row">
-					<div class="col">
+				<div class="row mt-2">
+					<div class="col text-secondary">
 						<del>${data.productInfo.product_price}원</del>
 					</div>
 				</div>
 				<div class="row fs-4">
 					<div class="col-2 text-danger text-end fw-bold">
 						${data.productInfo.product_discount_rate}%</div>
-					<div class="col fw-bold">${data.productInfo.product_price - data.salePrice}원</div>
+					<div class="col ps-0 fw-bold">
+						<fmt:formatNumber value="${data.productInfo.product_price - data.salePrice}" pattern="#,###" />원</div>
 				</div>
 			</c:when>
 			<c:otherwise>
@@ -754,8 +779,10 @@ window.addEventListener("DOMContentLoaded", function(){
 				</div>
 			</c:otherwise>
 		</c:choose>
-		<div class="row mt-2"></div>
-		<div class="row mt-3 delism border-top">
+		
+			<div class="row mt-2 empty"></div>
+			
+		<div class="row mt-3 delism">
 			<div class="row mt-2">
 				<div class="col-3">배송 안내</div>
 				<div class="col">
@@ -769,20 +796,21 @@ window.addEventListener("DOMContentLoaded", function(){
 				</div>
 			</div>
 		</div>
-		<div class="row mt-3 border-top">
+		<div class="row mt-3 ">
 			<div class="col-1"></div>
 			<div class="col">
-				<div class="row mt-2 border">
+				<div class="row mt-2 border align-items-center">
 					<div class="col-3">
 						<img
 							src="/uploadFiles/WelcomePet/${data.productInfo.product_thumbnail}"
 							class="embed-responsive-item product-thum" alt="...">
 					</div>
-					<div class="col">판매자 이름</div>
+					<div class="col align-items-center fw-bold" style="font-size: 0.9em;">판매자 이름</div>
 				</div>
 			</div>
 			<div class="col-1"></div>
 		</div>
+			<div class="row mt-2 empty"></div>
 		<div class="row mt-3">
 			<div class="row">
 				<div class="col fw-bold">상품정보</div>

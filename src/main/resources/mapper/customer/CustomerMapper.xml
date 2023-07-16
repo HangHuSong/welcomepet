@@ -388,9 +388,9 @@
 	</select>
 
 
-
-
-
+	<select id="getCategoryList" resultType="com.bubble.welcomepet.dto.CategoryDto">
+		select * from sub_category where main_category_no = #{main_category_no}
+	</select>
 
 
 

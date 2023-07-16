@@ -1,28 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<div class="row shadow-sm p-3 mb-5 bg-body-tertiary rounded">
+	
+	<div class="row">
 	<div class="col">
 		<nav
-			class="navbar navbar-dark bg-white d-flex fixed-top fw-bold">
+			class="navbar navbar-dark bg-white fixed-top fw-bold ">
+			<div class="row mt-2">
 			<div class="col-2 text-center">
-				<a class="btn bi bi-bell text-secondary fs-4 "
+				<a class="btn bi bi-bell py-0 text-secondary fs-4 "
 					data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
 					aria-controls="offcanvasExample"> </a>
 			</div>
-			<div class="col-1"></div>
-			<div class="col-6" style="text-align: center;">사이트이름</div>
-			<div class="col-1 text-center">
-				<a class="btn bi bi-search fs-4" role="button"
+			<div class="col-6 ps-2 ms-4" style="text-align: center;">
+				<img src="/uploadFiles/WelcomePet/banner/main.png"
+							class="d-block w-100" alt="...">
+			</div>
+			<div class="col-1 ms-2 ps-2 text-center">
+				<a class="btn bi bi-search fs-4 py-0" role="button"
 					href="/welcomepet/board/search"> </a>
 			</div>
 			<div class="col-2 text-center">
-				<a class="btn bi bi-cart2 fs-4" role="button"
+				<a class="btn bi bi-cart2 fs-4 py-0" role="button"
 					href="/welcomepet/customer/cart"> </a>
 			</div>
-
+			</div>
 		</nav>
 	</div>
-</div>
+	 </div>
+	 	 <div class="row" style="height: 4em;"> </div>
 
 
 <div class="row">

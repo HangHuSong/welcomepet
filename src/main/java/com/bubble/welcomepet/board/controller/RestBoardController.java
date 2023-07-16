@@ -69,6 +69,15 @@ public class RestBoardController {
 	}
 	
 	
+	@RequestMapping("getCategoryList")
+	public Map<String, Object> getCategoryList(int main_category_no){
+		Map<String , Object> map = new HashMap<>();
+		
+
+		map.put("categoryList", customerService.getCategoryList(main_category_no));	
+		map.put("result", "success");
+		return map;
+	}
 	
 	
 	// 리뷰 관련

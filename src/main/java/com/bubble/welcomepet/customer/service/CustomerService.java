@@ -567,7 +567,18 @@ public class CustomerService {
 		return list;
 	}
 	
-	
+	public List<Map<String, Object>> getCategoryList(int main_category_no) {
+		
+		List<CategoryDto> categoryList = customerMapper.getCategoryList(main_category_no);
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		for(CategoryDto categoryDto : categoryList) {
+			 System.out.println(categoryDto.getSub_category_name());
+			Map<String, Object> map = new HashMap<>();
+			map.put("categoryList", categoryDto);
+			list.add(map);
+		}
+		return list;
+	}
 	
 	
 	

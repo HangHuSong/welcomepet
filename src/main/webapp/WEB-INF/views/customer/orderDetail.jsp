@@ -29,7 +29,7 @@
 </head>
 <body>
 
-	<div class="container align-items-center justify-content-center">
+	<div class="container align-items-center justify-content-center pe-0">
 
 		<div class="row  mt-2 align-items-center">
 			<div class="col-1 d-flex ">
@@ -57,8 +57,8 @@
 							<div class="row">
 								<div class="col"> ${orderProduct.orderProductDto.order_product_status_name}</div>
 							</div>
-							<div class="row">
-							 <div class="col"> 
+							<div class="row mt-2">
+							 <div class="col d-flex justify-content-center"> 
 							 <img src="/uploadFiles/WelcomePet/${orderProduct.productDto.product_thumbnail}"
 							class="embed-responsive-item product-thum" alt="..."> </div>
 								<div class="col">

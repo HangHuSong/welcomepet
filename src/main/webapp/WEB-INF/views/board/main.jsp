@@ -99,7 +99,7 @@
 				
 				const rowName = document.createElement("div");
 				rowName.classList.add("row")
-				rowName.setAttribute("onclick","showProductDetail("+ data.productInfo.product_no +")");
+				rowName.setAttribute("onclick","productDetail=product_no=?"+ data.productInfo.product_no);
 				col1.appendChild(rowName);
 				
 				
@@ -126,6 +126,7 @@
 		xhr.open("get", "./topSalePrdouct");
 		xhr.send();	
 	}
+
 	function toggleWish(productNo) {
 		
 		if(mySessionId == null){
@@ -180,7 +181,78 @@
 		xhr.open("get", "./isWished?product_no=" + productNo);
 		xhr.send();
 		
-	}			
+	}
+	
+	function fetchCategoryList(categoryNo) {
+		  var xhr = new XMLHttpRequest();
+
+		  xhr.onreadystatechange = function() {
+		    if (xhr.readyState === XMLHttpRequest.DONE) {
+		      if (xhr.readyState == 4 && xhr.status == 200) {
+		        const response = JSON.parse(xhr.responseText);
+				console.log(response);
+		        // categoryList를 사용하여 row와 col 생성
+		        var categoryListDiv = document.getElementById("categoryList");
+		        categoryListDiv.innerHTML = ""; // 기존 내용 초기화
+
+		        for (data of response.categoryList) {
+		        	  console.log(data);
+		        	  var colDiv = document.createElement("div");
+		        	  colDiv.classList.add("col-3","align-items-center","text-center");
+		        	  colDiv.setAttribute("onclick", "redirectToCategory(" + categoryNo + ", " + data.categoryList.sub_category_no + ")");
+
+		        	  var imgRow = document.createElement("div");
+		        	  imgRow.classList.add("row", "category_img");
+		        	  colDiv.appendChild(imgRow);
+
+		        	  var imgCol = document.createElement("div");
+		        	  imgCol.classList.add("col");
+		        	  imgRow.appendChild(imgCol);
+
+		        	  var img = document.createElement("img");
+		        	  img.src = "/uploadFiles/WelcomePet/category/" + categoryNo + "/" + data.categoryList.sub_category_no + ".png";
+		        	  img.classList.add("category_img", "rounded-circle");
+		        	  img.alt = "...";
+		        	  imgCol.appendChild(img);
+
+		        	  var categoryRow = document.createElement("div");
+
+		        	  var categoryCol = document.createElement("div");
+		        	  categoryCol.classList.add("col", "category_name","fw-bold");
+		        	  categoryCol.innerText = data.categoryList.sub_category_name;
+
+		        	  categoryRow.appendChild(categoryCol);
+		        	  colDiv.appendChild(categoryRow);
+
+		        	  categoryListDiv.appendChild(colDiv);
+		        	}
+
+		        // 선택된 span에 selected 클래스 추가
+		        var selectedSpan = document.getElementById("categoryBtn" + categoryNo);
+		        selectedSpan.classList.add("selected");
+
+		        // 나머지 span들의 selected 클래스 제거
+		        var spans = document.getElementsByClassName("category-span");
+		        for (var j = 0; j < spans.length; j++) {
+		          if (spans[j] !== selectedSpan) {
+		            spans[j].classList.remove("selected");
+		          }
+		        }
+		      } else {
+		        console.log("Error: " + xhr.status);
+		      }
+		    }
+		  };
+
+		  xhr.open("GET", "./getCategoryList?main_category_no=" + categoryNo);
+		  xhr.send();
+		}
+	
+	function redirectToCategory(mainCategoryNo, subCategoryNo) {
+		  var url = "./categoryProduct?main_category_no=" + mainCategoryNo + "&sub_category_no=" + subCategoryNo;
+		  window.location.href = url;
+		}
+	
 	
 	window.addEventListener("DOMContentLoaded", function(){
 	    //사실상 시작 시점...
@@ -206,6 +278,54 @@
 .fsmid {
 	font-size: 0.8em;
 }
+.not_select {
+ background: white;
+ font-size: 0.8em;
+}
+.category_img {
+ height: 3em;
+ width: 3em;
+}
+.category_name{
+ font-size: 0.8em;
+}
+.product-thum {
+	width: 100%;
+}
+
+
+
+
+.category-col {
+    display: flex;
+  border: 1px solid white;
+  border-radius: 2.4rem;
+  padding: 0.3em 0.3em;
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s;
+  font-size: 0.9em;
+  color: gray;
+  font-weight: 500;
+}
+
+.category-col:hover {
+  border-color: #007bff;
+}
+
+.category-span.not-select {
+  background-color: #fff;
+}
+
+.category-span.selected {
+  color: #007bff;
+  font-weight: 700;
+}
+.empty {
+	height: 0.8em;
+	background-color: rgb(244, 247, 250);
+}
 
 </style>
 </head>
@@ -216,14 +336,14 @@
 	<div class="container">
 		<jsp:include page="../common/topMainNavi.jsp"></jsp:include>
 
-		<div class="row mt-2 border_bottom text-center fw-bold fs-6">
+		<div class="row mt-2 border_bottom text-center fw-bold fs-6 text-secondary">
 			<div class="col-3">홈</div>
 			<div class="col-3">베스트</div>
 			<div class="col-3">특가존</div>
-			<div class="col-3">스윕기능</div>
+			<div class="col-3">리뷰이벤트</div>
 		</div>
-		<div class="row mt-3">
-			<div id="carouselExampleIndicators" class="carousel slide"
+		<div class="row mt-3 ps-0 pe-0">
+			<div id="carouselExampleIndicators" class="carousel slide ps-0 pe-0"
 				data-bs-ride="true">
 				<div class="carousel-indicators">
 					<button type="button" data-bs-target="#carouselExampleIndicators"
@@ -260,55 +380,45 @@
 				</button>
 			</div>
 		</div>
-		<div class="row mt-2 border-top text-center"></div>
-		<div class="row mt-3">
+		<div class="row mt-1 text-center fw-bold  " >
 			<div class="col-1"></div>
-			<div class="col-2">사료</div>
-			<div class="col-2">간식</div>
-			<div class="col-2">용품</div>
-			<div class="col-2">건강</div>
-			<div class="col">스타일</div>
+			<div class="col border rounded-2 text-secondary align-items-center d-flex" style="background-color: rgb(227, 237, 255); font-size: 0.9em; 
+						height:3em; ">
+				<span>리뷰 작성시 최대</span> <span class="text-primary">결제금액의 3%</span> <span>를 드려요!</span>
+			</div>
+			<div class="col-1"></div>
 		</div>
+			<div class="row mt-3 ps-0">
+					
+					<div class="col-1 ps-0 pe-0"></div>
+					  <div class="col pe-0 category-col">
+					    <span class="category-span not-select" onclick="fetchCategoryList(1)" id="categoryBtn1">사료</span>
+					  </div>
+					  <div class="col pe-0 category-col">
+					    <span class="category-span not-select" onclick="fetchCategoryList(2)" id="categoryBtn2">간식</span>
+					  </div>
+					  <div class="col pe-0 category-col">
+					    <span class="category-span not-select" onclick="fetchCategoryList(3)" id="categoryBtn3">용품</span>
+					  </div>
+					  <div class="col pe-0 category-col">
+					    <span class="category-span not-select" onclick="fetchCategoryList(4)" id="categoryBtn4">건강</span>
+					  </div>
+					  <div class="col ps-0 category-col">
+					    <span class="category-span not-select" onclick="fetchCategoryList(5)" id="categoryBtn5">스타일</span>
+					  </div>
+					  <div class="col-1 ps-0 pe-0"></div>
+			</div>
 		<div class="row mt-3 text-center">
-		<div class="col-1"></div>
+		<div class="col-1 ps-0 pe-0 "></div>
 		<div class="col">
-			<div class="row ">
-			<div class="col-3">
-				<a class="btn btn-outline-secondary btn-sm" role="button"
-					style="border-radius: 60px;" href="./categoryProduct?main_category_no=1&sub_category_no=1">
-					퍼피
-				</a>
-			</div> 
-						<div class="col-3">
-				<a class="btn btn-outline-secondary btn-sm" role="button"
-					style="border-radius: 60px;" href="./categoryProduct?main_category_no=1&sub_category_no=2">
-					어덜트
-				</a>
-			</div> 
-						<div class="col-3">
-				<a class="btn btn-outline-secondary btn-sm" role="button"
-					style="border-radius: 60px;" href="./categoryProduct?main_category_no=1&sub_category_no=3">
-					시니어
-				</a>
-			</div> 
-			<div class="col-3">
-				<a class="btn btn-outline-secondary btn-sm" role="button"
-					style="border-radius: 60px;" href="./categoryProduct?main_category_no=1&sub_category_no=1">
-					퍼피
-				</a>
-			</div> 
-			<div class="col-3">
-				<a class="btn btn-outline-secondary btn-sm" role="button"
-					style="border-radius: 60px;" href="./categoryProduct?main_category_no=1&sub_category_no=1">
-					퍼피
-				</a>
-			</div> 
+			<div class="row" id="categoryList">
+
 			</div>
 			</div>
-			<div class="col-1"></div>
+			<div class="col-1 ps-0 pe-0"></div>
 		</div>
 		
-		<div class="row mt-3 border-top"> </div>
+			<div class="row mt-2 empty"></div>
 		<div class="row mt-2">
 		<div class="col">
 		<div class="row " > 
@@ -320,7 +430,14 @@
 		</div>
 
 		</div>
-				<div class="row mt-3 border-top"> </div>
+				
+		<div class="row mt-2 ">
+			<div class="col ps-0 ms-0">
+			<img src="/uploadFiles/WelcomePet/banner/banner1.png"
+				class="product-thum" style="width:  ;" alt="...">
+			</div>		
+		</div>
+				
 		<div class="row mt-2">
 		<div class="col">
 		<div class="row " > 
