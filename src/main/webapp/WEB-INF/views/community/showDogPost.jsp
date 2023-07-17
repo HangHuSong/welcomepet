@@ -16,53 +16,41 @@
 	crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <%------ bootstrap ------%>
-<script>
+<script type="text/javascript">
  <%-- ajax --%>
-  <%-- 댓글쓰기 
-   function registerComment(){
-	  if(!mySessionId){
-		  /* 로그인 안되어있으면 */
-		  return;
-	  
-	  	  const commentTextBox = document.getElementById("commentTextBox");
-	  const commentTextValue = commentTextBox.value;
-	  
-	  const xhr = new XHLHttpRequest();
-	  
-	  xhr.onreadystatechange = function(){
-		  if(xhr.readyState == 4 && xhr.status == 200){
-			  const response = JSON.parse(xhr.responseText);
-			  
-			  commentTextBox.value = "";
-			  reloadCommentList(); 
-			  
-		  }
-	  }
-   
-	  /* 댓글등록 */
-	  xhr.open("post", "./registerComment"); 
-	  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	  xhr.send("board_id = " + boardId + "&comment_text = " + commentTextValue);
-  }
- }
-  --%> 
 
-  
+ function commentList(commentData) {
+   const commentSection = document.getElementById("commentContent");
+   commentSection.innerHTML = "";
+
+   for (data of response.commentList) {
+     const colNickname = document.getElementById(`nickname_\${data.showDogCommentDto.show_dog_comment_no}`);
+     const colCommentText = document.getElementById(`comment_content_\${data.showDogCommentDto.show_dog_comment_no}`);
+
+     colNickname.classList.add("fw-bold");
+     colNickname.style.fontSize = "13px";
+     colNickname.innerText = \`${data.customerDto.customer_nickname}`;
+
+     colCommentText.innerText = \`${data.showDogCommentDto.show_dog_comment_content}`;
+   }
+ }
+
+
   <%-- 댓글리스트 --%>  
-  function commentList(){
-	  const xmlHttpRequest = new XMLHttpRequest();
+//  function commentList(){
+/* 	  const xmlHttpRequest = new XMLHttpRequest();
 	  xmlHttpRequest.onreadystatechange = function(){
 		  	/* 4: 서버로부터 응답이 완료 &&(AND) 200: 서버의 Http 응답이 성공적인 상태 */
-		  if(xmlHttpRequest == 4 && xmlHttpRequest.status == 200){
-			  const response = JSON.parse(xmlHttpRequest.responseText);
+/*		  if(xmlHttpRequest == 4 && xmlHttpRequest.status == 200){
+			  const response = JSON.parse(xmlHttpRequest.responseText); */
 			  
 			  /* 역할:  */
-			  document.getElementById("commentContent").innerHTML = "";
+/* 			  document.getElementById("commentContent").innerHTML = "";
 			  
 			  for(data of response.commentList){
  				 const row1 = document.createElement("div");
  				 row1.classList.add("row");
-
+			  	 
 				 const colNickname = document.createElement("div");
 				 colNickname.classList.add("col");
 				 colNickname.classList.add("fw-bold");
@@ -71,34 +59,31 @@
 				 row1.appendChild(colNickname);
  				 
  				 document.getElementById("commentContent").appendChild(row1);
-			  }
-		  }	  
-	  }
-  }
+			  } */
+		//  }	  
+	//  }
+  
 
 			     
-
-		}
+	//	}
 	 //get방식 
 	   xhr.open("get", "./bringCommentByPostNo?show_dog_post_no=" + show_dog_post_no);
 	   xhr.send();
    }
-   
+}   
    
    /* 여기가 시작지점이래 */
    window.addEventListener("DOMContentLoaded", function(){
 	   getSessionId();
-	   reloadCommentList();
+	   commentList();
 	   
 	   /* 3초마다 한번씩 reload */
-	   setInterval(reloadCommentList, 3000);
+	   setInterval(commentList, 3000);
    });
  
  <%-- ajax --%>
  
- 
- 
- 
+
  
  <%-- 			   <div class="col-12">
  				  <c:forEach items="${commentData}" var="commentData">
@@ -301,15 +286,15 @@
 		  <%-- forEach자리 --%>
 		  <div class="row border-bottom py-3">
 		 	<%-- 프사 --%>
-			 <div class="col-auto ps-3 pe-0 text-end">
+			 <div class="col-auto ps-3 pe-0 text-end" id="profileImage">
 			  <img class="rounded-circle" src="https://dummyimage.com/3*3" alt="...">
 			 </div>
 			 
 			 <%-- 댓글 데이터 --%>
-			 <div class="col" id="commentContent">
+			 <div class="col" id="comment">
 				  <div class="row">
 				  	<%-- 댓글 닉네임 --%>
-				  	<div class="col fw-bold" style="font-size: 13px;" id="commentNickname">닉네임</div>
+				  	<div class="col fw-bold" style="font-size: 13px;" id="nickname"></div>
 				  	<%-- 댓글 수정 삭제 --%>
 <%-- 				  	<div class="col text-end dropdown pe-3"> 	 
 				  	</div> --%>  	
@@ -318,8 +303,7 @@
 				 
 				  <div class="row">
 				   <%-- 댓글 내용 comment_content  --%>
-				   <div class="col-12">
-				   </div>
+				   <div class="col-12" id="comment_content"></div>
 				   <%-- 장식용 답글쓰기 --%>
 				   <div class="col text-secondary" style="font-size: 10pt;">
 				   <button>답글쓰기</button>
