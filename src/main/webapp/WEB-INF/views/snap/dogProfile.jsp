@@ -159,7 +159,7 @@
 		
 		<div class="row mx-1 mt-2">
 			<div class="col-auto">
-				<p class="text-break" style="font-size: 14px;">${dogDto.dog_introduction}</p>
+				<p class="text-break pt-2" style="font-size: 14px;">${dogDto.dog_introduction}</p>
 			</div>
 		</div>
 		
@@ -171,11 +171,9 @@
 				<button id="btn" class="btn bi bi-send btn-sm"> 메시지</button>
 			</div>
 		</div>
-											
-		<div class="row mt-1 border-top"></div>
 		
 		<!-- dog의 게시글 -->
-		<div class="row row-cols-3">
+		<div class="row row-cols-3 pt-2">
 			<c:forEach items="${list}" var="img">
 				<div class="col px-0">
 					<a href="./readSnap?snap_board_no=${img.snap_board_no}">
