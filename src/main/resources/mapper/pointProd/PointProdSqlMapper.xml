@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.bubble.welcomepet.pointprod.mapper.PointProdSqlMapper">
+
+	<select id="createPk1" resultType="int">
+		SELECT point_product_seq.nextval FROM
+		dual
+	</select>
+
+	<!-- 포인트 상품 -->
+	<insert id="insPointProd">
+		INSERT INTO point_product VALUES(
+		#{point_product_no},
+		#{customer_no},
+		#{point_product_title},
+		#{point_product_content},
+		#{point_product_price},
+		#{point_product_total_amount},
+		SYSDATE
+		)
+	</insert>
+
+	<!-- 포인트 상품 주문 -->
+	<insert id="insPointProdOrd">
+		INSERT INTO point_product_order VALUES(
+		point_product_order_seq.nextval,
+		#{customer_no},
+		#{point_product_no},
+		#{point_product_order_amount},
+		SYSDATE
+		)
+	</insert>
+
+	<!-- 포인트 상품 이미지 -->
+	<insert id="insPointProdImg">
+		INSERT INTO point_product_image VALUES(
+		point_product_image_seq.nextval,
+		#{point_product_no},
+		#{point_product_image_link}
+		)
+	</insert>
+
+	<select id="selectAllPointProd"
+		resultType="com.bubble.welcomepet.dto.PointProdDto">
+		SELECT * 
+		FROM point_product
+		ORDER BY point_product_no DESC
+	</select>
+
+	<select id="selectImgByPointProdNo"
+		resultType="com.bubble.welcomepet.dto.PointProdImgDto">
+		SELECT * FROM point_product_image
+		WHERE point_product_no =
+		#{point_product_no}
+	</select>
+
+	<select id="selectByPointProdNo"
+		resultType="com.bubble.welcomepet.dto.PointProdDto">
+		SELECT * FROM point_product
+		WHERE point_product_no =
+		#{point_product_no}
+	</select>
+
+</mapper>
