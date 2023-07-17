@@ -187,9 +187,8 @@
 	<select id="getSearchByCutomerNo"
 		resultType="com.bubble.welcomepet.dto.CustomerSearchDto">
 		SELECT * FROM customer_search
-		WHERE customer_no = #{customer_no}   ORDER BY search_date DESC 
-    		<![CDATA[     
-     WHERE ROWNUM <= 4 ]]>
+		WHERE customer_no = #{customer_no} and  
+    		<![CDATA[  ROWNUM <= 4 ]]>  ORDER BY search_date DESC
 	</select>
 
 	<insert id="addCustomerSearch">
