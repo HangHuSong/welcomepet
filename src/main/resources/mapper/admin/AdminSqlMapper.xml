@@ -453,6 +453,7 @@
 		<select id="getBizApprovalRequest" resultType="com.bubble.welcomepet.dto.BizApprovalRequestDto">
 			SELECT *
 			FROM biz_approval_request
+			WHERE biz_approval_request_no = 2
 		</select>
 		
 		<select id="getProductOptionByNo" resultType="com.bubble.welcomepet.dto.ProductOptionDto">
