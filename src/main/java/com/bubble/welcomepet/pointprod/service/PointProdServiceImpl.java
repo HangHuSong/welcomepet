@@ -9,9 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bubble.welcomepet.customer.mapper.CustomerSqlMapper;
+import com.bubble.welcomepet.dto.BoardDto;
+import com.bubble.welcomepet.dto.CommentDto;
 import com.bubble.welcomepet.dto.CustomerDto;
+import com.bubble.welcomepet.dto.ImageDto;
+import com.bubble.welcomepet.dto.LikeDto;
 import com.bubble.welcomepet.dto.PointProdDto;
 import com.bubble.welcomepet.dto.PointProdImgDto;
+import com.bubble.welcomepet.dto.Prod_CategoryDto;
 import com.bubble.welcomepet.pointprod.mapper.PointProdSqlMapper;
 
 @Service
@@ -22,6 +27,162 @@ public class PointProdServiceImpl {
 
 	@Autowired
 	private CustomerSqlMapper customerSqlMapper;
+	
+	public void insertComment(CommentDto commentDto) {
+
+		pointProdSqlMapper.insertComment(commentDto);
+
+	}
+
+	public List<Map<String, Object>> getCommentById(int board_no) {
+
+		List<Map<String, Object>> list = new ArrayList<>();
+
+		List<CommentDto> commentDtoList = pointProdSqlMapper.getAllCommentByBoardId(board_no);
+
+		for (CommentDto commentDto : commentDtoList) {
+
+			Map<String, Object> map = new HashMap<>();
+
+			int customer_no = commentDto.getCustomer_no();
+
+			CustomerDto customerDto = customerSqlMapper.selectById(customer_no);
+
+			map.put("customerDto", customerDto);
+			map.put("commentDto", commentDto);
+
+			list.add(map);
+		}
+		return list;
+	}
+
+
+	public void writeContent(BoardDto boardDto, List<ImageDto> imageDtoList) {
+		int board_no = pointProdSqlMapper.createPk();
+
+		boardDto.setBoard_no(board_no);
+		pointProdSqlMapper.insert(boardDto);
+
+		for (ImageDto imageDto : imageDtoList) {
+			imageDto.setBoard_no(board_no);
+			pointProdSqlMapper.insertImage(imageDto);
+		}
+	}
+
+	public List<Map<String, Object>> getBoardList() {
+
+		List<Map<String, Object>> list = new ArrayList<>();
+
+		List<BoardDto> boardDtoList = pointProdSqlMapper.selectAll();
+
+		for (BoardDto boardDto : boardDtoList) {
+
+			Map<String, Object> map = new HashMap<>();
+
+			int customer_no = boardDto.getCustomer_no();
+
+			int board_no = boardDto.getBoard_no();
+
+			CustomerDto customerDto = customerSqlMapper.selectById(customer_no);
+
+			// 댓글 카운트
+
+			int countComment = pointProdSqlMapper.countCommentByBoardNo(board_no);
+			
+			List<ImageDto> imageDtoList = pointProdSqlMapper.selectImageByBoardNo(board_no);
+
+			map.put("customerDto", customerDto);
+			map.put("boardDto", boardDto);
+			map.put("countComment", countComment);
+			map.put("imageDtoList", imageDtoList);
+
+			list.add(map);
+		}
+
+		return list;
+	}
+
+	/* 베스트3 */
+	public List<Map<String, Object>> getBoardList2() {
+
+		List<Map<String, Object>> list2 = new ArrayList<>();
+
+		List<BoardDto> boardDtoList2 = pointProdSqlMapper.selectBest();
+
+		for (BoardDto boardDto : boardDtoList2) {
+
+			Map<String, Object> map = new HashMap<>();
+
+			int customer_no = boardDto.getCustomer_no();
+
+			int board_no = boardDto.getBoard_no();
+
+			CustomerDto customerDto = customerSqlMapper.selectById(customer_no);
+
+			// 댓글 카운트
+
+			int countComment = pointProdSqlMapper.countCommentByBoardNo(board_no);
+
+			map.put("customerDto", customerDto);
+			map.put("boardDto", boardDto);
+			map.put("countComment", countComment);
+
+			list2.add(map);
+		}
+
+		return list2;
+	}
+
+	public Map<String, Object> getBoard(int board_no) {
+
+		Map<String, Object> map = new HashMap<>();
+
+		BoardDto boardDto = pointProdSqlMapper.selectById(board_no);
+		CustomerDto customerDto = customerSqlMapper.selectById(boardDto.getCustomer_no());
+		Prod_CategoryDto categoryDto = pointProdSqlMapper.selectByCategoryNo(boardDto.getBoard_category_no());
+
+		List<ImageDto> imageDtoList = pointProdSqlMapper.selectImageByBoardNo(board_no);
+
+		map.put("customerDto", customerDto);
+		map.put("boardDto", boardDto);
+		map.put("categoryDto", categoryDto);
+		map.put("imageDtoList", imageDtoList);
+
+		return map;
+	}
+
+	public void increaseReadCount(int board_no) {
+		pointProdSqlMapper.increaseReadCount(board_no);
+	}
+
+	public void deleteContent(int board_no) {
+		pointProdSqlMapper.deleteById(board_no);
+	}
+
+	public void updateContent(BoardDto boardDto) {
+		pointProdSqlMapper.update(boardDto);
+	}
+
+	public int countCommentByBoardNo(int board_no) {
+		int countCommentByBoardNo = pointProdSqlMapper.countCommentByBoardNo(board_no);
+		return countCommentByBoardNo;
+	}  
+
+	public void insertLike(LikeDto likeDto) {
+
+		int howManyLikeByCustomerNo = pointProdSqlMapper.howManyLikeByCustomerNo(likeDto);
+
+		if (howManyLikeByCustomerNo > 0) {
+			pointProdSqlMapper.deleteLikeByCustomerNo(likeDto);
+		} else
+			pointProdSqlMapper.insertLike(likeDto);
+	}
+
+	public int countLikeByBoardNo(int board_no) {
+		int countLikeByBoardNo = pointProdSqlMapper.countLikeByBoardNo(board_no);
+		return countLikeByBoardNo;
+	}
+
 
 	public void writePointProd(PointProdDto pointProdDto, List<PointProdImgDto> pointProdImgDtoList) {
 		int point_product_no = pointProdSqlMapper.createPk1();
