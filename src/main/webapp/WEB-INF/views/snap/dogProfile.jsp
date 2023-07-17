@@ -146,7 +146,7 @@
 			<div class="col">
 				<div class="row">
 					<div class="col-4 text-center fw-bold">
-						<span style="font-size: 15px;"> ${dogDto.dog_name}</span>
+						<span style="font-size: 16px;"> ${dogDto.dog_name}</span>
 					</div>
 				</div>
 				<div class="row">

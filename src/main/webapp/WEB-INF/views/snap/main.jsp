@@ -45,7 +45,7 @@
     }
     #snapModalTop{
     	width: auto;
-    	height: 50px;
+    	height: 30px;
     	
     }
     #profileImg {
@@ -58,8 +58,8 @@
         color: white;
         background-color: orange;
     }
-    .mainIcon{
-    	
+    .icon {
+        margin-left: 5px; 
     }
 </style>
 <script type="text/javascript">
@@ -263,14 +263,13 @@
 	           likeIcon.onclick = response.checkLike == 0 ? () => like(response.snapDetail.snap_board_no) : () => unLike(response.snapDetail.snap_board_no);
 	
                const likeCount = document.createElement("span");
-	           likeCount.innerText = " " + response.countLike + " ";
+	           likeCount.innerText = " " + response.countLike + "  ";
 	
 	           col1.appendChild(likeIcon);
 	           col1.appendChild(likeCount);
 	
-	
 	           const viewIcon = document.createElement("i");
-	           viewIcon.classList.add("bi", "bi-eye");
+	           viewIcon.classList.add("bi", "bi-eye","icon");
 	
 	           const viewCount = document.createElement("span");
 	           viewCount.innerText = "  " + response.snapDetail.snap_board_view_count + " ";
@@ -296,6 +295,7 @@
                dogNameSpan.innerText = response.dogDto.dog_name;
                dogNameSpan.style.fontSize = "20px";
                dogNameSpan.style.color = "#DC7633";
+               dogNameSpan.classList.add("fw-bold")
                dogNameCol.appendChild(dogNameSpan);
                dogNameRow.appendChild(dogNameCol);
                
@@ -326,18 +326,22 @@
 	            const commentForm = document.createElement("div");
 	            commentForm.classList.add("row");
 	            const commentContentBoxCol = document.createElement("div");
-	            commentContentBoxCol.classList.add("col-9", "comment-textbox");
+	            commentContentBoxCol.classList.add("col-10", "comment-textbox", "px-1");
 	            const commentContentBox = document.createElement("input");
+	            commentContentBox.style.fontSize = "12px";
 	            commentContentBox.id = "commentContentBox";
 	            commentContentBox.type = "text";
-	            commentContentBox.classList.add("form-control");
-	            commentContentBox.placeholder = "댓글을 입력하세요";
+	            commentContentBox.classList.add("form-control","py-1");
+	            commentContentBox.placeholder = "댓글 달기...";
 	            commentContentBoxCol.appendChild(commentContentBox);
 	            const commentSubmitBtnCol = document.createElement("div");
-	            commentSubmitBtnCol.classList.add("col", "d-grid");
+	            commentSubmitBtnCol.classList.add("col", "d-grid", "px-0","py-0");
 	            const commentSubmitBtn = document.createElement("button");
 	            commentSubmitBtn.onclick = function() { registerComment(response.snapDetail.snap_board_no); };
-	            commentSubmitBtn.classList.add("bi", "bi-box-arrow-in-up-left", "btn");
+	            commentSubmitBtn.classList.add("btn","py-0");
+	            commentSubmitBtn.innerText = "게시";
+	            commentSubmitBtn.style.fontSize = "12px";
+	            commentSubmitBtn.style.color = "white";
 	            commentSubmitBtn.style.backgroundColor = "orange";
 	            commentSubmitBtnCol.appendChild(commentSubmitBtn);
 	            commentForm.appendChild(commentContentBoxCol);

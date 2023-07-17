@@ -37,7 +37,7 @@
 			<div class="col-1"></div>
 			<div class="col-9">
 			<form action="./customerList" method="get">
-                <div class="row mt-4">
+                <div class="row mt-5">
                 	<div class="col-2">
                 		<select name="searchType" class="form-select">
                 			<option value="customer_no" selected="selected">IDX</option>
@@ -54,10 +54,10 @@
                     </div>
                 </div>
             </form>
-                <div class="row mt-4">
+                <div class="row mt-3">
                     <div class="col">
                         <table class="table table-hover text-center">
-                            <thead>
+                            <thead class="table-dark">
                                 <tr>
                                     <th scope="col">IDX</th>
                                     <th scope="col">닉네임</th>

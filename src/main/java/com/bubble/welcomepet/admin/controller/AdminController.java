@@ -300,7 +300,7 @@ public class AdminController {
 		bizApprovalDto.setEmp_no(empDto.getEmp_no());
 		bizApprovalDto.setBiz_approval_request_no(bizApprovalRequestDto.getBiz_approval_request_no());
 
-		if (buttonType.equals("confirm")) {
+		if (buttonType.equals("accept")) {
 			adminService.confirmApproval(bizApprovalDto, biz_no);
 		} else {
 			adminService.rejectApproval(bizApprovalDto, biz_no);
