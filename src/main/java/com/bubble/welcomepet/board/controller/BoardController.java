@@ -107,7 +107,7 @@ public class BoardController {
 	        // JSON 파싱 오류 처리
 	        e.printStackTrace();
 	    }
-
+	    System.out.println(amountList);
 	    model.addAttribute("addressList", customerService.getCustomerAddress(customer_no));
 	    model.addAttribute("mainAddress", mainAddress);
 	    model.addAttribute("sessionUser", customerDto);

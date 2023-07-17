@@ -60,11 +60,11 @@
 			<div class="col-3" onclick="location.href='./categoryProduct?main_category_no=4'">스타일</div>
 		</div>
 		<div class="row subcate mt-2 align-items-center text-center" style="overflow-x: auto; white-space: nowrap;">
-		  <div class="col-3" onclick="location.href='./categoryProduct?main_category_no=${mainCateNo}'">
+		  <div class="col-3 pe-0 text-secondary"  onclick="location.href='./categoryProduct?main_category_no=${mainCateNo}'">
 		    전체
 		  </div>
 		  <c:forEach items="${categoryInfo}" var="map">
-		    <div class="col-3 py-2" onclick="location.href='./categoryProduct?main_category_no=${map.categoryDto.main_category_no}&sub_category_no=${map.categoryDto.sub_category_no }'">
+		    <div class="col-3 ps-0 py-2 text-secondary" onclick="location.href='./categoryProduct?main_category_no=${map.categoryDto.main_category_no}&sub_category_no=${map.categoryDto.sub_category_no }'">
 		      ${map.categoryDto.sub_category_name}
 		    </div>
 		  </c:forEach>
@@ -73,34 +73,34 @@
 		<div class="col ">
 			${mainCategoryName} > ${subCategoryName} </div>	
 		</div>
-		<div class="row mt-1 text-secondary" style="font-size: 0.8em;">
+		<div class="row mt-2 text-secondary" style="font-size: 0.8em;">
 		<div class="col"> 
 			${productCount}개의 상품 </div>
 		</div>
 		<div class="row mt-2 ps-1">
 			<c:forEach items="${productInfo}" var="map">
 				<div
-					class="col-6 mt-3 py-2 embed-responsive embed-responsive-4by3"
+					class="col-6  py-2 embed-responsive embed-responsive-4by3"
 					onclick="location.href='./productDetail?product_no=${map.productInfo.product_no}'">
 					<div class="row">
 					<div class="col">
 						<img
 							src="/uploadFiles/WelcomePet/${map.productInfo.product_thumbnail}"
-							class="embed-responsive-item product-thum" alt="..."> </div>
+							class="embed-responsive-item product-thum rounded-2" alt="..."> </div>
 					</div>
 					<div class="row"> 
-					<div class="col">${map.productInfo.product_name}</div> 
+					<div class="col" style="font-size: 0.9em;">${map.productInfo.product_name}</div> 
 					</div> 
 					<c:choose>
 					 <c:when test="${map.productInfo.product_discount_rate != 0}">
 					<div class="row"> 
-					<div class="col"><del>${map.productInfo.product_price}원</del></div> 
+					<div class="col  text-secondary" style="font-size: 0.8em;"><del>${map.productInfo.product_price}원</del></div> 
 					</div> 
 					<div class="row"> 
-					<div class="col-3 text-danger fw-bold">
+					<div class="col-3 pe-0 text-danger fw-bold">
 					${map.productInfo.product_discount_rate}%
 					</div>
-					<div class="col fw-bold">
+					<div class="col fw-bold text-start">
 					${map.productInfo.product_price - map.salePrice}원</div> 
 					</div> 
 					</c:when>
