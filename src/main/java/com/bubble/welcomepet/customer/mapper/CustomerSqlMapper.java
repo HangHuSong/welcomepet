@@ -16,6 +16,13 @@ public interface CustomerSqlMapper {
 //	CustomerDto에서 고객 닉네임 불러오기
 	public CustomerDto getByCustomerNo(int customer_no);
 
+	public int createCustomerPk();
+
+	public void registerCustomer(CustomerDto customerDto);
+
+	public CustomerDto selectByUserIdAndPw(CustomerDto params);
+	
+	public CustomerDto selectById(int customer_no);
 
 
 }

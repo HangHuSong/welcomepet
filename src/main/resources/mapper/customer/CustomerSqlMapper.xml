@@ -38,7 +38,28 @@
 	<select id="getByCustomerNo" resultType="com.bubble.welcomepet.dto.CustomerDto">
 		SELECT * FROM customer
 		WHERE customer_no = #{customer_no}
+		
 	</select>
-	
+		<insert id="registerCustomer">
+		INSERT INTO customer VALUES(
+		#{customer_no},
+		#{customer_id},
+		#{customer_pw},
+		#{customer_name},
+		#{customer_birth},
+		#{customer_nickname},
+		#{customer_gender},
+		#{customer_phone},
+		0,
+		SYSDATE
+		)
+	</insert>
+
+	<select id="selectByUserIdAndPw"
+		resultType="com.bubble.welcomepet.dto.CustomerDto">
+		SELECT * FROM customer
+		WHERE customer_id = #{customer_id}
+		AND customer_pw = #{customer_pw}
+	</select>
 
 </mapper>
