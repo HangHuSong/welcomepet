@@ -55,7 +55,7 @@
 			for(data of response.topSaleProductList) {
 				
 				const col1 = document.createElement("div");
-				col1.classList.add("col-4", "embed-responsive", "embed-responsive-4by3", "ps-2");
+				col1.classList.add("col-4", "embed-responsive", "embed-responsive-4by3", "ps-3");
 				
 				
 				
@@ -113,7 +113,7 @@
 				col1.appendChild(rowPrice);
 				
 				const colPrice = document.createElement("div");
-				colPrice.classList.add("col", "fw-bold");
+				colPrice.classList.add("col", "fw-bold","price_text");
 				colPrice.innerText = data.productInfo.product_price - data.salePrice +"원";
 				rowPrice.appendChild(colPrice);	
 				
@@ -206,7 +206,7 @@
 		        	  colDiv.appendChild(imgRow);
 
 		        	  var imgCol = document.createElement("div");
-		        	  imgCol.classList.add("col");
+		        	  imgCol.classList.add("col","align-items-center","text-center","ps-0","pe-0");
 		        	  imgRow.appendChild(imgCol);
 
 		        	  var img = document.createElement("img");
@@ -216,9 +216,10 @@
 		        	  imgCol.appendChild(img);
 
 		        	  var categoryRow = document.createElement("div");
-
+		        	  categoryRow.classList.add("row","mt-1");	
+		        	  
 		        	  var categoryCol = document.createElement("div");
-		        	  categoryCol.classList.add("col", "category_name","fw-bold");
+		        	  categoryCol.classList.add("col", "category_name","fw-bold","ps-0","text-secondary");
 		        	  categoryCol.innerText = data.categoryList.sub_category_name;
 
 		        	  categoryRow.appendChild(categoryCol);
@@ -258,6 +259,7 @@
 	    //사실상 시작 시점...
 	     getSessionId();
 		getSaleList();
+		fetchCategoryList(1);
 	    
 	});
 
@@ -267,9 +269,11 @@
 .carousel-inner {
 	height: 12em;
 }
-
+.price_text{
+	font-size: 0.9em;
+}
 .product-thum {
-	height: 109px;
+	width: 100%;
 }
 .fLlDaL {
     background-color: rgb(244, 247, 250);
@@ -283,18 +287,11 @@
  font-size: 0.8em;
 }
 .category_img {
- height: 3em;
- width: 3em;
+ width: 100%;
 }
-.category_name{
- font-size: 0.8em;
+.category_name {
+ font-size: 0.7em;
 }
-.product-thum {
-	width: 100%;
-}
-
-
-
 
 .category-col {
     display: flex;
@@ -321,9 +318,10 @@
 .category-span.selected {
   color: #007bff;
   font-weight: 700;
+ 
 }
 .empty {
-	height: 0.8em;
+	height: 1em;
 	background-color: rgb(244, 247, 250);
 }
 
@@ -337,10 +335,10 @@
 		<jsp:include page="../common/topMainNavi.jsp"></jsp:include>
 
 		<div class="row mt-2 border_bottom text-center fw-bold fs-6 text-secondary">
-			<div class="col-3">홈</div>
-			<div class="col-3">베스트</div>
-			<div class="col-3">특가존</div>
-			<div class="col-3">리뷰이벤트</div>
+			<div class="col pe-0 ps-0">홈</div>
+			<div class="col pe-0 ps-0">베스트</div>
+			<div class="col pe-0 ps-0">특가존</div>
+			<div class="col">리뷰이벤트</div>
 		</div>
 		<div class="row mt-3 ps-0 pe-0">
 			<div id="carouselExampleIndicators" class="carousel slide ps-0 pe-0"
@@ -415,22 +413,21 @@
 
 			</div>
 			</div>
-			<div class="col-1 ps-0 pe-0"></div>
 		</div>
 		
 			<div class="row mt-2 empty"></div>
 		<div class="row mt-2">
 		<div class="col">
-		<div class="row " > 
+		<div class="row mt-2" > 
 		<div class="col fs-4 fw-bold"> 핫딜 상품 <i class="bi bi-fire text-danger"></i></div>
-		<div class="row mt-2" id="topSaleBox">
+		<div class="row mt-3" id="topSaleBox">
 		
 				</div>
 		</div>
 		</div>
 
 		</div>
-				
+	 <div class="row mt-2"></div>
 		<div class="row mt-2 ">
 			<div class="col ps-0 ms-0">
 			<img src="/uploadFiles/WelcomePet/banner/banner1.png"
