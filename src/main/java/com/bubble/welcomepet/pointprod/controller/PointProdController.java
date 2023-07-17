@@ -38,7 +38,6 @@ public class PointProdController {
 	@Autowired
 	private PointProdServiceImpl commentService;
 
-	@RequestMapping("board")
 	public String board(Model model) {
 
 		List<Map<String, Object>> list = PointProdService.getBoardList();
@@ -51,13 +50,13 @@ public class PointProdController {
 		model.addAttribute("list2", list2);
 		System.out.println(list2);
 
-		return "board/board";
+		return "pointProd/board";
 	}
 
 	@RequestMapping("writeContent")
 	public String writeContent() {
 
-		return "board/writeContent";
+		return "pointProd/writeContent";
 	}
 
 	@RequestMapping("writeContentProcess")
@@ -143,7 +142,7 @@ public class PointProdController {
 		model.addAttribute("countLikeByBoardNo", countLikeByBoardNo);
 		// 좋아요했는지
 
-		return "board/readContent";
+		return "pointProd/readContent";
 
 	}
 
@@ -176,7 +175,7 @@ public class PointProdController {
 		Map<String, Object> map = PointProdService.getBoard(board_no);
 		model.addAttribute("data", map);
 
-		return "board/update";
+		return "pointProd/update";
 	}
 
 	@RequestMapping("updateContentProcess")
@@ -224,9 +223,8 @@ public class PointProdController {
 	@RequestMapping("report")
 	public String report() {
 
-		return "board/report";
+		return "pointProd/report";
 	}
-
 
 	@RequestMapping("pointProd")
 	public String pointProd(Model model) {
