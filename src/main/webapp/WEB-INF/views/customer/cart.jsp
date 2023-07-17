@@ -18,7 +18,6 @@
 
 
  <script >
- 
 
  
  var selectedOptions = [];
@@ -156,6 +155,23 @@
 			  document.getElementById("checkAll").click();
 
 			});
+
+		 function buyNow() {
+
+			  const form = document.createElement("form");
+			  form.method = "POST";
+			  form.action = "../board/buyPage"; // buyPage URL 설정
+
+			  const selectedOptionsInput = document.createElement("input");
+			  selectedOptionsInput.type = "hidden";
+			  selectedOptionsInput.name = "selectedOptions";
+			  selectedOptionsInput.value = JSON.stringify(selectedOptions);
+			  form.appendChild(selectedOptionsInput);
+
+			  document.body.appendChild(form);
+			  form.submit();
+			}		 
+
 
  </script> 
  
@@ -304,7 +320,7 @@
 							<div class="row">
 								<div class="col">
 									<div class="d-grid gap-2">
-										<button class="btn btn-primary btn-lg" type="button">
+										<button class="btn btn-primary btn-lg" type="button" onclick="buyNow()">
 										<div class="row fs-5">
 										<div class="col text-center ps-0" id="totalPrice2"> ${totalPrice - salePrice}원 결제하기 </div>
 										</div>
