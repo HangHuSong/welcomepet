@@ -101,6 +101,7 @@ public class RestSnapController {
 		map.put("snapImgs", snapService.getSnapImgsBySnapBoardNo(snap_board_no));
 		map.put("checkLike", snapService.checkLike(snapBoardLikesDto));
 		map.put("commentList", snapService.getSnapCommentsBySnapBoardNo(snap_board_no));
+		map.put("dogDto", snapService.getDogBySnapBoardNo(snap_board_no));
 		map.put("status", "success");
 		return map;
 	}

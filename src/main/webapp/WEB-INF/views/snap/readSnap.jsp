@@ -20,6 +20,9 @@
         height: 300px;
         object-fit: cover;
     }
+    .comment{
+    	background-color: orange;
+    }
 </style>
 <script type="text/javascript">
 	const snap_board_no = new URLSearchParams(location.search).get("snap_board_no");
@@ -164,8 +167,8 @@
 			</div>
 		</div>
 		
-		<div class="row mt-2 mb-2">
-			<div class="col">
+		<div class="row mt-2 mb-2 align-items-center">
+			<div class="col-auto mx-1">
 				<c:choose>
 		    		<c:when test="${checkLike == 0}">
 				    	<i style="font-size: 20px; color: #ff2465;" class="bi bi-heart" onclick="location.href='./readSnapLike?snap_board_no=${snapBoardDto.snap_board_no}'"></i> ${countLike}
@@ -174,21 +177,11 @@
 				    	<i style="font-size: 20px; color: #ff2465;" class="bi bi-heart-fill" onclick="location.href='./readSnapUnLike?snap_board_no=${snapBoardDto.snap_board_no}'"></i> ${countLike}					    		
 		    		</c:otherwise>
 		    	</c:choose>
-		    	
-		    	
-		    	
+		    	<i class="bi bi-eye"></i> ${snapBoardDto.snap_board_view_count}
 			</div>
-			<%-- <div class="col text-end">
-				조회수  ${snapBoardDto.snap_board_view_count}
-			</div> --%>
 		</div>
 		<div class="row">
-			<div class="col">
-				<i class="bi bi-eye"></i> ${snapBoardDto.snap_board_view_count}
-			</div>
-		</div>
-		<div class="row mt-3">
-			<div class="col">
+			<div class="col-auto">
 				<i class="bi bi-geo-alt-fill"></i> ${snapBoardDto.snap_location}
 			</div>
 		</div>
@@ -204,7 +197,7 @@
 				<input id="commentContentBox" type="text" class="form-control">
 			</div>
 			<div class="col d-grid">
-				<button onclick="registerComment()" class="btn btn-info bi bi-box-arrow-in-up-left"></button>
+				<button onclick="registerComment()" class="btn comment bi bi-box-arrow-in-up-left"></button>
 			</div>
 		</div>
 		<!-- 댓글 리스트 ajax -->

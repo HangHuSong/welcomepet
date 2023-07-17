@@ -47,6 +47,8 @@ public interface SnapSqlMapper {
 
 	public List<SnapBoardDto> getSnapByDogNo(int dog_no);
 
+	public DogDto getDogBySnapBoardNo(int snap_board_no);
+
 
 
 }

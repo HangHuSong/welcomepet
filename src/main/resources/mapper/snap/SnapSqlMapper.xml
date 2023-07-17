@@ -130,4 +130,11 @@
 		WHERE dog_no = #{dog_no}
 		ORDER BY snap_board_no DESC 
 	</select>
+	
+	<select id="getDogBySnapBoardNo" resultType="com.bubble.welcomepet.dto.DogDto">
+		SELECT *
+		FROM dog d
+		INNER JOIN snap_board sb ON sb.dog_no = d.dog_no
+		WHERE sb.snap_board_no = #{snap_board_no}
+	</select>
 </mapper>

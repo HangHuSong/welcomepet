@@ -131,4 +131,8 @@ public class SnapServiceImpl {
 	public int checkLike(SnapBoardLikesDto snapBoardLikesDto) {
 		return snapSqlMapper.checkLike(snapBoardLikesDto);
 	}
+
+	public DogDto getDogBySnapBoardNo(int snap_board_no) {
+		return snapSqlMapper.getDogBySnapBoardNo(snap_board_no);
+	}
 }

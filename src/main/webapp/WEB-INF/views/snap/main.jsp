@@ -49,14 +49,17 @@
     	
     }
     #profileImg {
-    	width : 40px;
-    	height : 40px;
+    	width : 32px;
+    	height : 32px;
         border-radius: 50%;
         object-fit: cover;
     }
     #followBtn{
         color: white;
         background-color: orange;
+    }
+    .mainIcon{
+    	
     }
 </style>
 <script type="text/javascript">
@@ -242,78 +245,76 @@
                 // img carousel end //
 
                 // Like and viewCount
-                const snapDetailContent = document.getElementById("snapDetailContent");
-				snapDetailContent.innerHTML = "";
-				const row1 = document.createElement("div");
-				row1.classList.add("row");
-				row1.classList.add("mt-2");
-				const col1 = document.createElement("div");
-				col1.classList.add("col-3");
-				const spanIcon = document.createElement("span");
-				const spanNum = document.createElement("span");
-				
-				spanNum.innerText = " " + response.countLike + " ";
-				
-				const i = document.createElement("i");
-				i.id = "heart-" + response.snapDetail.snap_board_no;
-				if (response.checkLike == 0) {
-				    i.classList.add("bi");
-				    i.classList.add("bi-heart");
-				    i.style.color = "#ff2465";
-				    i.dataset.snapBoardNo = response.snapDetail.snap_board_no;
-				    i.onclick = like.bind(null, response.snapDetail.snap_board_no);
-				} else {
-				    i.classList.add("bi");
-				    i.classList.add("bi-heart-fill");
-				    i.style.color = "#ff2465";
-				    i.dataset.snapBoardNo = response.snapDetail.snap_board_no;
-				    i.onclick = unLike.bind(null, response.snapDetail.snap_board_no);
-				}
-				spanIcon.appendChild(i);
-				col1.appendChild(spanIcon);
-				col1.appendChild(spanNum);
+               const snapDetailContent = document.getElementById("snapDetailContent");
+	           snapDetailContent.innerHTML = "";
+	           const row1 = document.createElement("div");
+	           row1.classList.add("row");
+	           row1.classList.add("mt-2");
+	
+	            // Like count
+	           const col1 = document.createElement("div");
+	           col1.classList.add("col", "justify-content-start", "align-items-center");
+	
+	           const likeIcon = document.createElement("i");
+	           likeIcon.id = "heart-" + response.snapDetail.snap_board_no;
+	           likeIcon.classList.add("bi", response.checkLike == 0 ? "bi-heart" : "bi-heart-fill");
+	           likeIcon.style.color = "#ff2465";
+	           likeIcon.dataset.snapBoardNo = response.snapDetail.snap_board_no;
+	           likeIcon.onclick = response.checkLike == 0 ? () => like(response.snapDetail.snap_board_no) : () => unLike(response.snapDetail.snap_board_no);
+	
+               const likeCount = document.createElement("span");
+	           likeCount.innerText = " " + response.countLike + " ";
+	
+	           col1.appendChild(likeIcon);
+	           col1.appendChild(likeCount);
+	
+	
+	           const viewIcon = document.createElement("i");
+	           viewIcon.classList.add("bi", "bi-eye");
+	
+	           const viewCount = document.createElement("span");
+	           viewCount.innerText = "  " + response.snapDetail.snap_board_view_count + " ";
+	
+	           col1.appendChild(viewIcon);
+	           col1.appendChild(viewCount);
+	           
+	   	       const col2 = document.createElement("div");
+	           col2.classList.add("col", "d-flex","align-items-center");
+	
+	           row1.appendChild(col1);
+	           row1.appendChild(col2);
+	
+               snapDetailContent.appendChild(row1);
+
+               const dogNameRow = document.createElement("div");
+               dogNameRow.classList.add("row","mt-1");
+               
+               const dogNameCol = document.createElement("div");
+               dogNameCol.classList.add("col");
+               
+               dogNameSpan = document.createElement("span");
+               dogNameSpan.innerText = response.dogDto.dog_name;
+               dogNameSpan.style.fontSize = "20px";
+               dogNameSpan.style.color = "#DC7633";
+               dogNameCol.appendChild(dogNameSpan);
+               dogNameRow.appendChild(dogNameCol);
+               
+               
+               const row2 = document.createElement("div");
+               row2.classList.add("row");
+               row2.classList.add("mt-1");
+               row2.classList.add("mb-3");
+
+               const col3 = document.createElement("div");
+               col3.classList.add("col");
+               col3.innerText = response.snapDetail.snap_board_content;
+               col3.style.fontSize = "14px";
+
+               snapDetailContent.appendChild(row1);
+               snapDetailContent.appendChild(dogNameRow);
+               row2.appendChild(col3);
                 
-                const br = document.createElement("br");
-                col1.appendChild(br);
-
-                const col2 = document.createElement("div")
-                col2.classList.add("col", "d-grid","text-end");
-                
-                const locIcon = document.createElement("i");
-                locIcon.classList.add("bi","bi-geo-alt-fill");
-                const locString = document.createElement("span");
-                locString.innerText = response.snapDetail.snap_location;
-                col2.appendChild(locIcon);
-                col2.appendChild(locString);
-                
-                const span2Icon = document.createElement("span");
-                const span2Num = document.createElement("span");
-
-                span2Num.innerText = " " + response.snapDetail.snap_board_view_count;
-
-                const readIcon = document.createElement("i");
-                readIcon.classList.add("bi" ,"bi-eye");
-
-                span2Icon.appendChild(readIcon);
-                col1.appendChild(span2Icon);
-                col1.appendChild(span2Num);
-
-                row1.appendChild(col1);
-                row1.appendChild(col2);
-
-                const row2 = document.createElement("div");
-                row2.classList.add("row");
-                row2.classList.add("mt-3");
-                row2.classList.add("mb-3");
-
-                const col3 = document.createElement("div");
-                col3.classList.add("col");
-                col3.innerText = response.snapDetail.snap_board_content;
-
-                snapDetailContent.appendChild(row1);
-
-                row2.appendChild(col3);
-                snapDetailContent.appendChild(row2);
+               snapDetailContent.appendChild(row2);
                 
                 
                 
@@ -355,7 +356,7 @@
                     col5.classList.add("col", "text-primary", "fw-bold", "fs-5");
 
                     const span3 = document.createElement("span");
-                    span3.style.fontSize = "12px";
+                    span3.style.fontSize = "14px";
                     span3.innerText = comment.customerDto.customer_nickname;
 
                     col5.appendChild(span3);
@@ -367,7 +368,7 @@
                     col6.classList.add("text-end");
 
                     const span4 = document.createElement("span");
-                    span4.style.fontSize = "12px";
+                    span4.style.fontSize = "10px";
                     span4.style.color = "gray";
                     const formatDate = new Date(comment.snapBoardCommentDto.snap_board_comment_reg_date);
                     const options = { year: '2-digit', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' };
@@ -385,7 +386,7 @@
                     col7.classList.add("col");
 
                     const span5 = document.createElement("span");
-                    span5.style.fontSize = "15px";
+                    span5.style.fontSize = "12px";
                     span5.innerText = comment.snapBoardCommentDto.snap_board_comment_content;
 
                     col7.appendChild(span5);
@@ -397,12 +398,7 @@
 
             // Open modal
             const modal = bootstrap.Modal.getOrCreateInstance('#snapDetailModal');
-            /*	            
-                            const modal = new bootstrap.Modal(document.getElementById('snapDetailModal'), {
-                                backdrop: 'static',
-                                keyboard: false
-                            });
-            */
+            
             modal.show();
         }
         xhr.open("get", "./getSnapDetail?snap_board_no=" + snap_board_no);
@@ -450,13 +446,13 @@
 		<c:forEach items="${list}" var="data">
 			<div class="row mt-1 mb-1">
 				<div class="col">
-					<div class="row border-bottom border-top align-items-center justify-content-center" style="height: 60px;">
+					<div class="row border-bottom border-top align-items-center justify-content-center" style="height: 48px;">
 						<div class="col">
 							<img id="profileImg" src="/uploadFiles/WelcomePet/${data.dogDto.dog_image}" >
-							<span onclick="location.href = './dogProfile?dog_no=${data.dogDto.dog_no}';" style="font-size: 16px;" class="mx-1 my-1">${data.dogDto.dog_name}</span>
+							<span onclick="location.href = './dogProfile?dog_no=${data.dogDto.dog_no}';" style="font-size: 14px;" class="mx-1 my-1">   ${data.dogDto.dog_name}</span>
 						</div>
 						<div class="col d-flex justify-content-end">
-		                    <button id="followBtn" class="btn bi bi-person-plus-fill"> 팔로우</button>
+		                    <button id="followBtn" class="btn btn-sm bi bi-person-plus-fill"> 팔로우</button>
 		                </div>    
 					</div>
 				</div>
@@ -471,19 +467,19 @@
                     <div class="col mx-2">
                     	<c:choose>
                     		<c:when test="${data.checkLike == 0}">
-                    			<i id="heart-${data.snapBoardDto.snap_board_no}" class="bi bi-suit-heart fs-2" style="font-size: 20px; color: #ff2465;"
+                    			<i id="heart-${data.snapBoardDto.snap_board_no}" class="bi bi-suit-heart fs-3" style="color: #ff2465;"
                                 data-snapBoardNo="${data.snapBoardDto.snap_board_no}" onclick="like(${data.snapBoardDto.snap_board_no});"></i>
                     		</c:when>
                     		<c:otherwise>
-                                <i id="heart-${data.snapBoardDto.snap_board_no}" class="bi bi-suit-heart-fill fs-2" style="font-size: 20px; color: #ff2465;"
+                                <i id="heart-${data.snapBoardDto.snap_board_no}" class="bi bi-suit-heart-fill fs-3" style="color: #ff2465;"
                                    data-snapBoardNo="${data.snapBoardDto.snap_board_no}" onclick="unLike(${data.snapBoardDto.snap_board_no});"></i>
                             </c:otherwise>
                     	</c:choose>
-                        <i class="bi bi-chat mx-2 fs-2"></i>
-                        <i class="bi bi-send fs-2"></i>
+                        <i class="bi bi-chat mx-2 fs-3"></i>
+                        <i class="bi bi-send fs-3"></i>
                     </div>
                     <div class="col px-0 p-0 text-end">
-                        <i class="bi bi-bookmark fs-2"></i>
+                        <i class="bi bi-bookmark fs-3"></i>
                     </div>
                 </div>
                 <div class="row my-1">
@@ -539,9 +535,6 @@
                     </div>
                 </div>
                 <!-- End of snap detail content -->
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
             </div>
         </div>
     </div>
