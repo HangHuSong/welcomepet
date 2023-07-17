@@ -62,5 +62,152 @@
 		WHERE point_product_no =
 		#{point_product_no}
 	</select>
+	
+		<select id="createPk" resultType="int">
+		SELECT board_seq.nextval FROM
+		dual
+	</select>
+
+	<insert id="insert">
+		INSERT INTO board VALUES(
+		#{board_no},
+		#{board_category_no},
+		#{customer_no},
+		#{board_title},
+		#{board_content},
+		0,
+		SYSDATE
+		)
+	</insert>
+
+	<select id="selectAll"
+		resultType="com.bubble.welcomepet.dto.BoardDto">
+		SELECT *
+		FROM board
+		ORDER BY board_no DESC
+	</select>
+
+	<!-- 베스트3 -->
+	<select id="selectBest"
+		resultType="com.bubble.welcomepet.dto.BoardDto">
+  <![CDATA[
+    SELECT *
+    FROM (
+      SELECT *
+      FROM board
+      ORDER BY board_read_count DESC
+    ) WHERE ROWNUM <= 3
+  ]]>
+	</select>
+
+	<select id="selectById"
+		resultType="com.bubble.welcomepet.dto.BoardDto">
+		SELECT *
+		FROM board
+		WHERE board_no = #{board_no}
+	</select>
+
+	<update id="increaseReadCount">
+		UPDATE board
+		SET board_read_count = board_read_count +
+		1
+		WHERE board_no = #{board_no}
+	</update>
+
+	<delete id="deleteById">
+		DELETE FROM board WHERE board_no =
+		#{board_no}
+	</delete>
+
+	<update id="update">
+		UPDATE board
+		SET board_title = #{board_title},
+		board_content = #{board_content},
+		board_category_no =
+		#{board_category_no}
+		WHERE board_no = #{board_no}
+	</update>
+
+	<select id="selectByCategoryNo"
+		resultType="com.bubble.welcomepet.dto.CategoryDto">
+		SELECT *
+		FROM board_category
+		WHERE board_category_no =
+		#{board_category_no}
+	</select>
+
+	<!-- 댓글수 -->
+	<select id="countCommentByBoardNo" resultType="int">
+		SELECT COUNT(*)
+		FROM board_comment
+		WHERE board_no = #{board_no}
+	</select>
+
+	<!-- 좋아요 -->
+	<insert id="insertLike">
+		INSERT INTO board_like VALUES(
+		board_like_seq.nextval,
+		#{board_no},
+		#{customer_no}
+		)
+	</insert>
+
+	<select id="countLikeByBoardNo" resultType="int">
+		SELECT COUNT(*)
+		FROM
+		board_like
+		WHERE board_no = #{board_no}
+	</select>
+
+	<select id="howManyLikeByCustomerNo" resultType="int">
+		SELECT COUNT(*)
+		FROM board_like
+		WHERE board_no=#{board_no} AND customer_no =
+		#{customer_no}
+	</select>
+
+	<delete id="deleteLikeByCustomerNo">
+		delete
+		FROM board_like
+		WHERE
+		board_no=#{board_no} AND
+		customer_no = #{customer_no}
+	</delete>
+
+	<!-- 이미지등록 -->
+	<insert id="insertImage">
+		INSERT INTO board_image VALUES(
+		board_image_seq.nextval,
+		#{board_no},
+		#{board_image_name},
+		#{board_image_link}
+		)
+	</insert>
+
+	<select id="selectImageByBoardNo"
+		resultType="com.bubble.welcomepet.dto.ImageDto">
+		SELECT *
+		FROM board_image
+		WHERE board_no = #{board_no}
+	</select>
+	
+		<insert id="insertComment">
+		INSERT INTO board_comment VALUES(
+		board_comment_seq.nextval,
+		#{board_no},
+		#{customer_no},
+		#{board_comment_content},
+		SYSDATE
+		)
+	</insert>
+
+	<select id="getAllCommentByBoardId"
+		resultType="com.bubble.welcomepet.dto.CommentDto">
+		SELECT *
+		FROM board_comment
+		WHERE board_no = #{board_no}
+		ORDER BY board_no DESC
+	</select>
+	
 
 </mapper>

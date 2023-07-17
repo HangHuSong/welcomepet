@@ -14,6 +14,14 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <title>검색</title>
+<style >
+.recent_search{
+		font-size: 0.8em;
+		background-color:  rgb(244, 247, 250);
+		border-radius: 1rem;
+}
+
+</style>
 </head>
 <body>
 
@@ -33,17 +41,22 @@
 			<div class="col-1"></div>
 		</div>
 		<c:if test="${customerInfo}!"></c:if>
-		<div class="row mt-2 border-bottom "></div>
+		<div class="row mt-2">
+		 <div class="col">
+		 	<img src="/uploadFiles/WelcomePet/banner/banner1.png"  style="width:100%;" alt="...">
+		 </div>
+		</div>
+
 		<div class="row mt-3">
 			<div class="col-1"></div>
 			<div class="col">
-				<div class="row">최근검색어</div>
-				<div class="row mt-4 text-center">
+				<div class="row fw-bold">최근검색어</div>
+				<div class="row mt-2 text-center">
 
 				<c:forEach items="${searchInfo}" var="map"> 
-					<div class="col-6 mb-3">
-					<a class="btn btn-outline-secondary" role="button" style="border-radius: 30px;"
-					href="./searchProduct?searchWord=${map.searchInfo.search_content}">${map.searchInfo.search_content} </a>
+					<div class="col-3 pe-0">
+					<a class="btn btn-outline-secondary fw-bold recent_search"  role="button" 
+					href="./searchProduct?searchWord=${map.searchInfo.search_content}"> ${map.searchInfo.search_content} </a>
 					</div>  
 				</c:forEach>
 					
@@ -51,7 +64,6 @@
 			</div>
 			<div class="col-1"></div>
 		</div>
-		<div class="row mt-2 border-bottom "></div>
 		<div class="row mt-3">
 			<div class="col-1"></div>
 			<div class="col">
