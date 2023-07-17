@@ -379,7 +379,7 @@
 		)
 	</insert>
 	
-	<select id="getProductReview" resultType="com.bubble.welcomepet.dto.ProductReviewImagesDto">
+	<select id="getProductReview" resultType="com.bubble.welcomepet.dto.ProductReviewDto">
 		select * from product_review where product_option_no in (
 			select product_option_no from product_option
 			where product_no = #{product_no}

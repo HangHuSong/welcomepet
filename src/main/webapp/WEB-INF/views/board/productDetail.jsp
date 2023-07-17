@@ -67,26 +67,16 @@ function reloadReviewList() {
 				  reviewCount ++ ;
 				  const row1 = document.createElement("div");
 				  row1.classList.add("row");
-				  row1.classList.add("mt-2");
-				  row1.classList.add("reviewOuter");
-				  row1.classList.add("border-top");
+				  row1.classList.add("mt-2","pe-0");
+				  row1.classList.add("reviewOuter","border-top");
 				  row1.setAttribute("reviewNo" , data.productReviewDto.product_review_no);
 
-				  const rowName = document.createElement("div");
-				  rowName.classList.add("row");
-				  
-				  row1.appendChild(rowName);
-				  
-				  const colName = document.createElement("div");
-				  colName.classList.add("col");
-				  colName.innerText = "이름 " + data.customerDto.customer_nickname;
-				  rowName.appendChild(colName);
 
 				  const rowRatingDate = document.createElement("div");
-				  rowRatingDate.classList.add("row");
+				  rowRatingDate.classList.add("row", "mt-2","align-items-center","mx-0","px-0");
 
 				  const colRating = document.createElement("div");
-				  colRating.classList.add("col", "reviewStar");
+				  colRating.classList.add("col", "reviewStar","pe-0","text-center","ps-0");
 
 				  // "별점: " 텍스트를 추가하는 <span> 요소
 
@@ -100,28 +90,45 @@ function reloadReviewList() {
 				    }
 				    colRating.appendChild(starSpan);
 				  }
-				  const ratingTextSpan = document.createElement("span");
-				  ratingTextSpan.innerText = new Date(data.productReviewDto.product_review_reg_date).toLocaleDateString();
-				  colRating.appendChild(ratingTextSpan);
 
 				  rowRatingDate.appendChild(colRating);
+				  
+				  const colName = document.createElement("div");
+				  colName.classList.add("col","ps-0","review_name");
+				  colName.innerText =data.customerDto.customer_nickname;
+				  rowRatingDate.appendChild(colName);
 
 				  const colRegDate = document.createElement("div");
-				  colRegDate.classList.add("col-1");
+				  colRegDate.classList.add("col", "text-secondary","text-end","review_date");
 				  
 				  rowRatingDate.appendChild(colRegDate);
+				  
+				  const regDateTextSpan = document.createElement("span");
+				  regDateTextSpan.innerText = new Date(data.productReviewDto.product_review_reg_date).toLocaleDateString();
+				  colRegDate.appendChild(regDateTextSpan);
 
 				  row1.appendChild(rowRatingDate);
-
-				  const rowReview = document.createElement("div");
-				  rowReview.classList.add("row");
-				  rowReview.classList.add("mt-2");
-
-				  const colImage = document.createElement("div");
-				  colImage.classList.add("col-6");
+				  
+				  const reviewOptionRow = document.createElement("div");
+				  reviewOptionRow.classList.add("row");
+				  row1.appendChild(reviewOptionRow);
+				  
+				  const reviewOptionCol = document.createElement("div");
+				  reviewOptionCol.classList.add("col", "text-secondary","review_date");
+				  reviewOptionCol.innerText = "상품 : " + data.productOptionDto.product_option_name;
+				  reviewOptionRow.appendChild(reviewOptionCol);
+				  
 
 				  const reviewImgList = data.reviewImgList;
 				  if (reviewImgList && reviewImgList.length > 0) {
+					  
+					  const rowReview = document.createElement("div");
+					  rowReview.classList.add("row");
+					  rowReview.classList.add("mt-2");
+
+					  const colImage = document.createElement("div");
+					  colImage.classList.add("col");
+					  
 				    const imageContainer = document.createElement("div");
 				    imageContainer.classList.add("embed-responsive", "embed-responsive-1by1");
 				    colImage.appendChild(imageContainer);
@@ -133,17 +140,25 @@ function reloadReviewList() {
 				      img.classList.add("review-image", "embed-responsive-item");
 				      imageContainer.appendChild(img);
 				    }
+				    
+				    rowReview.appendChild(colImage);
+				    row1.appendChild(rowReview);
 				  }
 
-				  rowReview.appendChild(colImage);
-
+				 
+				  
+				  const rowContext = document.createElement("div");
+				  rowContext.classList.add("row","mt-3","text-secondary")
+				  
+				   
 				  const colContext = document.createElement("div");
-				  colContext.classList.add("col", "reviewContext");
+				  colContext.classList.add("col", "reviewContext","text-secondary","mb-2");
 				  colContext.innerText = data.productReviewDto.product_review_context;
-				  rowReview.appendChild(colContext);
+				  rowContext.appendChild(colContext);
 
-				  row1.appendChild(rowReview);
-
+				 
+				  row1.appendChild(rowContext);
+				  
 				  const rowButtons = document.createElement("div");
 				  rowButtons.classList.add("row");
 
@@ -195,11 +210,15 @@ function reloadReviewList() {
 					    }
 					    colProductRating.appendChild(starSpan);
 					  }
+					  const averRatingSpan = document.createElement("span");
+					  averRatingSpan.classList.add("px-2");
+					  averRatingSpan.innerText = productRating;
+					  
 					  const productRatingSpan2 = document.createElement("span");
-					  productRatingSpan2.classList.add("px-2");
+					  productRatingSpan2.classList.add("px-2", "review_name");
 					  productRatingSpan2.innerText = reviewCount+"개의 평가";
 					
-					  
+					  colProductRating.appendChild(averRatingSpan);
 					  colProductRating.appendChild(productRatingSpan2);
 			
 		}
@@ -689,8 +708,7 @@ window.addEventListener("DOMContentLoaded", function(){
 }
 
 .review-image {
-	width: 60px;
-	height: 60px;
+	width: 7em;
 }
 
 .star-icon {
@@ -713,6 +731,17 @@ window.addEventListener("DOMContentLoaded", function(){
 	height: 0.8em;
 	background-color: rgb(244, 247, 250);
 }
+.review_date{
+ font-size: 0.7em;
+}
+.review_name{
+font-size: 0.8em;
+}
+.reviewContext{
+ font-size: 0.8em;
+ 
+}
+
 </style>
 </head>
 <body>
@@ -825,12 +854,12 @@ window.addEventListener("DOMContentLoaded", function(){
 		</div>
 
 		<div class="row mt-3 border-top ">
-			<div class="row mt-2">
-				<div class="col fw-bold">상품평</div>
+			<div class="row mt-2 ps-3 py-2">
+				<div class="col fw-bold">상품 리뷰</div>
 			</div>
-			<div class="row">
+			<div class="row mt-2">
 			<div class="col" id="colProductRating"> </div> </div>
-			<div class="row mt-2" id="reviewListBox">
+			<div class="row mt-2  ps-3 mx-0" id="reviewListBox">
 			
 			</div>
 		</div>
