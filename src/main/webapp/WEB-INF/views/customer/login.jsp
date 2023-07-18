@@ -17,11 +17,11 @@
 </head>
 <body>
 	<div class="container">
+	<%-- top navigation --%>
+    <jsp:include page="../common/topNaviLogin.jsp"></jsp:include>
+	<%-- -------------- --%>  
 	<form action="..	/customer/loginProcess" method="post">
-		<div class="row">
-			<div class="col text-center">로그인</div>
 
-		</div>
 		<div class="row">
 			<div class="col">
 				<input type="text" class="form-control" name="customer_id">

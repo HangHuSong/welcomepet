@@ -206,68 +206,16 @@ public class CommunityController {
 		return "community/showDogUpdate";
 	}
 	
-	@RequestMapping("showDogUpdateProcess")						   
-	public String updatePostProcess(ShowDogPostDto showDogPostDto, MultipartFile[] show_dog_post_images_name) {
-		
-		System.out.println("Controller.updatePostProcess: " + showDogPostDto);
-//		System.out.println(show_dog_post_images_name);
-		
-//		이미지 삭제 후 수정하기
-		List<ShowDogPostImagesDto> postImageDtoList = new ArrayList<>();
-		/* 만약 입력된것이 없으면 for문 반복하기 */
-		if(show_dog_post_images_name != null) {
-				/* 타입 변수명 : 배열 or 컬렉션 */
-			for(MultipartFile multipartFile : show_dog_post_images_name) {
-				/* multipartFile이 비어있으면 continue */
-				if(multipartFile.isEmpty()) {
-					continue;
-				}
-				/* rootFolder : 이미지 업로드 시 파일이 저장될 기본폴더의 경로*/
-//				String rootFolder = "C:/Users/SSS/Desktop/last/source/postImages";
-//				<img src="/Users/SSS/Desktop/last/source/postImages2023/${showImages.show_dog_post_images_link}" alt="사진 어디감">
-				String rootFolder = "C:/uploadFiles/petImages/";
-				
-				/*날짜별 폴더생성 로직*/
-				SimpleDateFormat createFolderByDate = new SimpleDateFormat("yyyy/MM/dd");
-				String today = createFolderByDate.format(new Date());
-				
-				/*File: API, 파일 속성(ex: 숨김, 공개)*/
-				File targetFolder = new File(rootFolder + today);
-				if(!targetFolder.exists()) {
-					/* mkdirs: 부모 디렉토리 만들기 */
-					targetFolder.mkdirs();
-				}
-				
-				/*저장파일명 만들기*/
-				String fileName = UUID.randomUUID().toString();
-				fileName += "_" + System.currentTimeMillis();
-				
-				/* 확장자 추출하기(substring: 문자 자르는 API) */
-				String originalFileName = multipartFile.getOriginalFilename();
-				String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
-				
-				/*이건 뭐지*/
-				String saveFileName = today + "/" + fileName + ext;
-
-				/*문법오류 피하기용: 무슨 오류?*/
-				try {
-					multipartFile.transferTo(new File(rootFolder + saveFileName));
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				
-				ShowDogPostImagesDto showDogPostImagesDto = new ShowDogPostImagesDto();
-				showDogPostImagesDto.setShow_dog_post_images_name(originalFileName);
-				
-				showDogPostImagesDto.setShow_dog_post_images_link(saveFileName);
-				System.out.println(showDogPostImagesDto);
-				postImageDtoList.add(showDogPostImagesDto);
-			}
-		}
-		communityServiceImpl.updatePost(showDogPostDto, postImageDtoList);
-		
-		return "redirect:./showDogPost?show_dog_post_no=" + showDogPostDto.getShow_dog_post_no();
-	}	
+//	@RequestMapping("showDogUpdateProcess")						   
+//	public String updatePostProcess(ShowDogPostDto showDogPostDto, MultipartFile[] show_dog_post_images_name) {
+//		이미지 수정
+//		System.out.println("Controller.updatePostProcess: " + showDogPostDto);
+////		System.out.println(show_dog_post_images_name);
+//		
+//		communityServiceImpl.updatePost(showDogPostDto, postImageDtoList);
+//		
+//		return "redirect:./showDogPost?show_dog_post_no=" + showDogPostDto.getShow_dog_post_no();
+//	}	
 	
 	
 //	게시글 삭제
