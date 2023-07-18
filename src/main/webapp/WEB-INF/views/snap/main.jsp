@@ -176,8 +176,8 @@
                 const response = JSON.parse(xhr.responseText);
                 if (response.status == "success") {
                     const heartIcon = document.getElementById("heart-" + snap_board_no);
-                    heartIcon.classList.remove("bi-suit-heart");
-                    heartIcon.classList.add("bi-suit-heart-fill");
+                    heartIcon.classList.remove("bi-heart");
+                    heartIcon.classList.add("bi-heart-fill");
                     heartIcon.onclick = function () { unLike(snap_board_no); };
 					
                     
@@ -197,8 +197,8 @@
                 const response = JSON.parse(xhr.responseText);
                 if (response.status == "success") {
                     let heartIcon = document.getElementById("heart-" + snap_board_no);
-                    heartIcon.classList.remove("bi-suit-heart-fill");
-                    heartIcon.classList.add("bi-suit-heart");
+                    heartIcon.classList.remove("bi-heart-fill");
+                    heartIcon.classList.add("bi-heart");
                     heartIcon.onclick = function () { like(snap_board_no); };
                     
                 }
@@ -249,7 +249,6 @@
 	           snapDetailContent.innerHTML = "";
 	           const row1 = document.createElement("div");
 	           row1.classList.add("row");
-	           row1.classList.add("mt-2");
 	
 	            // Like count
 	           const col1 = document.createElement("div");
@@ -286,7 +285,7 @@
                snapDetailContent.appendChild(row1);
 
                const dogNameRow = document.createElement("div");
-               dogNameRow.classList.add("row","mt-1");
+               dogNameRow.classList.add("row","mt-0");
                
                const dogNameCol = document.createElement("div");
                dogNameCol.classList.add("col");
@@ -302,7 +301,7 @@
                
                const row2 = document.createElement("div");
                row2.classList.add("row");
-               row2.classList.add("mt-1");
+               row2.classList.add("mt-3");
                row2.classList.add("mb-3");
 
                const col3 = document.createElement("div");
@@ -310,8 +309,8 @@
                col3.innerText = response.snapDetail.snap_board_content;
                col3.style.fontSize = "14px";
 
-               snapDetailContent.appendChild(row1);
                snapDetailContent.appendChild(dogNameRow);
+               snapDetailContent.appendChild(row1);
                row2.appendChild(col3);
                 
                snapDetailContent.appendChild(row2);
@@ -398,8 +397,6 @@
                     snapDetailContent.appendChild(row5);
                 }
             }
-
-
             // Open modal
             const modal = bootstrap.Modal.getOrCreateInstance('#snapDetailModal');
             
@@ -453,7 +450,7 @@
 					<div class="row border-bottom border-top align-items-center justify-content-center" style="height: 48px;">
 						<div class="col">
 							<img id="profileImg" src="/uploadFiles/WelcomePet/${data.dogDto.dog_image}" >
-							<span onclick="location.href = './dogProfile?dog_no=${data.dogDto.dog_no}';" style="font-size: 14px;" class="mx-1 my-1">   ${data.dogDto.dog_name}</span>
+							<span onclick="location.href = './dogProfile?dog_no=${data.dogDto.dog_no}';" class="fw-bold mx-1 my-1 fs-5">${data.dogDto.dog_name}</span>
 						</div>
 						<div class="col d-flex justify-content-end">
 		                    <button id="followBtn" class="btn btn-sm bi bi-person-plus-fill"> 팔로우</button>
@@ -471,19 +468,19 @@
                     <div class="col mx-2">
                     	<c:choose>
                     		<c:when test="${data.checkLike == 0}">
-                    			<i id="heart-${data.snapBoardDto.snap_board_no}" class="bi bi-suit-heart fs-3" style="color: #ff2465;"
+                    			<i id="heart-${data.snapBoardDto.snap_board_no}" class="bi bi-heart fs-5" style="color: #ff2465;"
                                 data-snapBoardNo="${data.snapBoardDto.snap_board_no}" onclick="like(${data.snapBoardDto.snap_board_no});"></i>
                     		</c:when>
                     		<c:otherwise>
-                                <i id="heart-${data.snapBoardDto.snap_board_no}" class="bi bi-suit-heart-fill fs-3" style="color: #ff2465;"
+                                <i id="heart-${data.snapBoardDto.snap_board_no}" class="bi bi-heart-fill fs-5" style="color: #ff2465;"
                                    data-snapBoardNo="${data.snapBoardDto.snap_board_no}" onclick="unLike(${data.snapBoardDto.snap_board_no});"></i>
                             </c:otherwise>
                     	</c:choose>
-                        <i class="bi bi-chat mx-2 fs-3"></i>
-                        <i class="bi bi-send fs-3"></i>
+                        <i class="bi bi-chat mx-2 fs-5"></i>
+                        <i class="bi bi-send fs-5"></i>
                     </div>
                     <div class="col px-0 p-0 text-end">
-                        <i class="bi bi-bookmark fs-3"></i>
+                        <i class="bi bi-bookmark fs-5"></i>
                     </div>
                 </div>
                 <div class="row my-1">
@@ -491,8 +488,8 @@
                         <span style="font-size: 14px;">좋아요 ${data.countLike}개</span>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col">
+                <div class="row mb-3">
+                    <div class="col text-secondary">
                         <i class="bi bi-geo-alt-fill fs-5"></i><span style="font-size: 13px;"class="mx-1">${data.snapBoardDto.snap_location}</span>
                     </div>
                 </div>
@@ -513,7 +510,7 @@
             	<img id="snapModalTop" src="/welcomepet/resources/img/logo.png">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body p-2">
                 <!-- Snap detail content -->
                 <div class="container">
                     <div class="row">

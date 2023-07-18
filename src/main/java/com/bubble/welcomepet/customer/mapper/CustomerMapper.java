@@ -132,6 +132,7 @@ public interface CustomerMapper {
 	
 	public List<ProductReviewDto> getProductReview(int product_no);
 	
+	
 
 
 }

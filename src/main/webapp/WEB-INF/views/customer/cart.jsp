@@ -69,7 +69,7 @@
  
 	function updateSelectedOptions(checkbox, index) {
 		  var selectedItems = document.getElementsByName("selectedItems");
-		  var selectedOptions = [];
+		  var newOptions  = [];
 
 		  for (var i = 0; i < selectedItems.length; i++) {
 		    if (selectedItems[i].checked) {
@@ -78,10 +78,10 @@
 		      
 		      var productAmount = document.getElementById("quantityButton_" + index).value;
 		      var option = { product_option_no: productOptionNo, product_amount: productAmount, index: i };
-		      selectedOptions.push(option);
+		      newOptions .push(option);
 		    }
 		  }
-
+		  selectedOptions = newOptions;
 		  console.log(selectedOptions);
 		  // 선택된 옵션들을 활용하여 필요한 작업을 수행하세요.
 		  // 예: 선택된 옵션들을 서버로 전송하거나 다른 동작을 수행
@@ -157,7 +157,7 @@
 			});
 
 		 function buyNow() {
-
+				console.log(selectedOptions);
 			  const form = document.createElement("form");
 			  form.method = "POST";
 			  form.action = "../board/buyPage"; // buyPage URL 설정
@@ -242,13 +242,13 @@
 			        </div>
 			        <div class="col">
 			          <div class="row mt-1 align-items-start">
-			            <div class="col fw-bold" style="font-size: 0.9em;">${map.productInfo.product_name}</div>
+			            <div class="col fw-bold" style="font-size: 0.8em;">${map.productInfo.product_name}</div>
 			            <div class="col-1 text-end">
 			              <i class="bi bi-x fs-3 py-0 text-secondary" onclick="location.href='./deleteCart?cart_no=${map.cartInfo.cart_no}'" style="position: relative; top: -5px; left: -5px;"></i>
 			            </div>
 			          </div>         
-			          <div class="row mt-1">
-			            <div class="col">
+			          <div class="row mt-2"  style="font-size: 0.9em;">
+			            <div class="col" >
 			              <span class="text-secondary">
 			               <del  id="sumRealPrice_${status.index}" ></del>
 			              </span>
@@ -261,7 +261,7 @@
 			      <div class="row mt-3">
 			        <div class="col-1"></div>
 			        <div class="col ps-2 ms-2 border rounded-2 d-flex align-items-center" style="background-color: rgb(244, 247, 250); height: 4em; font-size: 0.9em;">
-			          <span class="ps-2">${map.productOptionInfo.product_option_name}</span>
+			          <span class="ps-2 text-secondary ">${map.productOptionInfo.product_option_name}</span>
 			        </div>
 			        <div class="col-1"></div>
 			      </div>
@@ -292,20 +292,21 @@
 				<div class="row ">
 					<div class="row"   style="font-size: 0.9em;">
 						<div class="col text-secondary">총 상품 금액</div>
-						<div class="col text-end fw-bold">
+						<div class="col text-end fw-bold text-secondary">
 							<del id="totalRealPrice"> </del>
 						</div>
 					</div>
 					<div class="row mt-2"  style="font-size: 0.9em;">
 						<div class="col text-secondary" >할인 금액</div>
-						<div class="col text-end "  id="totalSalePrice"></div>
+						<div class="col text-end fw-bold text-primary"  id="totalSalePrice"></div>
 						
 					</div>
-					<div class="row mt-2 border-top"></div>
+					<div class="row mt-3 border-top"></div>
 					<div class="row mt-3  fw-bold ">
 						<div class="col">총 결제 금액</div>
 						<div class="col text-end" id="totalPrice">${totalPrice - salePrice}원</div>
 					</div>
+					<div class="row mt-2"></div>
 				</div>
 			</div>
 		</div>
