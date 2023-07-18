@@ -46,7 +46,8 @@
 		<a href="./showDogDeleteProcess?show_dog_post_no=${postData.showDogPostDto.show_dog_post_no}">삭제</a>
 	</c:if>
 	<%-- 로그인한 사람만 수정/삭제 --%>
-	<div class="row py-3 border-bottom">
+
+	<div class="row pt-3 pb-4 border-bottom">
 		<div class="col">
 			<div class="row">
 				 <div class="col">
@@ -97,36 +98,46 @@
 						</div>
 						
 						<%-- 상세글 정보 --%>		 		
-				 		<div class="col text-secondary" style="font-size: 13px;">
+				 		<div class="col text-secondary pt-2" style="font-size: 13px;">
+				 			<%-- 프사 --%>
 				 			<span class="me-1">
-				 			 <img class="rounded-circle" src="https://dummyimage.com/3*3" alt="...">
+				 			 <img id="profileImg" class="rounded-circle" src="http://via.placeholder.com/33x33" >
 				 			</span>
+				 			<%-- 닉네임 --%>
 					 		<span class="me-2">
 					 		 ${postData.customerDto.customer_nickname}
 					 		</span>
-					 		 
-							 <span class="me-2">
-							  <fmt:formatDate value="${postData.showDogPostDto.show_dog_post_reg_date}" pattern="yy.MM.dd"/>
-							 </span>
-							 
-							 <span class="me-2">
-							  조회 ${postData.showDogPostDto.show_dog_post_view_count}
-							 </span>			 	 	 	
-							 
-							 <span>
-							  댓글수 ${countComment}
-							 </span>
+					 		 <%-- 작성일 --%>
+							<span class="me-2">
+							 <fmt:formatDate value="${postData.showDogPostDto.show_dog_post_reg_date}" pattern="yy.MM.dd"/>
+							</span>
+							<%-- 조회수 --%> 
+							<span class="me-2">
+							 조회 ${postData.showDogPostDto.show_dog_post_view_count}
+							</span>			 	 	 	
+							<%-- 댓글수 --%>
+							<span>
+							 댓글 ${countComment}
+							</span>
 							 	 
 				 		</div> 		
 				 	</div>
 				 	
 				 	<%-- 글 내용 --%>
-				 	<div class="row py-3">
+				 	<div class="row pt-3 pb-5">
 				 		<div class="col">
-				 		 <c:forEach items="${postData.postImageDtoList}" var="showImages">
-				 		  	<img id="postImg" src="/uploadFiles/petImages/${showImages.show_dog_post_images_link}" alt="사진 어디감">
-				 		 </c:forEach>
-				 		 ${postData.showDogPostDto.show_dog_post_content}
+				 			<div class="row">
+				 				<div class="col px-0">
+							 		 <c:forEach items="${postData.postImageDtoList}" var="showImages">
+							 		  	<img id="postImg" src="/uploadFiles/WelcomePet_community/${showImages.show_dog_post_images_link}" alt="사진 어디감">
+							 		 </c:forEach>			 				
+				 				</div>
+				 			</div>
+				 			<div class="row mt-3">
+				 				<div class="col">
+				 					${postData.showDogPostDto.show_dog_post_content}
+				 				</div>
+				 			</div>
 				 		</div>
 				 	</div>
 				 	
@@ -140,11 +151,11 @@
 					 		<div class="col text-center">
 						 		<c:choose>
 						 		 <c:when test="${checkWhetherLike == 0}">
-						 		  <button class="btn btn-lg text-danger bi bi-heart" > ${countLike}</button>	
+						 		 	<button class="btn btn-sm btn-outline-danger"><i class="bi bi-heart" style="stroke-width:2px;"></i> ${countLike}</button>
 					 			 </c:when>
 					 			 
 					 			 <c:otherwise>
-					 			  <button class="btn btn-lg text-danger bi bi-heart-fill" > ${countLike}</button>	
+						 		 	<button class="btn btn-sm btn-outline-danger"><i class="bi bi-heart-fill"></i> ${countLike}</button>
 					 			 </c:otherwise>
 					 			</c:choose>
 					 		</div>
@@ -157,17 +168,22 @@
 	</div>
 	
 	<%-- 댓글 --%>
-	<div class="row">	
+	<div class="row mt-4">	
 		 <%-- 댓글 정렬--%>
-		 <div class="col-12 fw-bold text-secondary mb-3" style="font-size: 10pt;">
-		   <button>등록순</button>
-		   <button>최신순</button>
+		 <div class="col-3 fw-bold text-secondary mb-3 d-grid pe-0" style="font-size: 10pt;">
+		   <button class="btn btn-outline-primary btn-sm"><i class="bi bi-filter-left"></i>등록순</button>
 		 </div>		 
+		 <div class="col-3 fw-bold text-secondary mb-3 d-grid pe-0" style="font-size: 10pt;">
+		   <button class="btn btn-outline-primary btn-sm"><i class="bi bi-filter-right"></i>최신순</button>
+		 </div>		 
+		 <div class="col-6 fw-bold text-secondary mb-3" style="font-size: 10pt;">
+		 </div>		 
+		 
 		 
 		 <%-- 여기서부터 주석 --%>
 		 <div class="col-12">
 		  <c:forEach items="${commentData}" var="commentData">
-		  <div class="row border-bottom py-3">
+		  <div class="row border-bottom pt-1 pb-3">
 			 <%-- 프사 --%>
 			 <div class="col-auto ps-3 pe-0 text-end">
 			  <img class="rounded-circle" src="https://dummyimage.com/3*3" alt="...">
@@ -245,22 +261,19 @@
 		  </c:forEach>
 		 </div> --%>
 		 
-		   
-		 
 
 		<div class="col mt-2">	 
 		
 			<form action="./writeCommentProcess?show_dog_post_no=${postData.showDogPostDto.show_dog_post_no}" method="post">
 				<div class="row">
-					<div class="col d-grid pe-0">
-					 <textarea class="form-control-plaintext" style="height: 50px" name="show_dog_comment_content" placeholder="댓글 작성하기"></textarea>
+					<div class="col pe-0">
+					 <textarea class="form-control-plaintext" style="height: 2.5em" name="show_dog_comment_content" placeholder="댓글 작성하기"></textarea>
 					</div>
 					
-					<div class="col-2">
-					 <button class="btn btn-primary"><i class="bi bi-arrow-return-left"></i></button>
+					<div class="col-2 d-grid ">
+					 <button class="btn" style="color:white; background-color:#fd7e14"><i class="bi bi-arrow-return-left" style="stroke-width:2;"></i></button>
 					</div>
 				</div>
-				
 			</form> 		
 		</div>
 	</div>

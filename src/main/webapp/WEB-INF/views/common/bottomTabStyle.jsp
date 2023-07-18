@@ -43,11 +43,12 @@
 			<%-- 찜 목록 ㄱ --%>
 			<div class="col">
 				<a class="btn bi bi-heart text-secondary" 
-					role="button" href="/welcomepet/community/showDogPostLikes"></a>
+					role="button" href="/welcomepet/customer/wishList"></a>
 			</div>
 			<%-- 마이페이지 ㄱ --%>
 			<div class="col">
-				<a class="btn bi bi-person-circle text-secondary" role="button"></a>
+				<a class="btn bi bi-person-circle text-secondary" role="button"
+				   href="/welcomepet/customer/my"></a>
 			</div>
 		</div>
 	</div>

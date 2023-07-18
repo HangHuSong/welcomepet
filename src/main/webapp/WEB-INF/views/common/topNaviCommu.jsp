@@ -25,7 +25,7 @@
 </head>
 <body>
 <%------ 상단 네비------%>
-<nav class="navbar sticky-top bg-body-tertiary shadow p-3" style="background-color: #ffffff;">
+<nav class="navbar sticky-top bg-body-tertiary shadow-sm p-3" style="background-color: #ffffff;">
 <div class="container p-0">
 	<div class="container p-0">
 	 <%-- 1 --%>
@@ -35,24 +35,15 @@
 	     <a class="btn bi bi-bell-fill text-secondary btn-lg p-0" role="button" href="#"></a>
 	     </div>
 	      	 
-	  	 <div class="col-5 text-center">
-	      <a id="main" href="../community/home">LOGO</a>
+	  	 <div class="col-5 text-center text-secondary fw-bold">
+	      <a id="main" href="../community/home">커뮤니티</a>
 	     </div>
 	     
 	     <div class="col d-flex justify-content-end p-0">
-	     <a class="btn bi bi-arrow-down-circle text-secondary btn-lg p-0" role="button" href="#"></a>
+	     <a class="btn bi bi-arrow-down-circle text-secondary btn-lg p-0" role="button" href="../customer/login"></a>
 	     </div>
 	  	</div>
 	 </div>
-	 
- 	 <div class="row" style="background-color: #ffffff;">
-		 <div class="col">d</div>
-		 <div class="col">d</div>
-		 <div class="col">d</div>
-		 <div class="col">d</div>
-		 <div class="col">d</div>
-		 <div class="col">d</div>
-  	 </div>
   	</div>
 </div>
 </nav>

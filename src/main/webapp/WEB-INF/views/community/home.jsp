@@ -8,7 +8,7 @@
 </head>
 <body>
 <%-- mobileStyle --%>
-  <jsp:include page="../common/topNaviDefault.jsp"></jsp:include>
+  <jsp:include page="../common/topNaviCommu.jsp"></jsp:include>
 <%-- ----------- --%>  
 
 	<div class="container text-center">

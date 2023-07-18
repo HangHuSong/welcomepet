@@ -153,7 +153,7 @@ public class CommunityController {
 				/* rootFolder : 이미지 업로드 시 파일이 저장될 기본폴더의 경로*/
 //				String rootFolder = "C:/Users/SSS/Desktop/last/source/postImages";
 //				<img src="/Users/SSS/Desktop/last/source/postImages2023/${showImages.show_dog_post_images_link}" alt="사진 어디감">
-				String rootFolder = "C:/uploadFiles/petImages/";
+				String rootFolder = "C:/uploadFiles/WelcomePet_community/";
 				
 				/*날짜별 폴더생성 로직*/
 				SimpleDateFormat createFolderByDate = new SimpleDateFormat("yyyy/MM/dd");

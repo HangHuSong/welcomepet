@@ -391,6 +391,7 @@
                     const span5 = document.createElement("span");
                     span5.style.fontSize = "12px";
                     span5.innerText = comment.snapBoardCommentDto.snap_board_comment_content;
+                    span5.classList.add("text-break");
 
                     col7.appendChild(span5);
                     row5.appendChild(col7);
@@ -450,7 +451,7 @@
 					<div class="row border-bottom border-top align-items-center justify-content-center" style="height: 48px;">
 						<div class="col">
 							<img id="profileImg" src="/uploadFiles/WelcomePet/${data.dogDto.dog_image}" >
-							<span onclick="location.href = './dogProfile?dog_no=${data.dogDto.dog_no}';" class="fw-bold mx-1 my-1 fs-5">${data.dogDto.dog_name}</span>
+							<span onclick="location.href = './dogProfile?dog_no=${data.dogDto.dog_no}';" class="align-middle fw-bold mx-1 my-1 fs-5">${data.dogDto.dog_name}</span>
 						</div>
 						<div class="col d-flex justify-content-end">
 		                    <button id="followBtn" class="btn btn-sm bi bi-person-plus-fill"> 팔로우</button>
