@@ -9,7 +9,7 @@
 
 	#logo{
 		color: white;
-        height: 120px;
+        height: 110px;
         display: flex;
         align-items: center;
 	}

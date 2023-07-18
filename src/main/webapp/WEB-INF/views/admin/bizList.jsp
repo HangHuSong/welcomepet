@@ -12,16 +12,7 @@
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
     crossorigin="anonymous">
 <style>
- /* 링크 스타일 제거 */
-    a {
-        color: inherit;
-        text-decoration: none;
-    }
-.sidebar {
-    height: 100vh;
-    background-color: #f8f9fa;
-    padding-top: 20px;
-}
+
 </style>
 <script type="text/javascript">
     function getBizList() {
@@ -137,11 +128,15 @@
 						        <li class="page-item disabled">
 						            <a class="page-link">&lt;</a>
 						        </li>
-						        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+						        <li class="page-item active">
+						        	<a class="page-link" href="#">1</a>
+					        	</li>
 						        <li class="page-item" aria-current="page">
 						            <a class="page-link" href="#">2</a>
 						        </li>
-						        <li class="page-item"><a class="page-link" href="#">3</a></li>
+						        <li class="page-item">
+						        	<a class="page-link" href="#">3</a>
+					        	</li>
 						        <li class="page-item">
 						            <a class="page-link" href="#">&gt;</a>
 						        </li>

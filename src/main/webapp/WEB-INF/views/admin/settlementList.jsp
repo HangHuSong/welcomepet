@@ -107,7 +107,7 @@
 								<thead class="table-dark">
 									<tr>
 										<td scope="col"></td>
-										<td scope="col">biz명</td>
+										<td scope="col">판매자</td>
 										<td scope="col">정산년월/정산금액</td>
 										<td scope="col">요청일</td>
 										<td scope="col">처리여부</td>
