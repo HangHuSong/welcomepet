@@ -18,210 +18,245 @@
 
 </head>
 <body>
-	<div class="container">
-		<div class="row">
-			<div class="col">
-				<jsp:include page="../common/bizTopNavi.jsp"></jsp:include>
-			</div>
-		</div>
-		<div class="row text-center">
-			<div class="col-3"><jsp:include
+	<div class="container" style="margin: 0 0;">
+		<div class="row" style="width: 1900px;">
+			<div class="col-2 text-center ps-4 text-white"
+				style="height: 1080px; background-color: rgb(29, 33, 42);"><jsp:include
 					page="../common/bizLeftNavi.jsp"></jsp:include></div>
-			<div class="col">
-				<div class="row">
+			<div class="col px-0">
+				<div class="row bg-white mx-1">
+					<div class="col text-center">
+						<jsp:include page="../common/bizTopNavi.jsp"></jsp:include>
+					</div>
+				</div>
+				<div class="row mx-1 px-5 text-center bg-light">
 					<div class="col">
+						<div class="row my-2">
+							<div class="col fs-5 fw-bold text-start py-3">상품등록</div>
+						</div>
 						<form action="./productRegisterProcess" method="post"
 							enctype="multipart/form-data">
-							<div class="row border-bottom">
-								<div class="col align-self-center">상품 타입</div>
-								<div class="col">
-									<div class="row px-2 py-3">
-										<div class="col bg-primary">
-											<span id="singleProductButton" class="btn text-white">단일상품</span>
-										</div>
-										<div class="col">
-											<span id="optionProductButton" class="btn">옵션상품</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="row border-bottom">
-								<div class="col align-self-center">카테고리</div>
+							<div class="row mt-4 mb-2">
 								<div class="col">
 									<div class="row">
-										<div class="col">
-											<select id="mainCategorySelect" size="6" class="form-control">
-												<option selected>대분류를 선택해주세요.</option>
-												<c:forEach items="${mainCategoryList }" var="mainCategory">
-													<option value="${mainCategory.main_category_no}"
-														onclick="getSubCategoryList(${mainCategory.main_category_no})">${mainCategory.main_category_name}</option>
-												</c:forEach>
-											</select>
+										<div class="col border bg-white">
+											<div class="row text-start py-2 border-bottom">
+												<div class="col fw-bold" style="font-size: 17px;">상품
+													정보</div>
+											</div>
+											<div class="row">
+												<div class="col-3 align-self-center py-3 bg-light">상품 타입</div>
+												<div class="col">
+													<div class="row px-2 text-start">
+														<div class="col-2 py-3">
+															<div class="form-check">
+																<input class="form-check-input" type="radio"
+																	id="singleProductButton"> <label
+																	class="form-check-label" for="singleProductButton">단일상품</label>
+															</div>
+														</div>
+														<div class="col-2 py-3">
+															<div class="form-check">
+																<input class="form-check-input" type="radio"
+																	id="optionProductButton"> <label
+																	class="form-check-label" for="optionProductButton">옵션상품</label>
+															</div>
+														</div>
+														<div class="col"></div>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-3 align-self-center py-3 bg-light">카테고리</div>
+												<div class="col">
+													<div class="row">
+														<div class="col">
+															<select id="mainCategorySelect" size="6"
+																class="form-control">
+																<option selected>대분류를 선택해주세요.</option>
+																<c:forEach items="${mainCategoryList }"
+																	var="mainCategory">
+																	<option value="${mainCategory.main_category_no}"
+																		onclick="getSubCategoryList(${mainCategory.main_category_no})">${mainCategory.main_category_name}</option>
+																</c:forEach>
+															</select>
+														</div>
+														<div class="col">
+															<select id="subCategorySelect" size="6"
+																class="form-control" name="sub_category_no">
+																<!-- 소분류 카테고리 -->
+															</select>
+														</div>
+														<div class="col"></div>
+													</div>
+												</div>
+											</div>
+											<div class="row border-bottom">
+												<div class="col">
+													<div class="row py-3">
+														<div class="col align-self-center">상품명</div>
+														<div class="col">
+															<input class="form-control" name="product_name"
+																type="text">
+														</div>
+													</div>
+												</div>
+											</div>
 										</div>
-										<div class="col">
-											<select id="subCategorySelect" size="6" class="form-control"
-												name="sub_category_no">
-												<!-- 소분류 카테고리 -->
-											</select>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="row border-bottom">
-								<div class="col">
-									<div class="row py-3">
-										<div class="col align-self-center">상품명</div>
-										<div class="col">
-											<input class="form-control" name="product_name" type="text">
-										</div>
-									</div>
-								</div>
-							</div>
 
-							<div class="row py-3 border-bottom">
-								<div class="col align-self-center">상품 썸네일</div>
-								<div class="col">
-									<input class="form-control" name="thumbnail" type="file"
-										accept="image/*" onchange="pushThumbnail(event)">
-								</div>
-							</div>
-							<div class="row py-3 border-bottom">
-								<div class="col align-self-center">상품 대표이미지</div>
-								<div class="col">
-									<input class="form-control" name="main_images" type="file"
-										multiple accept="image/*" onchange="pushMainImages(event)">
-								</div>
-							</div>
-							<div class="row py-3 border-bottom">
-								<div class="col align-self-center">상품 상세이미지</div>
-								<div class="col">
-									<input class="form-control" name="detail_images" type="file"
-										multiple accept="image/*" onchange="pushDetailImages(event)">
-								</div>
-							</div>
-							<div class="row py-3 border-bottom">
-								<div class="col align-self-center">상품 정보</div>
-								<div class="col">
-									<textarea class="form-control" name="product_description"></textarea>
-								</div>
-							</div>
-							<div class="row border-bottom">
-								<div class="col">
-									<div class="row border-bottom py-3">
-										<div class="col fw-bold">판매가</div>
-										<div class="col"></div>
+									</div>
+
+
+
+									<div class="row py-3 border-bottom">
+										<div class="col align-self-center">상품 썸네일</div>
+										<div class="col">
+											<input class="form-control" name="thumbnail" type="file"
+												accept="image/*" onchange="pushThumbnail(event)">
+										</div>
+									</div>
+									<div class="row py-3 border-bottom">
+										<div class="col align-self-center">상품 대표이미지</div>
+										<div class="col">
+											<input class="form-control" name="main_images" type="file"
+												multiple accept="image/*" onchange="pushMainImages(event)">
+										</div>
+									</div>
+									<div class="row py-3 border-bottom">
+										<div class="col align-self-center">상품 상세이미지</div>
+										<div class="col">
+											<input class="form-control" name="detail_images" type="file"
+												multiple accept="image/*" onchange="pushDetailImages(event)">
+										</div>
+									</div>
+									<div class="row py-3 border-bottom">
+										<div class="col align-self-center">상품 정보</div>
+										<div class="col">
+											<textarea class="form-control" name="product_description"></textarea>
+										</div>
+									</div>
+									<div class="row border-bottom">
+										<div class="col">
+											<div class="row border-bottom py-3">
+												<div class="col fw-bold">판매가</div>
+												<div class="col"></div>
+											</div>
+											<div class="row py-3">
+												<div class="col align-self-center">상품 가격</div>
+												<div class="col">
+													<div class="row">
+														<div class="col">
+															<input class="form-control" name="product_price"
+																type="text">
+														</div>
+														<div class="col-1 align-self-center">원</div>
+													</div>
+												</div>
+											</div>
+											<div class="row py-3 justify-content-center">
+												<div class="col align-self-center">상품 배송비</div>
+												<div class="col">
+													<div class="row">
+														<div class="col">
+															<input class="form-control" name="product_shipping_price"
+																type="text">
+														</div>
+														<div class="col-1 align-self-center">원</div>
+													</div>
+												</div>
+											</div>
+											<div class="row py-3">
+												<div class="col align-self-center">상품 할인율</div>
+												<div class="col">
+													<div class="row">
+														<div class="col">
+															<input class="form-control" name="product_discount_rate"
+																type="text">
+														</div>
+														<div class="col-1 align-self-center">%</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row py-3" id="productStockQuantity">
+										<div class="col align-self-center">상품 재고</div>
+										<div class="col">
+											<div class="row">
+												<div class="col">
+													<input class="form-control" name="stock_quantity"
+														type="text" value="0">
+												</div>
+												<div class="col-1 align-self-center">개</div>
+											</div>
+										</div>
 									</div>
 									<div class="row py-3">
-										<div class="col align-self-center">상품 가격</div>
-										<div class="col">
+										<div class="col visually-hidden"
+											id="productOptionBoxContainer">
 											<div class="row">
-												<div class="col">
-													<input class="form-control" name="product_price"
-														type="text">
-												</div>
-												<div class="col-1 align-self-center">원</div>
-											</div>
-										</div>
-									</div>
-									<div class="row py-3 justify-content-center">
-										<div class="col align-self-center">상품 배송비</div>
-										<div class="col">
-											<div class="row">
-												<div class="col">
-													<input class="form-control" name="product_shipping_price"
-														type="text">
-												</div>
-												<div class="col-1 align-self-center">원</div>
-											</div>
-										</div>
-									</div>
-									<div class="row py-3">
-										<div class="col align-self-center">상품 할인율</div>
-										<div class="col">
-											<div class="row">
-												<div class="col">
-													<input class="form-control" name="product_discount_rate"
-														type="text">
-												</div>
-												<div class="col-1 align-self-center">%</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="row py-3" id="productStockQuantity">
-								<div class="col align-self-center">상품 재고</div>
-								<div class="col">
-									<div class="row">
-										<div class="col">
-											<input class="form-control" name="stock_quantity" type="text"
-												value="0">
-										</div>
-										<div class="col-1 align-self-center">개</div>
-									</div>
-								</div>
-							</div>
-							<div class="row py-3">
-								<div class="col visually-hidden" id="productOptionBoxContainer">
-									<div class="row">
-										<div class="col align-self-center">상품 옵션</div>
-										<div class="col">
-											<span class="btn btn-primary addOptionButton"
-												onclick="addOption()">추가하기</span>
-										</div>
-										<div class="col visually-hidden">
-											<input type="hidden" name="option_name"> <input
-												type="hidden" name="option_price"> <input
-												type="hidden" name="option_stock_quantity">
-										</div>
-									</div>
-									<div class="row visually-hidden productOptionBox">
-										<div class="col">
-											<div class="row">
-												<div class="col align-self-center">상품 옵션 이름</div>
-												<div class="col">
-													<input class="form-control optionName" type="text">
-												</div>
-											</div>
-											<div class="row">
-												<div class="col align-self-center">상품 옵션 가격</div>
-												<div class="col">
-													<input class="form-control optionPrice" type="text">
-												</div>
-											</div>
-											<div class="row">
-												<div class="col align-self-center">상품 옵션 재고 수량</div>
-												<div class="col">
-													<input class="form-control optionStockQuantity" type="text">
-												</div>
-											</div>
-											<div class="row">
+												<div class="col align-self-center">상품 옵션</div>
 												<div class="col">
 													<span class="btn btn-primary addOptionButton"
-														onclick="addOptionWithEvent(event)">옵션 추가하기</span>
+														onclick="addOption()">추가하기</span>
 												</div>
+												<div class="col visually-hidden">
+													<input type="hidden" name="option_name"> <input
+														type="hidden" name="option_price"> <input
+														type="hidden" name="option_stock_quantity">
+												</div>
+											</div>
+											<div class="row visually-hidden productOptionBox">
 												<div class="col">
-													<span class="btn btn-primary removeOptionButton"
-														onclick="deleteOption(event)">옵션 삭제하기</span>
+													<div class="row">
+														<div class="col align-self-center">상품 옵션 이름</div>
+														<div class="col">
+															<input class="form-control optionName" type="text">
+														</div>
+													</div>
+													<div class="row">
+														<div class="col align-self-center">상품 옵션 가격</div>
+														<div class="col">
+															<input class="form-control optionPrice" type="text">
+														</div>
+													</div>
+													<div class="row">
+														<div class="col align-self-center">상품 옵션 재고 수량</div>
+														<div class="col">
+															<input class="form-control optionStockQuantity"
+																type="text">
+														</div>
+													</div>
+													<div class="row">
+														<div class="col">
+															<span class="btn btn-primary addOptionButton"
+																onclick="addOptionWithEvent(event)">옵션 추가하기</span>
+														</div>
+														<div class="col">
+															<span class="btn btn-primary removeOptionButton"
+																onclick="deleteOption(event)">옵션 삭제하기</span>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-							</div>
-							<div class="row py-3">
-								<div class="col">
-									<button class="btn btn-primary" onclick="combineOptionValues()">
-										<!-- onclick="productRegister()"> -->
-										등록하기
-									</button>
+									<div class="row py-3">
+										<div class="col">
+											<button class="btn btn-primary"
+												onclick="combineOptionValues()">
+												<!-- onclick="productRegister()"> -->
+												등록하기
+											</button>
+										</div>
+									</div>
 								</div>
 							</div>
 						</form>
 					</div>
 				</div>
-
 			</div>
+			<div class="col-2"></div>
 		</div>
 	</div>
 	<!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->

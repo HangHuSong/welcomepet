@@ -15,74 +15,106 @@
 
 </head>
 <body>
-	<div class="container">
-		<div class="row">
-			<div class="col">
-				<jsp:include page="../common/bizTopNavi.jsp"></jsp:include>
-			</div>
-		</div>
-		<div class="row text-center">
-			<div class="col-3"><jsp:include
+	<div class="container" style="margin: 0 0;">
+		<div class="row" style="width: 1900px;">
+			<div class="col-3 text-center ps-4 text-white"
+				style="height: 1080px; background-color: rgb(29, 33, 42);"><jsp:include
 					page="../common/bizLeftNavi.jsp"></jsp:include></div>
-			<div class="col-9 my-3">
-				<div class="row my-2 mx-2">
-					<div class="col fs-4 bold text-start">교환관리</div>
+			<div class="col-9 px-0">
+				<div class="row bg-white mx-1">
+					<div class="col">
+						<jsp:include page="../common/bizTopNavi.jsp"></jsp:include>
+					</div>
 				</div>
-				<div class="row my-2 mx-2"></div>
-				<div class="row my-2 mx-2">
-					<div class="col border">
-						<div class="row py-2 border-bottom">
-							<div class="col text-start">
-								<button class="btn btn-outline-secondary"
-									id="returnCompleteButton" onclick="changeOrderStatusTo3()">교환확인</button>
-							</div>
+				<div class="row mx-5 text-center">
+					<div class="col">
+						<div class="row my-2">
+							<div class="col fs-5 fw-bold text-start py-3">교환관리</div>
 						</div>
-						<div class="row" id="orderList">
+						<div class="row my-2 bg-light px-5">
 							<div class="col">
-								<div class="table-responsive">
-									<table class="table text-nowrap">
-										<thead>
-											<tr>
-												<th scope="col"><input class="form-check-input"
-													type="checkbox" value="" onclick="toggleCheck(event)"></th>
-												<th scope="col">상품주문번호</th>
-												<th scope="col">주문번호</th>
-												<th scope="col">구매자명</th>
-												<th scope="col">구매자연락처</th>
-												<th scope="col">교환사유</th>
-												<th scope="col">교환상세사유</th>
-												<th scope="col">주문일</th>
-												<th scope="col">상품번호</th>
-												<th scope="col">상품명</th>
-												<th scope="col">주문수량</th>
-											</tr>
-										</thead>
-										<tbody>
-										
-											<c:forEach items="${orderList }" var="order">
-												<tr>
-													<td><input class="form-check-input"
-														name="order_product_no" type="checkbox"
-														value="${order.orderProductDto.order_product_no }"></td>
-													<td><button class="btn px-0 py-0"
-															data-bs-toggle="modal" data-bs-target="#orderDetailModal"
-															onclick='showModal(${order.jsonData})'>${order.orderProductDto.order_product_no }</button></td>
-													<td>${order.ordersDto.orders_no }</td>
-													<td>${order.customerDto.customer_name }</td>
-													<td>${order.customerDto.customer_phone }</td>
-													<td>${order.returnExchangeReasonDto.return_exchange_reason_name}</td>
-													<td>${order.exchangeDto.exchange_reason_detail }</td>
-													<td><fmt:formatDate
-															value="${order.ordersDto.orders_date }"
-															pattern="yyyy.MM.dd" /></td>
-													<td>${order.productOptionDto.product_option_no}</td>
-													<td>${order.productOptionDto.product_option_name}</td>
-													<td>${order.orderProductDto.order_product_quantity }</td>
-												</tr>
-											</c:forEach>
+								<div class="row my-5">
+									<div class="col border bg-white">
+										<div class="row border-bottom">
+											<div class="col-3 border-end py-2">기간</div>
+											<div class="col py-2">
+												<input class="text-center" type="date" style="width: 200px;">
+												~ <input class="text-center" type="date"
+													style="width: 200px;">
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-3 border-end py-2">검색어</div>
+											<div class="col py-2 text-start"></div>
+										</div>
+									</div>
+								</div>
+								<div class="row justify-content-center my-5">
+									<div class="col">
+										<span><button class="btn btn-dark">검색</button></span> <span><button
+												class="btn btn-outline-dark">초기화</button></span>
+									</div>
+								</div>
+							</div>
 
-										</tbody>
-									</table>
+						</div>
+						<div class="row my-2 mx-2">
+							<div class="col border">
+								<div class="row py-2 border-bottom">
+									<div class="col text-start">
+										<button class="btn btn-outline-secondary btn-sm"
+											id="returnCompleteButton" onclick="changeOrderStatusTo3()">교환확인</button>
+									</div>
+								</div>
+								<div class="row bg-white" id="orderList">
+									<div class="col">
+										<div class="table-responsive">
+											<table class="table text-nowrap">
+												<thead class="table-light">
+													<tr>
+														<th scope="col"><input class="form-check-input"
+															type="checkbox" value="" onclick="toggleCheck(event)"></th>
+														<th scope="col">상품주문번호</th>
+														<th scope="col">주문번호</th>
+														<th scope="col">구매자명</th>
+														<th scope="col">구매자연락처</th>
+														<th scope="col">교환사유</th>
+														<th scope="col">교환상세사유</th>
+														<th scope="col">주문일</th>
+														<th scope="col">상품번호</th>
+														<th scope="col">상품명</th>
+														<th scope="col">주문수량</th>
+													</tr>
+												</thead>
+												<tbody>
+
+													<c:forEach items="${orderList }" var="order">
+														<tr>
+															<td><input class="form-check-input"
+																name="order_product_no" type="checkbox"
+																value="${order.orderProductDto.order_product_no }"></td>
+															<td><button class="btn px-0 py-0"
+																	data-bs-toggle="modal"
+																	data-bs-target="#orderDetailModal"
+																	onclick='showModal(${order.jsonData})'>${order.orderProductDto.order_product_no }</button></td>
+															<td>${order.ordersDto.orders_no }</td>
+															<td>${order.customerDto.customer_name }</td>
+															<td>${order.customerDto.customer_phone }</td>
+															<td>${order.returnExchangeReasonDto.return_exchange_reason_name}</td>
+															<td>${order.exchangeDto.exchange_reason_detail }</td>
+															<td><fmt:formatDate
+																	value="${order.ordersDto.orders_date }"
+																	pattern="yyyy.MM.dd" /></td>
+															<td>${order.productOptionDto.product_option_no}</td>
+															<td>${order.productOptionDto.product_option_name}</td>
+															<td>${order.orderProductDto.order_product_quantity }</td>
+														</tr>
+													</c:forEach>
+
+												</tbody>
+											</table>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
