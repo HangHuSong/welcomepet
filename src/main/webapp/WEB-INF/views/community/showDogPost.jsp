@@ -98,7 +98,7 @@
 						</div>
 						
 						<%-- 상세글 정보 --%>		 		
-				 		<div class="col text-secondary" style="font-size: 13px;">
+				 		<div class="col text-secondary pt-2" style="font-size: 13px;">
 				 			<%-- 프사 --%>
 				 			<span class="me-1">
 				 			 <img id="profileImg" class="rounded-circle" src="http://via.placeholder.com/33x33" >
@@ -130,8 +130,7 @@
 				 				<div class="col px-0">
 							 		 <c:forEach items="${postData.postImageDtoList}" var="showImages">
 							 		  	<img id="postImg" src="/uploadFiles/WelcomePet_community/${showImages.show_dog_post_images_link}" alt="사진 어디감">
-							 		 </c:forEach>
-				 				
+							 		 </c:forEach>			 				
 				 				</div>
 				 			</div>
 				 			<div class="row mt-3">
@@ -139,7 +138,6 @@
 				 					${postData.showDogPostDto.show_dog_post_content}
 				 				</div>
 				 			</div>
-				 		 
 				 		</div>
 				 	</div>
 				 	
@@ -153,9 +151,7 @@
 					 		<div class="col text-center">
 						 		<c:choose>
 						 		 <c:when test="${checkWhetherLike == 0}">
-						 		 	<button class="btn btn-sm btn-outline-danger"><i class="bi bi-heart"></i> ${countLike}</button>
-						 		 
-						 		  	
+						 		 	<button class="btn btn-sm btn-outline-danger"><i class="bi bi-heart" style="stroke-width:2px;"></i> ${countLike}</button>
 					 			 </c:when>
 					 			 
 					 			 <c:otherwise>
@@ -265,8 +261,6 @@
 		  </c:forEach>
 		 </div> --%>
 		 
-		   
-		 
 
 		<div class="col mt-2">	 
 		
@@ -276,11 +270,10 @@
 					 <textarea class="form-control-plaintext" style="height: 2.5em" name="show_dog_comment_content" placeholder="댓글 작성하기"></textarea>
 					</div>
 					
-					<div class="col-2  d-grid ">
-					 <button class="btn btn-primary"><i class="bi bi-arrow-return-left"></i></button>
+					<div class="col-2 d-grid ">
+					 <button class="btn" style="color:white; background-color:#fd7e14"><i class="bi bi-arrow-return-left" style="stroke-width:2;"></i></button>
 					</div>
 				</div>
-				
 			</form> 		
 		</div>
 	</div>

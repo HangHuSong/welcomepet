@@ -28,7 +28,7 @@
     font-style: normal;
 }
 #title{
-    font-size:1.2em;
+    font-size:1.1em;
     font-weight:600;
     font-family:'SUITE-Regular', sans-serif;
 }
@@ -44,7 +44,7 @@
 	<%-- 배너이미지 --%>
 	<div class="row mb-1">
 		<div class="col p-0">
-			<img class="img-fluid" src="/welcomepet/resources/board/img/banner.jpg">
+			<%--<img class="img-fluid" src="/welcomepet/resources/board/img/banner.jpg">--%>
 		</div>
 	</div>
 
@@ -58,20 +58,26 @@
 						<div class="col" onclick="location.href='./showDogPost?show_dog_post_no=${bestList.showDogPostDto.show_dog_post_no}'">
 						  <%-- 제목 --%>
 						  <div class="row">
-						   <div class="col-1 text-danger">
-						    <i class="bi bi-fire"></i>
+						   <div class="col-1">
+						    <i class="bi bi-hand-thumbs-up-fill" style="color:#fd7e14;"></i>
 						   </div>
-						   <div class="col-auto">
+						   <div class="col-auto pe-0">
 							  <span>
-							   <a class="me-1 text-decoration-none text-black"
-							   	  style="font-family: 'SUITE-Regular', sans-serif; font-size:16px; font-weight:800;">
+							   <a class=" me-1 text-decoration-none text-black"
+							   	  style="font-family: 'SUITE-Regular', sans-serif; font-size:1em; font-weight:800;">
 							   ${bestList.showDogPostDto.show_dog_post_title}</a>
 							  </span>
 						   </div>
 						   
-						   <div class="col">
-						 	<img alt="null" src="">
+						   <div class="col ps-1">
+						 	<c:if test="${bestList.checkImg > 0}">
+							   	  <span style="color:#FDB959">
+							   	  <i class="bi bi-image"></i>
+							   	  </span>
+					   	    </c:if>
 						   </div>
+						   
+						   
 						   
 						  </div>
 						  
@@ -150,7 +156,7 @@
 						  </div>						  
 						  
 						  <%-- 닉네임/날짜/조회수 --%>
-						  <div class="row text-secondary" style="font-size: 0.9em;">
+						  <div class="row text-secondary" style="font-size: 0.8em;">
 							<div class="col">
 								<span class="me-2">
 								 ${map.customerDto.customer_nickname}
@@ -169,7 +175,10 @@
 
 						<%-- 섬네일 --%>
 						<div class="col-2 p-0 embed-responsive embed-responsive-1by1">
-						 <img class="thum w-100 embed-responsive-item rounded" style="object-fit: cover;" alt="X" src="/uploadFiles/WelcomePet_community/${map.postImageDtoList[0].show_dog_post_images_link}" />
+						 <c:if test="${map.checkImg > 0}">
+					   	  <img class="thum w-100 embed-responsive-item rounded" style="object-fit: cover;" alt="X" src="/uploadFiles/WelcomePet_community/${map.postImageDtoList[0].show_dog_post_images_link}" />
+						 </c:if>
+						 
 						</div>
 						
 						<%-- 댓글 코드수정 전--%>
@@ -188,20 +197,49 @@
 							  </c:otherwise>
 						  </c:choose>		
 						</div> --%>
+						
+						<%-- 댓글 수 뱃지 --%>
 						<div class="col-2">
+						<div class="badge d-flex align-items-center justify-content-center" 
+							 style="height:55px; background-color: #F0F0F0;
+							 		font-family:'SUITE-Regular', sans-serif;">
+						 
 						 <c:choose>
 							  <c:when test="${map.countComment eq 0}">
-							   <span>
-							   </span>
+							   <div class="row">
+							    <div class="col">
+	
+  	 						    <div class="row mt-1">
+							     <div class="col" style="color:#454545; font-weight:900;">0</div>
+							    </div>
+							   
+							    <div class="row mt-1">
+							     <div class="col" style="color:#9c9c9c; font-weight:500;">댓글</div>
+							    </div>
+							   
+							    </div>
+							   </div>
 							  </c:when>	
 							  
 							  <c:otherwise>
-							   <span class="badge text-secondary d-flex align-items-center justify-content-center p-2" style="height:55px; background-color: #F0F0F0;">
-							   ${map.countComment}<br>댓글
-							    </span>
+							  <div class="row">
+							   <div class="col">
+							   
+							   <div class="row">
+							    <div class="col" style="color:#454545; font-weight:900;">${map.countComment}</div>
+							   </div>
+							   <div class="row mt-1">
+							    <div class="col" style="color:#9c9c9c; font-weight:500;">댓글</div>
+							   </div>
+
+							   </div>
+							  </div>
 							  </c:otherwise>
 						  </c:choose>		
 						</div>
+						</div>
+						<%-- -------- --%>
+							 
 					</div>					
 				</div>			
 			</c:forEach>
@@ -217,48 +255,11 @@
 <div class="row fixed-bottom mb-5 pb-4">
 	<div class="col">
 	</div>
-	<div class="col-3 text-center">
-	 	<a class="bi bi-pencil-square btn btn-primary shadow bg-body-tertiary rounded" role="button" href="./showDogUpload"></a>
+	<div class="col-3 text-center justify-content-center">
+	 	<a class="btn btn-lg shadow rounded-circle bi bi-pencil-square" role="button" 
+	 	   style="color:white; background-color:#fd7e14" href="./showDogUpload"></a>
 	</div>
 </div>
-
-<%-- 
-<div class="container">
- <div class="p-3">
-	<div class="col justify-content-center">
-	
-	<div class="row">
-		<a href="./showDogUpload">새 글쓰기</a>
-	</div>
-	
-	<c:forEach items="${list}" var="map">
-	<div class="row border-bottom">
-		<div class="col">
-		 <div class="row" style="font-size: 12pt;">
-		 	<div class="col">
-		  <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" 
-			 href="./showDogPost?show_dog_post_no=${map.showDogPostDto.show_dog_post_no}">${map.showDogPostDto.show_dog_post_title}</a>
-		 	</div>
-		 	
-		 </div>
-		 
-		 <div class="row" style="font-size: 12pt;">
-		  ${map.customerDto.customer_nickname}
-	   	   <fmt:formatDate value="${map.showDogPostDto.show_dog_post_reg_date}" pattern="yy.MM.dd"/>
-		   조회 ${map.showDogPostDto.show_dog_post_view_count}
-		 </div>
-		</div>
-	</div>
-	</c:forEach>
-	
-
-
-	
-	</div>
- </div>
-</div>
-
---%>
 
 <%-- mobileStyle --%>
   <jsp:include page="../common/bottomTabStyle.jsp"></jsp:include>

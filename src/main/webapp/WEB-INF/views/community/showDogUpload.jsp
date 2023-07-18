@@ -32,7 +32,7 @@
 	 		 
 	 		 <div class="col text-end">
 	 		 <%-- <button class="btn btn-primary">임시저장</button> --%>
-	 		  <button class="btn btn-primary"><i class="bi bi-upload"></i> 업로드</button>
+	 		  <button class="btn" style="color:white; background-color:#fd7e14"><i class="bi bi-upload"></i> 업로드</button>
 	 		 </div>
  		 </div>
  		 
