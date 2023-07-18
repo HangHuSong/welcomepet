@@ -35,8 +35,9 @@
 				
 				for(request of settlementRequestList){
 					const tr = document.createElement("tr");
+					tr.classList.add("align-middle");
+					tr.style.height = "48px";
 					const td1 =  document.createElement("td");
-					td1.innerText = request.settlementRequestDto.settlement_request_no;
 					tr.appendChild(td1);
 					
 					const td2 =  document.createElement("td");
@@ -53,11 +54,17 @@
 					
 					const td5 = document.createElement("td");
 					if (request.settlementProcessDto != null) {
-						td5.innerText = "처리완료";
-						tr.appendChild(td5);
+						td5.classList.add("text-success");
+					    const i5 = document.createElement("i");
+					    i5.classList.add("bi", "bi-check2");
+					    td5.appendChild(i5);
+					    const textNode = document.createTextNode(" 처리 완료");
+					    td5.appendChild(textNode);
+					    tr.appendChild(td5);
 					} else {
 						const btn = document.createElement("button");
-						btn.classList.add("btn","btn-primary");
+						btn.classList.add("btn","btn-secondary","btn-sm");
+						btn.style.width = "85px";
 						btn.innerText = "정산하기";
 						btn.setAttribute("onclick","settlementProcess("+ request.settlementRequestDto.settlement_request_no +")");
 						td5.appendChild(btn);
@@ -111,10 +118,9 @@
 										<td scope="col">정산년월/정산금액</td>
 										<td scope="col">요청일</td>
 										<td scope="col">처리여부</td>
-										<td></td>
 									</tr>
 								</thead>
-								<tbody id="settlementRequestListBox">
+								<tbody id="settlementRequestListBox" class="align-items-center justify-content-center">
 								</tbody>
 							</table>
 					</div>

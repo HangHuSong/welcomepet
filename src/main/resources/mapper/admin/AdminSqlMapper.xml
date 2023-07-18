@@ -423,6 +423,7 @@
 		<select id="getShowDogList" resultType="com.bubble.welcomepet.dto.ShowDogPostDto">
 			SELECT * 
 			FROM show_dog_post
+			ORDER BY show_dog_post_reg_date DESC
 		</select>
 		
 		<select id="getShowDogComments" resultType="com.bubble.welcomepet.dto.ShowDogCommentDto">

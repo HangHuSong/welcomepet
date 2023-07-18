@@ -92,9 +92,25 @@
 			<div class="col-1"></div>
 			<div class="col-9">
 				<div class="row mt-5">
+                	<div class="col-2">
+                		<select name="searchType" class="form-select">
+                			<option value="customer_no" selected="selected">IDX</option>
+                			<option value="customer_nickname">제목</option>
+                			<option value="customer_phone">작성자</option>
+                		</select>
+                	</div>
+                    <div class="col-8">
+                        <input name="searchWord" type="text" class="form-control">
+                    </div>
+                    <div class="col d-grid">
+                        <button class="btn btn-secondary">검색</button>
+                    </div>
+                </div>
+				
+				<div class="row mt-3">
 					<div class="col">
-						<table class="table">
-						    <thead>
+						<table class="table text-center">
+						    <thead class="table-dark">
 						        <tr>
 						            <th scope="col">IDX</th>
 						            <th scope="col">제목</th>
@@ -107,6 +123,31 @@
 						</table>
 					</div>
 				</div>
+				
+				<div class="row">
+                	<div class="col">
+                		<nav aria-label="...">
+						    <ul class="pagination justify-content-center">
+						        <li class="page-item disabled">
+						            <a class="page-link">&lt;</a>
+						        </li>
+						        <li class="page-item active">
+						        	<a class="page-link" href="#">1</a>
+					        	</li>
+						        <li class="page-item" aria-current="page">
+						            <a class="page-link" href="#">2</a>
+						        </li>
+						        <li class="page-item">
+						        	<a class="page-link" href="#">3</a>
+					        	</li>
+						        <li class="page-item">
+						            <a class="page-link" href="#">&gt;</a>
+						        </li>
+						    </ul>
+						</nav>
+                	</div>
+				
+				
 			</div>
 		</div>
 	</div>

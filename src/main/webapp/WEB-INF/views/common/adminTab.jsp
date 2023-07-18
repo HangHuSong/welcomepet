@@ -33,7 +33,7 @@
                     <div class="row mt-3">
                         <div class="col">
                             <h4 class="my-3"><i class="bi bi-person"></i> Biz 관리</h4>
-                            <a class="nav-link" href="./bizList"><i class="bi bi-kanban"></i> biz 조회</a>
+                            <a class="nav-link" href="./bizList"><i class="bi bi-kanban"></i> Biz 조회</a>
                             <a class="nav-link" href="./orderList"><i class="bi bi-list-ul"></i> 주문 조회</a>
                             <a class="nav-link" href="./bizApprovalList"><i class="bi bi-check-square"></i> 입점 관리</a>
                             <a class="nav-link" href="./settlementList"><i class="bi bi-cash"></i> 정산 관리</a>
