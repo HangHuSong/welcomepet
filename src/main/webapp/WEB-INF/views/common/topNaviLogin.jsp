@@ -9,17 +9,18 @@
 				<a class="btn bi bi-arrow-left fs-4" role="button"
 					href="/welcomepet/board/main"> </a>
 			</div>
-			<div class="col-1"></div>
-			<div class="col-6" style="text-align: center;">로그인</div>
+			<div class="col-8" style="text-align: center;">
+				<img  src="/welcomepet/resources/img/logo.png" style="height:3em; ">
+			</div>
 <!-- 			<div class="col-1 ">
 				<a class="btn bi bi-search fs-3" role="button"
 					href="/welcomepet/board/search"> </a>
 			</div> -->
-			<div class="col-2">
+	<!-- 		<div class="col-2">
 				<a class="btn bi bi-cart2 fs-4" role="button"
 					href="/welcomepet/customer/cart"> </a>
-			</div>
-
+			</div>  -->
+			<div class="col-2"></div>
 		</nav>
 	</div>
 </div>
