@@ -50,7 +50,7 @@
                         <input name="searchWord" type="text" class="form-control">
                     </div>
                     <div class="col d-grid">
-                        <button class="btn btn-primary">검색</button>
+                        <button class="btn btn-secondary">검색</button>
                     </div>
                 </div>
             </form>

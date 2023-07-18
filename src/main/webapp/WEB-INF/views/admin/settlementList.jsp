@@ -13,18 +13,7 @@
 	rel="stylesheet"
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 	crossorigin="anonymous">
-<style>
-.sidebar {
-	height: 100vh;
-	background-color: #f8f9fa;
-	padding-top: 20px;
-}
-/* 링크 스타일 제거 */
-a {
-	color: inherit;
-	text-decoration: none;
-}
-</style>
+
 <script type="text/javascript">
 	function formatDate(timestamp) {
 	    const date = new Date(timestamp);
@@ -111,7 +100,7 @@ a {
 					<div class="col">
 						<h1>정산 요청 목록</h1>
 							<table class="table">
-								<thead>
+								<thead class="table-dark">
 									<tr>
 										<td scope="col"></td>
 										<td scope="col">biz명</td>

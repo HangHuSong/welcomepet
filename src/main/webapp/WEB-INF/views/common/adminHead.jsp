@@ -1,17 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <style>
+ @import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
 	 #header {
-        display: flex;
-        justify-content: center;
+        background-color: #515858;
     }
 
-    #logo {
-        margin: auto;
-    }
+	#logo{
+		color: white;
+        height: 120px;
+        display: flex;
+        align-items: center;
+	}
+	body{
+		font-family: 'NanumSquare', sans-serif;
+	}
+    
 </style>
 <div class="row" id="header">
-            <div class="col">
-                <h1><img id="logo" src="/welcomepet/resources/img/adminLogo.png"></h1>
-            </div>
-        </div>
+    <div class="col">
+        <h1><a href="./main"><img id="logo" src="/welcomepet/resources/img/adminLogo.png"></a></h1>
+    </div>
+</div>
