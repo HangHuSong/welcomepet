@@ -131,11 +131,6 @@
 						  <%-- 제목 --%>
 						  <div class="row">
 						   <div class="col-12">
-						   	  <c:if test="${map.checkImg > 0}">
-							   	  <span style="color:#A9CC9D">
-							   	  <i class="bi bi-image "></i>
-							   	  </span>
-						   	  </c:if>
 						   	  
 							  <span>
 							   <a class="me-1 text-decoration-none text-black" style="font-size: 17px">${map.showDogPostDto.show_dog_post_title}</a>
@@ -163,11 +158,11 @@
 
 						<%-- 섬네일 --%>
 						<div class="col-2 p-0 embed-responsive embed-responsive-1by1">
-						 <img class="thum w-100 embed-responsive-item rounded" alt="X" src="/uploadFiles/WelcomePet_community/${map.postImageDtoList[0].show_dog_post_images_link}" />
+						 <img class="thum w-100 embed-responsive-item rounded" style="object-fit: cover;" alt="X" src="/uploadFiles/WelcomePet_community/${map.postImageDtoList[0].show_dog_post_images_link}" />
 						</div>
 						
-						<%-- 댓글 --%>
-						<div class="col-2 d-flex justify-content-center align-items-center">
+						<%-- 댓글 코드수정 전--%>
+						<%-- <div class="col-2 d-flex justify-content-center align-items-center">
 						 <c:choose>
 							  <c:when test="${map.countComment eq 0}">
 							   <span>
@@ -179,6 +174,20 @@
 							    ${map.countComment}
 							    <br> 댓글
 							   </span>
+							  </c:otherwise>
+						  </c:choose>		
+						</div> --%>
+						<div class="col-2">
+						 <c:choose>
+							  <c:when test="${map.countComment eq 0}">
+							   <span>
+							   </span>
+							  </c:when>	
+							  
+							  <c:otherwise>
+							   <span class="badge text-secondary d-flex align-items-center justify-content-center p-2" style="height:55px; background-color: #F0F0F0;">
+							   ${map.countComment}<br>댓글
+							    </span>
 							  </c:otherwise>
 						  </c:choose>		
 						</div>

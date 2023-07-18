@@ -25,7 +25,7 @@
 </head>
 <body>
 <%------ 상단 네비------%>
-<nav class="navbar sticky-top bg-body-tertiary shadow-sm p-3" style="background-color: #333333;">
+<nav class="navbar sticky-top bg-body-tertiary shadow-sm p-3" style="background-color: #ffffff;">
 <div class="container p-0">
 	<div class="container p-0">
 	 <%-- 1 --%>

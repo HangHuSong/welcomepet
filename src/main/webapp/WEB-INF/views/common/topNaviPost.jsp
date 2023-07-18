@@ -32,7 +32,7 @@
   	 <div class="container-fluid">
   	 	<div class="row">
 	 	  <div class="col p-0">
-	  		<a class="btn bi bi-arrow-left text-secondary btn-lg p-0" role="button" onclick="history.back(-1)"></a>
+	  		<a class="btn bi bi-arrow-left text-secondary btn-lg p-0" role="button" href="../community/showDogPostList"></a>
 	 	  </div>
 
 	  	 <div class="col-5 text-center text-secondary fw-bold">
