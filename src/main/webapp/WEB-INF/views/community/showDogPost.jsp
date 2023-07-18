@@ -124,7 +124,7 @@
 				 	<div class="row py-3">
 				 		<div class="col">
 				 		 <c:forEach items="${postData.postImageDtoList}" var="showImages">
-				 		  	<img id="postImg" src="/uploadFiles/petImages/${showImages.show_dog_post_images_link}" alt="사진 어디감">
+				 		  	<img id="postImg" src="/uploadFiles/WelcomePet_community/${showImages.show_dog_post_images_link}" alt="사진 어디감">
 				 		 </c:forEach>
 				 		 ${postData.showDogPostDto.show_dog_post_content}
 				 		</div>

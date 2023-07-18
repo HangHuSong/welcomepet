@@ -28,7 +28,7 @@
 <nav class="navbar sticky-top bg-body-tertiary shadow-sm p-3" style="background-color: #333333;">
 <div class="container p-0">
 	<div class="container p-0">
-	 <%-- 1 --%>
+
   	 <div class="container-fluid">
   	 	<div class="row">
 	 	  <div class="col p-0">

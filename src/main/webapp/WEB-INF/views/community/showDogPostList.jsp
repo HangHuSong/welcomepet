@@ -26,7 +26,7 @@
 </head>
 <body>
 <%-- mobileStyle --%>
-  <jsp:include page="../common/topNaviDefault.jsp"></jsp:include>
+  <jsp:include page="../common/topNaviCommu.jsp"></jsp:include>
 <%-- ----------- --%>  
 
 <div class="container">
@@ -163,7 +163,7 @@
 
 						<%-- 섬네일 --%>
 						<div class="col-2 p-0 embed-responsive embed-responsive-1by1">
-						 <img class="thum w-100 embed-responsive-item rounded" alt="X" src="/uploadFiles/petImages/${map.postImageDtoList[0].show_dog_post_images_link}" />
+						 <img class="thum w-100 embed-responsive-item rounded" alt="X" src="/uploadFiles/WelcomePet_community/${map.postImageDtoList[0].show_dog_post_images_link}" />
 						</div>
 						
 						<%-- 댓글 --%>
