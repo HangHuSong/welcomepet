@@ -62,7 +62,7 @@
 															<c:forEach items="${map.pointProdImgDtoList}"
 																var="pointProdImgDto">
 																<img
-																	src="/uploadFolder/${pointProdImgDto.point_product_image_link}"
+																	src="/uploadFiles2/${pointProdImgDto.point_product_image_link}"
 																	class="w-100">
 															</c:forEach>
 														</div>
@@ -94,6 +94,7 @@
 			</div>
 		</div>
 	</div>
+	<jsp:include page="../common/topNavi.jsp"></jsp:include>
 	<jsp:include page="../common/bottomNavi.jsp"></jsp:include>
 </body>
 </html>

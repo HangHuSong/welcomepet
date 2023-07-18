@@ -31,21 +31,15 @@ public class PointProdController {
 
 	@Autowired
 	private PointProdServiceImpl pointProdService;
-	
-	@Autowired
-	private PointProdServiceImpl PointProdService;
-
-	@Autowired
-	private PointProdServiceImpl commentService;
-
+	@RequestMapping("board")
 	public String board(Model model) {
 
-		List<Map<String, Object>> list = PointProdService.getBoardList();
+		List<Map<String, Object>> list = pointProdService.getBoardList();
 
 		model.addAttribute("list", list);
 
 		/* 베스트3 */
-		List<Map<String, Object>> list2 = PointProdService.getBoardList2();
+		List<Map<String, Object>> list2 = pointProdService.getBoardList2();
 
 		model.addAttribute("list2", list2);
 		System.out.println(list2);
@@ -114,7 +108,7 @@ public class PointProdController {
 		int customer_no = customerUser.getCustomer_no();
 		params.setCustomer_no(customer_no);
 
-		PointProdService.writeContent(params, imageDtoList);
+		pointProdService.writeContent(params, imageDtoList);
 
 		return "redirect:./board";
 
@@ -123,9 +117,9 @@ public class PointProdController {
 	@RequestMapping("readContent")
 	public String readContent(Model model, int board_no, LikeDto likeDto) {
 
-		PointProdService.increaseReadCount(board_no);
+		pointProdService.increaseReadCount(board_no);
 
-		Map<String, Object> map = PointProdService.getBoard(board_no);
+		Map<String, Object> map = pointProdService.getBoard(board_no);
 
 		model.addAttribute("data", map);// 글 불러오기
 
@@ -134,16 +128,15 @@ public class PointProdController {
 		model.addAttribute("commentList", list);// 댓 불러오기
 
 		// 댓글 카운트
-		int countCommentByBoardNo = PointProdService.countCommentByBoardNo(board_no);
+		int countCommentByBoardNo = pointProdService.countCommentByBoardNo(board_no);
 		model.addAttribute("countCommentByBoardNo", countCommentByBoardNo);
 
 		// 좋아요 카운트
-		int countLikeByBoardNo = PointProdService.countLikeByBoardNo(board_no);
+		int countLikeByBoardNo = pointProdService.countLikeByBoardNo(board_no);
 		model.addAttribute("countLikeByBoardNo", countLikeByBoardNo);
 		// 좋아요했는지
 
 		return "pointProd/readContent";
-
 	}
 
 	/*
@@ -164,7 +157,7 @@ public class PointProdController {
 	@RequestMapping("deleteProcess")
 	public String deleteProcess(int board_no) {
 
-		PointProdService.deleteContent(board_no);
+		pointProdService.deleteContent(board_no);
 
 		return "redirect:./board";
 	}
@@ -172,7 +165,7 @@ public class PointProdController {
 	@RequestMapping("update")
 	public String update(Model model, int board_no) {
 
-		Map<String, Object> map = PointProdService.getBoard(board_no);
+		Map<String, Object> map = pointProdService.getBoard(board_no);
 		model.addAttribute("data", map);
 
 		return "pointProd/update";
@@ -181,7 +174,7 @@ public class PointProdController {
 	@RequestMapping("updateContentProcess")
 	public String updateContentProcess(BoardDto boardDto) {
 
-		PointProdService.updateContent(boardDto);
+		pointProdService.updateContent(boardDto);
 
 		return "redirect:./board";
 	}
@@ -192,7 +185,7 @@ public class PointProdController {
 		CustomerDto customerUser = (CustomerDto) session.getAttribute("customerUser");
 		int customer_no = customerUser.getCustomer_no();
 		params.setCustomer_no(customer_no);
-		commentService.insertComment(params);
+		pointProdService.insertComment(params);
 		return "redirect:./readContent?board_no=" + params.getBoard_no();
 	}
 
@@ -203,6 +196,7 @@ public class PointProdController {
 	 * 
 	 * return "board/board"; }
 	 */
+
 	@RequestMapping("insertLikeProcess")
 	public String insertLikeProcess(HttpSession session, LikeDto likeDto) {
 
@@ -213,13 +207,13 @@ public class PointProdController {
 			int customer_no = customerUser.getCustomer_no();
 
 			likeDto.setCustomer_no(customer_no);
-			PointProdService.insertLike(likeDto);
+			pointProdService.insertLike(likeDto);
 
 			System.out.println("좋아요 정보: " + likeDto);
 			return "redirect:./readContent?board_no=" + likeDto.getBoard_no();
 		}
 	}
-	
+
 	@RequestMapping("report")
 	public String report() {
 
@@ -245,7 +239,7 @@ public class PointProdController {
 	@RequestMapping("writePointProdProcs")
 	public String writePointProdProcs(HttpSession session, PointProdDto params, MultipartFile[] pointProdFiles) {
 
-		List<PointProdImgDto> pointImgDtoList = new ArrayList<>();
+		List<PointProdImgDto> pointProdImgDtoList = new ArrayList<>();
 
 		// 파일 저장 로직
 		if (pointProdFiles != null) {
@@ -258,7 +252,7 @@ public class PointProdController {
 
 				System.out.println("파일명: " + multipartFile.getOriginalFilename());
 
-				String rootFolder = "C:/uploadFolder/";
+				String rootFolder = "C:/uploadFiles2/";
 
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 				String today = sdf.format(new Date());
@@ -288,7 +282,7 @@ public class PointProdController {
 				pointProdImgDto.setPoint_product_image_name(originalFileName);
 				pointProdImgDto.setPoint_product_image_link(saveFileName);
 
-				pointImgDtoList.add(pointProdImgDto);
+				pointProdImgDtoList.add(pointProdImgDto);
 			}
 		}
 
@@ -297,10 +291,9 @@ public class PointProdController {
 		int customer_no = customerUser.getCustomer_no();
 		params.setCustomer_no(customer_no);
 
-		pointProdService.writePointProd(params, pointImgDtoList);
+		pointProdService.writePointProd(params, pointProdImgDtoList);
 
-		return "pointProd/pointProd";
-
+		return "redirect:./pointProd";
 	}
 
 	@RequestMapping("readPointProd")

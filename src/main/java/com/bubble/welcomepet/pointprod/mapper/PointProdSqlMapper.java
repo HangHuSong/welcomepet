@@ -8,7 +8,6 @@ import com.bubble.welcomepet.dto.ImageDto;
 import com.bubble.welcomepet.dto.LikeDto;
 import com.bubble.welcomepet.dto.PointProdDto;
 import com.bubble.welcomepet.dto.PointProdImgDto;
-import com.bubble.welcomepet.dto.PointProdOrdDto;
 import com.bubble.welcomepet.dto.Prod_CategoryDto;
 
 public interface PointProdSqlMapper {

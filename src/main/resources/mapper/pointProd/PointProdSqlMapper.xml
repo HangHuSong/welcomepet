@@ -5,7 +5,8 @@
 	namespace="com.bubble.welcomepet.pointprod.mapper.PointProdSqlMapper">
 
 	<select id="createPk1" resultType="int">
-		SELECT point_product_seq.nextval FROM
+		SELECT
+		point_product_seq.nextval FROM
 		dual
 	</select>
 
@@ -33,21 +34,22 @@
 		)
 	</insert>
 
-	<!-- 포인트 상품 이미지 -->
-	<insert id="insPointProdImg">
-		INSERT INTO point_product_image VALUES(
-		point_product_image_seq.nextval,
-		#{point_product_no},
-		#{point_product_image_link}
-		)
-	</insert>
-
 	<select id="selectAllPointProd"
 		resultType="com.bubble.welcomepet.dto.PointProdDto">
-		SELECT * 
+		SELECT *
 		FROM point_product
 		ORDER BY point_product_no DESC
 	</select>
+
+	<!-- 포인트 상품 이미지 -->
+	<insert id="insPointProdImg">
+		INSERT INTO point_product_image VALUES (
+		point_product_image_seq.nextval,
+		#{point_product_no},
+		#{point_product_image_name},
+		#{point_product_image_link}
+		)
+	</insert>
 
 	<select id="selectImgByPointProdNo"
 		resultType="com.bubble.welcomepet.dto.PointProdImgDto">
@@ -62,8 +64,8 @@
 		WHERE point_product_no =
 		#{point_product_no}
 	</select>
-	
-		<select id="createPk" resultType="int">
+
+	<select id="createPk" resultType="int">
 		SELECT board_seq.nextval FROM
 		dual
 	</select>
@@ -190,8 +192,8 @@
 		FROM board_image
 		WHERE board_no = #{board_no}
 	</select>
-	
-		<insert id="insertComment">
+
+	<insert id="insertComment">
 		INSERT INTO board_comment VALUES(
 		board_comment_seq.nextval,
 		#{board_no},
@@ -208,6 +210,6 @@
 		WHERE board_no = #{board_no}
 		ORDER BY board_no DESC
 	</select>
-	
+
 
 </mapper>

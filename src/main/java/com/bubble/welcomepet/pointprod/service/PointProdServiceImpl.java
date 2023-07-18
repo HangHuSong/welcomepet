@@ -192,10 +192,11 @@ public class PointProdServiceImpl {
 
 		for (PointProdImgDto pointProdImgDto : pointProdImgDtoList) {
 			pointProdImgDto.setPoint_product_no(point_product_no);
+			System.out.println("하하하하!!!!");
 			pointProdSqlMapper.insPointProdImg(pointProdImgDto);
 		}
 	}
-
+	
 	public List<Map<String, Object>> getPointProdList() {
 
 		List<Map<String, Object>> list = new ArrayList<>();
