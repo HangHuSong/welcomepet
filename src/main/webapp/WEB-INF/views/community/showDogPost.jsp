@@ -24,14 +24,14 @@
    commentSection.innerHTML = "";
 
    for (data of response.commentList) {
-     const colNickname = document.getElementById(`nickname_\${data.showDogCommentDto.show_dog_comment_no}`);
-     const colCommentText = document.getElementById(`comment_content_\${data.showDogCommentDto.show_dog_comment_no}`);
+     const colNickname = document.getElementById("nickname");
+     const colCommentText = document.getElementById("comment_content_" + data.showDogCommentDto.show_dog_comment_no);
 
      colNickname.classList.add("fw-bold");
      colNickname.style.fontSize = "13px";
-     colNickname.innerText = \`${data.customerDto.customer_nickname}`;
+     colNickname.innerText = data.customerDto.customer_nickname;
 
-     colCommentText.innerText = \`${data.showDogCommentDto.show_dog_comment_content}`;
+     colCommentText.innerText = data.showDogCommentDto.show_dog_comment_content;
    }
  }
 
