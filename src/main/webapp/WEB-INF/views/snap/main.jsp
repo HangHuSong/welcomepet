@@ -391,6 +391,7 @@
                     const span5 = document.createElement("span");
                     span5.style.fontSize = "12px";
                     span5.innerText = comment.snapBoardCommentDto.snap_board_comment_content;
+                    span5.classList.add("text-break");
 
                     col7.appendChild(span5);
                     row5.appendChild(col7);
