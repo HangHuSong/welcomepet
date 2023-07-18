@@ -46,6 +46,7 @@
 		<a href="./showDogDeleteProcess?show_dog_post_no=${postData.showDogPostDto.show_dog_post_no}">삭제</a>
 	</c:if>
 	<%-- 로그인한 사람만 수정/삭제 --%>
+
 	<div class="row pt-3 pb-4 border-bottom">
 		<div class="col">
 			<div class="row">
@@ -100,7 +101,7 @@
 				 		<div class="col text-secondary" style="font-size: 13px;">
 				 			<%-- 프사 --%>
 				 			<span class="me-1">
-				 			 <img class="rounded-circle" src="https://dummyimage.com/3*3" alt="...">
+				 			 <img id="profileImg" class="rounded-circle" src="http://via.placeholder.com/33x33" >
 				 			</span>
 				 			<%-- 닉네임 --%>
 					 		<span class="me-2">

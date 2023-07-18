@@ -22,6 +22,16 @@
 	height:55px;
 	width:55px;
 }
+@font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-style: normal;
+}
+#title{
+    font-size:1.2em;
+    font-weight:600;
+    font-family:'SUITE-Regular', sans-serif;
+}
 </style>
 </head>
 <body>
@@ -53,7 +63,9 @@
 						   </div>
 						   <div class="col-auto">
 							  <span>
-							   <a class="me-1 text-decoration-none text-black fw-bold fs-6">${bestList.showDogPostDto.show_dog_post_title}</a>
+							   <a class="me-1 text-decoration-none text-black"
+							   	  style="font-family: 'SUITE-Regular', sans-serif; font-size:16px; font-weight:800;">
+							   ${bestList.showDogPostDto.show_dog_post_title}</a>
 							  </span>
 						   </div>
 						   
@@ -131,9 +143,8 @@
 						  <%-- 제목 --%>
 						  <div class="row">
 						   <div class="col-12">
-						   	  
 							  <span>
-							   <a class="me-1 text-decoration-none text-black" style="font-size: 17px">${map.showDogPostDto.show_dog_post_title}</a>
+							   <a id="title" class="me-1 text-decoration-none text-black">${map.showDogPostDto.show_dog_post_title}</a>
 							  </span>						  
 						   </div>
 						  </div>						  
