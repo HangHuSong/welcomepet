@@ -14,16 +14,7 @@
 	crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <style>
-.sidebar {
-	height: 100vh;
-	background-color: #f8f9fa;
-	padding-top: 20px;
-}
- /* 링크 스타일 제거 */
-    a {
-        color: inherit;
-        text-decoration: none;
-    }
+
 </style>
 </head>
 
@@ -72,7 +63,7 @@
 							            		<td class="text-danger"><i class="bi bi-clipboard-x"></i> 처리 대기</td>
 							            	</c:when>
 							            	<c:otherwise>
-							            		<td class="text-success"><i class="bi bi-check2"></i> 처리완료</td>
+							            		<td class="text-success"><i class="bi bi-clipboard-check"></i> 처리 완료</td>
 							            	</c:otherwise>
 										</c:choose>
 							        </tr>	

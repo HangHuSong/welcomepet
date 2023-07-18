@@ -12,7 +12,7 @@
 		<select id="getAllBiz" resultType="com.bubble.welcomepet.dto.BizDto">
 			SELECT *
 			FROM biz
-			WHERE biz_status_no = 3
+			WHERE biz_status_no = 4
 			ORDER BY biz_no DESC
 		</select>
 

@@ -98,8 +98,12 @@
 			<div class="col-9">
 				<div class="row mt-5">
 					<div class="col">
-						<h1>정산 요청 목록</h1>
-							<table class="table">
+						<h1 class="text-center">정산 요청 목록</h1>
+					</div>	
+				</div>
+				<div class="row mt-2">
+					<div class="col">
+						<table class="table mt-1">
 								<thead class="table-dark">
 									<tr>
 										<td scope="col"></td>
@@ -113,7 +117,7 @@
 								<tbody id="settlementRequestListBox">
 								</tbody>
 							</table>
-					</div>	
+					</div>
 				</div>
 			</div>
 		</div>

@@ -12,17 +12,10 @@
 	rel="stylesheet"
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 	crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">	
 <style>
-.sidebar {
-	height: 100vh;
-	background-color: #f8f9fa;
-	padding-top: 20px;
-}
- /* 링크 스타일 제거 */
-    a {
-        color: inherit;
-        text-decoration: none;
-    }
+
+
 </style>
 <script type="text/javascript">
 
@@ -73,10 +66,14 @@
 							            <td><a href="./customerDetail?customer_no=${customer.customerDto.customer_no}">${customer.customerDto.customer_id}</a></td>
 							            <c:choose>
 							            	<c:when test="${customer.customerDto.customer_status eq 0}">
-							            		<td><a href="./customerDetail?customer_no=${customer.customerDto.customer_no}">인증완료</a></td>
+							            		<td class="text-success">
+							            			<a href="./customerDetail?customer_no=${customer.customerDto.customer_no}">인증 완료</a>
+						            			</td>
 							            	</c:when>
 							            	<c:otherwise>
-							            		<td><a href="./customerDetail?customer_no=${customer.customerDto.customer_no}">미인증</a></td>
+							            		<td class="text-danger">
+							            			<a href="./customerDetail?customer_no=${customer.customerDto.customer_no}">미인증</a>
+						            			</td>
 							            	</c:otherwise>
 							            </c:choose>
 							            

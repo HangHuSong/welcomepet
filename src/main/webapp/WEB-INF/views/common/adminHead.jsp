@@ -4,7 +4,7 @@
 <style>
  @import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
 	 #header {
-        background-color: #515858;
+        background-color: #d1d1d1;
     }
 
 	#logo{
@@ -16,6 +16,10 @@
 	body{
 		font-family: 'NanumSquare', sans-serif;
 	}
+	a {
+        color: inherit;
+        text-decoration: none;
+    }
     
 </style>
 <div class="row" id="header">
