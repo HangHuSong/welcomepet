@@ -5,15 +5,14 @@
 	<div class="col">
 		<nav
 			class="navbar navbar-dark bg-white fixed-top fw-bold ">
-			<div class="row mt-2">
+			<div class="row mt-2" style="text-align: center;">
 			<div class="col-2 text-center">
 				<a class="btn bi bi-bell py-0 text-secondary fs-4 "
 					data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
 					aria-controls="offcanvasExample"> </a>
 			</div>
 			<div class="col-6 ps-2 ms-4" style="text-align: center;">
-				<img src="/uploadFiles/WelcomePet/banner/main.png"
-							class="d-block w-100" alt="...">
+				<img  src="/welcomepet/resources/img/logo.png" style="height:3em; ">
 			</div>
 			<div class="col-1 ms-2 ps-2 text-center">
 				<a class="btn bi bi-search fs-4 py-0" role="button"
