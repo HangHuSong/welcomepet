@@ -257,7 +257,7 @@
 	</div>
 	<div class="col-3 d-flex justify-content-center align-items-center">
 	 	<a class="btn btn-lg shadow rounded-circle" href="./showDogUpload" 
-	 	   style="color:white; background-color:#fd7e14">
+	 	   style="color:white;height: 52px; background-color:#fd7e14">
 	 	<i class="bi bi-pencil-square" style="color: white;"></i></a>
 	</div>
 </div>

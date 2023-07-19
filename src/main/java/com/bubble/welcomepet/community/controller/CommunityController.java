@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.bubble.welcomepet.community.service.CommunityServiceImpl;
@@ -252,9 +253,39 @@ public class CommunityController {
 //		return "redirect:./showDogPost?show_dog_post_no=" + show_dog_comment_no;
 //	}
 		
-
-
+	@ResponseBody
+	@RequestMapping("getCommentDatas")
+	public List<Map<String, Object>> getCommentDatas(int show_dog_post_no) {
 		
+		List<Map<String, Object>> list = communityServiceImpl.bringCommentByPostNo(show_dog_post_no);
+		
+		
+		return list;
+	}
+		
+	@ResponseBody
+	@RequestMapping("registerComment")
+	public void registerComment(HttpSession session, ShowDogCommentDto showDogCommentDto) {
+		
+		
+		CustomerDto customerUser = (CustomerDto)session.getAttribute("customerUser");
+		
+		System.out.println("누구 session: " + showDogCommentDto);
+		
+		int customer_no = customerUser.getCustomer_no();
+		showDogCommentDto.setCustomer_no(customer_no);
+		
+		communityServiceImpl.insertComment(showDogCommentDto);		
+		
+		
+	}
 
 ////////////////////////////////////////////////////////////////////////////////	
 }
+
+
+
+
+
+
+
