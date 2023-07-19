@@ -39,7 +39,7 @@
 	 		 
 	 		 <div class="col text-end">
 	 		  <button class="btn" style="pointer-events: none;">임시저장</button>
-	 		  <button class="btn fw-bold" style="color:white; background-color:#F8961D"><i class="bi bi-upload"></i>등록</button>
+	 		  <button class="btn fw-bold" style="color:white; background-color:#F8961D"><i class="bi bi-upload"></i> 등록</button>
 	 		 </div>
  		 </div>
  		 
@@ -103,27 +103,27 @@
 			 </div>--%>
 			 <div class="row pe-4 ps-4 justify-content-center">				
 				<div class="col-auto">
-				 <p class="btn mb-0"><i class="bi bi-fonts"></i></p>
+				 <p class="btn mb-0 btn-lg pe-0"><i class="bi bi-fonts"></i></p>
 				</div>
 				
 				<div class="col-auto">
-				 <p class="btn mb-0"><i class="bi bi-paperclip"></i></p>
+				 <p class="btn mb-0 btn-lg pe-0"><i class="bi bi-paperclip"></i></p>
 				</div>
 				
 				<div class="col-auto">			 
 				 <label for="uploadImages" class="btn p-0" style="position:relative; overflow:hidden;"> 
-			     <button class="btn"><i class="bi bi-images"></i></button>
+			     <button class="btn btn-lg pe-0"><i class="bi bi-images"></i></button>
 			      <input type="file" id="uploadImages" class="form-control" name="show_dog_post_images_name" 
 			      		 style="position: absolute; top: 0; left: 0; opacity: 0;" multiple accept="image/*">	     
 			     </label>
 				</div>
 				
 				<div class="col-auto">
-				 <p class="btn mb-0"><i class="bi bi-camera-video"></i></p>
+				 <p class="btn btn-lg mb-0 pe-0"><i class="bi bi-camera-video"></i></p>
 				</div>	
 				
 				<div class="col-auto">
-				 <p class="btn mb-0"><i class="bi bi-hash"></i></p>
+				 <p class="btn btn-lg mb-0 pe-0"><i class="bi bi-hash"></i></p>
 				</div>
 			 </div>
 		   </div>

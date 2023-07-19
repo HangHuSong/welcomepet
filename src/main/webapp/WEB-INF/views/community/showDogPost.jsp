@@ -18,6 +18,13 @@
 <%------ bootstrap ------%>
 <script type="text/javascript">
  <%-- ajax --%>
+ 	<%-- 좋아요 --%>
+ 	function reloadLikes{
+ 		const postId = ${postData.showDogPostDto.show_dog_post_no};
+ 		const 
+ 	};
+ 	
+ 	<%-- 새로운 댓글쓰기 --%>
  	function registerComment(){
 		const postId = ${postData.showDogPostDto.show_dog_post_no};
 		const commentValue = document.querySelector("#inputCommentText").value;
@@ -47,7 +54,7 @@
  	}
  	
  
- 
+ 	<%-- 댓글리스트 --%>
 	function reloadComment(){
 		const postId = ${postData.showDogPostDto.show_dog_post_no};
 		
@@ -94,7 +101,8 @@
 	    xhr.send();		
 		
 	}
- 
+	
+	<%-- ------ --%>
  
 	window.addEventListener("DOMContentLoaded", function(){
 		reloadComment();
@@ -226,6 +234,23 @@
 				 	<%-- 얘도 가능
 				 		<a class="btn btn-lg text-danger bi bi-heart-fill" href="./doLikeProcess?~no=${} }" class></a> 
 				 	--%>
+				 	<%--<form action="doLikeProcess" method="post">
+					 	<input type="hidden" name="show_dog_post_no" value="${postData.showDogPostDto.show_dog_post_no}">
+					 	<div class="row">
+					 		<div class="col text-center">
+						 		<c:choose>
+						 		 <c:when test="${checkWhetherLike == 0}">
+						 		 	<button class="btn btn-sm btn-outline-danger"><i class="bi bi-heart" style="stroke-width:2px;"></i> ${countLike}</button>
+					 			 </c:when>
+					 			 
+					 			 <c:otherwise>
+						 		 	<button class="btn btn-sm btn-outline-danger"><i class="bi bi-heart-fill"></i> ${countLike}</button>
+					 			 </c:otherwise>
+					 			</c:choose>
+					 		</div>
+					 	</div>
+				 	</form>--%>
+					
 				 	<form action="doLikeProcess" method="post">
 					 	<input type="hidden" name="show_dog_post_no" value="${postData.showDogPostDto.show_dog_post_no}">
 					 	<div class="row">
@@ -242,7 +267,8 @@
 					 		</div>
 					 	</div>
 				 	</form>
-
+				 	
+				 	
 				 </div>
 			</div>
 		</div>
@@ -310,39 +336,8 @@
 		  --%>
 		 </div>
 		 
-<%-- 		 <div class="col-12">
-		  <c:forEach items="${commentData}" var="commentData">
-		  <div class="row border-bottom py-3">
-		 	프사
-			 <div class="col-auto ps-3 pe-0 text-end" id="profileImage">
-			  <img class="rounded-circle" src="https://dummyimage.com/3*3" alt="...">
-			 </div>
-			 
-			 댓글 데이터
-			 <div class="col" id="comment">
-				  <div class="row">
-				  	댓글 닉네임
-				  	<div class="col fw-bold" style="font-size: 13px;" id="nickname"></div>
-				  	댓글 수정 삭제
-				  	<div class="col text-end dropdown pe-3"> 	 
-				  	</div>  	
-				  	댓글 수정 삭제
-				  </div>
-				 
-				  <div class="row">
-				   댓글 내용 comment_content 
-				   <div class="col-12" id="comment_content"></div>
-				   장식용 답글쓰기
-				   <div class="col text-secondary" style="font-size: 10pt;">
-				   <button>답글쓰기</button>
-				   </div>
-				  </div>
-			 </div>
-		  </div>
-		  </c:forEach>
-		 </div> --%>
-		 
 
+		<%-- 새 댓글쓰기 --%>
 		<div class="col mt-2">	 
 			<div class="row">
 				<div class="col pe-0">
@@ -350,7 +345,9 @@
 				</div>
 				
 				<div class="col-2 d-grid ">
-				 <button onclick="registerComment()" class="btn" style="color:white; background-color:#fd7e14"><i class="bi bi-arrow-return-left" style="stroke-width:2;"></i></button>
+				 <button onclick="registerComment()" class="btn" style="color:white; background-color:#fd7e14">
+				  <i class="bi bi-arrow-return-left" style="stroke-width:2;"></i>
+				 </button>
 				</div>
 			</div>
 			<%-- JSP 방식 

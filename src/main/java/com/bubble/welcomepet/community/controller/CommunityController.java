@@ -206,6 +206,14 @@ public class CommunityController {
 		
 		return "community/showDogUpdate";
 	}
+
+	@RequestMapping("showDogUpdateProcess")						   
+	public String updatePostProcess(ShowDogPostDto showDogPostDto, MultipartFile[] show_dog_post_images_name) {
+
+		System.out.println("Controller.updatePostProcess: " + showDogPostDto);
+		communityServiceImpl.updatePost(showDogPostDto);
+		return "redirect:./showDogPost?show_dog_post_no=" + showDogPostDto.getShow_dog_post_no();
+	}
 	
 //	@RequestMapping("showDogUpdateProcess")						   
 //	public String updatePostProcess(ShowDogPostDto showDogPostDto, MultipartFile[] show_dog_post_images_name) {

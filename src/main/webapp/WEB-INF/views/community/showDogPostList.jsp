@@ -56,12 +56,12 @@
 				<div class="col-12 border-bottom py-2">
 					<div class="row">
 						<div class="col" onclick="location.href='./showDogPost?show_dog_post_no=${bestList.showDogPostDto.show_dog_post_no}'">
-						  <%-- 제목 --%>
+						  <%-- 제목 <i class="bi bi-hand-thumbs-up-fill" style="color:#fd7e14;"></i>--%>
 						  <div class="row">
-						   <div class="col-1">
-						    <i class="bi bi-hand-thumbs-up-fill" style="color:#fd7e14;"></i>
-						   </div>
 						   <div class="col-auto pe-0">
+						    <span class="fw-bold" style="color:#fd7e14;">HOT</span> 
+						   </div>
+						   <div class="col-auto ps-1 pe-0">
 							  <span>
 							   <a class=" me-1 text-decoration-none text-black"
 							   	  style="font-family: 'SUITE-Regular', sans-serif; font-size:1em; font-weight:800;">
