@@ -100,8 +100,9 @@
 						<%-- 상세글 정보 --%>		 		
 				 		<div class="col text-secondary pt-2" style="font-size: 13px;">
 				 			<%-- 프사 --%>
-				 			<span class="me-1">
-				 			 <img id="profileImg" class="rounded-circle" src="http://via.placeholder.com/33x33" >
+				 			<span class="me-0">
+				 			 <img id="profileImg" class="rounded-circle" src="../resources/img/myDog.jpg"
+				 			 	  width="33">
 				 			</span>
 				 			<%-- 닉네임 --%>
 					 		<span class="me-2">

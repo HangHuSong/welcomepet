@@ -252,12 +252,13 @@
 
 
 <%-- 새글쓰기 버튼 --%>
-<div class="row fixed-bottom mb-5 pb-4">
+<div class="row fixed-bottom mb-5 pb-4" style="height:54">
 	<div class="col">
 	</div>
-	<div class="col-3 text-center justify-content-center">
-	 	<a class="btn btn-lg shadow rounded-circle bi bi-pencil-square" role="button" 
-	 	   style="color:white; background-color:#fd7e14" href="./showDogUpload"></a>
+	<div class="col-3 d-flex justify-content-center align-items-center">
+	 	<a class="btn btn-lg shadow rounded-circle" href="./showDogUpload" 
+	 	   style="color:white; background-color:#fd7e14">
+	 	<i class="bi bi-pencil-square" style="color: white;"></i></a>
 	</div>
 </div>
 

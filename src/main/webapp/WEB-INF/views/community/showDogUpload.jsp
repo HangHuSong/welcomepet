@@ -27,11 +27,11 @@
 	 	<form action="./showDogUploadProcess" method="post" enctype="multipart/form-data">		 
 		 <div class="row justify-content-between">
 	 		 <div class="col-2">
-	 		  <a class="bi bi-arrow-left text-secondary" role="button" onclick="history.back(-1)"></a>
+	 		  <a class="bi bi-arrow-left text-secondary" role="button" onclick="history.back(-1)" style="stroke-width:3"></a>
 	 		 </div>
 	 		 
 	 		 <div class="col text-end">
-	 		 <%-- <button class="btn btn-primary">임시저장</button> --%>
+	 		  <button class="btn" style="color:white; background-color:#fd7e14">임시저장</button>
 	 		  <button class="btn" style="color:white; background-color:#fd7e14"><i class="bi bi-upload"></i> 업로드</button>
 	 		 </div>
  		 </div>
@@ -47,7 +47,7 @@
 		  
 		<%-- 삭제예정 --%>
 		
-		 <div class="row mt-2">
+<%-- 사진입력		 <div class="row mt-2">
 		 	<div class="col fst-italic fw-bold">
 		 		사진
 			</div>
@@ -56,69 +56,71 @@
 		 	<div class="col">
 		     <input type="file" class="form-control" name ="show_dog_post_images_name" multiple accept="image/*">
 			</div>
-		 </div>
+		 </div> --%>
 		
-		 <div class="row mt-4">
+<%-- 		 <div class="row mt-4">
 		 	<div class="col fst-italic fw-bold">
 		 		제목
 			</div>
-		 </div>
+		 </div> --%>
 		 <div class="row">
 		 	<div class="col border-bottom pb-2 fw-bold fs-5">
 			 <input type="text" class="form-control-plaintext" name="show_dog_post_title" placeholder="제목을 입력해주세요">
 			</div>
 		 </div>
 		 
-		 <div class="row mt-4">
+<%-- 		 <div class="row mt-4">
 		 	<div class="col fst-italic fw-bold">
 		 		내용
 			</div>
-		 </div>
+		 </div>--%>
 		 <div class="row">
 		 	<div class="col border-bottom py-2">
 			 <textarea class="form-control-plaintext" name="show_dog_post_content" placeholder="내용을 입력하세요" style="height: 650px"></textarea>
 		 	</div>
 		 </div>
+		 
+		 <%-- bottom --%>
+		 <div class="row fixed-bottom">
+		  <div class="col">
+<%--	   		 <div class="row mt-2">
+			 	<div class="col fst-italic fw-bold">
+			 		사진
+				</div>
+			 </div>--%>
+			 <div class="row pe-4 ps-4 justify-content-center">				
+				<div class="col-auto"><button><i class="bi bi-fonts"></i></button></div>
+				
+				<div class="col-auto"><button><i class="bi bi-paperclip"></i></button></div>
+				
+				<div class="col-auto">			 
+				 <label for="uploadImages" class="btn py-0" style="position:relative; overflow:hidden;"> 
+			     <button><i class="bi bi-images"></i></button>
+			      <input type="file" id="uploadImages" class="form-control" name="show_dog_post_images_name" 
+			      		 style="position: absolute; top: 0; left: 0; opacity: 0;" multiple accept="image/*">	     
+			     </label>
+				</div>
+				
+				<div class="col-auto"><button><i class="bi bi-camera-video"></i></button></div>	
+				
+				<div class="col-auto"><button><i class="bi bi-hash"></i></button></div>
+			 </div>
+		   </div>
+		  </div>
+		<%-- ----------- --%> 
 		</form>	
 	</div>
  	</div>
+ 	
+ 	
 </div>
 
-	<%-- 
-	<div class="col justify-content-center">
-	
-	<div class="row">
-		<form action="./showDogUploadProcess" method="post">
-		 <div class="col">
-			 <div class="row">
-			  작성자(닉네임)
-			  ${customerUser.customer_nickname}
-			 </div>
-			 
-			 <div class="row">
-			  <input type="text" class="form-control" name="show_dog_post_title" placeholder="제목을 입력하세요">
-			 </div>
-			 <div class="row">
-			  <button>첨부파일 불러오기</button>
-			 </div>
-			 <div class="row">
-			  <textarea class="form-control" name="show_dog_post_content" placeholder="내용을 입력하세요"></textarea>
-			 </div>
-			
-			 <div class="row">
-			  <button class="btn btn-primary">업로드하기</button>
-			  <button class="btn btn-primary">임시저장</button>
-			 </div>
-		</div>
-		</form>
-	</div>
 
-	</div>
-	--%>
+ 
 
-<%-- mobileStyle --%>
+<%-- mobileStyle 
   <jsp:include page="../common/bottomTabStyle.jsp"></jsp:include>
-<%-- ----------- --%>  
+--%>  
 
 </body>
 </html>
