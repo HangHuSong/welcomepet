@@ -10,6 +10,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +24,7 @@ import com.bubble.welcomepet.dto.ImageDto;
 import com.bubble.welcomepet.dto.LikeDto;
 import com.bubble.welcomepet.dto.PointProdDto;
 import com.bubble.welcomepet.dto.PointProdImgDto;
+import com.bubble.welcomepet.dto.PointProdOrdDto;
 import com.bubble.welcomepet.pointprod.service.PointProdServiceImpl;
 
 @Controller
@@ -31,6 +33,7 @@ public class PointProdController {
 
 	@Autowired
 	private PointProdServiceImpl pointProdService;
+
 	@RequestMapping("board")
 	public String board(Model model) {
 
@@ -135,6 +138,13 @@ public class PointProdController {
 		int countLikeByBoardNo = pointProdService.countLikeByBoardNo(board_no);
 		model.addAttribute("countLikeByBoardNo", countLikeByBoardNo);
 		// 좋아요했는지
+
+		// html escape
+		BoardDto boardDto = (BoardDto) map.get("boardDto");
+		String board_content = boardDto.getBoard_content();
+		board_content = StringEscapeUtils.escapeHtml4(board_content);
+		board_content = board_content.replaceAll("\n", "<br>");
+		boardDto.setBoard_content(board_content);
 
 		return "pointProd/readContent";
 	}
@@ -304,5 +314,22 @@ public class PointProdController {
 		model.addAttribute("data", map);
 
 		return "pointProd/readPointProd";
+	}
+
+	@RequestMapping("orderPointProdProcs")
+	public String orderPointProdProcs(HttpSession session, PointProdOrdDto pointProdOrdDto) {
+
+		CustomerDto customerUser = (CustomerDto) session.getAttribute("customerUser");
+		if (customerUser == null) {
+			return "redirect:../customer/login";
+		} else {
+			int customer_no = customerUser.getCustomer_no();
+
+			pointProdOrdDto.setCustomer_no(customer_no);
+			pointProdService.insPointProdOrd(pointProdOrdDto);
+
+			System.out.println("주문 정보: " + pointProdOrdDto);
+			return "redirect:./readPointProd?point_product_no=" + pointProdOrdDto.getPoint_product_no();
+		}
 	}
 }

@@ -10,6 +10,12 @@
 		dual
 	</select>
 
+	<select id="selectCustomerByCustomerNo"
+		resultType="com.bubble.welcomepet.dto.CustomerDto">
+		SELECT * FROM customer
+		WHERE customer_no = #{customer_no}
+	</select>
+
 	<!-- 포인트 상품 -->
 	<insert id="insPointProd">
 		INSERT INTO point_product VALUES(
@@ -33,7 +39,7 @@
 		SYSDATE
 		)
 	</insert>
-
+	
 	<select id="selectAllPointProd"
 		resultType="com.bubble.welcomepet.dto.PointProdDto">
 		SELECT *
@@ -210,6 +216,5 @@
 		WHERE board_no = #{board_no}
 		ORDER BY board_no DESC
 	</select>
-
 
 </mapper>

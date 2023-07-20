@@ -22,9 +22,9 @@
 			<div class="col-12 border-bottom py-2" style="height: 60px;">
 				<div class="row">
 					<div class="col-2">
-						<button onclick="history.back()" class="btn btn-black">
-							<i class="btn bi bi-chevron-left p-0"></i>
-						</button>
+						<a href="/welcomepet/pointProd/board" class="btn btn-black" style="border: transparent; outline: none;">
+							<i class="btn bi bi-chevron-left p-0" style="border: transparent; outline: none;"></i>
+						</a>
 					</div>
 					<div class="col-8 mt-2 text-center fw-bold 16px">게시판</div>
 					<div class="col-2 dropdown pt-2 ps-4">

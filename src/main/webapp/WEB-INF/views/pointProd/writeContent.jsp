@@ -28,7 +28,7 @@
 						</div>
 						<div class="col-6 mt-1 text-center fw-bold 16px">글쓰기</div>
 						<div class="col-3">
-							<button class="btn text-secondary" type="submit">등록</button>
+							<button class="btn text-secondary" type="submit" style="border: transparent; outline: none;">등록</button>
 						</div>
 					</div>
 				</div>
