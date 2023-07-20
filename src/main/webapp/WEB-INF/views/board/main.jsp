@@ -98,7 +98,7 @@
 				colImg.appendChild(img);
 				
 				const rowName = document.createElement("div");
-				rowName.classList.add("row")
+				rowName.classList.add("row", "r_name")
 				rowName.setAttribute("onclick","productDetail=product_no=?"+ data.productInfo.product_no);
 				col1.appendChild(rowName);
 				
@@ -282,6 +282,9 @@
 .fsmid {
 	font-size: 0.8em;
 }
+.r_name{
+	height: 2em;
+}
 .not_select {
  background: white;
  font-size: 0.8em;
@@ -419,7 +422,7 @@
 		<div class="row mt-2">
 		<div class="col">
 		<div class="row mt-2" > 
-		<div class="col fs-4 fw-bold"> 핫딜 상품 <i class="bi bi-fire text-danger"></i></div>
+		<div class="col  " style="font-size: 1.2em; font-weight: 600;"> 핫딜 상품 <i class="bi bi-fire text-danger"></i></div>
 		<div class="row mt-3" id="topSaleBox">
 		
 				</div>

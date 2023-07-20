@@ -12,7 +12,7 @@
 		<select id="getAllBiz" resultType="com.bubble.welcomepet.dto.BizDto">
 			SELECT *
 			FROM biz
-			WHERE biz_status_no = 3
+			WHERE biz_status_no = 4
 			ORDER BY biz_no DESC
 		</select>
 
@@ -46,6 +46,7 @@
 		                </when>
 		            </choose>
 		        </if>
+		        ORDER BY customer_no DESC
 		    )
 		    <![CDATA[
 		    WHERE rnum >= ((#{page}-1)*10)+1 AND rnum <= #{page} * 10
@@ -423,6 +424,7 @@
 		<select id="getShowDogList" resultType="com.bubble.welcomepet.dto.ShowDogPostDto">
 			SELECT * 
 			FROM show_dog_post
+			ORDER BY show_dog_post_reg_date DESC
 		</select>
 		
 		<select id="getShowDogComments" resultType="com.bubble.welcomepet.dto.ShowDogCommentDto">

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -482,7 +482,7 @@ function handleOptionSelect(event) {
   optionOuter.appendChild(optionDiv);
 
   const optionRow = document.createElement("div");
-  optionRow.classList.add("row");
+  optionRow.classList.add("row", "mt-2");
   optionDiv.appendChild(optionRow);
 
   const optionCol = document.createElement("div");
@@ -495,7 +495,7 @@ function handleOptionSelect(event) {
   optionRow.appendChild(deleteCol);
 
   const quantityRow = document.createElement("div");
-  quantityRow.classList.add("row", "mt-2");
+  quantityRow.classList.add("row", "mt-2","mb-2","align-items-center");
   optionRow.appendChild(quantityRow);
 
   const quantityCol = document.createElement("div");
@@ -503,8 +503,9 @@ function handleOptionSelect(event) {
   quantityRow.appendChild(quantityCol);
   
   const priceCol = document.createElement("div");
-  priceCol.classList.add("col-6", "text-end", "fw-bold", "align-items-center");
+  priceCol.classList.add("col-6", "text-end", "fw-bold");
   priceCol.innerText = optionPrice +"원";
+
   quantityRow.appendChild(priceCol);
 
   const buttonGroup = document.createElement("div");
@@ -529,9 +530,11 @@ function handleOptionSelect(event) {
 
   const quantityInput = document.createElement("input");
   quantityInput.type = "number";
-  quantityInput.classList.add("form-control");
+  quantityInput.classList.add("text-center","border-secondary", "align-items-center","border-top","border-bottom");
   quantityInput.min = "1";
   quantityInput.value = "1";
+  quantityInput.style.width = "3em";
+  quantityInput.style.border = "none";
   buttonGroup.appendChild(quantityInput);
 
   const increaseButton = document.createElement("button");
@@ -618,7 +621,8 @@ function insertCart() {
 	            if (xhr.status === 200) {
 	                // 성공적으로 처리된 경우
 	                console.log("Cart added successfully");
-	                showModal(); 
+	               
+	                showModalAndCloseOffcanvas(); 
 	            } else {
 	                // 처리 중 오류가 발생한 경우
 	                console.error("Failed to add cart");
@@ -627,6 +631,23 @@ function insertCart() {
 	    };
 	    xhr.send(JSON.stringify(selectedOptions));
 	}
+	
+function showModalAndCloseOffcanvas() {
+    // 오프캔버스 닫기
+    
+    setTimeout(function() {
+        showModal();
+    }, 300);
+    
+    setTimeout(function() {
+        closeModal();
+    }, 2500);
+    
+
+
+
+}
+	
 	
 function showModal() {
     // 모달창 열기
@@ -731,17 +752,35 @@ window.addEventListener("DOMContentLoaded", function(){
 	height: 0.8em;
 	background-color: rgb(244, 247, 250);
 }
-.review_date{
- font-size: 0.7em;
-}
-.review_name{
-font-size: 0.8em;
-}
-.reviewContext{
- font-size: 0.8em;
- 
+
+.review_date {
+	font-size: 0.7em;
 }
 
+.review_name {
+	font-size: 0.8em;
+}
+
+.reviewContext {
+	font-size: 0.8em;
+}
+
+#myModal {
+	display: none;
+	position: fixed;
+	top: 85%;
+	bottom: 0;
+	left: 3%;
+	right: 0;
+}
+
+.modal-content {
+	background-color: rgb(48, 52, 54);
+	border-radius: 0.3rem;
+	width: 95%;
+	height: 2.7em;
+	justify-content: center;
+}
 </style>
 </head>
 <body>
@@ -780,14 +819,13 @@ font-size: 0.8em;
 		<div class="row mt-2">
 			<div class="col fw-bold">${data.productInfo.product_name}</div>
 		</div>
-		 <div class="row mt-2">
-		 <div class="col">
-		  <span class="filled"></span>
-		 <span id="totalRatingSpan"></span>
-		  <span id="productRatingSpan3"></span>
-		  </div>
-		 </div> 
-		 
+		<div class="row mt-2">
+			<div class="col">
+				<span class="filled"></span> <span id="totalRatingSpan"></span> <span
+					id="productRatingSpan3"></span>
+			</div>
+		</div>
+
 		<c:choose>
 			<c:when test="${data.productInfo.product_discount_rate != 0}">
 				<div class="row mt-2">
@@ -799,7 +837,11 @@ font-size: 0.8em;
 					<div class="col-2 text-danger text-end fw-bold">
 						${data.productInfo.product_discount_rate}%</div>
 					<div class="col ps-0 fw-bold">
-						<fmt:formatNumber value="${data.productInfo.product_price - data.salePrice}" pattern="#,###" />원</div>
+						<fmt:formatNumber
+							value="${data.productInfo.product_price - data.salePrice}"
+							pattern="#,###" />
+						원
+					</div>
 				</div>
 			</c:when>
 			<c:otherwise>
@@ -808,9 +850,9 @@ font-size: 0.8em;
 				</div>
 			</c:otherwise>
 		</c:choose>
-		
-			<div class="row mt-2 empty"></div>
-			
+
+		<div class="row mt-2 empty"></div>
+
 		<div class="row mt-3 delism">
 			<div class="row mt-2">
 				<div class="col-3">배송 안내</div>
@@ -834,12 +876,13 @@ font-size: 0.8em;
 							src="/uploadFiles/WelcomePet/${data.productInfo.product_thumbnail}"
 							class="embed-responsive-item product-thum" alt="...">
 					</div>
-					<div class="col align-items-center fw-bold" style="font-size: 0.9em;">판매자 이름</div>
+					<div class="col align-items-center fw-bold"
+						style="font-size: 0.9em;">판매자 이름</div>
 				</div>
 			</div>
 			<div class="col-1"></div>
 		</div>
-			<div class="row mt-2 empty"></div>
+		<div class="row mt-2 empty"></div>
 		<div class="row mt-3">
 			<div class="row">
 				<div class="col fw-bold">상품정보</div>
@@ -858,10 +901,9 @@ font-size: 0.8em;
 				<div class="col fw-bold">상품 리뷰</div>
 			</div>
 			<div class="row mt-2">
-			<div class="col" id="colProductRating"> </div> </div>
-			<div class="row mt-2  ps-3 mx-0" id="reviewListBox">
-			
+				<div class="col" id="colProductRating"></div>
 			</div>
+			<div class="row mt-2  ps-3 mx-0" id="reviewListBox"></div>
 		</div>
 
 
@@ -874,97 +916,106 @@ font-size: 0.8em;
 							<div class="row">
 								<div class="col">
 
-								<a class="text-danger bi bi-heart"  id="heartBox"
-								onclick="toggleWish()" role="button"> </a>
-								
+									<a class="text-danger bi bi-heart" id="heartBox"
+										onclick="toggleWish()" role="button"> </a>
+
 
 
 								</div>
 							</div>
-							<div class="row">
+							<div class="row" style="height: 0.9em; margin-top: -0.5em;">
 								<div class="col">
-								<span id="totalWishCount">3</span> </div>
+									<span id="totalWishCount">3</span>
+								</div>
 							</div>
 						</div>
 						<div class="col ">
 							<div class="row">
 								<div class="col">
 									<div class="d-grid gap-2">
-										<button class="btn btn-primary" type="button"
+										<button class="btn " type="button" style="background-color: rgb(253, 152, 67);
+										color: white;"
 											data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom"
 											aria-controls="offcanvasBottom">구매하기</button>
 
 										<div class="offcanvas offcanvas-bottom dde"
 											style="height: auto;" tabindex="-1" id="offcanvasBottom"
 											aria-labelledby="offcanvasBottomLabel">
-										
+
 											<div class="row mt-3">
 												<div class="col text-center fw-bold">상품 선택</div>
 											</div>
 											<div class="row mt-4">
 												<div class="row" id="optionRow">
 													<div class="col-1"></div>
-													<div class="col" id ="colOption">
+													<div class="col" id="colOption"></div>
+													<div class="col-1"></div>
+												</div>
+												<div class="row mt-3" id="optionContainer"></div>
 
-													</div>
-													<div class="col-1"></div>
-												</div>
-												<div class="row mt-3" id="optionContainer" >
-												
-												</div>
-
-													<div class="col-1"></div>
-												</div>
-
-												<div class="row mt-3">
-
-													<div class="col-1"></div>
-													<div class="col-6">총 상품 금액</div>
-													<div class="col-4 text-end">
-														<div class="row">
-															<div class="col fw-bold fs-4" id="showTotalPrice">0원</div>               
-														</div>
-													</div>
-													<div class="col-1"></div>
-												</div>
-												<div class="row mt-4">
-													<div class="col-1"></div>
-													<div class="col-5 d-grid gap-2">
-														<button class="btn btn-outline-primary btn-lg"
-															type="button" onclick="insertCart()">장바구니</button>
-													</div>
-													<div class="col-5 d-grid gap-2">
-														<button class="btn btn-primary btn-lg" type="button" 
-														onclick="buyNow()"
-														>바로구매</button>
-													</div>
-													<div class="col-1"></div>
-												</div>
-												<div class="row mt-3"></div> 
+												<div class="col-1"></div>
 											</div>
-										
+
+											<div class="row mt-3">
+
+												<div class="col-1"></div>
+												<div class="col-6">총 상품 금액</div>
+												<div class="col-4 text-end">
+													<div class="row">
+														<div class="col fw-bold fs-4" id="showTotalPrice" style="color: darksalmon;">0원</div>
+													</div>
+												</div>
+												<div class="col-1"></div>
+											</div>
+											<div class="row mt-4">
+												<div class="col-1"></div>
+												<div class="col-5 d-grid gap-2">
+													<button class="btn   btn-lg" style="border-color: rgb(253, 152, 67); 
+													color: darksalmon;"
+														data-bs-dismiss="offcanvas" type="button"
+														onclick="insertCart()">장바구니</button>
+												</div>
+												<div class="col-5 d-grid gap-2">
+													<button class="btn  btn-lg" type="button" style="background-color: rgb(253, 152, 67);
+													color: white;"
+														onclick="buyNow()">바로구매</button>
+												</div>
+												<div class="col-1"></div>
+											</div>
+											<div class="row mt-3"></div>
 										</div>
+
 									</div>
 								</div>
 							</div>
-							<div class="col-1"></div>
 						</div>
-						
+						<div class="col-1"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div id="myModal" class="modal" tabindex="-1" aria-labelledby="myModal"
+		aria-hidden="true">
+		<div class="modal-content">
+			<!-- 높이 조정 (300px로 변경) -->
+			<div class="modal-body">
+				<div class="row " style="font-size: 0.8em;">
+					<div class="col pe-0" style="color: white;">
+						<span> 장바구니에 상품이 담겼습니다. </span>
+					</div>
+					<div class="col-5 ps-0 text-end fw-bold">
+						<span onclick="moveToCart()" class="text-primary"> 장바구니로 가기</span>
 					</div>
 				</div>
 			</div>
 		</div>
-		
-		
-	<div id="myModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p>장바구니로 이동하시겠습니까?</p>
-    <button id="moveToCartBtn">예</button>
-    <button id="closeModalBtn">아니오</button>
-  </div>
-</div>
-	
+	</div>
+
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"

@@ -15,82 +15,109 @@
 
 </head>
 <body>
-	<div class="container">
-		<div class="row">
-			<div class="col">
-				<jsp:include page="../common/bizTopNavi.jsp"></jsp:include>
-			</div>
-		</div>
-		<div class="row text-center">
-			<div class="col-3"><jsp:include
+	<div class="container" style="margin: 0 0;">
+		<div class="row" style="width: 1900px;">
+			<div class="col-2 text-center ps-4 text-white"
+				style="height: 1080px; background-color: rgb(29, 33, 42);"><jsp:include
 					page="../common/bizLeftNavi.jsp"></jsp:include></div>
-			<div class="col-9 my-3">
-				<div class="row my-2 mx-2">
-					<div class="col fs-4 bold text-start">주문/발송관리</div>
+
+			<div class="col-8 px-0">
+				<div class="row bg-white mx-1">
+					<div class="col text-center"><jsp:include
+							page="../common/bizTopNavi.jsp"></jsp:include></div>
 				</div>
-				<div class="row my-2 mx-2">
-					<div class="col"></div>
-					<div class="col border-bottom border-4 border-primary">
-						<div class="btn" id="newCancelOrderTab" onclick="loadNewCancelOrderTab()">취소요청</div>
-					</div>
+				<div class="row mx-5 text-center">
 					<div class="col">
-						<div class="btn" id="completeCancelOrderTab"
-							onclick="loadCompleteCancelOrderTab()">취소완료</div>
-					</div>
-					<div class="col"></div>
-				</div>
-				<div class="row my-2 mx-2">
-					<div class="col border">
-						<div class="row py-2 border-bottom">
-							<div class="col fs-5 text-start">목록</div>
+						<div class="row my-2">
+							<div class="col fs-5 fw-bold text-start py-3">주문 취소 관리</div>
 						</div>
-						<div class="row py-2 border-bottom">
-							<div class="col text-start">
-								<button class="btn btn-outline-secondary" id="cancelOrderButton"
-									onclick="changeOrderStatusTo2()">취소확인</button>
+						<div class="row my-2 bg-light px-5">
+							<div class="col">
+								<div class="row my-5">
+									<div class="col border bg-white">
+										<div class="row border-bottom">
+											<div class="col-3 border-end py-2">기간</div>
+											<div class="col py-2">
+												<input class="text-center" type="date" style="width: 200px;">
+												~ <input class="text-center" type="date"
+													style="width: 200px;">
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-3 border-end py-2">검색어</div>
+											<div class="col py-2 text-start"></div>
+										</div>
+									</div>
+								</div>
+								<div class="row justify-content-center my-5">
+									<div class="col">
+										<span><button class="btn btn-dark">검색</button></span> <span><button
+												class="btn btn-outline-dark">초기화</button></span>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<div class="row text-start mt-5">
+							<div class="col">
+								<span class="btn border-0 border-bottom border-4 rounded-0 border-primary" id="newCancelOrderTab"
+									onclick="loadNewCancelOrderTab()">취소요청</span> <span class="btn"
+									id="completeCancelOrderTab"
+									onclick="loadCompleteCancelOrderTab()">취소완료</span>
 							</div>
 						</div>
-						<div class="row" id="orderList">
-							<div class="col">
-								<div class="table-responsive">
-									<table class="table text-nowrap">
-										<thead>
-											<tr>
-												<th scope="col"><input class="form-check-input"
-													type="checkbox" value="" onclick="toggleCheck(event)"></th>
-												<th scope="col">상품주문번호</th>
-												<th scope="col">주문번호</th>
-												<th scope="col">구매자명</th>
-												<th scope="col">구매자연락처</th>
-												<th scope="col">주문일</th>
-												<th scope="col">상품번호</th>
-												<th scope="col">상품명</th>
-												<th scope="col">주문수량</th>
-											</tr>
-										</thead>
-										<tbody>
-											<c:forEach items="${orderList }" var="order">
-												<tr>
-													<td><input class="form-check-input"
-														name="order_product_no" type="checkbox"
-														value="${order.orderProductDto.order_product_no }"></td>
-													<td><button class="btn px-0 py-0" data-bs-toggle="modal"
-															data-bs-target="#orderDetailModal"
-															onclick='showModal(${order.jsonData})'>${order.orderProductDto.order_product_no }</button></td>
-													<td>${order.ordersDto.orders_no }</td>
-													<td>${order.customerDto.customer_name }</td>
-													<td>${order.customerDto.customer_phone }</td>
-													<td><fmt:formatDate
-															value="${order.ordersDto.orders_date }"
-															pattern="yyyy.MM.dd" /></td>
-													<td>${order.productOptionDto.product_option_no}</td>
-													<td>${order.productOptionDto.product_option_name}</td>
-													<td>${order.orderProductDto.order_product_quantity }</td>
-												</tr>
-											</c:forEach>
+						<div class="row my-2 mx-2">
+							<div class="col border">
+								<div class="row py-2 border-bottom">
+									<div class="col text-start">
+										<button class="btn btn-outline-secondary btn-sm"
+											id="cancelOrderButton" onclick="changeOrderStatusTo2()">취소확인</button>
+									</div>
+								</div>
+								<div class="row" id="orderList">
+									<div class="col">
+										<div class="table-responsive">
+											<table class="table text-nowrap">
+												<thead>
+													<tr>
+														<th scope="col"><input class="form-check-input"
+															type="checkbox" value="" onclick="toggleCheck(event)"></th>
+														<th scope="col">상품주문번호</th>
+														<th scope="col">주문번호</th>
+														<th scope="col">구매자명</th>
+														<th scope="col">구매자연락처</th>
+														<th scope="col">주문일</th>
+														<th scope="col">상품번호</th>
+														<th scope="col">상품명</th>
+														<th scope="col">주문수량</th>
+													</tr>
+												</thead>
+												<tbody>
+													<c:forEach items="${orderList }" var="order">
+														<tr>
+															<td><input class="form-check-input"
+																name="order_product_no" type="checkbox"
+																value="${order.orderProductDto.order_product_no }"></td>
+															<td><button class="btn px-0 py-0"
+																	data-bs-toggle="modal"
+																	data-bs-target="#orderDetailModal"
+																	onclick='showModal(${order.jsonData})'>${order.orderProductDto.order_product_no }</button></td>
+															<td>${order.ordersDto.orders_no }</td>
+															<td>${order.customerDto.customer_name }</td>
+															<td>${order.customerDto.customer_phone }</td>
+															<td><fmt:formatDate
+																	value="${order.ordersDto.orders_date }"
+																	pattern="yyyy.MM.dd" /></td>
+															<td>${order.productOptionDto.product_option_no}</td>
+															<td>${order.productOptionDto.product_option_name}</td>
+															<td>${order.orderProductDto.order_product_quantity }</td>
+														</tr>
+													</c:forEach>
 
-										</tbody>
-									</table>
+												</tbody>
+											</table>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -173,7 +200,8 @@
 								<div class="col" id="shippingMemo"></div>
 							</div>
 							<div class="row">
-								<div class="col" id="addressMap" style="width:500px;height:400px;"></div>
+								<div class="col" id="addressMap"
+									style="width: 500px; height: 400px;"></div>
 							</div>
 						</div>
 					</div>
@@ -416,17 +444,13 @@
 		function loadNewCancelOrderTab() {
 			
 			const newCancelOrderTab=document.getElementById("newCancelOrderTab");
-			if (!newCancelOrderTab.parentNode.classList.contains('border-bottom',
-					'border-4', 'border-primary')) {
-				newCancelOrderTab.parentNode.classList.add('border-bottom',
-						'border-4', 'border-primary');
+			if (!newCancelOrderTab.classList.contains('border-bottom')) {
+				newCancelOrderTab.classList.add('border-0', 'border-bottom', 'border-4', 'rounded-0', 'border-primary');
 			}
 			
 			const completeCancelOrderTab = document.getElementById("completeCancelOrderTab");
-			if (completeCancelOrderTab.parentNode.classList.contains('border-bottom',
-					'border-4', 'border-primary')) {
-				completeCancelOrderTab.parentNode.classList.remove('border-bottom',
-						'border-4', 'border-primary');
+			if (completeCancelOrderTab.classList.contains('border-bottom')) {
+				completeCancelOrderTab.classList.remove('border-0', 'border-bottom', 'border-4', 'rounded-0', 'border-primary');
 			}
 			
 			
@@ -457,17 +481,13 @@
 		function loadCompleteCancelOrderTab() {
 			
 			const newCancelOrderTab=document.getElementById("newCancelOrderTab");
-			if (newCancelOrderTab.parentNode.classList.contains('border-bottom',
-					'border-4', 'border-primary')) {
-				newCancelOrderTab.parentNode.classList.remove('border-bottom',
-						'border-4', 'border-primary');
+			if (newCancelOrderTab.classList.contains('border-bottom')) {
+				newCancelOrderTab.classList.remove('border-0', 'border-bottom', 'border-4', 'rounded-0', 'border-primary');
 			}
 			
 			const completeCancelOrderTab = document.getElementById("completeCancelOrderTab");
-			if (!completeCancelOrderTab.parentNode.classList.contains('border-bottom',
-					'border-4', 'border-primary')) {
-				completeCancelOrderTab.parentNode.classList.add('border-bottom',
-						'border-4', 'border-primary');
+			if (!completeCancelOrderTab.classList.contains('border-bottom')) {
+				completeCancelOrderTab.classList.add('border-0', 'border-bottom', 'border-4', 'rounded-0', 'border-primary');
 			}
 			
 			

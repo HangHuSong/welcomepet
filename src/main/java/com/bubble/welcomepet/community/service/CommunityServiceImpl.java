@@ -49,7 +49,7 @@ public class CommunityServiceImpl {
 				List<ShowDogPostImagesDto> postImageDtoList = showDogPostSqlMapper.findImagesByPostId(show_dog_post_no);
 //				댓글 수 
 				int countComment = showDogPostSqlMapper.countCommentByPostNo(show_dog_post_no);
-				
+//				이미지 유무
 				int checkImg=showDogPostSqlMapper.countImageByPostNo(show_dog_post_no);
 				
 //				댓글 수
@@ -151,8 +151,8 @@ public class CommunityServiceImpl {
 		showDogPostSqlMapper.deleteByPostNo(show_dog_post_no);	
 	}
 
-//	게시글 수정
-	public void updatePost(ShowDogPostDto showDogPostDto, List<ShowDogPostImagesDto> postImageDtoList) {
+//	게시글 수정 											,List<ShowDogPostImagesDto> postImageDtoList
+	public void updatePost(ShowDogPostDto showDogPostDto) {
 		
 		int show_dog_post_no = showDogPostSqlMapper.createShowDogPostPK();
 		
@@ -223,10 +223,14 @@ public class CommunityServiceImpl {
 				
 //				댓글 수 
 				int countComment = showDogPostSqlMapper.countCommentByPostNo(show_dog_post_no);		
+//				이미지 유무
+				int checkImg=showDogPostSqlMapper.countImageByPostNo(show_dog_post_no);
+				
 			
 //				댓글 수
 				map.put("countComment", countComment);
-				
+//				이미지 유무
+				map.put("checkImg", checkImg);
 				map.put("showDogPostDto", showDogPostDto);
 				map.put("customerDto", customerDto);
 				

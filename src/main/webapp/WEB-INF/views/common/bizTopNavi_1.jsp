@@ -18,92 +18,64 @@
 
 </head>
 <body>
-
-	<div class="row py-1 my-1">
+	<!-- <div class="row">
+		<div class="col text-end" id="loginOutButtonBox"></div>
+	</div> -->
+	<div class="row">
 		<div class="col">
 			<div class="row text-center align-items-center">
-				<div class="col-5">
-					<div class="input-group">
-						<input type="text" class="form-control" placeholder="어서오개 통합검색">
-						<span class="input-group-text"><i class="fas fa-search"></i></span>
-					</div>
+				<div class="col-3 fs-3 fw-bold">
+					<a class="btn" href="../biz/main"> <img class="w-100"
+						src="/welcomepet/resources/img/logo.png">
+					</a>
 				</div>
 				<div class="col"></div>
-				<c:choose>
-					<c:when test="${empty bizUser }">
-						<div class="col">
-							<a class="btn" href="./login">로그인</a>
-						</div>
-						<div class="col">
-							<a class="btn" href="./register">회원가입</a>
-						</div>
-					</c:when>
-					<c:when test="${!empty bizUser && bizUser.biz_status_no eq 4}">
-						<%-- <div class="col-1 border-end">
-							<div class="dropdown">
-								<button class="btn dropdown-toggle px-0 py-0" type="button"
-									data-bs-toggle="dropdown" aria-expanded="false">
-									<img class="w-75 rounded-circle" src="/uploadFiles/bizMainImg/${bizUser.biz_store_main_img }">
-								</button>
-								<ul class="dropdown-menu">
-									<li><a class="dropdown-item" href="#">마이페이지</a></li>
-									<li><a class="dropdown-item" href="./logoutProcess">로그아웃</a></li>
+				<c:if test="${!empty bizUser }">
+					<div class="col-1">
+						<div class="dropdown">
+							<button class="btn dropdown-toggle px-0" type="button"
+								data-bs-toggle="dropdown" aria-expanded="false">
+								${bizUser.biz_store_name }</button>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="#">마이페이지</a></li>
+								<li><a class="dropdown-item" href="./logoutProcess">로그아웃</a></li>
 
-								</ul>
-							</div>
-						</div> --%>
-						<div class="col-1 text-end mx-2 px-0">
-							<div class="dropdown">
-								<button class="btn" type="button" data-bs-toggle="dropdown">
-									<div class="row justify-content-start">
-										<div class="col fs-5 px-0">
-											<i class="far fa-bell fa-lg px-2 position-relative"><span
-												class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-												style="font-size: 12px;" id="alarmNum">0</span></i>
-										</div>
+							</ul>
+						</div>
+					</div>
+					<div class="col-1">
+						<div class="dropdown">
+							<button class="btn" type="button" data-bs-toggle="dropdown">
+								<div class="row">
+									<div class="col fs-4">
+										<i class="far fa-bell fa-lg px-2 position-relative"><span
+											class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+											style="font-size: 12px;" id="alarmNum">0</span></i>
 									</div>
-								</button>
-								<ul class="dropdown-menu" style="width: 450px;" id="alarmUl">
-								</ul>
-							</div>
+								</div>
+								<div class="row">
+									<div class="col" style="font-size: 12px;">알림</div>
+								</div>
+							</button>
+							<ul class="dropdown-menu" style="width: 450px;" id="alarmUl">
+							</ul>
 						</div>
-					</c:when>
-					<c:otherwise>
-						<div class="col-1">
-							<div class="dropdown">
-								<button class="btn dropdown-toggle px-0 " type="button"
-									data-bs-toggle="dropdown" aria-expanded="false">
-									<i class="fas fa-user-circle fs-3"></i>
-								</button>
-								<ul class="dropdown-menu">
-									<li><a class="dropdown-item" href="#">마이페이지</a></li>
-									<li><a class="dropdown-item" href="./logoutProcess">로그아웃</a></li>
-
-								</ul>
-							</div>
-						</div>
-						<div class="col-1">
-							<div class="dropdown">
-								<button class="btn" type="button" data-bs-toggle="dropdown">
-									<div class="row">
-										<div class="col fs-4">
-											<i class="far fa-bell fa-lg px-2 position-relative"><span
-												class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-												style="font-size: 12px;" id="alarmNum">0</span></i>
-										</div>
-									</div>
-								</button>
-
-							</div>
-						</div>
-					</c:otherwise>
-				</c:choose>
+					</div>
+				</c:if> 
+				<c:if test="${empty bizUser }">
+					<div class="col">
+						<a class="btn" href="./login">로그인</a>
+					</div>
+					<div class="col">
+						<a class="btn" href="./register">회원가입</a>
+					</div>
+				</c:if>
 			</div>
 
 		</div>
 	</div>
 	<script type="text/javascript">
-		if(${bizUser.biz_status_no}==4){
+		if(${bizUser.biz_status_no eq 4}){
 			var intervalAlarm=setInterval(getAlarm,100);	
 		}
 		

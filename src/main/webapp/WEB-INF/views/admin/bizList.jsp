@@ -12,16 +12,7 @@
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
     crossorigin="anonymous">
 <style>
- /* 링크 스타일 제거 */
-    a {
-        color: inherit;
-        text-decoration: none;
-    }
-.sidebar {
-    height: 100vh;
-    background-color: #f8f9fa;
-    padding-top: 20px;
-}
+
 </style>
 <script type="text/javascript">
     function getBizList() {
@@ -96,6 +87,19 @@
             <div class="col-1"></div>
             <div class="col-9">
                 <div class="row mt-5">
+                	<div class="col-2">
+                		<select name="searchType" class="form-select">
+                			<option value="customer_no" selected="selected">IDX</option>
+                			<option value="customer_nickname">브랜드명</option>
+                			<option value="customer_phone">연락처</option>
+                		</select>
+                	</div>
+                    <div class="col-8">
+                        <input name="searchWord" type="text" class="form-control">
+                    </div>
+                    <div class="col d-grid">
+                        <button class="btn btn-secondary">검색</button>
+                    </div>
                 </div>
                 <div class="row mt-3">
                     
@@ -115,6 +119,30 @@
                         	</tbody>
                         </table>
                     </div>
+                </div>
+                
+                <div class="row">
+                	<div class="col">
+                		<nav aria-label="...">
+						    <ul class="pagination justify-content-center">
+						        <li class="page-item disabled">
+						            <a class="page-link">&lt;</a>
+						        </li>
+						        <li class="page-item active">
+						        	<a class="page-link" href="#">1</a>
+					        	</li>
+						        <li class="page-item" aria-current="page">
+						            <a class="page-link" href="#">2</a>
+						        </li>
+						        <li class="page-item">
+						        	<a class="page-link" href="#">3</a>
+					        	</li>
+						        <li class="page-item">
+						            <a class="page-link" href="#">&gt;</a>
+						        </li>
+						    </ul>
+						</nav>
+                	</div>
                 </div>
             </div>
         </div>

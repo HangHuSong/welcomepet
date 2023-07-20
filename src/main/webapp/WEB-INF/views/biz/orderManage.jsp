@@ -15,187 +15,210 @@
 
 </head>
 <body>
-	<div class="container">
-		<div class="row">
-			<div class="col">
-				<jsp:include page="../common/bizTopNavi.jsp"></jsp:include>
-			</div>
-		</div>
-		<div class="row text-center">
-			<div class="col-3"><jsp:include
+	<div class="container" style="margin: 0 0;">
+		<div class="row" style="width: 1900px;">
+			<div class="col-2 text-center ps-4 text-white"
+				style="height: 1080px; background-color: rgb(29, 33, 42);"><jsp:include
 					page="../common/bizLeftNavi.jsp"></jsp:include></div>
-			<div class="col-9 my-3">
-				<div class="row my-2 mx-2">
-					<div class="col fs-4 bold text-start">주문/발송관리</div>
+			<div class="col-8 px-0">
+				<div class="row bg-white mx-1">
+					<div class="col text-center"><jsp:include
+							page="../common/bizTopNavi.jsp"></jsp:include></div>
 				</div>
-				<div class="row my-2 mx-2">
-					<div class="col"></div>
-					<div class="col border-bottom border-4 border-primary">
-						<div class="btn" id="newOrderTab" onclick="loadNewOrderTab()">신규주문</div>
-					</div>
+				<div class="row mx-5 text-center">
 					<div class="col">
-						<div class="btn" id="prepareShippingTab"
-							onclick="loadPrepareShippingTab()">배송준비</div>
-					</div>
-					<div class="col">
-						<div class="btn" id="inShippingTab" onclick="loadInShippingTab()">배송중</div>
-					</div>
-					<div class="col">
-						<div class="btn" id="completeShippingTab"
-							onclick="loadCompleteShippingTab()">배송완료</div>
-					</div>
-					<div class="col"></div>
-				</div>
-				<div class="row my-2 mx-2">
-					<div class="col border">
-						<div class="row py-2 border-bottom">
-							<div class="col fs-5 text-start">목록</div>
+						<div class="row my-2">
+							<div class="col fs-5 fw-bold text-start py-3">주문/발송관리</div>
 						</div>
-						<div class="row py-2 border-bottom">
-							<div class="col text-start">
-								<button class="btn btn-outline-secondary" id="orderCheckButton"
-									onclick="changeOrderStatusTo3()">발주확인</button>
-							</div>
-							<div class="col text-start visually-hidden">
-								<button class="btn btn-outline-secondary"
-									id="shippingStartButton" onclick="changeOrderStatusTo4()">발송처리</button>
-							</div>
-						</div>
-						<div class="row" id="orderList">
+						<div class="row my-2 bg-light px-5">
 							<div class="col">
-								<div class="table-responsive">
-									<table class="table text-nowrap">
-										<thead>
-											<tr>
-												<th scope="col"><input class="form-check-input"
-													type="checkbox" value="" onclick="toggleCheck(event)"></th>
-												<th scope="col">상품주문번호</th>
-												<th scope="col">주문번호</th>
-												<th scope="col">구매자명</th>
-												<th scope="col">구매자연락처</th>
-												<th scope="col">수취인명</th>
-												<th scope="col">수취인연락처</th>
-												<th scope="col">배송지</th>
-												<th scope="col">배송메세지</th>
-												<th scope="col">주문일</th>
-												<th scope="col">상품번호</th>
-												<th scope="col">상품명</th>
-												<th scope="col">주문수량</th>
-											</tr>
-										</thead>
-										<tbody>
-											<c:forEach items="${newOrderList }" var="newOrder">
-												<tr>
-													<td><input class="form-check-input"
-														name="order_product_no" type="checkbox"
-														value="${newOrder.orderProductDto.order_product_no }"></td>
-													<td>
-														<button class="btn px-0 py-0" data-bs-toggle="modal"
-															data-bs-target="#orderDetailModal"
-															onclick='showModal(${newOrder.jsonData})'>${newOrder.orderProductDto.order_product_no }</button>
-													</td>
-													<td>${newOrder.ordersDto.orders_no }</td>
-													<td>${newOrder.customerDto.customer_name }</td>
-													<td>${newOrder.customerDto.customer_phone }</td>
-													<td>${newOrder.ordersDto.orders_receiver_name }</td>
-													<td>${newOrder.ordersDto.orders_address_phone }</td>
-													<td>${newOrder.ordersDto.orders_address }&nbsp;${newOrder.orders_detail_address }</td>
-													<td>${newOrder.ordersDto.orders_shipping_message }</td>
-													<td><fmt:formatDate
-															value="${newOrder.ordersDto.orders_date }"
-															pattern="yyyy.MM.dd" /></td>
-													<td>${newOrder.productOptionDto.product_option_no}</td>
-													<td>${newOrder.productOptionDto.product_option_name}</td>
-													<td>${newOrder.orderProductDto.order_product_quantity }</td>
-												</tr>
-											</c:forEach>
+								<div class="row my-5">
+									<div class="col border bg-white">
+										<div class="row border-bottom">
+											<div class="col-3 border-end py-2">기간</div>
+											<div class="col py-2">
+												<input class="text-center" type="date" style="width: 200px;">
+												~ <input class="text-center" type="date"
+													style="width: 200px;">
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-3 border-end py-2">검색어</div>
+											<div class="col py-2 text-start"></div>
+										</div>
+									</div>
+								</div>
+								<div class="row justify-content-center my-5">
+									<div class="col">
+										<span><button class="btn btn-dark">검색</button></span> <span><button
+												class="btn btn-outline-dark">초기화</button></span>
+									</div>
+								</div>
+							</div>
 
-										</tbody>
-									</table>
+						</div>
+						<div class="row text-start mt-5">
+							<div class="col">
+								<span
+									class="btn border-0 border-bottom border-4 rounded-0 border-primary"
+									id="newOrderTab" onclick="loadNewOrderTab()">신규주문</span> <span
+									class="btn" id="prepareShippingTab"
+									onclick="loadPrepareShippingTab()">배송준비</span> <span
+									class="btn" id="inShippingTab" onclick="loadInShippingTab()">배송중</span>
+								<span class="btn" id="completeShippingTab"
+									onclick="loadCompleteShippingTab()">배송완료</span>
+							</div>
+						</div>
+						<div class="row my-2 mx-2">
+							<div class="col border">
+								<div class="row py-2 border-bottom">
+									<div class="col text-start">
+										<button class="btn btn-outline-secondary btn-sm"
+											id="orderCheckButton" onclick="changeOrderStatusTo3()">발주확인</button>
+									</div>
+									<div class="col text-start visually-hidden">
+										<button class="btn btn-outline-secondary btn-sm"
+											id="shippingStartButton" onclick="changeOrderStatusTo4()">발송처리</button>
+									</div>
+								</div>
+								<div class="row bg-white" id="orderList">
+									<div class="col px-0">
+										<div class="table-responsive">
+											<table class="table text-nowrap">
+												<thead class="table-light">
+													<tr>
+														<th scope="col"><input class="form-check-input"
+															type="checkbox" value="" onclick="toggleCheck(event)"></th>
+														<th scope="col">상품주문번호</th>
+														<th scope="col">주문번호</th>
+														<th scope="col">구매자명</th>
+														<th scope="col">구매자연락처</th>
+														<th scope="col">수취인명</th>
+														<th scope="col">수취인연락처</th>
+														<th scope="col">배송지</th>
+														<th scope="col">배송메세지</th>
+														<th scope="col">주문일</th>
+														<th scope="col">상품번호</th>
+														<th scope="col">상품명</th>
+														<th scope="col">주문수량</th>
+													</tr>
+												</thead>
+												<tbody>
+													<c:forEach items="${newOrderList }" var="newOrder">
+														<tr>
+															<td><input class="form-check-input"
+																name="order_product_no" type="checkbox"
+																value="${newOrder.orderProductDto.order_product_no }"></td>
+															<td>
+																<button class="btn px-0 py-0" data-bs-toggle="modal"
+																	data-bs-target="#orderDetailModal"
+																	onclick='showModal(${newOrder.jsonData})'>${newOrder.orderProductDto.order_product_no }</button>
+															</td>
+															<td>${newOrder.ordersDto.orders_no }</td>
+															<td>${newOrder.customerDto.customer_name }</td>
+															<td>${newOrder.customerDto.customer_phone }</td>
+															<td>${newOrder.ordersDto.orders_receiver_name }</td>
+															<td>${newOrder.ordersDto.orders_address_phone }</td>
+															<td>${newOrder.ordersDto.orders_address }&nbsp;${newOrder.orders_detail_address }</td>
+															<td>${newOrder.ordersDto.orders_shipping_message }</td>
+															<td><fmt:formatDate
+																	value="${newOrder.ordersDto.orders_date }"
+																	pattern="yyyy.MM.dd" /></td>
+															<td>${newOrder.productOptionDto.product_option_no}</td>
+															<td>${newOrder.productOptionDto.product_option_name}</td>
+															<td>${newOrder.orderProductDto.order_product_quantity }</td>
+														</tr>
+													</c:forEach>
+
+												</tbody>
+											</table>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			<div class="col-2"></div>
 		</div>
-	</div>
-	<div class="modal fade" id="orderDetailModal">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h1 class="modal-title fs-5">주문 상세보기</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"
-						aria-label="Close"></button>
-				</div>
-				<div class="modal-body text-center">
-					<div class="row my-2">
-						<div class="col border">
-							<div class="row py-2 border-bottom">
-								<div class="col fw-bold text-start">주문상세정보</div>
-							</div>
-							<div class="row">
-								<div class="col">
-									<div class="row border-bottom">
-										<div class="col-3 bg-light">상품명</div>
-										<div class="col" id="productName"></div>
-									</div>
-									<div class="row border-bottom">
-										<div class="col-3 bg-light">옵션</div>
-										<div class="col" id="productOptionName"></div>
-									</div>
-									<div class="row border-bottom">
-										<div class="col-3 bg-light">상품주문상태</div>
-										<div class="col" id="orderStatus"></div>
-										<div class="col-3 bg-light">주문일</div>
-										<div class="col" id="orderDate"></div>
-									</div>
-									<div class="row border-bottom">
-										<div class="col-3 bg-light">구매자명</div>
-										<div class="col" id="customerName"></div>
-									</div>
-									<div class="row border-bottom">
-										<div class="col-3 bg-light">상품가격</div>
-										<div class="col" id="productPrice"></div>
-										<div class="col-3 bg-light">주문수량</div>
-										<div class="col" id="orderQuantity"></div>
-									</div>
-									<div class="row">
-										<div class="col-3 bg-light">총금액</div>
-										<div class="col" id="totalPrice"></div>
+		<div class="modal fade" id="orderDetailModal">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5">주문 상세보기</h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"
+							aria-label="Close"></button>
+					</div>
+					<div class="modal-body text-center">
+						<div class="row my-2">
+							<div class="col border">
+								<div class="row py-2 border-bottom">
+									<div class="col fw-bold text-start">주문상세정보</div>
+								</div>
+								<div class="row">
+									<div class="col">
+										<div class="row border-bottom">
+											<div class="col-3 bg-light">상품명</div>
+											<div class="col" id="productName"></div>
+										</div>
+										<div class="row border-bottom">
+											<div class="col-3 bg-light">옵션</div>
+											<div class="col" id="productOptionName"></div>
+										</div>
+										<div class="row border-bottom">
+											<div class="col-3 bg-light">상품주문상태</div>
+											<div class="col" id="orderStatus"></div>
+											<div class="col-3 bg-light">주문일</div>
+											<div class="col" id="orderDate"></div>
+										</div>
+										<div class="row border-bottom">
+											<div class="col-3 bg-light">구매자명</div>
+											<div class="col" id="customerName"></div>
+										</div>
+										<div class="row border-bottom">
+											<div class="col-3 bg-light">상품가격</div>
+											<div class="col" id="productPrice"></div>
+											<div class="col-3 bg-light">주문수량</div>
+											<div class="col" id="orderQuantity"></div>
+										</div>
+										<div class="row">
+											<div class="col-3 bg-light">총금액</div>
+											<div class="col" id="totalPrice"></div>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="row my-2">
-						<div class="col border">
-							<div class="row py-2 border-bottom">
-								<div class="col fw-bold text-start">배송정보</div>
-							</div>
-							<div class="row border-bottom">
-								<div class="col-3 bg-light">택배사</div>
-								<div class="col" id="shippingCompanyName"></div>
-								<div class="col-3 bg-light">송장번호</div>
-								<div class="col" id="shippingTrackingNo"></div>
-							</div>
-							<div class="row border-bottom">
-								<div class="col-3 bg-light">수취인명</div>
-								<div class="col" id="receiverName"></div>
-								<div class="col-3 bg-light">연락처</div>
-								<div class="col" id="receiverPhone"></div>
-							</div>
-							<div class="row border-bottom">
-								<div class="col-3 bg-light">배송지</div>
-								<div class="col" id="shippingAddress"></div>
-							</div>
-							<div class="row border-bottom">
-								<div class="col-3 bg-light">배송메모</div>
-								<div class="col" id="shippingMemo"></div>
-							</div>
-							<div class="row">
-								<div class="col" id="addressMap"
-									style="width: 500px; height: 400px;"></div>
+						<div class="row my-2">
+							<div class="col border">
+								<div class="row py-2 border-bottom">
+									<div class="col fw-bold text-start">배송정보</div>
+								</div>
+								<div class="row border-bottom">
+									<div class="col-3 bg-light">택배사</div>
+									<div class="col" id="shippingCompanyName"></div>
+									<div class="col-3 bg-light">송장번호</div>
+									<div class="col" id="shippingTrackingNo"></div>
+								</div>
+								<div class="row border-bottom">
+									<div class="col-3 bg-light">수취인명</div>
+									<div class="col" id="receiverName"></div>
+									<div class="col-3 bg-light">연락처</div>
+									<div class="col" id="receiverPhone"></div>
+								</div>
+								<div class="row border-bottom">
+									<div class="col-3 bg-light">배송지</div>
+									<div class="col" id="shippingAddress"></div>
+								</div>
+								<div class="row border-bottom">
+									<div class="col-3 bg-light">배송메모</div>
+									<div class="col" id="shippingMemo"></div>
+								</div>
+								<div class="row">
+									<div class="col" id="addressMap"
+										style="width: 500px; height: 400px;"></div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -387,7 +410,7 @@
         		tr.appendChild(orderProductNoTd);
 
         		const ordersNoTd = document.createElement("td");
-        		ordersNoTd.textContent = order.ordersDto.orders_no;
+        		ordersNoTd.textContent = preparingOrder.ordersDto.orders_no;
         		tr.appendChild(ordersNoTd);
 
         		const selectTd = document.createElement("td");
@@ -653,31 +676,23 @@
 		function loadCompleteShippingTab() {
 			
 			const newOrderTab=document.getElementById("newOrderTab");
-			if (newOrderTab.parentNode.classList.contains('border-bottom',
-					'border-4', 'border-primary')) {
-				newOrderTab.parentNode.classList.remove('border-bottom',
-						'border-4', 'border-primary');
+			if (newOrderTab.classList.contains('border-bottom')) {
+				newOrderTab.classList.remove('border-0', 'border-bottom', 'border-4', 'rounded-0', 'border-primary');
 			}
 			
 			const prepareShippingTab = document.getElementById("prepareShippingTab");
-			if (prepareShippingTab.parentNode.classList.contains('border-bottom',
-					'border-4', 'border-primary')) {
-				prepareShippingTab.parentNode.classList.remove('border-bottom',
-						'border-4', 'border-primary');
+			if (prepareShippingTab.classList.contains('border-bottom')) {
+				prepareShippingTab.classList.remove('border-0', 'border-bottom', 'border-4', 'rounded-0', 'border-primary');
 			}
 			
 			const inShippingTab = document.getElementById("inShippingTab");
-			if (inShippingTab.parentNode.classList.contains('border-bottom',
-					'border-4', 'border-primary')) {
-				inShippingTab.parentNode.classList.remove('border-bottom',
-						'border-4', 'border-primary');
+			if (inShippingTab.classList.contains('border-bottom')) {
+				inShippingTab.classList.remove('border-0', 'border-bottom', 'border-4', 'rounded-0', 'border-primary');
 			}
 			
 			const completeShippingTab = document.getElementById("completeShippingTab");
-			if (!completeShippingTab.parentNode.classList.contains('border-bottom',
-					'border-4', 'border-primary')) {
-				completeShippingTab.parentNode.classList.add('border-bottom',
-						'border-4', 'border-primary');
+			if (!completeShippingTab.classList.contains('border-bottom')) {
+				completeShippingTab.classList.add('border-0', 'border-bottom', 'border-4', 'rounded-0', 'border-primary');
 			}
 			
 			const orderCheckButton = document
@@ -712,31 +727,23 @@
 		function loadInShippingTab() {
 			
 			const newOrderTab=document.getElementById("newOrderTab");
-			if (newOrderTab.parentNode.classList.contains('border-bottom',
-					'border-4', 'border-primary')) {
-				newOrderTab.parentNode.classList.remove('border-bottom',
-						'border-4', 'border-primary');
+			if (newOrderTab.classList.contains('border-bottom')) {
+				newOrderTab.classList.remove('border-0', 'border-bottom', 'border-4', 'rounded-0', 'border-primary');
 			}
 			
 			const prepareShippingTab = document.getElementById("prepareShippingTab");
-			if (prepareShippingTab.parentNode.classList.contains('border-bottom',
-					'border-4', 'border-primary')) {
-				prepareShippingTab.parentNode.classList.remove('border-bottom',
-						'border-4', 'border-primary');
+			if (prepareShippingTab.classList.contains('border-bottom')) {
+				prepareShippingTab.classList.remove('border-0', 'border-bottom', 'border-4', 'rounded-0', 'border-primary');
 			}
 			
 			const inShippingTab = document.getElementById("inShippingTab");
-			if (!inShippingTab.parentNode.classList.contains('border-bottom',
-					'border-4', 'border-primary')) {
-				inShippingTab.parentNode.classList.add('border-bottom',
-						'border-4', 'border-primary');
+			if (!inShippingTab.classList.contains('border-bottom')) {
+				inShippingTab.classList.add('border-0', 'border-bottom', 'border-4', 'rounded-0', 'border-primary');
 			}
 			
 			const completeShippingTab = document.getElementById("completeShippingTab");
-			if (completeShippingTab.parentNode.classList.contains('border-bottom',
-					'border-4', 'border-primary')) {
-				completeShippingTab.parentNode.classList.remove('border-bottom',
-						'border-4', 'border-primary');
+			if (completeShippingTab.classList.contains('border-bottom')) {
+				completeShippingTab.classList.remove('border-0', 'border-bottom', 'border-4', 'rounded-0', 'border-primary');
 			}
 			
 			const orderCheckButton = document
@@ -771,31 +778,23 @@
 		
 		function loadNewOrderTab() {
 			const newOrderTab = document.getElementById("newOrderTab");
-			if (!newOrderTab.parentNode.classList.contains('border-bottom',
-					'border-4', 'border-primary')) {
-				newOrderTab.parentNode.classList.add('border-bottom',
-						'border-4', 'border-primary');
+			if (!newOrderTab.classList.contains('border-bottom')) {
+				newOrderTab.classList.add('border-0', 'border-bottom', 'border-4', 'rounded-0', 'border-primary');
 			}
 			
 			const prepareShippingTab = document.getElementById("prepareShippingTab");
-			if (prepareShippingTab.parentNode.classList.contains('border-bottom',
-					'border-4', 'border-primary')) {
-				prepareShippingTab.parentNode.classList.remove('border-bottom',
-						'border-4', 'border-primary');
+			if (prepareShippingTab.classList.contains('border-bottom')) {
+				prepareShippingTab.classList.remove('border-0', 'border-bottom', 'border-4', 'rounded-0', 'border-primary');
 			}
 			
 			const inShippingTab = document.getElementById("inShippingTab");
-			if (inShippingTab.parentNode.classList.contains('border-bottom',
-					'border-4', 'border-primary')) {
-				inShippingTab.parentNode.classList.remove('border-bottom',
-						'border-4', 'border-primary');
+			if (inShippingTab.classList.contains('border-bottom')) {
+				inShippingTab.classList.remove('border-0', 'border-bottom', 'border-4', 'rounded-0', 'border-primary');
 			}
 			
 			const completeShippingTab = document.getElementById("completeShippingTab");
-			if (completeShippingTab.parentNode.classList.contains('border-bottom',
-					'border-4', 'border-primary')) {
-				completeShippingTab.parentNode.classList.remove('border-bottom',
-						'border-4', 'border-primary');
+			if (completeShippingTab.classList.contains('border-bottom')) {
+				completeShippingTab.classList.remove('border-0', 'border-bottom', 'border-4', 'rounded-0', 'border-primary');
 			}
 			
 			const orderCheckButton = document
@@ -828,31 +827,23 @@
 		}
 		function loadPrepareShippingTab() {
 			const newOrderTab = document.getElementById("newOrderTab");
-			if (newOrderTab.parentNode.classList.contains('border-bottom',
-					'border-4', 'border-primary')) {
-				newOrderTab.parentNode.classList.remove('border-bottom',
-						'border-4', 'border-primary');
+			if (newOrderTab.classList.contains('border-bottom')) {
+				newOrderTab.classList.remove('border-0', 'border-bottom', 'border-4', 'rounded-0', 'border-primary');
 			}
 			
 			const prepareShippingTab = document.getElementById("prepareShippingTab");
-			if (!prepareShippingTab.parentNode.classList.contains('border-bottom',
-					'border-4', 'border-primary')) {
-				prepareShippingTab.parentNode.classList.add('border-bottom',
-						'border-4', 'border-primary');
+			if (!prepareShippingTab.classList.contains('border-bottom')) {
+				prepareShippingTab.classList.add('border-0', 'border-bottom', 'border-4', 'rounded-0', 'border-primary');
 			}
 			
 			const inShippingTab = document.getElementById("inShippingTab");
-			if (inShippingTab.parentNode.classList.contains('border-bottom',
-					'border-4', 'border-primary')) {
-				inShippingTab.parentNode.classList.remove('border-bottom',
-						'border-4', 'border-primary');
+			if (inShippingTab.classList.contains('border-bottom')) {
+				inShippingTab.classList.remove('border-0', 'border-bottom', 'border-4', 'rounded-0', 'border-primary');
 			}
 			
 			const completeShippingTab = document.getElementById("completeShippingTab");
-			if (completeShippingTab.parentNode.classList.contains('border-bottom',
-					'border-4', 'border-primary')) {
-				completeShippingTab.parentNode.classList.remove('border-bottom',
-						'border-4', 'border-primary');
+			if (completeShippingTab.classList.contains('border-bottom')) {
+				completeShippingTab.classList.remove('border-0', 'border-bottom', 'border-4', 'rounded-0', 'border-primary');
 			}
 			const orderCheckButton = document
 					.getElementById("orderCheckButton");

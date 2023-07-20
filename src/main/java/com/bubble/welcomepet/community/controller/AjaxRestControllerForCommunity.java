@@ -22,4 +22,6 @@ public class AjaxRestControllerForCommunity {
 		map.put("commentList", communityServiceImpl.bringCommentByPostNo(show_dog_post_no));
 		return map;
 	}
+	
+	
 }

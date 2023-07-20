@@ -17,34 +17,54 @@
 </head>
 <body>
 	<div class="container">
-	<form action="..	/customer/loginProcess" method="post">
-		<div class="row">
-			<div class="col text-center">로그인</div>
+		<%-- top navigation --%>
+		<jsp:include page="../common/topNaviLogin.jsp"></jsp:include>
+		<%-- -------------- --%>
+		<form action="..	/customer/loginProcess" method="post">
+			<div class="row mt-3"></div>
+			<div class="row mt-3">
+				<div class="col-1"></div>
+				<div class="col">
+					<div class="row">
+						<div class="col">
+							<input type="text" class="form-control" name="customer_id"
+								placeholder="아이디">
+						</div>
+					</div>
+					<div class="row mt-2">
+						<div class="col">
+							<input type="password" class="form-control" name="customer_pw"
+								placeholder="비밀번호">
+						</div>
+					</div>
+					<div class="row mt-3">
+						<div class="col d-grid">
+							<button class="btn text-white"
+								style="background-color: rgb(253, 152, 67);">로그인</button>
+						</div>
+					</div>
 
-		</div>
-		<div class="row">
-			<div class="col">
-				<input type="text" class="form-control" name="customer_id">
-			</div>
-		</div>
-		<div class="row">
-			<div class="col">
-				<input type="password" class="form-control" name="customer_pw">
-			</div>
-		</div>
-		<div class="row">
-			<div class="col d-grid">
-				<button class="btn btn-primary">로그인 </button>
-			</div>
-		</div>
+					<div class="row mt-2 text-secondary" style="font-size: 0.8em;">
+						<div class="col border-end align-self-center pe-0">아이디 찾기</div>
+						<div class="col border-end align-self-center">비밀번호 찾기</div>
+						<div class="col pe-0">
+							<a class="btn px-0 py-0 text-secondary" href="./regist"
+								style="font-size: 1em;">회원가입</a>
+						</div>
+					</div>
+					<div class="row mt-2">
+						<div class="col justify-content-center">
 
-		<div class="row">
-			<div class="col d-grid">
-				<a href="./regist" class="btn btn-primary">회원가입</a>
+							<button class="btn" >
+								<img src="/welcomepet/resources/img/kakao_login.png" style="width: 100%;">
+							</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-1"></div>
 			</div>
-		</div>
-				</form>
-	</div>	
+		</form>
+	</div>
 
 
 	<script

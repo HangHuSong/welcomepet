@@ -12,17 +12,9 @@
 	rel="stylesheet"
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 	crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <style>
-.sidebar {
-	height: 100vh;
-	background-color: #f8f9fa;
-	padding-top: 20px;
-}
- /* 링크 스타일 제거 */
-    a {
-        color: inherit;
-        text-decoration: none;
-    }
+
 </style>
 </head>
 
@@ -45,7 +37,7 @@
 		                        <input name="searchWord" type="text" class="form-control">
 		                    </div>
 		                    <div class="col d-grid">
-		                        <button class="btn btn-primary">검색</button>
+		                        <button class="btn btn-secondary">검색</button>
 		                    </div>
 		                </div>
 		            </form>
@@ -68,10 +60,10 @@
 						            	</td>
 						            	<c:choose>
 							            	<c:when test="${list.csInquiryDto.cs_inquiry_status eq 0}">
-							            		<td>처리 대기</td>
+							            		<td class="text-danger"><i class="bi bi-clipboard-x"></i> 처리 대기</td>
 							            	</c:when>
 							            	<c:otherwise>
-							            		<td>답변 완료</td>
+							            		<td class="text-success"><i class="bi bi-clipboard-check"></i> 처리 완료</td>
 							            	</c:otherwise>
 										</c:choose>
 							        </tr>	

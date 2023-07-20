@@ -18,118 +18,99 @@
 <%------ bootstrap ------%>
 <script type="text/javascript">
  <%-- ajax --%>
+ 	<%-- 좋아요 
+ 	function reloadLikes{
+ 		const postId = ${postData.showDogPostDto.show_dog_post_no};
+ 		const 
+ 	};--%>
+ 	
+ 	<%-- 새로운 댓글쓰기 --%>
+ 	function registerComment(){
+		const postId = ${postData.showDogPostDto.show_dog_post_no};
+		const commentValue = document.querySelector("#inputCommentText").value;
+		
+		var xhr = new XMLHttpRequest(); 
+	    xhr.onload = function() {
+	        if (xhr.status === 200) {
+	            // 응답이 성공적으로 도착했을 때 실행되는 코드
+	            document.querySelector("#inputCommentText").value = "";
+	            reloadComment();
+	        } else {
+	            // 서버로부터 오류 응답을 받은 경우
+	            console.error('요청이 실패하였습니다.');
+	        }
+	    };
+		
 
- function commentList(commentData) {
-   const commentSection = document.getElementById("commentContent");
-   commentSection.innerHTML = "";
+	    // 요청을 보낼 URL 설정
+	    var url = './registerComment'; // 데이터를 받아올 URL
 
-   for (data of response.commentList) {
-     const colNickname = document.getElementById(`nickname_\${data.showDogCommentDto.show_dog_comment_no}`);
-     const colCommentText = document.getElementById(`comment_content_\${data.showDogCommentDto.show_dog_comment_no}`);
-
-     colNickname.classList.add("fw-bold");
-     colNickname.style.fontSize = "13px";
-     colNickname.innerText = \`${data.customerDto.customer_nickname}`;
-
-     colCommentText.innerText = \`${data.showDogCommentDto.show_dog_comment_content}`;
-   }
- }
-
-
-  <%-- 댓글리스트 --%>  
-//  function commentList(){
-/* 	  const xmlHttpRequest = new XMLHttpRequest();
-	  xmlHttpRequest.onreadystatechange = function(){
-		  	/* 4: 서버로부터 응답이 완료 &&(AND) 200: 서버의 Http 응답이 성공적인 상태 */
-/*		  if(xmlHttpRequest == 4 && xmlHttpRequest.status == 200){
-			  const response = JSON.parse(xmlHttpRequest.responseText); */
-			  
-			  /* 역할:  */
-/* 			  document.getElementById("commentContent").innerHTML = "";
-			  
-			  for(data of response.commentList){
- 				 const row1 = document.createElement("div");
- 				 row1.classList.add("row");
-			  	 
-				 const colNickname = document.createElement("div");
-				 colNickname.classList.add("col");
-				 colNickname.classList.add("fw-bold");
-				 colNickname.style.fontSize("13px");
-				 commentNickname.innerText = data.customerDto.customer_name;
-				 row1.appendChild(colNickname);
- 				 
- 				 document.getElementById("commentContent").appendChild(row1);
-			  } */
-		//  }	  
-	//  }
-  
-
-			     
-	//	}
-	 //get방식 
-	   xhr.open("get", "./bringCommentByPostNo?show_dog_post_no=" + show_dog_post_no);
-	   xhr.send();
-   }
-}   
-   
-   /* 여기가 시작지점이래 */
-   window.addEventListener("DOMContentLoaded", function(){
-	   getSessionId();
-	   commentList();
-	   
-	   /* 3초마다 한번씩 reload */
-	   setInterval(commentList, 3000);
-   });
+	    // GET 방식 요청 설정
+	    xhr.open('POST', url, true);
+	    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	    // 요청 보내기
+	    xhr.send('show_dog_comment_content=' + commentValue + "&show_dog_post_no=" + postId);				
+		
+ 	}
+ 	
  
+ 	<%-- 댓글리스트 --%>
+	function reloadComment(){
+		const postId = ${postData.showDogPostDto.show_dog_post_no};
+		
+		var xhr = new XMLHttpRequest(); 
+	    xhr.onload = function() {
+	        if (xhr.status === 200) {
+	            // 응답이 성공적으로 도착했을 때 실행되는 코드
+	            var response = JSON.parse(xhr.responseText);
+	            
+	            const commentRootBox = document.querySelector("#commentRootBox");
+	            commentRootBox.innerHTML = "";
+	            
+	            for(x of response){
+	            	const newNode = document.querySelector("#templete .commentWrapper").cloneNode(true);
+	            	
+	            	newNode.querySelector(".nickname").innerText = x.customerDto.customer_nickname;
+	            	newNode.querySelector(".content").innerText = x.showDogCommentDto.show_dog_comment_content;
+	            	
+	            	
+	            	const date = new Date(x.showDogCommentDto.show_dog_comment_reg_date);
+	            	
+	            	newNode.querySelector(".date").innerText = date.getFullYear() + "." + (date.getMonth() + 1) + "." + date.getDay();
+	            	
+	            	
+	            	
+	            	commentRootBox.appendChild(newNode);
+	            }
+	            
+	            
+	        } else {
+	            // 서버로부터 오류 응답을 받은 경우
+	            console.error('요청이 실패하였습니다.');
+	        }
+	    };
+		
+
+	    // 요청을 보낼 URL 설정
+	    var url = './getCommentDatas?show_dog_post_no=' + postId; // 데이터를 받아올 URL
+
+	    // GET 방식 요청 설정
+	    xhr.open('GET', url, true);
+
+	    // 요청 보내기
+	    xhr.send();		
+		
+	}
+	
+	<%-- ------ --%>
+ 
+	window.addEventListener("DOMContentLoaded", function(){
+		reloadComment();
+	});
+	
+	
  <%-- ajax --%>
- 
 
- 
- <%-- 			   <div class="col-12">
- 				  <c:forEach items="${commentData}" var="commentData">
- 				  <div class="row border-bottom py-3">
- 				 	프사
- 					 <div class="col-auto ps-3 pe-0 text-end">
- 					  <img class="rounded-circle" src="https://dummyimage.com/3*3" alt="...">
- 					 </div>
- 					 
- 					 댓글 데이터
- 					 <div class="col">
- 						  <div class="row">
- 						  	<div class="col fw-bold" style="font-size: 10pt;">
- 						  	 ${commentData.customerDto.customer_nickname}
- 						  	</div>
- 						  	
- 						  	댓글 수정 삭제
- 						  	<div class="col text-end dropdown pe-3">
- 						 	 <a class="text-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
- 						 	  <i class="bi bi-three-dots-vertical"></i>
- 						 	 </a>
- 						 	 <ul class="dropdown-menu">
- 						 	 	<c:if test="${!empty customerUser && customerUser.customer_no eq commentData.customerDto.customer_no}">
- 							 	 <li><a class="dropdown-item" type="button">수정</a></li>
- 							 	 <li><a class="dropdown-item" type="button"
- 							 	 		href="./deleteCommentProcess?show_dog_post_no=${commentData.showDogCommentDto.show_dog_post_no}">삭제</a>
- 							 	 </li>
- 							 	</c:if> 
- 							 	 <li><a class="dropdown-item" type="button">신고</a></li>
- 						 	 </ul>
- 						  	</div>  	
- 						  </div>
- 						 
- 						  <div class="row">
- 						   <div class="col-12">
- 						    ${commentData.showDogCommentDto.show_dog_comment_content}
- 						   </div>
- 						   <div class="col text-secondary" style="font-size: 10pt;">
- 						    <fmt:formatDate value="${commentData.showDogCommentDto.show_dog_comment_reg_date}" pattern="yy.MM.dd"/>
- 						    답글쓰기
- 						   </div>
- 						  </div>
- 					 </div>
- 				  </div>
- 				  </c:forEach>
- 				 </div> --%>
 </script>
 
 <style>
@@ -153,7 +134,8 @@
 		<a href="./showDogDeleteProcess?show_dog_post_no=${postData.showDogPostDto.show_dog_post_no}">삭제</a>
 	</c:if>
 	<%-- 로그인한 사람만 수정/삭제 --%>
-	<div class="row py-3 border-bottom">
+
+	<div class="row pt-3 pb-4 border-bottom">
 		<div class="col">
 			<div class="row">
 				 <div class="col">
@@ -204,36 +186,47 @@
 						</div>
 						
 						<%-- 상세글 정보 --%>		 		
-				 		<div class="col text-secondary" style="font-size: 13px;">
-				 			<span class="me-1">
-				 			 <img class="rounded-circle" src="https://dummyimage.com/3*3" alt="...">
+				 		<div class="col text-secondary pt-2" style="font-size: 13px;">
+				 			<%-- 프사 --%>
+				 			<span class="me-0">
+				 			 <img id="profileImg" class="rounded-circle" src="../resources/img/myDog.jpg"
+				 			 	  width="33">
 				 			</span>
+				 			<%-- 닉네임 --%>
 					 		<span class="me-2">
 					 		 ${postData.customerDto.customer_nickname}
 					 		</span>
-					 		 
-							 <span class="me-2">
-							  <fmt:formatDate value="${postData.showDogPostDto.show_dog_post_reg_date}" pattern="yy.MM.dd"/>
-							 </span>
-							 
-							 <span class="me-2">
-							  조회 ${postData.showDogPostDto.show_dog_post_view_count}
-							 </span>			 	 	 	
-							 
-							 <span>
-							  댓글수 ${countComment}
-							 </span>
+					 		 <%-- 작성일 --%>
+							<span class="me-2">
+							 <fmt:formatDate value="${postData.showDogPostDto.show_dog_post_reg_date}" pattern="yy.MM.dd"/>
+							</span>
+							<%-- 조회수 --%> 
+							<span class="me-2">
+							 조회 ${postData.showDogPostDto.show_dog_post_view_count}
+							</span>			 	 	 	
+							<%-- 댓글수 --%>
+							<span>
+							 댓글 ${countComment}
+							</span>
 							 	 
 				 		</div> 		
 				 	</div>
 				 	
 				 	<%-- 글 내용 --%>
-				 	<div class="row py-3">
+				 	<div class="row pt-3 pb-5">
 				 		<div class="col">
-				 		 <c:forEach items="${postData.postImageDtoList}" var="showImages">
-				 		  	<img id="postImg" src="/uploadFiles/petImages/${showImages.show_dog_post_images_link}" alt="사진 어디감">
-				 		 </c:forEach>
-				 		 ${postData.showDogPostDto.show_dog_post_content}
+				 			<div class="row">
+				 				<div class="col px-0">
+							 		 <c:forEach items="${postData.postImageDtoList}" var="showImages">
+							 		  	<img id="postImg" src="/uploadFiles/WelcomePet_community/${showImages.show_dog_post_images_link}" alt="사진 어디감">
+							 		 </c:forEach>			 				
+				 				</div>
+				 			</div>
+				 			<div class="row mt-3">
+				 				<div class="col">
+				 					${postData.showDogPostDto.show_dog_post_content}
+				 				</div>
+				 			</div>
 				 		</div>
 				 	</div>
 				 	
@@ -241,95 +234,76 @@
 				 	<%-- 얘도 가능
 				 		<a class="btn btn-lg text-danger bi bi-heart-fill" href="./doLikeProcess?~no=${} }" class></a> 
 				 	--%>
+				 	<%--<form action="doLikeProcess" method="post">
+					 	<input type="hidden" name="show_dog_post_no" value="${postData.showDogPostDto.show_dog_post_no}">
+					 	<div class="row">
+					 		<div class="col text-center">
+						 		<c:choose>
+						 		 <c:when test="${checkWhetherLike == 0}">
+						 		 	<button class="btn btn-sm btn-outline-danger"><i class="bi bi-heart" style="stroke-width:2px;"></i> ${countLike}</button>
+					 			 </c:when>
+					 			 
+					 			 <c:otherwise>
+						 		 	<button class="btn btn-sm btn-outline-danger"><i class="bi bi-heart-fill"></i> ${countLike}</button>
+					 			 </c:otherwise>
+					 			</c:choose>
+					 		</div>
+					 	</div>
+				 	</form>--%>
+					
 				 	<form action="doLikeProcess" method="post">
 					 	<input type="hidden" name="show_dog_post_no" value="${postData.showDogPostDto.show_dog_post_no}">
 					 	<div class="row">
 					 		<div class="col text-center">
 						 		<c:choose>
 						 		 <c:when test="${checkWhetherLike == 0}">
-						 		  <button class="btn btn-lg text-danger bi bi-heart" > ${countLike}</button>	
+						 		 	<button class="btn btn-sm btn-outline-danger"><i class="bi bi-heart" style="stroke-width:2px;"></i> ${countLike}</button>
 					 			 </c:when>
 					 			 
 					 			 <c:otherwise>
-					 			  <button class="btn btn-lg text-danger bi bi-heart-fill" > ${countLike}</button>	
+						 		 	<button class="btn btn-sm btn-outline-danger"><i class="bi bi-heart-fill"></i> ${countLike}</button>
 					 			 </c:otherwise>
 					 			</c:choose>
 					 		</div>
 					 	</div>
 				 	</form>
 				 	
-				 	<%-- <c:choose>
-					 		<c:when test="${!empty sessionUser}">
-				 			 <a class="btn btn-lg text-danger bi bi-heart-fill" role="button"></a> 
-				 			</c:when>
-				 			<c:otherwise>
-				 			 <a class="btn btn-lg text-danger bi bi-heart" role="button"></a>
-				 			</c:otherwise>
-			 			</c:choose>
-			 		--%>
-
+				 	
 				 </div>
 			</div>
 		</div>
 	</div>
 	
 	<%-- 댓글 --%>
-	<div class="row">	
+	<div class="row mt-4">	
 		 <%-- 댓글 정렬--%>
-		 <div class="col-12 fw-bold text-secondary mb-3" style="font-size: 10pt;">
-		   <button>등록순</button>
-		   <button>최신순</button>
+		 <div class="col-3 fw-bold text-secondary mb-3 d-grid pe-0" style="font-size: 10pt;">
+		   <button class="btn btn-outline-primary btn-sm"><i class="bi bi-filter-left"></i>등록순</button>
+		 </div>		 
+		 <div class="col-3 fw-bold text-secondary mb-3 d-grid pe-0" style="font-size: 10pt;">
+		   <button class="btn btn-outline-primary btn-sm"><i class="bi bi-filter-right"></i>최신순</button>
+		 </div>		 
+		 <div class="col-6 fw-bold text-secondary mb-3" style="font-size: 10pt;">
 		 </div>		 
 		 
-		 <%-- 여기서부터 328줄인가 주석 --%>		 
-		 <div class="col-12">
-		  <%-- forEach자리 --%>
-		  <div class="row border-bottom py-3">
-		 	<%-- 프사 --%>
-			 <div class="col-auto ps-3 pe-0 text-end" id="profileImage">
-			  <img class="rounded-circle" src="https://dummyimage.com/3*3" alt="...">
-			 </div>
-			 
-			 <%-- 댓글 데이터 --%>
-			 <div class="col" id="comment">
-				  <div class="row">
-				  	<%-- 댓글 닉네임 --%>
-				  	<div class="col fw-bold" style="font-size: 13px;" id="nickname"></div>
-				  	<%-- 댓글 수정 삭제 --%>
-<%-- 				  	<div class="col text-end dropdown pe-3"> 	 
-				  	</div> --%>  	
-				  	<%-- 댓글 수정 삭제 --%>
-				  </div>
-				 
-				  <div class="row">
-				   <%-- 댓글 내용 comment_content  --%>
-				   <div class="col-12" id="comment_content"></div>
-				   <%-- 장식용 답글쓰기 --%>
-				   <div class="col text-secondary" style="font-size: 10pt;">
-				   <button>답글쓰기</button>
-				   </div>
-				  </div>
-			 </div>
-		  </div>
-		  <%-- /forEach자리 --%>
-		 </div>
 		 
-		 <%-- <div class="col-12">
+		 <%-- 여기서부터 주석 --%>
+		 <div class="col-12" id="commentRootBox">
+		 
+		 
+		 <%-- 댓글 JSP 버전 
 		  <c:forEach items="${commentData}" var="commentData">
-		  <div class="row border-bottom py-3">
-		 	프사
+		  <div class="row border-bottom pt-1 pb-3">
 			 <div class="col-auto ps-3 pe-0 text-end">
 			  <img class="rounded-circle" src="https://dummyimage.com/3*3" alt="...">
 			 </div>
 			 
-			 댓글 데이터
 			 <div class="col">
 				  <div class="row">
-				  	<div class="col fw-bold" style="font-size: 10pt;">
+				  	<div class="col fw-bold" style="font-size: 13px;">
 				  	 ${commentData.customerDto.customer_nickname}
 				  	</div>
 				  	
-				  	댓글 수정 삭제
 				  	<div class="col text-end dropdown pe-3">
 				 	 <a class="text-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 				 	  <i class="bi bi-three-dots-vertical"></i>
@@ -344,7 +318,7 @@
 					 	 <li><a class="dropdown-item" type="button">신고</a></li>
 				 	 </ul>
 				  	</div>  	
-				  	댓글 수정 삭제
+				  	
 				  </div>
 				 
 				  <div class="row">
@@ -359,26 +333,80 @@
 			 </div>
 		  </div>
 		  </c:forEach>
-		 </div> --%> 
+		  --%>
+		 </div>
 		 
 
+		<%-- 새 댓글쓰기 --%>
 		<div class="col mt-2">	 
-		
-			<form action="./writeCommentProcess?show_dog_post_no=${postData.showDogPostDto.show_dog_post_no}" method="post">
-				<div class="row">
-					<div class="col d-grid pe-0">
-					 <textarea class="form-control-plaintext" style="height: 50px" name="show_dog_comment_content" placeholder="댓글 작성하기"></textarea>
-					</div>
-					
-					<div class="col-2">
-					 <button class="btn btn-primary"><i class="bi bi-arrow-return-left"></i></button>
-					</div>
+			<div class="row">
+				<div class="col pe-0">
+				 <textarea id="inputCommentText" class="form-control-plaintext" style="height: 2.5em" name="show_dog_comment_content" placeholder="댓글 작성하기"></textarea>
 				</div>
 				
-			</form> 		
+				<div class="col-2 d-grid ">
+				 <button onclick="registerComment()" class="btn" style="color:white; background-color:#fd7e14">
+				  <i class="bi bi-arrow-return-left" style="stroke-width:2;"></i>
+				 </button>
+				</div>
+			</div>
+			<%-- JSP 방식 
+			<form action="./writeCommentProcess?show_dog_post_no=${postData.showDogPostDto.show_dog_post_no}" method="post">
+				<div class="row">
+					<div class="col pe-0">
+					 <textarea class="form-control-plaintext" style="height: 2.5em" name="show_dog_comment_content" placeholder="댓글 작성하기"></textarea>
+					</div>
+					
+					<div class="col-2 d-grid ">
+					 <button class="btn" style="color:white; background-color:#fd7e14"><i class="bi bi-arrow-return-left" style="stroke-width:2;"></i></button>
+					</div>
+				</div>
+			</form> 
+			--%>		
 		</div>
 	</div>
 	<%-- 댓글 --%>
+	
+	
+	<div id="templete" class="d-none">
+		  <div class="commentWrapper row border-bottom pt-2 pb-3">
+			 <%-- 프사 --%>
+			 <div class="col-auto ps-3 pe-0 text-end">
+			  <img class="rounded-circle" src="https://dummyimage.com/3*3" alt="...">
+			 </div>
+			 
+			 <div class="col">
+				  <div class="row">
+				  	<%-- 댓글 닉네임 --%>
+				  	<div class="col fw-bold nickname" style="font-size: 13px;">닉네임 나오는 곳</div>			  	
+				  	<%-- 댓글 수정 삭제 --%>
+				  	<div class="col text-end dropdown pe-3">
+				 	 <a class="text-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+				 	  <i class="bi bi-three-dots-vertical"></i>
+				 	 </a>
+				 	 <ul class="dropdown-menu">
+					 	 <li><a class="dropdown-item" type="button">수정</a></li>
+					 	 <li><a class="dropdown-item" type="button">삭제</a>
+					 	 </li>
+					 	 <li><a class="dropdown-item" type="button">신고</a></li>
+				 	 </ul>
+				  	</div>  					  	
+				  </div>
+				 
+				  <div class="row">
+				   <%-- 댓글 데이터 --%>
+				   <div class="col-12 content">내용</div>
+				   <div class="col text-secondary date" style="font-size: 10pt;">날짜
+				    답글쓰기
+				   </div>
+				  </div>
+			  </div>
+			 
+		  </div>
+	</div>
+	
+	
+	
 	
 </div>
 <%-- 

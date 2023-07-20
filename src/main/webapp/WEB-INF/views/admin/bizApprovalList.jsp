@@ -11,17 +11,7 @@
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
         crossorigin="anonymous">
     <style>
-        .sidebar {
-            height: 100vh;
-            background-color: #f8f9fa;
-            padding-top: 20px;
-        }
-
-        /* 링크 스타일 제거 */
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
+        
 
         .img-thumbnail{
         	width: 120px;
@@ -42,8 +32,8 @@
 					<div class="col-1"></div>
                     <div class="col-9">
                         <div class="container mt-5">
-					        <h2 class="mt-4 mb-4">biz 입점 승인 관리</h2>
-					            <div class="row bg-light font-weight-bold py-2 rounded-top border">
+					        <h2 class="mt-4 mb-4 text-center fw-bold">Biz 입점 승인 관리</h2>
+					            <div class="row mt-1 bg-light font-weight-bold py-2 rounded-top border">
 					                <div class="col-2">사업자등록증</div>
 					                <div class="col">사업자등록번호</div>
 					                <div class="col">판매자 전달사항</div>

@@ -105,6 +105,7 @@
                         	<c:choose>
                         		<c:when test="${map.csInquiryDto.cs_inquiry_status > 0}">
                         			<a href="./inquiryList" class="btn btn-outline-dark">뒤로 가기</a>
+                        			<a href="./inquiryList" class="btn btn-outline-dark">답변 수정</a>
                         		</c:when>
                         		<c:otherwise>
                         			<a href="./inquiryList" class="btn btn-outline-dark">뒤로 가기</a>
