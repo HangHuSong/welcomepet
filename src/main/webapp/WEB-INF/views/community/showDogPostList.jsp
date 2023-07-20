@@ -22,16 +22,39 @@
 	height:55px;
 	width:55px;
 }
+
 @font-face {
-    font-family: 'SUITE-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-family: 'GothicA1-Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/GothicA1-Light.woff2') format('woff2');
     font-style: normal;
 }
-#title{
-    font-size:1.1em;
-    font-weight:600;
-    font-family:'SUITE-Regular', sans-serif;
+
+body{
+	font-family:'GothicA1-Light';
 }
+
+#title1{
+    font-size:1em;
+    font-weight:600;
+    font-family:'GothicA1-Light';
+    letter-spacing: -0.3px;
+}
+
+#title2{
+    font-size:1.05em;
+    font-weight:600;
+    font-family:'GothicA1-Light';
+    letter-spacing: -0.3px;
+    
+}
+
+#else{
+    font-size: 0.7em;
+    font-weight:600;
+    font-family:'GothicA1-Light';
+    color: #BABABA;
+}
+
 </style>
 </head>
 <body>
@@ -54,89 +77,36 @@
 			<div class="row">
 			<c:forEach items="${bestList}" var="bestList">
 				<div class="col-12 border-bottom py-2">
-					<div class="row">
+					<div class="row align-middle">
 						<div class="col" onclick="location.href='./showDogPost?show_dog_post_no=${bestList.showDogPostDto.show_dog_post_no}'">
-						  <%-- 제목 <i class="bi bi-hand-thumbs-up-fill" style="color:#fd7e14;"></i>--%>
 						  <div class="row">
+						   <%-- HOT 뱃지 --%>
 						   <div class="col-auto pe-0">
-						    <span class="fw-bold" style="color:#fd7e14;">HOT</span> 
+						   	<span class="badge rounded-pill text-bg-danger">HOT</span>    
 						   </div>
-						   <div class="col-auto ps-1 pe-0">
-							  <span>
-							   <a class=" me-1 text-decoration-none text-black"
-							   	  style="font-family: 'SUITE-Regular', sans-serif; font-size:1em; font-weight:800;">
-							   ${bestList.showDogPostDto.show_dog_post_title}</a>
+						   <%-- 제목 --%>
+						   <div id="title1" class="col-auto ps-1 pe-0">
+							  <span class="me-1">
+							   ${bestList.showDogPostDto.show_dog_post_title}
 							  </span>
 						   </div>
-						   
+						   <%-- 이미지 유무 --%>
 						   <div class="col ps-1">
 						 	<c:if test="${bestList.checkImg > 0}">
 							   	  <span style="color:#FDB959">
 							   	  <i class="bi bi-image"></i>
 							   	  </span>
 					   	    </c:if>
-						   </div>
-						   
-						   
-						   
-						  </div>
-						  
-						  <%-- 닉네임/날짜/조회수 
-						  <div class="row text-secondary" style="font-size: 0.9em;">
-							<div class="col">
-								<span class="me-2">
-								 ${bestList.customerDto.customer_nickname}
-								</span>
-								
-								<span class="me-2">
-								 <fmt:formatDate value="${bestList.showDogPostDto.show_dog_post_reg_date}" pattern="yy.MM.dd"/>
-								</span>
-								
-								<span>
-								 조회수 ${bestList.showDogPostDto.show_dog_post_view_count}
-								</span>
-							</div>
-						  </div>	
-						  
-						  <div class="col">
-								<span class="me-2">
-								 ${bestList.customerDto.customer_nickname}
-								</span>
-								
-								<span class="me-2">
-								 <fmt:formatDate value="${bestList.showDogPostDto.show_dog_post_reg_date}" pattern="yy.MM.dd"/>
-								</span>
-								
-								<span>
-								 조회수 ${bestList.showDogPostDto.show_dog_post_view_count}
-								</span>
-							</div>--%>				
+						   </div>	   
+						  </div>		
 						</div>
-						
-						
-						
-						<%-- 댓글 
-						<div class="col-2 d-flex justify-content-center align-items-center">
-						 <c:choose>
-							  <c:when test="${bestList.countComment eq 0}">
-							   <span>
-							   </span>
-							  </c:when>	
-							  
-							  <c:otherwise>
-							   <span class="badge text-secondary border p-2" style="background-color: #F0F0F0;">
-							    ${bestList.countComment}
-							    <br> 댓글
-							   </span>
-							  </c:otherwise>
-						  </c:choose>		
-						</div>--%>
 					</div>					
 				</div>			
 			</c:forEach>
 			</div>
 		</div>
 	</div>
+	<%-- 여기까지 베스트 3 --%>
 	
 	<%-- 글 리스트 --%>
 	<div class="row mb-4"> 
@@ -149,14 +119,13 @@
 						  <%-- 제목 --%>
 						  <div class="row">
 						   <div class="col-12">
-							  <span>
-							   <a id="title" class="me-1 text-decoration-none text-black">${map.showDogPostDto.show_dog_post_title}</a>
+							  <span id="title2">
+							   ${map.showDogPostDto.show_dog_post_title}
 							  </span>						  
 						   </div>
-						  </div>						  
-						  
+						  </div>						  						  
 						  <%-- 닉네임/날짜/조회수 --%>
-						  <div class="row text-secondary" style="font-size: 0.8em;">
+						  <div id="else" class="row">
 							<div class="col">
 								<span class="me-2">
 								 ${map.customerDto.customer_nickname}
@@ -172,37 +141,17 @@
 							</div>
 						  </div>					
 						</div>						
-
 						<%-- 섬네일 --%>
 						<div class="col-2 p-0 embed-responsive embed-responsive-1by1">
 						 <c:if test="${map.checkImg > 0}">
 					   	  <img class="thum w-100 embed-responsive-item rounded" style="object-fit: cover;" alt="X" src="/uploadFiles/WelcomePet_community/${map.postImageDtoList[0].show_dog_post_images_link}" />
-						 </c:if>
-						 
+						 </c:if>						 
 						</div>
-						
-						<%-- 댓글 코드수정 전--%>
-						<%-- <div class="col-2 d-flex justify-content-center align-items-center">
-						 <c:choose>
-							  <c:when test="${map.countComment eq 0}">
-							   <span>
-							   </span>
-							  </c:when>	
-							  
-							  <c:otherwise>
-							   <span class="badge text-secondary border p-2" style="background-color: #F0F0F0;">
-							    ${map.countComment}
-							    <br> 댓글
-							   </span>
-							  </c:otherwise>
-						  </c:choose>		
-						</div> --%>
 						
 						<%-- 댓글 수 뱃지 --%>
 						<div class="col-2">
 						<div class="badge d-flex align-items-center justify-content-center" 
-							 style="height:55px; background-color: #F0F0F0;
-							 		font-family:'SUITE-Regular', sans-serif;">
+							 style="height:55px; background-color: #F0F0F0;">
 						 
 						 <c:choose>
 							  <c:when test="${map.countComment eq 0}">
@@ -210,11 +159,11 @@
 							    <div class="col">
 	
   	 						    <div class="row mt-1">
-							     <div class="col" style="color:#454545; font-weight:900;">0</div>
+							     <div class="col" style="color:#454545;">0</div>
 							    </div>
 							   
 							    <div class="row mt-1">
-							     <div class="col" style="color:#9c9c9c; font-weight:500;">댓글</div>
+							     <div class="col" style="color:#9c9c9c;">댓글</div>
 							    </div>
 							   
 							    </div>
@@ -226,10 +175,10 @@
 							   <div class="col">
 							   
 							   <div class="row">
-							    <div class="col" style="color:#454545; font-weight:900;">${map.countComment}</div>
+							    <div class="col" style="color:#454545;">${map.countComment}</div>
 							   </div>
 							   <div class="row mt-1">
-							    <div class="col" style="color:#9c9c9c; font-weight:500;">댓글</div>
+							    <div class="col" style="color:#9c9c9c; font-size:0.7em">댓글</div>
 							   </div>
 
 							   </div>

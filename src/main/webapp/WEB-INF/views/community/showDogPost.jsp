@@ -18,11 +18,11 @@
 <%------ bootstrap ------%>
 <script type="text/javascript">
  <%-- ajax --%>
- 	<%-- 좋아요 --%>
+ 	<%-- 좋아요 
  	function reloadLikes{
  		const postId = ${postData.showDogPostDto.show_dog_post_no};
  		const 
- 	};
+ 	};--%>
  	
  	<%-- 새로운 댓글쓰기 --%>
  	function registerComment(){
@@ -369,7 +369,7 @@
 	
 	
 	<div id="templete" class="d-none">
-		  <div class="commentWrapper row border-bottom pt-1 pb-3">
+		  <div class="commentWrapper row border-bottom pt-2 pb-3">
 			 <%-- 프사 --%>
 			 <div class="col-auto ps-3 pe-0 text-end">
 			  <img class="rounded-circle" src="https://dummyimage.com/3*3" alt="...">
@@ -378,8 +378,7 @@
 			 <div class="col">
 				  <div class="row">
 				  	<%-- 댓글 닉네임 --%>
-				  	<div class="col fw-bold nickname" style="font-size: 13px;">닉네임 나오는 곳</div>
-				  	
+				  	<div class="col fw-bold nickname" style="font-size: 13px;">닉네임 나오는 곳</div>			  	
 				  	<%-- 댓글 수정 삭제 --%>
 				  	<div class="col text-end dropdown pe-3">
 				 	 <a class="text-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -391,8 +390,7 @@
 					 	 </li>
 					 	 <li><a class="dropdown-item" type="button">신고</a></li>
 				 	 </ul>
-				  	</div>  	
-				  	
+				  	</div>  					  	
 				  </div>
 				 
 				  <div class="row">
@@ -402,11 +400,9 @@
 				    답글쓰기
 				   </div>
 				  </div>
-			 </div>
+			  </div>
+			 
 		  </div>
-	
-	
-	
 	</div>
 	
 	
