@@ -81,11 +81,12 @@
 
 <body>
     <div class="container">
-   		<%@ include file="../common/adminHead.jsp" %>
+   		
         <div class="row">
             <%@ include file="../common/adminTab.jsp" %>
             <div class="col-1"></div>
             <div class="col-9">
+            	<%@ include file="../common/adminHead.jsp" %>
                 <div class="row mt-5">
                 	<div class="col-2">
                 		<select name="searchType" class="form-select">

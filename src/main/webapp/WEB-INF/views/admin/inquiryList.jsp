@@ -20,11 +20,15 @@
 
 <body>
 	<div class="container">
-		<%@ include file="../common/adminHead.jsp" %>
 		<div class="row">
 			<%@ include file="../common/adminTab.jsp" %>
-			<div class="col-1" ></div>
-				<div class="col-9">
+			<div class="col">
+				<div class="row">
+					<div class="col">
+						<%@ include file="../common/adminHead.jsp"%>
+					</div>
+				</div>
+				<div class="col ms-5">
 					<form action="./inquiryList" method="get">
 		                <div class="row mt-5">
 		                	<div class="col-2">
@@ -114,6 +118,9 @@
 			    </div>
 				</div>
 			</div>
+			</div>
+			
+				
 		</div>
 	</div>
 	<script

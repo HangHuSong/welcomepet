@@ -11,6 +11,7 @@
         .nav-link {
             color: #dcdcdc;
             text-decoration: none;
+            font-size: 14px;
         }
         .nav-link:hover {
             color: black;
@@ -23,31 +24,39 @@
         #sidebar {
         	color: white;
         	height: 200vh;
-        	background-color: #3c3a3e;
+        	background-color: #292a3c;
         }
         
         #logo{
-        	height: 60px;
+        	height: 25px;
+        	margin-top: 10px;
+        }
+        #topLogo{
+        	height: 50px;  
         }
     </style>
     <div class="col-2" id="sidebar">
-                <div class="ms-2 nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-	    			<div class="row mt-3">
-	    				<div class="col">
-	    					<img id="logo" src="/welcomepet/resources/img/adminLogo.png">
+                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+	    			<div class="row" id="topLogo">
+	    				<div class="col ms-2">
+	    					<img id="logo" src="/welcomepet/resources/img/whiteLogo.png">
 	    				</div>
 	    			</div>
-                    <div class="row mt-3">
+                    <div class="row mt-5">
                         <div class="col">
-                            <h5 class="my-3"><span class="ms-2">고객 관리</span></h5>
+                            <p class="my-3 d-flex" style="justify-content: space-between;">
+                            	<span class="ms-3">고객 관리</span><span class="text-end pe-3"><i class="bi bi-chevron-down"></i></span>
+                           	</p>
                             <a class="nav-link" href="./customerList"><i class="bi bi-file-person-fill"></i> 고객 조회</a>
                             <a class="nav-link" href="./coupon"><i class="bi bi-gift-fill"></i> 쿠폰 발급</a>
-                            <a class="nav-link" href="./inquiryList"><i class="bi bi-clipboard"></i> 1대1 문의</a>
+                            <a class="nav-link" href="./inquiryList"><i class="bi bi-clipboard"></i> 1:1 문의</a>
                         </div>
                     </div>
                     <div class="row mt-3">
                         <div class="col">
-                            <h5 class="my-3">Biz 관리</h5>
+                            <p class="my-3 d-flex" style="justify-content: space-between;">
+                            	<span class="ms-3">Biz 관리</span><span class="text-end pe-3"><i class="bi bi-chevron-down"></i></span>
+                           	</p>
                             <a class="nav-link" href="./bizList"><i class="bi bi-kanban"></i> Biz 조회</a>
                             <a class="nav-link" href="./orderList"><i class="bi bi-list-ul"></i> 주문 조회</a>
                             <a class="nav-link" href="./bizApprovalList"><i class="bi bi-check-square"></i> 입점 관리</a>
@@ -57,7 +66,9 @@
                     
                     <div class="row mt-3">
                         <div class="col">
-                            <h5 class="my-3">커뮤니티 관리</h5>
+                        	<p class="my-3 d-flex" style="justify-content: space-between;">
+                            	<span class="ms-3">커뮤니티 관리</span><span class="text-end pe-3"><i class="bi bi-chevron-down"></i></span>
+                           	</p>
                             <a class="nav-link" href="./showDogPostList"><i class="bi bi-filter-square"></i> 일반 게시판</a>
                             <a class="nav-link"><i class="bi bi-postage-heart"></i> 스냅 게시판</a>
                             <a class="nav-link" href="./customerReport"><i class="bi bi-exclamation-square"></i> 신고글 관리</a>

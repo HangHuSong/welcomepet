@@ -14,11 +14,7 @@
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 	crossorigin="anonymous">
 <style>
-.sidebar {
-	height: 100vh;
-	background-color: #f8f9fa;
-	padding-top: 20px;
-}
+
 
 
 </style>
@@ -26,11 +22,17 @@
 
 <body>
 	<div class="container">
-		<%@ include file="../common/adminHead.jsp" %>
+		
 		<div class="row">
 			<%@ include file="../common/adminTab.jsp" %>
-			<div class="col-2"></div>
+			<div class="col">
+				
+					<%@ include file="../common/adminHead.jsp" %>
+				
+				<div class="row">
+					<div class="col-3"></div>
 			<div class="col-6">
+				
                 <div class="row my-5">
                     <div class="col-md-12 text-center">
                         <h2 class="fw-bold">1:1 문의 답변 등록하기</h2>
@@ -116,6 +118,10 @@
                     </div>
                 </form>
             </div>
+				
+				</div>
+			</div>
+			
 		</div>
 	</div>
 	<script
