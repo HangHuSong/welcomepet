@@ -33,9 +33,7 @@
 					</div>
 				</div>
 				<div class="col ms-5">
-					<div class="row">
-						<div class="col"></div>
-					</div>
+					
 					<form action="./customerList" method="get">
 						<div class="row mt-5">
 							<div class="col-2">

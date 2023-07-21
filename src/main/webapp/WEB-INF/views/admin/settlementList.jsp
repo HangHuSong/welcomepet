@@ -98,14 +98,19 @@
 
 <body>
 	<div class="container">
-		<%@ include file="../common/adminHead.jsp" %>
+		
 		<div class="row">
 			<%@ include file="../common/adminTab.jsp"%>
-			<div class="col-1"></div>
+			<div class="col">
+				
+						<%@ include file="../common/adminHead.jsp" %>
+					
+			</div>
+			
 			<div class="col-9">
 				<div class="row mt-5">
 					<div class="col">
-						<h1 class="text-center">정산 요청 목록</h1>
+						<h1 class="text-center fw-bold">정산 요청 목록</h1>
 					</div>	
 				</div>
 				<div class="row mt-2">
