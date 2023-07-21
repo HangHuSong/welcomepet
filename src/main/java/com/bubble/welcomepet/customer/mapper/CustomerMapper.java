@@ -71,6 +71,7 @@ public interface CustomerMapper {
 	public int countMyWish(ProductWishDto productWishDto); 
 	public void deleteWish(ProductWishDto productWishDto);
 	public int getTotalWishCount(int product_no);
+	
 	//상품
 	public List<ProductDto> getProductInfoByCategory(int sub_category_no);
 	
@@ -93,6 +94,8 @@ public interface CustomerMapper {
 	public ProductOptionDto getOptionInfoByNo(int product_option_no);
 	
 	public List<CategoryDto> getCategoryList(int main_category_no);
+	
+	public int getMaincategoryNoBySub(int sub_category_no); 
 	//주문
 	
 	public int createOrdersPk();

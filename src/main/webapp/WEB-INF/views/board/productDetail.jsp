@@ -14,16 +14,18 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+	<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <title>상품 정보</title>
 <script>
 
 
 
  const productNo = new URLSearchParams(location.search).get("product_no"); // 쿼리스트링 다음 값 가져옴
- 
+ const categoryNo = ${data.categoryNo};
  let mySessionId = null;
 
 function getSessionId(){
+
 	
 	const xhr = new XMLHttpRequest();
 	
@@ -160,7 +162,7 @@ function reloadReviewList() {
 				  row1.appendChild(rowContext);
 				  
 				  const rowButtons = document.createElement("div");
-				  rowButtons.classList.add("row");
+				  rowButtons.classList.add("row","pe-0");
 
 				  const colButtons1 = document.createElement("div");
 				  colButtons1.classList.add("col");
@@ -170,14 +172,14 @@ function reloadReviewList() {
 				
 
 				  const colUpdate = document.createElement("div");
-				  colUpdate.classList.add("col-2", "delism");
+				  colUpdate.classList.add("col-2", "delism","text-secondary");
 				  colUpdate.innerText = "수정";
 				  colUpdate.setAttribute("onclick", "changeInputForUpdateReview(this)");
 				  rowButtons.appendChild(colUpdate);
 				  
 
 				  const colDelete = document.createElement("div");
-				  colDelete.classList.add("col-2", "delism");
+				  colDelete.classList.add("col-2", "delism","text-secondary");
 				  colDelete.innerText = "삭제";
 				  colDelete.setAttribute("onclick", "deleteReview("+data.productReviewDto.product_review_no+")");
 				  rowButtons.appendChild(colDelete); 
@@ -697,11 +699,156 @@ function buyNow() {
 	  document.body.appendChild(form);
 	  form.submit();
 	}
+	
+function getRelatedList() {
+	
+	const xhr = new XMLHttpRequest();
+	
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			const response = JSON.parse(xhr.responseText);
+			 console.log(response);
+			document.getElementById("topSaleBox").innerHTML = "";
+
+		for(data of response.relatedProudctList) {
 			
+			const col1 = document.createElement("div");
+			col1.classList.add("col-4", "embed-responsive", "embed-responsive-4by3", "ps-3");
+			
+			
+			
+			const rowImg = document.createElement("div");
+			rowImg.classList.add("row");
+			col1.appendChild(rowImg);
+			
+			const colImg =	document.createElement("div");
+			colImg.classList.add("col");
+			colImg.style.position = "relative";
+			rowImg.appendChild(colImg);
+			
+
+			
+			const heartBox = document.createElement("a");
+			heartBox.classList.add("text-secondary", "bi", "bi-heart");
+			heartBox.id = "heartBox" + data.productInfo.product_no ;
+			heartBox.setAttribute("onclick", "toggleWish("+ data.productInfo.product_no +")");
+			heartBox.style.position = "absolute"; // 절대 위치 설정
+			heartBox.style.bottom = "0"; // 하단 위치
+			heartBox.style.right = "10px"; // 오른쪽 위치
+
+			heartBox.setAttribute("role", "button");
+			colImg.appendChild(heartBox);
+			
+			const img = document.createElement("img");
+			img.src = "/uploadFiles/WelcomePet/" + data.productInfo.product_thumbnail; // 이미지 URL 또는 경로 설정
+			img.alt = "제품 이미지";
+			img.classList.add("embed-responsive-item", "product-thum");
+			colImg.appendChild(img);
+			
+			const rowName = document.createElement("div");
+			rowName.classList.add("row", "r_name")
+			rowName.setAttribute("onclick","productDetail=product_no=?"+ data.productInfo.product_no);
+			col1.appendChild(rowName);
+			
+			
+			const colName = document.createElement("div");
+			colName.classList.add("col");
+			rowName.appendChild(colName);
+			
+			const nameBox = document.createElement("p");
+			nameBox.classList.add( "fsmid");
+			nameBox.innerText = data.productInfo.product_name;
+			colName.appendChild(nameBox);
+			
+			const rowPrice = document.createElement("div");
+			rowPrice.classList.add("row");
+			col1.appendChild(rowPrice);
+			
+			const colPrice = document.createElement("div");
+			colPrice.classList.add("col", "fw-bold","price_text");
+			colPrice.innerText = data.productInfo.product_price - data.salePrice +"원";
+			rowPrice.appendChild(colPrice);	
+			
+			document.getElementById("topSaleBox").appendChild(col1);
+			
+			  refreshMyHeart(data.productInfo.product_no);
+			}
+		}
+	}
+	const swiper = new Swiper(".swiper-container", {
+		  slidesPerView: 3, // 한 화면에 보여줄 슬라이드 수
+		  spaceBetween: 20, // 슬라이드 사이의 간격
+		  loop: true, // 무한 루프 설정
+		  navigation: {
+		    nextEl: ".swiper-button-next",
+		    prevEl: ".swiper-button-prev",
+		  },
+		});			
+
+	xhr.open("get", "./relatedProudct?main_category_no="+categoryNo);
+	xhr.send();	
+}
+
+function toggleWish(productNo) {
+	
+	if(mySessionId == null){
+		if(confirm("로그인을 하셔야 이용하실 수 있습니다. 로그인 하시겠습니까?")){
+			location.href = "../customer/login";
+		}
+		
+		return;
+	}
+	
+	const xhr = new XMLHttpRequest();
+	
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			const response = JSON.parse(xhr.responseText);
+			// js 작업..
+
+			refreshMyHeart(productNo);
+		}
+	}
+	
+	//get
+	xhr.open("get", "./toggleWish?product_no=" + productNo);
+	xhr.send();	
+	
+	}
+
+function refreshHeart(productNo){
+	
+	if(mySessionId == null) return;
+	
+	
+	const xhr = new XMLHttpRequest();
+	
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			const response = JSON.parse(xhr.responseText);
+			// js 렌더링... 작업..
+			const heartBox = document.getElementById("heartBox" + productNo);
+			
+			if(response.isWished){
+				heartBox.classList.remove("bi-heart","text-secondary");
+				heartBox.classList.add("bi-heart-fill","text-danger");
+			}else{
+				heartBox.classList.remove("bi-heart-fill","text-danger");
+				heartBox.classList.add("bi-heart","text-secondary");
+			}
+		}
+	}
+	
+	//get
+	xhr.open("get", "./isWished?product_no=" + productNo);
+	xhr.send();
+	
+}
 
 window.addEventListener("DOMContentLoaded", function(){
     //사실상 시작 시점...
     getSessionId();
+    getRelatedList();
     reloadReviewList();
     refreshTotalWishCount();
     refreshMyHeart();
@@ -711,13 +858,33 @@ window.addEventListener("DOMContentLoaded", function(){
 </script>
 
 <style type="text/css">
+.bi-heart{
+ filter: opacity(0.5);
+}
+.price_text{
+	font-size: 0.9em;
+}
+.fsmid {
+	font-size: 0.8em;
+	letter-spacing: -0.09em;
+	margin-bottom: 0;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 라인수 */
+    -webkit-box-orient: vertical;
+    word-wrap:break-word; 
+    line-height: 1.2em;
+    height: 2.4em; /* line-height 가 1.2em 이고 3라인을 자르기 때문에 height는 1.2em * 3 = 3.6em */
+}
+
 .product-thum {
 	width: 100%;
 }
 
 .delism {
 	color: rgb(66, 73, 79);
-	font-size: small;
+	font-size: 0.8em;
 }
 
 .dde {
@@ -738,6 +905,7 @@ window.addEventListener("DOMContentLoaded", function(){
 	height: 16px;
 	background-image: url('/uploadFiles/WelcomePet/icons/star-empty.png');
 	background-size: cover;
+	filter: opacity(0.5);
 }
 
 .filled {
@@ -746,6 +914,7 @@ window.addEventListener("DOMContentLoaded", function(){
 	height: 16px;
 	background-size: cover;
 	background-image: url('/uploadFiles/WelcomePet/icons/star.png');
+	filter: none;
 }
 
 .empty {
@@ -883,7 +1052,7 @@ window.addEventListener("DOMContentLoaded", function(){
 			<div class="col-1"></div>
 		</div>
 		<div class="row mt-2 empty"></div>
-		<div class="row mt-3">
+		<div class="row mt-3"  style="justify-content: center;">
 			<div class="row">
 				<div class="col fw-bold">상품정보</div>
 			</div>
@@ -895,6 +1064,21 @@ window.addEventListener("DOMContentLoaded", function(){
 				</div>
 			</c:forEach>
 		</div>
+		<div class="row mt-2 empty"></div>
+			<div class="row mt-2">
+		 		<div class="row mt-2">
+		 	 	<div class="col fw-bold">
+		 	 		이 상품과 비슷한 상품
+		 	 	</div>
+		 		</div>
+		 	<div class="row mt-2" id="topSaleBox">
+		 		<div class="swiper-container">
+					  <div class="swiper-wrapper" id="topSaleBox"> 
+					  
+					  </div> 
+				</div>
+		 	</div>
+			</div>
 
 		<div class="row mt-3 border-top ">
 			<div class="row mt-2 ps-3 py-2">
@@ -907,11 +1091,12 @@ window.addEventListener("DOMContentLoaded", function(){
 		</div>
 
 
+
 		<div class="row mt-2">
 			<jsp:include page="../common/serviceNavi.jsp"></jsp:include>
 			<div class="row mb-4">
 				<div class="col">
-					<div class="navbar navbar-dark bg-white fixed-bottom border-top">
+					<div class="navbar navbar-dark bg-white fixed-bottom border-top " style="height: 4em;">
 						<div class="col-2 text-center">
 							<div class="row">
 								<div class="col">
