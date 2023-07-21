@@ -431,6 +431,7 @@
 			SELECT *
 			FROM show_dog_comment
 			WHERE show_dog_post_no = #{show_dog_post_no}
+			ORDER BY show_dog_comment_no DESC
 		</select>
 		
 		<select id="getShowDogDetail" resultType="com.bubble.welcomepet.dto.ShowDogPostDto">

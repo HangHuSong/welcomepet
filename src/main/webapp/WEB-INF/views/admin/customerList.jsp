@@ -24,11 +24,14 @@
 
 <body>
 	<div class="container">
-		<%@ include file="../common/adminHead.jsp" %>
 		<div class="row">
 			<%@ include file="../common/adminTab.jsp" %>
 			<div class="col-1"></div>
 			<div class="col-9">
+			<div class="row my-5">
+				<div class="col mt-2">
+				</div>
+			</div>
 			<form action="./customerList" method="get">
                 <div class="row mt-5">
                 	<div class="col-2">
@@ -66,17 +69,16 @@
 							            <td><a href="./customerDetail?customer_no=${customer.customerDto.customer_no}">${customer.customerDto.customer_id}</a></td>
 							            <c:choose>
 							            	<c:when test="${customer.customerDto.customer_status eq 0}">
-							            		<td class="text-success">
-							            			<a href="./customerDetail?customer_no=${customer.customerDto.customer_no}">인증 완료</a>
-						            			</td>
-							            	</c:when>
-							            	<c:otherwise>
 							            		<td class="text-danger">
 							            			<a href="./customerDetail?customer_no=${customer.customerDto.customer_no}">미인증</a>
 						            			</td>
+							            	</c:when>
+							            	<c:otherwise>
+							            		<td class="text-success">
+							            			<a href="./customerDetail?customer_no=${customer.customerDto.customer_no}">인증 완료</a>
+						            			</td>
 							            	</c:otherwise>
 							            </c:choose>
-							            
 							        </tr>	
                                 </c:forEach>
                             </tbody>

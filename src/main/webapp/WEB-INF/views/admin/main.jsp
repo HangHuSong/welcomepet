@@ -17,7 +17,6 @@
 
 <body>
 	<div class="container">
-		<%@ include file="../common/adminHead.jsp" %>
 		<div class="row">
 			<%@ include file="../common/adminTab.jsp" %>
 			<div class="col-1"></div>
