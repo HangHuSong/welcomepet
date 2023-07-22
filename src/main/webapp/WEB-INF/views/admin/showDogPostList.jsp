@@ -86,12 +86,17 @@
 </head>
 <body>
 	<div class="container">
-		<%@ include file="../common/adminHead.jsp" %>
+		
 		<div class="row">
 			<%@ include file="../common/adminTab.jsp" %>
-			<div class="col-1"></div>
+			
 			<div class="col-9">
-				<div class="row mt-5">
+				<div class="row">
+					<div class="col">
+						<%@ include file="../common/adminHead.jsp" %>
+					</div>
+				</div>
+				<div class="row ms-5 mt-5">
                 	<div class="col-2">
                 		<select name="searchType" class="form-select">
                 			<option value="customer_no" selected="selected">IDX</option>
@@ -107,7 +112,7 @@
                     </div>
                 </div>
 				
-				<div class="row mt-3">
+				<div class="row ms-5 mt-3">
 					<div class="col">
 						<table class="table text-center">
 						    <thead class="table-dark">
@@ -124,7 +129,7 @@
 					</div>
 				</div>
 				
-				<div class="row">
+				<div class="row ms-5">
                 	<div class="col">
                 		<nav aria-label="...">
 						    <ul class="pagination justify-content-center">
@@ -146,11 +151,10 @@
 						    </ul>
 						</nav>
                 	</div>
-				
-				
 			</div>
 		</div>
 	</div>
+</div>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"

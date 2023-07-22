@@ -101,33 +101,34 @@
 		
 		<div class="row">
 			<%@ include file="../common/adminTab.jsp"%>
-			<div class="col">
-				
-						<%@ include file="../common/adminHead.jsp" %>
-					
-			</div>
 			
-			<div class="col-9">
-				<div class="row mt-5">
+			
+			<div class="col">
+				<div class="row">
+					<div class="col">
+						<%@ include file="../common/adminHead.jsp" %>
+					</div>
+				</div>
+				<div class="row ms-5 mt-5">
 					<div class="col">
 						<h1 class="text-center fw-bold">정산 요청 목록</h1>
 					</div>	
 				</div>
-				<div class="row mt-2">
+				<div class="row ms-5 mt-3">
 					<div class="col">
-						<table class="table mt-1">
-								<thead class="table-dark">
-									<tr>
-										<td scope="col"></td>
-										<td scope="col">판매자</td>
-										<td scope="col">정산년월/정산금액</td>
-										<td scope="col">요청일</td>
-										<td scope="col">처리여부</td>
-									</tr>
-								</thead>
-								<tbody id="settlementRequestListBox" class="align-items-center justify-content-center">
-								</tbody>
-							</table>
+						<table class="table">
+							<thead class="table-dark">
+								<tr>
+									<td scope="col"></td>
+									<td scope="col">판매자</td>
+									<td scope="col">정산년월/정산금액</td>
+									<td scope="col">요청일</td>
+									<td scope="col">처리여부</td>
+								</tr>
+							</thead>
+							<tbody id="settlementRequestListBox" class="align-items-center justify-content-center">
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>

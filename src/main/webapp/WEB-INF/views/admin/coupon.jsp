@@ -33,8 +33,8 @@
 		
 		<div class="row">
 			<%@ include file="../common/adminTab.jsp" %>
-			<div class="col-1"></div>
-			<div class="col-9">
+			
+			<div class="col">
 				<%@ include file="../common/adminHead.jsp" %>
 			</div>
 		</div>
