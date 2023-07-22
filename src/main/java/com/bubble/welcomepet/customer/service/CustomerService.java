@@ -264,8 +264,10 @@ public class CustomerService {
 		List<ProductDetailImageDto> productImgList = customerMapper.getImgByProductNo(product_no);
 		List<ProductOptionDto> productOptionList = customerMapper.getProductOptionByNo(product_no);
 		double saleRate = (double) (productDto.getProduct_discount_rate()) / 100;
-
+		int sub_category_no =  productDto.getSub_category_no();
+		int main_category_no = customerMapper.getMaincategoryNoBySub(sub_category_no);
 		int salePrice = (int) ((productDto.getProduct_price()) * saleRate);
+		map.put("categoryNo", main_category_no);
 		map.put("optionList", productOptionList);
 		map.put("salePrice", salePrice);
 		map.put("productImgList", productImgList);

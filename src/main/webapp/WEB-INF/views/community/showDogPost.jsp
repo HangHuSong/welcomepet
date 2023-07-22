@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>showDogPostLikes.jsp</title>
+<title>showDogPost.jsp</title>
 <%------ bootstrap ------%>
 <%-- viewport --%>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,22 +16,125 @@
 	crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <%------ bootstrap ------%>
+
+<%-- font link --%>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<%-- font link --%>
+
 <script type="text/javascript">
  <%-- ajax --%>
+ 	<%-- 좋아요 
+ 	function reloadLikes{
+ 		const postId = ${postData.showDogPostDto.show_dog_post_no};
+ 		const 
+ 	};--%>
+ 	
+ 	<%-- 새로운 댓글쓰기 --%>
+ 	function registerComment(){
+		const postId = ${postData.showDogPostDto.show_dog_post_no};
+		const commentValue = document.querySelector("#inputCommentText").value;
+		
+		var xhr = new XMLHttpRequest(); 
+	    xhr.onload = function() {
+	        if (xhr.status === 200) {
+	            // 응답이 성공적으로 도착했을 때 실행되는 코드
+	            document.querySelector("#inputCommentText").value = "";
+	            reloadComment();
+	        } else {
+	            // 서버로부터 오류 응답을 받은 경우
+	            console.error('요청이 실패하였습니다.');
+	        }
+	    };
 
+	    // 요청을 보낼 URL 설정
+	    var url = './registerComment'; // 데이터를 받아올 URL
+
+	    // GET 방식 요청 설정
+	    xhr.open('POST', url, true);
+	    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	    // 요청 보내기
+	    xhr.send('show_dog_comment_content=' + commentValue + "&show_dog_post_no=" + postId);				
+		
+ 	}
  
+ 	<%-- 댓글리스트 --%>
+	function reloadComment(){
+		const postId = ${postData.showDogPostDto.show_dog_post_no};
+		
+		var xhr = new XMLHttpRequest(); 
+	    xhr.onload = function() {
+	        if (xhr.status === 200) {
+	            // 응답이 성공적으로 도착했을 때 실행되는 코드
+	            var response = JSON.parse(xhr.responseText);
+	            
+	            const commentRootBox = document.querySelector("#commentRootBox");
+	            commentRootBox.innerHTML = "";
+	            
+	            for(x of response){
+	            	const newNode = document.querySelector("#templete .commentWrapper").cloneNode(true);
+	            	
+	            	newNode.querySelector(".nickname").innerText = x.customerDto.customer_nickname;
+	            	newNode.querySelector(".content").innerText = x.showDogCommentDto.show_dog_comment_content;
+	            	
+	            	
+	            	const date = new Date(x.showDogCommentDto.show_dog_comment_reg_date);
+	            	
+	            	newNode.querySelector(".date").innerText = date.getFullYear() + "." + (date.getMonth() + 1) + "." + date.getDay();
+	            	
+
+	            	commentRootBox.appendChild(newNode);
+	            }
+	            
+	            
+	        } else {
+	            // 서버로부터 오류 응답을 받은 경우
+	            console.error('요청이 실패하였습니다.');
+	        }
+	    };
+		
+
+	    // 요청을 보낼 URL 설정
+	    var url = './getCommentDatas?show_dog_post_no=' + postId; // 데이터를 받아올 URL
+
+	    // GET 방식 요청 설정
+	    xhr.open('GET', url, true);
+
+	    // 요청 보내기
+	    xhr.send();		
+		
+	}	
+	<%-- ------ --%>
  
+	window.addEventListener("DOMContentLoaded", function(){
+		reloadComment();
+	});
+	
  <%-- ajax --%>
-
 </script>
 
 <style>
-  #postImg {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-  }
+/* 글꼴설정 */
+body{
+	font-family: 'Gothic A1', sans-serif !important;
+}
+.nickname{
+	font-size: 0.9em;
+	font-weight:600;
+}
+.date{
+	font-size: 0.75em;
+}
+
+
+/* 게시글 이미지 */
+#postImg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+} 
 </style>
 </head>
 <body>
@@ -100,8 +203,9 @@
 						<%-- 상세글 정보 --%>		 		
 				 		<div class="col text-secondary pt-2" style="font-size: 13px;">
 				 			<%-- 프사 --%>
-				 			<span class="me-1">
-				 			 <img id="profileImg" class="rounded-circle" src="http://via.placeholder.com/33x33" >
+				 			<span class="me-0">
+				 			 <img id="profileImg" class="rounded-circle" src="../resources/img/myDog.jpg"
+				 			 	  width="33">
 				 			</span>
 				 			<%-- 닉네임 --%>
 					 		<span class="me-2">
@@ -145,6 +249,23 @@
 				 	<%-- 얘도 가능
 				 		<a class="btn btn-lg text-danger bi bi-heart-fill" href="./doLikeProcess?~no=${} }" class></a> 
 				 	--%>
+				 	<%--<form action="doLikeProcess" method="post">
+					 	<input type="hidden" name="show_dog_post_no" value="${postData.showDogPostDto.show_dog_post_no}">
+					 	<div class="row">
+					 		<div class="col text-center">
+						 		<c:choose>
+						 		 <c:when test="${checkWhetherLike == 0}">
+						 		 	<button class="btn btn-sm btn-outline-danger"><i class="bi bi-heart" style="stroke-width:2px;"></i> ${countLike}</button>
+					 			 </c:when>
+					 			 
+					 			 <c:otherwise>
+						 		 	<button class="btn btn-sm btn-outline-danger"><i class="bi bi-heart-fill"></i> ${countLike}</button>
+					 			 </c:otherwise>
+					 			</c:choose>
+					 		</div>
+					 	</div>
+				 	</form>--%>
+					
 				 	<form action="doLikeProcess" method="post">
 					 	<input type="hidden" name="show_dog_post_no" value="${postData.showDogPostDto.show_dog_post_no}">
 					 	<div class="row">
@@ -161,7 +282,7 @@
 					 		</div>
 					 	</div>
 				 	</form>
-
+				 	
 				 </div>
 			</div>
 		</div>
@@ -179,24 +300,21 @@
 		 <div class="col-6 fw-bold text-secondary mb-3" style="font-size: 10pt;">
 		 </div>		 
 		 
+		 <div class="col-12" id="commentRootBox">
 		 
-		 <%-- 여기서부터 주석 --%>
-		 <div class="col-12">
+		 <%-- 댓글 JSP 버전 
 		  <c:forEach items="${commentData}" var="commentData">
 		  <div class="row border-bottom pt-1 pb-3">
-			 <%-- 프사 --%>
 			 <div class="col-auto ps-3 pe-0 text-end">
 			  <img class="rounded-circle" src="https://dummyimage.com/3*3" alt="...">
 			 </div>
 			 
 			 <div class="col">
 				  <div class="row">
-				  	<%-- 댓글 닉네임 --%>
 				  	<div class="col fw-bold" style="font-size: 13px;">
 				  	 ${commentData.customerDto.customer_nickname}
 				  	</div>
 				  	
-				  	<%-- 댓글 수정 삭제 --%>
 				  	<div class="col text-end dropdown pe-3">
 				 	 <a class="text-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 				 	  <i class="bi bi-three-dots-vertical"></i>
@@ -215,7 +333,6 @@
 				  </div>
 				 
 				  <div class="row">
-				   <%-- 댓글 데이터 --%>
 				   <div class="col-12">
 				    ${commentData.showDogCommentDto.show_dog_comment_content}
 				   </div>
@@ -227,43 +344,24 @@
 			 </div>
 		  </div>
 		  </c:forEach>
+		  --%>
 		 </div>
 		 
-<%-- 		 <div class="col-12">
-		  <c:forEach items="${commentData}" var="commentData">
-		  <div class="row border-bottom py-3">
-		 	프사
-			 <div class="col-auto ps-3 pe-0 text-end" id="profileImage">
-			  <img class="rounded-circle" src="https://dummyimage.com/3*3" alt="...">
-			 </div>
-			 
-			 댓글 데이터
-			 <div class="col" id="comment">
-				  <div class="row">
-				  	댓글 닉네임
-				  	<div class="col fw-bold" style="font-size: 13px;" id="nickname"></div>
-				  	댓글 수정 삭제
-				  	<div class="col text-end dropdown pe-3"> 	 
-				  	</div>  	
-				  	댓글 수정 삭제
-				  </div>
-				 
-				  <div class="row">
-				   댓글 내용 comment_content 
-				   <div class="col-12" id="comment_content"></div>
-				   장식용 답글쓰기
-				   <div class="col text-secondary" style="font-size: 10pt;">
-				   <button>답글쓰기</button>
-				   </div>
-				  </div>
-			 </div>
-		  </div>
-		  </c:forEach>
-		 </div> --%>
-		 
 
+		<%-- 새 댓글쓰기 --%>
 		<div class="col mt-2">	 
-		
+			<div class="row">
+				<div class="col pe-0">
+				 <textarea id="inputCommentText" class="form-control-plaintext" style="height: 2.5em" name="show_dog_comment_content" placeholder="댓글 작성하기"></textarea>
+				</div>
+				
+				<div class="col-2 d-grid ">
+				 <button onclick="registerComment()" class="btn" style="color:white; background-color:#fd7e14">
+				  <i class="bi bi-arrow-return-left" style="stroke-width:2;"></i>
+				 </button>
+				</div>
+			</div>
+			<%-- JSP 방식 
 			<form action="./writeCommentProcess?show_dog_post_no=${postData.showDogPostDto.show_dog_post_no}" method="post">
 				<div class="row">
 					<div class="col pe-0">
@@ -274,10 +372,49 @@
 					 <button class="btn" style="color:white; background-color:#fd7e14"><i class="bi bi-arrow-return-left" style="stroke-width:2;"></i></button>
 					</div>
 				</div>
-			</form> 		
+			</form> 
+			--%>		
 		</div>
 	</div>
 	<%-- 댓글 --%>
+	
+	
+	<div id="templete" class="d-none">
+		  <div class="commentWrapper row border-bottom pt-2 pb-3">
+			 <%-- 프사 --%>
+			 <div class="col-auto ps-3 pe-0 text-end">
+			  <img class="rounded-circle" src="https://dummyimage.com/3*3" alt="...">
+			 </div>
+			 
+			 <div class="col">
+				  <div class="row">
+				  	<%-- 댓글 닉네임 --%>
+				  	<div class="col nickname">닉네임</div>			  	
+				  	<%-- 댓글 수정 삭제 --%>
+				  	<div class="col text-end dropdown pe-3">
+				 	 <a class="text-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+				 	  <i class="bi bi-three-dots-vertical"></i>
+				 	 </a>
+				 	 <ul class="dropdown-menu">
+					 	 <li><a class="dropdown-item" type="button">수정</a></li>
+					 	 <li><a class="dropdown-item" type="button">삭제</a>
+					 	 </li>
+					 	 <li><a class="dropdown-item" type="button">신고</a></li>
+				 	 </ul>
+				  	</div>  					  	
+				  </div>
+				 
+				  <div class="row">
+				   <%-- 댓글 데이터 --%>
+				   <div class="col-12 content">내용</div>
+				   <div class="col text-secondary date">날짜
+				    답글쓰기
+				   </div>
+				  </div>
+			  </div>
+			 
+		  </div>
+	</div>
 	
 </div>
 <%-- 

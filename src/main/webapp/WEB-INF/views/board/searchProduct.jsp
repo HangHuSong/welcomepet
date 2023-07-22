@@ -48,14 +48,14 @@
 					href="/welcomepet/customer/cart"> </a>
 			</div>
 		</div>
-		<div class="row mt-1">
-		<div class="col"> 
+		<div class="row mt-2">
+		<div class="col text-secondary" style="font-size: 0.9em;"> 
 			검색결과 ${productCount}개의 상품 </div>
 		</div>
 		<div class="row mt-2">
 			<c:forEach items="${productInfo}" var="map">
 				<div
-					class="col-6 mt-3 border-bottom embed-responsive embed-responsive-4by3">
+					class="col-6 mt-3  embed-responsive embed-responsive-4by3">
 					<div class="row">
 					<div class="col">
 						<img
@@ -66,13 +66,13 @@
 					<div class="col">${map.productInfo.product_name}</div> 
 					</div> 
 					<div class="row"> 
-					<div class="col"><del>${map.productInfo.product_price}</del></div> 
+					<div class="col text-secondary" ><del>${map.productInfo.product_price}</del></div> 
 					</div> 
 					<div class="row"> 
 					<div class="col-2 text-danger fw-bold">
 					${map.productInfo.product_discount_rate}%
 					</div>
-					<div class="col fw-bold">
+					<div class="col ps-3 " style="font-weight: 600;">
 					${map.productInfo.product_price - map.salePrice}원</div> 
 					</div> 
 				</div>

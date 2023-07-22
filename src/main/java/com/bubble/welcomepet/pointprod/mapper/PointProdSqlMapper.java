@@ -4,14 +4,18 @@ import java.util.List;
 
 import com.bubble.welcomepet.dto.BoardDto;
 import com.bubble.welcomepet.dto.CommentDto;
+import com.bubble.welcomepet.dto.CustomerDto;
 import com.bubble.welcomepet.dto.ImageDto;
 import com.bubble.welcomepet.dto.LikeDto;
 import com.bubble.welcomepet.dto.PointProdDto;
 import com.bubble.welcomepet.dto.PointProdImgDto;
+import com.bubble.welcomepet.dto.PointProdOrdDto;
 import com.bubble.welcomepet.dto.Prod_CategoryDto;
 
 public interface PointProdSqlMapper {
-	
+
+	public CustomerDto selectCustomerByCustomerNo(int customer_no);
+
 	public void insertComment(CommentDto commentDto);
 
 	public List<CommentDto> getAllCommentByBoardId(int board_no);
@@ -50,7 +54,6 @@ public interface PointProdSqlMapper {
 
 	public List<ImageDto> selectImageByBoardNo(int board_no);
 
-
 	public int createPk1();
 	
 	public PointProdDto selectByPointProdNo(int point_product_no);
@@ -64,5 +67,7 @@ public interface PointProdSqlMapper {
 	public List<PointProdImgDto> selectImgByPointProdNo(int point_product_no);
 
 	/* public void insPointProdOrd(PointProdOrdDto pointProdOrdDto); */
+
+	public void insPointProdOrd(PointProdOrdDto pointProdOrdDto);
 
 }

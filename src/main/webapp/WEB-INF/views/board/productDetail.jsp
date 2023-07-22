@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,16 +14,22 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+/>
+
 <title>상품 정보</title>
 <script>
 
 
 
  const productNo = new URLSearchParams(location.search).get("product_no"); // 쿼리스트링 다음 값 가져옴
- 
+ const categoryNo = ${data.categoryNo};
  let mySessionId = null;
 
 function getSessionId(){
+
 	
 	const xhr = new XMLHttpRequest();
 	
@@ -160,7 +166,7 @@ function reloadReviewList() {
 				  row1.appendChild(rowContext);
 				  
 				  const rowButtons = document.createElement("div");
-				  rowButtons.classList.add("row");
+				  rowButtons.classList.add("row","pe-0");
 
 				  const colButtons1 = document.createElement("div");
 				  colButtons1.classList.add("col");
@@ -170,14 +176,14 @@ function reloadReviewList() {
 				
 
 				  const colUpdate = document.createElement("div");
-				  colUpdate.classList.add("col-2", "delism");
+				  colUpdate.classList.add("col-2", "delism","text-secondary");
 				  colUpdate.innerText = "수정";
 				  colUpdate.setAttribute("onclick", "changeInputForUpdateReview(this)");
 				  rowButtons.appendChild(colUpdate);
 				  
 
 				  const colDelete = document.createElement("div");
-				  colDelete.classList.add("col-2", "delism");
+				  colDelete.classList.add("col-2", "delism","text-secondary");
 				  colDelete.innerText = "삭제";
 				  colDelete.setAttribute("onclick", "deleteReview("+data.productReviewDto.product_review_no+")");
 				  rowButtons.appendChild(colDelete); 
@@ -482,7 +488,7 @@ function handleOptionSelect(event) {
   optionOuter.appendChild(optionDiv);
 
   const optionRow = document.createElement("div");
-  optionRow.classList.add("row");
+  optionRow.classList.add("row", "mt-2");
   optionDiv.appendChild(optionRow);
 
   const optionCol = document.createElement("div");
@@ -495,7 +501,7 @@ function handleOptionSelect(event) {
   optionRow.appendChild(deleteCol);
 
   const quantityRow = document.createElement("div");
-  quantityRow.classList.add("row", "mt-2");
+  quantityRow.classList.add("row", "mt-2","mb-2","align-items-center");
   optionRow.appendChild(quantityRow);
 
   const quantityCol = document.createElement("div");
@@ -503,8 +509,9 @@ function handleOptionSelect(event) {
   quantityRow.appendChild(quantityCol);
   
   const priceCol = document.createElement("div");
-  priceCol.classList.add("col-6", "text-end", "fw-bold", "align-items-center");
+  priceCol.classList.add("col-6", "text-end", "fw-bold");
   priceCol.innerText = optionPrice +"원";
+
   quantityRow.appendChild(priceCol);
 
   const buttonGroup = document.createElement("div");
@@ -529,9 +536,11 @@ function handleOptionSelect(event) {
 
   const quantityInput = document.createElement("input");
   quantityInput.type = "number";
-  quantityInput.classList.add("form-control");
+  quantityInput.classList.add("text-center","border-secondary", "align-items-center","border-top","border-bottom");
   quantityInput.min = "1";
   quantityInput.value = "1";
+  quantityInput.style.width = "3em";
+  quantityInput.style.border = "none";
   buttonGroup.appendChild(quantityInput);
 
   const increaseButton = document.createElement("button");
@@ -618,7 +627,8 @@ function insertCart() {
 	            if (xhr.status === 200) {
 	                // 성공적으로 처리된 경우
 	                console.log("Cart added successfully");
-	                showModal(); 
+	               
+	                showModalAndCloseOffcanvas(); 
 	            } else {
 	                // 처리 중 오류가 발생한 경우
 	                console.error("Failed to add cart");
@@ -627,6 +637,23 @@ function insertCart() {
 	    };
 	    xhr.send(JSON.stringify(selectedOptions));
 	}
+	
+function showModalAndCloseOffcanvas() {
+    // 오프캔버스 닫기
+    
+    setTimeout(function() {
+        showModal();
+    }, 300);
+    
+    setTimeout(function() {
+        closeModal();
+    }, 2500);
+    
+
+
+
+}
+	
 	
 function showModal() {
     // 모달창 열기
@@ -676,11 +703,189 @@ function buyNow() {
 	  document.body.appendChild(form);
 	  form.submit();
 	}
+	
+function getRelatedList() {
+	
+	const xhr = new XMLHttpRequest();
+	
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			const response = JSON.parse(xhr.responseText);
+			 console.log(response);
+
+		     // 이전 "이 상품과 비슷한 상품" 리스트들 삭제
+		      const relatedListContainer = document.getElementById("relatedList");
+		      relatedListContainer.innerHTML = "";
+
+		      // relatedListContainer에 "relatedProductsSwiper" 생성
+		      const swiperContainer = document.createElement("div");
+		      swiperContainer.classList.add("swiper-container");
+		      swiperContainer.id = "relatedProductsSwiper";
+
+		      const swiperWrapper = document.createElement("div");
+		      swiperWrapper.classList.add("swiper-wrapper");
+		      swiperContainer.appendChild(swiperWrapper);
+		      
+		      const prevButton = document.createElement("div");
+		      prevButton.classList.add("swiper-button-prev");
+		      swiperContainer.appendChild(prevButton);
+
+		      const nextButton = document.createElement("div");
+		      nextButton.classList.add("swiper-button-next");
+		      swiperContainer.appendChild(nextButton);
+
+		      relatedListContainer.appendChild(swiperContainer);
+
+		for(data of response.relatedProudctList) {
 			
+			const col1 = document.createElement("div");
+			col1.classList.add("col-4", "embed-responsive", "embed-responsive-4by3", "ps-3","swiper-slide");
+			
+			
+			
+			const rowImg = document.createElement("div");
+			rowImg.classList.add("row");
+			col1.appendChild(rowImg);
+			
+			const colImg =	document.createElement("div");
+			colImg.classList.add("col");
+			colImg.style.position = "relative";
+			rowImg.appendChild(colImg);
+			
+
+			
+			const heartBox = document.createElement("a");
+			heartBox.classList.add("text-secondary", "bi", "bi-heart");
+			heartBox.id = "heartBox" + data.productInfo.product_no ;
+			heartBox.setAttribute("onclick", "toggleWish("+ data.productInfo.product_no +")");
+			heartBox.style.position = "absolute"; // 절대 위치 설정
+			heartBox.style.bottom = "0"; // 하단 위치
+			heartBox.style.right = "10px"; // 오른쪽 위치
+
+			heartBox.setAttribute("role", "button");
+			colImg.appendChild(heartBox);
+			
+			const img = document.createElement("img");
+			img.src = "/uploadFiles/WelcomePet/" + data.productInfo.product_thumbnail; // 이미지 URL 또는 경로 설정
+			img.alt = "제품 이미지";
+			img.classList.add("embed-responsive-item", "product-thum");
+			colImg.appendChild(img);
+			
+			const rowName = document.createElement("div");
+			rowName.classList.add("row", "r_name")
+			rowName.setAttribute("onclick","productDetail=product_no=?"+ data.productInfo.product_no);
+			col1.appendChild(rowName);
+			
+			
+			const colName = document.createElement("div");
+			colName.classList.add("col");
+			rowName.appendChild(colName);
+			
+			const nameBox = document.createElement("p");
+			nameBox.classList.add( "fsmid");
+			nameBox.innerText = data.productInfo.product_name;
+			colName.appendChild(nameBox);
+			
+			const rowPrice = document.createElement("div");
+			rowPrice.classList.add("row");
+			col1.appendChild(rowPrice);
+			
+			const colPrice = document.createElement("div");
+			colPrice.classList.add("col", "fw-bold","price_text");
+			colPrice.innerText = data.productInfo.product_price - data.salePrice +"원";
+			rowPrice.appendChild(colPrice);	
+			
+			swiperWrapper.appendChild(col1);
+			
+			  refreshMyHeart(data.productInfo.product_no);
+			}
+		
+
+		
+	    const swiper = new Swiper("#relatedProductsSwiper", {
+	        slidesPerView: "auto",
+	        spaceBetween: 10,
+	        loop: true,
+	        navigation: {
+	          nextEl: ".swiper-button-next",
+	          prevEl: ".swiper-button-prev",
+	        },
+	        pagination: {
+	          el: ".swiper-pagination",
+	          clickable: true,
+	        },
+	      });
+
+		}
+	}
+	
+	
+
+
+	xhr.open("get", "./relatedProudct?main_category_no="+categoryNo);
+	xhr.send();	
+}
+
+function toggleWish(productNo) {
+	
+	if(mySessionId == null){
+		if(confirm("로그인을 하셔야 이용하실 수 있습니다. 로그인 하시겠습니까?")){
+			location.href = "../customer/login";
+		}
+		
+		return;
+	}
+	
+	const xhr = new XMLHttpRequest();
+	
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			const response = JSON.parse(xhr.responseText);
+			// js 작업..
+
+			refreshMyHeart(productNo);
+		}
+	}
+	
+	//get
+	xhr.open("get", "./toggleWish?product_no=" + productNo);
+	xhr.send();	
+	
+	}
+
+function refreshHeart(productNo){
+	
+	if(mySessionId == null) return;
+	
+	
+	const xhr = new XMLHttpRequest();
+	
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			const response = JSON.parse(xhr.responseText);
+			// js 렌더링... 작업..
+			const heartBox = document.getElementById("heartBox" + productNo);
+			
+			if(response.isWished){
+				heartBox.classList.remove("bi-heart","text-secondary");
+				heartBox.classList.add("bi-heart-fill","text-danger");
+			}else{
+				heartBox.classList.remove("bi-heart-fill","text-danger");
+				heartBox.classList.add("bi-heart","text-secondary");
+			}
+		}
+	}
+	
+	//get
+	xhr.open("get", "./isWished?product_no=" + productNo);
+	xhr.send();
+	
+}
 
 window.addEventListener("DOMContentLoaded", function(){
     //사실상 시작 시점...
     getSessionId();
+    getRelatedList();
     reloadReviewList();
     refreshTotalWishCount();
     refreshMyHeart();
@@ -690,13 +895,87 @@ window.addEventListener("DOMContentLoaded", function(){
 </script>
 
 <style type="text/css">
+
+/* Swiper 슬라이드 컨테이너 스타일 */
+.swiper-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+   position: relative;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  position: absolute; /* 절대 위치로 설정합니다. */
+  top: 50%; /* 컨테이너의 중앙을 기준으로 위치시킵니다. */
+  transform: translateY(-50%); /* 수직 중앙 정렬을 위해 translateY를 사용합니다. */
+  width: 1em;
+  height: 1em;
+  color: grey; /* 버튼 텍스트 색상은 원하는 색상으로 설정하세요. */
+  cursor: pointer;
+  z-index: 10; /* 다른 요소들 위에 나타나도록 z-index를 설정합니다. */
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 24px; /* 아이콘 크기를 조절합니다. */
+}
+
+.swiper-button-next {
+  right: 10px;
+}
+
+/* 이전 버튼의 위치를 좌측으로 설정합니다. */
+.swiper-button-prev {
+  left: 10px;
+}
+
+/* Swiper 슬라이드 아이템 스타일 */
+.swiper-slide {
+  width: 40%;
+}
+
+
+/* 페이지네이션 스타일 */
+.swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+  opacity: 0.5;
+  border-radius: 50%;
+  margin: 0 5px;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+}
+.bi-heart{
+ filter: opacity(0.5);
+}
+.price_text{
+	font-size: 0.9em;
+}
+.fsmid {
+	font-size: 0.8em;
+	letter-spacing: -0.09em;
+	margin-bottom: 0;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 라인수 */
+    -webkit-box-orient: vertical;
+    word-wrap:break-word; 
+    line-height: 1.2em;
+    height: 2.4em; /* line-height 가 1.2em 이고 3라인을 자르기 때문에 height는 1.2em * 3 = 3.6em */
+}
+
 .product-thum {
 	width: 100%;
 }
 
 .delism {
 	color: rgb(66, 73, 79);
-	font-size: small;
+	font-size: 0.8em;
 }
 
 .dde {
@@ -717,6 +996,7 @@ window.addEventListener("DOMContentLoaded", function(){
 	height: 16px;
 	background-image: url('/uploadFiles/WelcomePet/icons/star-empty.png');
 	background-size: cover;
+	filter: opacity(0.5);
 }
 
 .filled {
@@ -725,23 +1005,42 @@ window.addEventListener("DOMContentLoaded", function(){
 	height: 16px;
 	background-size: cover;
 	background-image: url('/uploadFiles/WelcomePet/icons/star.png');
+	filter: none;
 }
 
 .empty {
 	height: 0.8em;
 	background-color: rgb(244, 247, 250);
 }
-.review_date{
- font-size: 0.7em;
-}
-.review_name{
-font-size: 0.8em;
-}
-.reviewContext{
- font-size: 0.8em;
- 
+
+.review_date {
+	font-size: 0.7em;
 }
 
+.review_name {
+	font-size: 0.8em;
+}
+
+.reviewContext {
+	font-size: 0.8em;
+}
+
+#myModal {
+	display: none;
+	position: fixed;
+	top: 85%;
+	bottom: 0;
+	left: 3%;
+	right: 0;
+}
+
+.modal-content {
+	background-color: rgb(48, 52, 54);
+	border-radius: 0.3rem;
+	width: 95%;
+	height: 2.7em;
+	justify-content: center;
+}
 </style>
 </head>
 <body>
@@ -780,14 +1079,13 @@ font-size: 0.8em;
 		<div class="row mt-2">
 			<div class="col fw-bold">${data.productInfo.product_name}</div>
 		</div>
-		 <div class="row mt-2">
-		 <div class="col">
-		  <span class="filled"></span>
-		 <span id="totalRatingSpan"></span>
-		  <span id="productRatingSpan3"></span>
-		  </div>
-		 </div> 
-		 
+		<div class="row mt-2">
+			<div class="col">
+				<span class="filled"></span> <span id="totalRatingSpan"></span> <span
+					id="productRatingSpan3"></span>
+			</div>
+		</div>
+
 		<c:choose>
 			<c:when test="${data.productInfo.product_discount_rate != 0}">
 				<div class="row mt-2">
@@ -799,7 +1097,11 @@ font-size: 0.8em;
 					<div class="col-2 text-danger text-end fw-bold">
 						${data.productInfo.product_discount_rate}%</div>
 					<div class="col ps-0 fw-bold">
-						<fmt:formatNumber value="${data.productInfo.product_price - data.salePrice}" pattern="#,###" />원</div>
+						<fmt:formatNumber
+							value="${data.productInfo.product_price - data.salePrice}"
+							pattern="#,###" />
+						원
+					</div>
 				</div>
 			</c:when>
 			<c:otherwise>
@@ -808,9 +1110,9 @@ font-size: 0.8em;
 				</div>
 			</c:otherwise>
 		</c:choose>
-		
-			<div class="row mt-2 empty"></div>
-			
+
+		<div class="row mt-2 empty"></div>
+
 		<div class="row mt-3 delism">
 			<div class="row mt-2">
 				<div class="col-3">배송 안내</div>
@@ -834,13 +1136,14 @@ font-size: 0.8em;
 							src="/uploadFiles/WelcomePet/${data.productInfo.product_thumbnail}"
 							class="embed-responsive-item product-thum" alt="...">
 					</div>
-					<div class="col align-items-center fw-bold" style="font-size: 0.9em;">판매자 이름</div>
+					<div class="col align-items-center fw-bold"
+						style="font-size: 0.9em;">판매자 이름</div>
 				</div>
 			</div>
 			<div class="col-1"></div>
 		</div>
-			<div class="row mt-2 empty"></div>
-		<div class="row mt-3">
+		<div class="row mt-2 empty"></div>
+		<div class="row mt-3"  style="justify-content: center;">
 			<div class="row">
 				<div class="col fw-bold">상품정보</div>
 			</div>
@@ -852,119 +1155,142 @@ font-size: 0.8em;
 				</div>
 			</c:forEach>
 		</div>
+		<div class="row mt-2 empty"></div>
+			<div class="row mt-2">
+		 		<div class="row mt-2">
+		 	 	<div class="col fw-bold">
+		 	 		이 상품과 비슷한 상품
+		 	 	</div>
+		 		</div>
+		 	<div class="row mt-2" id="relatedList">
 
-		<div class="row mt-3 border-top ">
+					  </div> 
+				</div>
+		 	</div>
+	<div class="row mt-2 empty" style="height:1.5em; "></div>
+
+		<div class="row">
 			<div class="row mt-2 ps-3 py-2">
 				<div class="col fw-bold">상품 리뷰</div>
 			</div>
 			<div class="row mt-2">
-			<div class="col" id="colProductRating"> </div> </div>
-			<div class="row mt-2  ps-3 mx-0" id="reviewListBox">
-			
+				<div class="col" id="colProductRating"></div>
 			</div>
+			<div class="row mt-2  ps-3 mx-0" id="reviewListBox"></div>
 		</div>
+
 
 
 		<div class="row mt-2">
 			<jsp:include page="../common/serviceNavi.jsp"></jsp:include>
 			<div class="row mb-4">
 				<div class="col">
-					<div class="navbar navbar-dark bg-white fixed-bottom border-top">
+					<div class="navbar navbar-dark bg-white fixed-bottom border-top " style="height: 4em;">
 						<div class="col-2 text-center">
 							<div class="row">
 								<div class="col">
 
-								<a class="text-danger bi bi-heart"  id="heartBox"
-								onclick="toggleWish()" role="button"> </a>
-								
+									<a class="text-danger bi bi-heart" id="heartBox"
+										onclick="toggleWish()" role="button"> </a>
+
 
 
 								</div>
 							</div>
-							<div class="row">
+							<div class="row" style="height: 0.9em; margin-top: -0.5em;">
 								<div class="col">
-								<span id="totalWishCount">3</span> </div>
+									<span id="totalWishCount">3</span>
+								</div>
 							</div>
 						</div>
 						<div class="col ">
 							<div class="row">
 								<div class="col">
 									<div class="d-grid gap-2">
-										<button class="btn btn-primary" type="button"
+										<button class="btn " type="button" style="background-color: rgb(253, 152, 67);
+										color: white;"
 											data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom"
 											aria-controls="offcanvasBottom">구매하기</button>
 
 										<div class="offcanvas offcanvas-bottom dde"
 											style="height: auto;" tabindex="-1" id="offcanvasBottom"
 											aria-labelledby="offcanvasBottomLabel">
-										
+
 											<div class="row mt-3">
 												<div class="col text-center fw-bold">상품 선택</div>
 											</div>
 											<div class="row mt-4">
 												<div class="row" id="optionRow">
 													<div class="col-1"></div>
-													<div class="col" id ="colOption">
+													<div class="col" id="colOption"></div>
+													<div class="col-1"></div>
+												</div>
+												<div class="row mt-3" id="optionContainer"></div>
 
-													</div>
-													<div class="col-1"></div>
-												</div>
-												<div class="row mt-3" id="optionContainer" >
-												
-												</div>
-
-													<div class="col-1"></div>
-												</div>
-
-												<div class="row mt-3">
-
-													<div class="col-1"></div>
-													<div class="col-6">총 상품 금액</div>
-													<div class="col-4 text-end">
-														<div class="row">
-															<div class="col fw-bold fs-4" id="showTotalPrice">0원</div>               
-														</div>
-													</div>
-													<div class="col-1"></div>
-												</div>
-												<div class="row mt-4">
-													<div class="col-1"></div>
-													<div class="col-5 d-grid gap-2">
-														<button class="btn btn-outline-primary btn-lg"
-															type="button" onclick="insertCart()">장바구니</button>
-													</div>
-													<div class="col-5 d-grid gap-2">
-														<button class="btn btn-primary btn-lg" type="button" 
-														onclick="buyNow()"
-														>바로구매</button>
-													</div>
-													<div class="col-1"></div>
-												</div>
-												<div class="row mt-3"></div> 
+												<div class="col-1"></div>
 											</div>
-										
+
+											<div class="row mt-3">
+
+												<div class="col-1"></div>
+												<div class="col-6">총 상품 금액</div>
+												<div class="col-4 text-end">
+													<div class="row">
+														<div class="col fw-bold fs-4" id="showTotalPrice" style="color: darksalmon;">0원</div>
+													</div>
+												</div>
+												<div class="col-1"></div>
+											</div>
+											<div class="row mt-4">
+												<div class="col-1"></div>
+												<div class="col-5 d-grid gap-2">
+													<button class="btn   btn-lg" style="border-color: rgb(253, 152, 67); 
+													color: darksalmon;"
+														data-bs-dismiss="offcanvas" type="button"
+														onclick="insertCart()">장바구니</button>
+												</div>
+												<div class="col-5 d-grid gap-2">
+													<button class="btn  btn-lg" type="button" style="background-color: rgb(253, 152, 67);
+													color: white;"
+														onclick="buyNow()">바로구매</button>
+												</div>
+												<div class="col-1"></div>
+											</div>
+											<div class="row mt-3"></div>
 										</div>
+
 									</div>
 								</div>
 							</div>
-							<div class="col-1"></div>
 						</div>
-						
+						<div class="col-1"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
+
+	<div id="myModal" class="modal" tabindex="-1" aria-labelledby="myModal"
+		aria-hidden="true">
+		<div class="modal-content">
+			<!-- 높이 조정 (300px로 변경) -->
+			<div class="modal-body">
+				<div class="row " style="font-size: 0.8em;">
+					<div class="col pe-0" style="color: white;">
+						<span> 장바구니에 상품이 담겼습니다. </span>
+					</div>
+					<div class="col-5 ps-0 text-end fw-bold">
+						<span onclick="moveToCart()" class="text-primary"> 장바구니로 가기</span>
 					</div>
 				</div>
 			</div>
 		</div>
-		
-		
-	<div id="myModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p>장바구니로 이동하시겠습니까?</p>
-    <button id="moveToCartBtn">예</button>
-    <button id="closeModalBtn">아니오</button>
-  </div>
-</div>
-	
+	</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"

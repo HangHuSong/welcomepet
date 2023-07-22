@@ -15,19 +15,24 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<style>
+.bi.bi-pencil-square {
+	color: #CF654D;
+}
+</style>
 </head>
 <body>
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
 				<div class="row">
-					<div class="col mb-5">
+					<div class="col mb-4">
 						<div class="row">
 							<div class="col mt-5">
-								<div class="row mt-4">
+								<div class="row mt-5">
 									<div class="col p-0">
 										<img class="img-fluid"
-											src="/welcomepet/resources/board/img/bannerMain.png">
+											src="https://cdn.klnews.co.kr/news/photo/202208/305478_45874_3119.png">
 									</div>
 								</div>
 							</div>
@@ -47,8 +52,7 @@
 																	class="col-12 border-bottom border-light-subtle border-1 py-1"
 																	onclick="location.href='./readContent?board_no=${map.boardDto.board_no }'">
 																	<div class="row">
-																		<div class="col fw-semibold py-1"
-																			style="font-size: 15px;">
+																		<div class="col py-1">
 																			<a class="text-decoration-none text-black"><i
 																				class="bi bi-hand-thumbs-up text-danger"> </i><span
 																				class="me-1"></span>${map.boardDto.board_title }</a>
@@ -71,9 +75,10 @@
 													<div class="row">
 														<div class="col">
 															<div class="row">
-																<div class="col fw-medium 6px">
+																<div class="col mb-1"
+																	style="font-size: 18px; font-weight: 500;">
 																	<a class="text-decoration-none text-black">${map.boardDto.board_title }</a>
-																	<span class="text-danger">[${map.countComment}]</span>
+																	<%-- <span class="text-danger">[${map.countComment}]</span> --%>
 																</div>
 															</div>
 															<div class="row text-secondary" style="font-size: 0.8em;">
@@ -94,6 +99,21 @@
 															</c:forEach>
 														</div>
 													</div>
+													<div class="row">
+														<div class="col my-1">
+															<div class="row text-secondary">
+																<div class="col">
+																	<span class="me-2"><i
+																		class="bi bi-chat-square-dots"> ${map.countComment}</i></span>
+																	<span class="me-2"><i
+																		class="bi bi-hand-thumbs-up"> ${map.countLike}</i></span>
+																</div>
+																<div class="col-2 text-end">
+																	<span><i class="bi bi-eye"> ${map.boardDto.board_read_count}</i></span>
+																</div>
+															</div>
+														</div>
+													</div>
 												</div>
 											</c:forEach>
 										</div>
@@ -106,8 +126,8 @@
 															class="bi bi-pencil-square"></i></a>
 													</c:when>
 													<c:otherwise>
-														<a href="./writeContent" class="btn btn-dark"><i
-															class="bi bi-pencil-square"></i></a>
+														<a href="./writeContent" class="btn btn-light"><i
+															class="bi bi-pencil-square" style="font-size: 1.5em;"></i></a>
 													</c:otherwise>
 												</c:choose>
 											</div>
@@ -118,10 +138,10 @@
 						</div>
 					</div>
 				</div>
-				</div>
-				</div>
-				</div>
-<jsp:include page="../common/topNavi.jsp"></jsp:include>
-<jsp:include page="../common/bottomNavi.jsp"></jsp:include>
+			</div>
+		</div>
+	</div>
+	<jsp:include page="../common/topNavi.jsp"></jsp:include>
+	<jsp:include page="../common/bottomNavi.jsp"></jsp:include>
 </body>
 </html>

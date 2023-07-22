@@ -8,7 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bubble.welcomepet.customer.mapper.CustomerSqlMapper;
+/*import com.bubble.welcomepet.customer.mapper.CustomerSqlMapper;*/
 import com.bubble.welcomepet.dto.BoardDto;
 import com.bubble.welcomepet.dto.CommentDto;
 import com.bubble.welcomepet.dto.CustomerDto;
@@ -16,6 +16,7 @@ import com.bubble.welcomepet.dto.ImageDto;
 import com.bubble.welcomepet.dto.LikeDto;
 import com.bubble.welcomepet.dto.PointProdDto;
 import com.bubble.welcomepet.dto.PointProdImgDto;
+import com.bubble.welcomepet.dto.PointProdOrdDto;
 import com.bubble.welcomepet.dto.Prod_CategoryDto;
 import com.bubble.welcomepet.pointprod.mapper.PointProdSqlMapper;
 
@@ -25,9 +26,10 @@ public class PointProdServiceImpl {
 	@Autowired
 	private PointProdSqlMapper pointProdSqlMapper;
 
-	@Autowired
-	private CustomerSqlMapper customerSqlMapper;
-	
+	/*
+	 * @Autowired private CustomerSqlMapper customerSqlMapper;
+	 */
+
 	public void insertComment(CommentDto commentDto) {
 
 		pointProdSqlMapper.insertComment(commentDto);
@@ -46,7 +48,7 @@ public class PointProdServiceImpl {
 
 			int customer_no = commentDto.getCustomer_no();
 
-			CustomerDto customerDto = customerSqlMapper.selectById(customer_no);
+			CustomerDto customerDto = pointProdSqlMapper.selectCustomerByCustomerNo(customer_no);
 
 			map.put("customerDto", customerDto);
 			map.put("commentDto", commentDto);
@@ -55,7 +57,6 @@ public class PointProdServiceImpl {
 		}
 		return list;
 	}
-
 
 	public void writeContent(BoardDto boardDto, List<ImageDto> imageDtoList) {
 		int board_no = pointProdSqlMapper.createPk();
@@ -83,18 +84,21 @@ public class PointProdServiceImpl {
 
 			int board_no = boardDto.getBoard_no();
 
-			CustomerDto customerDto = customerSqlMapper.selectById(customer_no);
+			CustomerDto customerDto = pointProdSqlMapper.selectCustomerByCustomerNo(customer_no);
 
 			// 댓글 카운트
 
 			int countComment = pointProdSqlMapper.countCommentByBoardNo(board_no);
 			
+			int countLike = pointProdSqlMapper.countLikeByBoardNo(board_no);
+
 			List<ImageDto> imageDtoList = pointProdSqlMapper.selectImageByBoardNo(board_no);
 
 			map.put("customerDto", customerDto);
 			map.put("boardDto", boardDto);
 			map.put("countComment", countComment);
 			map.put("imageDtoList", imageDtoList);
+			map.put("countLike", countLike);
 
 			list.add(map);
 		}
@@ -117,7 +121,7 @@ public class PointProdServiceImpl {
 
 			int board_no = boardDto.getBoard_no();
 
-			CustomerDto customerDto = customerSqlMapper.selectById(customer_no);
+			CustomerDto customerDto = pointProdSqlMapper.selectCustomerByCustomerNo(customer_no);
 
 			// 댓글 카운트
 
@@ -138,7 +142,7 @@ public class PointProdServiceImpl {
 		Map<String, Object> map = new HashMap<>();
 
 		BoardDto boardDto = pointProdSqlMapper.selectById(board_no);
-		CustomerDto customerDto = customerSqlMapper.selectById(boardDto.getCustomer_no());
+		CustomerDto customerDto = pointProdSqlMapper.selectCustomerByCustomerNo(boardDto.getCustomer_no());
 		Prod_CategoryDto categoryDto = pointProdSqlMapper.selectByCategoryNo(boardDto.getBoard_category_no());
 
 		List<ImageDto> imageDtoList = pointProdSqlMapper.selectImageByBoardNo(board_no);
@@ -166,7 +170,7 @@ public class PointProdServiceImpl {
 	public int countCommentByBoardNo(int board_no) {
 		int countCommentByBoardNo = pointProdSqlMapper.countCommentByBoardNo(board_no);
 		return countCommentByBoardNo;
-	}  
+	}
 
 	public void insertLike(LikeDto likeDto) {
 
@@ -183,7 +187,6 @@ public class PointProdServiceImpl {
 		return countLikeByBoardNo;
 	}
 
-
 	public void writePointProd(PointProdDto pointProdDto, List<PointProdImgDto> pointProdImgDtoList) {
 		int point_product_no = pointProdSqlMapper.createPk1();
 
@@ -196,7 +199,7 @@ public class PointProdServiceImpl {
 			pointProdSqlMapper.insPointProdImg(pointProdImgDto);
 		}
 	}
-	
+
 	public List<Map<String, Object>> getPointProdList() {
 
 		List<Map<String, Object>> list = new ArrayList<>();
@@ -211,7 +214,8 @@ public class PointProdServiceImpl {
 
 			int point_product_no = pointProdDto.getPoint_product_no();
 
-			CustomerDto customerDto = customerSqlMapper.selectById(customer_no);
+			// CustomerDto customerDto = customerSqlMapper.selectById(customer_no);
+			CustomerDto customerDto = pointProdSqlMapper.selectCustomerByCustomerNo(customer_no);
 
 			List<PointProdImgDto> pointProdImgDtoList = pointProdSqlMapper.selectImgByPointProdNo(point_product_no);
 
@@ -230,8 +234,7 @@ public class PointProdServiceImpl {
 		Map<String, Object> map = new HashMap<>();
 
 		PointProdDto pointProdDto = pointProdSqlMapper.selectByPointProdNo(point_product_no);
-		CustomerDto customerDto = customerSqlMapper.selectById(pointProdDto.getCustomer_no());
-
+		CustomerDto customerDto = pointProdSqlMapper.selectCustomerByCustomerNo(pointProdDto.getCustomer_no());
 		List<PointProdImgDto> pointProdImgDtoList = pointProdSqlMapper.selectImgByPointProdNo(point_product_no);
 
 		map.put("pointProdDto", pointProdDto);
@@ -239,5 +242,9 @@ public class PointProdServiceImpl {
 		map.put("pointProdImgDtoList", pointProdImgDtoList);
 
 		return map;
+	}
+
+	public void insPointProdOrd(PointProdOrdDto pointProdOrdDto) {
+		pointProdSqlMapper.insPointProdOrd(pointProdOrdDto);
 	}
 }

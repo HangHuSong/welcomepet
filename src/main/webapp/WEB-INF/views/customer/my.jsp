@@ -58,7 +58,7 @@
 				<c:forEach items="${dogInfo}" var="list">
 					<div class="col-1"></div>
 					<div class="col-4 card mt-3">
-						<img src="/uploadFiles/WelcomePet/${list.dogInfo.dog_image}" class="card-img-top embed-responsive-item" alt="...">
+						<a href="/welcomepet/snap/dogProfile?dog_no=${list.dogInfo.dog_no }"><img src="/uploadFiles/WelcomePet/${list.dogInfo.dog_image}" class="card-img-top embed-responsive-item" alt="..."></a>
 						<div class="card-footer ">
 						<div class="row">
 							<div class="col fw-bold text-center">${list.dogInfo.dog_name } </div> 

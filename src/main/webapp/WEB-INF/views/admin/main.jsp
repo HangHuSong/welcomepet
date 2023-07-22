@@ -13,16 +13,26 @@
 	rel="stylesheet"
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 	crossorigin="anonymous">
+	<style type="text/css">
+		#test{
+			background-color: #fafbff;
+		}
+		
+	</style>
 </head>
 
 <body>
 	<div class="container">
-		<%@ include file="../common/adminHead.jsp" %>
 		<div class="row">
 			<%@ include file="../common/adminTab.jsp" %>
+			<div class="col">
+				<%@ include file="../common/adminHead.jsp" %>
+			</div>
 			<div class="col-1"></div>
-			<div class="col-9">
-				
+			<div class="col-9" id="test">
+				<div class="row">
+					
+				</div>
 			</div>
 		</div>
 	</div>

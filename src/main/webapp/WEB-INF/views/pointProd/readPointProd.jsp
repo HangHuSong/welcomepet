@@ -46,10 +46,10 @@
 							<div class="col mt-2">
 								<c:forEach items="${data.pointProdImgDtoList}"
 									var="pointProdImgDto" varStatus="status">
-									<c:if test="${status.index == 0}">
+									<c:if test="${status.index > 0}">
 										<img
-											src="/uploadFolder/${pointProdImgDto.point_product_image_link}"
-											class="w-50">
+											src="/uploadFiles2/${pointProdImgDto.point_product_image_link}"
+											class="w-100">
 									</c:if>
 								</c:forEach>
 
@@ -76,10 +76,10 @@
 							<div class="col mt-2">
 								<c:forEach items="${data.pointProdImgDtoList}"
 									var="pointProdImgDto" varStatus="status">
-									<c:if test="${status.index > 0}">
+									<c:if test="${status.index == 0}">
 										<img
-											src="/uploadFolder/${pointProdImgDto.point_product_image_link}"
-											class="w-50">
+											src="/uploadFiles2/${pointProdImgDto.point_product_image_link}"
+											class="w-100">
 									</c:if>
 								</c:forEach>
 							</div>
@@ -91,6 +91,19 @@
 							<div class="col-12 mt-3 border-top"></div>
 						</div>
 					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row fixed-bottom border-top pt-3 bg-white">
+			<div class="col">
+				<div class="row">
+					<div class="col">${data.point_product_price}${data.point_product_total_amount}</div>
+					<form action="./orderPointProdProcs" method="post">
+						<input type="hidden" name="point_product_no"
+							value="${data.point_product_no}" /> <input type="text"
+							name="point_product_order_amount" placeholder="주문수량" required />
+						<input type="submit" value="주문하기" />
+					</form>
 				</div>
 			</div>
 		</div>

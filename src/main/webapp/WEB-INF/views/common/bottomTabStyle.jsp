@@ -19,7 +19,7 @@
 <body>
 <%------ 하단 row ------%>
 <div class="row mb-5">
-<nav class="navbar fixed-bottom bg-body-tertiary border-top"  style="height:56px; background-color: #000000;">
+<nav class="navbar fixed-bottom bg-body-tertiary border-top"  style="height:56px; background-color: #ffffff;">
 <div class="container d-flex justify-content-center">
  <div class="row">
 	

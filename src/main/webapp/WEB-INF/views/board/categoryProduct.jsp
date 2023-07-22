@@ -60,7 +60,7 @@
 			<div class="col-3" onclick="location.href='./categoryProduct?main_category_no=4'">스타일</div>
 		</div>
 		<div class="row subcate mt-2 align-items-center text-center" style="overflow-x: auto; white-space: nowrap;">
-		  <div class="col-3 pe-0 text-secondary"  onclick="location.href='./categoryProduct?main_category_no=${mainCateNo}'">
+		  <div class="col-3 ps-0 text-secondary"  onclick="location.href='./categoryProduct?main_category_no=${mainCateNo}'">
 		    전체
 		  </div>
 		  <c:forEach items="${categoryInfo}" var="map">

@@ -88,6 +88,7 @@
 				heartBox.style.position = "absolute"; // 절대 위치 설정
 				heartBox.style.bottom = "0"; // 하단 위치
 				heartBox.style.right = "10px"; // 오른쪽 위치
+				heartBox.style.filter = "opacity(0.5)";
 				heartBox.setAttribute("role", "button");
 				colImg.appendChild(heartBox);
 				
@@ -98,15 +99,19 @@
 				colImg.appendChild(img);
 				
 				const rowName = document.createElement("div");
-				rowName.classList.add("row")
+				rowName.classList.add("row", "r_name")
 				rowName.setAttribute("onclick","productDetail=product_no=?"+ data.productInfo.product_no);
 				col1.appendChild(rowName);
 				
 				
 				const colName = document.createElement("div");
-				colName.classList.add("col", "fsmid");
-				colName.innerText = data.productInfo.product_name;
+				colName.classList.add("col");
 				rowName.appendChild(colName);
+				
+				const nameBox = document.createElement("p");
+				nameBox.classList.add( "fsmid");
+				nameBox.innerText = data.productInfo.product_name;
+				colName.appendChild(nameBox);
 				
 				const rowPrice = document.createElement("div");
 				rowPrice.classList.add("row");
@@ -281,6 +286,19 @@
 }
 .fsmid {
 	font-size: 0.8em;
+	letter-spacing: -0.09em;
+	margin-bottom: 0;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 라인수 */
+    -webkit-box-orient: vertical;
+    word-wrap:break-word; 
+    line-height: 1.2em;
+    height: 2.4em; /* line-height 가 1.2em 이고 3라인을 자르기 때문에 height는 1.2em * 3 = 3.6em */
+}
+.r_name{
+	height: 2em;
 }
 .not_select {
  background: white;
@@ -419,7 +437,7 @@
 		<div class="row mt-2">
 		<div class="col">
 		<div class="row mt-2" > 
-		<div class="col fs-4 fw-bold"> 핫딜 상품 <i class="bi bi-fire text-danger"></i></div>
+		<div class="col  " style="font-size: 1.2em; font-weight: 600;"> 핫딜 상품 <i class="bi bi-fire text-danger"></i></div>
 		<div class="row mt-3" id="topSaleBox">
 		
 				</div>

@@ -151,8 +151,8 @@ public class CommunityServiceImpl {
 		showDogPostSqlMapper.deleteByPostNo(show_dog_post_no);	
 	}
 
-//	게시글 수정
-	public void updatePost(ShowDogPostDto showDogPostDto, List<ShowDogPostImagesDto> postImageDtoList) {
+//	게시글 수정 											,List<ShowDogPostImagesDto> postImageDtoList
+	public void updatePost(ShowDogPostDto showDogPostDto) {
 		
 		int show_dog_post_no = showDogPostSqlMapper.createShowDogPostPK();
 		

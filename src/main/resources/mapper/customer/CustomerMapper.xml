@@ -257,6 +257,10 @@
 		<select id="getOptionInfoByNo" resultType="com.bubble.welcomepet.dto.ProductOptionDto">
 		select * from product_option where product_option_no = #{product_option_no}
 	</select>
+	
+	<select id="getMaincategoryNoBySub" resultType="int">
+		select main_category_no from sub_category where sub_category_no = #{sub_category}
+	</select>
 
 	<!-- 주문 관련 -->
 	

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.bubble.welcomepet.community.service.CommunityServiceImpl;
@@ -95,7 +96,7 @@ public class CommunityController {
 		
 		System.out.println(show_dog_post_no);
 //		System.out.println("좋아요 들어갔나: " + checkWhetherLike);
-	   
+	    
 //		좋아요 중복방지
 //		CustomerDto customerUser = (CustomerDto)session.getAttribute("customerUser");
 //		int customer_no = customerUser.getCustomer_no();
@@ -205,6 +206,14 @@ public class CommunityController {
 		
 		return "community/showDogUpdate";
 	}
+
+	@RequestMapping("showDogUpdateProcess")						   
+	public String updatePostProcess(ShowDogPostDto showDogPostDto, MultipartFile[] show_dog_post_images_name) {
+
+		System.out.println("Controller.updatePostProcess: " + showDogPostDto);
+		communityServiceImpl.updatePost(showDogPostDto);
+		return "redirect:./showDogPost?show_dog_post_no=" + showDogPostDto.getShow_dog_post_no();
+	}
 	
 //	@RequestMapping("showDogUpdateProcess")						   
 //	public String updatePostProcess(ShowDogPostDto showDogPostDto, MultipartFile[] show_dog_post_images_name) {
@@ -252,9 +261,37 @@ public class CommunityController {
 //		return "redirect:./showDogPost?show_dog_post_no=" + show_dog_comment_no;
 //	}
 		
-
-
+	@ResponseBody
+	@RequestMapping("getCommentDatas")
+	public List<Map<String, Object>> getCommentDatas(int show_dog_post_no) {
 		
+		List<Map<String, Object>> list = communityServiceImpl.bringCommentByPostNo(show_dog_post_no);
+		
+		return list;
+	}
+		
+	@ResponseBody
+	@RequestMapping("registerComment")
+	public void registerComment(HttpSession session, ShowDogCommentDto showDogCommentDto) {
+		
+		CustomerDto customerUser = (CustomerDto)session.getAttribute("customerUser");
+		
+		System.out.println("누구 session: " + showDogCommentDto);
+		
+		int customer_no = customerUser.getCustomer_no();
+		showDogCommentDto.setCustomer_no(customer_no);
+		
+		communityServiceImpl.insertComment(showDogCommentDto);		
+		
+		
+	}
 
 ////////////////////////////////////////////////////////////////////////////////	
 }
+
+
+
+
+
+
+
