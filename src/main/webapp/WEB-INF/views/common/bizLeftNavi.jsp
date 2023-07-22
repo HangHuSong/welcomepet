@@ -23,7 +23,7 @@
 </head>
 <body>
 
-	<div class="row align-items-center">
+	<div class="row">
 		<div class="col">
 			<div class="row py-2 px-2" style="background-color: rgb(19, 22, 28);">
 				<div class="col">
@@ -46,7 +46,7 @@
 										<i class="far fa-credit-card"></i>
 									</div>
 									<div class="col fw-bold fs-5">주문 관리</div>
-									<div class="col-2 fw-bold fs-5 text-end updownIcon">
+									<div class="col-1 fw-bold fs-5 text-end updownIcon">
 										<i class="fas fa-angle-down"></i>
 									</div>
 								</div>
@@ -97,7 +97,7 @@
 										<i class="fas fa-tshirt"></i>
 									</div>
 									<div class="col fw-bold fs-5">상품 관리</div>
-									<div class="col-2 fw-bold fs-5 text-end updownIcon">
+									<div class="col-1 fw-bold fs-5 text-end updownIcon">
 										<i class="fas fa-angle-down"></i>
 									</div>
 								</div>
@@ -142,7 +142,7 @@
 										<i class="fas fa-money-check-alt"></i>
 									</div>
 									<div class="col fw-bold fs-5">정산 관리</div>
-									<div class="col-2 fw-bold fs-5 text-end updownIcon">
+									<div class="col-1 fw-bold fs-5 text-end updownIcon">
 										<i class="fas fa-angle-down"></i>
 									</div>
 								</div>
@@ -181,7 +181,7 @@
 										<i class="fas fa-clipboard-list"></i>
 									</div>
 									<div class="col fw-bold fs-5">문의/리뷰 관리</div>
-									<div class="col-2 fw-bold fs-5 text-end updownIcon">
+									<div class="col-1 fw-bold fs-5 text-end updownIcon">
 										<i class="fas fa-angle-down"></i>
 									</div>
 								</div>
@@ -214,7 +214,7 @@
 										<i class="fas fa-chart-line"></i>
 									</div>
 									<div class="col fw-bold fs-5">통계 및 분석</div>
-									<div class="col-2 fw-bold fs-5 text-end updownIcon">
+									<div class="col-1 fw-bold fs-5 text-end updownIcon">
 										<i class="fas fa-angle-down"></i>
 									</div>
 								</div>

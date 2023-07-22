@@ -25,91 +25,147 @@
 
 </head>
 <body>
-	<div class="container overflow-auto">
-		<div class="row">
-			<div class="col">
-				<jsp:include page="../common/bizTopNavi.jsp"></jsp:include>
-			</div>
-		</div>
-		<div class="row text-center">
-			<div class="col-2"><jsp:include
+	<div class="container" style="margin: 0 0;">
+		<div class="row" style="width: 1900px;">
+			<div class="col-2 text-center ps-4 text-white d-flex align-items-stretch align-top"
+				style="background-color: rgb(29, 33, 42);"><jsp:include
 					page="../common/bizLeftNavi.jsp"></jsp:include></div>
-			<div class="col-10">
-				<div class="row">
-					<div class="col table-responsive">
-						<table class="table align-middle  table-bordered">
-							<thead>
-								<tr>
-									<th scope="col"><input class="form-check-input"
-										type="checkbox"></th>
-									<th scope="col">상품번호</th>
-									<th scope="col">상품썸네일</th>
-									<th scope="col">상품타입</th>
-									<th scope="col">상품명</th>
-									<th scope="col">재고수량</th>
-									<th scope="col">판매가</th>
-									<th scope="col">할인율</th>
-									<th scope="col">등록일</th>
-									<th scope="col">상세보기</th>
-								</tr>
-							</thead>
-							<tbody class="table-group-divider">
-
-								<c:forEach items="${productDataList }" var="productData">
-									<c:choose>
-										<c:when test="${productData.productOptionNum != 1 }">
-											<c:forEach items="${productData.productOptionDtoList}"
-												var="productOptionDto">
-												<tr>
-													<th scope="row"><input class="form-check-input"
-														type="checkbox"></th>
-													<td>${productOptionDto.product_option_no }</td>
-													<td class="col-1"><img
-														src="/uploadFiles/productThumbnailImg/${productData.productDto.product_thumbnail }"
-														class="w-100"></td>
-													<td>옵션상품</td>
-													<td>${productOptionDto.product_option_name}</td>
-													<td>${productOptionDto.product_option_stock_quantity}</td>
-													<td>${productOptionDto.product_option_price}</td>
-													<td>${productData.productDto.product_discount_rate}</td>
-													<td><fmt:formatDate
-															value="${productOptionDto.product_option_reg_date}"
-															pattern="yyyy.MM.dd" /></td>
-													<td>
-														<a class="btn btn-primary modButton" href="productDetail?product_no=${productData.productDto.product_no }">상세보기</a>
-													</td>
-												</tr>
-											</c:forEach>
-										</c:when>
-										<c:otherwise>
-											<tr>
-												<th scope="row"><input class="form-check-input"
-													type="checkbox"></th>
-												<td>${productData.productOptionDto[0].product_option_no }</td>
-												<td class="col-1"><img
-													src="/uploadFiles/productThumbnailImg/${productData.productDto.product_thumbnail }"
-													class="w-100"></td>
-												<td>단일상품</td>
-												<td>${productData.productDto.product_name }</td>
-												<td>${productData.productOptionDto[0].product_option_stock_quantity}</td>
-												<td>${productData.productDto.product_price}</td>
-												<td>${productData.productDto.product_discount_rate}</td>
-												<td><fmt:formatDate
-														value="${productData.productOptionDtoList[0].product_option_reg_date}"
-														pattern="yyyy.MM.dd" /></td>
-												<td>
-													<a class="btn btn-primary modButton" href="productDetail?product_no=${productData.productDto.product_no }">상세보기</a>
-												</td>
-											</tr>
-										</c:otherwise>
-									</c:choose>
-								</c:forEach>
-
-							</tbody>
-						</table>
+			<div class="col-8 px-0">
+				<div class="row mx-1">
+					<div class="col">
+						<jsp:include page="../common/bizTopNavi.jsp"></jsp:include>
 					</div>
 				</div>
+				<div class="row mx-5 text-center">
+					<div class="col">
+						<div class="row my-2">
+							<div class="col fs-5 fw-bold text-start py-3">주문/발송관리</div>
+						</div>
+						<div class="row my-2 text-start border py-3 px-2">
+							<div class="col align-self-center">
+								<span class="px-2 border-end text-center"><span>전체
+								</span><span class="text-info">2</span><span>건</span></span> <span
+									class="px-2 border-end"><span>판매중 </span><span
+									class="text-info">2</span><span>건</span></span> <span
+									class="px-2 border-end"><span>품절 </span><span
+									class="text-info">2</span><span>건</span></span>
+							</div>
+							<div class="col text-end">
+								<a class="btn btn-primary btn-sm">상품등록</a>
+							</div>
+						</div>
+						<div class="row my-2 bg-light px-5 my-4">
+							<div class="col">
+								<div class="row my-5">
+									<div class="col border bg-white">
+										<div class="row border-bottom">
+											<div class="col-3 border-end py-2">기간</div>
+											<div class="col py-2">
+												<input class="text-center" type="date" style="width: 200px;">
+												~ <input class="text-center" type="date"
+													style="width: 200px;">
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-3 border-end py-2">검색어</div>
+											<div class="col py-2 text-start"></div>
+										</div>
+									</div>
+								</div>
+								<div class="row justify-content-center my-5">
+									<div class="col">
+										<span><button class="btn btn-dark">검색</button></span> <span><button
+												class="btn btn-outline-dark">초기화</button></span>
+									</div>
+								</div>
+							</div>
 
+						</div>
+						<div class="row mt-2">
+							<div class="col">
+								<div class="row">
+									<div class="col text-start py-2 px-0">
+										<span><span>[총 </span><span
+											class="text-info">2</span><span>개]</span></span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col table-responsive px-0">
+										<table class="table align-middle table-bordered">
+											<thead>
+												<tr>
+													<th scope="col"><input class="form-check-input"
+														type="checkbox"></th>
+													<th scope="col">상품번호</th>
+													<th scope="col">상품썸네일</th>
+													<th scope="col">상품타입</th>
+													<th scope="col">상품명</th>
+													<th scope="col">재고수량</th>
+													<th scope="col">판매가</th>
+													<th scope="col">할인율</th>
+													<th scope="col">등록일</th>
+													<th scope="col">상세보기</th>
+												</tr>
+											</thead>
+											<tbody class="table-group-divider">
+
+												<c:forEach items="${productDataList }" var="productData">
+													<c:choose>
+														<c:when test="${productData.productOptionNum != 1 }">
+															<c:forEach items="${productData.productOptionDtoList}"
+																var="productOptionDto">
+																<tr>
+																	<th scope="row"><input class="form-check-input"
+																		type="checkbox"></th>
+																	<td>${productOptionDto.product_option_no }</td>
+																	<td class="col-1"><img
+																		src="/uploadFiles/productThumbnailImg/${productData.productDto.product_thumbnail }"
+																		class="w-100"></td>
+																	<td>옵션상품</td>
+																	<td>${productOptionDto.product_option_name}</td>
+																	<td>${productOptionDto.product_option_stock_quantity}</td>
+																	<td>${productOptionDto.product_option_price}</td>
+																	<td>${productData.productDto.product_discount_rate}</td>
+																	<td><fmt:formatDate
+																			value="${productOptionDto.product_option_reg_date}"
+																			pattern="yyyy.MM.dd" /></td>
+																	<td><a class="btn btn-primary modButton"
+																		href="productDetail?product_no=${productData.productDto.product_no }">상세보기</a>
+																	</td>
+																</tr>
+															</c:forEach>
+														</c:when>
+														<c:otherwise>
+															<tr>
+																<th scope="row"><input class="form-check-input"
+																	type="checkbox"></th>
+																<td>${productData.productOptionDto[0].product_option_no }</td>
+																<td class="col-1"><img
+																	src="/uploadFiles/productThumbnailImg/${productData.productDto.product_thumbnail }"
+																	class="w-100"></td>
+																<td>단일상품</td>
+																<td>${productData.productDto.product_name }</td>
+																<td>${productData.productOptionDto[0].product_option_stock_quantity}</td>
+																<td>${productData.productDto.product_price}</td>
+																<td>${productData.productDto.product_discount_rate}</td>
+																<td><fmt:formatDate
+																		value="${productData.productOptionDtoList[0].product_option_reg_date}"
+																		pattern="yyyy.MM.dd" /></td>
+																<td><a class="btn btn-primary modButton"
+																	href="productDetail?product_no=${productData.productDto.product_no }">상세보기</a>
+																</td>
+															</tr>
+														</c:otherwise>
+													</c:choose>
+												</c:forEach>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

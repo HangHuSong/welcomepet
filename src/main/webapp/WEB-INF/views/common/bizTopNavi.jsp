@@ -20,15 +20,16 @@
 <body>
 
 	<div class="row py-1 my-1">
+		<div class="col"></div>
 		<div class="col">
-			<div class="row text-center align-items-center">
-				<div class="col-5">
+			<div class="row text-end align-items-center">
+				<div class="col">
 					<div class="input-group">
 						<input type="text" class="form-control" placeholder="어서오개 통합검색">
 						<span class="input-group-text"><i class="fas fa-search"></i></span>
 					</div>
 				</div>
-				<div class="col"></div>
+
 				<c:choose>
 					<c:when test="${empty bizUser }">
 						<div class="col">
@@ -103,7 +104,7 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-		if(${bizUser.biz_status_no}==4){
+		if(${!empty bizUser} && ${bizUser.biz_status_no}==4){
 			var intervalAlarm=setInterval(getAlarm,100);	
 		}
 		
