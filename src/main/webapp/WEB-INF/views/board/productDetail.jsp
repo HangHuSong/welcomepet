@@ -14,7 +14,11 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-	<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+/>
+
 <title>상품 정보</title>
 <script>
 
@@ -708,12 +712,34 @@ function getRelatedList() {
 		if(xhr.readyState == 4 && xhr.status == 200){
 			const response = JSON.parse(xhr.responseText);
 			 console.log(response);
-			document.getElementById("topSaleBox").innerHTML = "";
+
+		     // 이전 "이 상품과 비슷한 상품" 리스트들 삭제
+		      const relatedListContainer = document.getElementById("relatedList");
+		      relatedListContainer.innerHTML = "";
+
+		      // relatedListContainer에 "relatedProductsSwiper" 생성
+		      const swiperContainer = document.createElement("div");
+		      swiperContainer.classList.add("swiper-container");
+		      swiperContainer.id = "relatedProductsSwiper";
+
+		      const swiperWrapper = document.createElement("div");
+		      swiperWrapper.classList.add("swiper-wrapper");
+		      swiperContainer.appendChild(swiperWrapper);
+		      
+		      const prevButton = document.createElement("div");
+		      prevButton.classList.add("swiper-button-prev");
+		      swiperContainer.appendChild(prevButton);
+
+		      const nextButton = document.createElement("div");
+		      nextButton.classList.add("swiper-button-next");
+		      swiperContainer.appendChild(nextButton);
+
+		      relatedListContainer.appendChild(swiperContainer);
 
 		for(data of response.relatedProudctList) {
 			
 			const col1 = document.createElement("div");
-			col1.classList.add("col-4", "embed-responsive", "embed-responsive-4by3", "ps-3");
+			col1.classList.add("col-4", "embed-responsive", "embed-responsive-4by3", "ps-3","swiper-slide");
 			
 			
 			
@@ -769,21 +795,32 @@ function getRelatedList() {
 			colPrice.innerText = data.productInfo.product_price - data.salePrice +"원";
 			rowPrice.appendChild(colPrice);	
 			
-			document.getElementById("topSaleBox").appendChild(col1);
+			swiperWrapper.appendChild(col1);
 			
 			  refreshMyHeart(data.productInfo.product_no);
 			}
+		
+
+		
+	    const swiper = new Swiper("#relatedProductsSwiper", {
+	        slidesPerView: "auto",
+	        spaceBetween: 10,
+	        loop: true,
+	        navigation: {
+	          nextEl: ".swiper-button-next",
+	          prevEl: ".swiper-button-prev",
+	        },
+	        pagination: {
+	          el: ".swiper-pagination",
+	          clickable: true,
+	        },
+	      });
+
 		}
 	}
-	const swiper = new Swiper(".swiper-container", {
-		  slidesPerView: 3, // 한 화면에 보여줄 슬라이드 수
-		  spaceBetween: 20, // 슬라이드 사이의 간격
-		  loop: true, // 무한 루프 설정
-		  navigation: {
-		    nextEl: ".swiper-button-next",
-		    prevEl: ".swiper-button-prev",
-		  },
-		});			
+	
+	
+
 
 	xhr.open("get", "./relatedProudct?main_category_no="+categoryNo);
 	xhr.send();	
@@ -858,6 +895,60 @@ window.addEventListener("DOMContentLoaded", function(){
 </script>
 
 <style type="text/css">
+
+/* Swiper 슬라이드 컨테이너 스타일 */
+.swiper-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+   position: relative;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  position: absolute; /* 절대 위치로 설정합니다. */
+  top: 50%; /* 컨테이너의 중앙을 기준으로 위치시킵니다. */
+  transform: translateY(-50%); /* 수직 중앙 정렬을 위해 translateY를 사용합니다. */
+  width: 1em;
+  height: 1em;
+  color: grey; /* 버튼 텍스트 색상은 원하는 색상으로 설정하세요. */
+  cursor: pointer;
+  z-index: 10; /* 다른 요소들 위에 나타나도록 z-index를 설정합니다. */
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 24px; /* 아이콘 크기를 조절합니다. */
+}
+
+.swiper-button-next {
+  right: 10px;
+}
+
+/* 이전 버튼의 위치를 좌측으로 설정합니다. */
+.swiper-button-prev {
+  left: 10px;
+}
+
+/* Swiper 슬라이드 아이템 스타일 */
+.swiper-slide {
+  width: 40%;
+}
+
+
+/* 페이지네이션 스타일 */
+.swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+  opacity: 0.5;
+  border-radius: 50%;
+  margin: 0 5px;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+}
 .bi-heart{
  filter: opacity(0.5);
 }
@@ -1071,16 +1162,14 @@ window.addEventListener("DOMContentLoaded", function(){
 		 	 		이 상품과 비슷한 상품
 		 	 	</div>
 		 		</div>
-		 	<div class="row mt-2" id="topSaleBox">
-		 		<div class="swiper-container">
-					  <div class="swiper-wrapper" id="topSaleBox"> 
-					  
+		 	<div class="row mt-2" id="relatedList">
+
 					  </div> 
 				</div>
 		 	</div>
-			</div>
+	<div class="row mt-2 empty" style="height:1.5em; "></div>
 
-		<div class="row mt-3 border-top ">
+		<div class="row">
 			<div class="row mt-2 ps-3 py-2">
 				<div class="col fw-bold">상품 리뷰</div>
 			</div>
@@ -1180,7 +1269,6 @@ window.addEventListener("DOMContentLoaded", function(){
 				</div>
 			</div>
 		</div>
-	</div>
 
 
 
@@ -1201,6 +1289,8 @@ window.addEventListener("DOMContentLoaded", function(){
 		</div>
 	</div>
 
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
