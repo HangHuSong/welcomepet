@@ -38,7 +38,7 @@
   	font-family: 'Jua', sans-serif;
  	font-weight:700;
  	font-size:1.3em;
- 	color:#754D22;
+ 	color:#fd7e14;
 }
 
 .topNavbar{
