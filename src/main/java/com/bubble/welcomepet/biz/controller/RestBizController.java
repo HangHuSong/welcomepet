@@ -25,6 +25,7 @@ import com.bubble.welcomepet.dto.AdPaymentDto;
 import com.bubble.welcomepet.dto.AdProductDto;
 import com.bubble.welcomepet.dto.BizAccountDto;
 import com.bubble.welcomepet.dto.BizDto;
+import com.bubble.welcomepet.dto.CreateAdRequestDto;
 import com.bubble.welcomepet.dto.MainCategoryDto;
 import com.bubble.welcomepet.dto.ProductDetailImageDto;
 import com.bubble.welcomepet.dto.ProductDto;
@@ -405,39 +406,24 @@ public class RestBizController {
 	}
 	
 	@RequestMapping("createAdPayment")
-	public void createAdPayment(AdPaymentDto adPaymentDto,String adPaymentCreatedDate,String adPaymentApprovedDate,String product_no_list,String ad_product_start_date,String ad_product_end_date,int category_no ) {
+	public void createAdPayment(@RequestBody CreateAdRequestDto createAdRequestDto) {
+		System.out.println(createAdRequestDto.toString());
 		
-		List<AdProductDto> adProductDtoList=new ArrayList<AdProductDto>();
-		
-		SimpleDateFormat sdf1=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-		
-		String[] productNoList=product_no_list.split(",");
-		for(String productNo: productNoList) {
-			AdProductDto adProductDto=new AdProductDto();
-			
-			adProductDto.setAd_category_no(category_no);
-			adProductDto.setProduct_no(Integer.parseInt(productNo));
-			try {
-				adProductDto.setAd_product_start_date(sdf1.parse(ad_product_start_date));
-				adProductDto.setAd_product_end_date(sdf1.parse(ad_product_end_date));
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			adProductDtoList.add(adProductDto);
-		}
-		
+		AdPaymentDto adPaymentDto=createAdRequestDto.getAdPaymentDto();
+		adPaymentDto.setAd_category_no(1);
 		SimpleDateFormat sdf2=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-		adPaymentDto.setAd_category_no(category_no);
 		try {
-			adPaymentDto.setAd_payment_approved_date(sdf2.parse(adPaymentApprovedDate));
-			adPaymentDto.setAd_payment_created_date(sdf2.parse(adPaymentCreatedDate));
+			adPaymentDto.setAd_payment_approved_date(sdf2.parse(createAdRequestDto.getAdPaymentApprovedDate()));
+			adPaymentDto.setAd_payment_created_date(sdf2.parse(createAdRequestDto.getAdPaymentCreatedDate()));
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		bizService.createAdPaymentAndAdProduct(adPaymentDto,adProductDtoList);
+		
+		System.out.println("===========adProductDtoList==============");
+		System.out.println(createAdRequestDto.getAdProductDtoList().toString());
+		bizService.createAdPaymentAndAdProduct(adPaymentDto,createAdRequestDto.getAdProductDtoList());
+
 		
 	}
 	
@@ -494,6 +480,36 @@ public class RestBizController {
 		List<Map<String, Object>> reviewList=bizService.getReviewListByDateAndBizNo(bizUser.getBiz_no(),start_date,end_date);
 		
 		map.put("reviewList", reviewList);
+		return map;
+	}
+	
+	@RequestMapping("getOngoingAd")
+	public Map<String, Object> getOngoingAd(HttpSession session) {
+		Map<String,Object> map=new HashMap<String, Object>();
+		BizDto bizUser = (BizDto) session.getAttribute("bizUser");
+		List<Map<String, Object>> adProductDataList = bizService.getOngoingAdProductByBizNo(bizUser.getBiz_no());
+
+		map.put("adProductDataList", adProductDataList);
+		return map;
+	}
+	
+	@RequestMapping("getUpcomingAd")
+	public Map<String, Object> getUpcomingAd(HttpSession session) {
+		Map<String,Object> map=new HashMap<String, Object>();
+		BizDto bizUser = (BizDto) session.getAttribute("bizUser");
+		List<Map<String, Object>> adProductDataList = bizService.getUpcomingAdProductByBizNo(bizUser.getBiz_no());
+
+		map.put("adProductDataList", adProductDataList);
+		return map;
+	}
+	
+	@RequestMapping("getExpiredAd")
+	public Map<String, Object> getExpiredAd(HttpSession session) {
+		Map<String,Object> map=new HashMap<String, Object>();
+		BizDto bizUser = (BizDto) session.getAttribute("bizUser");
+		List<Map<String, Object>> adProductDataList = bizService.getExpiredAdProductByBizNo(bizUser.getBiz_no());
+
+		map.put("adProductDataList", adProductDataList);
 		return map;
 	}
 //	@RequestMapping("productRegisterRequest")

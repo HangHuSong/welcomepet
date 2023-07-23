@@ -25,7 +25,7 @@
 
 	<div class="row">
 		<div class="col">
-			<div class="row py-2 px-2" style="background-color: rgb(19, 22, 28);">
+			<div class="row py-2 px-2">
 				<div class="col">
 					<div class="row text-start">
 						<div class="col" style="font-family: 'Do Hyeon', sans-serif;">

@@ -32,19 +32,42 @@
 		#{ad_product_end_date}
 		)
 	</insert>
-	<select id="getAdProductByBizNo" resultType="com.bubble.welcomepet.dto.AdProductDto">
-		SELECT ap.* FROM ad_product ap WHERE ap.product_no IN (SELECT p.product_no FROM product p WHERE p.biz_no=#{biz_no})
-		AND ad_product_end_date>=SYSDATE
+	<select id="getOngoingAdProductByBizNo"
+		resultType="com.bubble.welcomepet.dto.AdProductDto">
+		SELECT ap.* FROM ad_product ap WHERE ap.product_no IN (SELECT
+		p.product_no FROM product p WHERE p.biz_no=#{biz_no})
+		<![CDATA[
+		AND ad_product_end_date<=SYSDATE
+		]]>
 	</select>
-	
+	<select id="getUpcomingAdProductByBizNo"
+		resultType="com.bubble.welcomepet.dto.AdProductDto">
+		SELECT ap.* FROM ad_product ap WHERE ap.product_no IN (SELECT
+		p.product_no FROM product p WHERE p.biz_no=#{biz_no})
+		<![CDATA[
+		AND ad_product_start_date>SYSDATE
+		]]>
+	</select>
+	<select id="getExpiredAdProductByBizNo"
+		resultType="com.bubble.welcomepet.dto.AdProductDto">
+		SELECT ap.* FROM ad_product ap WHERE ap.product_no IN (SELECT
+		p.product_no FROM product p WHERE p.biz_no=#{biz_no})
+		<![CDATA[
+		AND ad_product_end_date<SYSDATE
+		]]>
+	</select>
+
 	<!-- 광고카테고리 -->
-	<select id="getAdCategoryByNo" resultType="com.bubble.welcomepet.dto.AdCategoryDto">
-		SELECT * FROM ad_category WHERE ad_category_no=#{ad_category_no}	
+	<select id="getAdCategoryByNo"
+		resultType="com.bubble.welcomepet.dto.AdCategoryDto">
+		SELECT * FROM ad_category WHERE
+		ad_category_no=#{ad_category_no}
 	</select>
-	
-	
-	<select id="getAllAdCategory" resultType="com.bubble.welcomepet.dto.AdCategoryDto">
+
+
+	<select id="getAllAdCategory"
+		resultType="com.bubble.welcomepet.dto.AdCategoryDto">
 		SELECT * FROM ad_category
 	</select>
-	
+
 </mapper>

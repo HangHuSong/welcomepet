@@ -302,7 +302,7 @@ public class BizController {
 	public String adProductList(HttpSession session, Model model) {
 		BizDto bizUser = (BizDto) session.getAttribute("bizUser");
 
-		List<Map<String, Object>> adProductDataList = bizService.getAdProductByBizNo(bizUser.getBiz_no());
+		List<Map<String, Object>> adProductDataList = bizService.getOngoingAdProductByBizNo(bizUser.getBiz_no());
 
 		model.addAttribute("adProductDataList", adProductDataList);
 		return "biz/adProductList";
@@ -380,4 +380,10 @@ public class BizController {
 		model.addAttribute("reviewList", reviewList);
 		return "biz/productReviewList";
 	}
+	
+	@RequestMapping("adProductRegisterComplete")
+	public String adProductRegister() {
+		return "biz/adProductRegisterComplete";
+	}
+
 }

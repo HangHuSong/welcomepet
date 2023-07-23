@@ -18,128 +18,170 @@
 
 </head>
 <body>
-	<div class="container">
-		<div class="row">
-			<div class="col">
-				<jsp:include page="../common/bizTopNavi.jsp"></jsp:include>
-			</div>
-		</div>
-		<div class="row text-center">
-			<div class="col-3"><jsp:include
+	<div class="container" style="margin: 0 0;">
+		<div class="row text-center" style="width: 1900px;">
+			<div
+				class="col-2 text-center ps-4 text-white d-flex align-items-stretch align-top"
+				style="background-color: rgb(29, 33, 42);"><jsp:include
 					page="../common/bizLeftNavi.jsp"></jsp:include></div>
-			<div class="col">
-				<div class="row">
-					<div class="col"></div>
-				</div>
-				<div class="row">
+			<div class="col-8 px-0" style="height: 800px;">
+				<div class="row mx-1">
 					<div class="col">
-						<table class="table">
-							<thead>
-								<tr>
-									<th>
-										<div class="row">
-											<div class="col align-self-center">정산 기준일</div>
+						<jsp:include page="../common/bizTopNavi.jsp"></jsp:include>
+					</div>
+				</div>
+				<div class="row mx-5 text-center">
+					<div class="col">
+						<div class="row my-2">
+							<div class="col fs-5 fw-bold text-start py-3">정산 내역</div>
+						</div>
+						<div class="row my-2 bg-light px-5">
+							<div class="col">
+								<div class="row my-5">
+									<div class="col border bg-white">
+										<div class="row border-bottom">
+											<div class="col-3 border-end py-2">기간</div>
+											<div class="col py-2">
+												<input class="text-center" type="date" style="width: 200px;">
+												~ <input class="text-center" type="date"
+													style="width: 200px;">
+											</div>
 										</div>
-									</th>
-									<th>
 										<div class="row">
-											<div class="col align-self-center">정산 금액</div>
+											<div class="col-3 border-end py-2">검색어</div>
+											<div class="col py-2 text-start"></div>
 										</div>
-									</th>
-									<th>
-										<div class="row">
-											<div class="col align-self-center">정산 금액 상세 내역</div>
-										</div>
-										<div class="row">
-											<div class="col align-self-center">월 총 매출액</div>
-											<div class="col align-self-center">수수료</div>
-										</div>
-									</th>
-									<th>
-										<div class="row">
-											<div class="col align-self-center">정산 지급 계좌</div>
-										</div>
-									</th>
-									<th>
-										<div class="row">
-											<div class="col align-self-center">정산 상태</div>
-										</div>
-									</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach items="${settlementDataList}" var="settlementData">
-									<c:choose>
-										<c:when test="${settlementData.settlementStatus eq '정산미요청'}">
-											<tr>
-												<td>
-													<div class="row">
-														<div class="col align-self-center">${settlementData.statementDto.statement_year }.${settlementData.statementDto.statement_month }</div>
-													</div>
-												</td>
-												<td>
-													<div class="row">
-														<div class="col align-self-center">${settlementData.statementDto.statement_price }</div>
-													</div>
-												</td>
-												<td>
-													<div class="row">
-														<div class="col align-self-center">${settlementData.statementDto.statement_total_sales }</div>
-														<div class="col align-self-center">${settlementData.statementDto.statement_commission }</div>
-													</div>
-												</td>
-												<td>
-													<div class="row justify-content-center" id="accountContent${settlementData.statementDto.statement_no }">
-														<div class="col align-self-center">-</div>
-													</div>
-												</td>
-												<td>
-													<div class="row">
-														<div class="col align-self-center" id="settlementStatus${settlementData.statementDto.statement_no }">
-															<button class="btn btn-primary btn-sm"
-																data-bs-toggle="modal"
-																data-bs-target="#selectAccountModal"
-																onclick="modalShow(${settlementData.statementDto.statement_no})">정산
-																요청</button>
-														</div>
-													</div>
-												</td>
-											</tr>
-										</c:when>
-										<c:otherwise>
-											<tr>
-												<td>
-													<div class="row">
-														<div class="col align-self-center">${settlementData.statementDto.statement_year }.${settlementData.statementDto.statement_month }</div>
-													</div>
-												</td>
-												<td>
-													<div class="row">
-														<div class="col align-self-center">${settlementData.statementDto.statement_price }</div>
-													</div>
-												</td>
-												<td>
-													<div class="row">
-														<div class="col align-self-center">${settlementData.statementDto.statement_total_sales }</div>
-														<div class="col align-self-center">${settlementData.statementDto.statement_commission }</div>
-													</div>
-												</td>
-												<td>
-													<div class="row">
-														<div class="col align-self-center">${settlementData.bankDto.bank_name }${settlementData.bizAccountDto.biz_account_num }</div>
-													</div>
-												</td>
-												<td>
-													<div class="row">
-														<div class="col align-self-center">${settlementData.settlementStatus}</div>
-													</div>
-												</td>
-											</tr>
-										</c:otherwise>
-									</c:choose>
-								</c:forEach>
-							</tbody>
-						</table>
+									</div>
+								</div>
+								<div class="row justify-content-center my-5">
+									<div class="col">
+										<span><button class="btn btn-dark">검색</button></span> <span><button
+												class="btn btn-outline-dark">초기화</button></span>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<div class="row mt-5">
+							<div class="col">
+								<table class="table table-bordered">
+									<thead class="table-light">
+										<tr>
+											<th>
+												<div class="row">
+													<div class="col align-self-center">정산 기준일</div>
+												</div>
+											</th>
+											<th>
+												<div class="row">
+													<div class="col align-self-center">정산 금액</div>
+												</div>
+											</th>
+											<th>
+												<div class="row">
+													<div class="col align-self-center">월 총 매출액</div>
+												</div>
+											</th>
+											<th><div class="row">
+													<div class="col align-self-center">수수료</div>
+												</div></th>
+											<th>
+												<div class="row">
+													<div class="col align-self-center">정산 지급 계좌</div>
+												</div>
+											</th>
+											<th>
+												<div class="row">
+													<div class="col align-self-center">정산 상태</div>
+												</div>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach items="${settlementDataList}" var="settlementData">
+											<c:choose>
+												<c:when test="${settlementData.settlementStatus eq '정산미요청'}">
+													<tr>
+														<td>
+															<div class="row">
+																<div class="col align-self-center">${settlementData.statementDto.statement_year }.${settlementData.statementDto.statement_month }</div>
+															</div>
+														</td>
+														<td>
+															<div class="row">
+																<div class="col align-self-center">${settlementData.statementDto.statement_price }</div>
+															</div>
+														</td>
+														<td>
+															<div class="row">
+																<div class="col align-self-center">${settlementData.statementDto.statement_total_sales }</div>
+															</div>
+														</td>
+														<td>
+															<div class="row">
+																<div class="col align-self-center">${settlementData.statementDto.statement_commission }</div>
+															</div>
+														</td>
+														<td>
+															<div class="row justify-content-center"
+																id="accountContent${settlementData.statementDto.statement_no }">
+																<div class="col align-self-center">-</div>
+															</div>
+														</td>
+														<td>
+															<div class="row">
+																<div class="col align-self-center"
+																	id="settlementStatus${settlementData.statementDto.statement_no }">
+																	<button class="btn btn-primary btn-sm"
+																		data-bs-toggle="modal"
+																		data-bs-target="#selectAccountModal"
+																		onclick="modalShow(${settlementData.statementDto.statement_no})">정산
+																		요청</button>
+																</div>
+															</div>
+														</td>
+													</tr>
+												</c:when>
+												<c:otherwise>
+													<tr>
+														<td>
+															<div class="row">
+																<div class="col align-self-center">${settlementData.statementDto.statement_year }.${settlementData.statementDto.statement_month }</div>
+															</div>
+														</td>
+														<td>
+															<div class="row">
+																<div class="col align-self-center">${settlementData.statementDto.statement_price }</div>
+															</div>
+														</td>
+														<td>
+															<div class="row">
+																<div class="col align-self-center">${settlementData.statementDto.statement_total_sales }</div>
+															</div>
+														</td>
+														<td>
+															<div class="row">
+																<div class="col align-self-center">${settlementData.statementDto.statement_commission }</div>
+															</div>
+														</td>
+														<td>
+															<div class="row">
+																<div class="col align-self-center">${settlementData.bankDto.bank_name }${settlementData.bizAccountDto.biz_account_num }</div>
+															</div>
+														</td>
+														<td>
+															<div class="row">
+																<div class="col align-self-center">${settlementData.settlementStatus}</div>
+															</div>
+														</td>
+													</tr>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -151,9 +193,9 @@
 				<!-- 모달 헤더 -->
 				<div class="modal-header">
 					<h5 class="modal-title">정산 계좌 선택</h5>
-					<input type="hidden" id="statementNoInput">
-					<input type="hidden" id="accountNoInput">
-					
+					<input type="hidden" id="statementNoInput"> <input
+						type="hidden" id="accountNoInput">
+
 					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 				</div>
 
@@ -166,7 +208,8 @@
 						<div class="col" id="accountList">
 							<div class="list-group">
 								<c:forEach items="${bizAccountDataList }" var="accountData">
-									<button type="button" class="list-group-item list-group-item-action"
+									<button type="button"
+										class="list-group-item list-group-item-action"
 										onclick='selectAccount(event,${accountData.jsonData})'>
 										${accountData.bankDto.bank_name }&nbsp;${accountData.bizAccountDto.biz_account_num }
 									</button>

@@ -773,10 +773,10 @@ public class BizServiceImpl {
 		}
 	}
 
-	public List<Map<String, Object>> getAdProductByBizNo(int biz_no) {
+	public List<Map<String, Object>> getOngoingAdProductByBizNo(int biz_no) {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 
-		List<AdProductDto> adProductDtoList = adSqlMapper.getAdProductByBizNo(biz_no);
+		List<AdProductDto> adProductDtoList = adSqlMapper.getOngoingAdProductByBizNo(biz_no);
 		for (AdProductDto adProductDto : adProductDtoList) {
 			Map<String, Object> map = new HashMap<String, Object>();
 
@@ -1231,95 +1231,137 @@ public class BizServiceImpl {
 
 	public Map<String, Object> getPurchaseConfirmationAndremainingAmountToNextGradeData(int biz_no) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		
-		LocalDate today=LocalDate.now();
-		int year=today.getYear();
-		int month=today.getMonthValue();
-		
-		int purchaseConfirmationNum=orderSqlMapper.getSalesByNoAndDate(biz_no, year, month);
-		if(purchaseConfirmationNum<100000) {
-			map.put("remainingAmountToNextGrade", 500000-purchaseConfirmationNum);
-		}else if(purchaseConfirmationNum<500000) {
-			map.put("remainingAmountToNextGrade", 1000000-purchaseConfirmationNum);
-		}else {
-			map.put("remainingAmountToNextGrade", 10000000-purchaseConfirmationNum);
+
+		LocalDate today = LocalDate.now();
+		int year = today.getYear();
+		int month = today.getMonthValue();
+
+		int purchaseConfirmationNum = orderSqlMapper.getSalesByNoAndDate(biz_no, year, month);
+		if (purchaseConfirmationNum < 100000) {
+			map.put("remainingAmountToNextGrade", 500000 - purchaseConfirmationNum);
+		} else if (purchaseConfirmationNum < 500000) {
+			map.put("remainingAmountToNextGrade", 1000000 - purchaseConfirmationNum);
+		} else {
+			map.put("remainingAmountToNextGrade", 10000000 - purchaseConfirmationNum);
 		}
 		map.put("purchaseConfirmationNum", purchaseConfirmationNum);
-		
+
 		return map;
 	}
 
-	
 	public Map<String, Object> getTodayAndWeeklyPaymentData(int biz_no) {
-		Map<String, Object> map=new HashMap<String, Object>();
-		
-		LocalDate today=LocalDate.now();
-		DateTimeFormatter dtf=DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		String todayDate=today.format(dtf);
-		String yesterdayDate=today.minusDays(1).format(dtf);
-		String lastweekDate=today.minusWeeks(1).format(dtf);
-		
-		System.out.println("today: "+todayDate);
-		System.out.println("yesterday: "+yesterdayDate);
-		
-		int todayPayment=orderSqlMapper.sumOrderProductPaymentByBizNoAndDate(biz_no,todayDate);
-		int yesterdayPayment=orderSqlMapper.sumOrderProductPaymentByBizNoAndDate(biz_no, yesterdayDate);
-		
-		double purchaseAmountOnedayIncreasePercentage=100;
-		if(yesterdayPayment!=0) {
-			purchaseAmountOnedayIncreasePercentage=Math.round((todayPayment-yesterdayPayment)/(double) yesterdayPayment*100*100)/100.0;
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		LocalDate today = LocalDate.now();
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		String todayDate = today.format(dtf);
+		String yesterdayDate = today.minusDays(1).format(dtf);
+		String lastweekDate = today.minusWeeks(1).format(dtf);
+
+		System.out.println("today: " + todayDate);
+		System.out.println("yesterday: " + yesterdayDate);
+
+		int todayPayment = orderSqlMapper.sumOrderProductPaymentByBizNoAndDate(biz_no, todayDate);
+		int yesterdayPayment = orderSqlMapper.sumOrderProductPaymentByBizNoAndDate(biz_no, yesterdayDate);
+
+		double purchaseAmountOnedayIncreasePercentage = 100;
+		if (yesterdayPayment != 0) {
+			purchaseAmountOnedayIncreasePercentage = Math
+					.round((todayPayment - yesterdayPayment) / (double) yesterdayPayment * 100 * 100) / 100.0;
 		}
-		
-		int todayOrderCount=orderSqlMapper.countOrderProductByBizNoAndDate(biz_no,todayDate);
-		int yesterdayOrderCount=orderSqlMapper.countOrderProductByBizNoAndDate(biz_no, yesterdayDate);
-		double orderCountOnedayIncreasePercentage =100.0;
-		if(yesterdayOrderCount!=0) {
-			orderCountOnedayIncreasePercentage=Math.round((todayOrderCount-yesterdayOrderCount)/(double) yesterdayOrderCount*100*100)/100.0;
+
+		int todayOrderCount = orderSqlMapper.countOrderProductByBizNoAndDate(biz_no, todayDate);
+		int yesterdayOrderCount = orderSqlMapper.countOrderProductByBizNoAndDate(biz_no, yesterdayDate);
+		double orderCountOnedayIncreasePercentage = 100.0;
+		if (yesterdayOrderCount != 0) {
+			orderCountOnedayIncreasePercentage = Math
+					.round((todayOrderCount - yesterdayOrderCount) / (double) yesterdayOrderCount * 100 * 100) / 100.0;
 		}
-		
-		int thisWeekPayment=orderSqlMapper.sumWeeklyOrderProductPaymentByBizNoAndDate(biz_no,todayDate);
-		int lastWeekPayment=orderSqlMapper.sumWeeklyOrderProductPaymentByBizNoAndDate(biz_no, lastweekDate);
-		double purchaseAmountOneweekIncreasePercentage=100.0;
-		if(lastWeekPayment!=0) {
-			purchaseAmountOneweekIncreasePercentage=Math.round((thisWeekPayment-lastWeekPayment)/(double) lastWeekPayment*100*100)/100.0;
+
+		int thisWeekPayment = orderSqlMapper.sumWeeklyOrderProductPaymentByBizNoAndDate(biz_no, todayDate);
+		int lastWeekPayment = orderSqlMapper.sumWeeklyOrderProductPaymentByBizNoAndDate(biz_no, lastweekDate);
+		double purchaseAmountOneweekIncreasePercentage = 100.0;
+		if (lastWeekPayment != 0) {
+			purchaseAmountOneweekIncreasePercentage = Math
+					.round((thisWeekPayment - lastWeekPayment) / (double) lastWeekPayment * 100 * 100) / 100.0;
 		}
-		
-		int thisWeekOrderCount=orderSqlMapper.countWeeklyOrderProductPaymentByBizNoAndDate(biz_no,todayDate);
-		int lastWeekOrderCount=orderSqlMapper.countWeeklyOrderProductPaymentByBizNoAndDate(biz_no, lastweekDate);
-		double orderCountOneweekIncreasePercentage=100.0;
-		if(lastWeekOrderCount!=0) {
-			orderCountOneweekIncreasePercentage=Math.round((thisWeekOrderCount-lastWeekOrderCount)/(double) lastWeekOrderCount*100*100)/100.0;
+
+		int thisWeekOrderCount = orderSqlMapper.countWeeklyOrderProductPaymentByBizNoAndDate(biz_no, todayDate);
+		int lastWeekOrderCount = orderSqlMapper.countWeeklyOrderProductPaymentByBizNoAndDate(biz_no, lastweekDate);
+		double orderCountOneweekIncreasePercentage = 100.0;
+		if (lastWeekOrderCount != 0) {
+			orderCountOneweekIncreasePercentage = Math
+					.round((thisWeekOrderCount - lastWeekOrderCount) / (double) lastWeekOrderCount * 100 * 100) / 100.0;
 		}
-		
+
 		map.put("todayPayment", todayPayment);
 		map.put("purchaseAmountOnedayIncreasePercentage", purchaseAmountOnedayIncreasePercentage);
 		map.put("todayOrderCount", todayOrderCount);
 		map.put("orderCountOnedayIncreasePercentage", orderCountOnedayIncreasePercentage);
-		
+
 		map.put("thisWeekPayment", thisWeekPayment);
 		map.put("purchaseAmountOneweekIncreasePercentage", purchaseAmountOneweekIncreasePercentage);
 		map.put("thisWeekOrderCount", thisWeekOrderCount);
 		map.put("orderCountOneweekIncreasePercentage", orderCountOneweekIncreasePercentage);
-		
+
 		return map;
 	}
 
 	public Map<String, Object> getTop5ProductData(int biz_no) {
-		Map<String, Object> map=new HashMap<String, Object>();
-		
-		List<Map<String,Object>> top5ProductOptionList=orderSqlMapper.getTop5OrderProductByBizNo(biz_no);
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		List<Map<String, Object>> top5ProductOptionList = orderSqlMapper.getTop5OrderProductByBizNo(biz_no);
 		System.out.println(top5ProductOptionList);
-		
+
 		map.put("top5ProductOptionList", top5ProductOptionList);
 		return map;
 	}
 
-	
+	public List<Map<String, Object>> getUpcomingAdProductByBizNo(int biz_no) {
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 
+		List<AdProductDto> adProductDtoList = adSqlMapper.getUpcomingAdProductByBizNo(biz_no);
+		for (AdProductDto adProductDto : adProductDtoList) {
+			Map<String, Object> map = new HashMap<String, Object>();
+
+			ProductDto productDto = productSqlMapper.getProductByNo(adProductDto.getProduct_no());
+
+			AdCategoryDto adCategoryDto = adSqlMapper.getAdCategoryByNo(adProductDto.getAd_category_no());
+
+			map.put("productDto", productDto);
+			map.put("adCategoryDto", adCategoryDto);
+			map.put("adProductDto", adProductDto);
+
+			list.add(map);
+		}
+		
+		return list;
+
+	}
 //	public List<Map<String, Object>> getProductReviewByBizNo(int biz_no) {
-//		List<Map<String, Object>> map=productSqlMapper.getProductReviewByBizNo(biz_no);
-//		
-//		return map;
-//	}
+//	List<Map<String, Object>> map=productSqlMapper.getProductReviewByBizNo(biz_no);
+//	
+//	return map;
+//}
 
+	public List<Map<String, Object>> getExpiredAdProductByBizNo(int biz_no) {
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+
+		List<AdProductDto> adProductDtoList = adSqlMapper.getExpiredAdProductByBizNo(biz_no);
+		for (AdProductDto adProductDto : adProductDtoList) {
+			Map<String, Object> map = new HashMap<String, Object>();
+
+			ProductDto productDto = productSqlMapper.getProductByNo(adProductDto.getProduct_no());
+
+			AdCategoryDto adCategoryDto = adSqlMapper.getAdCategoryByNo(adProductDto.getAd_category_no());
+
+			map.put("productDto", productDto);
+			map.put("adCategoryDto", adCategoryDto);
+			map.put("adProductDto", adProductDto);
+
+			list.add(map);
+		}
+		
+		return list;
+	}
 }
