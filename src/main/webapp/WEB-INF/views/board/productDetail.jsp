@@ -726,13 +726,14 @@ function getRelatedList() {
 		      swiperWrapper.classList.add("swiper-wrapper");
 		      swiperContainer.appendChild(swiperWrapper);
 		      
-		      const prevButton = document.createElement("div");
-		      prevButton.classList.add("swiper-button-prev");
-		      swiperContainer.appendChild(prevButton);
+	
+//		      const prevButton = document.createElement("div");
+//		      prevButton.classList.add("swiper-button-prev");
+//		      swiperContainer.appendChild(prevButton);
 
-		      const nextButton = document.createElement("div");
-		      nextButton.classList.add("swiper-button-next");
-		      swiperContainer.appendChild(nextButton);
+//		      const nextButton = document.createElement("div");
+//		      nextButton.classList.add("swiper-button-next");
+//		      swiperContainer.appendChild(nextButton); 
 
 		      relatedListContainer.appendChild(swiperContainer);
 
@@ -786,14 +787,69 @@ function getRelatedList() {
 			nameBox.innerText = data.productInfo.product_name;
 			colName.appendChild(nameBox);
 			
+			const Realprice = data.productInfo.product_price;
+			const formattedRealprice = Realprice.toLocaleString();
+			
+			const rowRealPrice = document.createElement("div");
+			rowRealPrice.classList.add("row");
+			col1.appendChild(rowRealPrice);
+			
+			const colRealPrice = document.createElement("div");
+			colRealPrice.classList.add("col", "text-secondary","real_price");
+			colRealPrice.innerText = formattedRealprice + "원";
+			
+			rowRealPrice.appendChild(colRealPrice);	
+			
+			const price = data.productInfo.product_price - data.salePrice;
+			const formattedPrice = price.toLocaleString();
+			
 			const rowPrice = document.createElement("div");
 			rowPrice.classList.add("row");
 			col1.appendChild(rowPrice);
-			
+					
 			const colPrice = document.createElement("div");
 			colPrice.classList.add("col", "fw-bold","price_text");
-			colPrice.innerText = data.productInfo.product_price - data.salePrice +"원";
+
 			rowPrice.appendChild(colPrice);	
+			
+			if(data.productInfo.product_discount_rate > 0) {
+			
+			const SaleRate = document.createElement("span");
+			SaleRate.classList.add("text-danger");
+			SaleRate.innerText = data.productInfo.product_discount_rate +"%";
+			colPrice.appendChild(SaleRate); }	
+			
+			const Price = document.createElement("span");
+			Price.innerText = formattedPrice +"원";
+			colPrice.appendChild(Price);
+			
+			let aveRatingValue = data.aveRating;
+			if (isNaN(aveRatingValue)) {
+			  aveRatingValue = 0;
+			}
+			
+			const rowRating = document.createElement("div");
+			rowRating.classList.add("row");
+			col1.appendChild(rowRating);
+			
+			const colRating = document.createElement("div");
+			colRating.classList.add("col","text-secondary");
+			colRating.style.fontSize = "0.8em";
+			rowRating.appendChild(colRating);	
+			
+			const star = document.createElement("span");
+			star.classList.add("star-icon", "filled");
+			colRating.appendChild(star);
+			
+			const aveRating = document.createElement("span");
+			aveRating.classList.add("ps-1");
+			aveRating.innerText = aveRatingValue;
+			colRating.appendChild(aveRating);
+			
+			const countRating = document.createElement("span");
+			countRating.innerText = "("+data.ratingCount+")";
+			colRating.appendChild(countRating);
+			
 			
 			swiperWrapper.appendChild(col1);
 			
@@ -906,14 +962,14 @@ window.addEventListener("DOMContentLoaded", function(){
 
 .swiper-button-prev,
 .swiper-button-next {
-  position: absolute; /* 절대 위치로 설정합니다. */
-  top: 50%; /* 컨테이너의 중앙을 기준으로 위치시킵니다. */
-  transform: translateY(-50%); /* 수직 중앙 정렬을 위해 translateY를 사용합니다. */
+  position: absolute; 
+  top: 50%; 
+  transform: translateY(-50%); 
   width: 1em;
   height: 1em;
-  color: grey; /* 버튼 텍스트 색상은 원하는 색상으로 설정하세요. */
+  color: grey;
   cursor: pointer;
-  z-index: 10; /* 다른 요소들 위에 나타나도록 z-index를 설정합니다. */
+  z-index: 10;
 }
 
 .swiper-button-prev::after,
@@ -953,11 +1009,11 @@ window.addEventListener("DOMContentLoaded", function(){
  filter: opacity(0.5);
 }
 .price_text{
-	font-size: 0.9em;
+	font-size: 0.8em;
 }
 .fsmid {
 	font-size: 0.8em;
-	letter-spacing: -0.09em;
+	margin-top:0.5em;
 	margin-bottom: 0;
 	overflow: hidden;
     text-overflow: ellipsis;
@@ -965,8 +1021,12 @@ window.addEventListener("DOMContentLoaded", function(){
     -webkit-line-clamp: 2; /* 라인수 */
     -webkit-box-orient: vertical;
     word-wrap:break-word; 
-    line-height: 1.2em;
-    height: 2.4em; /* line-height 가 1.2em 이고 3라인을 자르기 때문에 height는 1.2em * 3 = 3.6em */
+    line-height: 1em;
+    height: 2em; /* line-height 가 1.2em 이고 3라인을 자르기 때문에 height는 1.2em * 3 = 3.6em */
+}
+.real_price{
+ font-size: 0.7em;
+ text-decoration: line-through;
 }
 
 .product-thum {
@@ -992,8 +1052,8 @@ window.addEventListener("DOMContentLoaded", function(){
 
 .star-icon {
 	display: inline-block;
-	width: 16px;
-	height: 16px;
+	width: 1.2em;
+	height: 1.2em;
 	background-image: url('/uploadFiles/WelcomePet/icons/star-empty.png');
 	background-size: cover;
 	filter: opacity(0.5);
@@ -1001,11 +1061,12 @@ window.addEventListener("DOMContentLoaded", function(){
 
 .filled {
 	display: inline-block;
-	width: 16px;
-	height: 16px;
+	width: 1.2em;
+	height: 1.2em;
 	background-size: cover;
 	background-image: url('/uploadFiles/WelcomePet/icons/star.png');
 	filter: none;
+	vertical-align: sub;
 }
 
 .empty {
@@ -1046,7 +1107,7 @@ window.addEventListener("DOMContentLoaded", function(){
 <body>
 
 
-	<div class="container align-items-center justify-content-center">
+	<div class="container px-0 mx-0 align-items-center justify-content-center">
 		<div class="row shadow-sm p-3 mb-5 bg-body-tertiary rounded">
 			<div class="col">
 				<nav
@@ -1076,24 +1137,26 @@ window.addEventListener("DOMContentLoaded", function(){
 				src="/uploadFiles/WelcomePet/${data.productInfo.product_thumbnail}"
 				class="embed-responsive-item product-thum" alt="...">
 		</div>
-		<div class="row mt-2">
+		<div class="row mt-2 ps-2">
 			<div class="col fw-bold">${data.productInfo.product_name}</div>
 		</div>
-		<div class="row mt-2">
+		<div class="row mt-2 ps-2">
 			<div class="col">
-				<span class="filled"></span> <span id="totalRatingSpan"></span> <span
+				<span class="filled"></span> 
+				<span id="totalRatingSpan"></span> 
+				<span
 					id="productRatingSpan3"></span>
 			</div>
 		</div>
 
 		<c:choose>
 			<c:when test="${data.productInfo.product_discount_rate != 0}">
-				<div class="row mt-2">
+				<div class="row mt-2 ps-2 ">
 					<div class="col text-secondary">
 						<del>${data.productInfo.product_price}원</del>
 					</div>
 				</div>
-				<div class="row fs-4">
+				<div class="row fs-4 ps-2">
 					<div class="col-2 text-danger text-end fw-bold">
 						${data.productInfo.product_discount_rate}%</div>
 					<div class="col ps-0 fw-bold">
@@ -1105,7 +1168,7 @@ window.addEventListener("DOMContentLoaded", function(){
 				</div>
 			</c:when>
 			<c:otherwise>
-				<div class="row">
+				<div class="row ps-2">
 					<div class="col fw-bold">${data.productInfo.product_price}원</div>
 				</div>
 			</c:otherwise>
@@ -1113,16 +1176,16 @@ window.addEventListener("DOMContentLoaded", function(){
 
 		<div class="row mt-2 empty"></div>
 
-		<div class="row mt-3 delism">
+		<div class="row mt-3 delism ps-2">
 			<div class="row mt-2">
-				<div class="col-3">배송 안내</div>
+				<div class="col-3 text-secondary">배송 안내</div>
 				<div class="col">
 					<div class="row">
-						<div class="col">배송비 :
+						<div class="col ps-0">배송비 :
 							${data.productInfo.product_shipping_price}원</div>
 					</div>
 					<div class="row">
-						<div class="col">오후 2시 이전 당일 출고(영업일 기준)</div>
+						<div class="col ps-0">오후 2시 이전 당일 출고(영업일 기준)</div>
 					</div>
 				</div>
 			</div>
@@ -1131,7 +1194,7 @@ window.addEventListener("DOMContentLoaded", function(){
 			<div class="col-1"></div>
 			<div class="col">
 				<div class="row mt-2 border align-items-center">
-					<div class="col-3">
+					<div class="col-3 ps-0">
 						<img
 							src="/uploadFiles/WelcomePet/${data.productInfo.product_thumbnail}"
 							class="embed-responsive-item product-thum" alt="...">
@@ -1157,23 +1220,23 @@ window.addEventListener("DOMContentLoaded", function(){
 		</div>
 		<div class="row mt-2 empty"></div>
 			<div class="row mt-2">
-		 		<div class="row mt-2">
+		 		<div class="row mt-2 ps-3">
 		 	 	<div class="col fw-bold">
 		 	 		이 상품과 비슷한 상품
 		 	 	</div>
 		 		</div>
-		 	<div class="row mt-2" id="relatedList">
+		 	<div class="row mt-2 px-0" id="relatedList">
 
 					  </div> 
 				</div>
 		 	</div>
 	<div class="row mt-2 empty" style="height:1.5em; "></div>
 
-		<div class="row">
-			<div class="row mt-2 ps-3 py-2">
+		<div class="row ps-2">
+			<div class="row mt-2 py-2">
 				<div class="col fw-bold">상품 리뷰</div>
 			</div>
-			<div class="row mt-2">
+			<div class="row mt-2 ">
 				<div class="col" id="colProductRating"></div>
 			</div>
 			<div class="row mt-2  ps-3 mx-0" id="reviewListBox"></div>
@@ -1181,12 +1244,12 @@ window.addEventListener("DOMContentLoaded", function(){
 
 
 
-		<div class="row mt-2">
+		<div class="row mt-2 ps-2">
 			<jsp:include page="../common/serviceNavi.jsp"></jsp:include>
 			<div class="row mb-4">
 				<div class="col">
 					<div class="navbar navbar-dark bg-white fixed-bottom border-top " style="height: 4em;">
-						<div class="col-2 text-center">
+						<div class="col-1  mx-2 text-center">
 							<div class="row">
 								<div class="col">
 

@@ -1,5 +1,6 @@
 package com.bubble.welcomepet.customer.service;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -280,10 +281,28 @@ public class CustomerService {
 		List<ProductDto> productList = customerMapper.getProductInfoByMainCategory(main_category_no);
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		for (ProductDto productDto : productList) {
+			
+			int product_no = productDto.getProduct_no();
+			
+		    List<ProductReviewDto> reviewList = customerMapper.getProductReview(product_no);
+		    int totalRating = 0;
+		    int ratingCount = 0;
+		    for (ProductReviewDto productReviewDto : reviewList) {
+		        int rating = productReviewDto.getProduct_review_rating();
+		        totalRating += rating;
+		        ratingCount++;
+		    }
+
+		    double aveRating = (double) totalRating / ratingCount;
+		    DecimalFormat df = new DecimalFormat("#.#");
+		    String formattedAveRating = df.format(aveRating);
+			
 			double saleRate = (double) (productDto.getProduct_discount_rate()) / 100;
 
 			int salePrice = (int) ((productDto.getProduct_price()) * saleRate);
 			Map<String, Object> map = new HashMap<>();
+		    map.put("aveRating", Double.parseDouble(formattedAveRating));
+		    map.put("ratingCount", ratingCount);
 			map.put("salePrice", salePrice);
 			map.put("productInfo", productDto);
 			list.add(map);
@@ -296,10 +315,34 @@ public class CustomerService {
 		List<ProductDto> productList = customerMapper.getProductInfoByCategory(sub_category_no);
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		for (ProductDto productDto : productList) {
+			
+			int product_no = productDto.getProduct_no();
+			
+		    List<ProductReviewDto> reviewList = customerMapper.getProductReview(product_no);
+		    int totalRating = 0;
+		    int ratingCount = 0;
+		    for (ProductReviewDto productReviewDto : reviewList) {
+		        int rating = productReviewDto.getProduct_review_rating();
+		        totalRating += rating;
+		        ratingCount++;
+		    }
+
+		    double aveRating;
+		    if (ratingCount == 0) {
+		        aveRating = 0.0;
+		    } else {
+		        aveRating = (double) totalRating / ratingCount;
+		    }
+
+		    double aveRatingValue = Math.round(aveRating * 10) / 10.0;
+		    
 			double saleRate = (double) (productDto.getProduct_discount_rate()) / 100;
+			
 
 			int salePrice = (int) ((productDto.getProduct_price()) * saleRate);
 			Map<String, Object> map = new HashMap<>();
+		    map.put("aveRating", aveRatingValue);
+		    map.put("ratingCount", ratingCount);
 			map.put("salePrice", salePrice);
 			map.put("productInfo", productDto);
 			list.add(map);
@@ -322,6 +365,7 @@ public class CustomerService {
 		List<CategoryDto> categoryList = customerMapper.getSubCategoryByMainCategory(main_category_no);
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		for (CategoryDto categoryDto : categoryList) {
+			
 			Map<String, Object> map = new HashMap<>();
 			map.put("categoryDto", categoryDto);
 			list.add(map);
@@ -451,6 +495,9 @@ public class CustomerService {
 
 	    return list;
 	}
+	
+
+	
 	public Map<String, Integer> calculateTotal(int orders_no) {
 	    List<OrderProductDto> orderProductList = customerMapper.getOrderProduct(orders_no);
 	    int totalUsedPoint = 0;
@@ -493,6 +540,8 @@ public class CustomerService {
 
 	    return totals;
 	}
+	
+	
 	
 	public void updateProductStatus(OrderProductDto orderProductDto) {
 		customerMapper.updateProductStatus(orderProductDto);
@@ -545,6 +594,8 @@ public class CustomerService {
 		}
 		return list;
 	}
+	
+	
 	public List<Map<String, Object>> getReviewByProduct(int product_no) {
 
 		List<ProductReviewDto> reviewList = customerMapper.getProductReview(product_no);
@@ -554,6 +605,7 @@ public class CustomerService {
 			int product_review_no = productReviewDto.getProduct_review_no();
 			int product_option_no = productReviewDto.getProduct_option_no();
 			int customer_no = productReviewDto.getCustomer_no();
+			
 			CustomerDto customerDto = customerMapper.getCustomerInfoByNo(customer_no);
 			ProductOptionDto productOptionDto = customerMapper.getOptionInfoByNo(product_option_no);
 			ProductDto productDto = customerMapper.getProductInfoByNo(product_no);
