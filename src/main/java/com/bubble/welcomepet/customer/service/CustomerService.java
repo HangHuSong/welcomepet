@@ -405,7 +405,7 @@ public class CustomerService {
 	    for (OrderProductDto orderProductDto : orderProductDtoList) {
 	    	
 	    	int product_option_no = orderProductDto.getProduct_option_no();
-	    	int order_product_no = orderProductDto.getOrder_product_no();
+	    	int order_product_no = customerMapper.createOrderProductPk();
 			ProductOptionDto productOptionDto = customerMapper.getOptionInfoByNo(product_option_no);
 			int product_no = productOptionDto.getProduct_no();
 			ProductDto productDto = customerMapper.getProductInfoByNo(product_no);
@@ -414,6 +414,7 @@ public class CustomerService {
 			orderAlarmDto.setBiz_no(biz_no);
 			orderAlarmDto.setOrder_product_no(order_product_no);
 			customerMapper.addOrderAlarm(orderAlarmDto);
+			orderProductDto.setOrder_product_no(order_product_no);
 	        orderProductDto.setOrders_no(orders_no);
 	        customerMapper.AddOrderProduct(orderProductDto);
 	    }
