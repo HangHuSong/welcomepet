@@ -196,6 +196,17 @@ public class RestBoardController {
 		map.put("result", "success");
 		return map;
 	}
+	
+	@RequestMapping("bizList")
+	public Map<String, Object> bizList(){
+		
+		System.out.println("테스트");
+		
+		Map<String , Object> map = new HashMap<>();
+		map.put("bizList", customerService.getbizList());
+		map.put("result", "success");
+		return map;
+	}
 
 	
 

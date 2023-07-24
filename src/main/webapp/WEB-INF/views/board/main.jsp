@@ -316,6 +316,8 @@
 	  
 	    setTimeout(countdownTimer, 1000);
 	  }
+	  
+	  
 
 	  function getBizProductList(bizNo) {
 			
@@ -494,6 +496,237 @@
 			xhr.open("get", "./bizProduct?biz_no="+bizNo);
 			xhr.send();	
 		}
+	  
+	  let selectedBizDiv = null;
+
+	  function handleBizClick(event) {
+		    console.log("handleBizClick() 함수 호출됨.");
+		    // Remove the "text-primary" class from the previous selected element
+		    if (selectedBizDiv !== null) {
+		        selectedBizDiv.querySelector(".biz_name").classList.remove("text-primary");
+		        selectedBizDiv.querySelector(".biz_img").classList.remove("border-primary");
+		        selectedBizDiv.querySelector(".biz_img").classList.remove("border");
+		        selectedBizDiv.querySelector(".biz_img").classList.remove("border-3");
+		        selectedBizDiv.classList.remove("selected");
+		        selectedBizDiv.querySelector(".biz_name").classList.add("text-secondary");
+		    }
+
+		    // Add the "text-primary" class to the clicked element
+		    const clickedSlide = event.target.closest(".swiper-slide");
+		    clickedSlide.querySelector(".biz_name").classList.add("text-primary");
+		    clickedSlide.querySelector(".biz_img").classList.add("border-primary");
+		    clickedSlide.querySelector(".biz_img").classList.add("border");
+		    clickedSlide.querySelector(".biz_img").classList.add("border-3");
+		    clickedSlide.classList.add("selected");
+		    clickedSlide.querySelector(".biz_name").classList.remove("text-secondary");
+
+		    // Update the selectedBizDiv to the current clicked element
+		    selectedBizDiv = clickedSlide;
+		}
+	  
+		function getBizList() {
+			 
+			  var xhr = new XMLHttpRequest();
+
+			  xhr.onreadystatechange = function() {
+				  console.log("bizList() 함수 호출됨.");
+			    if (xhr.readyState === XMLHttpRequest.DONE) {
+			    	
+			      if (xhr.readyState == 4 && xhr.status == 200) {
+			        const response = JSON.parse(xhr.responseText);
+					console.log(response);
+			
+			        const bizListContainer = document.getElementById("bizList");
+			        bizListContainer.innerHTML = ""; 
+			        
+				      const swiperContainer2 = document.createElement("div");
+				      swiperContainer2.classList.add("swiper-container");
+				      swiperContainer2.id = "bizSwiper";
+				      bizListContainer.appendChild(swiperContainer2);
+
+				      const swiperWrapper2 = document.createElement("div");
+				      swiperWrapper2.classList.add("swiper-wrapper");
+				      swiperContainer2.appendChild(swiperWrapper2);
+
+			        for (data of response.bizList) {
+			        	  console.log(data);
+			        	  var colDiv = document.createElement("div");
+			        	  colDiv.classList.add("col-3","align-items-center","text-center","swiper-slide");
+			        	  colDiv.id = "biz-slide";
+			        	  colDiv.setAttribute("onclick", "getBizProductList("+ data.bizInfo.biz_no + ")");
+			        	  
+			        	  colDiv.addEventListener("click", handleBizClick);
+			              
+			        	  var imgRow = document.createElement("div");
+			        	  imgRow.classList.add("row", "px-0","mx-0");
+			        	  colDiv.appendChild(imgRow);
+
+			        	  var imgCol = document.createElement("div");
+			        	  imgCol.classList.add("col","align-items-center","text-center","ps-0","pe-0");
+			        	  imgRow.appendChild(imgCol);
+
+			        	  var img = document.createElement("img");
+			        	  img.src = "/uploadFiles/WelcomePet/biz/biz" + data.bizInfo.biz_no + ".jpg";
+			        	  img.classList.add("biz_img", "rounded-circle");
+			        	  img.alt = "...";
+			        	  imgCol.appendChild(img);
+
+			        	  var categoryRow = document.createElement("div");
+			        	  categoryRow.classList.add("row","mt-1");	
+			        	  
+			        	  var categoryCol = document.createElement("div");
+			        	  categoryCol.classList.add("col", "biz_name","fw-bold","px-0","text-secondary");
+			        	  categoryCol.innerText = data.bizInfo.biz_store_name;
+
+			        	  categoryRow.appendChild(categoryCol);
+			        	  colDiv.appendChild(categoryRow);
+
+			        	  swiperWrapper2.appendChild(colDiv);
+			        	}
+			        
+	                const swiper = new Swiper("#bizSwiper", {
+	                    slidesPerView: "auto",
+	                    spaceBetween: 10,
+	                    loop: false,
+	                    navigation: {
+	                        nextEl: ".swiper-button-next",
+	                        prevEl: ".swiper-button-prev",
+	                    },
+	                    pagination: {
+	                        el: ".swiper-pagination",
+	                        clickable: true,
+	                    },
+	                });
+			    }
+			  	};
+			  }
+			  
+			  xhr.open("GET", "./bizList");
+			  xhr.send();
+			
+		}
+		
+		function getBestList(categoryNo) {
+			
+			const xhr = new XMLHttpRequest();
+			
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState == 4 && xhr.status == 200){
+					const response = JSON.parse(xhr.responseText);
+					 console.log(response);
+					document.getElementById("bestListBox").innerHTML = "";
+
+				for(data of response.relatedProductList) {
+					
+					const col1 = document.createElement("div");
+					col1.classList.add("col-4", "embed-responsive", "embed-responsive-4by3", "ps-3");
+					
+					
+					
+					const rowImg = document.createElement("div");
+					rowImg.classList.add("row");
+					col1.appendChild(rowImg);
+					
+					const colImg =	document.createElement("div");
+					colImg.classList.add("col");
+					colImg.setAttribute("onclick","location.href='./productDetail?product_no="+data.productInfo.product_no+"'");
+					colImg.style.position = "relative";
+					rowImg.appendChild(colImg);
+					
+					  const index = response.relatedProductList.indexOf(data);
+					const discountLabel = document.createElement("label");
+					discountLabel.classList.add("discount-label","fw-bold","text-center");
+					discountLabel.textContent = index + 1; 
+					discountLabel.style.position = "absolute"; // 절대 위치 설정
+					discountLabel.style.top = "0.0em"; // 상단 위치
+					discountLabel.style.left = "0em"; // 왼쪽 위치
+					discountLabel.style.backgroundColor = "red"; // 배경색 설정
+					discountLabel.style.color = "white"; // 글자색 설정
+					discountLabel.style.fontSize = "0.8em"; // 내부 여백 설정
+					discountLabel.style.padding = "0.1em";
+					discountLabel.style.opacity = "0.4";
+					discountLabel.style.borderRadius = "0.8em 0px"; 
+					discountLabel.style.minWidth = "1.8rem";
+					colImg.appendChild(discountLabel);
+					
+					const heartBox = document.createElement("a");
+					heartBox.classList.add("text-secondary", "bi", "bi-heart");
+					heartBox.id = "heartBox" + data.productInfo.product_no ;
+					heartBox.setAttribute("onclick", "toggleWish("+ data.productInfo.product_no +")");
+					heartBox.style.position = "absolute"; // 절대 위치 설정
+					heartBox.style.bottom = "0"; // 하단 위치
+					heartBox.style.right = "10px"; // 오른쪽 위치
+					heartBox.style.filter = "opacity(0.5)";
+					heartBox.setAttribute("role", "button");
+					colImg.appendChild(heartBox);
+					
+					const img = document.createElement("img");
+					img.src = "/uploadFiles/WelcomePet/" + data.productInfo.product_thumbnail; // 이미지 URL 또는 경로 설정
+					img.alt = "제품 이미지";
+					img.classList.add("embed-responsive-item", "product-thum");
+					colImg.appendChild(img);
+					
+					const rowName = document.createElement("div");
+					rowName.classList.add("row", "r_name")
+					"location.href='./productDetail?product_no=${map.productInfo.product_no}'"
+					rowName.setAttribute("onclick","location.href='./productDetail?product_no="+data.productInfo.product_no+"'");
+					col1.appendChild(rowName);
+					
+					
+					const colName = document.createElement("div");
+					colName.classList.add("col");
+					rowName.appendChild(colName);
+					
+					const nameBox = document.createElement("p");
+					nameBox.classList.add( "fsmid");
+					nameBox.innerText = data.productInfo.product_name;
+					colName.appendChild(nameBox);
+					
+					const rowPrice = document.createElement("div");
+					rowPrice.classList.add("row");
+					col1.appendChild(rowPrice);
+					
+					const colPrice = document.createElement("div");
+					colPrice.classList.add("col", "fw-bold","price_text");
+					colPrice.innerText = data.productInfo.product_price - data.salePrice +"원";
+					rowPrice.appendChild(colPrice);	
+					
+					let aveRatingValue = data.aveRating;
+					if (isNaN(aveRatingValue)) {
+					  aveRatingValue = 0;
+					}
+									
+					const rowRating = document.createElement("div");
+					rowRating.classList.add("row");
+					col1.appendChild(rowRating);
+					
+					const colRating = document.createElement("div");
+					colRating.classList.add("col","text-secondary");
+					colRating.style.fontSize = "0.8em";
+					rowRating.appendChild(colRating);	
+					
+					const star = document.createElement("span");
+					star.classList.add("star-icon", "filled");
+					colRating.appendChild(star);
+					
+					const aveRating = document.createElement("span");
+					aveRating.classList.add("ps-1");
+					aveRating.innerText = aveRatingValue;
+					colRating.appendChild(aveRating);
+					
+					const countRating = document.createElement("span");
+					countRating.innerText = "("+data.ratingCount+")";
+					colRating.appendChild(countRating);
+					
+					document.getElementById("bestListBox").appendChild(col1);
+					
+					  refreshMyHeart(data.productInfo.product_no);
+					}
+				}
+			}
+			xhr.open("get", "./relatedProduct?main_category_no="+categoryNo);
+			xhr.send();	
+		}
 	 
 	
 	
@@ -505,11 +738,14 @@
 		fetchCategoryList(1);
 		countdownTimer();
 		getBizProductList(1);
+		getBizList();
+		getBestList(1);
 	    
 	});
 
 
 </script>
+
 <style type="text/css">
 
 .swiper-container {
@@ -545,10 +781,16 @@
   left: 10px;
 }
 
+#biz-slide {
+  width: 18%;
+}
 /* Swiper 슬라이드 아이템 스타일 */
 .swiper-slide {
   width: 40%;
 }
+
+
+
 
 
 /* 페이지네이션 스타일 */
@@ -612,6 +854,13 @@
 }
 .category_name {
  font-size: 0.7em;
+}
+
+.biz_img {
+	width: 100%;
+}
+.biz_name {
+	font-size: 0.7em;
 }
 
 .category-col {
@@ -722,7 +971,7 @@
 			<div class="col-1"></div>
 			<div class="col border rounded-2 text-secondary align-items-center d-flex" style="background-color: rgb(227, 237, 255); font-size: 0.9em; 
 						height:3em; ">
-				<span>리뷰 작성시 최대</span> <span class="text-primary">결제금액의 3%</span> <span>를 드려요!</span>
+				<span>리뷰 작성시 최대</span> <span class="text-primary ps-1">결제금액의 3%</span> <span>를 드려요!</span>
 			</div>
 			<div class="col-1"></div>
 		</div>
@@ -772,7 +1021,7 @@
 	 <div class="row mt-2"></div>
 		<div class="row mt-4 ">
 			<div class="col px-0 ms-0">
-			<img src="/uploadFiles/WelcomePet/banner/banner1.png"
+			<img src="/uploadFiles/WelcomePet/banner/banner2.png"
 				class="product-thum" style="width:  ;" alt="...">
 			</div>		
 		</div>
@@ -781,13 +1030,52 @@
 		<div class="col">
 		<div class="row mt-3" > 
 		<div class="col  fw-bold" style="font-size: 1.2em;"> 브랜드 샵 </div>
-		<div class="row mt-2">
 		
+		<div class="row mt-2" id="bizList">
+					
 			</div>
-		<div class="row mt-2" id="bizProductList" >
+		<div class="row mt-3" id="bizProductList" >
 
 		</div>
 		</div>
+		
+		<div class="row mt-2"></div>
+		<div class="row mt-4 ">
+			<div class="col px-0 ms-0">
+			<img src="/uploadFiles/WelcomePet/banner/banner1.png"
+				class="product-thum" style="width:  ;" alt="...">
+			</div>		
+		</div>
+		
+		<div class="row mt-4">
+			<div class="col fw-bold" style="font-size: 1.2em;">
+			  베스트 아이템
+			</div>
+		</div>
+					<div class="row mt-2 ps-0">
+					
+					<div class="col-1 ps-0 pe-0"></div>
+					  <div class="col pe-0 category-col">
+					    <span class="category-span2 not-select" onclick="getBestList(1)" id="">사료</span>
+					  </div>
+					  <div class="col pe-0 category-col">
+					    <span class="category-span2 not-select" onclick="getBestList(2)" id="">간식</span>
+					  </div>
+					  <div class="col pe-0 category-col">
+					    <span class="category-span2 not-select" onclick="getBestList(3)" id="">용품</span>
+					  </div>
+					  <div class="col pe-0 category-col">
+					    <span class="category-span2 not-select" onclick="getBestList(4)" id="">건강</span>
+					  </div>
+					  <div class="col ps-0 category-col">
+					    <span class="category-span2 not-select" onclick="getBestList(5)" id="">스타일</span>
+					  </div>
+					  <div class="col-1 ps-0 pe-0"></div>
+			</div>
+		<div class="row mt-3" id="bestListBox">
+		
+		</div>
+				
 
 		</div>
 		</div>

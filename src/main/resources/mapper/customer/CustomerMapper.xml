@@ -212,6 +212,11 @@
 		resultType="com.bubble.welcomepet.dto.ProductDto">
 		select * from product where biz_no = #{biz_no}
 	</select>
+	
+	<select id="getBizList"
+		resultType="com.bubble.welcomepet.dto.BizDto">
+		select * from biz
+	</select>
 
 	<select id="getProductInfoByNo"
 		resultType="com.bubble.welcomepet.dto.ProductDto">

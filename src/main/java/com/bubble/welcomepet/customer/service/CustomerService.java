@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.bubble.welcomepet.customer.mapper.CustomerMapper;
 import com.bubble.welcomepet.customer.mapper.CustomerSqlMapper;
+import com.bubble.welcomepet.dto.BizDto;
 import com.bubble.welcomepet.dto.CartDto;
 import com.bubble.welcomepet.dto.CategoryDto;
 import com.bubble.welcomepet.dto.CustomerAddressDto;
@@ -439,6 +440,21 @@ public class CustomerService {
 		    map.put("ratingCount", ratingCount);
 			map.put("salePrice", salePrice);
 			map.put("productInfo", productDto);
+			list.add(map);
+		}
+		return list;
+	}
+	
+	public List<Map<String, Object>> getbizList() {
+		
+		List<BizDto> bizList = customerMapper.getBizList();
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		
+		for(BizDto bizDto : bizList) {
+			
+			Map<String, Object> map = new HashMap<>();
+			
+			map.put("bizInfo", bizDto);
 			list.add(map);
 		}
 		return list;
