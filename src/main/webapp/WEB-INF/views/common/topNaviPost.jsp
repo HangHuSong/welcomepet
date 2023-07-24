@@ -8,6 +8,7 @@
 <%------ bootstrap ------%>
 <%-- viewport --%>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 <%-- link 
 <link 
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -18,14 +19,23 @@
 <style type="text/css">
 #main{
 	text-decoration: none;
-	color: inherit;
+	color:inherit;
+  	font-family: 'Jua', sans-serif;
+ 	font-weight:700;
+ 	font-size:1.3em;
+ 	color:#fd7e14;
+}
+
+.topNavbar{
+	/* background-color: #F4AE7A; */
+	background-color: #ffffff;
 }
 </style>
 <%------ bootstrap ------%>
 </head>
 <body>
-<%------ 상단 네비------%>
-<nav class="navbar sticky-top bg-body-tertiary shadow-sm p-3" style="background-color: #333333;">
+<%------ 상단 네비  #333333; ------%>
+<nav class="navbar sticky-top bg-body-tertiary shadow-sm p-3" style="background-color:#ffffff">
 <div class="container p-0">
 	<div class="container p-0">
 
@@ -35,12 +45,12 @@
 	  		<a class="btn bi bi-arrow-left text-secondary btn-lg p-0" role="button" href="../community/showDogPostList"></a>
 	 	  </div>
 
-	  	 <div class="col-5 text-center text-secondary fw-bold">
-	      <a id="main" href="../community/home">커뮤니티</a>
+	  	 <div class="col-5 text-center">
+	      <a id="main" href="../community/home">어서보여주개</a>
 	     </div>
 	     
 	     <div class="col d-flex justify-content-end p-0">
-	     <a class="btn bi bi-arrow-down-circle text-secondary btn-lg p-0" role="button" href="../customer/login"></a>
+	     <a class="btn bi bi-bell-fill text-secondary btn-lg p-0" role="button" href="#"></a>
 	     </div>
 	  	</div>
 	 </div>

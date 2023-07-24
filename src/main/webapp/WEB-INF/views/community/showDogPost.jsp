@@ -142,7 +142,7 @@ body{
   <jsp:include page="../common/topNaviPost.jsp"></jsp:include>
 <%-- ----------- --%>  
 
-<div class="container mt-1 mb-4">
+<div class="container mt-1 mb-5">
  	<%-- 로그인한 사람만 수정/삭제 
 	<c:if test="${!empty customerUser && customerUser.customer_no eq postData.customerDto.customer_no}">
 		<a href="./showDogUpdate?show_dog_post_no=${postData.showDogPostDto.show_dog_post_no}">수정</a>
@@ -150,7 +150,7 @@ body{
 	</c:if>
 	<%-- 로그인한 사람만 수정/삭제 --%>
 
-	<div class="row pt-3 pb-4 border-bottom">
+	<div class="row pb-3 border-bottom">
 		<div class="col">
 			<div class="row">
 				 <div class="col">
@@ -272,11 +272,11 @@ body{
 					 		<div class="col text-center">
 						 		<c:choose>
 						 		 <c:when test="${checkWhetherLike == 0}">
-						 		 	<button class="btn btn-sm btn-outline-danger"><i class="bi bi-heart" style="stroke-width:2px;"></i> ${countLike}</button>
+						 		 	<button class="btn btn-sm btn-outline-danger"><i class="bi bi-hand-thumbs-up" style="stroke-width:2px;"></i> ${countLike}</button>
 					 			 </c:when>
 					 			 
 					 			 <c:otherwise>
-						 		 	<button class="btn btn-sm btn-outline-danger"><i class="bi bi-heart-fill"></i> ${countLike}</button>
+						 		 	<button class="btn btn-sm btn-outline-danger"><i class="bi bi-hand-thumbs-up-fill"></i> ${countLike}</button>
 					 			 </c:otherwise>
 					 			</c:choose>
 					 		</div>
@@ -291,11 +291,11 @@ body{
 	<%-- 댓글 --%>
 	<div class="row mt-4">	
 		 <%-- 댓글 정렬--%>
-		 <div class="col-3 fw-bold text-secondary mb-3 d-grid pe-0" style="font-size: 10pt;">
-		   <button class="btn btn-outline-primary btn-sm"><i class="bi bi-filter-left"></i>등록순</button>
+		 <div class="col-3 mb-3 d-grid pe-0" style="font-size: 10pt;">
+		   <button class="btn btn-outline-none btn-sm fw-bold text-secondary"><i class="bi bi-filter-left"></i>등록순</button>
 		 </div>		 
 		 <div class="col-3 fw-bold text-secondary mb-3 d-grid pe-0" style="font-size: 10pt;">
-		   <button class="btn btn-outline-primary btn-sm"><i class="bi bi-filter-right"></i>최신순</button>
+		   <button class="btn btn-outline-none btn-sm"><i class="bi bi-filter-right"></i>최신순</button>
 		 </div>		 
 		 <div class="col-6 fw-bold text-secondary mb-3" style="font-size: 10pt;">
 		 </div>		 
@@ -348,7 +348,7 @@ body{
 		 </div>
 		 
 
-		<%-- 새 댓글쓰기 --%>
+		<%-- 새 댓글쓰기 
 		<div class="col mt-2">	 
 			<div class="row">
 				<div class="col pe-0">
@@ -361,6 +361,7 @@ body{
 				 </button>
 				</div>
 			</div>
+			</div>--%>
 			<%-- JSP 방식 
 			<form action="./writeCommentProcess?show_dog_post_no=${postData.showDogPostDto.show_dog_post_no}" method="post">
 				<div class="row">
@@ -374,7 +375,7 @@ body{
 				</div>
 			</form> 
 			--%>		
-		</div>
+		
 	</div>
 	<%-- 댓글 --%>
 	
@@ -492,7 +493,7 @@ aria-controls="offcanvasBottom">Toggle bottom offcanvas</button>
 
 
 <%-- mobileStyle --%>
-  <jsp:include page="../common/bottomTabStyle.jsp"></jsp:include>
+  <jsp:include page="../common/showPostBottomNavi.jsp"></jsp:include>
 <%-- ----------- --%>  
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>

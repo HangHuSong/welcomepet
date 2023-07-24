@@ -40,7 +40,7 @@ body {
 									<i class="btn bi bi-chevron-left p-0" style="border: transparent; outline: none; font-size: 1.5em;"></i>
 								</a>
 							</div>
-							<div class="col-8 mt-2 text-center fw-bold"s>커뮤니티</div>
+							<div class="col-8 mt-2 text-center fw-bold">커뮤니티</div>
 							<div class="col-2"></div>
 						</div>
 						<div class="row my-2">
