@@ -33,7 +33,7 @@
 								<div class="row mt-5">
 									<div class="col p-0">
 										<img class="img-fluid"
-											src="https://cdn.klnews.co.kr/news/photo/202208/305478_45874_3119.png">
+											src="https://images.pet-friends.co.kr/storage/pet_friends/tab_banner/8/f/e/3/1/d/2/8fe31d2a601e259b912ac4bb56b21bf7/10000/ca150244df92a8cd209a2bd21ac2c5a1.jpeg">
 									</div>
 								</div>
 							</div>

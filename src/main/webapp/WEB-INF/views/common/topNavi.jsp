@@ -13,20 +13,22 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-<!-- <style>
-@font-face {
-	font-family: 'Pretendard-Regular';
-	src:
-		url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
-		format('woff');
-	font-weight: 400;
-	font-style: normal;
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+<style type="text/css">
+
+#main{
+	text-decoration: none;
+	color:inherit;
+	/* color: #F8961D; */
+	
+  	/* font-family:'KorailRoundGothicBold', sans-serif !important; */
+  	font-family: 'Jua', sans-serif;
+ 	font-weight:700;
+ 	font-size:1.3em;
+ 	color:#fd7e14;
 }
 
-body {
-	font-family: 'Pretendard-Regular';
-}
-</style> -->
+</style>
 </head>
 <body>
 	<div class="container">
@@ -36,25 +38,35 @@ body {
 					<div class="col-12 border-bottom py-2">
 						<div class="row">
 							<div class="col-2">
-								<a href="/welcomepet/pointProd/board" class="btn btn-black py-0 ps-2" style="border: transparent; outline: none;">
-									<i class="btn bi bi-chevron-left p-0" style="border: transparent; outline: none; font-size: 1.5em;"></i>
+								<a href="/welcomepet/pointProd/board"
+									class="btn btn-black py-0 ps-2"
+									style="border: transparent; outline: none;"> <i
+									class="btn bi bi-chevron-left p-0"
+									style="border: transparent; outline: none; font-size: 1.5em;"></i>
 								</a>
 							</div>
-							<div class="col-8 mt-2 text-center fw-bold" style="color: #fd7e14;">어서소통하개</div>
-							<div class="col-2"></div>
+							<div class="col-1"></div>
+							<div class="col-6 mt-2 text-center"
+								style="color: #fd7e14;"><a id="main" href="../board/main">어서대화하개</a></div>
+							<div class="col-1"></div>
+							<div class="col-2 p-0">
+								<a class="btn bi bi-bell-fill text-secondary btn-lg pt-1 ps-4"
+									role="button" href="#"></a>
+							</div>
 						</div>
-						<div class="row my-2">
+						<div class="row my-1">
 							<div class="col"></div>
 						</div>
 						<div class="row text-dark text-center" style="font-size: 0.9em;">
 							<div class="col my-1">
-								<div class="row">.
-									<div class="col"> 
-										<a class="nav-link"
-											href="/welcomepet/pointProd/board">자유게시판</a>
+								<div class="row">
+									.
+									<div class="col fw-bold">
+										<a class="nav-link" href="/welcomepet/pointProd/board">자유게시판</a>
 									</div>
 									<div class="col">
-										<a class="nav-link" href="/welcomepet/community/showDogPostList">자랑게시판</a>
+										<a class="nav-link"
+											href="/welcomepet/community/showDogPostList">자랑게시판</a>
 									</div>
 								</div>
 							</div>
