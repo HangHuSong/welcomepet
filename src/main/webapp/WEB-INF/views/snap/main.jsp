@@ -356,10 +356,11 @@
                     row4.classList.add("mb-2");
 
                     const col5 = document.createElement("div");
-                    col5.classList.add("col", "text-primary", "fw-bold", "fs-5");
+                    col5.classList.add("col", "fw-bold", "fs-5");
 
                     const span3 = document.createElement("span");
                     span3.style.fontSize = "14px";
+                    span3.style.color = "#c83131";
                     span3.innerText = comment.customerDto.customer_nickname;
 
                     col5.appendChild(span3);
