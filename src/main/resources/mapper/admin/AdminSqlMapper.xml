@@ -330,12 +330,13 @@
 		<select id="getTotalSale" resultType="int">
 			SELECT NVL(SUM(NVL(op.order_product_price,0)),0)
 			FROM order_product op
-			    INNER JOIN order_product_status ops on op.order_product_status = ops.order_product_status_no
-			    INNER JOIN orders o ON op.order_no = o.order_no
-			    INNER JOIN product p on op.product_no = p.product_no
+			    INNER JOIN order_product_status ops on op.order_product_status_no = ops.order_product_status_no
+			    INNER JOIN orders o ON op.orders_no = o.orders_no
+			    INNER JOIN product_option po on op.product_option_no = po.product_option_no
+                INNER JOIN product p on po.product_no = p.product_no
 			    INNER JOIN biz b on b.biz_no = p.biz_no
-			WHERE op.order_product_status = 6
-			AND o.order_date BETWEEN TRUNC(ADD_MONTHS(SYSDATE, -1), 'MM') AND LAST_DAY(ADD_MONTHS(SYSDATE, -1))
+			WHERE op.order_product_status_no = 6
+			AND o.orders_date + 14 BETWEEN TRUNC(ADD_MONTHS(SYSDATE, -1), 'MM') AND LAST_DAY(ADD_MONTHS(SYSDATE, -1))
 			AND p.biz_no = #{biz_no}
 		</select>
 	
