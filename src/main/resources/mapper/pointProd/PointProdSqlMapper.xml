@@ -137,7 +137,7 @@
 	</update>
 
 	<select id="selectByCategoryNo"
-		resultType="com.bubble.welcomepet.dto.CategoryDto">
+		resultType="com.bubble.welcomepet.dto.PointProdCategoryDto">
 		SELECT *
 		FROM board_category
 		WHERE board_category_no =

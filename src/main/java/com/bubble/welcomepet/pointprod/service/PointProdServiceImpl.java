@@ -17,7 +17,7 @@ import com.bubble.welcomepet.dto.LikeDto;
 import com.bubble.welcomepet.dto.PointProdDto;
 import com.bubble.welcomepet.dto.PointProdImgDto;
 import com.bubble.welcomepet.dto.PointProdOrdDto;
-import com.bubble.welcomepet.dto.Prod_CategoryDto;
+import com.bubble.welcomepet.dto.PointProdCategoryDto;
 import com.bubble.welcomepet.pointprod.mapper.PointProdSqlMapper;
 
 @Service
@@ -143,13 +143,13 @@ public class PointProdServiceImpl {
 
 		BoardDto boardDto = pointProdSqlMapper.selectById(board_no);
 		CustomerDto customerDto = pointProdSqlMapper.selectCustomerByCustomerNo(boardDto.getCustomer_no());
-		Prod_CategoryDto categoryDto = pointProdSqlMapper.selectByCategoryNo(boardDto.getBoard_category_no());
+		PointProdCategoryDto pointProdCategoryDto = pointProdSqlMapper.selectByCategoryNo(boardDto.getBoard_category_no());
 
 		List<ImageDto> imageDtoList = pointProdSqlMapper.selectImageByBoardNo(board_no);
 
 		map.put("customerDto", customerDto);
 		map.put("boardDto", boardDto);
-		map.put("categoryDto", categoryDto);
+		map.put("pointProdCategoryDto", pointProdCategoryDto);
 		map.put("imageDtoList", imageDtoList);
 
 		return map;

@@ -17,8 +17,9 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <style>
 .bi.bi-pencil-square {
-	color: #CF654D;
+	color: white
 }
+/* #CF654D; */
 </style>
 </head>
 <body>
@@ -49,19 +50,23 @@
 															<!-- 베스트3 -->
 															<c:forEach items="${list2 }" var="map">
 																<div
-																	class="col-12 border-bottom border-light-subtle border-1 py-1"
+																	class="col-12 border-bottom border-light-subtle border-1"
+																	style="padding: 0.3em 0.7em; font-weight: 400;"
 																	onclick="location.href='./readContent?board_no=${map.boardDto.board_no }'">
 																	<div class="row">
-																		<div class="col py-1">
-																			<a class="text-decoration-none text-black"><i
-																				class="bi bi-hand-thumbs-up text-danger"> </i><span
-																				class="me-1"></span>${map.boardDto.board_title }</a>
+																		<div class="col">
+																			<a class="text-decoration-none text-black"
+																				style="font-size: 0.9em;"><i
+																				class="bi bi-fire text-danger"></i>
+																			<!-- <i
+																				class="bi bi-hand-thumbs-up text-danger"></i> -->
+																				<span class="me-1"></span>${map.boardDto.board_title }</a>
 																		</div>
 																	</div>
 																</div>
 															</c:forEach>
 															<div
-																class="col border-bottom border-light-subtle border-2">
+																class="col border-bottom border-light-subtle border-1">
 															</div>
 														</div>
 													</div>
@@ -72,27 +77,28 @@
 											<c:forEach items="${list }" var="map">
 												<div class="col-12 border-bottom py-2"
 													onclick="location.href='./readContent?board_no=${map.boardDto.board_no }'">
-													<div class="row">
+													<div class="row mb-2">
 														<div class="col">
 															<div class="row">
-																<div class="col mb-1"
-																	style="font-size: 18px; font-weight: 500;">
-																	<a class="text-decoration-none text-black">${map.boardDto.board_title }</a>
-																	<%-- <span class="text-danger">[${map.countComment}]</span> --%>
+																<div class="col mb-1 fw-semibold">
+																	<a class="text-decoration-none text-black fw-medium"
+																		style="font-size: 0.97em;">${map.boardDto.board_title }</a>
 																</div>
 															</div>
-															<div class="row text-secondary" style="font-size: 0.8em;">
+															<div class="row text-secondary"
+																style="font-size: 0.73em;">
 																<div class="col mb-1">
 																	<span class="me-2">
 																		${map.customerDto.customer_nickname }</span> <span
 																		class="me-2"> <fmt:formatDate
 																			value="${map.boardDto.board_reg_date }"
 																			pattern="yy.MM.dd" />
-																	</span> <span> 조회 ${map.boardDto.board_read_count }</span>
+																	</span>
+																	<%-- <span> 조회 ${map.boardDto.board_read_count }</span> --%>
 																</div>
 															</div>
 														</div>
-														<div class="col-2 px-2">
+														<div class="col-3 pe-2 ps-4">
 															<c:forEach items="${map.imageDtoList}" var="imageDto">
 																<img src="/uploadFiles/${imageDto.board_image_link}"
 																	class="w-100">
@@ -100,16 +106,18 @@
 														</div>
 													</div>
 													<div class="row">
-														<div class="col my-1">
-															<div class="row text-secondary">
+														<div class="col">
+															<div class="row text-secondary"
+																style="font-size: 0.79em;">
 																<div class="col">
 																	<span class="me-2"><i
-																		class="bi bi-chat-square-dots"> ${map.countComment}</i></span>
-																	<span class="me-2"><i
+																		class="bi bi-chat-square-dots">
+																			${map.countComment}</i></span> <span class="me-2"><i
 																		class="bi bi-hand-thumbs-up"> ${map.countLike}</i></span>
 																</div>
 																<div class="col-2 text-end">
-																	<span><i class="bi bi-eye"> ${map.boardDto.board_read_count}</i></span>
+																	<span><i class="bi bi-eye">
+																			${map.boardDto.board_read_count}</i></span>
 																</div>
 															</div>
 														</div>
@@ -122,12 +130,18 @@
 											<div class="col-3">
 												<c:choose>
 													<c:when test="${empty customerUser}">
-														<a href="../customer/login" class="btn btn-secondary"><i
-															class="bi bi-pencil-square"></i></a>
+														<a href="../customer/login" class="btn btn-light"
+															style="background-color: #CF654D; border-radius: 50px;">
+															<i class="bi bi-pencil-square"
+															style="font-size: 1.5em; color: white;"></i>
+														</a>
 													</c:when>
 													<c:otherwise>
-														<a href="./writeContent" class="btn btn-light"><i
-															class="bi bi-pencil-square" style="font-size: 1.5em;"></i></a>
+														<a href="./writeContent" class="btn btn-light"
+															style="background-color: #CF654D; border-radius: 50px;">
+															<i class="bi bi-pencil-square"
+															style="font-size: 1.5em; color: white;"></i>
+														</a>
 													</c:otherwise>
 												</c:choose>
 											</div>

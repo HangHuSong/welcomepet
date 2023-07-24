@@ -1,14 +1,14 @@
 package com.bubble.welcomepet.dto;
 
-public class Prod_CategoryDto {
+public class PointProdCategoryDto {
 	private int board_category_no;
 	private String board_category_name;
 
-	public Prod_CategoryDto() {
+	public PointProdCategoryDto() {
 		super();
 	}
 
-	public Prod_CategoryDto(int board_category_no, String board_category_name) {
+	public PointProdCategoryDto(int board_category_no, String board_category_name) {
 		super();
 		this.board_category_no = board_category_no;
 		this.board_category_name = board_category_name;
@@ -32,8 +32,7 @@ public class Prod_CategoryDto {
 
 	@Override
 	public String toString() {
-		return "CategoryDto [board_category_no=" + board_category_no + ", board_category_name=" + board_category_name
-				+ "]";
+		return "PointProdCategoryDto [board_category_no=" + board_category_no + ", board_category_name="
+				+ board_category_name + "]";
 	}
-
 }

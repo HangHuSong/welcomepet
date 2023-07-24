@@ -22,8 +22,10 @@
 			<div class="col-12 border-bottom py-2" style="height: 60px;">
 				<div class="row">
 					<div class="col-2">
-						<a href="/welcomepet/pointProd/board" class="btn btn-black" style="border: transparent; outline: none;">
-							<i class="btn bi bi-chevron-left p-0" style="border: transparent; outline: none;"></i>
+						<a href="/welcomepet/pointProd/board" class="btn btn-black"
+							style="border: transparent; outline: none;"> <i
+							class="btn bi bi-chevron-left p-0"
+							style="border: transparent; outline: none;"></i>
 						</a>
 					</div>
 					<div class="col-8 mt-2 text-center fw-bold 16px">게시판</div>
@@ -67,112 +69,128 @@
 				<div class="row pt-3">
 					<div class="col">
 						<div class="row">
-							<div class="col">${data.categoryDto.board_category_name}</div>
-						</div>
-						<div class="row">
-							<div class="col fw-semibold fs-4 mb-1">${data.boardDto.board_title}</div>
-						</div>
-
-						<div class="row">
-							<div class="col fw-semibold">
-								${data.customerDto.customer_nickname}</div>
-						</div>
-						<div class="row">
-							<div class="col text-secondary">
-								<span class="me-3"> <fmt:formatDate
-										value="${data.boardDto.board_reg_date}" pattern="yyyy.MM.dd" /></span>
-								<span> 조회수 ${data.boardDto.board_read_count} </span>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col mt-3 border-bottom"></div>
-						</div>
-						<div class="row">
-							<div class="col mt-2">
-								<c:forEach items="${data.imageDtoList}" var="imageDto">
-									<img src="/uploadFiles/${imageDto.board_image_link}"
-										class="w-50">
-								</c:forEach>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col mt-3">${data.boardDto.board_content}</div>
-						</div>
-						<form action="./insertLikeProcess" method="post">
-							<input type="hidden" value="${data.boardDto.board_no}"
-								name="board_no">
-							<div class="row">
-								<div class="col-4"></div>
-								<div class="col-4 mt-3 text-center">
-									<button type="submit" class="btn btn-outline-danger">
-										<i class="bi bi-hand-thumbs-up">${countLikeByBoardNo}</i>
-									</button>
-								</div>
-								<div class="col-4"></div>
-							</div>
-						</form>
-						<div class="row">
-							<div class="col-12 mt-3 border-top"></div>
-						</div>
-						<!-- 댓글 여러개 보이게 하기 -->
-						<div class="row">
-							<div class="col-12 fw-bold fs-5 mt-3">댓글
-								${countCommentByBoardNo}</div>
-						</div>
-						<div class="row">
-							<div class="col-12 mt-3">
-								<c:forEach items="${commentList}" var="comment">
-									<div class="row">
-										<div class="col-12 fw-semibold">
-											${comment.customerDto.customer_nickname }</div>
+							<div class="col">
+								<div class="row">
+									<div class="col-2">
+										<img class="proImg"
+											src="https://i.namu.wiki/i/sLpl_9SaPt63LS9uKn7ptjw1GtopAOeL-fVSbFHsfwm2ZKwywO-4rd91q_MPds0-pXHkGqRyAj6u366J2-SygA.webp"
+											style="border-radius: 50px; width: 120%;">
 									</div>
-									<div class="row">
-										<div class="col-12" style="overflow-wrap: break-word;">
-											${comment.commentDto.board_comment_content }
-											<div class="row">
-												<div class="col-12 mb-3">
-													<fmt:formatDate
-														value="${comment.commentDto.board_comment_reg_date}"
-														pattern="yyyy.MM.dd" />
-												</div>
+									<div class="col p-0">
+										<div class="row">
+											<div class="col fw-semibold">
+												${data.customerDto.customer_nickname}</div>
+										</div>
+										<div class="row">
+											<div class="col text-secondary">
+												<span class="me-3"> <fmt:formatDate
+														value="${data.boardDto.board_reg_date}"
+														pattern="yyyy.MM.dd" /></span> <span> 조회수
+													${data.boardDto.board_read_count} </span>
 											</div>
 										</div>
 									</div>
-								</c:forEach>
+								</div>
 							</div>
 						</div>
-						<div class="row fixed-bottom bg-white">
-							<div class="col-12 border-top">
-								<form action="./insertComment" method="post">
-									<div class="row">
-										<div class="col-10 ps-4 pt-1">
-											<textarea class="form-control-plaintext"
-												name="board_comment_content" placeholder="댓글을 남겨보세요"
-												style="height: 40px;"></textarea>
-											<input type="hidden" name="board_no"
-												value="${data.boardDto.board_no}">
-										</div>
-										<div class="col-2">
-											<c:choose>
-												<c:when test="${empty customerUser}">
-													<a href="../customer/login"><i
-														class="btn bi bi-arrow-up-circle-fill"
-														style="font-size: 1.6em;"></i></a>
-												</c:when>
-												<c:otherwise>
-													<button class="btn bi bi-arrow-up-circle-fill"
-														type="submit" style="font-size: 1.6em;"></button>
-												</c:otherwise>
-											</c:choose>
+					</div>
+					<div class="row">
+						<div class="col mt-2 border-bottom"></div>
+					</div>
+					<div class="row">
+						<div class="col ps-2 ms-1 py-1">
+							<span class="badge rounded-pill text-bg-dark">${data.pointProdCategoryDto.board_category_name}</span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col fw-semibold fs-4">${data.boardDto.board_title}</div>
+					</div>
+					<div class="row">
+						<div class="col mt-1">${data.boardDto.board_content}</div>
+					</div>
+					<div class="row">
+						<div class="col mt-2">
+							<c:forEach items="${data.imageDtoList}" var="imageDto">
+								<img src="/uploadFiles/${imageDto.board_image_link}"
+									class="w-50">
+							</c:forEach>
+						</div>
+					</div>
+					<form action="./insertLikeProcess" method="post">
+						<input type="hidden" value="${data.boardDto.board_no}"
+							name="board_no">
+						<div class="row">
+							<div class="col-4"></div>
+							<div class="col-4 mt-3 text-center">
+								<button type="submit" class="btn btn-outline-danger">
+									<i class="bi bi-hand-thumbs-up">${countLikeByBoardNo}</i>
+								</button>
+							</div>
+							<div class="col-4"></div>
+						</div>
+					</form>
+					<div class="row">
+						<div class="col-12 mt-3 border-top"></div>
+					</div>
+					<!-- 댓글 여러개 보이게 하기 -->
+					<div class="row">
+						<div class="col-12 fw-bold fs-5 mt-3">댓글
+							${countCommentByBoardNo}</div>
+					</div>
+					<div class="row">
+						<div class="col-12 mt-3">
+							<c:forEach items="${commentList}" var="comment">
+								<div class="row">
+									<div class="col-12 fw-semibold">
+										${comment.customerDto.customer_nickname }</div>
+								</div>
+								<div class="row">
+									<div class="col-12" style="overflow-wrap: break-word;">
+										${comment.commentDto.board_comment_content }
+										<div class="row">
+											<div class="col-12 mb-3">
+												<fmt:formatDate
+													value="${comment.commentDto.board_comment_reg_date}"
+													pattern="yyyy.MM.dd" />
+											</div>
 										</div>
 									</div>
-								</form>
-							</div>
+								</div>
+							</c:forEach>
+						</div>
+					</div>
+					<div class="row fixed-bottom bg-white">
+						<div class="col-12 border-top">
+							<form action="./insertComment" method="post">
+								<div class="row">
+									<div class="col-10 ps-4 pt-1">
+										<textarea class="form-control-plaintext"
+											name="board_comment_content" placeholder="댓글을 남겨보세요"
+											style="height: 40px;"></textarea>
+										<input type="hidden" name="board_no"
+											value="${data.boardDto.board_no}">
+									</div>
+									<div class="col-2">
+										<c:choose>
+											<c:when test="${empty customerUser}">
+												<a href="../customer/login"><i
+													class="btn bi bi-arrow-up-circle-fill"
+													style="font-size: 1.6em;"></i></a>
+											</c:when>
+											<c:otherwise>
+												<button class="btn bi bi-arrow-up-circle-fill" type="submit"
+													style="font-size: 1.6em;"></button>
+											</c:otherwise>
+										</c:choose>
+									</div>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
