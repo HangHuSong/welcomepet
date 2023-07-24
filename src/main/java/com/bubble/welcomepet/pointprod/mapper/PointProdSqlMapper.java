@@ -10,7 +10,7 @@ import com.bubble.welcomepet.dto.LikeDto;
 import com.bubble.welcomepet.dto.PointProdDto;
 import com.bubble.welcomepet.dto.PointProdImgDto;
 import com.bubble.welcomepet.dto.PointProdOrdDto;
-import com.bubble.welcomepet.dto.Prod_CategoryDto;
+import com.bubble.welcomepet.dto.PointProdCategoryDto;
 
 public interface PointProdSqlMapper {
 
@@ -37,7 +37,7 @@ public interface PointProdSqlMapper {
 
 	public void update(BoardDto boardDto);
 
-	public Prod_CategoryDto selectByCategoryNo(int board_category_no);
+	public PointProdCategoryDto selectByCategoryNo(int board_category_no);
 
 	public int countCommentByBoardNo(int board_no); /* 댓글수 */
 

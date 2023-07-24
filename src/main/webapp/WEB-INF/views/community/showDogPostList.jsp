@@ -40,13 +40,13 @@ body{
 }
 
 #title2{
-    font-size:0.9em;
+    font-size:0.8em;
     font-weight:600;
 	line-height: 21px;
 }
 
 #else{
-    font-size: 0.75em;
+    font-size: 0.6em;
     font-weight:600;
     color: #BABABA;
 }
@@ -55,7 +55,7 @@ body{
 </head>
 <body>
 <%-- mobileStyle --%>
-  <jsp:include page="../common/topNaviCommu.jsp"></jsp:include>
+  <jsp:include page="../common/topNavi.jsp"></jsp:include>
 <%-- ----------- --%>  
 
 <div class="container body">
@@ -68,9 +68,9 @@ body{
 	</div>
 
 	<%-- 베스트 3 --%>
-	<div class="row mb-1"> 
+	<div class="row mt-5 mb-1"> 
 		<div class="col">
-			<div class="row">
+			<div class="row mt-5">
 			<c:forEach items="${bestList}" var="bestList">
 				<div class="col-12 border-bottom py-2">
 					<div class="row">
@@ -140,7 +140,7 @@ body{
 						<%-- 섬네일 --%>
 						<div class="col-2 p-0 embed-responsive embed-responsive-1by1">
 						 <c:if test="${map.checkImg > 0}">
-					   	  <img class="thum w-100 embed-responsive-item rounded" style="object-fit: cover;" alt="X" src="/uploadFiles/WelcomePet_community/${map.postImageDtoList[0].show_dog_post_images_link}" />
+					   	  <img class="thum h-80 embed-responsive-item rounded" style="object-fit: cover;" alt="X" src="/uploadFiles/WelcomePet_community/${map.postImageDtoList[0].show_dog_post_images_link}" />
 						 </c:if>						 
 						</div>
 						

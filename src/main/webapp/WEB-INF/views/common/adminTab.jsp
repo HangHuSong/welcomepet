@@ -27,6 +27,10 @@ a {
 	text-decoration: none;
 }
 
+a:hover {
+	    color: inherit;       
+	}
+
 #sidebar {
 	color: white;
 	height: 200vh;
@@ -59,7 +63,7 @@ a {
 		aria-orientation="vertical">
 		<div class="row mt-4" id="topLogo">
 			<div class="col ms-2">
-				<span class="text-border fw-bold">${sessionUser.emp_name }님,</span> <br>
+				<span class="text-secondary fw-bold">${sessionUser.emp_name }님,</span> <br>
 				<img id="logo" src="/welcomepet/resources/img/whiteLogo.png">
 			</div>
 		</div>

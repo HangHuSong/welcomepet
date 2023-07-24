@@ -129,4 +129,6 @@ public interface AdminSqlMapper {
 	public ProductOptionDto getProductOptionByNo(int product_option_no);
 
 	public ProductDto getProductByNo(int product_no);
+
+	public List<OrderProductDto> getCustomerOrders(int customer_no);
 }

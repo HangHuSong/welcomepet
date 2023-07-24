@@ -128,27 +128,26 @@ function reloadReviewList() {
 				  const reviewImgList = data.reviewImgList;
 				  if (reviewImgList && reviewImgList.length > 0) {
 					  
-					  const rowReview = document.createElement("div");
-					  rowReview.classList.add("row");
-					  rowReview.classList.add("mt-2");
-
-					  const colImage = document.createElement("div");
-					  colImage.classList.add("col");
+						 
+					 const imageContainer = document.createElement("div");
+				 imageContainer.classList.add("row","mt-2","embed-responsive", "embed-responsive-1by1");
+				 row1.appendChild(imageContainer);
 					  
-				    const imageContainer = document.createElement("div");
-				    imageContainer.classList.add("embed-responsive", "embed-responsive-1by1");
-				    colImage.appendChild(imageContainer);
 
 				    for (const reviewImg of reviewImgList) {
+				    	
+					const colImage = document.createElement("div");
+					 colImage.classList.add("col-3");
+					    
 				      const img = document.createElement("img");
 				      img.src = "/uploadFiles/WelcomePet/" + reviewImg.product_review_images_link; // 이미지 URL 또는 경로 설정
 				      img.alt = "리뷰 이미지";
 				      img.classList.add("review-image", "embed-responsive-item");
-				      imageContainer.appendChild(img);
+				      colImage.appendChild(img);
+				      imageContainer.appendChild(colImage);
 				    }
 				    
-				    rowReview.appendChild(colImage);
-				    row1.appendChild(rowReview);
+
 				  }
 
 				 
@@ -737,7 +736,7 @@ function getRelatedList() {
 
 		      relatedListContainer.appendChild(swiperContainer);
 
-		for(data of response.relatedProudctList) {
+		for(data of response.relatedProductList) {
 			
 			const col1 = document.createElement("div");
 			col1.classList.add("col-4", "embed-responsive", "embed-responsive-4by3", "ps-3","swiper-slide");
@@ -774,7 +773,7 @@ function getRelatedList() {
 			
 			const rowName = document.createElement("div");
 			rowName.classList.add("row", "r_name")
-			rowName.setAttribute("onclick","productDetail=product_no=?"+ data.productInfo.product_no);
+			rowName.setAttribute("onclick","location.href='./productDetail?product_no="+data.productInfo.product_no+"'");
 			col1.appendChild(rowName);
 			
 			
@@ -878,7 +877,7 @@ function getRelatedList() {
 	
 
 
-	xhr.open("get", "./relatedProudct?main_category_no="+categoryNo);
+	xhr.open("get", "./relatedProduct?main_category_no="+categoryNo);
 	xhr.send();	
 }
 
@@ -1008,9 +1007,7 @@ window.addEventListener("DOMContentLoaded", function(){
 .bi-heart{
  filter: opacity(0.5);
 }
-.price_text{
-	font-size: 0.8em;
-}
+
 .fsmid {
 	font-size: 0.8em;
 	margin-top:0.5em;
@@ -1024,6 +1021,11 @@ window.addEventListener("DOMContentLoaded", function(){
     line-height: 1em;
     height: 2em; /* line-height 가 1.2em 이고 3라인을 자르기 때문에 height는 1.2em * 3 = 3.6em */
 }
+
+.price_text{
+	font-size: 0.8em;
+}
+
 .real_price{
  font-size: 0.7em;
  text-decoration: line-through;
@@ -1047,7 +1049,8 @@ window.addEventListener("DOMContentLoaded", function(){
 }
 
 .review-image {
-	width: 7em;
+	width: 100%;
+	height: 4.5em;;
 }
 
 .star-icon {
@@ -1221,7 +1224,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		<div class="row mt-2 empty"></div>
 			<div class="row mt-2">
 		 		<div class="row mt-2 ps-3">
-		 	 	<div class="col fw-bold">
+		 	 	<div class="col ms-1 fw-bold">
 		 	 		이 상품과 비슷한 상품
 		 	 	</div>
 		 		</div>
