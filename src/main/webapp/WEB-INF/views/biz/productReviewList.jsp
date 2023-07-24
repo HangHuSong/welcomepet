@@ -18,109 +18,107 @@
 
 </head>
 <body>
-	<div class="container">
-		<div class="row">
-			<div class="col">
-				<jsp:include page="../common/bizTopNavi.jsp"></jsp:include>
-			</div>
-		</div>
-		<div class="row text-center">
-			<div class="col-2"><jsp:include
+	<div class="container" style="margin: 0 0;">
+
+		<div class="row" style="width: 1900px;">
+			<div
+				class="col-2 text-center ps-4 text-white d-flex align-items-stretch align-top"
+				style="background-color: rgb(29, 33, 42);"><jsp:include
 					page="../common/bizLeftNavi.jsp"></jsp:include></div>
-			<div class="col-10 my-3">
-				<div class="row my-2 mx-2">
-					<div class="col fs-4 bold text-start">리뷰관리</div>
-				</div>
-				<div class="row my-2 mx-2 border">
-					<div class="col">
-						<div class="row border-bottom py-2">
-							<div class="col fw-bold text-start">
-								조회하기<i class="far fa-info-circle" onclick="getSelectInform()"></i>
-							</div>
-						</div>
-						<div class="row py-2 border-bottom">
-							<div class="col align-self-center">조회기간</div>
-							<div class="col">
-								<input type="date" class="form-control" id="start_date">~<input
-									type="date" class="form-control" id="end_date">
-							</div>
-						</div>
-						<div class="row justify-content-end py-2">
-							<div class="col-2 d-grid">
-								<button class="btn btn-secondary" onclick="getReviewListByDate()">검색</button>
-							</div>
-							<div class="col-2 d-grid">
-								<button class="btn btn-outline-secondary"
-									onclick="resetSelect()">초기화</button>
-							</div>
-						</div>
+			<div class="col-8 px-0">
+				<div class="row mx-1">
+					<div class="col text-center">
+						<jsp:include page="../common/bizTopNavi.jsp"></jsp:include>
 					</div>
 				</div>
-				<div class="row my-2 mx-2">
-					<div class="col border">
-						<div class="row py-2 border-bottom">
-							<div class="col fs-5 text-start">리뷰목록</div>
+				<div class="row mx-5 text-center">
+					<div class="col">
+						<div class="row my-2">
+							<div class="col fs-5 fw-bold text-start py-3">리뷰관리</div>
 						</div>
-
-						<div class="row" id="orderList">
+						<div class="row my-2 bg-light px-5">
 							<div class="col">
-								<div class="table-responsive">
-									<table class="table text-nowrap">
-										<thead>
-											<tr>
-												<th scope="col">구매자평점</th>
-												<th scope="col">상품번호</th>
-												<th scope="col">상품명</th>
-												<th scope="col">리뷰내용</th>
-												<th scope="col">리뷰도움수</th>
-												<th scope="col">사진첨부</th>
-												<th scope="col">등록자</th>
-												<th scope="col">리뷰작성일</th>
-												<th scope="col">리뷰보기</th>
-											</tr>
-										</thead>
-										<tbody>
-											<c:forEach items="${reviewList }" var="review">
-												<tr>
+								<div class="row mt-5">
+									<div class="col">
+										<div class="row border bg-white">
+											<div class="col-3 border-end py-2">조회기간</div>
+											<div class="col py-2 text-start">
+												<input type="date" id="start_date">~<input
+													type="date" id="end_date">
+											</div>
+										</div>
+										<div class="row justify-content-center my-5">
+											<div class="col-2 d-grid">
+												<button class="btn btn-dark" onclick="getReviewListByDate()">검색</button>
+											</div>
+											<div class="col-2 d-grid">
+												<button class="btn btn-outline-dark" onclick="resetSelect()">초기화</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row my-5">
+							<div class="col">
+								<div class="row" id="orderList">
+									<div class="col">
+										<div class="table-responsive">
+											<table class="table text-nowrap table-bordered">
+												<thead class="table-light">
+													<tr>
+														<th scope="col">구매자평점</th>
+														<th scope="col">상품번호</th>
+														<th scope="col">상품명</th>
+														<th scope="col">리뷰내용</th>
+														<th scope="col">리뷰도움수</th>
+														<th scope="col">사진첨부</th>
+														<th scope="col">등록자</th>
+														<th scope="col">리뷰작성일</th>
+														<th scope="col">리뷰보기</th>
+													</tr>
+												</thead>
+												<tbody>
+													<c:forEach items="${reviewList }" var="review">
+														<tr>
 
-													<td>
-													<c:forEach begin="1"
-															end="5"
-															varStatus="i">
-															<c:if
-																test="${i.count <= review.productReviewDto.product_review_rating}">
-																<i class="fas fa-star"></i>
-															</c:if>
-															<c:if
-																test="${i.count > review.productReviewDto.product_review_rating}">
-																<i class="far fa-star"></i>
-															</c:if>
-														</c:forEach></td>
-													<td>${review.productOptionDto.product_option_no }</td>
-													<td>${review.productOptionDto.product_option_name }</td>
-													<td>${review.productReviewDto.product_review_context }</td>
-													<td>${review.reviewLikesNum}</td>
-													<td><c:if
-															test="${empty review.productReviewImagesDtoList}">
+															<td class="text-danger"><c:forEach begin="1" end="5" varStatus="i">
+																	<c:if
+																		test="${i.count <= review.productReviewDto.product_review_rating}">
+																		<i class="fas fa-star"></i>
+																	</c:if>
+																	<c:if
+																		test="${i.count > review.productReviewDto.product_review_rating}">
+																		<i class="far fa-star"></i>
+																	</c:if>
+																</c:forEach></td>
+															<td>${review.productOptionDto.product_option_no }</td>
+															<td>${review.productOptionDto.product_option_name }</td>
+															<td>${review.productReviewDto.product_review_context }</td>
+															<td>${review.reviewLikesNum}</td>
+															<td><c:if
+																	test="${empty review.productReviewImagesDtoList}">
 															미포함
 														</c:if> <c:if test="${!empty review.productReviewImagesDtoList}">
 															포함
 														</c:if></td>
-													<td>${review.customerDto.customer_nickname }</td>
-													<td><fmt:formatDate
-															value="${review.productReviewDto.product_review_reg_date }"
-															pattern="yyyy.MM.dd" /></td>
-													<td>
-														<button class="btn btn-sm btn-outline-secondary"
-															data-bs-toggle="modal"
-															data-bs-target="#reviewDetailModal"
-															onclick='showModal(${review.jsonData})'>리뷰보기</button>
-													</td>
-												</tr>
-											</c:forEach>
+															<td>${review.customerDto.customer_nickname }</td>
+															<td><fmt:formatDate
+																	value="${review.productReviewDto.product_review_reg_date }"
+																	pattern="yyyy.MM.dd" /></td>
+															<td>
+																<button class="btn btn-sm btn-outline-secondary"
+																	data-bs-toggle="modal"
+																	data-bs-target="#reviewDetailModal"
+																	onclick='showModal(${review.jsonData})'>리뷰보기</button>
+															</td>
+														</tr>
+													</c:forEach>
 
-										</tbody>
-									</table>
+												</tbody>
+											</table>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -137,34 +135,36 @@
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
-				<div class="modal-body text-center">
-					<div class="row my-2">
+				<div class="modal-body text-start">
+					<div class="row my-2 mx-2">
 						<div class="col border">
 							<div class="row">
-								<div class="col">
+								<div class="col bg-light">
 									<div class="row border-bottom">
-										<div class="col-3 bg-light">상품명</div>
-										<div class="col" id="productName"></div>
+										<div class="col-2 py-2 border-end">상품명</div>
+										<div class="col bg-white py-2" id="productName"></div>
 									</div>
 									<div class="row border-bottom">
-										<div class="col-3 bg-light">옵션</div>
-										<div class="col" id="productOptionName"></div>
+										<div class="col-2 py-2 border-end">작성자</div>
+										<div class="col bg-white py-2 border-end"
+											id="customerNickName"></div>
+										<div class="col-2 py-2 border-end">작성일</div>
+										<div class="col bg-white py-2" id="reviewRegDate"></div>
 									</div>
 									<div class="row border-bottom">
-										<div class="col-3 bg-light">작성일</div>
-										<div class="col" id="reviewRegDate"></div>
+										<div class="col-2 py-2 border-end">옵션</div>
+										<div class="col bg-white py-2" id="productOptionName"></div>
 									</div>
 									<div class="row border-bottom">
-										<div class="col-3 bg-light">작성자</div>
-										<div class="col" id="customerNickName"></div>
+										<div class="col-2 py-2 border-end">별점</div>
+										<div class="col bg-white text-danger py-2" id="rating"></div>
 									</div>
 									<div class="row border-bottom">
-										<div class="col-3 bg-light">별점</div>
-										<div class="col" id="rating"></div>
+										<div class="col-2 bg-light border-end py-2 align-self-center">내용</div>
+										<div class="col bg-white py-2" id="reviewContext"></div>
 									</div>
-									<div class="row">
-										<div class="col-3 bg-light">내용</div>
-										<div class="col" id="reviewContext"></div>
+									<div class="row" id="reviewImages">
+										<div class="col-2 py-2 border-end align-self-center">리뷰이미지</div>
 									</div>
 								</div>
 							</div>
@@ -188,7 +188,32 @@
 		}
 		function showModal(reviewData){
 			
-			// 주문정보
+			const reviewImages=document.getElementById("reviewImages");
+			reviewImages.innerHTML='';
+			
+			const imageTitleCol=document.createElement('div');
+			imageTitleCol.classList.add('col-2', 'py-2', 'border-end', 'align-self-center');
+			imageTitleCol.innerText='이미지';
+			
+			reviewImages.appendChild(imageTitleCol);
+			
+			if(reviewData.productReviewImagesDtoList!=null){
+				for(productReviewImageDto of reviewData.productReviewImagesDtoList){
+					const col=document.createElement('div');
+					col.classList.add('col-2','px-0');
+					reviewImages.appendChild(col);
+					
+					const img=document.createElement('img');
+					img.classList.add('w-100');
+					img.src="/uploadFiles/WelcomePet/"+productReviewImageDto.product_review_images_link;
+					col.appendChild(img);
+					
+					const col2=document.createElement('div');
+					col2.classList.add('col','px-0','bg-white');
+					reviewImages.appendChild(col2);
+				}
+			}
+			
 	        const productName = document.getElementById("productName");
 	        productName.innerText = reviewData.productDto.product_name;
 			
@@ -208,7 +233,19 @@
 	        customerNickName.innerText = reviewData.customerDto.customer_nickname;
 	
 	        const rating = document.getElementById("rating");
-	        rating.innerText = reviewData.productReviewDto.product_review_rating;
+	        rating.innerHtml='';
+	        for(var star=1;star<=reviewData.productReviewDto.product_review_rating;star++){
+	        	const starIcon=document.createElement('i');
+	        	starIcon.classList.add('fas','fa-star');
+	        	rating.appendChild(starIcon);
+	        }
+	        for(var star=1;star<=5-reviewData.productReviewDto.product_review_rating;star++){
+	        	const starIcon=document.createElement('i');
+	        	starIcon.classList.add('far','fa-star');
+	        	rating.appendChild(starIcon);
+	        }
+	        const textNode = document.createTextNode(reviewData.productReviewDto.product_review_rating);
+	        rating.appendChild(textNode);
 	
 	        const reviewContext = document.getElementById("reviewContext");
 	        reviewContext.innerText = reviewData.productReviewDto.product_review_context;

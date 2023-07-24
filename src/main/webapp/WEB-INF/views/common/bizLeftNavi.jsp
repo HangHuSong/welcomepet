@@ -14,29 +14,50 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
+	href="https://fonts.googleapis.com/css2?family=Dongle&display=swap"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap"
+	rel="stylesheet">
+<link
 	href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap"
 	rel="stylesheet">
 
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
 	rel="stylesheet">
+
+<style type="text/css">
+@font-face {
+	font-family: 'GmarketSansMedium';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+</style>
 </head>
 <body>
 
 	<div class="row">
 		<div class="col">
-			<div class="row py-2 px-2">
+			<div class="row py-2 px-3">
 				<div class="col">
-					<div class="row text-start">
-						<div class="col" style="font-family: 'Do Hyeon', sans-serif;">
-							<span class="fs-2">어서오개</span> <span class="fs-4">
-								business</span>
+					<div class="row">
+						<div class="col fw-bold btn text-white text-start"
+							onclick="location.href='./main'">
+							<div class="row">
+								<div class="col " style="font-family: 'GmarketSansMedium'">어서오개</div>
+							</div>
+							<div class="row">
+								<div class="col fs-3" style="font-family: 'GmarketSansMedium'">seller office</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="row text-start"
-				style="background-color: rgb(29, 33, 42);">
+			<div class="row text-start">
 				<div class="col">
 					<div class="row">
 						<div class="col px-4 py-2 d-grid">

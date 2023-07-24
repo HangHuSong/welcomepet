@@ -151,7 +151,7 @@
 														<div class="row">
 															<div class="col" style="font-size: 12px;">
 																<span class="text-secondary">스토어찜</span> <span
-																	class="text-info">10명</span>
+																	class="text-info">${biz_likes_num }명</span>
 															</div>
 														</div>
 													</div>
@@ -187,9 +187,9 @@
 										<div class="row py-3 px-2 border-bottom">
 											<div class="col fs-5 fw-bold">주문/배송</div>
 										</div>
-										<div class="row py-4">
+										<div class="row">
 											<div class="col">
-												<div class="row">
+												<div class="row py-4 border-bottom">
 													<div class="col py-1">
 														<div class="row align-items-center">
 															<div class="col">
@@ -200,7 +200,7 @@
 														</div>
 													</div>
 												</div>
-												<div class="row">
+												<div class="row py-4 border-bottom">
 													<div class="col py-1">
 														<div class="row align-items-center">
 															<div class="col">
@@ -211,7 +211,7 @@
 														</div>
 													</div>
 												</div>
-												<div class="row">
+												<div class="row py-4 border-bottom">
 													<div class="col py-1">
 														<div class="row align-items-center">
 															<div class="col">
@@ -222,7 +222,7 @@
 														</div>
 													</div>
 												</div>
-												<div class="row">
+												<div class="row py-4">
 													<div class="col py-1">
 														<div class="row align-items-center">
 															<div class="col">
@@ -240,17 +240,17 @@
 										<div class="row py-3 px-2 border-bottom">
 											<div class="col fs-5 fw-bold">취소/환불/교환</div>
 										</div>
-										<div class="row py-2 px-2">
+										<div class="row px-2">
 											<div class="col">
-												<div class="row py-3 align-items-center border-bottom">
+												<div class="row align-items-center border-bottom" style="padding:43px 0;">
 													<div class="col">취소요청</div>
 													<div class="col text-primary fs-4 fw-bold text-center">${cancelRefundExchangeNumData.cancelRequestNum }</div>
 												</div>
-												<div class="row py-3 align-items-center border-bottom">
+												<div class="row align-items-center border-bottom" style="padding:43px 0;">
 													<div class="col">환불요청</div>
 													<div class="col text-primary fs-4 fw-bold text-center">${cancelRefundExchangeNumData.returnRequestNum }</div>
 												</div>
-												<div class="row py-3 align-items-center">
+												<div class="row align-items-center" style="padding:43px 0;">
 													<div class="col">교환요청</div>
 													<div class="col text-primary fs-4 fw-bold text-center">${cancelRefundExchangeNumData.exchangeRequestNum }</div>
 												</div>
@@ -275,7 +275,7 @@
 										</div>
 										<div class="row py-2">
 											<div class="col">
-												<div class="row border-bottom px-2">
+												<div class="row border-bottom px-2 py-2">
 													<div class="col">
 														<div class="row">
 															<div class="col align-self-center">오늘 결제금액</div>
@@ -294,7 +294,7 @@
 														</div>
 													</div>
 												</div>
-												<div class="row my-2 border-bottom px-2">
+												<div class="row my-2 border-bottom px-2 py-2">
 													<div class="col">
 														<div class="row">
 															<div class="col align-self-center">이번주 결제금액</div>
@@ -314,7 +314,7 @@
 														</div>
 													</div>
 												</div>
-												<div class="row my-2 border-bottom px-2">
+												<div class="row my-2 border-bottom px-2 py-2">
 													<div class="col">
 														<div class="row">
 															<div class="col align-self-center">오늘 결제건수</div>
@@ -334,7 +334,7 @@
 														</div>
 													</div>
 												</div>
-												<div class="row px-2">
+												<div class="row px-2 py-2">
 													<div class="col">
 														<div class="row">
 															<div class="col align-self-center">이번주 결제건수</div>

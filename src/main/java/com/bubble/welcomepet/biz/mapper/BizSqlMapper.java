@@ -32,6 +32,8 @@ public interface BizSqlMapper {
 
 	public void createKakaoBiz(BizDto loginUser);
 
+	public int getBizLikesNumByBizNo(int biz_no);
+
 	
 
 

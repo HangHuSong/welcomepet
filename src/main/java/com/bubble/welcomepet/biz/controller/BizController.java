@@ -67,7 +67,9 @@ public class BizController {
 			Map<String,Object> storeGradeData=bizService.getPurchaseConfirmationAndremainingAmountToNextGradeData(bizUser.getBiz_no());
 			Map<String,Object> paymentData=bizService.getTodayAndWeeklyPaymentData(bizUser.getBiz_no());
 			Map<String,Object> top5ProductData=bizService.getTop5ProductData(bizUser.getBiz_no());
+			int biz_likes_num=bizService.getBizLikesNumByBizNo(bizUser.getBiz_no());
 			
+			model.addAttribute("biz_likes_num", biz_likes_num);
 			model.addAttribute("alarmData", alarmData);
 			model.addAttribute("newRequestNumData", newRequestNumData);
 			model.addAttribute("orderStatusNumData", orderStatusNumData);

@@ -3,10 +3,13 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bubble.welcomepet.biz.mapper.BizSqlMapper">
 	<!-- 판매자 -->
-	<select id="getBizByIdAndEmail" resultType="com.bubble.welcomepet.dto.BizDto">
-		SELECT * FROM biz WHERE biz_id=#{biz_id} AND biz_email=#{biz_email}
+	<select id="getBizByIdAndEmail"
+		resultType="com.bubble.welcomepet.dto.BizDto">
+		SELECT * FROM biz WHERE biz_id=#{biz_id} AND
+		biz_email=#{biz_email}
 	</select>
-	<select id="getBizByNo" resultType="com.bubble.welcomepet.dto.BizDto">
+	<select id="getBizByNo"
+		resultType="com.bubble.welcomepet.dto.BizDto">
 		SELECT * FROM biz WHERE biz_no=#{biz_no}
 	</select>
 	<select id="createBizNo" resultType="int">
@@ -80,5 +83,10 @@
 		SELECT * FROM biz_approval
 		WHERE
 		biz_approval_request_no=#{biz_approval_request_no}
+	</select>
+
+	<!-- 판매자 좋아요 -->
+	<select id="getBizLikesNumByBizNo" resultType="int">
+		SELECT COUNT(*) FROM biz_wish_list WHERE biz_no=#{biz_no}
 	</select>
 </mapper>
