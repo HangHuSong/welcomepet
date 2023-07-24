@@ -737,7 +737,7 @@ function getRelatedList() {
 
 		      relatedListContainer.appendChild(swiperContainer);
 
-		for(data of response.relatedProudctList) {
+		for(data of response.relatedproductList) {
 			
 			const col1 = document.createElement("div");
 			col1.classList.add("col-4", "embed-responsive", "embed-responsive-4by3", "ps-3","swiper-slide");
@@ -750,6 +750,7 @@ function getRelatedList() {
 			
 			const colImg =	document.createElement("div");
 			colImg.classList.add("col");
+			colImg.setAttribute("onclick","location.href='./productDetail?product_no="+data.productInfo.product_no+"'");
 			colImg.style.position = "relative";
 			rowImg.appendChild(colImg);
 			
@@ -774,7 +775,7 @@ function getRelatedList() {
 			
 			const rowName = document.createElement("div");
 			rowName.classList.add("row", "r_name")
-			rowName.setAttribute("onclick","productDetail=product_no=?"+ data.productInfo.product_no);
+			rowName.setAttribute("onclick","location.href='./productDetail?product_no="+data.productInfo.product_no+"'");
 			col1.appendChild(rowName);
 			
 			
@@ -878,7 +879,7 @@ function getRelatedList() {
 	
 
 
-	xhr.open("get", "./relatedProudct?main_category_no="+categoryNo);
+	xhr.open("get", "./relatedproduct?main_category_no="+categoryNo);
 	xhr.send();	
 }
 
@@ -1008,9 +1009,7 @@ window.addEventListener("DOMContentLoaded", function(){
 .bi-heart{
  filter: opacity(0.5);
 }
-.price_text{
-	font-size: 0.8em;
-}
+
 .fsmid {
 	font-size: 0.8em;
 	margin-top:0.5em;
@@ -1024,6 +1023,11 @@ window.addEventListener("DOMContentLoaded", function(){
     line-height: 1em;
     height: 2em; /* line-height 가 1.2em 이고 3라인을 자르기 때문에 height는 1.2em * 3 = 3.6em */
 }
+
+.price_text{
+	font-size: 0.8em;
+}
+
 .real_price{
  font-size: 0.7em;
  text-decoration: line-through;

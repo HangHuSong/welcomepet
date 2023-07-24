@@ -81,6 +81,8 @@ public interface CustomerMapper {
 	
 	public List<ProductDto> getProductInfoByMainCategory(int main_category_no);
 	
+	public List<ProductDto> getProductInfoByBiz(int biz_no);
+	
 	public CategoryDto getSubCategory(int sub_category_no);
 	
 	public CategoryDto getMainCategory(int main_category_no);

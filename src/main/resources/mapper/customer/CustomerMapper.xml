@@ -207,6 +207,11 @@
 	 
 
 	<!-- 상품 관련 -->
+	
+		<select id="getProductInfoByBiz"
+		resultType="com.bubble.welcomepet.dto.ProductDto">
+		select * from product where biz_no = #{biz_no}
+	</select>
 
 	<select id="getProductInfoByNo"
 		resultType="com.bubble.welcomepet.dto.ProductDto">
