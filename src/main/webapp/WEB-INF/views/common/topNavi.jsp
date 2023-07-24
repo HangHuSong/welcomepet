@@ -40,7 +40,7 @@ body {
 									<i class="btn bi bi-chevron-left p-0" style="border: transparent; outline: none; font-size: 1.5em;"></i>
 								</a>
 							</div>
-							<div class="col-8 mt-2 text-center fw-bold"s>커뮤니티</div>
+							<div class="col-8 mt-2 text-center fw-bold" style="color: #fd7e14;">어서소통하개</div>
 							<div class="col-2"></div>
 						</div>
 						<div class="row my-2">
@@ -48,11 +48,8 @@ body {
 						</div>
 						<div class="row text-dark text-center" style="font-size: 0.9em;">
 							<div class="col my-1">
-								<div class="row">
-									<div class="col">
-										<a class="nav-link" href="/welcomepet/snap/main">스냅</a>
-									</div>
-									<div class="col">
+								<div class="row">.
+									<div class="col"> 
 										<a class="nav-link"
 											href="/welcomepet/pointProd/board">자유게시판</a>
 									</div>
