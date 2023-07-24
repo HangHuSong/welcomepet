@@ -150,6 +150,7 @@
 			<%@ include file="../common/adminTab.jsp"%>
 			<div class="col-1"></div>
 			<div class="col-9">
+				<div class="row mt-5"></div>
 				
 				<div class="row mt-5">
 					<div class="col-6">
@@ -166,12 +167,12 @@
 				</div>	
 				<hr>
 				
-				<div class="row mt-3">
+				<!-- <div class="row mt-3">
 					<div class="col">
-						<h3>주문 history</h3>
+						<h4>최근 주문내역</h4>
 					</div>
 				</div>
-				<hr>
+				<hr> -->
 				
 				<%-- <div class="row mt-3">
 					<div class="col-6">
@@ -211,7 +212,7 @@
 				<div class="row mt-5">
 					
 					<div class="col-8">
-						<h3>정지 history</h3>
+						<h4>정지 history</h4>
 						<c:if test="${!empty banHistory }">
 							<table class="table table-bordered">
 								<tr>

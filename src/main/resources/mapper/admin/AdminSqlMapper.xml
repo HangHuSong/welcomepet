@@ -472,4 +472,11 @@
 			FROM product
 			WHERE product_no = #{product_no}
 		</select>
+		
+		<select id="getCustomerOrders" resultType="com.bubble.welcomepet.dto.OrderProductDto">
+			SELECT op.*
+			FROM order_product op
+			INNER JOIN orders o on op.orders_no = o.orders_no
+			WHERE o.customer_no = #{customer_no}
+		</select>
 </mapper>
