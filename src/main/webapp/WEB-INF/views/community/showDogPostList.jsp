@@ -55,7 +55,7 @@ body{
 </head>
 <body>
 <%-- mobileStyle --%>
-  <jsp:include page="../common/topNaviCommu.jsp"></jsp:include>
+  <jsp:include page="../common/topNavi.jsp"></jsp:include>
 <%-- ----------- --%>  
 
 <div class="container body">
@@ -68,9 +68,9 @@ body{
 	</div>
 
 	<%-- 베스트 3 --%>
-	<div class="row mb-1"> 
+	<div class="row mt-5 mb-1"> 
 		<div class="col">
-			<div class="row">
+			<div class="row mt-5">
 			<c:forEach items="${bestList}" var="bestList">
 				<div class="col-12 border-bottom py-2">
 					<div class="row">
