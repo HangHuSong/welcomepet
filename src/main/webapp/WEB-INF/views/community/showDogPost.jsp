@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>showDogPostLikes.jsp</title>
+<title>showDogPost.jsp</title>
 <%------ bootstrap ------%>
 <%-- viewport --%>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,6 +16,13 @@
 	crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <%------ bootstrap ------%>
+
+<%-- font link --%>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<%-- font link --%>
+
 <script type="text/javascript">
  <%-- ajax --%>
  	<%-- 좋아요 
@@ -40,7 +47,6 @@
 	            console.error('요청이 실패하였습니다.');
 	        }
 	    };
-		
 
 	    // 요청을 보낼 URL 설정
 	    var url = './registerComment'; // 데이터를 받아올 URL
@@ -52,7 +58,6 @@
 	    xhr.send('show_dog_comment_content=' + commentValue + "&show_dog_post_no=" + postId);				
 		
  	}
- 	
  
  	<%-- 댓글리스트 --%>
 	function reloadComment(){
@@ -78,8 +83,7 @@
 	            	
 	            	newNode.querySelector(".date").innerText = date.getFullYear() + "." + (date.getMonth() + 1) + "." + date.getDay();
 	            	
-	            	
-	            	
+
 	            	commentRootBox.appendChild(newNode);
 	            }
 	            
@@ -100,26 +104,37 @@
 	    // 요청 보내기
 	    xhr.send();		
 		
-	}
-	
+	}	
 	<%-- ------ --%>
  
 	window.addEventListener("DOMContentLoaded", function(){
 		reloadComment();
 	});
 	
-	
  <%-- ajax --%>
-
 </script>
 
 <style>
-  #postImg {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-  }
+/* 글꼴설정 */
+body{
+	font-family: 'Gothic A1', sans-serif !important;
+}
+.nickname{
+	font-size: 0.9em;
+	font-weight:600;
+}
+.date{
+	font-size: 0.75em;
+}
+
+
+/* 게시글 이미지 */
+#postImg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+} 
 </style>
 </head>
 <body>
@@ -268,7 +283,6 @@
 					 	</div>
 				 	</form>
 				 	
-				 	
 				 </div>
 			</div>
 		</div>
@@ -286,10 +300,7 @@
 		 <div class="col-6 fw-bold text-secondary mb-3" style="font-size: 10pt;">
 		 </div>		 
 		 
-		 
-		 <%-- 여기서부터 주석 --%>
 		 <div class="col-12" id="commentRootBox">
-		 
 		 
 		 <%-- 댓글 JSP 버전 
 		  <c:forEach items="${commentData}" var="commentData">
@@ -378,7 +389,7 @@
 			 <div class="col">
 				  <div class="row">
 				  	<%-- 댓글 닉네임 --%>
-				  	<div class="col fw-bold nickname" style="font-size: 13px;">닉네임 나오는 곳</div>			  	
+				  	<div class="col nickname">닉네임</div>			  	
 				  	<%-- 댓글 수정 삭제 --%>
 				  	<div class="col text-end dropdown pe-3">
 				 	 <a class="text-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -396,7 +407,7 @@
 				  <div class="row">
 				   <%-- 댓글 데이터 --%>
 				   <div class="col-12 content">내용</div>
-				   <div class="col text-secondary date" style="font-size: 10pt;">날짜
+				   <div class="col text-secondary date">날짜
 				    답글쓰기
 				   </div>
 				  </div>
@@ -404,9 +415,6 @@
 			 
 		  </div>
 	</div>
-	
-	
-	
 	
 </div>
 <%-- 

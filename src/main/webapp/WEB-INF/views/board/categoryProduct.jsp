@@ -13,7 +13,13 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+	<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+/>
 <title>카테고리 상품</title>
+
+
 <style type="text/css">
 .product-thum {
 	height: 10em;
@@ -24,6 +30,47 @@
 
 }
 
+.swiper-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+   position: relative;
+}
+.swiper-slide {
+  width: 28%;
+}
+
+.swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+  opacity: 0.5;
+  border-radius: 50%;
+  margin: 0 5px;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
+.star-icon {
+	display: inline-block;
+	width: 1.2em;
+	height: 1.2em;
+	background-image: url('/uploadFiles/WelcomePet/icons/star-empty.png');
+	background-size: cover;
+	filter: opacity(0.5);
+}
+
+.filled {
+	display: inline-block;
+	width: 1.2em;
+	height: 1.2em;
+	background-size: cover;
+	background-image: url('/uploadFiles/WelcomePet/icons/star.png');
+	filter: none;
+	vertical-align: sub;
+}
 </style>
 </head>
 <body>
@@ -59,15 +106,22 @@
 			<div class="col-3" onclick="location.href='./categoryProduct?main_category_no=3'">용품</div>
 			<div class="col-3" onclick="location.href='./categoryProduct?main_category_no=4'">스타일</div>
 		</div>
-		<div class="row subcate mt-2 align-items-center text-center" style="overflow-x: auto; white-space: nowrap;">
-		  <div class="col-3 ps-0 text-secondary"  onclick="location.href='./categoryProduct?main_category_no=${mainCateNo}'">
+		<div class="row subcate mt-2 align-items-center text-center">
+			
+			 <div class="swiper-container ps-0">
+			 	<div class="swiper-wrapper px-0">
+		<div class="col-3 ps-0 py-2 text-secondary swiper-slide"  onclick="location.href='./categoryProduct?main_category_no=${mainCateNo}'">
 		    전체
 		  </div>
 		  <c:forEach items="${categoryInfo}" var="map">
-		    <div class="col-3 ps-0 py-2 text-secondary" onclick="location.href='./categoryProduct?main_category_no=${map.categoryDto.main_category_no}&sub_category_no=${map.categoryDto.sub_category_no }'">
+		 
+
+		    <div class="col-3 ps-0 py-2 text-secondary swiper-slide" onclick="location.href='./categoryProduct?main_category_no=${map.categoryDto.main_category_no}&sub_category_no=${map.categoryDto.sub_category_no }'">
 		      ${map.categoryDto.sub_category_name}
 		    </div>
 		  </c:forEach>
+		  </div>
+		    </div>
 		</div>
 		<div class="row mt-3 text-secondary" style="font-size: 0.8em;">
 		<div class="col ">
@@ -97,11 +151,13 @@
 					<div class="col  text-secondary" style="font-size: 0.8em;"><del>${map.productInfo.product_price}원</del></div> 
 					</div> 
 					<div class="row"> 
-					<div class="col-3 pe-0 text-danger fw-bold">
-					${map.productInfo.product_discount_rate}%
+					<div class="col pe-0  fw-bold ">
+					<span class="text-danger pe-2">
+					${map.productInfo.product_discount_rate}% </span>
+					<span>
+					${map.productInfo.product_price - map.salePrice}원
+					</span>
 					</div>
-					<div class="col fw-bold text-start">
-					${map.productInfo.product_price - map.salePrice}원</div> 
 					</div> 
 					</c:when>
 					<c:otherwise>
@@ -111,10 +167,29 @@
 					</div>
 					</c:otherwise>
 					</c:choose>
+
 				</div>
 			</c:forEach>
 		</div>
 	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+	
+		<script >
+		const swiper = new Swiper(".swiper-container", {
+		    slidesPerView: "auto",
+		    spaceBetween: 5,
+		    loop: false,
+		    navigation: {
+		      nextEl: ".swiper-button-next",
+		      prevEl: ".swiper-button-prev",
+		    },
+		    pagination: {
+		      el: ".swiper-pagination",
+		      clickable: true,
+		    },
+		  });
+		</script>
 			<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"

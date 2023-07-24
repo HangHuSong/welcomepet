@@ -17,41 +17,37 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <%------ bootstrap ------%>
 
+<%-- font link --%>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<%-- font link --%>
+
 <style type="text/css">
 .thum{
 	height:55px;
 	width:55px;
 }
 
-@font-face {
-    font-family: 'GothicA1-Light';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/GothicA1-Light.woff2') format('woff2');
-    font-style: normal;
-}
-
 body{
-	font-family:'GothicA1-Light';
+	font-family: 'Gothic A1', sans-serif !important;
 }
 
 #title1{
-    font-size:1em;
-    font-weight:600;
-    font-family:'GothicA1-Light';
-    letter-spacing: -0.3px;
+    font-size:0.9em;
+    font-weight:800;
+    letter-spacing:-0.3px;
 }
 
 #title2{
-    font-size:1.05em;
+    font-size:0.8em;
     font-weight:600;
-    font-family:'GothicA1-Light';
-    letter-spacing: -0.3px;
-    
+	line-height: 21px;
 }
 
 #else{
-    font-size: 0.7em;
+    font-size: 0.6em;
     font-weight:600;
-    font-family:'GothicA1-Light';
     color: #BABABA;
 }
 
@@ -62,7 +58,7 @@ body{
   <jsp:include page="../common/topNaviCommu.jsp"></jsp:include>
 <%-- ----------- --%>  
 
-<div class="container">
+<div class="container body">
 	
 	<%-- 배너이미지 --%>
 	<div class="row mb-1">
@@ -72,28 +68,28 @@ body{
 	</div>
 
 	<%-- 베스트 3 --%>
-	<div class="row mb-4"> 
+	<div class="row mb-1"> 
 		<div class="col">
 			<div class="row">
 			<c:forEach items="${bestList}" var="bestList">
 				<div class="col-12 border-bottom py-2">
-					<div class="row align-middle">
+					<div class="row">
 						<div class="col" onclick="location.href='./showDogPost?show_dog_post_no=${bestList.showDogPostDto.show_dog_post_no}'">
 						  <div class="row">
 						   <%-- HOT 뱃지 --%>
-						   <div class="col-auto pe-0">
+						   <div class="col-auto d-flex align-items-center pe-0">
 						   	<span class="badge rounded-pill text-bg-danger">HOT</span>    
 						   </div>
 						   <%-- 제목 --%>
-						   <div id="title1" class="col-auto ps-1 pe-0">
+						   <div id="title1" class="col-auto d-flex align-items-center ps-1 pe-0">
 							  <span class="me-1">
 							   ${bestList.showDogPostDto.show_dog_post_title}
 							  </span>
 						   </div>
 						   <%-- 이미지 유무 --%>
-						   <div class="col ps-1">
+						   <div class="col d-flex align-items-center ps-1">
 						 	<c:if test="${bestList.checkImg > 0}">
-							   	  <span style="color:#FDB959">
+							   	  <span style="color:#828282">
 							   	  <i class="bi bi-image"></i>
 							   	  </span>
 					   	    </c:if>
@@ -117,9 +113,9 @@ body{
 					<div class="row">
 						<div class="col" onclick="location.href='./showDogPost?show_dog_post_no=${map.showDogPostDto.show_dog_post_no}'">
 						  <%-- 제목 --%>
-						  <div class="row">
-						   <div class="col-12">
-							  <span id="title2">
+						  <div class="row mt-1">
+						   <div id="title2" class="col-12">
+							  <span class="text-break">
 							   ${map.showDogPostDto.show_dog_post_title}
 							  </span>						  
 						   </div>
@@ -144,7 +140,7 @@ body{
 						<%-- 섬네일 --%>
 						<div class="col-2 p-0 embed-responsive embed-responsive-1by1">
 						 <c:if test="${map.checkImg > 0}">
-					   	  <img class="thum w-100 embed-responsive-item rounded" style="object-fit: cover;" alt="X" src="/uploadFiles/WelcomePet_community/${map.postImageDtoList[0].show_dog_post_images_link}" />
+					   	  <img class="thum h-80 embed-responsive-item rounded" style="object-fit: cover;" alt="X" src="/uploadFiles/WelcomePet_community/${map.postImageDtoList[0].show_dog_post_images_link}" />
 						 </c:if>						 
 						</div>
 						
@@ -205,8 +201,8 @@ body{
 	<div class="col">
 	</div>
 	<div class="col-3 d-flex justify-content-center align-items-center">
-	 	<a class="btn btn-lg shadow rounded-circle" href="./showDogUpload" 
-	 	   style="color:white;height: 52px; background-color:#fd7e14">
+	 	<a class="btn btn-lg shadow rounded-circle d-flex justify-content-center align-items-center" href="./showDogUpload" 
+	 	   style="color:white; height:52px; background-color:#fd7e14">
 	 	<i class="bi bi-pencil-square" style="color: white;"></i></a>
 	</div>
 </div>

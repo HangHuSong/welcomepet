@@ -16,126 +16,133 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-	<div class="container">
-		<div class="row">
-			<div class="col">
-				<jsp:include page="../common/bizTopNavi.jsp"></jsp:include>
-			</div>
-		</div>
-		<div class="row text-center">
-			<div class="col-3"><jsp:include
+	<div class="container" style="margin: 0 0;">
+
+		<div class="row text-center" style="width: 1900px;">
+			<div
+				class="col-2 text-center ps-4 text-white d-flex align-items-stretch align-top"
+				style="background-color: rgb(29, 33, 42);"><jsp:include
 					page="../common/bizLeftNavi.jsp"></jsp:include></div>
-			<div class="col-9 my-3">
-				<div class="row my-2 mx-2">
-					<div class="col fs-4 bold text-start">정산내역 상세보기</div>
-				</div>
-				<div class="row my-2 mx-2 border">
+			<div class="col-8 px-0">
+				<div class="row mx-1">
 					<div class="col">
-						<div class="row border-bottom py-2">
-							<div class="col fw-bold text-start">
-								조회하기<i class="far fa-info-circle" onclick="getSelectInform()"></i>
-							</div>
-						</div>
-						<div class="row py-2 border-bottom">
-							<div class="col align-self-center">조회기간</div>
-							<div class="col">
-								<div class="row">
-									<div class="col">
-										<select class="form-select" id="yearSelect">
-											<option selected>년</option>
-											<c:forEach items="${orderPeriod.order_year }"
-												var="order_year">
-												<option value="${order_year }">${order_year }</option>
-											</c:forEach>
-										</select>
-									</div>
-									<div class="col">
-										<select class="form-select" id="monthSelect">
-											<option selected>월</option>
-											<c:forEach items="${orderPeriod.order_month }"
-												var="order_month">
-												<option value="${order_month }">${order_month }</option>
-											</c:forEach>
-										</select>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row justify-content-end py-2">
-							<div class="col-2 d-grid">
-								<button class="btn btn-primary"
-									onclick="getSettlementProductListByDate()">검색</button>
-							</div>
-							<div class="col-2 d-grid">
-								<button class="btn btn-outline-secondary"
-									onclick="resetSelect()">초기화</button>
-							</div>
-						</div>
+						<jsp:include page="../common/bizTopNavi.jsp"></jsp:include>
 					</div>
 				</div>
-
-				<div class="row my-2 mx-2">
+				<div class="row mx-5 text-center">
 					<div class="col">
-						<div class="row py-2 border-bottom border-2">
-							<div class="col fs-5 text-start">정산 내역 및 목록</div>
+						<div class="row my-2 mx-2">
+							<div class="col fs-5 fw-bold text-start py-3">정산내역 상세보기</div>
 						</div>
-						<div class="row my-3 py-2 border border-4 visually-hidden"
-							id="salesDataBox">
+						<div class="row my-2 bg-light px-5">
 							<div class="col">
-								<div class="row py-2 border-bottom">
-									<div class="col" id="salesBox"></div>
-								</div>
-								<div class="row py-2 border-bottom">
-									<div class="col" id="commissionBox"></div>
-								</div>
-								<div class="row py-2">
-									<div class="col" id="totalSalesBox"></div>
+								<div class="row my-5">
+									<div class="col">
+										<div class="row border bg-white">
+											<div class="col-3 align-self-center py-2">조회기간</div>
+											<div class="col py-2 border-start">
+												<div class="row">
+													<div class="col">
+														<select class="form-select" id="yearSelect">
+															<option selected>년</option>
+															<c:forEach items="${orderPeriod.order_year }"
+																var="order_year">
+																<option value="${order_year }">${order_year }</option>
+															</c:forEach>
+														</select>
+													</div>
+													<div class="col">
+														<select class="form-select" id="monthSelect">
+															<option selected>월</option>
+															<c:forEach items="${orderPeriod.order_month }"
+																var="order_month">
+																<option value="${order_month }">${order_month }</option>
+															</c:forEach>
+														</select>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row justify-content-center py-2 my-3">
+											<div class="col-2 d-grid">
+												<button class="btn btn-dark"
+													onclick="getSettlementProductListByDate()">검색</button>
+											</div>
+											<div class="col-2 d-grid">
+												<button class="btn btn-outline-dark" onclick="resetSelect()">초기화</button>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
-						<div class="row my-3 py-2 border border-2" id="orderList">
+						<div class="row visually-hidden mt-5" id="salesDataBox">
 							<div class="col">
-								<div class="table-responsive">
-									<table class="table text-nowrap">
-										<thead>
-											<tr>
+								<table class="table table-bordered">
+									<thead class="table-light">
+										<tr>
+											<th scope="col">결제내역 합계</th>
+											<th scope="col">결제 수수료</th>
+											<th scope="col">정산금액</th>
+										</tr>
+									</thead>
+									<tbody class="text-danger">
+										<tr>
+											<td id="salesBox"></td>
+											<td id="commissionBox"></td>
+											<td id="totalSalesBox"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								<div class="row py-2" id="orderList">
+									<div class="col">
+										<div class="table-responsive">
+											<table class="table text-nowrap table-bordered">
+												<thead class="table-light">
+													<tr>
 
-												<th scope="col">상품주문번호</th>
-												<th scope="col">주문번호</th>
-												<th scope="col">상품명</th>
-												<th scope="col">구매자명</th>
-												<th scope="col">주문일</th>
-												<th scope="col">정산상태</th>
-												<th scope="col">정산예정일</th>
-												<th scope="col">정산완료일</th>
-												<th scope="col">결제금액</th>
-											</tr>
-										</thead>
-										<tbody>
-											<c:forEach items="${orderList }" var="order">
-												<tr>
+														<th scope="col">상품주문번호</th>
+														<th scope="col">주문번호</th>
+														<th scope="col">상품명</th>
+														<th scope="col">구매자명</th>
+														<th scope="col">주문일</th>
+														<th scope="col">정산상태</th>
+														<th scope="col">정산예정일</th>
+														<th scope="col">정산완료일</th>
+														<th scope="col">결제금액</th>
+													</tr>
+												</thead>
+												<tbody>
+													<c:forEach items="${orderList }" var="order">
+														<tr>
 
-													<td>${order.orderProductDto.order_product_no }</td>
-													<td>${order.ordersDto.orders_no }</td>
-													<td>${order.productOptionDto.product_option_name }</td>
-													<td>${order.customerDto.customer_name }</td>
-													<td><fmt:formatDate
-															value="${order.ordersDto.orders_date }"
-															pattern="yyyy.MM.dd" /></td>
-													<td><c:if test="${order.isSettled==0}">미정산</c:if> <c:if
-															test="${order.isSettled ne 0}">정산완료</c:if></td>
-													<td>${order.settlementScheduledDate }</td>
-													<td><c:if test="${order.isSettled==0}">-</c:if> <c:if
-															test="${order.isSettled ne 0}">
-															<fmt:formatDate
-																value="${order.settlementProcessDto.settlement_process_date }"
-																pattern="yyyy.MM.dd" />
-														</c:if></td>
-													<td>${order.orderProductDto.order_product_price }</td>
-												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
+															<td>${order.orderProductDto.order_product_no }</td>
+															<td>${order.ordersDto.orders_no }</td>
+															<td>${order.productOptionDto.product_option_name }</td>
+															<td>${order.customerDto.customer_name }</td>
+															<td><fmt:formatDate
+																	value="${order.ordersDto.orders_date }"
+																	pattern="yyyy.MM.dd" /></td>
+															<td><c:if test="${order.isSettled==0}">미정산</c:if> <c:if
+																	test="${order.isSettled ne 0}">정산완료</c:if></td>
+															<td>${order.settlementScheduledDate }</td>
+															<td><c:if test="${order.isSettled==0}">-</c:if> <c:if
+																	test="${order.isSettled ne 0}">
+																	<fmt:formatDate
+																		value="${order.settlementProcessDto.settlement_process_date }"
+																		pattern="yyyy.MM.dd" />
+																</c:if></td>
+															<td>${order.orderProductDto.order_product_price }</td>
+														</tr>
+													</c:forEach>
+												</tbody>
+											</table>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -185,13 +192,13 @@
 			}
 			
 			const salesBox=document.getElementById("salesBox");
-			salesBox.innerText="결제내역 합계: "+response.salesData.sales+"원";
+			salesBox.innerText=response.salesData.sales+"원";
 			
 			const commissionBox=document.getElementById("commissionBox");
-			commissionBox.innerText="결제 수수료: "+response.salesData.commission+"%";
+			commissionBox.innerText=response.salesData.commission+"%";
 			
 			const totalSalesBox=document.getElementById("totalSalesBox");
-			totalSalesBox.innerText="정산금액: "+Math.floor(response.salesData.sales*(100-response.salesData.commission)/100)+"원";
+			totalSalesBox.innerText=Math.floor(response.salesData.sales*(100-response.salesData.commission)/100)+"원";
 			
 			const orderList=document.getElementById('orderList');
 			orderList.innerHTML='';
@@ -205,9 +212,10 @@
 			col.appendChild(div);
 			
 			var table = document.createElement("table");
-		    table.classList.add("table", "text-nowrap");
+		    table.classList.add("table", "text-nowrap","table-bordered");
 
 		    var thead = document.createElement("thead");
+		    thead.classList.add("table-light");
 		    var tbody = document.createElement("tbody");
 		    
 		    var tableHeaders = ["상품주문번호", "주문번호", "상품명", "구매자명", "주문일", "정산상태", "정산예정일", "정산완료일", "결제금액"];
@@ -247,19 +255,15 @@
         		tr.appendChild(ordersDateTd);
         		
         		const settlementStatusTd = document.createElement("td");
-        		const settleDateTd = document.createElement("td");
         		if(order.isSettled==0){
         			settlementStatusTd.textContent = "미정산";
-        			settleDateTd.textContent="-";
         		}else{
         			settlementStatusTd.textContent = "정산완료";
-        			settleDateTd.textContent=order.settlementProcessDto.settlement_process_date;
         		}
         		tr.appendChild(settlementStatusTd);
-        		tr.appendChild(settleDateTd);
         		
         		const settlementScheduledDateTd = document.createElement("td");
-        		settlementScheduledDateTd.textContent = order.settlementScheduledDate;
+        		settlementScheduledDateTd.textContent = formatDate(new Date(order.settlementScheduledDate));
         		tr.appendChild(settlementScheduledDateTd);
         		
         		

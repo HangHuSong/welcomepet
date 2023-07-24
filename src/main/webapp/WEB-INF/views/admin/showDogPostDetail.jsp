@@ -14,17 +14,6 @@
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 	crossorigin="anonymous">
 <style>
-.sidebar {
-	height: 100vh;
-	background-color: #f8f9fa;
-	padding-top: 20px;
-}
-/* 링크 스타일 제거 */
-    a {
-        color: inherit;
-        text-decoration: none;
-    }
-    
 </style>
 </head>
 
@@ -37,7 +26,7 @@
 			<div class="col-9">
 				<div class="row mt-5">
 					<div class="col-6">
-						<h3>${map.showDogPostDto.show_dog_post_title }</h3>
+						<h3 class="fw-bold">${map.showDogPostDto.show_dog_post_title }</h3>
 					</div>
 					<div class="col text-end">
 						작성자 : ${map.customerDto.customer_nickname } 
@@ -45,7 +34,7 @@
 				</div>
 				<div class="row mt-5">
 					<div class="col-8">
-						<p>${map.showDogPostDto.show_dog_post_content}</p>
+						<p class="fs-4">${map.showDogPostDto.show_dog_post_content}</p>
 					</div>
 					<div class="col text-end">
 						작성일 : <fmt:formatDate value="${map.showDogPostDto.show_dog_post_reg_date}" pattern="MM.dd HH:mm:SS"/>
@@ -57,16 +46,19 @@
 					<hr>
 					</div>
 				</div>
-				<div class="row mt-2">
-					<c:forEach items="${list }" var="c">
-						<div class="col-3">
-							${c.customerDto.customer_nickname }
+				<div class="row mt-1">
+					<c:forEach items="${list}" var="c">
+						<div class="col-2">
+							${c.customerDto.customer_nickname}
 						</div>
-						<div class="col-6">
-							<p>${c.showDogCommentDto.show_dog_comment_content}</p>
+						<div class="col-7">
+							<p class="text-break">${c.showDogCommentDto.show_dog_comment_content}</p>
 						</div>
-						<div class="col text-end">
+						<div class="col-2">
 							<fmt:formatDate value="${c.showDogCommentDto.show_dog_comment_reg_date}" pattern="MM.dd HH:mm:SS"/>
+						</div>
+						<div class="col">
+							<i class="bi bi-x-circle text-danger"></i>
 						</div>
 					</c:forEach>
 				</div>
@@ -78,5 +70,4 @@
 		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
 		crossorigin="anonymous"></script>
 </body>
-
 </html>

@@ -40,9 +40,9 @@
 		settlement_request_no=#{settlement_request_no}
 	</select>
 	
-	<select id="getSettlementByOrdersDate" resultType="int">
+	<select id="getSettlementByOrdersDate" resultType="com.bubble.welcomepet.dto.SettlementProcessDto">
 		SELECT
-		sp.settlement_process_date FROM settlement_process
+		sp.* FROM settlement_process
 		sp,settlement_request sr,statement s
 		WHERE sp.settlement_request_no=sr.settlement_request_no
 		AND s.statement_no=sr.statement_no

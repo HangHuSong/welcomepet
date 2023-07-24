@@ -19,35 +19,35 @@
 <body>
 <%------ 하단 row ------%>
 <div class="row mb-5">
-<nav class="navbar fixed-bottom bg-body-tertiary border-top"  style="height:56px; background-color: #000000;">
+<nav class="navbar fixed-bottom bg-body-tertiary border-top"  style="height:56px; background-color: #ffffff;">
 <div class="container d-flex justify-content-center">
  <div class="row">
 	
 	<div class="col">
 		 <div class="row">
 		 	<%-- 카테고리 ㄱ --%>
-			<div class="col">
-				<a class="btn bi bi-microsoft text-secondary" data-bs-toggle="offcanvas"
+			<div class="col pe-0">
+				<a class="btn btn-lg bi bi-microsoft text-secondary" data-bs-toggle="offcanvas"
 					href="#offcanvasExample" role="button" aria-controls="offcanvasExample" ></a>
 			</div>
 			<%-- 커뮤니티 ㄱ --%>
-			<div class="col">
-				<a class="btn bi bi-chat-square-text text-secondary" 
+			<div class="col pe-0">
+				<a class="btn btn-lg bi bi-chat-square-text text-secondary" 
 					role="button" href="/welcomepet/community/showDogPostList"></a>
 			</div>
-			<%-- 홈 ㄱ --%>
-			<div class="col">
-				<a class="btn bi bi-house text-secondary" 
+			<%-- 쇼핑몰 홈 ㄱ --%>
+			<div class="col pe-0">
+				<a class="btn btn-lg bi bi-house text-secondary" 
 					role="button" href="/welcomepet/community/home"></a>
 			</div>
 			<%-- 찜 목록 ㄱ --%>
-			<div class="col">
-				<a class="btn bi bi-heart text-secondary" 
+			<div class="col pe-0">
+				<a class="btn btn-lg bi bi-heart text-secondary" 
 					role="button" href="/welcomepet/customer/wishList"></a>
 			</div>
 			<%-- 마이페이지 ㄱ --%>
 			<div class="col">
-				<a class="btn bi bi-person-circle text-secondary" role="button"
+				<a class="btn btn-lg bi bi-person-circle text-secondary" role="button"
 				   href="/welcomepet/customer/my"></a>
 			</div>
 		</div>

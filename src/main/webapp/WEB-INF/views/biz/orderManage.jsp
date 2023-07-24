@@ -17,8 +17,8 @@
 <body>
 	<div class="container" style="margin: 0 0;">
 		<div class="row" style="width: 1900px;">
-			<div class="col-2 text-center ps-4 text-white"
-				style="height: 1080px; background-color: rgb(29, 33, 42);"><jsp:include
+			<div class="col-2 text-center ps-4 text-white d-flex align-items-stretch align-top"
+				style="background-color: rgb(29, 33, 42);"><jsp:include
 					page="../common/bizLeftNavi.jsp"></jsp:include></div>
 			<div class="col-8 px-0">
 				<div class="row bg-white mx-1">

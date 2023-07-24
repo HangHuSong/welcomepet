@@ -26,11 +26,13 @@
 
 <body>
     <div class="container">
-        <%@ include file="../common/adminHead.jsp" %>
+        
             <div class="row">
                 <%@ include file="../common/adminTab.jsp" %>
-					<div class="col-1"></div>
+					<div class="col-1">
+					</div>
                     <div class="col-9">
+                    	<%@ include file="../common/adminHead.jsp" %>
                         <div class="container mt-5">
 					        <h2 class="mt-4 mb-4 text-center fw-bold">Biz 입점 승인 관리</h2>
 					            <div class="row mt-1 bg-light font-weight-bold py-2 rounded-top border">

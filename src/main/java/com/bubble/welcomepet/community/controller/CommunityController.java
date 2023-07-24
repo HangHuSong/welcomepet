@@ -96,7 +96,7 @@ public class CommunityController {
 		
 		System.out.println(show_dog_post_no);
 //		System.out.println("좋아요 들어갔나: " + checkWhetherLike);
-	   
+	    
 //		좋아요 중복방지
 //		CustomerDto customerUser = (CustomerDto)session.getAttribute("customerUser");
 //		int customer_no = customerUser.getCustomer_no();
@@ -267,14 +267,12 @@ public class CommunityController {
 		
 		List<Map<String, Object>> list = communityServiceImpl.bringCommentByPostNo(show_dog_post_no);
 		
-		
 		return list;
 	}
 		
 	@ResponseBody
 	@RequestMapping("registerComment")
 	public void registerComment(HttpSession session, ShowDogCommentDto showDogCommentDto) {
-		
 		
 		CustomerDto customerUser = (CustomerDto)session.getAttribute("customerUser");
 		

@@ -2,6 +2,8 @@ package com.bubble.welcomepet.dto;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class AdProductDto {
 	private int ad_product_no;
 	private int ad_category_no;

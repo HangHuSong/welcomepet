@@ -176,6 +176,17 @@ public class RestBoardController {
 		return map;
 	}
 	
+	@RequestMapping("relatedProudct")
+	public Map<String, Object> relatedProudct(int main_category_no){
+		
+		Map<String , Object> map = new HashMap<>();
+		System.out.println();
+		map.put("relatedProudctList", customerService.getProductInfoByMainCategory(main_category_no));
+		map.put("result", "success");
+		return map;
+	}
+
+	
 
 	
 	@RequestMapping("registerReview")
