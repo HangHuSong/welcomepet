@@ -71,24 +71,26 @@
 <%------ bootstrap ------%>
 </head>
 <body>
-<%------ 상단 네비------%>
+
 <nav class="topNavbar sticky-top bg-body-tertiary shadow-sm px-3 pt-3">
 <div class="container p-0">
 	<div class="container p-0">
   	 <div class="container-fluid">
   	 	<%-- 1 --%>
   	 	<div class="row">
-	     <div class="col p-0">
-	     <a href="/welcomepet/pointProd/board" class="btn btn-black py-0 ps-0" style="border: transparent; outline: none;">
-			<i class="btn bi bi-chevron-left p-0" style="border: transparent; outline: none; font-size: 1.5em;"></i>
-		 </a>
+	     <div class="col-1 p-0">
+	     <a href="/welcomepet/pointProd/board" class="btn bi bi-arrow-left fs-4 py-0 ps-0" role="button"></a>
 	     </div>
 	      	 
 	  	 <div class="col-5 text-center text-black">
 	      <a id="main" href="../snap/main">커뮤니티</a>
 	     </div>
 	     
-	     <div class="col d-flex justify-content-end p-0">
+	     <div class="col-1 p-0">
+	     <a class="btn bi bi bi-search text-secondary btn-lg p-0" role="button" href="#"></a>
+	     </div>
+	     
+	     <div class="col-1 d-flex justify-content-end p-0">
 	     <a class="btn bi bi-bell-fill text-secondary btn-lg p-0" role="button" href="#"></a>
 	     </div>
 	  	</div>
@@ -122,8 +124,6 @@
   	</div>
 </div>
 </nav>
-<%------ 상단 네비 ------%>
-
 
 <%-- bootstrap : script--%>
 <script
