@@ -43,23 +43,23 @@
 	<div class="container">
 		<div class="row">
 			<div class="col">
-				<div class="row fixed-top bg-white">
-					<div class="col border-bottom py-2" style="height: 60px;">
+				<!-- navi -->
+				<div
+					class="row fixed-top bg-white bg-body-tertiary shadow-sm px-3 pt-3">
+					<div class="col-12 border-bottom pb-2">
 						<div class="row">
 							<div class="col-2">
 								<a href="/welcomepet/pointProd/board"
 									class="btn btn-black py-0 ps-2"
-									style="border: transparent; outline: none;"> <i
-									class="btn bi bi-chevron-left p-0"
-									style="border: transparent; outline: none; font-size: 1.5em;"></i>
-								</a>
+									style="border: transparent; outline: none;"><i
+									class="bi bi-arrow-left"></i> </a>
 							</div>
 							<div class="col-1"></div>
-							<div class="col-6 mt-2 text-center" style="color: #fd7e14;">
-								<a id="main" href="../pointProd/board">어서대화하개</a>
+							<div class="col-6 text-center" style="color: #fd7e14;">
+								<a id="main" href="../pointProd/board">어서대화하게</a>
 							</div>
 							<div class="col-1"></div>
-							<div class="col-2 dropdown pt-2 pe-2">
+							<div class="col-2 dropdown">
 								<i class="bi bi-three-dots-vertical" type="button"
 									data-bs-toggle="dropdown" aria-expanded="false"></i>
 								<ul class="dropdown-menu">
@@ -91,6 +91,7 @@
 						</div>
 					</div>
 				</div>
+				<!-- navi -->
 				<div class="row my-1">
 					<div class="col"></div>
 				</div>

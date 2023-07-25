@@ -15,29 +15,87 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-<style>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
+	rel="stylesheet">
+<style type="text/css">
+@font-face {
+	font-family: 'SUITE-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2')
+		format('woff2');
+	font-weight: 300 -900;
+	font-style: normal;
+}
+
 .bi.bi-pencil-square {
 	color: white
 }
 /* #CF654D; */
-
-@font-face {
-    font-family: 'SUITE-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
-    font-weight: 300-900;
-    font-style: normal;
+#main {
+	text-decoration: none;
+	color: inherit;
+	/* color: #F8961D; */
+	/* font-family:'KorailRoundGothicBold', sans-serif !important; */
+	font-family: 'Jua', sans-serif;
+	font-weight: 700;
+	font-size: 1.3em;
+	color: #fd7e14;
 }
-
 </style>
 </head>
 <body style="font-family: 'SUITE-Regular', sans-serif;">
 	<div class="container">
 		<div class="row">
+			<div class="col">
+				<div
+					class="row fixed-top bg-white bg-body-tertiary shadow-sm px-3 pt-3">
+					<div class="col-12 border-bottom">
+						<div class="row">
+							<div class="col-2">
+								<a href="/welcomepet/pointProd/board"
+									class="btn btn-black py-0 ps-2"
+									style="border: transparent; outline: none;"><i
+									class="bi bi-arrow-left"></i> </a>
+							</div>
+							<div class="col-1"></div>
+							<div class="col-6 text-center" style="color: #fd7e14;">
+								<a id="main" href="../pointProd/board">커뮤니티</a>
+							</div>
+							<div class="col-2"></div>
+							<div class="col-1 p-0">
+								<i class="bi bi-search p-0"></i>
+							</div>
+						</div>
+						<div class="row my-1">
+							<div class="col"></div>
+						</div>
+						<div class="row text-dark text-center" style="font-size: 0.9em;">
+							<div class="col">
+								<div class="row">
+									<div class="col">
+										<a class="nav-link" href="/welcomepet/snap/main">snap</a>
+									</div>
+									<div class="col fw-bold">
+										<a class="nav-link" href="/welcomepet/pointProd/board"
+											style="border-bottom: 2.5px solid gray">자유게시판</a>
+									</div>
+									<div class="col">
+										<a class="nav-link"
+											href="/welcomepet/community/showDogPostList">자랑게시판</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
 			<div class="col-12">
 				<div class="row">
 					<div class="col mb-4">
 						<div class="row">
-							<div class="col mt-5">
+							<div class="col mt-4">
 								<div class="row mt-5">
 									<div class="col p-0">
 										<img class="img-fluid"
@@ -139,13 +197,15 @@
 												<c:choose>
 													<c:when test="${empty customerUser}">
 														<a href="../customer/login"
-															class="btn btn-lg shadow rounded-circle d-flex justify-content-center align-items-center" style="color: white; height: 52px; background-color: #fd7e14">
+															class="btn btn-lg shadow rounded-circle d-flex justify-content-center align-items-center"
+															style="color: white; height: 52px; background-color: #fd7e14">
 															<i class="bi bi-pencil-square" style="color: white;"></i>
 														</a>
 													</c:when>
 													<c:otherwise>
 														<a href="./writeContent"
-															class="btn btn-lg shadow rounded-circle d-flex justify-content-center align-items-center" style="color: white; height: 52px; background-color: #fd7e14">
+															class="btn btn-lg shadow rounded-circle d-flex justify-content-center align-items-center"
+															style="color: white; height: 52px; background-color: #fd7e14">
 															<i class="bi bi-pencil-square" style="color: white;"></i>
 														</a>
 													</c:otherwise>
@@ -161,7 +221,10 @@
 			</div>
 		</div>
 	</div>
-	<jsp:include page="../common/topNavi.jsp"></jsp:include>
 	<jsp:include page="../common/bottomNavi.jsp"></jsp:include>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+		crossorigin="anonymous"></script>
 </body>
 </html>
