@@ -52,7 +52,7 @@
  		 <%-- 삭제예정 <i class="bi bi-person"></i>--%>
 		 
 		 	<div class="row mt-3 pb-2 border-bottom">
-			 	<div class="col fw-bold fs-6">
+			 	<div class="col">
 				  어서보여주개
 			 	</div>
 			 </div>
