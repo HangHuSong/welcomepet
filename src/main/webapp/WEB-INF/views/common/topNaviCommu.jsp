@@ -102,8 +102,8 @@
 				<div class="col"></div>
 			</div>
 		 	
-			<div class="row" style="font-size: 0.9em;">
-				<div class="col">
+			<div class="row" style="font-size:0.9em;">
+				<div class="col text-center">
 					<a class="nav-link text-secondary" href="/welcomepet/snap/main"><i class="bi bi-instagram"></i> Snap</a>
 				</div>
 				<div class="col text-center">

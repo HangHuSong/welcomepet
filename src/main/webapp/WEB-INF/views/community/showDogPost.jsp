@@ -301,7 +301,7 @@ body{
 			</span>
 		 </div>
 		 <div class="col-3 mb-3 d-grid pe-0">
-		   <button class="btn btn-outline-none btn-sm text-end fw-bold text-secondary px-0" style="font-size:0.9em;">
+		   <button class="btn btn-outline-none btn-sm text-end fw-bold text-secondary p-0" style="font-size:0.9em;">
 		    <i class="bi bi-filter-left"></i>등록순
 		   </button>
 		 </div>		 
