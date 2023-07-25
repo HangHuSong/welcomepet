@@ -516,7 +516,7 @@ a:hover {
 											<div class="col text-center fw-bold">
 												<a class="nav-link" href="/welcomepet/snap/main"
 													style="border-bottom: 2.5px solid gray"><i
-													class="bi bi-instagram"></i> Snap</a>
+													class="bi bi-instagram"></i> 스냅</a>
 											</div>
 											<div class="col text-center">
 												<a class="nav-link text-secondary"
