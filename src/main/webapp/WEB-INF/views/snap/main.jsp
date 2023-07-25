@@ -15,8 +15,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 <title>Snap</title>
 <style type="text/css">
+
+	@font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
 	body {
-    	font-family: 'Montserrat', sans-serif;
+    	font-family: 'SUITE-Regular', sans-serif;
 	}
 	a {
     text-decoration: none;
@@ -484,15 +491,15 @@
 	                                            </div>
 	
 	                                            <div class="row" style="font-size: 0.9em;">
-	                                                <div class="col">
+	                                                <div class="col text-center fw-bold">
 	                                                    <a class="nav-link" href="/welcomepet/snap/main" style="border-bottom:2.5px solid gray"><i class="bi bi-instagram"></i> Snap</a>
 	                                                </div>
 	                                                <div class="col text-center">
 	                                                    <a class="nav-link text-secondary" href="/welcomepet/pointProd/board">어서대화하개</a>
 	                                                </div>
 	
-	                                                <div class="col text-center fw-bold">
-	                                                    <a class="nav-link" href="/welcomepet/community/showDogPostList">어서보여주개</a>
+	                                                <div class="col text-center">
+	                                                    <a class="nav-link text-secondary" href="/welcomepet/community/showDogPostList">어서보여주개</a>
 	                                                </div>
 	                                            </div>
 	                                        </div>
