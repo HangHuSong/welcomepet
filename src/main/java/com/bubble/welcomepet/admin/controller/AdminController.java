@@ -122,9 +122,10 @@ public class AdminController {
 		
 		List<Map<String, Object>> banHistory = adminService.getBanHistory(customer_no);
 		List<Map<String, Object>> coupon = adminService.getCustomerCoupon(customer_no);
+		
+		
 		model.addAttribute("customerPointDto", customerPointDto);
 		model.addAttribute("coupon", coupon);
-		
 		model.addAttribute("customer_no", customer_no);
 		model.addAttribute("banHistory", banHistory);
 		model.addAttribute("customerDto", customerDto);

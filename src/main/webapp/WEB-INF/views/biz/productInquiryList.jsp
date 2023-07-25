@@ -15,71 +15,98 @@
 
 </head>
 <body>
-	<div class="container">
-		<div class="row">
-			<div class="col">
-				<jsp:include page="../common/bizTopNavi.jsp"></jsp:include>
-			</div>
-		</div>
-		<div class="row text-center">
-			<div class="col-3"><jsp:include
+	<div class="container" style="margin: 0 0;">
+
+		<div class="row" style="width: 1900px;">
+			<div
+				class="col-2 text-center ps-4 text-white d-flex align-items-stretch align-top"
+				style="background-color: rgb(29, 33, 42);"><jsp:include
 					page="../common/bizLeftNavi.jsp"></jsp:include></div>
-			<div class="col-9 my-3">
-				<div class="row my-2 mx-2">
-					<div class="col fs-4 bold text-start">문의 내역</div>
-				</div>
-				<div class="row my-2 mx-2">
-					<div class="col"></div>
-					<div class="col border-bottom border-4 border-primary">
-						<div class="btn" id="newInquiryTab" onclick="loadNewInquiryTab()">미답변</div>
-					</div>
+			<div class="col-8 px-0">
+				<div class="row mx-1">
 					<div class="col">
-						<div class="btn" id="completeInquiryTab"
-							onclick="loadCompleteInquiryTab()">답변완료</div>
+						<jsp:include page="../common/bizTopNavi.jsp"></jsp:include>
 					</div>
-					<div class="col"></div>
 				</div>
-				<div class="row my-2 mx-2">
-					<div class="col border">
-						<div class="row py-2 border-bottom">
-							<div class="col fs-5 text-start">목록</div>
+				<div class="row mx-5 text-center">
+					<div class="col">
+						<div class="row my-2">
+							<div class="col fs-5 fw-bold text-start py-3">문의 내역</div>
 						</div>
-						<div class="row" id="inquiryList">
+						<div class="row my-2 bg-light px-5">
 							<div class="col">
-								<div class="table-responsive">
-									<table class="table text-nowrap">
-										<thead>
-											<tr>
-												<th scope="col">상품문의번호</th>
-												<th scope="col">상품명</th>
-												<th scope="col">문의제목</th>
-												<th scope="col">작성자</th>
-												<th scope="col">등록일</th>
-												<th scope="col">문의상세</th>
-											</tr>
-										</thead>
-										<tbody>
-											<c:forEach items="${productInquiryDataList }"
-												var="productInquiryData">
+								<div class="row my-5">
+									<div class="col border bg-white">
+										<div class="row">
+											<div class="col-3 border-end py-2">기간</div>
+											<div class="col py-2 text-start">
+												<input class="text-center" type="date" style="width: 200px;">
+												~ <input class="text-center" type="date"
+													style="width: 200px;">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row justify-content-center my-5">
+									<div class="col">
+										<span><button class="btn btn-dark">검색</button></span> <span><button
+												class="btn btn-outline-dark">초기화</button></span>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<div class="row mt-4 mx-2 text-start">
+							<div class="col">
+								<span
+									class="btn border-0 border-bottom border-4 rounded-0 border-primary"
+									id="newInquiryTab" onclick="loadNewInquiryTab()"> 미답변 </span> <span
+									class="btn" id="completeInquiryTab"
+									onclick="loadCompleteInquiryTab()"> 답변완료</span>
+							</div>
+						</div>
+					</div>
+					<div class="row my-2 mx-2">
+						<div class="col">
+							<div class="row" id="inquiryList">
+								<div class="col">
+									<div class="table-responsive">
+										<table class="table text-nowrap table-bordered">
+											<thead class="table-light">
 												<tr>
-
-													<td>${productInquiryData.productInquiryDto.product_inquiry_no }</td>
-													<td>${productInquiryData.productDto.product_name }</td>
-													<td>${productInquiryData.productInquiryDto.product_inquiry_title}</td>
-													<td>${productInquiryData.customerDto.customer_name }</td>
-													<td><fmt:formatDate
-															value="${productInquiryData.productInquiryDto.product_inquiry_reg_date }"
-															pattern="yyyy.MM.dd" /></td>
-													<td>
-														<button id="showModalButton" class="btn btn-primary btn-sm"
-															onclick='showModal(${productInquiryData.jsonData})' data-bs-toggle="modal" data-bs-target="#inquiryModal">문의
-															보기</button>
-													</td>
+													<th scope="col">상품문의번호</th>
+													<th scope="col">상품명</th>
+													<th scope="col">문의제목</th>
+													<th scope="col">작성자</th>
+													<th scope="col">등록일</th>
+													<th scope="col">문의상세</th>
 												</tr>
-											</c:forEach>
+											</thead>
+											<tbody>
+												<c:forEach items="${productInquiryDataList }"
+													var="productInquiryData">
+													<tr>
 
-										</tbody>
-									</table>
+														<td>${productInquiryData.productInquiryDto.product_inquiry_no }</td>
+														<td>${productInquiryData.productDto.product_name }</td>
+														<td>${productInquiryData.productInquiryDto.product_inquiry_title}</td>
+														<td>${productInquiryData.customerDto.customer_name }</td>
+														<td><fmt:formatDate
+																value="${productInquiryData.productInquiryDto.product_inquiry_reg_date }"
+																pattern="yyyy.MM.dd" /></td>
+														<td>
+															<button id="showModalButton"
+																class="btn btn-outline-dark btn-sm"
+																onclick='showModal(${productInquiryData.jsonData})'
+																data-bs-toggle="modal" data-bs-target="#inquiryModal">문의
+																보기</button>
+														</td>
+													</tr>
+												</c:forEach>
+
+											</tbody>
+										</table>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -97,57 +124,41 @@
 						aria-label="Close"></button>
 				</div>
 				<div class="modal-body text-center">
-					<div class="row">
-						<div class="col">
-							<div class="row border">
-								<div class="col bg-primary">
-									<div class="row"><div class="col py-1 border-bottom">등록일</div></div>
-									<div class="row"><div class="col py-1">답변여부</div></div>
-								</div>
-								<div class="col">
-									<div class="row"><div class="col py-1 border-bottom" id="inquiry_reg_date_content"></div></div>
-									<div class="row"><div class="col py-1" id="is_replied_content"></div></div>
-								</div>
-								<div class="col bg-primary">
-									<div class="row"><div class="col py-1 border-bottom">작성자</div></div>
-									<div class="row"><div class="col py-1">답변일</div></div>
-								</div>
-								<div class="col">
-									<div class="row"><div class="col py-1 border-bottom" id="customer_name_content"></div></div>
-									<div class="row"><div class="col py-1" id="reply_reg_date_content"></div></div>
-								</div>
+					<div class="row mx-2">
+						<div class="col bg-light border">
+							<div class="row border-bottom">
+								<div class="col-3 py-2">등록일</div>
+								<div class="col py-2 bg-white border-start"
+									id="inquiry_reg_date_content"></div>
+								<div class="col-3 py-2">작성자</div>
+								<div class="col py-2 bg-white border-start" id="customer_name_content"></div>
 							</div>
-							<div class="row my-2 border">
-								<div class="col-3 bg-primary">
-									<div class="row">
-										<div class="col py-1 border-bottom">제목</div>
-									</div>
-									<div class="row">
-										<div class="col py-1 align-self-center">내용</div>
-									</div>
-									
-								</div>
-								<div class="col">
-									<div class="row">
-										<div class="col py-1 border-bottom" id="inquiry_title_content"></div>
-									</div>
-									<div class="row">
-										<div class="col py-1" id="inquiry_context_content"></div>
-									</div>
-								</div>
+							<div class="row border-bottom">
+								<div class="col-3 py-2">답변여부</div>
+								<div class="col py-2 bg-white border-start" id="is_replied_content"></div>
+								<div class="col-3 py-2">답변일</div>
+								<div class="col py-2 bg-white border-start" id="reply_reg_date_content"></div>
+							</div>
+							<div class="row border-bottom">
+								<div class="col-3 py-2">제목</div>
+								<div class="col py-2 bg-white border-start" id="inquiry_title_content"></div>
+							</div>
+							<div class="row border-bottom">
+								<div class="col-3 py-2 align-self-center">내용</div>
+								<div class="col py-2 bg-white border-start" id="inquiry_context_content"></div>
 							</div>
 							<div class="row">
-								<div class="col-3 bg-primary">
-									답변 내용
-								</div>
-								<div class="col" id="inquiry_reply_context_content"></div>
+								<div class="col-3 align-self-center">답변 내용</div>
+								<div class="col bg-white py-2 border-start"
+									id="inquiry_reply_context_content"></div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="modal-footer">
+				<div class="modal-footer border-0">
 					<input type="hidden" name="inquiry_no">
-					<button type="button" class="btn btn-primary" onclick='registerInquiryReply()'>답변 등록하기</button>
+					<button type="button" class="btn btn-primary"
+						onclick='registerInquiryReply()'>답변 등록하기</button>
 				</div>
 			</div>
 		</div>
@@ -179,6 +190,7 @@
 			const reply_reg_date_content=document.getElementById("reply_reg_date_content");
 			
 			if(inquiryData.isReplied==0){
+				inquiry_reply_context_content.innerHTML='';
 				const textarea=document.createElement("textarea");
 				textarea.classList.add('form-control');
 				inquiry_reply_context_content.appendChild(textarea);
@@ -255,9 +267,10 @@
 			inquiryList.appendChild(div);
 			
 			var table = document.createElement("table");
-		    table.classList.add("table", "text-nowrap");
+		    table.classList.add("table", "text-nowrap", "table-bordered");
 
 		    var thead = document.createElement("thead");
+		    thead.classList.add("table-light");
 		    var tbody = document.createElement("tbody");
 		    
 		    var tableHeaders = ["상품문의번호", "상품명", "문의제목", "작성자", "등록일", "문의상세"];
@@ -299,7 +312,7 @@
         		
         		const inquiryDetailTd = document.createElement("td");
         		const button=document.createElement("button");
-        		button.classList.add('btn','btn-primary','btn-sm');
+        		button.classList.add('btn','btn-outline-dark','btn-sm');
         		button.setAttribute("data-bs-toggle", "modal");
         		button.setAttribute("data-bs-target", "#inquiryModal");
         		button.addEventListener('click',function(){
@@ -328,17 +341,13 @@
 		function loadNewInquiryTab() {
 			
 			const newInquiryTab=document.getElementById("newInquiryTab");
-			if (!newInquiryTab.parentNode.classList.contains('border-bottom',
-					'border-4', 'border-primary')) {
-				newInquiryTab.parentNode.classList.add('border-bottom',
-						'border-4', 'border-primary');
+			if (!newInquiryTab.classList.contains('border-bottom')) {
+				newInquiryTab.classList.add('border-0', 'border-bottom', 'border-4', 'rounded-0', 'border-primary');
 			}
 			
 			const completeInquiryTab = document.getElementById("completeInquiryTab");
-			if (completeInquiryTab.parentNode.classList.contains('border-bottom',
-					'border-4', 'border-primary')) {
-				completeInquiryTab.parentNode.classList.remove('border-bottom',
-						'border-4', 'border-primary');
+			if (completeInquiryTab.classList.contains('border-bottom')) {
+				completeInquiryTab.classList.remove('border-0', 'border-bottom', 'border-4', 'rounded-0', 'border-primary');
 			}
 			
 		
@@ -363,17 +372,13 @@
 		function loadCompleteInquiryTab() {
 			
 			const newInquiryTab=document.getElementById("newInquiryTab");
-			if (newInquiryTab.parentNode.classList.contains('border-bottom',
-					'border-4', 'border-primary')) {
-				newInquiryTab.parentNode.classList.remove('border-bottom',
-						'border-4', 'border-primary');
+			if (newInquiryTab.classList.contains('border-bottom')) {
+				newInquiryTab.classList.remove('border-0', 'border-bottom', 'border-4', 'rounded-0', 'border-primary');
 			}
 			
 			const completeInquiryTab = document.getElementById("completeInquiryTab");
-			if (!completeInquiryTab.parentNode.classList.contains('border-bottom',
-					'border-4', 'border-primary')) {
-				completeInquiryTab.parentNode.classList.add('border-bottom',
-						'border-4', 'border-primary');
+			if (!completeInquiryTab.classList.contains('border-bottom')) {
+				completeInquiryTab.classList.add('border-0', 'border-bottom', 'border-4', 'rounded-0', 'border-primary');
 			}
 			
 			

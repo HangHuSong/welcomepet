@@ -210,6 +210,17 @@
 
 
 <style type="text/css">
+
+@font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+	font-family: 'SUITE-Regular';
+}
+
 .payment-btn {
 	width: 100%;
 	height: 3em; margin : 5px 0;

@@ -10,70 +10,87 @@
 	rel="stylesheet"
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 	crossorigin="anonymous">
+<style type="text/css">
+@font-face {
+	font-family: 'GmarketSansMedium';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Pretendard-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+		format('woff');
+	font-weight: 400;
+	font-style: normal;
+}
+</style>
 </head>
 <body>
-	<div class="container">
-		<div class="row">
-			<div class="col" style="height: 150px">
-				<div class="d-none"></div>
+	<div class="row my-5 pt-5 text-center">
+		<div class="col">
+			<span class="fs-3 fw-bold" style="font-family: 'GmarketSansMedium'">어서오개
+				seller office </span> <span class="fs-3 fw-bold">회원가입</span>
+		</div>
+	</div>
+	<div class="row text-start my-5"
+		style="font-family: 'Pretendard-Regular';">
+		<div class="col"></div>
+		<div class="col-2">
+			<!-- 회원가입정보 -->
+			<div class="row text-center border-start border-end">
+				<div class="col border-top border-3 border-primary px-0 py-2">일반회원</div>
+				<div class="col border border-bottom-0 py-2 align-self-center">개인사업자</div>
+				<div class="col border-top py-2 align-self-center">법인/기관</div>
 			</div>
+			<form action="./registerProcess" method="post"
+				enctype="multipart/form-data">
+				<div class="row my-2 mt-4">
+					<!-- 아이디(사업자번호) -->
+					<div class="col">
+						<label for="biz_id" class="form-label">아이디</label> <input
+							class="form-control" name="biz_id" type="text" id="biz_id">
+					</div>
+				</div>
+				<div class="row my-2">
+					<!-- 비밀번호 -->
+					<div class="col">
+						<label for="biz_pw" class="form-label">비밀번호</label> <input
+							class="form-control" name="biz_pw" type="password" id="biz_pw">
+					</div>
+				</div>
+				<div class="row my-2">
+					<!-- 폰 -->
+					<div class="col">
+						<label for="biz_phone" class="form-label">핸드폰번호</label> <input
+							class="form-control" name="biz_phone" type="text"
+							placeholder="010-xxxx-xxxx" id="biz_phone">
+					</div>
+				</div>
+				<div class="row my-2">
+					<!-- 이메일 -->
+					<div class="col">
+						<label for="biz_email" class="form-label">이메일</label> <input
+							class="form-control" name="biz_email" type="text"
+							placeholder="name@example.com" id="biz_email">
+					</div>
+				</div>
+				<div class="row my-4">
+					<div class="col d-grid">
+						<button class="btn btn-primary py-2">회원가입</button>
+					</div>
+				</div>
+			</form>
 		</div>
-		<div class="row my-3 text-center">
-			<div class="col fs-1">어서오개</div>
-		</div>
-		<div class="row text-center">
-			<div class="col-3"></div>
-			<div class="col border">
-				<!-- 회원가입정보 -->
-				<form action="./registerProcess" method="post"
-					enctype="multipart/form-data">
-					<div class="row my-1 mt-4">
-						<!-- 아이디(사업자번호) -->
-						<div class="col-3">
-							<label class="form-label">아이디</label>
-						</div>
-						<div class="col">
-							<input class="form-control" name="biz_id" type="text">
-						</div>
-					</div>
-					<div class="row my-1">
-						<!-- 비밀번호 -->
-						<div class="col-3">
-							<label class="form-label">비밀번호</label>
-						</div>
-						<div class="col">
-							<input class="form-control" name="biz_pw" type="password">
-						</div>
-					</div>
-					<div class="row my-1">
-						<!-- 폰 -->
-						<div class="col-3">
-							<label class="form-label">핸드폰번호</label>
-						</div>
-						<div class="col">
-							<input class="form-control" name="biz_phone" type="text"
-								placeholder="010-xxxx-xxxx">
-						</div>
-					</div>
-					<div class="row my-1">
-						<!-- 이메일 -->
-						<div class="col-3">
-							<label class="form-label">이메일</label>
-						</div>
-						<div class="col">
-							<input class="form-control" name="biz_email" type="text"
-								placeholder="name@example.com">
-						</div>
-					</div>
-					<div class="row my-4">
-						<div class="col d-grid">
-							<button class="btn btn-primary">회원가입</button>
-						</div>
-					</div>
-				</form>
-			</div>
-			<div class="col-3"></div>
-		</div>
+		<div class="col"></div>
+	</div>
+	<div class="row text-center py-4">
+		<div class="col text-secondary" style="font-size: 15px;">
+			Copyright © WelcomePet Corp. All Rights Reserved.</div>
 	</div>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

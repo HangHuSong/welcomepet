@@ -15,62 +15,69 @@
 
 </head>
 <body>
-	<div class="container">
-		<div class="row">
-			<div class="col">
-				<jsp:include page="../common/bizTopNavi.jsp"></jsp:include>
-			</div>
-		</div>
-		<div class="row text-center">
-			<div class="col-3"><jsp:include
+	<div class="container" style="margin: 0 0;">
+		<div class="row" style="width: 1900px;">
+			<div
+				class="col-2 text-center ps-4 text-white d-flex align-items-stretch align-top"
+				style="background-color: rgb(29, 33, 42);"><jsp:include
 					page="../common/bizLeftNavi.jsp"></jsp:include></div>
-			<div class="col-9 my-3">
-				<div class="row my-2 mx-2">
-					<div class="col fs-4 bold text-start">판매성과</div>
+			<div class="col-8 px-0">
+				<div class="row mx-1">
+					<div class="col">
+						<jsp:include page="../common/bizTopNavi.jsp"></jsp:include>
+					</div>
 				</div>
-				<div class="row">
-					<div class="col mx-2">
-						<div class="row my-3">
-							<!-- 일별결제금액 -->
-							<div class="col border">
-								<div class="row">
-									<div class="col fs-5">일별 결제금액</div>
-									<div class="col d-grid">
-										<button class="btn btn-primary" id="defaultButton"
-											onclick="getDefaultChart()">기본</button>
-									</div>
-									<div class="col d-grid">
-										<button class="btn btn-outline-secondary" id="dustButton"
-											onclick="getDustChart()">미세먼지</button>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col">
-										<canvas id="dailyChart"></canvas>
-									</div>
-								</div>
-							</div>
+				<div class="row px-5 text-center bg-light mx-1">
+					<div class="col">
+						<div class="row my-2">
+							<div class="col fs-5 fw-bold text-start py-3">판매성과</div>
 						</div>
 						<div class="row">
-							<div class="col border me-2">
-								<!-- 요일별 결제금액 -->
-								<div class="row">
-									<div class="col fs-5">요일별 평균 결제금액</div>
-								</div>
-								<div class="row">
-									<div class="col">
-										<canvas id="weekdayChart"></canvas>
+							<div class="col">
+								<div class="row my-3">
+									<!-- 일별결제금액 -->
+									<div class="col border bg-white">
+										<div class="row py-3 border-bottom">
+											<div class="col text-start fw-bold align-self-center">일별
+												결제금액</div>
+											<div class="col-3 text-end">
+												<span><button class="btn btn-primary"
+														id="defaultButton" onclick="getDefaultChart()">기본</button></span>
+												<span><button class="btn btn-outline-dark"
+														id="dustButton" onclick="getDustChart()">미세먼지</button></span>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col">
+												<canvas id="dailyChart"></canvas>
+											</div>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="col border ms-2">
-								<!-- 월별 결제금액 -->
 								<div class="row">
-									<div class="col fs-5">월별 평균 결제금액</div>
-								</div>
-								<div class="row">
-									<div class="col">
-										<canvas id="monthlyChart"></canvas>
+									<div class="col border bg-white">
+										<!-- 요일별 결제금액 -->
+										<div class="row">
+											<div class="col text-start fw-bold py-2 border-bottom">요일별
+												평균 결제금액</div>
+										</div>
+										<div class="row">
+											<div class="col">
+												<canvas id="weekdayChart"></canvas>
+											</div>
+										</div>
+									</div>
+									<div class="col border ms-2 bg-white">
+										<!-- 월별 결제금액 -->
+										<div class="row">
+											<div class="col text-start fw-bold py-2 border-bottom">월별
+												평균 결제금액</div>
+										</div>
+										<div class="row">
+											<div class="col">
+												<canvas id="monthlyChart"></canvas>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -116,13 +123,13 @@
 			const defaultButton=document.getElementById("defaultButton");
 			const dustButton=document.getElementById("dustButton");
 			
-			if(defaultButton.classList.contains('btn-primary')){
-				defaultButton.classList.remove('btn-primary');
-				defaultButton.classList.add('btn-outline-secondary');
-			}
-			if(!dustButton.classList.contains('btn-primary')){
+			if(!defaultButton.classList.contains('btn-primary')){
+				defaultButton.classList.remove('btn-outline-primary');
 				defaultButton.classList.add('btn-primary');
-				defaultButton.classList.remove('btn-outline-secondary');
+			}
+			if(dustButton.classList.contains('btn-dark')){
+				dustButton.classList.remove('btn-dark');
+				dustButton.classList.add('btn-outline-dark');
 			}
 			
 			dailyChartCanvas.destroy();
@@ -154,11 +161,11 @@
 			
 			if(defaultButton.classList.contains('btn-primary')){
 				defaultButton.classList.remove('btn-primary');
-				defaultButton.classList.add('btn-outline-secondary');
+				defaultButton.classList.add('btn-outline-primary');
 			}
-			if(!dustButton.classList.contains('btn-primary')){
-				defaultButton.classList.add('btn-primary');
-				defaultButton.classList.remove('btn-outline-secondary');
+			if(!dustButton.classList.contains('btn-dark')){
+				dustButton.classList.add('btn-dark');
+				dustButton.classList.remove('btn-outline-dark');
 			}
 			min_date=dailyLabels[0].split('-').join('');
 			max_date=dailyLabels[dailyLabels.length-1].split('-').join('');

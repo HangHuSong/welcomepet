@@ -176,12 +176,34 @@ public class RestBoardController {
 		return map;
 	}
 	
-	@RequestMapping("relatedProudct")
-	public Map<String, Object> relatedProudct(int main_category_no){
+	@RequestMapping("relatedProduct")
+	public Map<String, Object> relatedProduct(int main_category_no){
 		
 		Map<String , Object> map = new HashMap<>();
 		System.out.println();
-		map.put("relatedProudctList", customerService.getProductInfoByMainCategory(main_category_no));
+		map.put("relatedProductList", customerService.getProductInfoByMainCategory(main_category_no));
+		map.put("result", "success");
+		return map;
+	}
+	
+	
+	@RequestMapping("bizProduct")
+	public Map<String, Object> bizProduct(int biz_no){
+		
+		Map<String , Object> map = new HashMap<>();
+		System.out.println();
+		map.put("bizProductList", customerService.getProductInfoByBiz(biz_no));
+		map.put("result", "success");
+		return map;
+	}
+	
+	@RequestMapping("bizList")
+	public Map<String, Object> bizList(){
+		
+		System.out.println("테스트");
+		
+		Map<String , Object> map = new HashMap<>();
+		map.put("bizList", customerService.getbizList());
 		map.put("result", "success");
 		return map;
 	}
