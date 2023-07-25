@@ -29,13 +29,13 @@
 
 </head>
 <body>
-	<div class="container px-0" style="margin: 0 0;">
+	<div class="container px-0" style="margin: 0 0; width:100%;">
 		<div class="row" style="width: 1900px;">
 			<div class="col-2 text-center ps-4 text-white"
-				style="height: 1080px; background-color: rgb(29, 33, 42);"><jsp:include
+				style="height: auto; background-color: rgb(29, 33, 42);"><jsp:include
 					page="../common/bizLeftNavi.jsp"></jsp:include></div>
-			<div class="col px-0">
-				<div class="row bg-white mx-1">
+			<div class="col-8 px-0">
+				<div class="row bg-white mx-1 px-3">
 					<div class="col text-center"><jsp:include
 							page="../common/bizTopNavi.jsp"></jsp:include></div>
 				</div>
@@ -130,7 +130,7 @@
 						</div>
 					</c:when>
 					<c:when test="${bizUser.biz_status_no eq 4}">
-						<div class="row mx-1 bg-light">
+						<div class="row mx-1 bg-light pb-5 px-5">
 							<div class="col">
 								<div class="row">
 									<div class="col border my-3 mx-3 py-3 bg-white">
@@ -269,7 +269,7 @@
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-3 my-3 mx-3 bg-white border">
+									<div class="col-4 my-3 mx-3 bg-white border">
 										<div class="row py-3 px-2 border-bottom">
 											<div class="col fs-5 fw-bold">판매현황</div>
 										</div>

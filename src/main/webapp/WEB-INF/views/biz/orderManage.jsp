@@ -22,7 +22,7 @@
 			<div class="col-2 text-center ps-4 text-white d-flex align-items-stretch align-top"
 				style="background-color: rgb(29, 33, 42);"><jsp:include
 					page="../common/bizLeftNavi.jsp"></jsp:include></div>
-			<div class="col-8 px-0">
+			<div class="col-8 px-0" style="height:auto;">
 				<div class="row bg-white mx-1">
 					<div class="col text-center"><jsp:include
 							page="../common/bizTopNavi.jsp"></jsp:include></div>

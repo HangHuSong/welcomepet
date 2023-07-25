@@ -27,7 +27,7 @@
 <body>
 	<div class="container" style="margin: 0 0;">
 
-		<div class="row" style="width: 1900px;">
+		<div class="row" style="width: 1920px;">
 			<div
 				class="col-2 text-center ps-4 text-white d-flex align-items-stretch align-top"
 				style="background-color: rgb(29, 33, 42);"><jsp:include
