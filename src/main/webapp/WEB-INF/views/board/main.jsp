@@ -1096,7 +1096,7 @@ body {
 					  </div>
 					  <div class="col-1 ps-0 pe-0"></div>
 			</div>
-		<div class="row mt-3" id="bestListBox">
+		<div class="row mt-2" id="bestListBox">
 		
 		</div>
 				

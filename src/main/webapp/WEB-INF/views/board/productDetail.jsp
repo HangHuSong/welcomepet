@@ -14,10 +14,8 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
-/>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
 <title>상품 정보</title>
 <script>
@@ -950,96 +948,99 @@ window.addEventListener("DOMContentLoaded", function(){
 </script>
 
 <style type="text/css">
-
 @font-face {
-    font-family: 'SUITE-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'SUITE-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
 }
+
 body {
 	font-family: 'SUITE-Regular';
 }
 
-
 /* Swiper 슬라이드 컨테이너 스타일 */
 .swiper-container {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-   position: relative;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	position: relative;
 }
 
-.swiper-button-prev,
-.swiper-button-next {
-  position: absolute; 
-  top: 50%; 
-  transform: translateY(-50%); 
-  width: 1em;
-  height: 1em;
-  color: grey;
-  cursor: pointer;
-  z-index: 10;
+.swiper-button-prev, .swiper-button-next {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 1em;
+	height: 1em;
+	color: grey;
+	cursor: pointer;
+	z-index: 10;
 }
 
-.swiper-button-prev::after,
-.swiper-button-next::after {
-  font-size: 24px; /* 아이콘 크기를 조절합니다. */
+.swiper-button-prev::after, .swiper-button-next::after {
+	font-size: 24px; /* 아이콘 크기를 조절합니다. */
 }
 
 .swiper-button-next {
-  right: 10px;
+	right: 10px;
 }
 
 /* 이전 버튼의 위치를 좌측으로 설정합니다. */
 .swiper-button-prev {
-  left: 10px;
+	left: 10px;
 }
 
 /* Swiper 슬라이드 아이템 스타일 */
 .swiper-slide {
-  width: 40%;
+	width: 40%;
 }
-
 
 /* 페이지네이션 스타일 */
 .swiper-pagination-bullet {
-  width: 10px;
-  height: 10px;
-  background-color: #fff;
-  opacity: 0.5;
-  border-radius: 50%;
-  margin: 0 5px;
+	width: 10px;
+	height: 10px;
+	background-color: #fff;
+	opacity: 0.5;
+	border-radius: 50%;
+	margin: 0 5px;
 }
 
 .swiper-pagination-bullet-active {
-  opacity: 1;
+	opacity: 1;
 }
-.bi-heart{
- filter: opacity(0.5);
+
+.bi-heart {
+	filter: opacity(0.5);
+}
+
+.card-body {
+	background-color: rgb(244, 247, 250);
 }
 
 .fsmid {
-	font-size: 0.9em;
-	margin-top:0.5em;
+	margin-top: 0.5em;
 	margin-bottom: 0;
 	overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* 라인수 */
-    -webkit-box-orient: vertical;
-    word-wrap:break-word; 
-    line-height: 1em;
-    height: 2em; /* line-height 가 1.2em 이고 3라인을 자르기 때문에 height는 1.2em * 3 = 3.6em */
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2; /* 라인수 */
+	-webkit-box-orient: vertical;
+	word-wrap: break-word;
+	line-height: 1.2em;
+	height: 2.4em;
+	/* line-height 가 1.2em 이고 3라인을 자르기 때문에 height는 1.2em * 3 = 3.6em */
 }
 
-.price_text{
+.price_text {
 	font-size: 0.9em;
 }
 
-.real_price{
- font-size: 0.8em;
- text-decoration: line-through;
+.real_price {
+	font-size: 0.8em;
+	text-decoration: line-through;
 }
 
 .product-thum {
@@ -1122,7 +1123,8 @@ body {
 <body>
 
 
-	<div class="container px-0 mx-0 align-items-center justify-content-center">
+	<div
+		class="container px-0 mx-0 align-items-center justify-content-center">
 		<div class="row shadow-sm p-3 mb-5 bg-body-tertiary rounded">
 			<div class="col">
 				<nav
@@ -1157,9 +1159,7 @@ body {
 		</div>
 		<div class="row mt-2 ps-2">
 			<div class="col">
-				<span class="filled"></span> 
-				<span id="totalRatingSpan"></span> 
-				<span
+				<span class="filled"></span> <span id="totalRatingSpan"></span> <span
 					id="productRatingSpan3"></span>
 			</div>
 		</div>
@@ -1221,7 +1221,7 @@ body {
 			<div class="col-1"></div>
 		</div>
 		<div class="row mt-2 empty"></div>
-		<div class="row mt-3"  style="justify-content: center;">
+		<div class="row mt-3" style="justify-content: center;">
 			<div class="row">
 				<div class="col fw-bold">상품정보</div>
 			</div>
@@ -1234,119 +1234,190 @@ body {
 			</c:forEach>
 		</div>
 		<div class="row mt-2 empty"></div>
-			<div class="row mt-2">
-		 		<div class="row mt-3 ps-3">
-		 	 	<div class="col ms-1 fw-bold">
-		 	 		이 상품과 비슷한 상품
-		 	 	</div>
-		 		</div>
-		 	<div class="row mt-2 px-0" id="relatedList">
-
-					  </div> 
-				</div>
-		 	</div>
-	<div class="row mt-2 empty" style="height:1.5em; "></div>
-
-		<div class="row ps-2">
-			<div class="row mt-2 py-2">
-				<div class="col fw-bold">상품 리뷰</div>
+		<div class="row mt-2">
+			<div class="row mt-3 ps-3">
+				<div class="col ms-1 fw-bold">이 상품과 비슷한 상품</div>
 			</div>
-			<div class="row mt-2 ">
-				<div class="col" id="colProductRating"></div>
+			<div class="row mt-2 px-0" id="relatedList"></div>
+		</div>
+	</div>
+	<div class="row mt-2 empty" style="height: 1.5em;"></div>
+
+	<div class="row ps-2">
+		<div class="row mt-2 py-2">
+			<div class="col fw-bold">상품 리뷰</div>
+		</div>
+		<div class="row mt-2 ">
+			<div class="col" id="colProductRating"></div>
+		</div>
+		<div class="row mt-2  ps-3 mx-0" id="reviewListBox"></div>
+	</div>
+	<div class="row mt-2 empty"></div>
+	<div class="row ps-3 mt-3">
+		<div class="row">
+			<div class="col fw-bold pt-1" style="font-size: 1.2em;">상품 문의</div>
+			<div class="text-end me-3 col ">
+				<button class="btn  btn-outline-secondary"
+					style="height: 100%;">문의하기</button>
 			</div>
-			<div class="row mt-2  ps-3 mx-0" id="reviewListBox"></div>
 		</div>
 
-
-
-		<div class="row mt-2 ps-2">
-			<jsp:include page="../common/serviceNavi.jsp"></jsp:include>
-			<div class="row mb-4">
-				<div class="col">
-					<div class="navbar navbar-dark bg-white fixed-bottom border-top " style="height: 4em;">
-						<div class="col-1  mx-2 text-center">
-							<div class="row">
-								<div class="col">
-
-									<a class="text-danger bi bi-heart" id="heartBox"
-										onclick="toggleWish()" role="button"> </a>
-
-
-
-								</div>
-							</div>
-							<div class="row" style="height: 0.9em; margin-top: -0.5em;">
-								<div class="col">
-									<span id="totalWishCount">3</span>
-								</div>
+		<div class="row mt-3 border-top"></div>
+		<div class="row mt-3 text-secondary" style="font-size: 0.9em;">
+			<div class="col">
+				<span>jsy************</span>
+			</div>
+			<div class="col ms-2 text-end" style="font-size: 0.8em;">
+				<span>23.07.26</span>
+			</div>
+		</div>
+		<div class="row text-secondary" style="font-size: 0.8em;">
+			<div class="col">옵션 : [3개] 인섹트업 하이포알러지 트릿 라이트</div>
+		</div>
+		<div class="row mt-2 " style="font-size: 0.9em;">
+			<div class="col-1 fsmid pe-0 me-0">
+				<span class="fw-bold">Q.</span>
+			</div>
+			<div class="col ps-0 fsmid">
+				<span class="">애기가 다이어트중이라 고기간식을 지금다끊은상탠데 간혹교육때쓰려고 샀는데 잘먹네요
+					칼로리가 궁금합니다!</span>
+			</div>
+		</div>
+		<div class="row " style="font-size: 0.9em;">
+			<div class="col">
+				<span class=" fw-bold">A.</span> <span
+					class="fw-bold  ps-0 text-primary">답변 완료</span> <a
+					class="btn bi bi-chevron-down" data-bs-toggle="collapse"
+					href="#collapseExample" role="button" aria-expanded="false"
+					aria-controls="collapseExample"> </a>
+				<div class="collapse" id="collapseExample">
+					<div class="card card-body">
+						<div class="row">
+							<div class="col">
+								<span class="fw-bold">판매자 </span> <span
+									class="ps-1 text-secondary">23.07.30</span>
 							</div>
 						</div>
-						<div class="col ">
-							<div class="row">
-								<div class="col">
-									<div class="d-grid gap-2">
-										<button class="btn " type="button" style="background-color: rgb(253, 152, 67);
-										color: white;"
-											data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom"
-											aria-controls="offcanvasBottom">구매하기</button>
+						<div class="row mt-1">
+							<div class="col">안녕하세요!</div>
+						</div>
+						<div class="row">
+							<div class="col">건강한 반려생활의 시작 어서오개입니다.</div>
+						</div>
+						<div class="row mt-2">
+							<div class="col">해당 제품은 낱개 1개당 약 4kcal로 확인됩니다 ^^</div>
+						</div>
+						<div class="row mt-2">
+							<div class="col">감사합니다.</div>
+						</div>
+						<div class="row ">
+							<div class="col">오늘도 아이와 함께 행복한 하루 되세요️🐶😺️</div>
+						</div>						
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row mt-2">
+		  <div class="col">
+		  <div class="d-grid gap-2"> 
+		    <button class="btn btn-outline-secondary text-center">
+		     더 많은 상품 문의 보기 <a class="btn bi bi-chevron-right"> </a>
+		    </button> </div>
+		  </div>
+		</div>
+	</div>
 
-										<div class="offcanvas offcanvas-bottom dde"
-											style="height: auto;" tabindex="-1" id="offcanvasBottom"
-											aria-labelledby="offcanvasBottomLabel">
 
-											<div class="row mt-3">
-												<div class="col text-center fw-bold">상품 선택</div>
-											</div>
-											<div class="row mt-4">
-												<div class="row" id="optionRow">
-													<div class="col-1"></div>
-													<div class="col" id="colOption"></div>
-													<div class="col-1"></div>
-												</div>
-												<div class="row mt-3" id="optionContainer"></div>
+	<div class="row mt-1 ps-2">
+		<jsp:include page="../common/serviceNavi.jsp"></jsp:include>
+		<div class="row mb-4">
+			<div class="col">
+				<div class="navbar navbar-dark bg-white fixed-bottom border-top "
+					style="height: 4em;">
+					<div class="col-1  mx-2 text-center">
+						<div class="row">
+							<div class="col">
 
+								<a class="text-danger bi bi-heart" id="heartBox"
+									onclick="toggleWish()" role="button"> </a>
+
+
+
+							</div>
+						</div>
+						<div class="row" style="height: 0.9em; margin-top: -0.5em;">
+							<div class="col">
+								<span id="totalWishCount">3</span>
+							</div>
+						</div>
+					</div>
+					<div class="col ">
+						<div class="row">
+							<div class="col">
+								<div class="d-grid gap-2">
+									<button class="btn " type="button"
+										style="background-color: rgb(253, 152, 67); color: white;"
+										data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom"
+										aria-controls="offcanvasBottom">구매하기</button>
+
+									<div class="offcanvas offcanvas-bottom dde"
+										style="height: auto;" tabindex="-1" id="offcanvasBottom"
+										aria-labelledby="offcanvasBottomLabel">
+
+										<div class="row mt-3">
+											<div class="col text-center fw-bold">상품 선택</div>
+										</div>
+										<div class="row mt-4">
+											<div class="row" id="optionRow">
+												<div class="col-1"></div>
+												<div class="col" id="colOption"></div>
 												<div class="col-1"></div>
 											</div>
+											<div class="row mt-3" id="optionContainer"></div>
 
-											<div class="row mt-3">
-
-												<div class="col-1"></div>
-												<div class="col-6">총 상품 금액</div>
-												<div class="col-4 text-end">
-													<div class="row">
-														<div class="col fw-bold fs-4" id="showTotalPrice" style="color: darksalmon;">0원</div>
-													</div>
-												</div>
-												<div class="col-1"></div>
-											</div>
-											<div class="row mt-4">
-												<div class="col-1"></div>
-												<div class="col-5 d-grid gap-2">
-													<button class="btn   btn-lg" style="border-color: rgb(253, 152, 67); 
-													color: darksalmon;"
-														data-bs-dismiss="offcanvas" type="button"
-														onclick="insertCart()">장바구니</button>
-												</div>
-												<div class="col-5 d-grid gap-2">
-													<button class="btn  btn-lg" type="button" style="background-color: rgb(253, 152, 67);
-													color: white;"
-														onclick="buyNow()">바로구매</button>
-												</div>
-												<div class="col-1"></div>
-											</div>
-											<div class="row mt-3"></div>
+											<div class="col-1"></div>
 										</div>
 
+										<div class="row mt-3">
+
+											<div class="col-1"></div>
+											<div class="col-6">총 상품 금액</div>
+											<div class="col-4 text-end">
+												<div class="row">
+													<div class="col fw-bold fs-4" id="showTotalPrice"
+														style="color: darksalmon;">0원</div>
+												</div>
+											</div>
+											<div class="col-1"></div>
+										</div>
+										<div class="row mt-4">
+											<div class="col-1"></div>
+											<div class="col-5 d-grid gap-2">
+												<button class="btn   btn-lg"
+													style="border-color: rgb(253, 152, 67); color: darksalmon;"
+													data-bs-dismiss="offcanvas" type="button"
+													onclick="insertCart()">장바구니</button>
+											</div>
+											<div class="col-5 d-grid gap-2">
+												<button class="btn  btn-lg" type="button"
+													style="background-color: rgb(253, 152, 67); color: white;"
+													onclick="buyNow()">바로구매</button>
+											</div>
+											<div class="col-1"></div>
+										</div>
+										<div class="row mt-3"></div>
 									</div>
+
 								</div>
 							</div>
 						</div>
-						<div class="col-1"></div>
 					</div>
-
+					<div class="col-1"></div>
 				</div>
+
 			</div>
 		</div>
+	</div>
 
 
 
@@ -1368,7 +1439,8 @@ body {
 	</div>
 
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"

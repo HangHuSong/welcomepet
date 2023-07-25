@@ -193,6 +193,10 @@ body {
 .product-thum {
 	height: 5em;
 }
+.banner_img {
+ width: 100%;
+}
+
 .small-font {
 	font-size: 0.9em;
 	color: gray;
@@ -220,18 +224,17 @@ body {
 		<div class="row border-bottom "></div>
 		<div class="row mt-2 ">
 			<div class="col ps-0 ms-0">
-			<img src="/uploadFiles/WelcomePet/banner/banner1.png"
-				class="product-thum" style="width:  ;" alt="...">
+			<img src="/welcomepet/resources/img/banner/banner6.jpg"
+				class="banner_img" style="width:  ;" alt="...">
 			</div>		
 		</div>
-			<div class="row mt-2 empty"></div>
 			
 				<div class="row align-items-end " style="font-size: 0.9em; height: 2.5em;">
 				<div class="col ">
 				 <input type="checkbox" class="form-check-input" id="checkAll" style="font-size: 1.1em;" > 
 				 <span class="text-secondary ps-1"> 전체선택 </span> </div>
 				</div>
-					<div class="row mt-2 empty"></div>
+					<div class="row mt-2 "></div>
 					
 		<c:set var="totalPrice" value="0" />
 		<c:set var="salePrice" value="0" />
@@ -298,19 +301,19 @@ body {
 		<div class="row mt-3 ">
 			<div class="col">
 				<div class="row ">
-					<div class="row"   style="font-size: 0.9em;">
+					<div class="row"  >
 						<div class="col text-secondary">총 상품 금액</div>
 						<div class="col text-end fw-bold text-secondary">
 							<del id="totalRealPrice"> </del>
 						</div>
 					</div>
-					<div class="row mt-2"  style="font-size: 0.9em;">
+					<div class="row mt-2"  >
 						<div class="col text-secondary" >할인 금액</div>
 						<div class="col text-end fw-bold text-primary"  id="totalSalePrice"></div>
 						
 					</div>
 					<div class="row mt-3 border-top"></div>
-					<div class="row mt-3  fw-bold ">
+					<div class="row mt-3  fw-bold " style="font-size: 1.1em;">
 						<div class="col">총 결제 금액</div>
 						<div class="col text-end" id="totalPrice">${totalPrice - salePrice}원</div>
 					</div>
@@ -319,7 +322,7 @@ body {
 			</div>
 		</div>
 		
-		<div class="row mt-2 empty" style="height: 3em;"></div>
+		<div class="row mt-2 " style="height: 3em;"></div>
 		<div class="row mt-2">
 			<div class="row mb-4">
 				<div class="col">
@@ -329,7 +332,8 @@ body {
 							<div class="row">
 								<div class="col">
 									<div class="d-grid gap-2">
-										<button class="btn btn-primary btn-lg" type="button" onclick="buyNow()">
+										<button class="btn  btn-lg" type="button" onclick="buyNow()" style="background-color: rgb(253, 152, 67);
+													color: white;">
 										<div class="row fs-5">
 										<div class="col text-center ps-0" id="totalPrice2"> ${totalPrice - salePrice}원 결제하기 </div>
 										</div>

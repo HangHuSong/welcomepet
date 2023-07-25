@@ -337,7 +337,7 @@ body {
 								<input class="form-control text-end" id="point-${status.index}"
 									type="number"
 									name="orderProductDtoList[${status.index}].order_product_used_point"
-									value="0"
+									value="0" placeholder="0"
 									style="height: 25px; width: 125px; margin-left: auto; font-size: 1em;"
 									min="0" oninput="updateTotalUsedPoint()">
 							</div>

@@ -47,8 +47,8 @@ body{
 
 #title1{
     font-size:0.9em;
-     font-weight:800;
-/*     letter-spacing:-0.3px; */
+    font-weight:800;
+/* 	letter-spacing:-0.3px; */
     
     white-space: nowrap; /* 텍스트가 한 줄에서 줄 바꿈하지 않도록 설정 */
     overflow: hidden; /* 내용이 영역을 벗어날 때 숨기기 */
@@ -59,7 +59,7 @@ body{
 #title2{
     font-size:0.9em;
     font-weight:600;
-/* 	line-height: 21px; */
+ 	line-height: 20px;
 }
 
  #else{
@@ -138,7 +138,7 @@ body{
 						   </div>
 						  </div>						  						  
 						  <%-- 닉네임/날짜/조회수 --%>
-						  <div id="else" class="row">
+						  <div id="else" class="row mt-1">
 							<div class="col">
 								<span class="me-2">
 								 ${map.customerDto.customer_nickname}
