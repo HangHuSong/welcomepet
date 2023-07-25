@@ -40,20 +40,20 @@
 						</div>
 					</c:when>
 					<c:when test="${!empty bizUser && bizUser.biz_status_no eq 4}">
-						<%-- <div class="col-1 border-end">
+						<div class="col-2 text-end px-0">
 							<div class="dropdown">
 								<button class="btn dropdown-toggle px-0 py-0" type="button"
 									data-bs-toggle="dropdown" aria-expanded="false">
-									<img class="w-75 rounded-circle" src="/uploadFiles/bizMainImg/${bizUser.biz_store_main_img }">
+									<img class="w-50 rounded-circle" src="/uploadFiles/bizMainImg/${bizUser.biz_store_main_img }">
 								</button>
-								<ul class="dropdown-menu">
+								<ul class="dropdown-menu text-start">
 									<li><a class="dropdown-item" href="#">마이페이지</a></li>
 									<li><a class="dropdown-item" href="./logoutProcess">로그아웃</a></li>
 
 								</ul>
 							</div>
-						</div> --%>
-						<div class="col-1 text-end mx-2 px-0">
+						</div>
+						<div class="col-1 text-start px-0">
 							<div class="dropdown">
 								<button class="btn" type="button" data-bs-toggle="dropdown">
 									<div class="row justify-content-start">

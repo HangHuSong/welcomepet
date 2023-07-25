@@ -12,72 +12,84 @@
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 	crossorigin="anonymous">
 
+<style type="text/css">
+@font-face {
+	font-family: 'GmarketSansMedium';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
 
+@font-face {
+	font-family: 'Pretendard-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+		format('woff');
+	font-weight: 400;
+	font-style: normal;
+}
+</style>
 </head>
 <body>
-	<div class="container">
-		<div class="row">
-			<div class="col" style="height: 150px">
-				<div class="d-none"></div>
+	<div class="row my-5 pt-5 text-center"></div>
+	<div class="row text-center">
+		<div class="col"></div>
+		<div class="col-3">
+			<!-- 로그인정보 -->
+			<div class="row my-4">
+				<div class="col">
+					<span class="fs-2 fw-bold" style="font-family: 'GmarketSansMedium'">어서오개
+						seller office </span>
+				</div>
 			</div>
-		</div>
-		<div class="row text-center">
-			<div class="col"></div>
-			<div class="col">
-				<!-- 로그인정보 -->
-				<div class="row my-4">
-					<div class="col"></div>
-					<div class="col-8">
-						<img class="w-100" src="/welcomepet/resources/img/logo.png">
-					</div>
-					<div class="col"></div>
-				</div>
 
-				<div class="row my-2">
-					<!-- 아이디 -->
-					<div class="col">
-						<input class="form-control" name="biz_id" type="text"
-							placeholder="아이디">
-					</div>
+			<div class="row my-2">
+				<!-- 아이디 -->
+				<div class="col">
+					<input class="form-control" name="biz_id" type="text"
+						placeholder="아이디">
 				</div>
-				<div class="row my-1">
-					<!-- 비밀번호 -->
-					<div class="col">
-						<input class="form-control" name="biz_pw" type="password"
-							placeholder="비밀번호">
-					</div>
-				</div>
-				<div class="row mt-2">
-					<div class="col">
-						<div id="loginFailBox" class="visually-hidden text-danger">아이디와
-							비밀번호를 확인해주세요</div>
-					</div>
-				</div>
-				<div class="row my-2">
-					<div class="col d-grid">
-						<button class="btn text-white"
-							style="background-color: rgb(253, 152, 67);" onclick="loginProcess()">로그인</button>
-					</div>
-				</div>
-				<div class="row my-3">
-					<div class="col border-end align-self-center">아이디 찾기</div>
-					<div class="col border-end align-self-center">비밀번호 찾기</div>
-					<div class="col">
-						<a class="btn px-0 py-0" href="./register">회원가입</a>
-					</div>
-				</div>
-				<div class="row my-2">
-					<div class="col d-grid justify-content-center">
-
-						<button class="btn" onclick="getAuthCode()">
-							<img src="/welcomepet/resources/img/kakao_login.png">
-						</button>
-					</div>
-				</div>
-
 			</div>
-			<div class="col"></div>
+			<div class="row my-1">
+				<!-- 비밀번호 -->
+				<div class="col">
+					<input class="form-control" name="biz_pw" type="password"
+						placeholder="비밀번호">
+				</div>
+			</div>
+			<div class="row mt-2">
+				<div class="col">
+					<div id="loginFailBox" class="visually-hidden text-danger">아이디와
+						비밀번호를 확인해주세요</div>
+				</div>
+			</div>
+			<div class="row my-2">
+				<div class="col d-grid">
+					<button class="btn text-white"
+						style="background-color: rgb(253, 152, 67);"
+						onclick="loginProcess()">로그인</button>
+				</div>
+			</div>
+			<div class="row my-3">
+				<div class="col border-end align-self-center">아이디 찾기</div>
+				<div class="col border-end align-self-center">비밀번호 찾기</div>
+				<div class="col">
+					<a class="btn px-0 py-0" href="./register">회원가입</a>
+				</div>
+			</div>
+			<div class="row my-2">
+				<div class="col d-grid justify-content-center">
+
+					<button class="btn" onclick="getAuthCode()">
+						<img src="/welcomepet/resources/img/kakao_login.png">
+					</button>
+				</div>
+			</div>
+
 		</div>
+		<div class="col"></div>
 	</div>
 	<script type="text/javascript">
 		const urlParams = new URLSearchParams(window.location.search);

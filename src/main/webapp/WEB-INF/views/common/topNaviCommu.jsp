@@ -22,18 +22,37 @@
 
 <style type="text/css">
 
-@font-face {
+/* @font-face {
     font-family: 'KorailRoundGothicBold';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KorailRoundGothicBold.woff2') format('woff2');
     font-weight: 700;
     font-style: normal;
+} */
+
+/* #main{
+	text-decoration: none;
+	color:inherit;
+	/* color: #F8961D; */
+  	/* font-family:'KorailRoundGothicBold', sans-serif !important; */
+/*  	font-family: 'Jua', sans-serif;
+ 	font-weight:700;
+ 	font-size:1.3em;
+ 	color:#fd7e14;
+} */
+
+.nav-link{
+	text-decoration: none;
+	color:inherit;
+/*   	font-family: 'Jua', sans-serif;
+ 	font-weight:700;
+ 	font-size:1.3em; */
+/*  	color:#fd7e14; */
 }
 
 #main{
 	text-decoration: none;
 	color:inherit;
 	/* color: #F8961D; */
-	
   	/* font-family:'KorailRoundGothicBold', sans-serif !important; */
   	font-family: 'Jua', sans-serif;
  	font-weight:700;
@@ -53,25 +72,53 @@
 </head>
 <body>
 <%------ 상단 네비------%>
-<nav class="topNavbar sticky-top bg-body-tertiary shadow-sm p-3">
+<nav class="topNavbar sticky-top bg-body-tertiary shadow-sm px-3 pt-3">
 <div class="container p-0">
 	<div class="container p-0">
-	 <%-- 1 --%>
   	 <div class="container-fluid">
+  	 	<%-- 1 --%>
   	 	<div class="row">
 	     <div class="col p-0">
-	     <a class="btn bi bi-bell-fill text-secondary btn-lg p-0" role="button" href="#"></a>
+	     <a href="/welcomepet/pointProd/board" class="btn btn-black py-0 ps-0" style="border: transparent; outline: none;">
+			<i class="btn bi bi-chevron-left p-0" style="border: transparent; outline: none; font-size: 1.5em;"></i>
+		 </a>
 	     </div>
 	      	 
-	  	 <div class="col-5 text-center">
-	      <a id="main" href="../community/home">어서보여주개</a>
+	  	 <div class="col-5 text-center text-black">
+	      <a id="main" href="../snap/main">커뮤니티</a>
 	     </div>
 	     
 	     <div class="col d-flex justify-content-end p-0">
-	     <a class="btn bi bi-arrow-down-circle text-secondary btn-lg p-0" role="button" href="../customer/login"></a>
+	     <a class="btn bi bi-bell-fill text-secondary btn-lg p-0" role="button" href="#"></a>
 	     </div>
 	  	</div>
+	  	
+	  	<%-- 2 --%>
+		<div class="row text-center">
+		 <div class="col mt-2">
+			<div class="row mb-2">
+				<div class="col"></div>
+			</div>
+		 	
+			<div class="row" style="font-size: 0.9em;">
+				<div class="col">
+					<a class="nav-link" href="/welcomepet/snap/main">snap</a>
+				</div>
+				<div class="col text-center">
+					<a class="nav-link text-secondary" href="/welcomepet/pointProd/board">어서대화하개</a>
+				</div>
+				
+				<div class="col text-center fw-bold">
+					<a class="nav-link" href="/welcomepet/community/showDogPostList"
+					   style="border-bottom:2.5px solid gray">어서보여주개</a>
+				</div>
+			</div>
+			</div>
+		 </div>
+
 	 </div>
+	
+	 
   	</div>
 </div>
 </nav>

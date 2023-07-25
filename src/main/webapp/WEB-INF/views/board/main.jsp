@@ -13,6 +13,10 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+	<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+/>
 <title>메인</title>
 <script >
 
@@ -65,6 +69,7 @@
 				
 				const colImg =	document.createElement("div");
 				colImg.classList.add("col");
+				colImg.setAttribute("onclick","location.href='./productDetail?product_no="+data.productInfo.product_no+"'");
 				colImg.style.position = "relative";
 				rowImg.appendChild(colImg);
 				
@@ -72,17 +77,17 @@
 				discountLabel.classList.add("discount-label");
 				discountLabel.textContent = data.productInfo.product_discount_rate + "%"; // 할인율 정보
 				discountLabel.style.position = "absolute"; // 절대 위치 설정
-				discountLabel.style.top = "0"; // 상단 위치
-				discountLabel.style.left = "10px"; // 왼쪽 위치
-				discountLabel.style.backgroundColor = "red"; // 배경색 설정
+				discountLabel.style.top = "0.3em"; // 상단 위치
+				discountLabel.style.left = "1em"; // 왼쪽 위치
+				discountLabel.style.backgroundColor = "rgb(255, 89, 103)"; // 배경색 설정
 				discountLabel.style.color = "white"; // 글자색 설정
-				discountLabel.style.padding = "2px"; // 내부 여백 설정
-				discountLabel.style.border = "red"; // 테두리 설정
+				discountLabel.style.fontSize = "0.8em"; // 내부 여백 설정
+				discountLabel.style.padding = "0.1em";
 				discountLabel.style.borderRadius = "4px"; // 테두리 둥글기 설정
 				colImg.appendChild(discountLabel);
 				
 				const heartBox = document.createElement("a");
-				heartBox.classList.add("text-danger", "bi", "bi-heart");
+				heartBox.classList.add("text-secondary", "bi", "bi-heart");
 				heartBox.id = "heartBox" + data.productInfo.product_no ;
 				heartBox.setAttribute("onclick", "toggleWish("+ data.productInfo.product_no +")");
 				heartBox.style.position = "absolute"; // 절대 위치 설정
@@ -100,7 +105,8 @@
 				
 				const rowName = document.createElement("div");
 				rowName.classList.add("row", "r_name")
-				rowName.setAttribute("onclick","productDetail=product_no=?"+ data.productInfo.product_no);
+				"location.href='./productDetail?product_no=${map.productInfo.product_no}'"
+				rowName.setAttribute("onclick","location.href='./productDetail?product_no="+data.productInfo.product_no+"'");
 				col1.appendChild(rowName);
 				
 				
@@ -121,6 +127,33 @@
 				colPrice.classList.add("col", "fw-bold","price_text");
 				colPrice.innerText = data.productInfo.product_price - data.salePrice +"원";
 				rowPrice.appendChild(colPrice);	
+				
+				let aveRatingValue = data.aveRating;
+				if (isNaN(aveRatingValue)) {
+				  aveRatingValue = 0;
+				}
+								
+				const rowRating = document.createElement("div");
+				rowRating.classList.add("row");
+				col1.appendChild(rowRating);
+				
+				const colRating = document.createElement("div");
+				colRating.classList.add("col","text-secondary");
+				colRating.style.fontSize = "0.8em";
+				rowRating.appendChild(colRating);	
+				
+				const star = document.createElement("span");
+				star.classList.add("star-icon", "filled");
+				colRating.appendChild(star);
+				
+				const aveRating = document.createElement("span");
+				aveRating.classList.add("ps-1");
+				aveRating.innerText = aveRatingValue;
+				colRating.appendChild(aveRating);
+				
+				const countRating = document.createElement("span");
+				countRating.innerText = "("+data.ratingCount+")";
+				colRating.appendChild(countRating);
 				
 				document.getElementById("topSaleBox").appendChild(col1);
 				
@@ -173,11 +206,11 @@
 				const heartBox = document.getElementById("heartBox" + productNo);
 				
 				if(response.isWished){
-					heartBox.classList.remove("bi-heart");
-					heartBox.classList.add("bi-heart-fill");
+					heartBox.classList.remove("bi-heart","text-secondary");
+					heartBox.classList.add("bi-heart-fill","text-danger");
 				}else{
-					heartBox.classList.remove("bi-heart-fill");
-					heartBox.classList.add("bi-heart");
+					heartBox.classList.remove("bi-heart-fill","text-danger");
+					heartBox.classList.add("bi-heart","text-secondary");
 				}
 			}
 		}
@@ -214,8 +247,8 @@
 		        	  imgCol.classList.add("col","align-items-center","text-center","ps-0","pe-0");
 		        	  imgRow.appendChild(imgCol);
 
-		        	  var img = document.createElement("img");
-		        	  img.src = "/uploadFiles/WelcomePet/category/" + categoryNo + "/" + data.categoryList.sub_category_no + ".png";
+		        	  var img = document.createElement("img"); 
+		        	  img.src = "/welcomepet/resources/img/category/" + categoryNo + "/" + data.categoryList.sub_category_no + ".png";
 		        	  img.classList.add("category_img", "rounded-circle");
 		        	  img.alt = "...";
 		        	  imgCol.appendChild(img);
@@ -259,18 +292,543 @@
 		  window.location.href = url;
 		}
 	
+
+	  function countdownTimer() {
+	    var countDate = new Date(); 
+	    countDate.setHours(24, 0, 0, 0); 
+
+	    var now = new Date().getTime(); 
+	    var distance = countDate.getTime() - now; 
+
+	  
+	    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+	    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+	    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+	 
+	    var hoursStr = hours.toString().padStart(2, '0');
+	    var minutesStr = minutes.toString().padStart(2, '0');
+	    var secondsStr = seconds.toString().padStart(2, '0');
+
+	    
+	    document.getElementById('timeTable').innerText = hoursStr + ":" + minutesStr + ":" + secondsStr;
+
+	  
+	    setTimeout(countdownTimer, 1000);
+	  }
+	  
+	  
+
+	  function getBizProductList(bizNo) {
+			
+			const xhr = new XMLHttpRequest();
+			
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState == 4 && xhr.status == 200){
+					const response = JSON.parse(xhr.responseText);
+					 console.log(response);
+
+				     // 이전 "이 상품과 비슷한 상품" 리스트들 삭제
+				      const relatedListContainer = document.getElementById("bizProductList");
+				      relatedListContainer.innerHTML = "";
+
+				      // relatedListContainer에 "relatedProductsSwiper" 생성
+				      const swiperContainer = document.createElement("div");
+				      swiperContainer.classList.add("swiper-container");
+				      swiperContainer.id = "relatedProductsSwiper";
+
+				      const swiperWrapper = document.createElement("div");
+				      swiperWrapper.classList.add("swiper-wrapper");
+				      swiperContainer.appendChild(swiperWrapper);
+				      
+			
+//				      const prevButton = document.createElement("div");
+//				      prevButton.classList.add("swiper-button-prev");
+//				      swiperContainer.appendChild(prevButton);
+
+//				      const nextButton = document.createElement("div");
+//				      nextButton.classList.add("swiper-button-next");
+//				      swiperContainer.appendChild(nextButton); 
+
+				      relatedListContainer.appendChild(swiperContainer);
+
+				for(data of response.bizProductList) {
+					
+					const col1 = document.createElement("div");
+					col1.classList.add("col-4", "embed-responsive", "embed-responsive-4by3", "ps-3","swiper-slide");
+					
+					
+					
+					const rowImg = document.createElement("div");
+					rowImg.classList.add("row");
+					col1.appendChild(rowImg);
+					
+					const colImg =	document.createElement("div");
+					colImg.classList.add("col");
+					colImg.style.position = "relative";
+					rowImg.appendChild(colImg);
+					
+
+					
+					const heartBox = document.createElement("a");
+					heartBox.classList.add("text-secondary", "bi", "bi-heart");
+					heartBox.id = "heartBox" + data.productInfo.product_no ;
+					heartBox.setAttribute("onclick", "toggleWish("+ data.productInfo.product_no +")");
+					heartBox.style.position = "absolute"; // 절대 위치 설정
+					heartBox.style.bottom = "0"; // 하단 위치
+					heartBox.style.right = "10px"; // 오른쪽 위치
+
+					heartBox.setAttribute("role", "button");
+					colImg.appendChild(heartBox);
+					
+					const img = document.createElement("img");
+					img.src = "/uploadFiles/WelcomePet/" + data.productInfo.product_thumbnail; // 이미지 URL 또는 경로 설정
+					img.alt = "제품 이미지";
+					img.classList.add("embed-responsive-item", "product-thum");
+					colImg.appendChild(img);
+					
+					const rowName = document.createElement("div");
+					rowName.classList.add("row", "r_name")
+					rowName.setAttribute("onclick","location.href='./productDetail?product_no="+data.productInfo.product_no+"'");
+					col1.appendChild(rowName);
+					
+					
+					const colName = document.createElement("div");
+					colName.classList.add("col");
+					rowName.appendChild(colName);
+					
+					const nameBox = document.createElement("p");
+					nameBox.classList.add( "fsmid");
+					nameBox.innerText = data.productInfo.product_name;
+					colName.appendChild(nameBox);
+					
+					const Realprice = data.productInfo.product_price;
+					const formattedRealprice = Realprice.toLocaleString();
+					
+					const rowRealPrice = document.createElement("div");
+					rowRealPrice.classList.add("row");
+					col1.appendChild(rowRealPrice);
+					
+					const colRealPrice = document.createElement("div");
+					colRealPrice.classList.add("col", "text-secondary","real_price");
+					colRealPrice.innerText = formattedRealprice + "원";
+					
+					rowRealPrice.appendChild(colRealPrice);	
+					
+					const price = data.productInfo.product_price - data.salePrice;
+					const formattedPrice = price.toLocaleString();
+					
+					const rowPrice = document.createElement("div");
+					rowPrice.classList.add("row");
+					col1.appendChild(rowPrice);
+							
+					const colPrice = document.createElement("div");
+					colPrice.classList.add("col", "fw-bold","price_text");
+
+					rowPrice.appendChild(colPrice);	
+					
+					if(data.productInfo.product_discount_rate > 0) {
+					
+					const SaleRate = document.createElement("span");
+					SaleRate.classList.add("text-danger");
+					SaleRate.innerText = data.productInfo.product_discount_rate +"%";
+					colPrice.appendChild(SaleRate); }	
+					
+					const Price = document.createElement("span");
+					Price.innerText = formattedPrice +"원";
+					colPrice.appendChild(Price);
+					
+					let aveRatingValue = data.aveRating;
+					if (isNaN(aveRatingValue)) {
+					  aveRatingValue = 0;
+					}
+					
+					const rowRating = document.createElement("div");
+					rowRating.classList.add("row");
+					col1.appendChild(rowRating);
+					
+					const colRating = document.createElement("div");
+					colRating.classList.add("col","text-secondary");
+					colRating.style.fontSize = "0.8em";
+					rowRating.appendChild(colRating);	
+					
+					const star = document.createElement("span");
+					star.classList.add("star-icon", "filled");
+					colRating.appendChild(star);
+					
+					const aveRating = document.createElement("span");
+					aveRating.classList.add("ps-1");
+					aveRating.innerText = aveRatingValue;
+					colRating.appendChild(aveRating);
+					
+					const countRating = document.createElement("span");
+					countRating.innerText = "("+data.ratingCount+")";
+					colRating.appendChild(countRating);
+					
+					
+					swiperWrapper.appendChild(col1);
+					
+					  refreshMyHeart(data.productInfo.product_no);
+					}
+				
+
+				
+			    const swiper = new Swiper("#relatedProductsSwiper", {
+			        slidesPerView: "auto",
+			        spaceBetween: 10,
+			        loop: true,
+			        navigation: {
+			          nextEl: ".swiper-button-next",
+			          prevEl: ".swiper-button-prev",
+			        },
+			        pagination: {
+			          el: ".swiper-pagination",
+			          clickable: true,
+			        },
+			      });
+
+				}
+			}
+			
+			
+
+
+			xhr.open("get", "./bizProduct?biz_no="+bizNo);
+			xhr.send();	
+		}
+	  
+	  let selectedBizDiv = null;
+
+	  function handleBizClick(event) {
+		    console.log("handleBizClick() 함수 호출됨.");
+		    // Remove the "text-primary" class from the previous selected element
+		    if (selectedBizDiv !== null) {
+		        selectedBizDiv.querySelector(".biz_name").classList.remove("text-primary");
+		        selectedBizDiv.querySelector(".biz_img").classList.remove("border-primary");
+		        selectedBizDiv.querySelector(".biz_img").classList.remove("border");
+		        selectedBizDiv.querySelector(".biz_img").classList.remove("border-3");
+		        selectedBizDiv.classList.remove("selected");
+		        selectedBizDiv.querySelector(".biz_name").classList.add("text-secondary");
+		    }
+
+		    // Add the "text-primary" class to the clicked element
+		    const clickedSlide = event.target.closest(".swiper-slide");
+		    clickedSlide.querySelector(".biz_name").classList.add("text-primary");
+		    clickedSlide.querySelector(".biz_img").classList.add("border-primary");
+		    clickedSlide.querySelector(".biz_img").classList.add("border");
+		    clickedSlide.querySelector(".biz_img").classList.add("border-3");
+		    clickedSlide.classList.add("selected");
+		    clickedSlide.querySelector(".biz_name").classList.remove("text-secondary");
+
+		    // Update the selectedBizDiv to the current clicked element
+		    selectedBizDiv = clickedSlide;
+		}
+	  
+		function getBizList() {
+			 
+			  var xhr = new XMLHttpRequest();
+
+			  xhr.onreadystatechange = function() {
+				  console.log("bizList() 함수 호출됨.");
+			    if (xhr.readyState === XMLHttpRequest.DONE) {
+			    	
+			      if (xhr.readyState == 4 && xhr.status == 200) {
+			        const response = JSON.parse(xhr.responseText);
+					console.log(response);
+			
+			        const bizListContainer = document.getElementById("bizList");
+			        bizListContainer.innerHTML = ""; 
+			        
+				      const swiperContainer2 = document.createElement("div");
+				      swiperContainer2.classList.add("swiper-container");
+				      swiperContainer2.id = "bizSwiper";
+				      bizListContainer.appendChild(swiperContainer2);
+
+				      const swiperWrapper2 = document.createElement("div");
+				      swiperWrapper2.classList.add("swiper-wrapper");
+				      swiperContainer2.appendChild(swiperWrapper2);
+
+			        for (data of response.bizList) {
+			        	  console.log(data);
+			        	  var colDiv = document.createElement("div");
+			        	  colDiv.classList.add("col-3","align-items-center","text-center","swiper-slide");
+			        	  colDiv.id = "biz-slide";
+			        	  colDiv.setAttribute("onclick", "getBizProductList("+ data.bizInfo.biz_no + ")");
+			        	  
+			              
+			        	  var imgRow = document.createElement("div");
+			        	  imgRow.classList.add("row", "px-0","mx-0");
+			        	  colDiv.appendChild(imgRow);
+
+			        	  var imgCol = document.createElement("div");
+			        	  imgCol.classList.add("col","align-items-center","text-center","ps-0","pe-0");
+			        	  imgRow.appendChild(imgCol);
+
+			        	  var img = document.createElement("img");
+			        	  img.src = "/uploadFiles/WelcomePet/biz/biz" + data.bizInfo.biz_no + ".jpg";
+			        	  img.classList.add("biz_img", "rounded-circle");
+			        	  img.alt = "...";
+			        	  imgCol.appendChild(img);
+
+			        	  var categoryRow = document.createElement("div");
+			        	  categoryRow.classList.add("row","mt-1");	
+			        	  
+			        	  var categoryCol = document.createElement("div");
+			        	  categoryCol.classList.add("col", "biz_name","fw-bold","px-0","text-secondary");
+			        	  categoryCol.innerText = data.bizInfo.biz_store_name;
+
+			        	  categoryRow.appendChild(categoryCol);
+			        	  colDiv.appendChild(categoryRow);
+
+			        	  swiperWrapper2.appendChild(colDiv);
+			        	}
+			        
+	                const swiper = new Swiper("#bizSwiper", {
+	                    slidesPerView: "auto",
+	                    spaceBetween: 10,
+	                    loop: false,
+	                    navigation: {
+	                        nextEl: ".swiper-button-next",
+	                        prevEl: ".swiper-button-prev",
+	                    },
+	                    pagination: {
+	                        el: ".swiper-pagination",
+	                        clickable: true,
+	                    },
+	                });
+			    }
+			  	};
+			  }
+			  
+			  xhr.open("GET", "./bizList");
+			  xhr.send();
+			
+		}
+		
+		function getBestList(categoryNo) {
+			
+			const xhr = new XMLHttpRequest();
+			
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState == 4 && xhr.status == 200){
+					const response = JSON.parse(xhr.responseText);
+					 console.log(response);
+					document.getElementById("bestListBox").innerHTML = "";
+
+				for(data of response.relatedProductList) {
+					
+					const col1 = document.createElement("div");
+					col1.classList.add("col-4","py-1", "embed-responsive", "embed-responsive-4by3", "ps-3");
+					
+					
+					
+					const rowImg = document.createElement("div");
+					rowImg.classList.add("row");
+					col1.appendChild(rowImg);
+					
+					const colImg =	document.createElement("div");
+					colImg.classList.add("col");
+					colImg.setAttribute("onclick","location.href='./productDetail?product_no="+data.productInfo.product_no+"'");
+					colImg.style.position = "relative";
+					rowImg.appendChild(colImg);
+					
+					  const index = response.relatedProductList.indexOf(data);
+					const discountLabel = document.createElement("label");
+					discountLabel.classList.add("discount-label","fw-bold","text-center");
+					discountLabel.textContent = index + 1; 
+					discountLabel.style.position = "absolute"; // 절대 위치 설정
+					discountLabel.style.top = "0.0em"; // 상단 위치
+					discountLabel.style.left = "0em"; // 왼쪽 위치
+					discountLabel.style.backgroundColor = "red"; // 배경색 설정
+					discountLabel.style.color = "white"; // 글자색 설정
+					discountLabel.style.fontSize = "0.8em"; // 내부 여백 설정
+					discountLabel.style.padding = "0.1em";
+					discountLabel.style.opacity = "0.4";
+					discountLabel.style.borderRadius = "0.8em 0px"; 
+					discountLabel.style.minWidth = "1.8rem";
+					colImg.appendChild(discountLabel);
+					
+					const heartBox = document.createElement("a");
+					heartBox.classList.add("text-secondary", "bi", "bi-heart");
+					heartBox.id = "heartBox" + data.productInfo.product_no ;
+					heartBox.setAttribute("onclick", "toggleWish("+ data.productInfo.product_no +")");
+					heartBox.style.position = "absolute"; // 절대 위치 설정
+					heartBox.style.bottom = "0"; // 하단 위치
+					heartBox.style.right = "10px"; // 오른쪽 위치
+					heartBox.style.filter = "opacity(0.5)";
+					heartBox.setAttribute("role", "button");
+					colImg.appendChild(heartBox);
+					
+					const img = document.createElement("img");
+					img.src = "/uploadFiles/WelcomePet/" + data.productInfo.product_thumbnail; // 이미지 URL 또는 경로 설정
+					img.alt = "제품 이미지";
+					img.classList.add("embed-responsive-item", "product-thum");
+					colImg.appendChild(img);
+					
+					const rowName = document.createElement("div");
+					rowName.classList.add("row", "r_name")
+					"location.href='./productDetail?product_no=${map.productInfo.product_no}'"
+					rowName.setAttribute("onclick","location.href='./productDetail?product_no="+data.productInfo.product_no+"'");
+					col1.appendChild(rowName);
+					
+					
+					const colName = document.createElement("div");
+					colName.classList.add("col");
+					rowName.appendChild(colName);
+					
+					const nameBox = document.createElement("p");
+					nameBox.classList.add( "fsmid");
+					nameBox.innerText = data.productInfo.product_name;
+					colName.appendChild(nameBox);
+					
+					const rowPrice = document.createElement("div");
+					rowPrice.classList.add("row");
+					col1.appendChild(rowPrice);
+					
+					const colPrice = document.createElement("div");
+					colPrice.classList.add("col", "fw-bold","price_text");
+					colPrice.innerText = data.productInfo.product_price - data.salePrice +"원";
+					rowPrice.appendChild(colPrice);	
+					
+					let aveRatingValue = data.aveRating;
+					if (isNaN(aveRatingValue)) {
+					  aveRatingValue = 0;
+					}
+									
+					const rowRating = document.createElement("div");
+					rowRating.classList.add("row");
+					col1.appendChild(rowRating);
+					
+					const colRating = document.createElement("div");
+					colRating.classList.add("col","text-secondary");
+					colRating.style.fontSize = "0.8em";
+					rowRating.appendChild(colRating);	
+					
+					const star = document.createElement("span");
+					star.classList.add("star-icon", "filled");
+					colRating.appendChild(star);
+					
+					const aveRating = document.createElement("span");
+					aveRating.classList.add("ps-1");
+					aveRating.innerText = aveRatingValue;
+					colRating.appendChild(aveRating);
+					
+					const countRating = document.createElement("span");
+					countRating.innerText = "("+data.ratingCount+")";
+					colRating.appendChild(countRating);
+					
+					document.getElementById("bestListBox").appendChild(col1);
+					
+					  refreshMyHeart(data.productInfo.product_no);
+					}
+				}
+			}
+			xhr.open("get", "./relatedProduct?main_category_no="+categoryNo);
+			xhr.send();	
+		}
+	 
+	
+	
 	
 	window.addEventListener("DOMContentLoaded", function(){
 	    //사실상 시작 시점...
 	     getSessionId();
 		getSaleList();
 		fetchCategoryList(1);
+		countdownTimer();
+		getBizProductList(1);
+		getBizList();
+		getBestList(1);
 	    
 	});
 
 
 </script>
+
 <style type="text/css">
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+	font-family: 'SUITE-Regular';
+}
+.swiper-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+   position: relative;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  position: absolute; 
+  top: 50%; 
+  transform: translateY(-50%); 
+  width: 1em;
+  height: 1em;
+  color: grey;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 24px; /* 아이콘 크기를 조절합니다. */
+}
+
+.swiper-button-next {
+  right: 10px;
+}
+
+/* 이전 버튼의 위치를 좌측으로 설정합니다. */
+.swiper-button-prev {
+  left: 10px;
+}
+
+#biz-slide {
+  width: 18%;
+}
+/* Swiper 슬라이드 아이템 스타일 */
+.swiper-slide {
+  width: 40%;
+}
+
+
+
+
+
+/* 페이지네이션 스타일 */
+.swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+  opacity: 0.5;
+  border-radius: 50%;
+  margin: 0 5px;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+}
+.price_text{
+	font-size: 0.8em;
+}
+
+.real_price{
+ font-size: 0.7em;
+ text-decoration: line-through;
+}
+
+
 .carousel-inner {
 	height: 12em;
 }
@@ -286,7 +844,6 @@
 }
 .fsmid {
 	font-size: 0.8em;
-	letter-spacing: -0.09em;
 	margin-bottom: 0;
 	overflow: hidden;
     text-overflow: ellipsis;
@@ -309,6 +866,13 @@
 }
 .category_name {
  font-size: 0.7em;
+}
+
+.biz_img {
+	width: 100%;
+}
+.biz_name {
+	font-size: 0.7em;
 }
 
 .category-col {
@@ -343,6 +907,25 @@
 	background-color: rgb(244, 247, 250);
 }
 
+.star-icon {
+	display: inline-block;
+	width: 1.2em;
+	height: 1.2em;
+	background-image: url('/uploadFiles/WelcomePet/icons/star-empty.png');
+	background-size: cover;
+	filter: opacity(0.5);
+}
+
+.filled {
+	display: inline-block;
+	width: 1.2em;
+	height: 1.2em;
+	background-size: cover;
+	background-image: url('/uploadFiles/WelcomePet/icons/star.png');
+	filter: none;
+	vertical-align: sub;
+}
+
 </style>
 </head>
 <body>
@@ -369,20 +952,26 @@
 						data-bs-slide-to="1" aria-label="Slide 2"></button>
 					<button type="button" data-bs-target="#carouselExampleIndicators"
 						data-bs-slide-to="2" aria-label="Slide 3"></button>
+					<button type="button" data-bs-target="#carouselExampleIndicators"
+						data-bs-slide-to="3" aria-label="Slide 4"></button>						
 				</div>
 				<div class="carousel-inner">
 					<div class="carousel-item active">
-						<img src="/uploadFiles/WelcomePet/image/MainBanner1.jpg"
+						<img src="/welcomepet/resources/img/banner/MainBanner1.png"
 							class="d-block w-100" alt="...">
 					</div>
 					<div class="carousel-item">
-						<img src="/uploadFiles/WelcomePet/image/MainBanner2.jpg"
+						<img src="/welcomepet/resources/img/banner/MainBanner2.jpg"
 							class="d-block w-100" alt="...">
 					</div>
 					<div class="carousel-item">
-						<img src="/uploadFiles/WelcomePet/image/MainBanner3.jpg"
+						<img src="/welcomepet/resources/img/banner/MainBanner3.jpg"
 							class="d-block w-100" alt="...">
 					</div>
+					<div class="carousel-item">
+						<img src="/welcomepet/resources/img/banner/MainBanner4.png"
+							class="d-block w-100" alt="...">
+					</div>					
 				</div>
 				<button class="carousel-control-prev" type="button"
 					data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -400,13 +989,13 @@
 			<div class="col-1"></div>
 			<div class="col border rounded-2 text-secondary align-items-center d-flex" style="background-color: rgb(227, 237, 255); font-size: 0.9em; 
 						height:3em; ">
-				<span>리뷰 작성시 최대</span> <span class="text-primary">결제금액의 3%</span> <span>를 드려요!</span>
+				<span class="ms-3">리뷰 작성시 최대</span> <span class="text-primary ps-1">결제금액의 3%</span> <span>를 드려요!</span>
 			</div>
 			<div class="col-1"></div>
 		</div>
-			<div class="row mt-3 ps-0">
+			<div class="row mt-3 ms-2 ps-0">
 					
-					<div class="col-1 ps-0 pe-0"></div>
+					
 					  <div class="col pe-0 category-col">
 					    <span class="category-span not-select" onclick="fetchCategoryList(1)" id="categoryBtn1">사료</span>
 					  </div>
@@ -425,9 +1014,9 @@
 					  <div class="col-1 ps-0 pe-0"></div>
 			</div>
 		<div class="row mt-3 text-center">
-		<div class="col-1 ps-0 pe-0 "></div>
+		
 		<div class="col">
-			<div class="row" id="categoryList">
+			<div class="row ms-2" id="categoryList">
 
 			</div>
 			</div>
@@ -436,9 +1025,11 @@
 			<div class="row mt-2 empty"></div>
 		<div class="row mt-2">
 		<div class="col">
-		<div class="row mt-2" > 
-		<div class="col  " style="font-size: 1.2em; font-weight: 600;"> 핫딜 상품 <i class="bi bi-fire text-danger"></i></div>
-		<div class="row mt-3" id="topSaleBox">
+		<div class="row mt-3" > 
+		<div class="col  " style="font-size: 1.2em; font-weight: 600;"> 오늘의 핫딜 <i class="bi bi-fire text-danger"></i>
+			<span id="timeTable" class="text-danger fw-bold"></span>
+			</div>
+		<div class="row mt-4" id="topSaleBox">
 		
 				</div>
 		</div>
@@ -446,53 +1037,71 @@
 
 		</div>
 	 <div class="row mt-2"></div>
-		<div class="row mt-2 ">
-			<div class="col ps-0 ms-0">
-			<img src="/uploadFiles/WelcomePet/banner/banner1.png"
+		<div class="row mt-4 ">
+			<div class="col px-0 ms-0">
+			<img src="/welcomepet/resources/img/banner/banner2.png"
 				class="product-thum" style="width:  ;" alt="...">
 			</div>		
 		</div>
 				
 		<div class="row mt-2">
 		<div class="col">
-		<div class="row " > 
-		<div class="col fs-4 fw-bold"> 브랜드 샵 </div>
-		<div class="row mt-2" >
-					<c:forEach items="${topSaleProduct}" var="map">
-				<div
-					class="col-4 mt-3  embed-responsive embed-responsive-4by3"
-					onclick="location.href='./productDetail?product_no=${map.productInfo.product_no}'">
-					<div class="row">
-					<div class="col">
-						<img
-							src="/uploadFiles/WelcomePet/${map.productInfo.product_thumbnail}"
-							class="embed-responsive-item product-thum" alt="..."> </div>
-					</div>
-					<div class="row"> 
-					<div class="col-1"></div>
-					<div class="col fw-bold">${map.productInfo.product_name}</div> 
-					</div> 
-					<div class="row"> 
-					<div class="col"><del>${map.productInfo.product_price}원</del></div> 
-					</div> 
-					<div class="row"> 
-					<div class="col-3 text-danger fw-bold">
-					${map.productInfo.product_discount_rate}%
-					</div>
-					<div class="col fw-bold">
-					${map.productInfo.product_price - map.salePrice}원</div> 
-					</div> 
-				</div>
-			</c:forEach></div>
-		</div>
-		</div>
+		<div class="row mt-3" > 
+		<div class="col  fw-bold" style="font-size: 1.2em;"> 브랜드 샵 </div>
+		
+		<div class="row mt-2" id="bizList">
+					
+			</div>
+		<div class="row mt-3 px-0" id="bizProductList" >
 
+		</div>
+		</div>
+		
+		<div class="row mt-2"></div>
+		<div class="row mt-4 ">
+			<div class="col px-0 ms-0">
+			<img src="/welcomepet/resources/img/banner/banner1.png"
+				class="product-thum" style="width:  ;" alt="...">
+			</div>		
+		</div>
+		
+		<div class="row mt-4">
+			<div class="col fw-bold" style="font-size: 1.2em;">
+			  베스트 아이템
+			</div>
+		</div>
+					<div class="row mt-2 ps-0">
+					
+					  <div class="col ms-1 pe-0 category-col">
+					    <span class="category-span2 not-select" onclick="getBestList(1)" id="">사료</span>
+					  </div>
+					  <div class="col pe-0 category-col">
+					    <span class="category-span2 not-select" onclick="getBestList(2)" id="">간식</span>
+					  </div>
+					  <div class="col pe-0 category-col">
+					    <span class="category-span2 not-select" onclick="getBestList(3)" id="">용품</span>
+					  </div>
+					  <div class="col pe-0 category-col">
+					    <span class="category-span2 not-select" onclick="getBestList(4)" id="">건강</span>
+					  </div>
+					  <div class="col ps-0 category-col">
+					    <span class="category-span2 not-select" onclick="getBestList(5)" id="">스타일</span>
+					  </div>
+					  <div class="col-1 ps-0 pe-0"></div>
+			</div>
+		<div class="row mt-3" id="bestListBox">
+		
+		</div>
+				
+
+		</div>
 		</div>
 	<jsp:include page="../common/serviceNavi.jsp"></jsp:include>
 	<jsp:include page="../common/bottomNavi.jsp"></jsp:include>
 	</div>
 
 
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"

@@ -2,6 +2,7 @@ package com.bubble.welcomepet.customer.mapper;
 
 import java.util.List;
 
+import com.bubble.welcomepet.dto.BizDto;
 import com.bubble.welcomepet.dto.CartDto;
 import com.bubble.welcomepet.dto.CategoryDto;
 import com.bubble.welcomepet.dto.CustomerAddressDto;
@@ -81,6 +82,8 @@ public interface CustomerMapper {
 	
 	public List<ProductDto> getProductInfoByMainCategory(int main_category_no);
 	
+	public List<ProductDto> getProductInfoByBiz(int biz_no);
+	
 	public CategoryDto getSubCategory(int sub_category_no);
 	
 	public CategoryDto getMainCategory(int main_category_no);
@@ -96,6 +99,8 @@ public interface CustomerMapper {
 	public List<CategoryDto> getCategoryList(int main_category_no);
 	
 	public int getMaincategoryNoBySub(int sub_category_no); 
+	
+	public List<BizDto> getBizList();
 	//주문
 	
 	public int createOrdersPk();
@@ -117,6 +122,8 @@ public interface CustomerMapper {
 	public OrderProductDto getOrderProductByNo(int order_product_no);
 	
 	public void addOrderAlarm(OrderAlarmDto orderAlarmDto);
+	
+	public int createOrderProductPk();
 	
 	// 리뷰
 	public int createReviewPk();

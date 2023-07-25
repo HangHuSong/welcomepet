@@ -1364,4 +1364,9 @@ public class BizServiceImpl {
 		
 		return list;
 	}
+
+	public int getBizLikesNumByBizNo(int biz_no) {
+		
+		return bizSqlMapper.getBizLikesNumByBizNo(biz_no);
+	}
 }

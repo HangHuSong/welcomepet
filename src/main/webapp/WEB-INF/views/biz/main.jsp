@@ -29,13 +29,13 @@
 
 </head>
 <body>
-	<div class="container px-0" style="margin: 0 0;">
+	<div class="container px-0" style="margin: 0 0; width:100%;">
 		<div class="row" style="width: 1900px;">
 			<div class="col-2 text-center ps-4 text-white"
-				style="height: 1080px; background-color: rgb(29, 33, 42);"><jsp:include
+				style="height: auto; background-color: rgb(29, 33, 42);"><jsp:include
 					page="../common/bizLeftNavi.jsp"></jsp:include></div>
-			<div class="col px-0">
-				<div class="row bg-white mx-1">
+			<div class="col-8 px-0">
+				<div class="row bg-white mx-1 px-3">
 					<div class="col text-center"><jsp:include
 							page="../common/bizTopNavi.jsp"></jsp:include></div>
 				</div>
@@ -130,7 +130,7 @@
 						</div>
 					</c:when>
 					<c:when test="${bizUser.biz_status_no eq 4}">
-						<div class="row mx-1 bg-light">
+						<div class="row mx-1 bg-light pb-5 px-5">
 							<div class="col">
 								<div class="row">
 									<div class="col border my-3 mx-3 py-3 bg-white">
@@ -151,7 +151,7 @@
 														<div class="row">
 															<div class="col" style="font-size: 12px;">
 																<span class="text-secondary">스토어찜</span> <span
-																	class="text-info">10명</span>
+																	class="text-info">${biz_likes_num }명</span>
 															</div>
 														</div>
 													</div>
@@ -187,9 +187,9 @@
 										<div class="row py-3 px-2 border-bottom">
 											<div class="col fs-5 fw-bold">주문/배송</div>
 										</div>
-										<div class="row py-4">
+										<div class="row">
 											<div class="col">
-												<div class="row">
+												<div class="row py-4 border-bottom">
 													<div class="col py-1">
 														<div class="row align-items-center">
 															<div class="col">
@@ -200,7 +200,7 @@
 														</div>
 													</div>
 												</div>
-												<div class="row">
+												<div class="row py-4 border-bottom">
 													<div class="col py-1">
 														<div class="row align-items-center">
 															<div class="col">
@@ -211,7 +211,7 @@
 														</div>
 													</div>
 												</div>
-												<div class="row">
+												<div class="row py-4 border-bottom">
 													<div class="col py-1">
 														<div class="row align-items-center">
 															<div class="col">
@@ -222,7 +222,7 @@
 														</div>
 													</div>
 												</div>
-												<div class="row">
+												<div class="row py-4">
 													<div class="col py-1">
 														<div class="row align-items-center">
 															<div class="col">
@@ -240,17 +240,17 @@
 										<div class="row py-3 px-2 border-bottom">
 											<div class="col fs-5 fw-bold">취소/환불/교환</div>
 										</div>
-										<div class="row py-2 px-2">
+										<div class="row px-2">
 											<div class="col">
-												<div class="row py-3 align-items-center border-bottom">
+												<div class="row align-items-center border-bottom" style="padding:43px 0;">
 													<div class="col">취소요청</div>
 													<div class="col text-primary fs-4 fw-bold text-center">${cancelRefundExchangeNumData.cancelRequestNum }</div>
 												</div>
-												<div class="row py-3 align-items-center border-bottom">
+												<div class="row align-items-center border-bottom" style="padding:43px 0;">
 													<div class="col">환불요청</div>
 													<div class="col text-primary fs-4 fw-bold text-center">${cancelRefundExchangeNumData.returnRequestNum }</div>
 												</div>
-												<div class="row py-3 align-items-center">
+												<div class="row align-items-center" style="padding:43px 0;">
 													<div class="col">교환요청</div>
 													<div class="col text-primary fs-4 fw-bold text-center">${cancelRefundExchangeNumData.exchangeRequestNum }</div>
 												</div>
@@ -269,13 +269,13 @@
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-3 my-3 mx-3 bg-white border">
+									<div class="col-4 my-3 mx-3 bg-white border">
 										<div class="row py-3 px-2 border-bottom">
 											<div class="col fs-5 fw-bold">판매현황</div>
 										</div>
 										<div class="row py-2">
 											<div class="col">
-												<div class="row border-bottom px-2">
+												<div class="row border-bottom px-2 py-2">
 													<div class="col">
 														<div class="row">
 															<div class="col align-self-center">오늘 결제금액</div>
@@ -294,7 +294,7 @@
 														</div>
 													</div>
 												</div>
-												<div class="row my-2 border-bottom px-2">
+												<div class="row my-2 border-bottom px-2 py-2">
 													<div class="col">
 														<div class="row">
 															<div class="col align-self-center">이번주 결제금액</div>
@@ -314,7 +314,7 @@
 														</div>
 													</div>
 												</div>
-												<div class="row my-2 border-bottom px-2">
+												<div class="row my-2 border-bottom px-2 py-2">
 													<div class="col">
 														<div class="row">
 															<div class="col align-self-center">오늘 결제건수</div>
@@ -334,7 +334,7 @@
 														</div>
 													</div>
 												</div>
-												<div class="row px-2">
+												<div class="row px-2 py-2">
 													<div class="col">
 														<div class="row">
 															<div class="col align-self-center">이번주 결제건수</div>

@@ -27,6 +27,10 @@ a {
 	text-decoration: none;
 }
 
+a:hover {
+	    color: inherit;       
+	}
+
 #sidebar {
 	color: white;
 	height: 200vh;

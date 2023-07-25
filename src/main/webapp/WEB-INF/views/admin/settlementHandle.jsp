@@ -100,7 +100,7 @@
                             <div class="row mt-3">
                                 <div class="col-7"></div>
                                 <div class="col d-grid">
-                                    <button class="btn btn-primary" onclick="transferSettlement()">처리완료</button>
+                                    <button class="btn btn-secondary" onclick="transferSettlement()">처리완료</button>
                                 </div>
                             </div>
 					</div>

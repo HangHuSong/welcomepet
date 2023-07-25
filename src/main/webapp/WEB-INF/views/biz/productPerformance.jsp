@@ -15,66 +15,72 @@
 
 </head>
 <body>
-	<div class="container">
-		<div class="row">
-			<div class="col">
-				<jsp:include page="../common/bizTopNavi.jsp"></jsp:include>
-			</div>
-		</div>
-		<div class="row text-center">
-			<div class="col-3"><jsp:include
+	<div class="container" style="margin: 0 0;">
+		<div class="row" style="width: 1900px;">
+			<div class="col-2 text-center ps-4 text-white d-flex align-items-stretch align-top"
+				style="background-color: rgb(29, 33, 42);"><jsp:include
 					page="../common/bizLeftNavi.jsp"></jsp:include></div>
-			<div class="col-9 my-3">
-				<div class="row my-2 mx-2">
-					<div class="col fs-4 bold text-start">상품성과</div>
+			<div class="col-8 px-0">
+				<div class="row mx-1">
+					<div class="col">
+						<jsp:include page="../common/bizTopNavi.jsp"></jsp:include>
+					</div>
 				</div>
-				<div class="row">
-					<div class="col mx-2">
-
+				<div class="row px-5 text-center bg-light mx-1">
+					<div class="col">
 						<div class="row my-2">
-							<div class="col border me-2">
-								<!-- 상품카테고리(소)별 결제금액 -->
-								<div class="row">
-									<div class="col fs-5">상품카테고리(소)별 결제금액</div>
-								</div>
-								<div class="row">
-									<div class="col">
-										<canvas id="subCategorySalesChart"></canvas>
-									</div>
-								</div>
-							</div>
-							<div class="col border ms-2">
-								<!-- 상품별 결제금액 -->
-								<div class="row">
-									<div class="col fs-5">상품별 결제금액</div>
-								</div>
-								<div class="row">
-									<div class="col">
-										<canvas id="productSalesChart"></canvas>
-									</div>
-								</div>
-							</div>
+							<div class="col fs-5 fw-bold text-start py-3">상품성과</div>
 						</div>
-						<div class="row my-2">
-							<div class="col border me-2">
-								<!-- 상품카테고리(소)별 환불율 -->
-								<div class="row">
-									<div class="col fs-5">상품카테고리(소)별 환불율</div>
-								</div>
-								<div class="row">
-									<div class="col">
-										<canvas id="subCategoryRefundChart"></canvas>
+						<div class="row">
+							<div class="col mx-2">
+
+								<div class="row my-2">
+									<div class="col border bg-white">
+										<!-- 상품카테고리(소)별 결제금액 -->
+										<div class="row">
+											<div class="col text-start fw-bold py-2 border-bottom">상품카테고리(소)별 결제금액</div>
+										</div>
+										<div class="row">
+											<div class="col">
+												<canvas id="subCategorySalesChart"></canvas>
+											</div>
+										</div>
 									</div>
+									<div class="col border ms-2 bg-white">
+										<!-- 상품카테고리(소)별 환불율 -->
+										<div class="row">
+											<div class="col text-start fw-bold py-2 border-bottom">상품카테고리(소)별 환불율</div>
+										</div>
+										<div class="row">
+											<div class="col">
+												<canvas id="subCategoryRefundChart"></canvas>
+											</div>
+										</div>
+									</div>
+									
 								</div>
-							</div>
-							<div class="col border ms-2">
-								<!-- 상품별 환불율 -->
-								<div class="row">
-									<div class="col fs-5">상품별 환불율</div>
-								</div>
-								<div class="row">
-									<div class="col">
-										<canvas id="productRefundChart"></canvas>
+								<div class="row my-2">
+									<div class="col border bg-white">
+										<!-- 상품별 결제금액 -->
+										<div class="row">
+											<div class="col text-start fw-bold py-2 border-bottom">상품별 결제금액</div>
+										</div>
+										<div class="row">
+											<div class="col">
+												<canvas id="productSalesChart"></canvas>
+											</div>
+										</div>
+									</div>
+									<div class="col border ms-2 bg-white">
+										<!-- 상품별 환불율 -->
+										<div class="row">
+											<div class="col text-start fw-bold py-2 border-bottom">상품별 환불율</div>
+										</div>
+										<div class="row">
+											<div class="col">
+												<canvas id="productRefundChart"></canvas>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -86,7 +92,6 @@
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	<script type="text/javascript">
-		
 		const productSalesChart = document.getElementById('productSalesChart');
 		
 		var productSalesList=${productPerformanceData.productSalesList};
@@ -131,11 +136,14 @@
 						datasets:[{
 							type:'bar',
 							label:"결제총액",
-							data:productSales
+							data:productSales,
+							backgroundColor: 'rgba(75,192,192,0.5)'
 						},{
 							type:'line',
 							label:"환불총액",
-							data:productRefund
+							data:productRefund,
+							backgroundColor: 'rgba(255,99,132,0.8)',
+							borderColor:'rgba(255,99,132,0.8)'
 						}]
 					},
 					options:{
@@ -191,11 +199,14 @@
 				datasets:[{
 					type:'bar',
 					label:"결제총액",
-					data:subCategorySales
+					data:subCategorySales,
+					backgroundColor: 'rgba(75,192,192,0.5)'
 				},{
 					type:'line',
 					label:"환불총액",
-					data:subCategoryRefund
+					data:subCategoryRefund,
+					backgroundColor: 'rgba(255,99,132,0.8)',
+					borderColor:'rgba(255,99,132,0.8)'
 				}]
 			},
 			options:{

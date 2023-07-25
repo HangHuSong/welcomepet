@@ -356,10 +356,11 @@
                     row4.classList.add("mb-2");
 
                     const col5 = document.createElement("div");
-                    col5.classList.add("col", "text-primary", "fw-bold", "fs-5");
+                    col5.classList.add("col", "fw-bold", "fs-5");
 
                     const span3 = document.createElement("span");
                     span3.style.fontSize = "14px";
+                    span3.style.color = "#c83131";
                     span3.innerText = comment.customerDto.customer_nickname;
 
                     col5.appendChild(span3);
@@ -439,11 +440,11 @@
 	<div class="container">
 		<jsp:include page="../common/topMainNavi.jsp"></jsp:include>
 		
-		<div class="row">
+		<!-- <div class="row">
 			<div class="col text-end">
 				<button onclick="location.href='./postSnap'"class="btn bi bi-plus-square fs-3"></button>
             </div>
-		</div>
+		</div> -->
 		
 		<c:forEach items="${list}" var="data">
 			<div class="row mt-1 mb-1">
@@ -498,6 +499,11 @@
 		</c:forEach>
 		
 		
+	</div>
+	<div class="row fixed-bottom mb-5 pb-4 text-end">
+		<div class="col">
+			<button onclick="location.href='./postSnap'"class="btn bi bi-pencil-square fs-3 me-2 shadow rounded-circle" style="color:white; height:52px; background-color:#fd7e14"></button>
+		</div>
 	</div>
 		<jsp:include page="../common/bottomNavi.jsp"></jsp:include>
 		
