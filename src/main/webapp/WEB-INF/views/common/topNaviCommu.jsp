@@ -78,11 +78,11 @@
   	 <div class="container-fluid">
   	 	<%-- 1 --%>
   	 	<div class="row">
-	     <div class="col-1 p-0">
-	     <a href="/welcomepet/pointProd/board" class="btn bi bi-arrow-left fs-4 py-0 ps-0" role="button"></a>
+	     <div class="col-2 p-0">
+	      <a href="/welcomepet/pointProd/board" class="btn bi bi-arrow-left fs-4 py-0 ps-0" role="button"></a>
 	     </div>
 	      	 
-	  	 <div class="col-5 text-center text-black">
+	  	 <div class="col text-center text-black">
 	      <a id="main" href="../snap/main">커뮤니티</a>
 	     </div>
 	     

@@ -225,10 +225,7 @@ body{
 							<span class="me-2">
 							 조회 ${postData.showDogPostDto.show_dog_post_view_count}
 							</span>			 	 	 	
-							<%-- 댓글수 --%>
-							<span>
-							 댓글 ${countComment}
-							</span>
+							
 							 	 
 				 		</div> 		
 				 	</div>
@@ -297,14 +294,23 @@ body{
 	<%-- 댓글 --%>
 	<div class="row mt-4">	
 		 <%-- 댓글 정렬--%>
-		 <div class="col-3 mb-3 d-grid pe-0" style="font-size: 10pt;">
-		   <button class="btn btn-outline-none btn-sm fw-bold text-secondary"><i class="bi bi-filter-left"></i>등록순</button>
-		 </div>		 
-		 <div class="col-3 fw-bold text-secondary mb-3 d-grid pe-0" style="font-size: 10pt;">
-		   <button class="btn btn-outline-none btn-sm"><i class="bi bi-filter-right"></i>최신순</button>
-		 </div>		 
 		 <div class="col-6 fw-bold text-secondary mb-3" style="font-size: 10pt;">
+		 	<%-- 댓글수 --%>
+			<span>
+			 댓글 ${countComment}
+			</span>
+		 </div>
+		 <div class="col-3 mb-3 d-grid pe-0">
+		   <button class="btn btn-outline-none btn-sm text-end fw-bold text-secondary px-0" style="font-size:0.9em;">
+		    <i class="bi bi-filter-left"></i>등록순
+		   </button>
 		 </div>		 
+		 <div class="col-3 fw-bold text-secondary mb-3 d-grid">
+		   <button class="btn btn-outline-none btn-sm text-end p-0" style="font-size:0.9em;">
+		    <i class="bi bi-filter-right"></i>최신순
+		   </button>
+		 </div>		 
+		 		 
 		 
 		 <div class="col-12" id="commentRootBox">
 		 

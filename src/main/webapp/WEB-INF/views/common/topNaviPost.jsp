@@ -42,9 +42,7 @@
   	 <div class="container-fluid">
   	 	<div class="row">
 	 	 <div class="col p-0">
-	      <a href="../community/showDogPostList" class="btn btn-black py-0 ps-0" style="border: transparent; outline: none;">
-		   <i class="btn bi bi-chevron-left p-0" style="border: transparent; outline: none; font-size: 1.4em;"></i>
-		  </a>
+	      <a href="/welcomepet/community/showDogPostList" class="btn bi bi-arrow-left fs-4 py-0 ps-0" role="button"></a>
 	     </div>
 
 	  	 <div class="col-5 text-center">
