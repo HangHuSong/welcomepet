@@ -555,7 +555,6 @@
 			        	  colDiv.id = "biz-slide";
 			        	  colDiv.setAttribute("onclick", "getBizProductList("+ data.bizInfo.biz_no + ")");
 			        	  
-			        	  colDiv.addEventListener("click", handleBizClick);
 			              
 			        	  var imgRow = document.createElement("div");
 			        	  imgRow.classList.add("row", "px-0","mx-0");
@@ -619,7 +618,7 @@
 				for(data of response.relatedProductList) {
 					
 					const col1 = document.createElement("div");
-					col1.classList.add("col-4", "embed-responsive", "embed-responsive-4by3", "ps-3");
+					col1.classList.add("col-4","py-1", "embed-responsive", "embed-responsive-4by3", "ps-3");
 					
 					
 					
@@ -1054,8 +1053,7 @@
 		</div>
 					<div class="row mt-2 ps-0">
 					
-					<div class="col-1 ps-0 pe-0"></div>
-					  <div class="col pe-0 category-col">
+					  <div class="col ms-1 pe-0 category-col">
 					    <span class="category-span2 not-select" onclick="getBestList(1)" id="">사료</span>
 					  </div>
 					  <div class="col pe-0 category-col">
