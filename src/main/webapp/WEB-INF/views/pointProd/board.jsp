@@ -66,7 +66,7 @@
 								<i class="bi bi-search p-0"></i>
 							</div>
 						</div>
-						<div class="row my-1">
+						<div class="row my-2">
 							<div class="col"></div>
 						</div>
 						<div class="row text-dark text-center" style="font-size: 0.9em;">
@@ -77,11 +77,11 @@
 									</div>
 									<div class="col fw-bold">
 										<a class="nav-link" href="/welcomepet/pointProd/board"
-											style="border-bottom: 2.5px solid gray">자유게시판</a>
+											style="border-bottom: 2.5px solid gray">어서대화하개</a>
 									</div>
 									<div class="col">
 										<a class="nav-link"
-											href="/welcomepet/community/showDogPostList">자랑게시판</a>
+											href="/welcomepet/community/showDogPostList">어서보여주개</a>
 									</div>
 								</div>
 							</div>

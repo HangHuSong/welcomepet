@@ -40,7 +40,7 @@
 </style>
 </head>
 <body style="font-family: 'SUITE-Regular', sans-serif;">
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row">
 			<div class="col">
 				<!-- navi -->
@@ -107,7 +107,7 @@
 													src="https://i.namu.wiki/i/sLpl_9SaPt63LS9uKn7ptjw1GtopAOeL-fVSbFHsfwm2ZKwywO-4rd91q_MPds0-pXHkGqRyAj6u366J2-SygA.webp"
 													style="border-radius: 50px; width: 120%;">
 											</div>
-											<div class="col p-0">
+											<div class="col p-10">
 												<div class="row">
 													<div class="col fw-semibold">
 														${data.customerDto.customer_nickname}</div>
@@ -124,7 +124,6 @@
 										</div>
 									</div>
 								</div>
-
 								<div class="row">
 									<div class="col-12 mt-2 border-bottom"></div>
 								</div>
@@ -137,15 +136,21 @@
 									<div class="col fw-semibold fs-5">${data.boardDto.board_title}</div>
 								</div>
 								<div class="row">
-									<div class="col mt-1">${data.boardDto.board_content}</div>
+									<div class="col"></div>
 								</div>
 								<div class="row">
-									<div class="col mt-2">
+									<div class="col mt-2 text-center">
 										<c:forEach items="${data.imageDtoList}" var="imageDto">
 											<img src="/uploadFiles/${imageDto.board_image_link}"
-												style="width: 70%;">
+												style="width: 60%;">
 										</c:forEach>
 									</div>
+								</div>
+								<div class="row">
+									<div class="col py-1"></div>
+								</div>
+								<div class="row">
+									<div class="col mt-1">${data.boardDto.board_content}</div>
 								</div>
 								<form action="./insertLikeProcess" method="post">
 									<input type="hidden" value="${data.boardDto.board_no}"
@@ -178,9 +183,10 @@
 												</div>
 												<div class="col p-0">
 													<div class="row">
-														<div class="col" style="font-size: 0.85em;">
+														<div class="col">
 															<span class="me-3 text-secondary">
-																${comment.customerDto.customer_nickname }</span><span><fmt:formatDate
+																${comment.customerDto.customer_nickname }</span><span
+																style="font-size: 0.8em;"><fmt:formatDate
 																	value="${comment.commentDto.board_comment_reg_date}"
 																	pattern="yyyy.MM.dd" /></span>
 														</div>
@@ -208,7 +214,7 @@
 													<input type="hidden" name="board_no"
 														value="${data.boardDto.board_no}">
 												</div>
-												<div class="col-2">
+												<div class="col p-0">
 													<c:choose>
 														<c:when test="${empty customerUser}">
 															<a href="../customer/login"><i
