@@ -951,6 +951,17 @@ window.addEventListener("DOMContentLoaded", function(){
 
 <style type="text/css">
 
+@font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+	font-family: 'SUITE-Regular';
+}
+
+
 /* Swiper 슬라이드 컨테이너 스타일 */
 .swiper-container {
   width: 100%;

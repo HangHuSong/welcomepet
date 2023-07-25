@@ -247,8 +247,8 @@
 		        	  imgCol.classList.add("col","align-items-center","text-center","ps-0","pe-0");
 		        	  imgRow.appendChild(imgCol);
 
-		        	  var img = document.createElement("img");
-		        	  img.src = "/uploadFiles/WelcomePet/category/" + categoryNo + "/" + data.categoryList.sub_category_no + ".png";
+		        	  var img = document.createElement("img"); 
+		        	  img.src = "/welcomepet/resources/img/category/" + categoryNo + "/" + data.categoryList.sub_category_no + ".png";
 		        	  img.classList.add("category_img", "rounded-circle");
 		        	  img.alt = "...";
 		        	  imgCol.appendChild(img);
@@ -844,7 +844,6 @@ body {
 }
 .fsmid {
 	font-size: 0.8em;
-	letter-spacing: -0.09em;
 	margin-bottom: 0;
 	overflow: hidden;
     text-overflow: ellipsis;
@@ -953,20 +952,26 @@ body {
 						data-bs-slide-to="1" aria-label="Slide 2"></button>
 					<button type="button" data-bs-target="#carouselExampleIndicators"
 						data-bs-slide-to="2" aria-label="Slide 3"></button>
+					<button type="button" data-bs-target="#carouselExampleIndicators"
+						data-bs-slide-to="3" aria-label="Slide 4"></button>						
 				</div>
 				<div class="carousel-inner">
 					<div class="carousel-item active">
-						<img src="/uploadFiles/WelcomePet/image/MainBanner1.jpg"
+						<img src="/welcomepet/resources/img/banner/MainBanner1.png"
 							class="d-block w-100" alt="...">
 					</div>
 					<div class="carousel-item">
-						<img src="/uploadFiles/WelcomePet/image/MainBanner2.jpg"
+						<img src="/welcomepet/resources/img/banner/MainBanner2.jpg"
 							class="d-block w-100" alt="...">
 					</div>
 					<div class="carousel-item">
-						<img src="/uploadFiles/WelcomePet/image/MainBanner3.jpg"
+						<img src="/welcomepet/resources/img/banner/MainBanner3.jpg"
 							class="d-block w-100" alt="...">
 					</div>
+					<div class="carousel-item">
+						<img src="/welcomepet/resources/img/banner/MainBanner4.png"
+							class="d-block w-100" alt="...">
+					</div>					
 				</div>
 				<button class="carousel-control-prev" type="button"
 					data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -984,13 +989,13 @@ body {
 			<div class="col-1"></div>
 			<div class="col border rounded-2 text-secondary align-items-center d-flex" style="background-color: rgb(227, 237, 255); font-size: 0.9em; 
 						height:3em; ">
-				<span>리뷰 작성시 최대</span> <span class="text-primary ps-1">결제금액의 3%</span> <span>를 드려요!</span>
+				<span class="ms-3">리뷰 작성시 최대</span> <span class="text-primary ps-1">결제금액의 3%</span> <span>를 드려요!</span>
 			</div>
 			<div class="col-1"></div>
 		</div>
-			<div class="row mt-3 ps-0">
+			<div class="row mt-3 ms-2 ps-0">
 					
-					<div class="col-1 ps-0 pe-0"></div>
+					
 					  <div class="col pe-0 category-col">
 					    <span class="category-span not-select" onclick="fetchCategoryList(1)" id="categoryBtn1">사료</span>
 					  </div>
@@ -1009,9 +1014,9 @@ body {
 					  <div class="col-1 ps-0 pe-0"></div>
 			</div>
 		<div class="row mt-3 text-center">
-		<div class="col-1 ps-0 pe-0 "></div>
+		
 		<div class="col">
-			<div class="row" id="categoryList">
+			<div class="row ms-2" id="categoryList">
 
 			</div>
 			</div>
@@ -1034,7 +1039,7 @@ body {
 	 <div class="row mt-2"></div>
 		<div class="row mt-4 ">
 			<div class="col px-0 ms-0">
-			<img src="/uploadFiles/WelcomePet/banner/banner2.png"
+			<img src="/welcomepet/resources/img/banner/banner2.png"
 				class="product-thum" style="width:  ;" alt="...">
 			</div>		
 		</div>
@@ -1047,7 +1052,7 @@ body {
 		<div class="row mt-2" id="bizList">
 					
 			</div>
-		<div class="row mt-3" id="bizProductList" >
+		<div class="row mt-3 px-0" id="bizProductList" >
 
 		</div>
 		</div>
@@ -1055,7 +1060,7 @@ body {
 		<div class="row mt-2"></div>
 		<div class="row mt-4 ">
 			<div class="col px-0 ms-0">
-			<img src="/uploadFiles/WelcomePet/banner/banner1.png"
+			<img src="/welcomepet/resources/img/banner/banner1.png"
 				class="product-thum" style="width:  ;" alt="...">
 			</div>		
 		</div>

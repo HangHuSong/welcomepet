@@ -257,65 +257,65 @@ body {
 				<div class="row mt-3 "></div>
 				<div class="row" style="font-size: 0.9em;">
 					<div class="col-6 py-2"
-						onclick="location.href='./searchProduct?searchWord=사료">
+						onclick="location.href='./searchProduct?searchWord=사료'">
 						<span class="fw-bold">1.</span> <span class="ps-2">사료</span> <span
 							class="float-end pe-3"> <i class="bi bi-dash "></i>
 						</span>
 					</div>
 					<div class="col-6 py-2"
-						onclick="location.href='./searchProduct?searchWord=배변패드">
+						onclick="location.href='./searchProduct?searchWord=배변패드'">
 						<span class="fw-bold">6.</span> <span class="ps-2">배변패드</span> <span
 							class="float-end pe-3"> <i
 							class="bi bi-caret-down-fill text-primary "></i>
 						</span>
 					</div>
 					<div class="col-6 py-2"
-						onclick="location.href='./searchProduct?searchWord=영양제">
+						onclick="location.href='./searchProduct?searchWord=영양제'">
 						<span class="fw-bold">2.</span> <span class="ps-2">영양제</span> <span
 							class="float-end pe-3"> <i
 							class="bi bi-caret-up-fill text-danger"></i>
 						</span>
 					</div>
 					<div class="col-6 py-2"
-						onclick="location.href='./searchProduct?searchWord=치약">
+						onclick="location.href='./searchProduct?searchWord=치약'">
 						<span class="fw-bold">7.</span> <span class="ps-2">치약</span> <span
 							class="float-end pe-3"> <i class="bi bi-dash"></i>
 						</span>
 					</div>
 					<div class="col-6 py-2"
-						onclick="location.href='./searchProduct?searchWord=간식">
+						onclick="location.href='./searchProduct?searchWord=간식'">
 						<span class="fw-bold">3.</span> <span class="ps-2">간식</span> <span
 							class="float-end pe-3"> <i class="bi bi-caret-down-fill text-primary"></i>
 						</span>
 					</div>
 					<div class="col-6 py-2"
-						onclick="location.href='./searchProduct?searchWord=노즈워크">
+						onclick="location.href='./searchProduct?searchWord=노즈워크'">
 						<span class="fw-bold">8.</span> <span class="ps-2">노즈워크</span> <span
 							class="float-end pe-3"> <i class="bi bi-dash "></i>
 						</span>
 					</div>
 					<div class="col-6 py-2"
-						onclick="location.href='./searchProduct?searchWord=장난감">
+						onclick="location.href='./searchProduct?searchWord=장난감'">
 						<span class="fw-bold">4.</span> <span class="ps-2">장난감</span> <span
 							class="float-end pe-3"> <i class="bi bi-dash"></i>
 						</span>
 					</div>
 					<div class="col-6 py-2"
-						onclick="location.href='./searchProduct?searchWord=잇츄">
+						onclick="location.href='./searchProduct?searchWord=잇츄'">
 						<span class="fw-bold">9.</span> <span class="ps-2">잇츄</span> <span
 							class="float-end pe-3"> <i
 							class="bi bi-caret-up-fill text-danger"></i>
 						</span>
 					</div>
 					<div class="col-6 py-2"
-						onclick="location.href='./searchProduct?searchWord=영양제">
+						onclick="location.href='./searchProduct?searchWord=영양제'">
 						<span class="fw-bold">5.</span> <span class="ps-2">영양제</span> <span
 							class="float-end pe-3"> <i
 							class="bi bi-caret-up-fill text-danger"></i>
 						</span>
 					</div>
 					<div class="col-6 ps-1 py-2"
-						onclick="location.href='./searchProduct?searchWord=껌">
+						onclick="location.href='./searchProduct?searchWord=껌'">
 						<span class="fw-bold">10.</span> <span class="ps-2">껌</span> <span
 							class="float-end pe-3"> <i class="bi bi-caret-down-fill text-primary "></i>
 						</span>
