@@ -12,21 +12,39 @@
 	rel="stylesheet"
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 	crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
+	rel="stylesheet">
+<style type="text/css">
+@font-face {
+	font-family: 'Pretendard-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+		format('woff');
+	font-weight: 400;
+	font-style: normal;
+}
 
+.container {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+</style>
 </head>
 <body>
 	<div class="container" style="margin: 0 0;">
 		<div class="row text-center" style="width: 1900px;">
 			<div class="col-2 text-center ps-4 text-white"
-				style="height: 1080px; background-color: rgb(29, 33, 42);"><jsp:include
+				style="height: auto; background-color: rgb(29, 33, 42);"><jsp:include
 					page="../common/bizLeftNavi.jsp"></jsp:include></div>
-			<div class="col-8 px-0">
-				<div class="row bg-white mx-1">
+			<div class="col-10 px-0 bg-light">
+				<div class="row bg-white ms-1">
 					<div class="col text-center"><jsp:include
 							page="../common/bizTopNavi.jsp"></jsp:include></div>
 				</div>
-				<div class="row mx-5 text-center">
-					<div class="col">
+				<div class="row mx-5 text-center mb-5">
+					<div class="col-10">
 						<div class="row my-2">
 							<div class="col fs-5 fw-bold text-start py-3">반품관리</div>
 						</div>
@@ -66,16 +84,16 @@
 
 							</div>
 						</div>
-						<div class="row my-2 mx-2">
+						<div class="row my-2 mx-2 bg-white">
 							<div class="col border">
 								<div class="row py-2 border-bottom">
 									<div class="col text-start">
-										<button class="btn btn-outline-secondary btn-sm"
+										<button class="btn btn-outline-dark btn-sm"
 											id="returnCompleteButton" onclick="changeOrderStatusTo7()">반품확인</button>
 									</div>
 								</div>
 								<div class="row" id="orderList">
-									<div class="col">
+									<div class="col px-0">
 										<div class="table-responsive">
 											<table class="table text-nowrap">
 												<thead>
@@ -126,6 +144,10 @@
 							</div>
 						</div>
 					</div>
+				</div>
+				<div class="row ms-1">
+					<div class="col">
+						<jsp:include page="../common/bizFooter.jsp"></jsp:include></div>
 				</div>
 			</div>
 		</div>

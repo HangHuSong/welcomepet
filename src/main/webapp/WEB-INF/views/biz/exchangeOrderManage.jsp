@@ -18,22 +18,22 @@
 	<div class="container" style="margin: 0 0;">
 		<div class="row" style="width: 1900px;">
 			<div class="col-2 text-center ps-4 text-white"
-				style="height: 1080px; background-color: rgb(29, 33, 42);"><jsp:include
+				style="height: auto; background-color: rgb(29, 33, 42);"><jsp:include
 					page="../common/bizLeftNavi.jsp"></jsp:include></div>
-			<div class="col-8 px-0">
-				<div class="row bg-white mx-1">
+			<div class="col-10 px-0 bg-light">
+				<div class="row bg-white ms-1">
 					<div class="col">
 						<jsp:include page="../common/bizTopNavi.jsp"></jsp:include>
 					</div>
 				</div>
-				<div class="row mx-5 text-center">
-					<div class="col">
+				<div class="row mx-5 text-center mb-5">
+					<div class="col-10">
 						<div class="row my-2">
 							<div class="col fs-5 fw-bold text-start py-3">교환관리</div>
 						</div>
-						<div class="row my-2 bg-light px-5">
+						<div class="row my-2 px-5">
 							<div class="col">
-								<div class="row my-5">
+								<div class="row mt-5 mb-3">
 									<div class="col border bg-white">
 										<div class="row border-bottom">
 											<div class="col-3 border-end py-2">기간</div>
@@ -58,16 +58,16 @@
 							</div>
 
 						</div>
-						<div class="row my-2 mx-2">
+						<div class="row my-5 mx-2 bg-white">
 							<div class="col border">
 								<div class="row py-2 border-bottom">
 									<div class="col text-start">
-										<button class="btn btn-outline-secondary btn-sm"
+										<button class="btn btn-outline-dark btn-sm"
 											id="returnCompleteButton" onclick="changeOrderStatusTo3()">교환확인</button>
 									</div>
 								</div>
-								<div class="row bg-white" id="orderList">
-									<div class="col">
+								<div class="row " id="orderList">
+									<div class="col px-0">
 										<div class="table-responsive">
 											<table class="table text-nowrap">
 												<thead class="table-light">
@@ -119,6 +119,10 @@
 							</div>
 						</div>
 					</div>
+				</div>
+				<div class="row ms-1">
+					<div class="col">
+						<jsp:include page="../common/bizFooter.jsp"></jsp:include></div>
 				</div>
 			</div>
 			<div class="col-2"></div>
