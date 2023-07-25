@@ -119,6 +119,21 @@ window.addEventListener("DOMContentLoaded", function(){
 
 </script>
 <style>
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+	font-family: 'SUITE-Regular';
+}
 #biz-slide {
   width: 18%;
 }
@@ -172,7 +187,7 @@ window.addEventListener("DOMContentLoaded", function(){
 			</div>
 			<div class="col " style="text-align: center;">
 				<form action="./searchProduct" class="d-flex" role="search">
-					<input class="form-control me-2 fw-bold" type="search"
+					<input class="form-control me-2 " type="search"
 						placeholder="검색어를 입력하세요" name="searchWord" aria-label="Search">
 				</form>
 			</div>
