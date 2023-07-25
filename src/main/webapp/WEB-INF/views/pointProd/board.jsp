@@ -20,9 +20,17 @@
 	color: white
 }
 /* #CF654D; */
+
+@font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: 300-900;
+    font-style: normal;
+}
+
 </style>
 </head>
-<body>
+<body style="font-family: 'SUITE-Regular', sans-serif;">
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
@@ -57,10 +65,9 @@
 																		<div class="col">
 																			<a class="text-decoration-none text-black"
 																				style="font-size: 0.9em;"><i
-																				class="bi bi-fire text-danger"></i>
-																			<!-- <i
-																				class="bi bi-hand-thumbs-up text-danger"></i> -->
-																				<span class="me-1"></span>${map.boardDto.board_title }</a>
+																				class="bi bi-fire text-danger"></i> <!-- <i
+																				class="bi bi-hand-thumbs-up text-danger"></i> --> <span
+																				class="me-1"></span>${map.boardDto.board_title }</a>
 																		</div>
 																	</div>
 																</div>
@@ -80,9 +87,9 @@
 													<div class="row mb-2">
 														<div class="col">
 															<div class="row">
-																<div class="col mb-1 fw-semibold">
-																	<a class="text-decoration-none text-black fw-medium"
-																		style="font-size: 0.97em;">${map.boardDto.board_title }</a>
+																<div class="col mb-1">
+																	<a class="text-decoration-none text-black"
+																		style="font-size: 0.97em; font-weight: 2em">${map.boardDto.board_title }</a>
 																</div>
 															</div>
 															<div class="row text-secondary"
@@ -125,22 +132,21 @@
 												</div>
 											</c:forEach>
 										</div>
-										<div class="row fixed-bottom mb-5 pb-4">
+										<div class="row fixed-bottom mb-5 pb-4" style="height: 54">
 											<div class="col"></div>
-											<div class="col-3">
+											<div
+												class="col-3 d-flex justify-content-center align-items-center">
 												<c:choose>
 													<c:when test="${empty customerUser}">
-														<a href="../customer/login" class="btn btn-light"
-															style="background-color: #CF654D; border-radius: 50px;">
-															<i class="bi bi-pencil-square"
-															style="font-size: 1.5em; color: white;"></i>
+														<a href="../customer/login"
+															class="btn btn-lg shadow rounded-circle d-flex justify-content-center align-items-center" style="color: white; height: 52px; background-color: #fd7e14">
+															<i class="bi bi-pencil-square" style="color: white;"></i>
 														</a>
 													</c:when>
 													<c:otherwise>
-														<a href="./writeContent" class="btn btn-light"
-															style="background-color: #CF654D; border-radius: 50px;">
-															<i class="bi bi-pencil-square"
-															style="font-size: 1.5em; color: white;"></i>
+														<a href="./writeContent"
+															class="btn btn-lg shadow rounded-circle d-flex justify-content-center align-items-center" style="color: white; height: 52px; background-color: #fd7e14">
+															<i class="bi bi-pencil-square" style="color: white;"></i>
 														</a>
 													</c:otherwise>
 												</c:choose>

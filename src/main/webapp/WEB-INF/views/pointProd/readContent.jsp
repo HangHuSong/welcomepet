@@ -15,182 +15,221 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
+	rel="stylesheet">
+<style type="text/css">
+@font-face {
+	font-family: 'SUITE-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2')
+		format('woff2');
+	font-weight: 300 -900;
+	font-style: normal;
+}
+
+#main {
+	text-decoration: none;
+	color: inherit;
+	/* color: #F8961D; */
+	/* font-family:'KorailRoundGothicBold', sans-serif !important; */
+	font-family: 'Jua', sans-serif;
+	font-weight: 700;
+	font-size: 1.3em;
+	color: #fd7e14;
+}
+</style>
 </head>
-<body>
+<body style="font-family: 'SUITE-Regular', sans-serif;">
 	<div class="container">
-		<div class="row fixed-top bg-white">
-			<div class="col-12 border-bottom py-2" style="height: 60px;">
-				<div class="row">
-					<div class="col-2">
-						<a href="/welcomepet/pointProd/board" class="btn btn-black"
-							style="border: transparent; outline: none;"> <i
-							class="btn bi bi-chevron-left p-0"
-							style="border: transparent; outline: none;"></i>
-						</a>
-					</div>
-					<div class="col-8 mt-2 text-center fw-bold 16px">게시판</div>
-					<div class="col-2 dropdown pt-2 ps-4">
-						<i class="bi bi-three-dots-vertical" type="button"
-							data-bs-toggle="dropdown" aria-expanded="false"></i>
-						<ul class="dropdown-menu">
-							<c:choose>
-								<c:when
-									test="${!empty customerUser && customerUser.customer_no == data.customerDto.customer_no}">
-									<li><a class="dropdown-item"
-										href="./update?board_no=${data.boardDto.board_no}"
-										class="text-decoration-none text-black">수정</a></li>
-									<li><a class="dropdown-item"
-										href="./deleteProcess?board_no=${data.boardDto.board_no}"
-										class="text-decoration-none text-black">삭제</a></li>
-								</c:when>
-								<c:otherwise>
+		<div class="row">
+			<div class="col">
+				<div class="row fixed-top bg-white">
+					<div class="col border-bottom py-2" style="height: 60px;">
+						<div class="row">
+							<div class="col-2">
+								<a href="/welcomepet/pointProd/board"
+									class="btn btn-black py-0 ps-2"
+									style="border: transparent; outline: none;"> <i
+									class="btn bi bi-chevron-left p-0"
+									style="border: transparent; outline: none; font-size: 1.5em;"></i>
+								</a>
+							</div>
+							<div class="col-1"></div>
+							<div class="col-6 mt-2 text-center" style="color: #fd7e14;">
+								<a id="main" href="../pointProd/board">어서대화하개</a>
+							</div>
+							<div class="col-1"></div>
+							<div class="col-2 dropdown pt-2 pe-2">
+								<i class="bi bi-three-dots-vertical" type="button"
+									data-bs-toggle="dropdown" aria-expanded="false"></i>
+								<ul class="dropdown-menu">
 									<c:choose>
-										<c:when test="${empty customerUser}">
-											<li><a class="dropdown-item" href="../customer/login"
-												class="text-decoration-none text-black">신고</a></li>
+										<c:when
+											test="${!empty customerUser && customerUser.customer_no == data.customerDto.customer_no}">
+											<li><a class="dropdown-item"
+												href="./update?board_no=${data.boardDto.board_no}"
+												class="text-decoration-none text-black">수정</a></li>
+											<li><a class="dropdown-item"
+												href="./deleteProcess?board_no=${data.boardDto.board_no}"
+												class="text-decoration-none text-black">삭제</a></li>
 										</c:when>
 										<c:otherwise>
-											<li><a class="dropdown-item" href="../board/report"
-												class="text-decoration-none text-black">신고</a></li>
+											<c:choose>
+												<c:when test="${empty customerUser}">
+													<li><a class="dropdown-item" href="../customer/login"
+														class="text-decoration-none text-black">신고</a></li>
+												</c:when>
+												<c:otherwise>
+													<li><a class="dropdown-item" href="../board/report"
+														class="text-decoration-none text-black">신고</a></li>
+												</c:otherwise>
+											</c:choose>
 										</c:otherwise>
 									</c:choose>
-								</c:otherwise>
-							</c:choose>
-						</ul>
+								</ul>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-		<div class="row my-1">
-			<div class="col-12"></div>
-		</div>
-		<div class="row my-5">
-			<div class="col-12">
-				<div class="row pt-3">
+				<div class="row my-1">
+					<div class="col"></div>
+				</div>
+				<div class="row my-5">
 					<div class="col">
-						<div class="row">
+						<div class="row pt-3">
 							<div class="col">
 								<div class="row">
-									<div class="col-2">
-										<img class="proImg"
-											src="https://i.namu.wiki/i/sLpl_9SaPt63LS9uKn7ptjw1GtopAOeL-fVSbFHsfwm2ZKwywO-4rd91q_MPds0-pXHkGqRyAj6u366J2-SygA.webp"
-											style="border-radius: 50px; width: 120%;">
-									</div>
-									<div class="col p-0">
+									<div class="col">
 										<div class="row">
-											<div class="col fw-semibold">
-												${data.customerDto.customer_nickname}</div>
-										</div>
-										<div class="row">
-											<div class="col text-secondary">
-												<span class="me-3"> <fmt:formatDate
-														value="${data.boardDto.board_reg_date}"
-														pattern="yyyy.MM.dd" /></span> <span> 조회수
-													${data.boardDto.board_read_count} </span>
+											<div class="col-2">
+												<img class="proImg"
+													src="https://i.namu.wiki/i/sLpl_9SaPt63LS9uKn7ptjw1GtopAOeL-fVSbFHsfwm2ZKwywO-4rd91q_MPds0-pXHkGqRyAj6u366J2-SygA.webp"
+													style="border-radius: 50px; width: 120%;">
+											</div>
+											<div class="col p-0">
+												<div class="row">
+													<div class="col fw-semibold">
+														${data.customerDto.customer_nickname}</div>
+												</div>
+												<div class="row">
+													<div class="col text-secondary" style="font-size: 0.9em;">
+														<span class="me-3"> <fmt:formatDate
+																value="${data.boardDto.board_reg_date}"
+																pattern="yyyy.MM.dd" /></span> <span> 조회수
+															${data.boardDto.board_read_count} </span>
+													</div>
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col mt-2 border-bottom"></div>
-					</div>
-					<div class="row">
-						<div class="col ps-2 ms-1 py-1">
-							<span class="badge rounded-pill text-bg-dark">${data.pointProdCategoryDto.board_category_name}</span>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col fw-semibold fs-4">${data.boardDto.board_title}</div>
-					</div>
-					<div class="row">
-						<div class="col mt-1">${data.boardDto.board_content}</div>
-					</div>
-					<div class="row">
-						<div class="col mt-2">
-							<c:forEach items="${data.imageDtoList}" var="imageDto">
-								<img src="/uploadFiles/${imageDto.board_image_link}"
-									class="w-50">
-							</c:forEach>
-						</div>
-					</div>
-					<form action="./insertLikeProcess" method="post">
-						<input type="hidden" value="${data.boardDto.board_no}"
-							name="board_no">
-						<div class="row">
-							<div class="col-4"></div>
-							<div class="col-4 mt-3 text-center">
-								<button type="submit" class="btn btn-outline-danger">
-									<i class="bi bi-hand-thumbs-up">${countLikeByBoardNo}</i>
-								</button>
-							</div>
-							<div class="col-4"></div>
-						</div>
-					</form>
-					<div class="row">
-						<div class="col-12 mt-3 border-top"></div>
-					</div>
-					<!-- 댓글 여러개 보이게 하기 -->
-					<div class="row">
-						<div class="col-12 fw-bold fs-5 mt-3">댓글
-							${countCommentByBoardNo}</div>
-					</div>
-					<div class="row">
-						<div class="col-12 mt-3">
-							<c:forEach items="${commentList}" var="comment">
+
 								<div class="row">
-									<div class="col-12 fw-semibold">
-										${comment.customerDto.customer_nickname }</div>
+									<div class="col-12 mt-2 border-bottom"></div>
 								</div>
 								<div class="row">
-									<div class="col-12" style="overflow-wrap: break-word;">
-										${comment.commentDto.board_comment_content }
-										<div class="row">
-											<div class="col-12 mb-3">
-												<fmt:formatDate
-													value="${comment.commentDto.board_comment_reg_date}"
-													pattern="yyyy.MM.dd" />
-											</div>
+									<div class="col ps-2 ms-1 py-1">
+										<span class="badge rounded-pill text-bg-dark">${data.pointProdCategoryDto.board_category_name}</span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col fw-semibold fs-5">${data.boardDto.board_title}</div>
+								</div>
+								<div class="row">
+									<div class="col mt-1">${data.boardDto.board_content}</div>
+								</div>
+								<div class="row">
+									<div class="col mt-2">
+										<c:forEach items="${data.imageDtoList}" var="imageDto">
+											<img src="/uploadFiles/${imageDto.board_image_link}"
+												style="width: 70%;">
+										</c:forEach>
+									</div>
+								</div>
+								<form action="./insertLikeProcess" method="post">
+									<input type="hidden" value="${data.boardDto.board_no}"
+										name="board_no">
+									<div class="row">
+										<div class="col-4"></div>
+										<div class="col-4 mt-3 text-center">
+											<button type="submit" class="btn btn-outline-danger">
+												<i class="bi bi-hand-thumbs-up">${countLikeByBoardNo}</i>
+											</button>
 										</div>
+										<div class="col-4"></div>
+									</div>
+								</form>
+								<div class="row">
+									<div class="col-12 mt-3 border-top"></div>
+								</div>
+								<!-- 댓글 여러개 보이게 하기 -->
+								<div class="row">
+									<div class="col-12 fw-bold fs-6 mt-3">댓글
+										${countCommentByBoardNo}</div>
+								</div>
+								<div class="row">
+									<div class="col-12 mt-2">
+										<c:forEach items="${commentList}" var="comment">
+											<div class="row">
+												<div class="col-2">
+													<img class="rounded-circle"
+														src="https://dummyimage.com/3*3" alt="...">
+												</div>
+												<div class="col p-0">
+													<div class="row">
+														<div class="col" style="font-size: 0.85em;">
+															<span class="me-3 text-secondary">
+																${comment.customerDto.customer_nickname }</span><span><fmt:formatDate
+																	value="${comment.commentDto.board_comment_reg_date}"
+																	pattern="yyyy.MM.dd" /></span>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-12" style="overflow-wrap: break-word;">
+															${comment.commentDto.board_comment_content }</div>
+													</div>
+													<div class="row">
+														<div class="col pt-2 pb-3 text-secondary">답글</div>
+													</div>
+												</div>
+											</div>
+										</c:forEach>
 									</div>
 								</div>
-							</c:forEach>
-						</div>
-					</div>
-					<div class="row fixed-bottom bg-white">
-						<div class="col-12 border-top">
-							<form action="./insertComment" method="post">
-<!-- 								<div class="row"> -->
-									<div class="col-10 ps-4 pt-1">
-										<textarea class="form-control-plaintext"
-											name="board_comment_content" placeholder="댓글을 남겨보세요"
-											style="height: 40px;"></textarea>
-										<input type="hidden" name="board_no"
-											value="${data.boardDto.board_no}">
-									</div>
-									<div class="col-2">
-										<c:choose>
-											<c:when test="${empty customerUser}">
-												<a href="../customer/login"><i
-													class="btn bi bi-arrow-up-circle-fill"
-													style="font-size: 1.6em;"></i></a>
-											</c:when>
-											<c:otherwise>
-												<button class="btn bi bi-arrow-up-circle-fill" type="submit"
-													style="font-size: 1.6em;"></button>
-											</c:otherwise>
-										</c:choose>
+								<div class="row fixed-bottom bg-white">
+									<div class="col-12 border-top">
+										<form action="./insertComment" method="post">
+											<div class="row">
+												<div class="col-10 ps-4 pt-1">
+													<textarea class="form-control-plaintext"
+														name="board_comment_content" placeholder="댓글을 남겨보세요"
+														style="height: 40px;"></textarea>
+													<input type="hidden" name="board_no"
+														value="${data.boardDto.board_no}">
+												</div>
+												<div class="col-2">
+													<c:choose>
+														<c:when test="${empty customerUser}">
+															<a href="../customer/login"><i
+																class="btn bi bi-arrow-up-circle-fill"
+																style="font-size: 1.6em;"></i></a>
+														</c:when>
+														<c:otherwise>
+															<button class="btn bi bi-arrow-up-circle-fill"
+																type="submit" style="font-size: 1.6em;"></button>
+														</c:otherwise>
+													</c:choose>
+												</div>
+											</div>
+										</form>
 									</div>
 								</div>
-							</form>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 	</div>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

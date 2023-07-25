@@ -16,18 +16,22 @@
 </head>
 <body>
 	<div class="container">
-		<form action="./writeContentProcess" method="post"
-			enctype="multipart/form-data">
+		
 			<div class="row fixed-top">
 				<div class="col-12 border-bottom py-2">
 					<div class="row mb-1">
-						<div class="col-3">
-							<button onclick="history.back()" class="btn btn-black"><i
-								class="btn bi bi-chevron-left p-0"></i>
-							</button>
-						</div>
-						<div class="col-6 mt-1 text-center fw-bold 16px">글쓰기</div>
-						<div class="col-3">
+						<div class="col-2">
+								<a href="/welcomepet/pointProd/board"
+									class="btn btn-black py-0 ps-2"
+									style="border: transparent; outline: none;"> <i
+									class="btn bi bi-chevron-left p-0"
+									style="border: transparent; outline: none; font-size: 1.5em;"></i>
+								</a>
+							</div>
+							<div class="col-1"></div>
+						<div class="col-6 mt-2 text-center fw-bold 16px bg-white">글쓰기</div>
+						<div class="col-3 mt-1"><form action="./writeContentProcess" method="post"
+			enctype="multipart/form-data">
 							<button class="btn text-secondary" type="submit" style="border: transparent; outline: none;">등록</button>
 						</div>
 					</div>
@@ -69,14 +73,14 @@
 					</div>
 				</div>
 			</div>
-			<div class="row fixed-bottom border-top pt-3">
+			<div class="row fixed-bottom border-top">
 				<div class="col">
 					<div class="row">
-						<div class="col-1 pb-2"></div>
-						<div class="col-1 pb-2">
+						<div class="col-1"></div>
+						<div class="col-2 text-center p-0">
 							<i class="bi bi-image" style="font-size: 2em;"></i>
 						</div>
-						<div class="col-10">
+						<div class="col-9 text-center px-0 pb-0 pt-2">
 							<input name="boardFiles" type="file" multiple accept="image/*">
 						</div>
 					</div>

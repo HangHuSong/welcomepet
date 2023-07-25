@@ -13,21 +13,19 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
+	rel="stylesheet">
 <style type="text/css">
-
-#main{
+#main {
 	text-decoration: none;
-	color:inherit;
+	color: inherit;
 	/* color: #F8961D; */
-	
-  	/* font-family:'KorailRoundGothicBold', sans-serif !important; */
-  	font-family: 'Jua', sans-serif;
- 	font-weight:700;
- 	font-size:1.3em;
- 	color:#fd7e14;
+	/* font-family:'KorailRoundGothicBold', sans-serif !important; */
+	font-family: 'Jua', sans-serif;
+	font-weight: 700;
+	font-size: 1.3em;
+	color: #fd7e14;
 }
-
 </style>
 </head>
 <body>
@@ -46,8 +44,9 @@
 								</a>
 							</div>
 							<div class="col-1"></div>
-							<div class="col-6 mt-2 text-center"
-								style="color: #fd7e14;"><a id="main" href="../board/main">어서대화하개</a></div>
+							<div class="col-6 mt-2 text-center" style="color: #fd7e14;">
+								<a id="main" href="../pointProd/board">커뮤니티</a>
+							</div>
 							<div class="col-1"></div>
 							<div class="col-2 p-0">
 								<a class="btn bi bi-bell-fill text-secondary btn-lg pt-1 ps-4"
@@ -60,7 +59,6 @@
 						<div class="row text-dark text-center" style="font-size: 0.9em;">
 							<div class="col my-1">
 								<div class="row">
-									.
 									<div class="col fw-bold">
 										<a class="nav-link" href="/welcomepet/pointProd/board">자유게시판</a>
 									</div>
