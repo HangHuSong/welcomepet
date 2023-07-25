@@ -116,8 +116,8 @@
 															<!-- 베스트3 -->
 															<c:forEach items="${list2 }" var="map">
 																<div
-																	class="col-12 border-bottom border-light-subtle border-1"
-																	style="padding: 0.3em 0.7em; font-weight: 400;"
+																	class="col-12 border-bottom border-light-subtle border-1 fw-semibold"
+																	style="padding: 0.3em 0.7em;"
 																	onclick="location.href='./readContent?board_no=${map.boardDto.board_no }'">
 																	<div class="row">
 																		<div class="col">
@@ -146,16 +146,16 @@
 														<div class="col">
 															<div class="row">
 																<div class="col mb-1">
-																	<a class="text-decoration-none text-black"
-																		style="font-size: 0.97em; font-weight: 2em">${map.boardDto.board_title }</a>
+																	<a class="text-decoration-none text-black fw-semibold"
+																		style="font-size: 1em; font-weight: 2em">${map.boardDto.board_title }</a>
 																</div>
 															</div>
 															<div class="row text-secondary"
-																style="font-size: 0.73em;">
+																style="font-size: 0.9em;">
 																<div class="col mb-1">
 																	<span class="me-2">
 																		${map.customerDto.customer_nickname }</span> <span
-																		class="me-2"> <fmt:formatDate
+																		class="me-2" style="font-size: 0.9em;"> <fmt:formatDate
 																			value="${map.boardDto.board_reg_date }"
 																			pattern="yy.MM.dd" />
 																	</span>

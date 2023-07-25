@@ -128,29 +128,23 @@
 									<div class="col-12 mt-2 border-bottom"></div>
 								</div>
 								<div class="row">
-									<div class="col ps-2 ms-1 py-1">
-										<span class="badge rounded-pill text-bg-dark">${data.pointProdCategoryDto.board_category_name}</span>
+									<div class="col ps-2 ms-1 pt-2 pb-1">
+										<span class="badge rounded-pill" style="font-size: 0.85em; text-color: #fd7e14; border: 1px solid #fd7e14; color: #fd7e14;">${data.pointProdCategoryDto.board_category_name}</span>
 									</div>
 								</div>
 								<div class="row">
-									<div class="col fw-semibold fs-5">${data.boardDto.board_title}</div>
+									<div class="col fw-semibold fs-5 py-1">${data.boardDto.board_title}</div>
 								</div>
 								<div class="row">
-									<div class="col"></div>
-								</div>
-								<div class="row">
-									<div class="col mt-2 text-center">
+									<div class="col text-center">
 										<c:forEach items="${data.imageDtoList}" var="imageDto">
 											<img src="/uploadFiles/${imageDto.board_image_link}"
-												style="width: 60%;">
+												style="width: 100%;">
 										</c:forEach>
 									</div>
 								</div>
 								<div class="row">
-									<div class="col py-1"></div>
-								</div>
-								<div class="row">
-									<div class="col mt-1">${data.boardDto.board_content}</div>
+									<div class="col py-1">${data.boardDto.board_content}</div>
 								</div>
 								<form action="./insertLikeProcess" method="post">
 									<input type="hidden" value="${data.boardDto.board_no}"
