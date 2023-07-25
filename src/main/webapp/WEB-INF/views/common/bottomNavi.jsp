@@ -2,9 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 
- <div class="row mb-4">
+ <div class="row mb-4" >
 	<div class="col">
-	<div class="navbar navbar-dark bg-white fixed-bottom border-top">
+	<div class="navbar navbar-dark bg-white fixed-bottom border-top" >
 		<div class="col text-center">
 			<a class="btn bi bi-microsoft text-secondary "
 				href="/welcomepet/community/showDogPostList" role="button""> </a>

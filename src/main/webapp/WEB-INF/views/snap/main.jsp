@@ -11,78 +11,96 @@
 	rel="stylesheet"
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+	rel="stylesheet">
 <title>Snap</title>
 <style type="text/css">
-
-	@font-face {
-    font-family: 'SUITE-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
+@font-face {
+	font-family: 'SUITE-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2')
+		format('woff2');
+	font-weight: 400;
+	font-style: normal;
 }
-	body {
-    	font-family: 'SUITE-Regular', sans-serif;
-	}
-	a {
-    text-decoration: none;
-    color: inherit;        
-	}
 
-	a:hover {
-	    color: inherit;       
-	}
-	
-	#thumbnail{
-		object-fit: cover; 
-		width: 387px; 
-		height: 375px;
-	}
+body {
+	font-family: 'SUITE-Regular', sans-serif;
+}
 
-	.like-button {
-		position: absolute;
-		bottom: 10px;
-		right: 10px;
-	}
-	.fixed-size-image {
-        width: auto;
-        height: 300px;
-        object-fit: cover;
-    }
-    #snapModalTop{
-    	width: auto;
-    	height: 30px;
-    	
-    }
-    #profileImg {
-    	width : 32px;
-    	height : 32px;
-        border-radius: 50%;
-        object-fit: cover;
-    }
-    #followBtn{
-        color: white;
-        background-color: orange;
-    }
-    .icon {
-        margin-left: 5px; 
-    }
-    .topNavbar {
-        /* background-color: #F4AE7A; */
-        background-color: #ffffff;
-    }
-    
-    #main {
-          text-decoration: none;
-          color: inherit;
-          /* color: #F8961D; */
-          /* font-family:'KorailRoundGothicBold', sans-serif !important; */
-          font-family: 'Jua', sans-serif;
-          font-weight: 700;
-          font-size: 1.3em;
-          color: #fd7e14;
-      }
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+a:hover {
+	color: inherit;
+}
+
+#thumbnail {
+	object-fit: cover;
+	width: 387px;
+	height: 376px;
+}
+
+.like-button {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+}
+
+.fixed-size-image {
+	width: auto;
+	height: 300px;
+	object-fit: cover;
+}
+
+#snapModalTop {
+	width: auto;
+	height: 30px;
+}
+
+#profileImg {
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+#followBtn {
+	color: white;
+	background-color: orange;
+}
+
+.icon {
+	margin-left: 5px;
+}
+
+.topNavbar {
+	/* background-color: #F4AE7A; */
+	background-color: #ffffff;
+}
+
+#main {
+	color: inherit;
+	/* color: #F8961D; */
+	/* font-family:'KorailRoundGothicBold', sans-serif !important; */
+	font-family: 'Jua', sans-serif;
+	font-weight: 700;
+	font-size: 1.3em;
+	color: #fd7e14;
+}
+
+#productSnap{
+	width: 70px;
+	height: 70px;
+	object-fit: cover;
+}
 </style>
 <script type="text/javascript">
 
@@ -463,162 +481,210 @@
 		<div class="row sticky-top p-0">
 			<div class="col p-0">
 				<nav class="topNavbar sticky-top bg-body-tertiary pt-3">
-	                <div class="container p-0">
-	                    <div class="container p-0">
-	                        <div class="container-fluid">
-	                            <%-- 1 --%>
-	                                <div class="row">
-	                                    <div class="col p-0">
-	                                        <a href="/welcomepet/pointProd/board" class="btn btn-black py-0 ps-0" style="border: transparent; outline: none;">
-	                                            <i class="btn bi bi-chevron-left p-0" style="border: transparent; outline: none; font-size: 1.5em;"></i>
-	                                        </a>
-	                                    </div>
-	
-	                                    <div class="col-5 text-center text-black">
-	                                        <a id="main" href="../snap/main">커뮤니티</a>
-	                                    </div>
-	
-	                                    <div class="col d-flex justify-content-end p-0">
-	                                        <a class="btn bi bi-bell-fill text-secondary btn-lg p-0" role="button" href="#"></a>
-	                                    </div>
-	                                </div>
-	
-	                                <%-- 2 --%>
-	                                    <div class="row text-center">
-	                                        <div class="col mt-2">
-	                                            <div class="row mb-2">
-	                                                <div class="col"></div>
-	                                            </div>
-	
-	                                            <div class="row" style="font-size: 0.9em;">
-	                                                <div class="col text-center fw-bold">
-	                                                    <a class="nav-link" href="/welcomepet/snap/main" style="border-bottom:2.5px solid gray"><i class="bi bi-instagram"></i> Snap</a>
-	                                                </div>
-	                                                <div class="col text-center">
-	                                                    <a class="nav-link text-secondary" href="/welcomepet/pointProd/board">어서대화하개</a>
-	                                                </div>
-	
-	                                                <div class="col text-center">
-	                                                    <a class="nav-link text-secondary" href="/welcomepet/community/showDogPostList">어서보여주개</a>
-	                                                </div>
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                        </div>
-	
-	
-	                    </div>
-	                </div>
-	            </nav>
+					<div class="container p-0">
+						<div class="container p-0">
+							<div class="container-fluid">
+								<%-- 1 --%>
+								<div class="row">
+									<div class="col-3">
+										<a href="/welcomepet/pointProd/board"
+											class="btn btn-black py-0"
+											style="border: transparent; outline: none;"> <i
+											class="btn bi bi-arrow-left p-0"
+											style="border: transparent; outline: none; font-size: 1.5em;"></i>
+										</a>
+									</div>
+
+									<div class="col-6 text-center">
+										<a id="main" href="../snap/main">커뮤니티</a>
+									</div>
+
+									<div class="col d-flex justify-content-end me-1">
+										<a class="btn bi bi-bell-fill text-secondary btn-lg p-0"
+											role="button" href="#"></a>
+									</div>
+								</div>
+
+								<%-- 2 --%>
+								<div class="row text-center">
+									<div class="col mt-2">
+										<div class="row mb-2">
+											<div class="col"></div>
+										</div>
+
+										<div class="row" style="font-size: 0.9em;">
+											<div class="col text-center fw-bold">
+												<a class="nav-link" href="/welcomepet/snap/main"
+													style="border-bottom: 2.5px solid gray"><i
+													class="bi bi-instagram"></i> Snap</a>
+											</div>
+											<div class="col text-center">
+												<a class="nav-link text-secondary"
+													href="/welcomepet/pointProd/board">어서대화하개</a>
+											</div>
+
+											<div class="col text-center">
+												<a class="nav-link text-secondary"
+													href="/welcomepet/community/showDogPostList">어서보여주개</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+						</div>
+					</div>
+				</nav>
 			</div>
 		</div>
-		
-		
-		
+
+
+
 		<c:forEach items="${list}" var="data">
 			<div class="row mt-1 mb-1">
 				<div class="col">
-					<div class="row border-bottom border-top align-items-center justify-content-center" style="height: 48px;">
+					<div
+						class="row border-bottom border-top align-items-center justify-content-center"
+						style="height: 48px;">
 						<div class="col">
-							<img id="profileImg" src="/uploadFiles/WelcomePet/${data.dogDto.dog_image}" >
-							<span onclick="location.href = './dogProfile?dog_no=${data.dogDto.dog_no}';" class="align-middle fw-bold mx-1 my-1 fs-5">${data.dogDto.dog_name}</span>
+							<img id="profileImg"
+								src="/uploadFiles/WelcomePet/${data.dogDto.dog_image}"> <span
+								onclick="location.href = './dogProfile?dog_no=${data.dogDto.dog_no}';"
+								class="align-middle fw-bold mx-1 my-1 fs-5">${data.dogDto.dog_name}</span>
 						</div>
 						<div class="col d-flex justify-content-end">
-		                    <button id="followBtn" class="btn btn-sm bi bi-person-plus-fill"> 팔로우</button>
-		                </div>    
+							<button id="followBtn" class="btn btn-sm bi bi-person-plus-fill">
+								팔로우</button>
+						</div>
 					</div>
 				</div>
 				<div class="row p-0">
-                    <div class="col-12 px-0">
-       			   		<a href="javascript:void(0);" onclick="readSnap(${data.snapBoardDto.snap_board_no});">
-                        	<img src="/uploadFiles/thumbnail/${data.snapBoardDto.snap_thumbnail}" id="thumbnail" >
-                       	</a>
-                    </div>
-                </div>
+					<div class="col-12 px-0">
+						<a href="javascript:void(0);"
+							onclick="readSnap(${data.snapBoardDto.snap_board_no});"> <img
+							src="/uploadFiles/thumbnail/${data.snapBoardDto.snap_thumbnail}"
+							id="thumbnail">
+						</a>
+					</div>
+				</div>
 				<div class="row mt-1 px-0">
-                    <div class="col mx-2">
-                    	<c:choose>
-                    		<c:when test="${data.checkLike == 0}">
-                    			<i id="heart-${data.snapBoardDto.snap_board_no}" class="bi bi-heart fs-5" style="color: #ff2465;"
-                                data-snapBoardNo="${data.snapBoardDto.snap_board_no}" onclick="like(${data.snapBoardDto.snap_board_no});"></i>
-                    		</c:when>
-                    		<c:otherwise>
-                                <i id="heart-${data.snapBoardDto.snap_board_no}" class="bi bi-heart-fill fs-5" style="color: #ff2465;"
-                                   data-snapBoardNo="${data.snapBoardDto.snap_board_no}" onclick="unLike(${data.snapBoardDto.snap_board_no});"></i>
-                            </c:otherwise>
-                    	</c:choose>
-                        <i class="bi bi-chat mx-2 fs-5"></i>
-                        <i class="bi bi-send fs-5"></i>
-                    </div>
-                    <div class="col px-0 p-0 text-end">
-                        <i class="bi bi-bookmark fs-5"></i>
-                    </div>
-                </div>
-                <div class="row my-1">
-                    <div class="col">
-                        <span style="font-size: 14px;">좋아요 ${data.countLike}개</span>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col text-secondary">
-                        <i class="bi bi-geo-alt-fill fs-5"></i><span style="font-size: 13px;"class="mx-1">${data.snapBoardDto.snap_location}</span>
-                    </div>
-                </div>
+					<div class="col mx-2">
+						<c:choose>
+							<c:when test="${data.checkLike == 0}">
+								<i id="heart-${data.snapBoardDto.snap_board_no}"
+									class="bi bi-heart fs-5" style="color: #ff2465;"
+									data-snapBoardNo="${data.snapBoardDto.snap_board_no}"
+									onclick="like(${data.snapBoardDto.snap_board_no});"></i>
+							</c:when>
+							<c:otherwise>
+								<i id="heart-${data.snapBoardDto.snap_board_no}"
+									class="bi bi-heart-fill fs-5" style="color: #ff2465;"
+									data-snapBoardNo="${data.snapBoardDto.snap_board_no}"
+									onclick="unLike(${data.snapBoardDto.snap_board_no});"></i>
+							</c:otherwise>
+						</c:choose>
+						<i class="bi bi-chat mx-2 fs-5"></i> <i class="bi bi-send fs-5"></i>
+					</div>
+					<div class="col px-0 p-0 text-end">
+						<i class="bi bi-bookmark fs-5"></i>
+					</div>
+				</div>
+				<div class="row my-1">
+					<div class="col">
+						<span style="font-size: 14px;">좋아요 ${data.countLike}개</span>
+					</div>
+				</div>
+				<div class="row my-1">
+					<div class="col-3">
+						<img id="productSnap" src="/welcomepet/resources/img/snapProduct.png">
+					</div>
+					<div class="col-9">
+						<div class="row align-items-center">
+							<div class="col text-truncate">
+								<span class="">루비디 러블리바니 민소매 티셔츠 민트 M</span>
+							</div>
+						</div>
+						<div class="row align-items-center">
+							<div class="col">
+								<span>12,900원</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row my-1">
+					<div class="col">
+						<span class="text-primary" style="font-size: 0.9em;">#멍스냅 #강아지 #시츄 #15살 #인형</span>
+					</div>
+				</div>
+				<div class="row mb-3">
+					<div class="col text-secondary">
+						<i class="bi bi-geo-alt-fill fs-5"></i><span
+							style="font-size: 13px;" class="mx-1">${data.snapBoardDto.snap_location}</span>
+					</div>
+				</div>
 			</div>
 		</c:forEach>
-		
-		
+
+
 	</div>
 	<div class="row fixed-bottom mb-5 pb-4 text-end">
-		<div class="col">
-			<button onclick="location.href='./postSnap'"class="btn bi bi-pencil-square fs-3 me-2 shadow rounded-circle" style="color:white; height:52px; background-color:#fd7e14"></button>
+		<div class="col"></div>
+		<div class="col-3 me-2">
+			<a class="btn btn-lg shadow rounded-circle justify-content-center align-items-center" href="./postSnap" style="color:white; height:52px; background-color:#fd7e14">
+				<i class="bi bi-pencil-square" style="color: white;"></i>
+			</a>
 		</div>
 	</div>
-		<jsp:include page="../common/bottomNavi.jsp"></jsp:include>
-		
-	
-	
-<!-- Modal -->
-<div class="modal fade" id="snapDetailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            	<img id="snapModalTop" src="/welcomepet/resources/img/logo.png">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body p-2">
-                <!-- Snap detail content -->
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                                <div id="imgBox" class="carousel-inner">
-                                </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+	<jsp:include page="../common/bottomNavi.jsp"></jsp:include>
 
-                    <!-- snapBoardDto / customerDto -->
-                    <div class="row mt-1">
-                        <div class="col" id="snapDetailContent"></div>
-                    </div>
-                </div>
-                <!-- End of snap detail content -->
-            </div>
-        </div>
-    </div>
-</div>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-	crossorigin="anonymous"></script>
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="snapDetailModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<img id="snapModalTop" src="/welcomepet/resources/img/logo.png">
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body p-2">
+					<!-- Snap detail content -->
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<div id="carouselExampleFade"
+									class="carousel slide carousel-fade" data-bs-ride="carousel">
+									<div id="imgBox" class="carousel-inner"></div>
+									<button class="carousel-control-prev" type="button"
+										data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+										<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+										<span class="visually-hidden">Previous</span>
+									</button>
+									<button class="carousel-control-next" type="button"
+										data-bs-target="#carouselExampleFade" data-bs-slide="next">
+										<span class="carousel-control-next-icon" aria-hidden="true"></span>
+										<span class="visually-hidden">Next</span>
+									</button>
+								</div>
+							</div>
+						</div>
+
+						<!-- snapBoardDto / customerDto -->
+						<div class="row mt-1">
+							<div class="col" id="snapDetailContent"></div>
+						</div>
+					</div>
+					<!-- End of snap detail content -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+		crossorigin="anonymous"></script>
 </body>
 </html>

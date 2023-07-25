@@ -123,9 +123,12 @@
 				rowPrice.classList.add("row");
 				col1.appendChild(rowPrice);
 				
+				const price = data.productInfo.product_price - data.salePrice;
+				const formattedPrice = price.toLocaleString();
+				
 				const colPrice = document.createElement("div");
 				colPrice.classList.add("col", "fw-bold","price_text");
-				colPrice.innerText = data.productInfo.product_price - data.salePrice +"원";
+				colPrice.innerText = formattedPrice +"원";
 				rowPrice.appendChild(colPrice);	
 				
 				let aveRatingValue = data.aveRating;
@@ -685,9 +688,13 @@
 					rowPrice.classList.add("row");
 					col1.appendChild(rowPrice);
 					
+					
+					const price = data.productInfo.product_price - data.salePrice
+					const formattedPrice = price.toLocaleString();
+					
 					const colPrice = document.createElement("div");
 					colPrice.classList.add("col", "fw-bold","price_text");
-					colPrice.innerText = data.productInfo.product_price - data.salePrice +"원";
+					colPrice.innerText = formattedPrice +"원";
 					rowPrice.appendChild(colPrice);	
 					
 					let aveRatingValue = data.aveRating;

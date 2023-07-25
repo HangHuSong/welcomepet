@@ -26,6 +26,9 @@
 body {
 	font-family: 'SUITE-Regular';
 }
+.product-thum {
+	width: 100%;
+}
 
 .card-img-top {
   height: 6rem;
@@ -34,6 +37,27 @@ body {
 .card-footer {
 	font-size: 13px;
 }
+.empty {
+	height: 0.8em;
+	background-color: rgb(244, 247, 250);
+}
+
+.gpdHea {
+    background-color: rgb(254, 212, 136);
+    border-radius: 8px;
+    margin-right: 24px;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 10px 12px;
+    display: flex;
+    flex-flow: row nowrap;
+    place-content: center space-between;
+    -webkit-box-pack: justify;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgb(27, 30, 33);
+}
+
 
 </style>
 </head>
@@ -44,9 +68,9 @@ body {
 	<div class="container embed-responsive embed-responsive-4by3 ">
 		<jsp:include page="../common/topMyNavi.jsp"></jsp:include>
 		
-		<div class="row">
+		<div class="row mb-3">
 			<div class="col btn text-start" onclick="location.href='./myInfo'">
-				<div class="row mt-4">
+				<div class="row mt-2">
 					<div class="col fw-bold">${sessionUser.customer_nickname }님</div>
 				</div>
 				<div class="row mt-2">
@@ -55,7 +79,14 @@ body {
 			</div>
 			<div class="row"></div>
 		</div>
-		<div class="row mt-4 border-top">
+				<div class="row ">
+			<div class="col px-0 ms-0">
+			<img src="/welcomepet/resources/img/banner/banner5.jpg"
+				class="product-thum" style="width:  ;" alt="...">
+			</div>		
+		</div>
+		
+		<div class="row mt-3 ">
 			<div class="col">
 				<div class="row mt-2">
 				<div class="col fw-bold">
@@ -66,7 +97,7 @@ body {
 						추가하기</a>
 					</div>
 			</div>
-				<div class="row mt-3">
+				<div class="row mt-2 mb-3">
 				<c:forEach items="${dogInfo}" var="list">
 					<div class="col-1"></div>
 					<div class="col-4 card mt-3">
@@ -80,10 +111,54 @@ body {
 					</div>
 					<div class="col-1"></div>
 					</c:forEach>
+					<div class="row mt-3">
+					 <div class="gpdHea ms-3">
+					 <span class="ps-2">1분만에 🐶 국가동물등록 신청하기 </span>  <i class="fw-bold text-end bi bi-chevron-right"></i>
+					 </div>
+					</div>
 					</div>
 				</div>
 			</div>
-			<div class="row mt-4 border-top">
+			<div class="row mt-2 empty"></div>
+			<div class="row mt-3">
+			  <div class="col fw-bold">MY 쇼핑</div>
+			</div>
+			<div class="row mt-3 px-3 mb-3 text-center" style="font-size: 0.9em;">
+			 <div class="col">
+			  <div class="row">
+			   <div class="col">주문·배송</div>
+			   </div>
+			   <div class="row mt-1 fw-bold">
+			    <div class="col ">5</div>
+			   </div>
+			 </div>
+			 <div class="col">
+			  <div class="row">
+			   <div class="col">리뷰</div>
+			   </div>
+			   <div class="row mt-1 fw-bold">
+			    <div class="col text-center fw-bold">3</div>
+			   </div>
+			 </div>
+			 <div class="col">
+			  <div class="row">
+			   <div class="col">쿠폰</div>
+			   </div>
+			   <div class="row mt-1 fw-bold">
+			    <div class="col text-center">1</div>
+			   </div>
+			 </div>
+			 <div class="col">
+			  <div class="row ">
+			   <div class="col">적립금</div>
+			   </div>
+			   <div class="row mt-1 fw-bold">
+			    <div class="col text-center">500원</div>
+			   </div>
+			 </div>			 			 			 
+			</div>
+			<div class="row mt-2 empty"></div>
+			<div class="row mt-2 ">
 					<div class="col fs-6">
 					<div class="row mt-1 border-bottom">
 						<div class="col btn text-start" onclick="location.href='./orderList'" >주문·배송 내역</div>
@@ -92,7 +167,7 @@ body {
 						<div class="col btn text-start" >교환·반품 내역</div>
 					</div>					
 					<div class="row mt-1 border-bottom">
-						<div class="col btn text-start" onclick="location.href='./wishList'">찜한상품</div>
+						<div class="col btn text-start" onclick="location.href='./wishList'">찜한상품 <span class=" ps-2 text-primary fw-bold">3</span> </div>
 					</div>
 					<div class="row mt-1 border-bottom">
 						<div class="col btn text-start" onclick="location.href='./myReview'" >리뷰관리</div>

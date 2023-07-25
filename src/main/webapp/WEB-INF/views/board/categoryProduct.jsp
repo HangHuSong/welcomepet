@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +18,7 @@
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
 />
+
 <title>카테고리 상품</title>
 
 
@@ -170,14 +172,15 @@ body {
 					<c:choose>
 					 <c:when test="${map.productInfo.product_discount_rate != 0}">
 					<div class="row"> 
-					<div class="col  text-secondary" style="font-size: 0.8em;"><del>${map.productInfo.product_price}원</del></div> 
+					<div class="col  text-secondary" style="font-size: 0.8em;"><del>
+					<fmt:formatNumber value="${map.productInfo.product_price}" pattern="###,###원" /></del></div> 
 					</div> 
 					<div class="row"> 
 					<div class="col pe-0  fw-bold ">
 					<span class="text-danger pe-1">
 					${map.productInfo.product_discount_rate}% </span>
 					<span>
-					${map.productInfo.product_price - map.salePrice}원
+					<fmt:formatNumber value="${map.productInfo.product_price - map.salePrice}" pattern="###,###원" />
 					</span>
 					</div>
 					</div> 
@@ -189,6 +192,20 @@ body {
 					</div>
 					</c:otherwise>
 					</c:choose>
+					<div class="row">
+						<div class="col text-secondary" style="font-size: 0.8em;">
+							<span class="star-icon filled"></span> 
+							<c:choose>
+							 	 <c:when test="${not empty map.aveRating and not Double.isNaN(map.aveRating)}">
+							 	<span class="">${map.aveRating}</span>
+							 	</c:when>
+							 	<c:otherwise>
+							 	 	<span class="">0</span>
+							 	</c:otherwise>
+							</c:choose>
+							<span>(${map.ratingCount})</span>
+						</div>	
+					</div>
 
 				</div>
 			</c:forEach>

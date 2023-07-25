@@ -95,7 +95,7 @@ body{
 						  <div class="row">
 						   <%-- HOT 뱃지 --%>
 						   <div class="col-auto d-flex align-items-center pe-0">
-						   	<span class="badge rounded-pill text-bg-danger">HOT</span>    
+						   	<span class="badge rounded-pill text-bg-danger" style="font-size:0.6em">HOT</span>    
 						   </div>
 						   <%-- 제목 --%>
 						   <div id="title1" class="col-auto d-flex align-items-center ps-1 pe-0">
