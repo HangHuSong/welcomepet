@@ -18,6 +18,17 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <title>주문상세</title>
 <style type="text/css">
+
+@font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+	font-family: 'SUITE-Regular';
+}
+
 .product-thum {
 	height: 6em;
 }

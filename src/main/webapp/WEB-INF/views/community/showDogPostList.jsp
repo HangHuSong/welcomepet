@@ -24,29 +24,46 @@
 <%-- font link --%>
 
 <style type="text/css">
+@font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+	font-family: 'SUITE-Regular' !important;
+}
+/* 
+body{
+	font-family: 'Gothic A1', sans-serif !important;
+} */
+
 .thum{
 	height:55px;
 	width:55px;
 }
 
-body{
-	font-family: 'Gothic A1', sans-serif !important;
-}
 
 #title1{
     font-size:0.9em;
     font-weight:800;
-    letter-spacing:-0.3px;
+/* 	letter-spacing:-0.3px; */
+    
+    white-space: nowrap; /* 텍스트가 한 줄에서 줄 바꿈하지 않도록 설정 */
+    overflow: hidden; /* 내용이 영역을 벗어날 때 숨기기 */
+    text-overflow: ellipsis; /* '...'으로 표시 */
+    max-width: 200px; /* 최대 텍스트 길이 지정 (원하는 길이로 조정) */
 }
 
 #title2{
-    font-size:0.8em;
+    font-size:0.9em;
     font-weight:600;
-	line-height: 21px;
+ 	line-height: 20px;
 }
 
-#else{
-    font-size: 0.6em;
+ #else{
+    font-size: 0.7em;
     font-weight:600;
     color: #BABABA;
 }
@@ -54,8 +71,8 @@ body{
 </style>
 </head>
 <body>
-<%-- mobileStyle --%>
-  <jsp:include page="../common/topNavi.jsp"></jsp:include>
+<%-- mobileStyle text-overflow: ellipsis;--%>
+  <jsp:include page="../common/topNaviCommu.jsp"></jsp:include>
 <%-- ----------- --%>  
 
 <div class="container body">
@@ -68,9 +85,9 @@ body{
 	</div>
 
 	<%-- 베스트 3 --%>
-	<div class="row mt-5 mb-1"> 
+	<div class="row mt-1 mb-1"> 
 		<div class="col">
-			<div class="row mt-5">
+			<div class="row">
 			<c:forEach items="${bestList}" var="bestList">
 				<div class="col-12 border-bottom py-2">
 					<div class="row">
@@ -78,14 +95,14 @@ body{
 						  <div class="row">
 						   <%-- HOT 뱃지 --%>
 						   <div class="col-auto d-flex align-items-center pe-0">
-						   	<span class="badge rounded-pill text-bg-danger">HOT</span>    
+						   	<span class="badge rounded-pill text-bg-danger" style="font-size:0.6em">HOT</span>    
 						   </div>
 						   <%-- 제목 --%>
 						   <div id="title1" class="col-auto d-flex align-items-center ps-1 pe-0">
-							  <span class="me-1">
+							  <span class="me-1 text-truncate">
 							   ${bestList.showDogPostDto.show_dog_post_title}
 							  </span>
-						   </div>
+						   </div>						   
 						   <%-- 이미지 유무 --%>
 						   <div class="col d-flex align-items-center ps-1">
 						 	<c:if test="${bestList.checkImg > 0}">
@@ -121,7 +138,7 @@ body{
 						   </div>
 						  </div>						  						  
 						  <%-- 닉네임/날짜/조회수 --%>
-						  <div id="else" class="row">
+						  <div id="else" class="row mt-1">
 							<div class="col">
 								<span class="me-2">
 								 ${map.customerDto.customer_nickname}
@@ -138,7 +155,7 @@ body{
 						  </div>					
 						</div>						
 						<%-- 섬네일 --%>
-						<div class="col-2 p-0 embed-responsive embed-responsive-1by1">
+						<div class="col-2 p-0 embed-responsive embed-responsive-1by1 d-flex justify-content-end">
 						 <c:if test="${map.checkImg > 0}">
 					   	  <img class="thum h-80 embed-responsive-item rounded" style="object-fit: cover;" alt="X" src="/uploadFiles/WelcomePet_community/${map.postImageDtoList[0].show_dog_post_images_link}" />
 						 </c:if>						 
@@ -159,7 +176,7 @@ body{
 							    </div>
 							   
 							    <div class="row mt-1">
-							     <div class="col" style="color:#9c9c9c;">댓글</div>
+							     <div class="col" style="color:#9c9c9c; font-size:0.9em">댓글</div>
 							    </div>
 							   
 							    </div>
@@ -174,7 +191,7 @@ body{
 							    <div class="col" style="color:#454545;">${map.countComment}</div>
 							   </div>
 							   <div class="row mt-1">
-							    <div class="col" style="color:#9c9c9c; font-size:0.7em">댓글</div>
+							    <div class="col" style="color:#9c9c9c; font-size:0.9em">댓글</div>
 							   </div>
 
 							   </div>

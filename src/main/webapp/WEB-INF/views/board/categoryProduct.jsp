@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,10 +18,20 @@
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
 />
+
 <title>카테고리 상품</title>
 
 
 <style type="text/css">
+@font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+	font-family: 'SUITE-Regular';
+}
 .product-thum {
 	height: 10em;
 }
@@ -71,6 +82,18 @@
 	filter: none;
 	vertical-align: sub;
 }
+.fsmid {
+	font-size: 0.9em;
+	margin-bottom: 0;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 라인수 */
+    -webkit-box-orient: vertical;
+    word-wrap:break-word; 
+    line-height: 1.2em;
+    height: 2.4em; /* line-height 가 1.2em 이고 3라인을 자르기 때문에 height는 1.2em * 3 = 3.6em */
+}
 </style>
 </head>
 <body>
@@ -101,10 +124,11 @@
 </div>
 
 		<div class="row mt-2 border_bottom text-center fw-bold align-items-center" style="font-size: 0.9em;">
-			<div class="col-3" onclick="location.href='./categoryProduct?main_category_no=1'">사료</div>
-			<div class="col-3" onclick="location.href='./categoryProduct?main_category_no=2'">간식</div>
-			<div class="col-3" onclick="location.href='./categoryProduct?main_category_no=3'">용품</div>
-			<div class="col-3" onclick="location.href='./categoryProduct?main_category_no=4'">스타일</div>
+			<div class="col" onclick="location.href='./categoryProduct?main_category_no=1'">사료</div>
+			<div class="col" onclick="location.href='./categoryProduct?main_category_no=2'">간식</div>
+			<div class="col" onclick="location.href='./categoryProduct?main_category_no=3'">용품</div>
+			<div class="col" onclick="location.href='./categoryProduct?main_category_no=4'">건강</div>
+			<div class="col" onclick="location.href='./categoryProduct?main_category_no=5'">스타일</div>
 		</div>
 		<div class="row subcate mt-2 align-items-center text-center">
 			
@@ -142,20 +166,21 @@
 							src="/uploadFiles/WelcomePet/${map.productInfo.product_thumbnail}"
 							class="embed-responsive-item product-thum rounded-2" alt="..."> </div>
 					</div>
-					<div class="row"> 
-					<div class="col" style="font-size: 0.9em;">${map.productInfo.product_name}</div> 
+					<div class="row mt-2"> 
+					<div class="col fsmid" style="font-size: 0.9em;">${map.productInfo.product_name}</div> 
 					</div> 
 					<c:choose>
 					 <c:when test="${map.productInfo.product_discount_rate != 0}">
 					<div class="row"> 
-					<div class="col  text-secondary" style="font-size: 0.8em;"><del>${map.productInfo.product_price}원</del></div> 
+					<div class="col  text-secondary" style="font-size: 0.8em;"><del>
+					<fmt:formatNumber value="${map.productInfo.product_price}" pattern="###,###원" /></del></div> 
 					</div> 
 					<div class="row"> 
 					<div class="col pe-0  fw-bold ">
-					<span class="text-danger pe-2">
+					<span class="text-danger pe-1">
 					${map.productInfo.product_discount_rate}% </span>
 					<span>
-					${map.productInfo.product_price - map.salePrice}원
+					<fmt:formatNumber value="${map.productInfo.product_price - map.salePrice}" pattern="###,###원" />
 					</span>
 					</div>
 					</div> 
@@ -167,6 +192,20 @@
 					</div>
 					</c:otherwise>
 					</c:choose>
+					<div class="row">
+						<div class="col text-secondary" style="font-size: 0.8em;">
+							<span class="star-icon filled"></span> 
+							<c:choose>
+							 	 <c:when test="${not empty map.aveRating and not Double.isNaN(map.aveRating)}">
+							 	<span class="">${map.aveRating}</span>
+							 	</c:when>
+							 	<c:otherwise>
+							 	 	<span class="">0</span>
+							 	</c:otherwise>
+							</c:choose>
+							<span>(${map.ratingCount})</span>
+						</div>	
+					</div>
 
 				</div>
 			</c:forEach>

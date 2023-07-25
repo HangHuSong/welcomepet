@@ -226,10 +226,27 @@ public class CustomerService {
 		List<ProductDto> productList = customerMapper.searchProduct(searchWord);
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		for (ProductDto productDto : productList) {
+			int product_no = productDto.getProduct_no();
+			
+		    List<ProductReviewDto> reviewList = customerMapper.getProductReview(product_no);
+		    int totalRating = 0;
+		    int ratingCount = 0;
+		    for (ProductReviewDto productReviewDto : reviewList) {
+		        int rating = productReviewDto.getProduct_review_rating();
+		        totalRating += rating;
+		        ratingCount++;
+		    }
+
+		    double aveRating = (double) totalRating / ratingCount;
+		    DecimalFormat df = new DecimalFormat("#.#");
+		    String formattedAveRating = df.format(aveRating);
+			
 			double saleRate = (double) (productDto.getProduct_discount_rate()) / 100;
 
 			int salePrice = (int) ((productDto.getProduct_price()) * saleRate);
 			Map<String, Object> map = new HashMap<>();
+		    map.put("aveRating", Double.parseDouble(formattedAveRating));
+		    map.put("ratingCount", ratingCount);
 			map.put("salePrice", salePrice);
 			map.put("productInfo", productDto);
 			list.add(map);

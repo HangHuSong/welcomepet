@@ -5,9 +5,9 @@
 	<div class="col">
 		<nav
 			class="navbar navbar-dark bg-white fixed-top fw-bold ">
-			<div class="row mt-2" style="text-align: center;">
+			<div class="row mt-1" style="text-align: center;">
 			<div class="col-2 text-center">
-				<a class="btn bi bi-bell py-0 text-secondary fs-4 "
+				<a class="btn bi bi-bell pt-1 text-secondary fs-4 "
 					data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
 					aria-controls="offcanvasExample"> </a>
 			</div>
@@ -15,11 +15,11 @@
 				<img  src="/welcomepet/resources/img/logo.png" style="height:3em; ">
 			</div>
 			<div class="col-1 ms-2 ps-2 text-center">
-				<a class="btn bi bi-search fs-4 py-0" role="button"
+				<a class="btn bi bi-search fs-4 pt-1" role="button"
 					href="/welcomepet/board/search"> </a>
 			</div>
 			<div class="col-2 text-center">
-				<a class="btn bi bi-cart2 fs-4 py-0" role="button"
+				<a class="btn bi bi-cart2 fs-4 pt-1" role="button"
 					href="/welcomepet/customer/cart"> </a>
 			</div>
 			</div>

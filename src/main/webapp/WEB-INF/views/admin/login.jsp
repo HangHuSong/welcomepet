@@ -9,7 +9,7 @@
 </head>
 <style>
 	#adminLogo{
-		height: 150px;
+		height: 100px;
 		width: auto;
 	}
 </style>

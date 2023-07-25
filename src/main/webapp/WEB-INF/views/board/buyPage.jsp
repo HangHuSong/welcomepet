@@ -210,6 +210,17 @@
 
 
 <style type="text/css">
+
+@font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+	font-family: 'SUITE-Regular';
+}
+
 .payment-btn {
 	width: 100%;
 	height: 3em; margin : 5px 0;
@@ -326,7 +337,7 @@
 								<input class="form-control text-end" id="point-${status.index}"
 									type="number"
 									name="orderProductDtoList[${status.index}].order_product_used_point"
-									value="0"
+									value="0" placeholder="0"
 									style="height: 25px; width: 125px; margin-left: auto; font-size: 1em;"
 									min="0" oninput="updateTotalUsedPoint()">
 							</div>

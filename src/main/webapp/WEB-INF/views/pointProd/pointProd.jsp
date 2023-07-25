@@ -93,7 +93,6 @@
 			</div>
 		</div>
 	</div>
-	<jsp:include page="../common/topNavi.jsp"></jsp:include>
 	<jsp:include page="../common/bottomNavi.jsp"></jsp:include>
 </body>
 </html>

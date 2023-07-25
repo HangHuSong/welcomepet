@@ -24,30 +24,36 @@
   
 </head>
 <body>
-<%-- mobileStyle --%>
-  
-<%-- ----------- --%>  
-
 <div class="container">
- 	<div class="row mt-3 mb-5">		
+ 	<div class="row mb-5">		
  	<div class="col">
 	 	<form action="./showDogUploadProcess" method="post" enctype="multipart/form-data">		 
+	 	<%-- mobileStyle --%>
+		<jsp:include page="../common/showDogUploadTopNavi.jsp"></jsp:include>  
+		<%-- -----------  --%>  
+<%--
 		 <div class="row justify-content-between">
+ 	 	     <div class="col-2">
+		      <a href="/welcomepet/pointProd/board" class="btn btn-black py-0 ps-0" style="border: transparent; outline: none;">
+				 <i class="btn bi bi-chevron-left p-0" style="border: transparent; outline: none; font-size: 1.5em;"></i>
+			  </a>
+		     </div>
+		     
 	 		 <div class="col-2">
 	 		  <a class="bi bi-arrow-left text-secondary bold-icon" role="button" onclick="history.back(-1)" style="font-weight: bold;"></a>
 	 		 </div>
 	 		 
 	 		 <div class="col text-end">
 	 		  <button class="btn" style="pointer-events: none;">임시저장</button>
-	 		  <button class="btn fw-bold" style="color:white; background-color:#F8961D"><i class="bi bi-upload"></i> 등록</button>
+	 		  <button class="btn fw-bold" style="color:white; background-color:#fd7e14"><i class="bi bi-upload"></i> 등록</button>
 	 		 </div>
- 		 </div>
+ 		 </div> --%>
  		 
  		 <%-- 삭제예정 <i class="bi bi-person"></i>--%>
 		 
-		 	<div class="row mt-4 pb-3 border-bottom">
-			 	<div class="col fw-bold fs-6">
-				  반려견 자랑게시판
+		 	<div class="row mt-3 pb-2 border-bottom">
+			 	<div class="col">
+				  어서보여주개
 			 	</div>
 			 </div>
 			 <div class="row mt-3 mb-4">

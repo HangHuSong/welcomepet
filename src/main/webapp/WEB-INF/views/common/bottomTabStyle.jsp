@@ -26,29 +26,29 @@
 	<div class="col">
 		 <div class="row">
 		 	<%-- 카테고리 ㄱ --%>
-			<div class="col pe-0">
-				<a class="btn btn-lg bi bi-microsoft text-secondary" data-bs-toggle="offcanvas"
+			<div class="col">
+				<a class="btn bi bi-microsoft text-secondary" style="font-size:18px" data-bs-toggle="offcanvas"
 					href="#offcanvasExample" role="button" aria-controls="offcanvasExample" ></a>
 			</div>
 			<%-- 커뮤니티 ㄱ --%>
-			<div class="col pe-0">
-				<a class="btn btn-lg bi bi-chat-square-text text-secondary" 
+			<div class="col">
+				<a class="btn bi bi-chat-square-text bi-lg text-secondary" style="font-size:18px" 
 					role="button" href="/welcomepet/community/showDogPostList"></a>
 			</div>
 			<%-- 쇼핑몰 홈 ㄱ --%>
-			<div class="col pe-0">
-				<a class="btn btn-lg bi bi-house text-secondary" 
-					role="button" href="/welcomepet/community/home"></a>
+			<div class="col">
+				<a class="btn bi bi-house text-secondary" style="font-size:18px" 
+					role="button" href="/welcomepet/board/main"></a>
 			</div>
 			<%-- 찜 목록 ㄱ --%>
-			<div class="col pe-0">
-				<a class="btn btn-lg bi bi-heart text-secondary" 
+			<div class="col">
+				<a class="btn bi bi-heart text-secondary" style="font-size:18px" 
 					role="button" href="/welcomepet/customer/wishList"></a>
 			</div>
 			<%-- 마이페이지 ㄱ --%>
 			<div class="col">
-				<a class="btn btn-lg bi bi-person-circle text-secondary" role="button"
-				   href="/welcomepet/customer/my"></a>
+				<a class="btn bi bi-lg bi-person-circle text-secondary" style="font-size:18px" 
+				   role="button" href="/welcomepet/customer/my"></a>
 			</div>
 		</div>
 	</div>
@@ -56,7 +56,7 @@
 </div>
 </nav>
 </div>
-<%-- 카테고리 열면 왼쪽에서 나오는거 --%>
+<%-- 카테고리 열면 왼쪽에서 나오는거 
 	<div class="offcanvas offcanvas-start w-75" tabindex="-1"
 		id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
 		<div class="offcanvas-header">
@@ -78,7 +78,7 @@
 			</div>
 		</div>
 	</div>
-<%-- 카테고리 열면 나오는거 --%>
+ 카테고리 열면 나오는거 --%>
 
 
 <%-- bootstrap script--%>
