@@ -137,7 +137,7 @@ function reloadReviewList() {
 				    for (const reviewImg of reviewImgList) {
 				    	
 					const colImage = document.createElement("div");
-					 colImage.classList.add("col-3");
+					 colImage.classList.add("col-4");
 					    
 				      const img = document.createElement("img");
 				      img.src = "/uploadFiles/WelcomePet/" + reviewImg.product_review_images_link; // 이미지 URL 또는 경로 설정
@@ -153,11 +153,11 @@ function reloadReviewList() {
 				 
 				  
 				  const rowContext = document.createElement("div");
-				  rowContext.classList.add("row","mt-3","text-secondary")
+				  rowContext.classList.add("row","mt-3")
 				  
 				   
 				  const colContext = document.createElement("div");
-				  colContext.classList.add("col", "reviewContext","text-secondary","mb-2");
+				  colContext.classList.add("col", "reviewContext","mb-2");
 				  colContext.innerText = data.productReviewDto.product_review_context;
 				  rowContext.appendChild(colContext);
 
@@ -1020,7 +1020,7 @@ body {
 }
 
 .fsmid {
-	font-size: 0.8em;
+	font-size: 0.9em;
 	margin-top:0.5em;
 	margin-bottom: 0;
 	overflow: hidden;
@@ -1034,11 +1034,11 @@ body {
 }
 
 .price_text{
-	font-size: 0.8em;
+	font-size: 0.9em;
 }
 
 .real_price{
- font-size: 0.7em;
+ font-size: 0.8em;
  text-decoration: line-through;
 }
 
@@ -1048,7 +1048,7 @@ body {
 
 .delism {
 	color: rgb(66, 73, 79);
-	font-size: 0.8em;
+	font-size: 0.9em;
 }
 
 .dde {
@@ -1071,6 +1071,7 @@ body {
 	background-image: url('/uploadFiles/WelcomePet/icons/star-empty.png');
 	background-size: cover;
 	filter: opacity(0.5);
+	vertical-align: sub;
 }
 
 .filled {
@@ -1089,15 +1090,15 @@ body {
 }
 
 .review_date {
-	font-size: 0.7em;
+	font-size: 0.8em;
 }
 
 .review_name {
-	font-size: 0.8em;
+	font-size: 0.9em;
 }
 
 .reviewContext {
-	font-size: 0.8em;
+	font-size: 0.9em;
 }
 
 #myModal {
@@ -1234,7 +1235,7 @@ body {
 		</div>
 		<div class="row mt-2 empty"></div>
 			<div class="row mt-2">
-		 		<div class="row mt-2 ps-3">
+		 		<div class="row mt-3 ps-3">
 		 	 	<div class="col ms-1 fw-bold">
 		 	 		이 상품과 비슷한 상품
 		 	 	</div>
