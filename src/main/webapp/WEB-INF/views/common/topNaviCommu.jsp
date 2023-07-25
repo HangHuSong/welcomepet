@@ -85,7 +85,7 @@
 	     </div>
 	      	 
 	  	 <div class="col-5 text-center text-black">
-	      <a id="main" href="../community/home">커뮤니티</a>
+	      <a id="main" href="../snap/main">커뮤니티</a>
 	     </div>
 	     
 	     <div class="col d-flex justify-content-end p-0">
@@ -95,7 +95,7 @@
 	  	
 	  	<%-- 2 --%>
 		<div class="row text-center">
-		 <div class="col my-1">
+		 <div class="col mt-2">
 			<div class="row mb-2">
 				<div class="col"></div>
 			</div>
@@ -109,7 +109,8 @@
 				</div>
 				
 				<div class="col text-center fw-bold">
-					<a class="nav-link" href="/welcomepet/community/showDogPostList">어서보여주개</a>
+					<a class="nav-link" href="/welcomepet/community/showDogPostList"
+					   style="border-bottom:2.5px solid gray">어서보여주개</a>
 				</div>
 			</div>
 			</div>

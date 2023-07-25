@@ -87,7 +87,7 @@ body{
 						   </div>
 						   <%-- 제목 --%>
 						   <div id="title1" class="col-auto d-flex align-items-center ps-1 pe-0">
-							  <span class="me-1">
+							  <span class="me-1 text-truncate">
 							   ${bestList.showDogPostDto.show_dog_post_title}
 							  </span>
 						   </div>						   
@@ -143,7 +143,7 @@ body{
 						  </div>					
 						</div>						
 						<%-- 섬네일 --%>
-						<div class="col-2 p-0 embed-responsive embed-responsive-1by1">
+						<div class="col-2 p-0 embed-responsive embed-responsive-1by1 d-flex justify-content-end">
 						 <c:if test="${map.checkImg > 0}">
 					   	  <img class="thum h-80 embed-responsive-item rounded" style="object-fit: cover;" alt="X" src="/uploadFiles/WelcomePet_community/${map.postImageDtoList[0].show_dog_post_images_link}" />
 						 </c:if>						 

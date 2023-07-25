@@ -38,7 +38,7 @@
 			<%-- 쇼핑몰 홈 ㄱ --%>
 			<div class="col">
 				<a class="btn bi bi-house text-secondary" style="font-size:18px" 
-					role="button" href="/welcomepet/community/home"></a>
+					role="button" href="/welcomepet/board/main"></a>
 			</div>
 			<%-- 찜 목록 ㄱ --%>
 			<div class="col">
@@ -56,7 +56,7 @@
 </div>
 </nav>
 </div>
-<%-- 카테고리 열면 왼쪽에서 나오는거 --%>
+<%-- 카테고리 열면 왼쪽에서 나오는거 
 	<div class="offcanvas offcanvas-start w-75" tabindex="-1"
 		id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
 		<div class="offcanvas-header">
@@ -78,7 +78,7 @@
 			</div>
 		</div>
 	</div>
-<%-- 카테고리 열면 나오는거 --%>
+ 카테고리 열면 나오는거 --%>
 
 
 <%-- bootstrap script--%>
