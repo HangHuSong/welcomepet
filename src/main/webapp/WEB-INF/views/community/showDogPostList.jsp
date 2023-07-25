@@ -24,19 +24,31 @@
 <%-- font link --%>
 
 <style type="text/css">
+@font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+	font-family: 'SUITE-Regular' !important;
+}
+/* 
+body{
+	font-family: 'Gothic A1', sans-serif !important;
+} */
+
 .thum{
 	height:55px;
 	width:55px;
 }
 
-body{
-	font-family: 'Gothic A1', sans-serif !important;
-}
 
 #title1{
     font-size:0.9em;
-    font-weight:800;
-    letter-spacing:-0.3px;
+     font-weight:800;
+/*     letter-spacing:-0.3px; */
     
     white-space: nowrap; /* 텍스트가 한 줄에서 줄 바꿈하지 않도록 설정 */
     overflow: hidden; /* 내용이 영역을 벗어날 때 숨기기 */
@@ -45,13 +57,13 @@ body{
 }
 
 #title2{
-    font-size:0.8em;
+    font-size:0.9em;
     font-weight:600;
-	line-height: 21px;
+/* 	line-height: 21px; */
 }
 
-#else{
-    font-size: 0.6em;
+ #else{
+    font-size: 0.7em;
     font-weight:600;
     color: #BABABA;
 }
@@ -164,7 +176,7 @@ body{
 							    </div>
 							   
 							    <div class="row mt-1">
-							     <div class="col" style="color:#9c9c9c;">댓글</div>
+							     <div class="col" style="color:#9c9c9c; font-size:0.9em">댓글</div>
 							    </div>
 							   
 							    </div>
@@ -179,7 +191,7 @@ body{
 							    <div class="col" style="color:#454545;">${map.countComment}</div>
 							   </div>
 							   <div class="row mt-1">
-							    <div class="col" style="color:#9c9c9c; font-size:0.7em">댓글</div>
+							    <div class="col" style="color:#9c9c9c; font-size:0.9em">댓글</div>
 							   </div>
 
 							   </div>

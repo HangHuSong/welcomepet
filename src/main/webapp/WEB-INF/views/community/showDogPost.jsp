@@ -116,12 +116,18 @@
 
 <style>
 /* 글꼴설정 */
+@font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 body{
-	font-family: 'Gothic A1', sans-serif !important;
+	font-family: 'SUITE-Regular' !important;
 }
 .nickname{
 	font-size: 0.9em;
-	font-weight:600;
+	font-weight:800;
 }
 .date{
 	font-size: 0.75em;
@@ -157,7 +163,7 @@ body{
 				 	
 				 	<div class="row border-bottom py-3">
 				 		<%-- 제목 --%>
-				 		<div class="col-10 fw-bold fs-5">
+				 		<div class="col-10">
 				 		 ${postData.showDogPostDto.show_dog_post_title}			 		 
 				 		</div>
 				 		<%-- : --%>
