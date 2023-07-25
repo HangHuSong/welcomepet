@@ -1016,8 +1016,11 @@ body {
 	filter: opacity(0.5);
 }
 
-.fsmid {
+.card-body {
+	background-color: rgb(244, 247, 250);
+}
 
+.fsmid {
 	margin-top: 0.5em;
 	margin-bottom: 0;
 	overflow: hidden;
@@ -1254,7 +1257,7 @@ body {
 		<div class="row">
 			<div class="col fw-bold pt-1" style="font-size: 1.2em;">상품 문의</div>
 			<div class="text-end me-3 col ">
-				<button class="btn fw-bold btn-outline-secondary"
+				<button class="btn  btn-outline-secondary"
 					style="height: 100%;">문의하기</button>
 			</div>
 		</div>
@@ -1272,21 +1275,55 @@ body {
 			<div class="col">옵션 : [3개] 인섹트업 하이포알러지 트릿 라이트</div>
 		</div>
 		<div class="row mt-2 " style="font-size: 0.9em;">
-		<div class="col-1 fsmid pe-0 me-0">
-		<span class="fw-bold">Q.</span> 
-		</div>
+			<div class="col-1 fsmid pe-0 me-0">
+				<span class="fw-bold">Q.</span>
+			</div>
 			<div class="col ps-0 fsmid">
-				<span class="">애기가
-					다이어트중이라 고기간식을 지금다끊은상탠데 간혹교육때쓰려고 샀는데 잘먹네요 칼로리가 궁금합니다!</span>
+				<span class="">애기가 다이어트중이라 고기간식을 지금다끊은상탠데 간혹교육때쓰려고 샀는데 잘먹네요
+					칼로리가 궁금합니다!</span>
 			</div>
 		</div>
 		<div class="row " style="font-size: 0.9em;">
 			<div class="col">
-				<span class=" fw-bold">A.</span> <span class="fw-bold text-primary">답변
-					완료</span> <a class="btn" data-bs-toggle="collapse"
+				<span class=" fw-bold">A.</span> <span
+					class="fw-bold  ps-0 text-primary">답변 완료</span> <a
+					class="btn bi bi-chevron-down" data-bs-toggle="collapse"
 					href="#collapseExample" role="button" aria-expanded="false"
-					aria-controls="collapseExample"> Link with href </a>
+					aria-controls="collapseExample"> </a>
+				<div class="collapse" id="collapseExample">
+					<div class="card card-body">
+						<div class="row">
+							<div class="col">
+								<span class="fw-bold">판매자 </span> <span
+									class="ps-1 text-secondary">23.07.30</span>
+							</div>
+						</div>
+						<div class="row mt-1">
+							<div class="col">안녕하세요!</div>
+						</div>
+						<div class="row">
+							<div class="col">건강한 반려생활의 시작 어서오개입니다.</div>
+						</div>
+						<div class="row mt-2">
+							<div class="col">해당 제품은 낱개 1개당 약 4kcal로 확인됩니다 ^^</div>
+						</div>
+						<div class="row mt-2">
+							<div class="col">감사합니다.</div>
+						</div>
+						<div class="row ">
+							<div class="col">오늘도 아이와 함께 행복한 하루 되세요️🐶😺️</div>
+						</div>						
+					</div>
+				</div>
 			</div>
+		</div>
+		<div class="row mt-2">
+		  <div class="col">
+		  <div class="d-grid gap-2"> 
+		    <button class="btn btn-outline-secondary text-center">
+		     더 많은 상품 문의 보기 <a class="btn bi bi-chevron-right"> </a>
+		    </button> </div>
+		  </div>
 		</div>
 	</div>
 
