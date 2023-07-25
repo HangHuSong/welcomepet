@@ -29,13 +29,12 @@
         
             <div class="row">
                 <%@ include file="../common/adminTab.jsp" %>
-					<div class="col-1">
-					</div>
+					
                     <div class="col-9">
                     	<%@ include file="../common/adminHead.jsp" %>
                         <div class="container mt-5">
 					        <h2 class="mt-4 mb-4 text-center fw-bold">Biz 입점 승인 관리</h2>
-					            <div class="row mt-1 bg-light font-weight-bold py-2 rounded-top border">
+					            <div class="row ms-5 mt-1 bg-light font-weight-bold py-2 rounded-top border">
 					                <div class="col-2">사업자등록증</div>
 					                <div class="col">사업자등록번호</div>
 					                <div class="col">판매자 전달사항</div>
@@ -46,7 +45,7 @@
 					            <form action="./bizApproval?biz_approval_request_no=${i.bizApprovalRequestDto.biz_approval_request_no}" method="post">
 					            	<input type="hidden" name="biz_approval_request_no" ${i.bizApprovalRequestDto.biz_approval_request_no}>
 					            	<input type="hidden" name="biz_approval_request_no" ${i.bizApprovalRequestDto.biz_no}>
-					            	<div class="row border py-2">
+					            	<div class="row border ms-5 py-2">
 						                <div class="col-2 d-flex justify-content-center align-items-center">
 						                    <img src="/uploadFiles/bizDocument/${i.bizApprovalRequestDto.biz_approval_request_document}" class="img-thumbnail" 
 						                    id="biz_approval_request_document" data-bs-toggle="modal" data-bs-target="#businessLicenseModal-${i.bizApprovalRequestDto.biz_approval_request_no}"> 
@@ -77,7 +76,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="businessLicenseModalLabel-${i.bizApprovalRequestDto.biz_approval_request_no}">사업자 등록증</h5>
+                    <h5 class="modal-title" id="businessLicenseModalLabel-${i.bizApprovalRequestDto.biz_approval_request_no}">첨부파일</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-center px-0">
