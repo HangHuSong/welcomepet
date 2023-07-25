@@ -37,6 +37,11 @@ body{
     font-size:0.9em;
     font-weight:800;
     letter-spacing:-0.3px;
+    
+    white-space: nowrap; /* 텍스트가 한 줄에서 줄 바꿈하지 않도록 설정 */
+    overflow: hidden; /* 내용이 영역을 벗어날 때 숨기기 */
+    text-overflow: ellipsis; /* '...'으로 표시 */
+    max-width: 200px; /* 최대 텍스트 길이 지정 (원하는 길이로 조정) */
 }
 
 #title2{
@@ -54,7 +59,7 @@ body{
 </style>
 </head>
 <body>
-<%-- mobileStyle --%>
+<%-- mobileStyle text-overflow: ellipsis;--%>
   <jsp:include page="../common/topNaviCommu.jsp"></jsp:include>
 <%-- ----------- --%>  
 
@@ -85,7 +90,7 @@ body{
 							  <span class="me-1">
 							   ${bestList.showDogPostDto.show_dog_post_title}
 							  </span>
-						   </div>
+						   </div>						   
 						   <%-- 이미지 유무 --%>
 						   <div class="col d-flex align-items-center ps-1">
 						 	<c:if test="${bestList.checkImg > 0}">

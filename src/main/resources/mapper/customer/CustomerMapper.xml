@@ -300,9 +300,14 @@
 		WHERE order_product_no = #{order_product_no}
 	</update>
 	
+		<select id="createOrderProductPk" resultType="int">
+		select order_product_seq.nextval from dual
+	</select>
+	
+	
 	<insert id="AddOrderProduct">
 		INSERT INTO order_product VALUES(
-		order_product_seq.nextval,
+		#{order_product_no},
 		#{orders_no},
 		#{product_option_no},
 		1,

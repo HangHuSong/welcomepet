@@ -173,7 +173,7 @@
 				</div>
 				<hr>
 				
-				<div class="row mt-3">
+				<%-- <div class="row mt-3">
 					<div class="col-6">
 						<h3>보유중인 쿠폰</h3>
 						<c:if test="${!empty coupon }">
@@ -206,7 +206,7 @@
 					</div>
 					<div class="col-1"></div>
 					
-				</div>
+				</div> --%>
 				
 				<div class="row mt-5">
 					

@@ -41,9 +41,11 @@
 
   	 <div class="container-fluid">
   	 	<div class="row">
-	 	  <div class="col p-0">
-	  		<a class="btn bi bi-arrow-left text-secondary btn-lg p-0" role="button" href="../community/showDogPostList"></a>
-	 	  </div>
+	 	 <div class="col p-0">
+	      <a href="../community/showDogPostList" class="btn btn-black py-0 ps-0" style="border: transparent; outline: none;">
+		   <i class="btn bi bi-chevron-left p-0" style="border: transparent; outline: none; font-size: 1.4em;"></i>
+		  </a>
+	     </div>
 
 	  	 <div class="col-5 text-center">
 	      <a id="main" href="../community/home">어서보여주개</a>

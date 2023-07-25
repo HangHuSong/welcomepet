@@ -118,6 +118,8 @@ public interface CustomerMapper {
 	
 	public void addOrderAlarm(OrderAlarmDto orderAlarmDto);
 	
+	public int createOrderProductPk();
+	
 	// 리뷰
 	public int createReviewPk();
 	

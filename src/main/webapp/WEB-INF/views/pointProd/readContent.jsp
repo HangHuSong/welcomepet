@@ -162,7 +162,7 @@
 					<div class="row fixed-bottom bg-white">
 						<div class="col-12 border-top">
 							<form action="./insertComment" method="post">
-								<div class="row">
+<!-- 								<div class="row"> -->
 									<div class="col-10 ps-4 pt-1">
 										<textarea class="form-control-plaintext"
 											name="board_comment_content" placeholder="댓글을 남겨보세요"

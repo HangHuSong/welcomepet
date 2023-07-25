@@ -101,9 +101,9 @@
 			</div>
 		 	
 			<div class="row" style="font-size: 0.9em;">
-<%--				<div class="col">
-					<a class="nav-link" href="/welcomepet/snap/main">스냅</a>
-				</div>--%>
+				<div class="col">
+					<a class="nav-link" href="/welcomepet/snap/main">snap</a>
+				</div>
 				<div class="col text-center">
 					<a class="nav-link text-secondary" href="/welcomepet/pointProd/board">어서대화하개</a>
 				</div>
