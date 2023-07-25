@@ -5,7 +5,7 @@
 
 	<div class="row">
 		<div class="col fw-bold">
-			<a role="button">이용약관</a>
+			<a role="button">이용약관</a> <a role="button">개인(위치)정보 처리방침</a>
 		</div>
 	</div>
 	<div class="row mt-3">
@@ -30,6 +30,6 @@
 	</div>
 	
 		<div class="row mt-3">
-		<div class="col">마케팅/제휴 marketing_ask@welcomepet.co.kr</div>
+		<div class="col">Copyright WelcomePet, Inc. All rights Reserved.</div>
 	</div>
 </div>
