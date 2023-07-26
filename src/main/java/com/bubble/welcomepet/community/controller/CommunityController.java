@@ -10,6 +10,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.bubble.welcomepet.community.service.CommunityServiceImpl;
+import com.bubble.welcomepet.dto.BoardDto;
 import com.bubble.welcomepet.dto.CustomerDto;
 import com.bubble.welcomepet.dto.DogDto;
 import com.bubble.welcomepet.dto.ShowDogCommentDto;
@@ -77,7 +79,12 @@ public class CommunityController {
 //  	사진 불러오는 map		
 		Map<String, Object> map = communityServiceImpl.bringShowDogPost(show_dog_post_no);		
 		model.addAttribute("postData", map);
-		
+//		게시글 enter 적용시키기
+		ShowDogPostDto showDogPostDto = (ShowDogPostDto) map.get("showDogPostDto");
+		String show_dog_post_content = showDogPostDto.getShow_dog_post_content();
+		show_dog_post_content = StringEscapeUtils.escapeHtml4(show_dog_post_content);
+		show_dog_post_content = show_dog_post_content.replaceAll("\n", "<br>");
+		showDogPostDto.setShow_dog_post_content(show_dog_post_content);
 		
 //	  //댓글보이기
 		List<Map<String, Object>> list = communityServiceImpl.bringCommentByPostNo(show_dog_post_no);

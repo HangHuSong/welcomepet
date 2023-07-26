@@ -50,7 +50,7 @@
     font-style: normal;
 }
 @font-face {
-    font-family: 'Pretendard-Regular';
+    font-family:'Pretendard-Regular';
     src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
     font-weight: 800;
     font-style: normal;
@@ -58,9 +58,8 @@
 /* 여기까지 글꼴모음 */
 
 
-body {
-	font-family:'Pretendard-Regular, san-serif' !important;
-	font-weight:400;
+#body {
+	font-family:'Pretendard-Regular';
 }
 /* 
 body{
@@ -103,7 +102,7 @@ body{
   <jsp:include page="../common/topNaviCommu.jsp"></jsp:include>
 <%-- ----------- --%>  
 
-<div class="container body">
+<div class="container" id="body">
 	
 	<%-- 배너이미지 --%>
 	<div class="row">
@@ -124,7 +123,7 @@ body{
 						   <%-- HOT 뱃지 --%>
 						   <div class="col-auto d-flex align-items-center pe-0">
 						   	<span class="badge rounded-pill" 
-						   		  style="font-size:0.6em;background-color: #dc3545; color: #ffffff;">HOT</span>    
+						   		  style="font-size:0.6em; background-color:#dc3545; color:#ffffff;">HOT</span>    
 						   </div>
 						   <%-- 제목 --%>
 						   <div id="title1" class="col-auto d-flex align-items-center ps-1 pe-0">
@@ -136,7 +135,7 @@ body{
 						   <div class="col d-flex align-items-center ps-1">
 						 	<c:if test="${bestList.checkImg > 0}">
 							   	  <span style="color:#828282">
-							   	  <i class="bi bi-image"></i>
+							   	   <i class="bi bi-image"></i>
 							   	  </span>
 					   	    </c:if>
 						   </div>	   

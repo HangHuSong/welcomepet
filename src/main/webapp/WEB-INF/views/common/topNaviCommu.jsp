@@ -43,36 +43,31 @@
 }
 /* 여기까지 글꼴모음 */
 
-body {
-	font-family: 'Pretendard-Regular,san-serif' !important;
-}
 
 .nav-link{
-	text-decoration: none;
+/* 	text-decoration: none; */
 	color:inherit;
 }
 
 #main{
 	text-decoration: none;
 	color:inherit;
-  	font-family: 'Jua', sans-serif;
+  	font-family: 'Jua', sans-serif !important;
  	font-weight:700;
  	font-size:1.3em;
  	color:#ffa500;
 }
 
 #postTopNavi{
+	font-family:'Pretendard-Regular';
 	background-color: #ffffff;
 }
-
-
-
 </style>
-<%------ bootstrap ------%>
+
 </head>
 <body>
 
-<nav id ="postTopNavi" class="topNavbar sticky-top bg-body-tertiary border-bottom shadow-sm px-0 pt-3">
+<nav id="postTopNavi" class="topNavbar sticky-top bg-body-tertiary border-bottom shadow-sm px-0 pt-3">
 <div class="container p-0">
 	<div class="container p-0">
   	 <div class="container-fluid">
@@ -80,11 +75,11 @@ body {
   	 	<div class="row d-flex justify-content-between">
 	     <div class="col-1 py-0 pe-0 ms-2">
 	      <a href="/welcomepet/pointProd/board" class="btn bi bi-arrow-left text-secondary py-0 ps-0" role="button" 
-	         style="font-size:1.2em"></a>
+	         style="font-size:1.2em;"></a>
 	     </div>
 	      	 
 	  	 <div class="col-9 text-center">
-	      <a id="main" href="../snap/main">커뮤니티</a>
+	      <a id="main" href="../snap/main" class="fs-2">커뮤니티</a>
 	     </div>
 	     
 	     <div class="col-1 py-0 ps-0 me-2">
@@ -114,9 +109,9 @@ body {
 					<a class="nav-link text-secondary" href="/welcomepet/pointProd/board">어서대화하개</a>
 				</div>
 				
-				<div class="col text-center p-0 fw-bold">
+				<div class="col text-center p-0">
 					<a class="nav-link" href="/welcomepet/community/showDogPostList"
-					   style="border-bottom:2.5px solid gray">어서보여주개</a>
+					   style="font-weight:800 !important; border-bottom:2.5px solid gray">어서보여주개</a>
 				</div>
 			</div>
 			

@@ -122,12 +122,37 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family:'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+}
+/* 여기까지 글꼴설정 */
+
 body{
-	font-family: 'SUITE-Regular' !important;
+	font-family: 'Pretendard-Regular' !important;
 }
 .nickname{
 	font-size: 0.9em;
-	font-weight:800;
 }
 .date{
 	font-size: 0.75em;
@@ -149,13 +174,6 @@ body{
 <%-- ----------- --%>  
 
 <div class="container mt-1 mb-5">
- 	<%-- 로그인한 사람만 수정/삭제 
-	<c:if test="${!empty customerUser && customerUser.customer_no eq postData.customerDto.customer_no}">
-		<a href="./showDogUpdate?show_dog_post_no=${postData.showDogPostDto.show_dog_post_no}">수정</a>
-		<a href="./showDogDeleteProcess?show_dog_post_no=${postData.showDogPostDto.show_dog_post_no}">삭제</a>
-	</c:if>
-	<%-- 로그인한 사람만 수정/삭제 --%>
-
 	<div class="row pb-3 border-bottom">
 		<div class="col">
 			<div class="row">
@@ -186,35 +204,16 @@ body{
 							  </ul>
 							  
 							</div>
-						  <%-- 
-						  <ul class="dropdown-menu">
-						  	<c:choose>--%>
-						  	 <%-- 글쓴이일때 
-						     <c:when test="${!empty customerUser && customerUser.customer_no eq postData.customerDto.customer_no}">
-						     <li><a class="dropdown-item" type="button" 
-						    	    href="./showDogUpdate?show_dog_post_no=${postData.showDogPostDto.show_dog_post_no}">수정</a>
-						     </li>
-						     <li><a class="dropdown-item" type="button"
-						    	    href="./showDogDeleteProcess?show_dog_post_no=${postData.showDogPostDto.show_dog_post_no}">삭제</a>
-						     </li>
-						     </c:when>--%>
-						     <%-- 글쓴이 아닐때 
-						     <c:otherwise>
-						     <li><a class="dropdown-item" type="button">신고</a></li>
-						     </c:otherwise>
-						    </c:choose>
-						  </ul>--%>
 						</div>
 						
 						<%-- 상세글 정보 --%>		 		
-				 		<div class="col text-secondary pt-2" style="font-size: 13px;">
+				 		<div class="col text-secondary pt-2" style="font-size:0.8em;">
 				 			<%-- 프사 --%>
 				 			<span class="me-0">
-				 			 <img id="profileImg" class="rounded-circle" src="../resources/img/myDog.jpg"
-				 			 	  width="33">
+				 			 <img id="profileImg" class="rounded-circle" src="../resources/img/myDog.jpg" width="33">
 				 			</span>
 				 			<%-- 닉네임 --%>
-					 		<span class="me-2">
+					 		<span class="me-2" style="font-weight:bold">
 					 		 ${postData.customerDto.customer_nickname}
 					 		</span>
 					 		 <%-- 작성일 --%>
@@ -225,9 +224,8 @@ body{
 							<span class="me-2">
 							 조회 ${postData.showDogPostDto.show_dog_post_view_count}
 							</span>			 	 	 	
-							
-							 	 
 				 		</div> 		
+				 		<%-- 여기까지 상세글 정보 --%>	
 				 	</div>
 				 	
 				 	<%-- 글 내용 --%>
@@ -293,19 +291,20 @@ body{
 	
 	<%-- 댓글 --%>
 	<div class="row mt-4">	
-		 <%-- 댓글 정렬--%>
-		 <div class="col-6 fw-bold text-secondary mb-3" style="font-size: 10pt;">
+		 <%-- 댓글 기타--%>
+		 <div class="col-7 fw-bold text-secondary mb-3" style="font-size: 0.9em;">
 		 	<%-- 댓글수 --%>
 			<span>
 			 댓글 ${countComment}
 			</span>
 		 </div>
-		 <div class="col-3 mb-3 d-grid pe-0">
-		   <button class="btn btn-outline-none btn-sm text-end fw-bold text-secondary p-0" style="font-size:0.9em;">
+		 <%-- 댓글수 --%>
+		 <div class="col pe-0 mb-3 text-end">
+		   <button class="btn btn-outline-none btn-sm text-end p-0" style="font-size:0.9em;">
 		    <i class="bi bi-filter-left"></i>등록순
 		   </button>
 		 </div>		 
-		 <div class="col-3 fw-bold text-secondary mb-3 d-grid">
+		 <div class="col mb-3">
 		   <button class="btn btn-outline-none btn-sm text-end p-0" style="font-size:0.9em;">
 		    <i class="bi bi-filter-right"></i>최신순
 		   </button>

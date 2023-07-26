@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>bootstrap</title>
 <%------ bootstrap ------%>
 <%-- viewport --%>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,7 +39,6 @@
 
 #bottomTab {
 	font-family: 'Pretendard-Regular' !important;
-	font-size:0.9em;
 }
 </style>
 
