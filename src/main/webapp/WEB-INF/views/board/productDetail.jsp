@@ -1208,7 +1208,7 @@ body {
 		<div class="row mt-3 mb-4">
 			<div class="col-1"></div>
 			<div class="col">
-				<div class="row mt-2 border align-items-center">
+				<div class="row mt-2 border align-items-center" onclick="location.href='./searchProduct?searchWord=${ data.bizInfo.biz_store_name}'">
 					<div class="col-3 ps-0">
 						<img
 							src="/uploadFiles/WelcomePet/${data.bizInfo.biz_store_main_img}"
