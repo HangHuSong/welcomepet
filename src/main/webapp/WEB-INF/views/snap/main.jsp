@@ -44,7 +44,7 @@ a:hover {
 
 #thumbnail {
 	object-fit: cover;
-	width: 387px;
+	width: 425px;
 	height: 376px;
 }
 
@@ -83,7 +83,7 @@ a:hover {
 
 .topNavbar {
 	/* background-color: #F4AE7A; */
-	background-color: #FFE1CF;
+	background-color: white;
 }
 
 #main {
@@ -377,11 +377,11 @@ a:hover {
 	            commentSubmitBtnCol.classList.add("col", "d-grid", "px-0","py-0");
 	            const commentSubmitBtn = document.createElement("button");
 	            commentSubmitBtn.onclick = function() { registerComment(response.snapDetail.snap_board_no); };
-	            commentSubmitBtn.classList.add("btn","py-0");
+	            commentSubmitBtn.classList.add("btn","py-0","fw-bold");
 	            commentSubmitBtn.innerText = "게시";
 	            commentSubmitBtn.style.fontSize = "12px";
 	            commentSubmitBtn.style.color = "white";
-	            commentSubmitBtn.style.backgroundColor = "orange";
+	            commentSubmitBtn.style.backgroundColor = "#ffa500";
 	            commentSubmitBtnCol.appendChild(commentSubmitBtn);
 	            commentForm.appendChild(commentContentBoxCol);
 	            commentForm.appendChild(commentSubmitBtnCol);
@@ -515,8 +515,7 @@ a:hover {
 										<div class="row" style="font-size: 0.9em;">
 											<div class="col text-center fw-bold">
 												<a class="nav-link" href="/welcomepet/snap/main"
-													style="border-bottom: 2.5px solid gray"><i
-													class="bi bi-instagram"></i> 스냅</a>
+													style="border-bottom: 2.5px solid gray">스냅</a>
 											</div>
 											<div class="col text-center">
 												<a class="nav-link text-secondary"
@@ -597,7 +596,7 @@ a:hover {
 				</div>
 				<div class="row my-1">
 					<div class="col-3">
-						<img id="productSnap" src="/welcomepet/resources/img/snapProduct.png">
+						<a href="/welcomepet/board/productDetail?product_no=15"><img id="productSnap" src="/welcomepet/resources/img/snapProduct.png"></a>
 					</div>
 					<div class="col-9">
 						<div class="row align-items-center">
@@ -605,7 +604,7 @@ a:hover {
 								<span>루비디 러블리바니 민소매 티셔츠 민트 M</span>
 							</div>
 						</div>
-						<div class="row mt-2 align-items-center">
+						<div class="row mt-3 align-items-center">
 							<div class="col">
 								<span style="font-size: 13px;">12,900원</span>
 							</div>
@@ -631,7 +630,7 @@ a:hover {
 	<div class="row fixed-bottom mb-5 pb-4 text-end">
 		<div class="col"></div>
 		<div class="col-3 me-2">
-			<a class="btn btn-lg shadow rounded-circle justify-content-center align-items-center" href="./postSnap" style="color:white; height:52px; background-color:#fd7e14">
+			<a class="btn btn-lg shadow rounded-circle justify-content-center align-items-center" href="./postSnap" style="color:white; height:52px; background-color:#ffa500">
 				<i class="bi bi-pencil-square" style="color: white;"></i>
 			</a>
 		</div>

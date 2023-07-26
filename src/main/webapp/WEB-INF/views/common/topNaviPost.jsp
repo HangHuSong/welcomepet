@@ -23,7 +23,7 @@
   	font-family: 'Jua', sans-serif;
  	font-weight:700;
  	font-size:1.3em;
- 	color:#fd7e14;
+ 	color:#ffa500;
 }
 
 .topNavbar{
@@ -50,7 +50,7 @@
 	     </div>
 	     
 	     <div class="col d-flex justify-content-end p-0">
-	     <a class="btn bi bi-bell-fill text-secondary btn-lg p-0" role="button" href="#"></a>
+	     <a class="btn bi bi-bell text-secondary btn-lg p-0" role="button" href="#"></a>
 	     </div>
 	  	</div>
 	 </div>

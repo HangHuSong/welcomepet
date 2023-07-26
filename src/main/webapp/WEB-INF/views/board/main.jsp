@@ -937,10 +937,10 @@ body {
 </head>
 <body>
 
-
+	<jsp:include page="../common/topMainNavi.jsp"></jsp:include>
 
 	<div class="container">
-		<jsp:include page="../common/topMainNavi.jsp"></jsp:include>
+		
 
 		<div class="row mt-2 border_bottom text-center fw-bold fs-6 text-secondary">
 			<div class="col pe-0 ps-0">홈</div>
@@ -992,11 +992,11 @@ body {
 				</button>
 			</div>
 		</div>
-		<div class="row mt-1 text-center fw-bold  " >
+		<div class="row mt-2 text-center fw-bold  " >
 			<div class="col-1"></div>
-			<div class="col border rounded-2 text-secondary align-items-center d-flex" style="background-color: rgb(227, 237, 255); font-size: 0.9em; 
+			<div class="col border justify-content-center rounded-2 text-secondary align-items-center d-flex" style="background-color: rgb(227, 237, 255); font-size: 0.9em; 
 						height:3em; ">
-				<span class="ms-3">리뷰 작성시 최대</span> <span class="text-primary ps-1">결제금액의 3%</span> <span>를 드려요!</span>
+				<span >리뷰 작성시 최대</span> <span class="text-primary ps-1">결제금액의 3%</span> <span>를 드려요!</span>
 			</div>
 			<div class="col-1"></div>
 		</div>
@@ -1103,6 +1103,7 @@ body {
 
 		</div>
 		</div>
+		<div class="row mt-3"></div>
 	<jsp:include page="../common/serviceNavi.jsp"></jsp:include>
 	<jsp:include page="../common/bottomNavi.jsp"></jsp:include>
 	</div>
