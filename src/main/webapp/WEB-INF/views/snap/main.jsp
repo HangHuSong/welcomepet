@@ -377,11 +377,11 @@ a:hover {
 	            commentSubmitBtnCol.classList.add("col", "d-grid", "px-0","py-0");
 	            const commentSubmitBtn = document.createElement("button");
 	            commentSubmitBtn.onclick = function() { registerComment(response.snapDetail.snap_board_no); };
-	            commentSubmitBtn.classList.add("btn","py-0");
+	            commentSubmitBtn.classList.add("btn","py-0","fw-bold");
 	            commentSubmitBtn.innerText = "게시";
 	            commentSubmitBtn.style.fontSize = "12px";
 	            commentSubmitBtn.style.color = "white";
-	            commentSubmitBtn.style.backgroundColor = "orange";
+	            commentSubmitBtn.style.backgroundColor = "#ffa500";
 	            commentSubmitBtnCol.appendChild(commentSubmitBtn);
 	            commentForm.appendChild(commentContentBoxCol);
 	            commentForm.appendChild(commentSubmitBtnCol);
