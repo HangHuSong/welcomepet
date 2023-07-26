@@ -56,10 +56,10 @@
 							</div>
 							<div class="col-1"></div>
 							<div class="col-6 text-center" style="color: #fd7e14;">
-								<a id="main" href="../pointProd/board">어서대화하게</a>
+								<a id="main" href="../pointProd/board">어서대화하개</a>
 							</div>
 							<div class="col-1"></div>
-							<div class="col-2 dropdown">
+							<div class="col-2 ps-4 dropdown">
 								<i class="bi bi-three-dots-vertical" type="button"
 									data-bs-toggle="dropdown" aria-expanded="false"></i>
 								<ul class="dropdown-menu">
@@ -109,12 +109,12 @@
 											</div>
 											<div class="col p-10">
 												<div class="row">
-													<div class="col fw-semibold">
+													<div class="col ps-1 fw-semibold">
 														${data.customerDto.customer_nickname}</div>
 												</div>
 												<div class="row">
-													<div class="col text-secondary" style="font-size: 0.9em;">
-														<span class="me-3"> <fmt:formatDate
+													<div class="col ps-1 text-secondary" style="font-size: 0.9em;">
+														<span class="me-2"> <fmt:formatDate
 																value="${data.boardDto.board_reg_date}"
 																pattern="yyyy.MM.dd" /></span> <span> 조회수
 															${data.boardDto.board_read_count} </span>
@@ -133,7 +133,7 @@
 									</div>
 								</div>
 								<div class="row">
-									<div class="col fw-semibold fs-5 py-1">${data.boardDto.board_title}</div>
+									<div class="col fw-semibold py-1" style="font-size: 1.4em;">${data.boardDto.board_title}</div>
 								</div>
 								<div class="row">
 									<div class="col text-center">
@@ -144,7 +144,7 @@
 									</div>
 								</div>
 								<div class="row">
-									<div class="col py-1">${data.boardDto.board_content}</div>
+									<div class="col py-1" style="font-size: 1.1em;">${data.boardDto.board_content}</div>
 								</div>
 								<form action="./insertLikeProcess" method="post">
 									<input type="hidden" value="${data.boardDto.board_no}"
@@ -175,22 +175,22 @@
 													<img class="rounded-circle"
 														src="https://dummyimage.com/3*3" alt="...">
 												</div>
-												<div class="col p-0">
+												<div class="col pe-3">
 													<div class="row">
-														<div class="col">
-															<span class="me-3 text-secondary">
-																${comment.customerDto.customer_nickname }</span><span
-																style="font-size: 0.8em;"><fmt:formatDate
+														<div class="col pe-2 ps-0">
+															<span class="me-2 text-secondary" style="font-size: 0.88em;">
+																${comment.customerDto.customer_nickname }</span><span class="text-secondary"
+																style="font-size: 0.76em;"><fmt:formatDate
 																	value="${comment.commentDto.board_comment_reg_date}"
 																	pattern="yyyy.MM.dd" /></span>
 														</div>
 													</div>
 													<div class="row">
-														<div class="col-12" style="overflow-wrap: break-word;">
+														<div class="col pe-2 ps-0 fw-medium" style="overflow-wrap: break-word; font-size: 0.95em;">
 															${comment.commentDto.board_comment_content }</div>
 													</div>
 													<div class="row">
-														<div class="col pt-2 pb-3 text-secondary">답글</div>
+														<div class="col pt-2 pb-3 pe-2 ps-0 text-secondary" style="font-size: 0.8em;">답글</div>
 													</div>
 												</div>
 											</div>
