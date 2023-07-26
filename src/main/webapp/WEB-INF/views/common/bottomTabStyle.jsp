@@ -67,11 +67,7 @@ body {
 			<div class="col">
 				<div class="row text-center">
 				 <div class="col">
-<<<<<<< HEAD
 				   <a class="btn bi bi-chat-square-text text-secondary pb-0 d-flex justify-content-center" style="font-size:1.3em"
-=======
-				   <a class="btn bi bi-chat-square-text text-secondary pb-0 d-flex justify-content-center" style="font-size:1.4em"
->>>>>>> 1da30a9769f33160091cc89dcf32b7190727685a
 				    href="/welcomepet/snap/main" role="button"></a>
 				 </div>
 				 <div class="col" style="font-size:0.6em">커뮤니티</div>
