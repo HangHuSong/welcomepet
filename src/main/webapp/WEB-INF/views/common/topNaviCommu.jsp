@@ -72,7 +72,7 @@
 </head>
 <body>
 
-<nav class="topNavbar sticky-top bg-body-tertiary shadow-sm px-3 pt-3">
+<nav class="topNavbar sticky-top bg-body-tertiary border-bottom shadow-sm px-3 pt-3">
 <div class="container p-0">
 	<div class="container p-0">
   	 <div class="container-fluid">
@@ -87,7 +87,8 @@
 	     </div>
 	     
 	     <div class="col-1 p-0 text-end">
-	     <a class="btn bi bi bi-search btn-lg p-0" role="button" href="#"></a>
+	     <a class="btn bi bi bi-search p-0" role="button" href="#"
+	     	style="font-size:1.2em"></a>
 	     </div>
 
 <%-- 	     
@@ -98,7 +99,7 @@
 	  	</div>
 	  	
 	  	<%-- 2 --%>
-		<div class="row border-bottom text-center">
+		<div class="row text-center">
 		 <div class="col mt-2">
 			<div class="row mb-2">
 				<div class="col"></div>

@@ -17,9 +17,9 @@
 <%------ bootstrap ------%>
 </head>
 <body>
-<%------ 하단 row ------%>
+
 <div class="row mb-5">
-<nav class="navbar fixed-bottom bg-body-tertiary border-top"  style="height:56px; background-color: #ffffff;">
+<nav class="navbar fixed-bottom pt-1 bg-body-tertiary border-top"  style="height:56px; background-color: #ffffff;">
 <div class="container d-flex justify-content-center">
  <div class="row">
 	
@@ -27,28 +27,63 @@
 		 <div class="row">
 		 	<%-- 카테고리 ㄱ --%>
 			<div class="col">
-				<a class="btn bi bi-microsoft text-secondary" style="font-size:18px" data-bs-toggle="offcanvas"
-					href="#offcanvasExample" role="button" aria-controls="offcanvasExample" ></a>
+				<div class="row text-center">
+				 <div class="col">
+				   <a class="btn bi bi-list-ul text-secondary pb-0 d-flex justify-content-center" style="font-size:1.4em"
+					  href="#" role="button"></a>
+				 </div>
+				 <div class="col" style="font-size:0.7em">
+				   카테고리
+				 </div>
+				</div>
 			</div>
 			<%-- 커뮤니티 ㄱ --%>
 			<div class="col">
-				<a class="btn bi bi-chat-square-text bi-lg text-secondary" style="font-size:18px" 
-					role="button" href="/welcomepet/community/showDogPostList"></a>
+				<div class="row text-center">
+				 <div class="col">
+				   <a class="btn bi bi-chat-square-text text-secondary pb-0 d-flex justify-content-center" style="font-size:1.4em"
+				    href="/welcomepet/community/showDogPostList" role="button"></a>
+				 </div>
+				 <div class="col" style="font-size:0.7em">
+				   커뮤니티
+				 </div>
+				</div>
 			</div>
 			<%-- 쇼핑몰 홈 ㄱ --%>
 			<div class="col">
-				<a class="btn bi bi-house text-secondary" style="font-size:18px" 
-					role="button" href="/welcomepet/board/main"></a>
+				<div class="row text-center">
+				 <div class="col">
+				   <a class="btn bi bi-house text-secondary pb-0 d-flex justify-content-center" style="font-size:1.4em"
+				    href="/welcomepet/board/main" role="button"></a>
+				 </div>
+				 <div class="col" style="font-size:0.7em">
+				   쇼핑몰
+				 </div>
+				</div>
 			</div>
 			<%-- 찜 목록 ㄱ --%>
 			<div class="col">
-				<a class="btn bi bi-heart text-secondary" style="font-size:18px" 
-					role="button" href="/welcomepet/customer/wishList"></a>
+				<div class="row text-center">
+				 <div class="col">
+				   <a class="btn bi bi-heart text-secondary pb-0 d-flex justify-content-center" style="font-size:1.4em"
+				    href="/welcomepet/customer/wishList" role="button"></a>
+				 </div>
+				 <div class="col" style="font-size:0.7em">
+				   좋아요
+				 </div>
+				</div>
 			</div>
 			<%-- 마이페이지 ㄱ --%>
 			<div class="col">
-				<a class="btn bi bi-lg bi-person-circle text-secondary" style="font-size:18px" 
-				   role="button" href="/welcomepet/customer/my"></a>
+				<div class="row text-center">
+				 <div class="col">
+				   <a class="btn bi bi-person-circle text-secondary pb-0 d-flex justify-content-center" style="font-size:1.4em"
+				    href="/welcomepet/customer/my" role="button"></a>
+				 </div>
+				 <div class="col" style="font-size:0.7em">
+				   my
+				 </div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -56,30 +91,6 @@
 </div>
 </nav>
 </div>
-<%-- 카테고리 열면 왼쪽에서 나오는거 
-	<div class="offcanvas offcanvas-start w-75" tabindex="-1"
-		id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-		<div class="offcanvas-header">
-			<h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
-			<button type="button" class="btn-close" data-bs-dismiss="offcanvas"
-				aria-label="Close"></button>
-		</div>
-		<div class="offcanvas-body">
-			<div>Some text as placeholder. In real life you can have the
-				elements you have chosen. Like, text, images, lists, etc.</div>
-			<div class="dropdown mt-3">
-				<button class="btn btn-secondary dropdown-toggle" type="button"
-					data-bs-toggle="dropdown">Dropdown button</button>
-				<ul class="dropdown-menu">
-					<li><a class="dropdown-item" href="#">Action</a></li>
-					<li><a class="dropdown-item" href="#">Another action</a></li>
-					<li><a class="dropdown-item" href="#">Something else here</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
- 카테고리 열면 나오는거 --%>
-
 
 <%-- bootstrap script--%>
 <script
