@@ -1240,7 +1240,7 @@ body {
 			</div>
 			<div class="row mt-2 px-0" id="relatedList"></div>
 		</div>
-	</div>
+
 	<div class="row mt-2 empty" style="height: 1.5em;"></div>
 
 	<div class="row ps-2">
@@ -1317,6 +1317,7 @@ body {
 				</div>
 			</div>
 		</div>
+		
 		<div class="row mt-2">
 		  <div class="col">
 		  <div class="d-grid gap-2"> 
@@ -1331,10 +1332,12 @@ body {
 
 	<div class="row mt-1 ps-2">
 		<jsp:include page="../common/serviceNavi.jsp"></jsp:include>
+	</div>		
 		<div class="row mb-4">
 			<div class="col">
 				<div class="navbar navbar-dark bg-white fixed-bottom border-top "
 					style="height: 4em;">
+					
 					<div class="col-1  mx-2 text-center">
 						<div class="row">
 							<div class="col">
