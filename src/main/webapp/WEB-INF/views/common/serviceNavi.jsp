@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<div class="row mt-3 fLlDaL text-secondary"
+<div class="row 	 fLlDaL text-secondary"
 	style="background-color: rgb(244, 247, 250); padding: 2rem 1rem 5rem; font-size: 0.8em;">
 
 	<div class="row">

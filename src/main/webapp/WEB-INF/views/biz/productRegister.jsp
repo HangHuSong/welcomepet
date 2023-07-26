@@ -11,41 +11,56 @@
 	rel="stylesheet"
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 	crossorigin="anonymous">
-<script>
-	
-</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
+	rel="stylesheet">
+<style type="text/css">
+@font-face {
+	font-family: 'Pretendard-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+		format('woff');
+	font-weight: 400;
+	font-style: normal;
+}
 
-
+.container {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+</style>
 </head>
 <body>
 	<div class="container" style="margin: 0 0;">
 		<div class="row" style="width: 1900px;">
-			<div class="col-2 text-center ps-4 text-white d-flex align-items-stretch align-top" style="background-color: rgb(29, 33, 42);"><jsp:include
+			<div class="col-2 text-center ps-4 text-white"
+				style="background-color: rgb(29, 33, 42); height: auto;"><jsp:include
 					page="../common/bizLeftNavi.jsp"></jsp:include></div>
-			<div class="col px-0">
-				<div class="row bg-white mx-1">
+			<div class="col-10 px-0 bg-light">
+				<div class="row bg-white ms-1">
 					<div class="col text-center">
 						<jsp:include page="../common/bizTopNavi.jsp"></jsp:include>
 					</div>
 				</div>
-				<div class="row mx-1 px-5 text-start">
-					<div class="col">
+				<div class="row mx-5 text-start mb-5">
+					<div class="col-10">
 						<div class="row my-2">
 							<div class="col fs-5 fw-bold py-3">상품등록</div>
 						</div>
 						<form action="./productRegisterProcess" method="post"
 							enctype="multipart/form-data">
 							<div class="row mt-4 mb-2">
-								<div class="col">
-									<div class="row">
+								<div class="col" style="font-size: 13px;">
+									<div class="row bg-white">
 										<div class="col border">
 											<div class="row py-2 border-bottom">
-												<div class="col fw-bold" style="font-size: 17px;">상품
+												<div class="col fw-bold" style="font-size: 15px;">상품
 													정보</div>
 											</div>
-											<div class="row bg-light border-bottom">
+											<div class="row border-bottom">
 												<div class="col-3 align-self-center">카테고리</div>
-												<div class="col">
+												<div class="col border-start">
 													<div class="row bg-white py-2">
 														<div class="col">
 															<select id="mainCategorySelect" size="6"
@@ -68,16 +83,16 @@
 													</div>
 												</div>
 											</div>
-											<div class="row bg-light border-bottom">
+											<div class="row border-bottom">
 												<div class="col-3 align-self-center py-2">상품명</div>
-												<div class="col bg-white py-2">
+												<div class="col border-start py-2">
 													<input class="form-control" name="product_name" type="text">
 												</div>
 												<div class="col bg-white"></div>
 											</div>
-											<div class="row bg-light">
+											<div class="row">
 												<div class="col-3 py-2 align-self-center">상품 정보</div>
-												<div class="col bg-white py-2">
+												<div class="col border-start py-2">
 													<textarea class="form-control" name="product_description"></textarea>
 												</div>
 											</div>
@@ -85,15 +100,15 @@
 									</div>
 
 									<div class="row mt-4">
-										<div class="col border">
+										<div class="col border bg-white">
 											<div class="row border-bottom py-2">
-												<div class="col fw-bold" style="font-size: 17px;">판매정보</div>
+												<div class="col fw-bold" style="font-size: 15px;">판매정보</div>
 												<div class="col"></div>
 											</div>
-											<div class="row bg-light border-bottom">
+											<div class="row border-bottom">
 												<div class="col-3 align-self-center">상품 가격</div>
-												<div class="col">
-													<div class="row bg-white py-2">
+												<div class="col border-start">
+													<div class="row py-2">
 														<div class="col-3">
 															<input class="form-control" name="product_price"
 																type="text">
@@ -103,10 +118,10 @@
 													</div>
 												</div>
 											</div>
-											<div class="row bg-light border-bottom">
+											<div class="row border-bottom">
 												<div class="col-3 align-self-center">상품 배송비</div>
-												<div class="col">
-													<div class="row bg-white py-2">
+												<div class="col border-start">
+													<div class="row py-2">
 														<div class="col-3">
 															<input class="form-control" name="product_shipping_price"
 																type="text">
@@ -116,10 +131,10 @@
 													</div>
 												</div>
 											</div>
-											<div class="row bg-light">
+											<div class="row">
 												<div class="col-3 align-self-center">상품 할인율</div>
-												<div class="col">
-													<div class="row bg-white py-2">
+												<div class="col border-start">
+													<div class="row py-2">
 														<div class="col-3">
 															<input class="form-control" name="product_discount_rate"
 																type="text">
@@ -132,14 +147,14 @@
 										</div>
 									</div>
 									<div class="row mt-4">
-										<div class="col border">
+										<div class="col border bg-white">
 											<div class="row border-bottom py-2">
-												<div class="col fw-bold" style="font-size: 17px;">옵션/재고
+												<div class="col fw-bold" style="font-size: 15px;">옵션/재고
 													설정</div>
 											</div>
-											<div class="row bg-light border-bottom">
+											<div class="row border-bottom">
 												<div class="col-3 align-self-center py-2">상품 타입</div>
-												<div class="col">
+												<div class="col border-start">
 													<div class="row px-2 text-start bg-white">
 														<div class="col-2 py-2">
 															<div class="form-check">
@@ -159,10 +174,10 @@
 													</div>
 												</div>
 											</div>
-											<div class="row bg-light" id="productStockQuantity">
+											<div class="row" id="productStockQuantity">
 												<div class="col-3 align-self-center py-2">상품 재고</div>
-												<div class="col">
-													<div class="row bg-white py-2">
+												<div class="col border-start">
+													<div class="row py-2">
 														<div class="col-3">
 															<input class="form-control" name="stock_quantity"
 																type="text" value="0">
@@ -175,9 +190,9 @@
 											<div class="row">
 												<div class="col visually-hidden"
 													id="productOptionBoxContainer">
-													<div class="row bg-light">
+													<div class="row">
 														<div class="col-3 align-self-center py-2">옵션 입력</div>
-														<div class="col bg-white py-2">
+														<div class="col border-start py-2">
 															<div class="row">
 																<div class="col">
 																	<table class="table table-bordered mb-0">
@@ -230,36 +245,36 @@
 
 
 									<div class="row mt-4">
-										<div class="col border">
+										<div class="col border bg-white">
 											<div class="row py-2 border-bottom">
-												<div class="col fw-bold" style="font-size: 17px;">이미지
+												<div class="col fw-bold" style="font-size: 15px;">이미지
 													정보</div>
 											</div>
-											<div class="row border-bottom bg-light">
+											<div class="row border-bottom">
 												<div class="col-3 align-self-center py-2">상품 썸네일</div>
-												<div class="col bg-white py-2">
+												<div class="col py-2 border-start">
 													<input class="form-control" name="thumbnail" type="file"
 														accept="image/*" onchange="pushThumbnail(event)">
 												</div>
 											</div>
-											<div class="row border-bottom bg-light">
+											<div class="row border-bottom">
 												<div class="col-3 py-2 align-self-center">상품 대표이미지</div>
-												<div class="col bg-white py-2">
+												<div class="col py-2 border-start">
 													<input class="form-control" name="main_images" type="file"
 														multiple accept="image/*" onchange="pushMainImages(event)">
 												</div>
 											</div>
-											<div class="row border-bottom bg-light">
+											<div class="row border-bottom">
 												<div class="col-3 py-2 align-self-center">상품 상세이미지</div>
-												<div class="col bg-white py-2">
+												<div class="col py-2 border-start">
 													<input class="form-control" name="detail_images"
 														type="file" multiple accept="image/*"
 														onchange="pushDetailImages(event)">
 												</div>
 											</div>
-											<div class="row bg-light">
+											<div class="row">
 												<div class="col-3 py-2 align-self-center">상품 정보</div>
-												<div class="col bg-white py-2">
+												<div class="col border-start py-2">
 													<textarea class="form-control" name="product_description"></textarea>
 												</div>
 											</div>
@@ -276,9 +291,13 @@
 							</div>
 						</form>
 					</div>
+					<div class="col-2"></div>
+				</div>
+				<div class="row ms-1">
+					<div class="col">
+						<jsp:include page="../common/bizFooter.jsp"></jsp:include></div>
 				</div>
 			</div>
-			<div class="col-2"></div>
 		</div>
 	</div>
 

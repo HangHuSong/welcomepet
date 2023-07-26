@@ -196,7 +196,7 @@ body {
 
 		<div class="row mt-2">
 			<div class="col">
-				<img src="/uploadFiles/WelcomePet/banner/banner3.png"
+				<img src="/welcomepet/resources/img/banner/banner3.png"
 					style="width: 100%;" alt="...">
 			</div>
 		</div>

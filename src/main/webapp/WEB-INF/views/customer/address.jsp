@@ -21,7 +21,7 @@
 	
 	<div class="container align-items-center justify-content-center">
 		
-		<div class="row  mt-2 align-items-center" >
+		<div class="row  mt-1 align-items-center" >
 			<div class="col-1 d-flex ">
 			<a class="btn bi bi-arrow-left fs-4" role="button"
 					href="./my"> </a>

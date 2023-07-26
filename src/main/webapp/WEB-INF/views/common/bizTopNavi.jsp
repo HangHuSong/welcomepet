@@ -83,11 +83,11 @@
 								</ul>
 							</div>
 						</div>
-						<div class="col-1">
+						<div class="col-1 px-0">
 							<div class="dropdown">
 								<button class="btn" type="button" data-bs-toggle="dropdown">
 									<div class="row">
-										<div class="col fs-4">
+										<div class="col fs-5">
 											<i class="far fa-bell fa-lg px-2 position-relative"><span
 												class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
 												style="font-size: 12px;" id="alarmNum">0</span></i>
@@ -102,6 +102,7 @@
 			</div>
 
 		</div>
+		<div class="col-2"></div>
 	</div>
 	<script type="text/javascript">
 		if(${!empty bizUser} && ${bizUser.biz_status_no}==4){

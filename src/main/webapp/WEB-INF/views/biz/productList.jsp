@@ -18,30 +18,44 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
 	rel="stylesheet">
 
-<script>
-	
-</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
+	rel="stylesheet">
+<style type="text/css">
+@font-face {
+	font-family: 'Pretendard-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+		format('woff');
+	font-weight: 400;
+	font-style: normal;
+}
 
-
+.container {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+</style>
 </head>
 <body>
 	<div class="container" style="margin: 0 0;">
 		<div class="row" style="width: 1900px;">
-			<div class="col-2 text-center ps-4 text-white d-flex align-items-stretch align-top"
-				style="background-color: rgb(29, 33, 42);"><jsp:include
+			<div class="col-2 text-center ps-4 text-white"
+				style="background-color: rgb(29, 33, 42); height: auto;"><jsp:include
 					page="../common/bizLeftNavi.jsp"></jsp:include></div>
-			<div class="col-8 px-0">
-				<div class="row mx-1">
-					<div class="col">
+			<div class="col-10 px-0 bg-light">
+				<div class="row bg-white ms-1">
+					<div class="col text-center">
 						<jsp:include page="../common/bizTopNavi.jsp"></jsp:include>
 					</div>
 				</div>
-				<div class="row mx-5 text-center">
-					<div class="col">
+				<div class="row mx-5 text-start mb-5">
+					<div class="col-10">
 						<div class="row my-2">
-							<div class="col fs-5 fw-bold text-start py-3">주문/발송관리</div>
+							<div class="col fs-5 fw-bold text-start py-3">상품목록</div>
 						</div>
-						<div class="row my-2 text-start border py-3 px-2">
+						<div class="row my-2 text-start border py-3 px-2 bg-white">
 							<div class="col align-self-center">
 								<span class="px-2 border-end text-center"><span>전체
 								</span><span class="text-info">2</span><span>건</span></span> <span
@@ -54,7 +68,7 @@
 								<a class="btn btn-primary btn-sm">상품등록</a>
 							</div>
 						</div>
-						<div class="row my-2 bg-light px-5 my-4">
+						<div class="row my-2">
 							<div class="col">
 								<div class="row my-5">
 									<div class="col border bg-white">
@@ -68,12 +82,14 @@
 										</div>
 										<div class="row">
 											<div class="col-3 border-end py-2">검색어</div>
-											<div class="col py-2 text-start"></div>
+											<div class="col py-2 text-start">
+												<input type="text" style="width: 423px;">
+											</div>
 										</div>
 									</div>
 								</div>
 								<div class="row justify-content-center my-5">
-									<div class="col">
+									<div class="col text-center">
 										<span><button class="btn btn-dark">검색</button></span> <span><button
 												class="btn btn-outline-dark">초기화</button></span>
 									</div>
@@ -81,21 +97,18 @@
 							</div>
 
 						</div>
-						<div class="row mt-2">
+						<div class="row mt-2 text-center">
 							<div class="col">
 								<div class="row">
 									<div class="col text-start py-2 px-0">
-										<span><span>[총 </span><span
-											class="text-info">2</span><span>개]</span></span>
+										<span><span>[총 </span><span class="text-info">2</span><span>개]</span></span>
 									</div>
 								</div>
-								<div class="row">
+								<div class="row bg-white">
 									<div class="col table-responsive px-0">
 										<table class="table align-middle table-bordered">
 											<thead>
 												<tr>
-													<th scope="col"><input class="form-check-input"
-														type="checkbox"></th>
 													<th scope="col">상품번호</th>
 													<th scope="col">상품썸네일</th>
 													<th scope="col">상품타입</th>
@@ -115,8 +128,6 @@
 															<c:forEach items="${productData.productOptionDtoList}"
 																var="productOptionDto">
 																<tr>
-																	<th scope="row"><input class="form-check-input"
-																		type="checkbox"></th>
 																	<td>${productOptionDto.product_option_no }</td>
 																	<td class="col-1"><img
 																		src="/uploadFiles/productThumbnailImg/${productData.productDto.product_thumbnail }"
@@ -137,8 +148,6 @@
 														</c:when>
 														<c:otherwise>
 															<tr>
-																<th scope="row"><input class="form-check-input"
-																	type="checkbox"></th>
 																<td>${productData.productOptionDto[0].product_option_no }</td>
 																<td class="col-1"><img
 																	src="/uploadFiles/productThumbnailImg/${productData.productDto.product_thumbnail }"
@@ -165,6 +174,11 @@
 							</div>
 						</div>
 					</div>
+					<div class="col-2"></div>
+				</div>
+				<div class="row ms-1">
+					<div class="col">
+						<jsp:include page="../common/bizFooter.jsp"></jsp:include></div>
 				</div>
 			</div>
 		</div>

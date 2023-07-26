@@ -12,21 +12,30 @@
 	rel="stylesheet"
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 	crossorigin="anonymous">
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
+	rel="stylesheet">
+<style type="text/css">
+.container {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+</style>
 </head>
 <body>
 	<div class="container" style="margin: 0 0;">
 		<div class="row" style="width: 1900px;">
 			<div class="col-2 text-center ps-4 text-white"
-				style="height: 1080px; background-color: rgb(29, 33, 42);"><jsp:include
+				style="height: auto; background-color: rgb(29, 33, 42);"><jsp:include
 					page="../common/bizLeftNavi.jsp"></jsp:include></div>
-			<div class="col-8 px-0">
-				<div class="row bg-white mx-1">
+			<div class="col-10 px-0 bg-light">
+				<div class="row bg-white ms-1">
 					<div class="col text-center"><jsp:include
 							page="../common/bizTopNavi.jsp"></jsp:include></div>
 				</div>
-				<div class="row mx-5 text-center">
-					<div class="col">
+				<div class="row mx-5 text-center mb-5">
+					<div class="col-10">
 						<div class="row my-2">
 							<div class="col fs-5 fw-bold text-start py-3">구매확정내역</div>
 						</div>
@@ -36,7 +45,7 @@
 									<div class="col border bg-white">
 										<div class="row border-bottom">
 											<div class="col-3 border-end py-2">기간</div>
-											<div class="col py-2">
+											<div class="col py-2 text-start">
 												<input class="text-center" type="date" style="width: 200px;">
 												~ <input class="text-center" type="date"
 													style="width: 200px;">
@@ -44,7 +53,9 @@
 										</div>
 										<div class="row">
 											<div class="col-3 border-end py-2">검색어</div>
-											<div class="col py-2 text-start"></div>
+											<div class="col py-2 text-start">
+												<input type="text" style="width: 423px;">
+											</div>
 										</div>
 									</div>
 								</div>
@@ -57,16 +68,23 @@
 							</div>
 
 						</div>
-						<div class="row text-start mt-5 mb-2 mx-2">
-							<div class="col border">
+						<div class="row text-center mt-5 mb-2 mx-2 bg-white">
+							<div class="col px-0">
+								<div class="row text-start py-2 border border-bottom-0 mx-0">
+									<div class="col mx-1 px-0">
+										<select class="border-secondary border-opacity-50 rounded-2">
+											<option selected>주문일 역순</option>
+										</select> <select class="border-secondary border-opacity-50 rounded-2">
+											<option selected>20개씩 보기</option>
+										</select>
+									</div>
+								</div>
 								<div class="row" id="orderList">
 									<div class="col">
 										<div class="table-responsive">
-											<table class="table text-nowrap">
+											<table class="table text-nowrap table-bordered">
 												<thead class="table-light">
 													<tr>
-														<th scope="col"><input class="form-check-input"
-															type="checkbox" value="" onclick="toggleCheck(event)"></th>
 														<th scope="col">상품주문번호</th>
 														<th scope="col">주문번호</th>
 														<th scope="col">구매자명</th>
@@ -84,9 +102,6 @@
 												<tbody>
 													<c:forEach items="${orderList }" var="order">
 														<tr>
-															<td><input class="form-check-input"
-																name="order_product_no" type="checkbox"
-																value="${order.orderProductDto.order_product_no }"></td>
 															<td>${order.orderProductDto.order_product_no }</td>
 															<td>${order.ordersDto.orders_no }</td>
 															<td>${order.customerDto.customer_name }</td>
@@ -112,10 +127,12 @@
 							</div>
 						</div>
 					</div>
-
+					<div class="col-2"></div>
 				</div>
-
-
+				<div class="row ms-1">
+					<div class="col">
+						<jsp:include page="../common/bizFooter.jsp"></jsp:include></div>
+				</div>
 			</div>
 		</div>
 	</div>

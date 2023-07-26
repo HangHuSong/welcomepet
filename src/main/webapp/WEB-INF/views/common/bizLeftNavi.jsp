@@ -40,9 +40,9 @@
 </head>
 <body>
 
-	<div class="row">
+	<div class="row mx-2 text-center">
 		<div class="col">
-			<div class="row py-2 px-3">
+			<div class="row py-2">
 				<div class="col">
 					<div class="row">
 						<div class="col fw-bold btn text-white text-start"
@@ -51,7 +51,8 @@
 								<div class="col " style="font-family: 'GmarketSansMedium'">어서오개</div>
 							</div>
 							<div class="row">
-								<div class="col fs-3" style="font-family: 'GmarketSansMedium'">seller office</div>
+								<div class="col fs-3" style="font-family: 'GmarketSansMedium'">seller
+									office</div>
 							</div>
 						</div>
 					</div>
@@ -59,22 +60,23 @@
 			</div>
 			<div class="row text-start">
 				<div class="col">
-					<div class="row">
-						<div class="col px-4 py-2 d-grid">
-							<div class="py-2 btn text-white" onclick="toggleMenuList(event)">
-								<div class="row text-start">
-									<div class="col-2 fw-bold fs-5 px-2 text-center">
-										<i class="far fa-credit-card"></i>
-									</div>
-									<div class="col fw-bold fs-5">주문 관리</div>
-									<div class="col-1 fw-bold fs-5 text-end updownIcon">
-										<i class="fas fa-angle-down"></i>
-									</div>
+					<div class="row py-2">
+						<div class="col py-2 btn text-white"
+							onclick="toggleMenuList(event)" style="font-size: 18px;">
+
+							<div class="row text-start">
+								<div class="col-2 fw-bold px-2 text-center">
+									<i class="far fa-credit-card"></i>
+								</div>
+								<div class="col fw-bold text-start">주문 관리</div>
+								<div class="col-2 fw-bold updownIcon">
+									<i class="fas fa-angle-down"></i>
 								</div>
 							</div>
-							<div class="row visually-hidden menuList">
+
+							<div class="row visually-hidden menuList text-start">
 								<div class="col-2"></div>
-								<div class="col">
+								<div class="col px-0 py-2">
 									<div class="row">
 										<div class="col">
 											<a class="btn text-decoration-none text-white"
@@ -110,22 +112,22 @@
 
 						</div>
 					</div>
-					<div class="row">
-						<div class="col px-4 py-2 d-grid">
-							<div class="py-2 btn text-white" onclick="toggleMenuList(event)">
-								<div class="row text-start">
-									<div class="col-2 fw-bold fs-5 px-2 text-center">
-										<i class="fas fa-tshirt"></i>
-									</div>
-									<div class="col fw-bold fs-5">상품 관리</div>
-									<div class="col-1 fw-bold fs-5 text-end updownIcon">
-										<i class="fas fa-angle-down"></i>
-									</div>
+					<div class="row py-2">
+						<div class="col py-2 btn text-white"
+							onclick="toggleMenuList(event)" style="font-size: 18px;">
+
+							<div class="row text-start">
+								<div class="col-2 fw-bold px-2 text-center">
+									<i class="fas fa-tshirt"></i>
+								</div>
+								<div class="col fw-bold text-start">상품 관리</div>
+								<div class="col-2 fw-bold updownIcon">
+									<i class="fas fa-angle-down"></i>
 								</div>
 							</div>
-							<div class="row visually-hidden menuList">
+							<div class="row visually-hidden menuList text-start">
 								<div class="col-2"></div>
-								<div class="col">
+								<div class="col px-0 py-2">
 									<div class="row">
 										<div class="col">
 											<a class="btn text-decoration-none text-white"
@@ -155,22 +157,21 @@
 
 						</div>
 					</div>
-					<div class="row">
-						<div class="col px-4 py-2 d-grid">
-							<div class="py-2 btn text-white" onclick="toggleMenuList(event)">
-								<div class="row text-start">
-									<div class="col-2 fw-bold fs-5 px-2 text-center">
-										<i class="fas fa-money-check-alt"></i>
-									</div>
-									<div class="col fw-bold fs-5">정산 관리</div>
-									<div class="col-1 fw-bold fs-5 text-end updownIcon">
-										<i class="fas fa-angle-down"></i>
-									</div>
+					<div class="row py-2">
+						<div class="col py-2 btn text-white"
+							onclick="toggleMenuList(event)" style="font-size: 18px;">
+							<div class="row text-start">
+								<div class="col-2 fw-bold px-2 text-center">
+									<i class="fas fa-money-check-alt"></i>
+								</div>
+								<div class="col fw-bold">정산 관리</div>
+								<div class="col-2 fw-bold updownIcon">
+									<i class="fas fa-angle-down"></i>
 								</div>
 							</div>
-							<div class="row visually-hidden menuList">
+							<div class="row visually-hidden menuList text-start">
 								<div class="col-2"></div>
-								<div class="col">
+								<div class="col px-0 py-2">
 									<div class="row">
 										<div class="col">
 											<a class="btn text-decoration-none text-white"
@@ -194,22 +195,21 @@
 
 						</div>
 					</div>
-					<div class="row">
-						<div class="col px-4 py-2 d-grid">
-							<div class="py-2 btn text-white" onclick="toggleMenuList(event)">
-								<div class="row text-start">
-									<div class="col-2 fw-bold fs-5 px-2 text-center">
-										<i class="fas fa-clipboard-list"></i>
-									</div>
-									<div class="col fw-bold fs-5">문의/리뷰 관리</div>
-									<div class="col-1 fw-bold fs-5 text-end updownIcon">
-										<i class="fas fa-angle-down"></i>
-									</div>
+					<div class="row py-2">
+						<div class="col py-2 btn text-white"
+							onclick="toggleMenuList(event)" style="font-size: 18px;">
+							<div class="row text-start">
+								<div class="col-2 fw-bold px-2 text-center">
+									<i class="fas fa-clipboard-list"></i>
+								</div>
+								<div class="col fw-bold">문의/리뷰 관리</div>
+								<div class="col-2 fw-bold updownIcon">
+									<i class="fas fa-angle-down"></i>
 								</div>
 							</div>
-							<div class="row visually-hidden menuList">
+							<div class="row visually-hidden menuList text-start">
 								<div class="col-2"></div>
-								<div class="col">
+								<div class="col px-0 py-2">
 									<div class="row">
 										<div class="col">
 											<a class="btn text-decoration-none text-white"
@@ -227,22 +227,21 @@
 
 						</div>
 					</div>
-					<div class="row">
-						<div class="col px-4 py-2 d-grid">
-							<div class="py-2 btn text-white" onclick="toggleMenuList(event)">
-								<div class="row text-start">
-									<div class="col-2 fw-bold fs-5 px-2 text-center">
-										<i class="fas fa-chart-line"></i>
-									</div>
-									<div class="col fw-bold fs-5">통계 및 분석</div>
-									<div class="col-1 fw-bold fs-5 text-end updownIcon">
-										<i class="fas fa-angle-down"></i>
-									</div>
+					<div class="row py-2">
+						<div class="py-2 btn text-white" onclick="toggleMenuList(event)"
+							style="font-size: 18px;">
+							<div class="row text-start">
+								<div class="col-2 fw-bold px-2 text-center">
+									<i class="fas fa-chart-line"></i>
+								</div>
+								<div class="col fw-bold">통계 및 분석</div>
+								<div class="col-2 fw-bold updownIcon">
+									<i class="fas fa-angle-down"></i>
 								</div>
 							</div>
-							<div class="row visually-hidden menuList">
+							<div class="row visually-hidden menuList text-start">
 								<div class="col-2"></div>
-								<div class="col">
+								<div class="col px-0 py-2">
 									<div class="row">
 										<div class="col">
 											<a class="btn text-decoration-none text-white"

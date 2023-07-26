@@ -84,6 +84,11 @@ public class CustomerController {
 		}
 
 	}
+	
+	@RequestMapping("addInquiry")
+	public String addInquiry() {
+		return "customer/addInquiry";
+	}
 
 	@RequestMapping("myInfo")
 	public String customerMyInfoPage(HttpSession session, Model model) {

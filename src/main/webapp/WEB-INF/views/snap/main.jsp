@@ -83,7 +83,7 @@ a:hover {
 
 .topNavbar {
 	/* background-color: #F4AE7A; */
-	background-color: #ffffff;
+	background-color: #FFE1CF;
 }
 
 #main {
@@ -542,7 +542,7 @@ a:hover {
 
 
 		<c:forEach items="${list}" var="data">
-			<div class="row mt-1 mb-1">
+			<div class="row mb-1">
 				<div class="col">
 					<div
 						class="row border-bottom border-top align-items-center justify-content-center"

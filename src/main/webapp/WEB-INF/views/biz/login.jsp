@@ -33,18 +33,21 @@
 </style>
 </head>
 <body>
-	<div class="row my-5 pt-5 text-center"></div>
+
 	<div class="row text-center">
 		<div class="col"></div>
-		<div class="col-3">
+		<div class="col-3 px-5">
 			<!-- 로그인정보 -->
-			<div class="row my-4">
-				<div class="col">
-					<span class="fs-2 fw-bold" style="font-family: 'GmarketSansMedium'">어서오개
-						seller office </span>
+			<div class="row mt-5">
+				<div class="col pt-5">
+					<img class="w-100 px-5" src="/welcomepet/resources/img/logo.png">
 				</div>
 			</div>
-
+			<div class="row mb-5" style="">
+				<div class="col fs-5 fw-bold rounded-4 text-white"
+					style="margin:0 68px; font-family: 'GmarketSansMedium'; background-color: rgb(253, 152, 67);">seller
+					office</div>
+			</div>
 			<div class="row my-2">
 				<!-- 아이디 -->
 				<div class="col">
@@ -67,7 +70,7 @@
 			</div>
 			<div class="row my-2">
 				<div class="col d-grid">
-					<button class="btn text-white"
+					<button class="btn text-white py-2"
 						style="background-color: rgb(253, 152, 67);"
 						onclick="loginProcess()">로그인</button>
 				</div>
