@@ -57,7 +57,7 @@
   	font-family: 'Jua', sans-serif;
  	font-weight:700;
  	font-size:1.3em;
- 	color:#fd7e14;
+ 	color:#ffa500;
 }
 
 .topNavbar{
@@ -78,7 +78,7 @@
   	 <div class="container-fluid">
   	 	<%-- 1 --%>
   	 	<div class="row">
-	     <div class="col-2 p-0">
+	     <div class="col-1 p-0">
 	      <a href="/welcomepet/pointProd/board" class="btn bi bi-arrow-left fs-4 py-0 ps-0" role="button"></a>
 	     </div>
 	      	 
@@ -86,17 +86,19 @@
 	      <a id="main" href="../snap/main">커뮤니티</a>
 	     </div>
 	     
-	     <div class="col-1 p-0">
-	     <a class="btn bi bi bi-search text-secondary btn-lg p-0" role="button" href="#"></a>
+	     <div class="col-1 p-0 text-end">
+	     <a class="btn bi bi bi-search btn-lg p-0" role="button" href="#"></a>
 	     </div>
-	     
+
+<%-- 	     
 	     <div class="col-1 d-flex justify-content-end p-0">
-	     <a class="btn bi bi-bell-fill text-secondary btn-lg p-0" role="button" href="#"></a>
+	     <a class="btn bi bi-bell text-secondary btn-lg p-0" role="button" href="#"></a>
 	     </div>
+--%>
 	  	</div>
 	  	
 	  	<%-- 2 --%>
-		<div class="row text-center">
+		<div class="row border-bottom text-center">
 		 <div class="col mt-2">
 			<div class="row mb-2">
 				<div class="col"></div>
@@ -104,7 +106,7 @@
 		 	
 			<div class="row" style="font-size:0.9em;">
 				<div class="col text-center">
-					<a class="nav-link text-secondary" href="/welcomepet/snap/main"><i class="bi bi-instagram"></i> 스냅</a>
+					<a class="nav-link text-secondary" href="/welcomepet/snap/main">스냅</a>
 				</div>
 				<div class="col text-center">
 					<a class="nav-link text-secondary" href="/welcomepet/pointProd/board">어서대화하개</a>
@@ -115,6 +117,7 @@
 					   style="border-bottom:2.5px solid gray">어서보여주개</a>
 				</div>
 			</div>
+			
 			</div>
 		 </div>
 
