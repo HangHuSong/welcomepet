@@ -40,7 +40,7 @@
 				<div class="row text-center">
 				 <div class="col">
 				   <a class="btn bi bi-chat-square-text text-secondary pb-0 d-flex justify-content-center" style="font-size:1.4em"
-				    href="/welcomepet/community/showDogPostList" role="button"></a>
+				    href="/welcomepet/snap/main" role="button"></a>
 				 </div>
 				 <div class="col" style="font-size:0.7em">커뮤니티</div>
 				</div>
