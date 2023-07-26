@@ -146,7 +146,7 @@ body {
 			</div>
 			<div class="row mt-1 pe-0">
 				<div class="col text-secondary">
-					- 주문취소/교환/환불은 <a href="./customer/orderList" class="link-txt">마이페이지>주문내역</a>
+					- 주문취소/교환/환불은 <a href="../customer/orderList" class="link-txt">마이페이지>주문내역</a>
 					에서 신청하실 수 있습니다.
 				</div>
 			</div>

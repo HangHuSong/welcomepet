@@ -418,7 +418,7 @@ function refreshTotalWishCount(){
 		        optionDiv.appendChild(optionCol1);
 
 		        const optionNameCol = document.createElement("div");
-		        optionNameCol.classList.add("col");
+		        optionNameCol.classList.add("col-7","px-0");
 		        optionDiv.appendChild(optionNameCol);
 
 		        const optionName = document.createElement("span");
@@ -427,7 +427,7 @@ function refreshTotalWishCount(){
 		        optionNameCol.appendChild(optionName);
 
 		        const optionPriceCol = document.createElement("div");
-		        optionPriceCol.classList.add("col", "text-end","fw-bold");
+		        optionPriceCol.classList.add("col", "text-end","fw-bold","px-0");
 		        optionDiv.appendChild(optionPriceCol);
 
 		        const optionPrice = document.createElement("span");
@@ -1205,17 +1205,17 @@ body {
 				</div>
 			</div>
 		</div>
-		<div class="row mt-3 ">
+		<div class="row mt-3 mb-4">
 			<div class="col-1"></div>
 			<div class="col">
 				<div class="row mt-2 border align-items-center">
 					<div class="col-3 ps-0">
 						<img
-							src="/uploadFiles/WelcomePet/${data.productInfo.product_thumbnail}"
+							src="/uploadFiles/WelcomePet/${data.bizInfo.biz_store_main_img}"
 							class="embed-responsive-item product-thum" alt="...">
 					</div>
 					<div class="col align-items-center fw-bold"
-						style="font-size: 0.9em;">판매자 이름</div>
+						style="font-size: 0.9em;">${data.bizInfo.biz_store_name }</div>
 				</div>
 			</div>
 			<div class="col-1"></div>
@@ -1228,7 +1228,7 @@ body {
 			<div class="row mt-2"></div>
 			<c:forEach items="${data.productImgList }" var="map">
 				<div class="row mt-2 embed-responsive embed-responsive-4by3">
-					<img src="/uploadFiles/WelcomePet/${map.product_detail_image_link}"
+					<img src="/uploadFiles/WelcomePet/productDetailImage/${map.product_detail_image_link}"
 						class="embed-responsive-item product-thum" alt="...">
 				</div>
 			</c:forEach>
@@ -1325,6 +1325,7 @@ body {
 		    </button> </div>
 		  </div>
 		</div>
+		<div class="row mt-2"></div>
 	</div>
 
 

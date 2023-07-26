@@ -101,6 +101,8 @@ public interface CustomerMapper {
 	public int getMaincategoryNoBySub(int sub_category_no); 
 	
 	public List<BizDto> getBizList();
+	
+	public BizDto getBizInfoByBizNo(int biz_no);
 	//주문
 	
 	public int createOrdersPk();

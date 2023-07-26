@@ -568,7 +568,7 @@
 			        	  imgRow.appendChild(imgCol);
 
 			        	  var img = document.createElement("img");
-			        	  img.src = "/uploadFiles/WelcomePet/biz/biz" + data.bizInfo.biz_no + ".jpg";
+			        	  img.src = "/uploadFiles/WelcomePet/"+ data.bizInfo.biz_store_main_img;
 			        	  img.classList.add("biz_img", "rounded-circle");
 			        	  img.alt = "...";
 			        	  imgCol.appendChild(img);
