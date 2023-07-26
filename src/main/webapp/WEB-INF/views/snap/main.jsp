@@ -44,7 +44,7 @@ a:hover {
 
 #thumbnail {
 	object-fit: cover;
-	width: 387px;
+	width: 425px;
 	height: 376px;
 }
 
@@ -515,8 +515,7 @@ a:hover {
 										<div class="row" style="font-size: 0.9em;">
 											<div class="col text-center fw-bold">
 												<a class="nav-link" href="/welcomepet/snap/main"
-													style="border-bottom: 2.5px solid gray"><i
-													class="bi bi-instagram"></i> 스냅</a>
+													style="border-bottom: 2.5px solid gray">스냅</a>
 											</div>
 											<div class="col text-center">
 												<a class="nav-link text-secondary"
@@ -597,7 +596,7 @@ a:hover {
 				</div>
 				<div class="row my-1">
 					<div class="col-3">
-						<img id="productSnap" src="/welcomepet/resources/img/snapProduct.png">
+						<a href="/welcomepet/board/productDetail?product_no=15"><img id="productSnap" src="/welcomepet/resources/img/snapProduct.png"></a>
 					</div>
 					<div class="col-9">
 						<div class="row align-items-center">
