@@ -141,44 +141,42 @@
 											<div class="col">
 												<div class="row">
 													<c:forEach items="${list }" var="map">
-														<div class="col-12 border-bottom pt-1 ps-3"
+														<div class="col-12 border-bottom"
 															onclick="location.href='./readContent?board_no=${map.boardDto.board_no }'">
 															<div class="row">
-																<div class="col mb-1">
+																<div class="col">
 																	<div class="row">
-																		<div class="col pt-2">
+																		<div class="col mt-2 pt-1">
 																			<a
 																				class="text-decoration-none text-black fw-semibold"
 																				style="font-size: 1em;">${map.boardDto.board_title }</a>
 																		</div>
 																	</div>
 																	<div class="row text-secondary"
-																		style="font-size: 0.88em;">
-																		<div class="col pb-1">
+																		style="font-size: 0.85em;">
+																		<div class="col mb-1">
 																			<span class="me-2">
 																				${map.customerDto.customer_nickname }</span> <span
-																				class="me-2" style="font-size: 0.85em;"> <fmt:formatDate
+																				class="me-2" style="font-size: 0.83em;"> <fmt:formatDate
 																					value="${map.boardDto.board_reg_date }"
 																					pattern="yy.MM.dd" />
 																			</span>
 																		</div>
 																	</div>
-
 																	<div class="row text-secondary"
 																		style="font-size: 0.79em;">
-																		<div class="col pb-2">
+																		<div class="col mb-2">
 																			<span class="me-2"><i class="bi bi-eye">
 																					${map.boardDto.board_read_count}</i></span> <span class="me-2"><i
 																				class="bi bi-chat-square-dots">
 																					${map.countComment}</i></span>
 																		</div>
 																	</div>
-
 																</div>
-																<div class="col-4 pb-1">
+																<div class="col-3 my-2 ps-1 ms-1 me-0 pe-2">
 																	<c:forEach items="${map.imageDtoList}" var="imageDto">
 																		<img src="/uploadFiles/${imageDto.board_image_link}"
-																			style="width:80%; border-radius: 10%;">
+																			style="width: 100%; border-radius: 10%;">
 																	</c:forEach>
 																</div>
 															</div>

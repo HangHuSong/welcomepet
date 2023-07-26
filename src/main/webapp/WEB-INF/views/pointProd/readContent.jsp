@@ -113,7 +113,8 @@
 														${data.customerDto.customer_nickname}</div>
 												</div>
 												<div class="row">
-													<div class="col ps-1 text-secondary" style="font-size: 0.9em;">
+													<div class="col ps-1 text-secondary"
+														style="font-size: 0.9em;">
 														<span class="me-2"> <fmt:formatDate
 																value="${data.boardDto.board_reg_date}"
 																pattern="yyyy.MM.dd" /></span> <span> 조회수
@@ -129,7 +130,8 @@
 								</div>
 								<div class="row">
 									<div class="col ps-2 ms-1 pt-2 pb-1">
-										<span class="badge rounded-pill" style="font-size: 0.85em; text-color: #fd7e14; border: 1px solid #fd7e14; color: #fd7e14;">${data.pointProdCategoryDto.board_category_name}</span>
+										<span class="badge rounded-pill"
+											style="font-size: 0.85em; text-color: #fd7e14; border: 1px solid #fd7e14; color: #fd7e14;">${data.pointProdCategoryDto.board_category_name}</span>
 									</div>
 								</div>
 								<div class="row">
@@ -164,8 +166,22 @@
 								</div>
 								<!-- 댓글 여러개 보이게 하기 -->
 								<div class="row">
-									<div class="col-12 fw-bold fs-6 mt-3">댓글
+									<div class="col fw-bold mt-3 pb-2"style="font-size: 1.1em;">댓글
 										${countCommentByBoardNo}</div>
+										<div class="col-5 mt-3">
+									<span class="ms-3">
+										<button	class="btn btn-outline-none btn-sm text-end fw-bold text-secondary p-0"
+											style="font-size: 0.9em;">
+											<i class="bi bi-filter-left"></i>등록순
+										</button>
+									</span>
+									<span class="me-0 ms-1">
+										<button class="btn btn-outline-none btn-sm text-end text-secondary p-0"
+											style="font-size: 0.9em;">
+											<i class="bi bi-filter-right"></i>최신순
+										</button>
+									</span>
+									</div>
 								</div>
 								<div class="row">
 									<div class="col-12 mt-2">
@@ -178,19 +194,22 @@
 												<div class="col pe-3">
 													<div class="row">
 														<div class="col pe-2 ps-0">
-															<span class="me-2 text-secondary" style="font-size: 0.88em;">
-																${comment.customerDto.customer_nickname }</span><span class="text-secondary"
-																style="font-size: 0.76em;"><fmt:formatDate
+															<span class="me-2 text-secondary"
+																style="font-size: 0.88em;">
+																${comment.customerDto.customer_nickname }</span><span
+																class="text-secondary" style="font-size: 0.76em;"><fmt:formatDate
 																	value="${comment.commentDto.board_comment_reg_date}"
 																	pattern="yyyy.MM.dd" /></span>
 														</div>
 													</div>
 													<div class="row">
-														<div class="col pe-2 ps-0 fw-medium" style="overflow-wrap: break-word; font-size: 0.95em;">
+														<div class="col pe-2 ps-0 fw-medium"
+															style="overflow-wrap: break-word; font-size: 1em;">
 															${comment.commentDto.board_comment_content }</div>
 													</div>
 													<div class="row">
-														<div class="col pt-2 pb-3 pe-2 ps-0 text-secondary" style="font-size: 0.8em;">답글</div>
+														<div class="col pt-2 pb-3 pe-2 ps-0 text-secondary"
+															style="font-size: 0.8em;">답글</div>
 													</div>
 												</div>
 											</div>

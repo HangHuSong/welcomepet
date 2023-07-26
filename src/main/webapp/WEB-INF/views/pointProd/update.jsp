@@ -13,35 +13,106 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
+	rel="stylesheet">
+<style type="text/css">
+@font-face {
+	font-family: 'SUITE-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2')
+		format('woff2');
+	font-weight: 300 -900;
+	font-style: normal;
+}
 
-<style>
-.form-select {
-	width: 50%;
+#main {
+	text-decoration: none;
+	color: inherit;
+	/* color: #F8961D; */
+	/* font-family:'KorailRoundGothicBold', sans-serif !important; */
+	font-family: 'Jua', sans-serif;
+	font-weight: 700;
+	font-size: 1.3em;
+	color: #fd7e14;
 }
 </style>
 </head>
-<body>
-	<h4>게시글 수정</h4>
-	<form action="./updateContentProcess" method="post">
-		<div class="row">
-			<div class="col">작성자: ${customerUser.customer_nickname }</div>
-		</div>
-		<div class="row">
-			<div class="col">
-				카테고리:<select name="board_category_no" class="form-select"
-					aria-label="Default select example">
-					<option value="1" selected>일상</option>
-					<option value="2">질문</option>
-					<option value="3">나눔</option>
-				</select>
+<body style="font-family: 'SUITE-Regular', sans-serif;">
+	<div class="container">
+		<div
+			class="row fixed-top bg-white bg-body-tertiary shadow-sm px-3 pt-3">
+			<div class="col-12 border-bottom pb-3">
+				<div class="row">
+					<div class="col-2">
+						<a href="/welcomepet/pointProd/board"
+							class="btn btn-black py-0 ps-2"
+							style="border: transparent; outline: none;"><i
+							class="bi bi-arrow-left"></i> </a>
+					</div>
+					<div class="col-1"></div>
+					<div class="col-6 text-center" style="color: #fd7e14;">
+						<a id="main" href="../pointProd/board">어서대화하게</a>
+					</div>
+					<div class="col"></div>
+					<div class="col-2 pe-1">
+						<form action="./updateContentProcess" method="post"
+							enctype="multipart/form-data">
+							<button class="btn text-secondary p-0" type="submit"
+								style="border: transparent; outline: none;">수정</button>
+					</div>
+				</div>
 			</div>
 		</div>
-		제목: <input type="text" name="board_title"
-			value="${data.boardDto.board_title}"><br> 내용: <br>
-		<textarea rows="10" cols="40" name="board_content">${data.boardDto.board_content}</textarea>
-		<input type="hidden" name="board_no"
-			value="${data.boardDto.board_no }">
-		<button>글 수정</button>
-	</form>
+		<div class="row my-5">
+			<div class="col">
+				<div class="row pt-3">
+					<div class="col">
+						<div class="row">
+							<div class="col py-2">주제</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								<select name="board_category_no" class="form-select fw-bold"
+									aria-label="Default select example">
+									<option value="1" selected>일상</option>
+									<option value="2">질문</option>
+									<option value="3">나눔</option>
+								</select>
+							</div>
+						</div>
+						<div class="row pt-3">
+							<div class="col fs-5">
+								<input type="text" class=form-control-plaintext
+									name="board_title" placeholder="제목을 입력해주세요."
+									value="${data.boardDto.board_title}">
+							</div>
+						</div>
+						<div class="row pt-2">
+							<div class="col">
+								<textarea class="form-control-plaintext" name="board_content"
+									placeholder="내용을 입력해주세요." style="height: 400px;">${data.boardDto.board_content}</textarea>
+							</div>
+							<input type="hidden" name="board_no"
+								value="${data.boardDto.board_no }">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row fixed-bottom border-top">
+			<div class="col">
+				<div class="row">
+					<div class="col-1"></div>
+					<div class="col-2 text-center p-0">
+						<i class="bi bi-image" style="font-size: 2em;"></i>
+					</div>
+					<div class="col-9 text-center px-0 pb-0 pt-2">
+						<input name="boardFiles" type="file" multiple accept="image/*">
+					</div>
+				</div>
+			</div>
+		</div>
+		</form>
+	</div>
 </body>
 </html>
