@@ -134,6 +134,32 @@ window.addEventListener("DOMContentLoaded", function(){
 body {
 	font-family: 'SUITE-Regular';
 }
+
+@import
+	url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css')
+	;
+
+body {
+	font-family: 'NanumSquare', sans-serif;
+}
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+	font-family: 'Pretendard-Regular';
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+body {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
 #biz-slide {
   width: 18%;
 }
