@@ -558,6 +558,7 @@
 			        	  colDiv.id = "biz-slide";
 			        	  colDiv.setAttribute("onclick", "getBizProductList("+ data.bizInfo.biz_no + ")");
 			        	  
+			        	  colDiv.addEventListener("click", handleBizClick);
 			              
 			        	  var imgRow = document.createElement("div");
 			        	  imgRow.classList.add("row", "px-0","mx-0");
@@ -728,7 +729,20 @@
 					
 					  refreshMyHeart(data.productInfo.product_no);
 					}
-				}
+		        var selectedSpan = document.getElementById("categorybutton" + categoryNo);
+		        selectedSpan.classList.add("selected");
+
+		        // 나머지 span들의 selected 클래스 제거
+		        var spans = document.getElementsByClassName("category-span2");
+		        for (var j = 0; j < spans.length; j++) {
+		          if (spans[j] !== selectedSpan) {
+		            spans[j].classList.remove("selected");
+		          }
+		        }
+		      } else {
+		        console.log("Error: " + xhr.status);
+		      }
+			
 			}
 			xhr.open("get", "./relatedProduct?main_category_no="+categoryNo);
 			xhr.send();	
@@ -753,20 +767,16 @@
 </script>
 
 <style type="text/css">
+
 @font-face {
-    font-family: 'GmarketSansMedium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-    font-weight: normal;
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
     font-style: normal;
 }
-@font-face {
-    font-family: 'SUITE-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
+
 body {
-	font-family: 'SUITE-Regular';
+	font-family: 'Pretendard-Regular';
 }
 .swiper-container {
   width: 100%;
@@ -891,9 +901,9 @@ body {
   justify-content: center;
   align-items: center;
   transition: all 0.3s;
-  font-size: 0.9em;
+  font-size: 0.87em;
   color: gray;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .category-col:hover {
@@ -905,6 +915,13 @@ body {
 }
 
 .category-span.selected {
+  color: #007bff;
+  font-weight: 700;
+ 
+}
+
+
+.category-span2.selected {
   color: #007bff;
   font-weight: 700;
  
@@ -1000,25 +1017,25 @@ body {
 			</div>
 			<div class="col-1"></div>
 		</div>
-			<div class="row mt-3 ms-2 ps-0">
+			<div class="row mt-3 ms-1 me-1 ps-0">
 					
 					
-					  <div class="col pe-0 category-col">
+					  <div class="col  category-col">
 					    <span class="category-span not-select" onclick="fetchCategoryList(1)" id="categoryBtn1">사료</span>
 					  </div>
-					  <div class="col pe-0 category-col">
+					  <div class="col  category-col">
 					    <span class="category-span not-select" onclick="fetchCategoryList(2)" id="categoryBtn2">간식</span>
 					  </div>
-					  <div class="col pe-0 category-col">
+					  <div class="col  category-col">
 					    <span class="category-span not-select" onclick="fetchCategoryList(3)" id="categoryBtn3">용품</span>
 					  </div>
-					  <div class="col pe-0 category-col">
+					  <div class="col  category-col">
 					    <span class="category-span not-select" onclick="fetchCategoryList(4)" id="categoryBtn4">건강</span>
 					  </div>
-					  <div class="col ps-0 category-col">
+					  <div class="col  category-col">
 					    <span class="category-span not-select" onclick="fetchCategoryList(5)" id="categoryBtn5">스타일</span>
 					  </div>
-					  <div class="col-1 ps-0 pe-0"></div>
+					
 			</div>
 		<div class="row mt-3 text-center">
 		
@@ -1077,24 +1094,24 @@ body {
 			  베스트 아이템
 			</div>
 		</div>
-					<div class="row mt-2 ps-0">
+					<div class="row mt-2 ms-1 me-1 ps-0 ">
 					
-					  <div class="col ms-1 pe-0 category-col">
-					    <span class="category-span2 not-select" onclick="getBestList(1)" id="">사료</span>
+					  <div class="col   category-col">
+					    <span class="category-span2 not-select" onclick="getBestList(1)" id="categorybutton1">사료</span>
 					  </div>
-					  <div class="col pe-0 category-col">
-					    <span class="category-span2 not-select" onclick="getBestList(2)" id="">간식</span>
+					  <div class="col  category-col">
+					    <span class="category-span2 not-select" onclick="getBestList(2)" id="categorybutton2">간식</span>
 					  </div>
-					  <div class="col pe-0 category-col">
-					    <span class="category-span2 not-select" onclick="getBestList(3)" id="">용품</span>
+					  <div class="col  category-col">
+					    <span class="category-span2 not-select" onclick="getBestList(3)" id="categorybutton3">용품</span>
 					  </div>
-					  <div class="col pe-0 category-col">
-					    <span class="category-span2 not-select" onclick="getBestList(4)" id="">건강</span>
+					  <div class="col  category-col">
+					    <span class="category-span2 not-select" onclick="getBestList(4)" id="categorybutton4">건강</span>
 					  </div>
-					  <div class="col ps-0 category-col">
-					    <span class="category-span2 not-select" onclick="getBestList(5)" id="">스타일</span>
+					  <div class="col  category-col">
+					    <span class="category-span2 not-select" onclick="getBestList(5)" id="categorybutton5">스타일</span>
 					  </div>
-					  <div class="col-1 ps-0 pe-0"></div>
+					  
 			</div>
 		<div class="row mt-2" id="bestListBox">
 		

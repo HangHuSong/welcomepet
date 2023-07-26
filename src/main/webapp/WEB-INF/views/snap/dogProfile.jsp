@@ -24,8 +24,8 @@
 		object-fit: cover;
 	}
 	.img{
-		width: 125px;
-		height: 125px;
+		width: 138px;
+		height: 138px;
 		overflow: hidden;
 		object-fit: cover;
 	}
