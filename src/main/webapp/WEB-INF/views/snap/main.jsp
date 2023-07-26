@@ -83,7 +83,7 @@ a:hover {
 
 .topNavbar {
 	/* background-color: #F4AE7A; */
-	background-color: #FFE1CF;
+	background-color: white;
 }
 
 #main {
@@ -605,7 +605,7 @@ a:hover {
 								<span>루비디 러블리바니 민소매 티셔츠 민트 M</span>
 							</div>
 						</div>
-						<div class="row mt-2 align-items-center">
+						<div class="row mt-3 align-items-center">
 							<div class="col">
 								<span style="font-size: 13px;">12,900원</span>
 							</div>
@@ -631,7 +631,7 @@ a:hover {
 	<div class="row fixed-bottom mb-5 pb-4 text-end">
 		<div class="col"></div>
 		<div class="col-3 me-2">
-			<a class="btn btn-lg shadow rounded-circle justify-content-center align-items-center" href="./postSnap" style="color:white; height:52px; background-color:#fd7e14">
+			<a class="btn btn-lg shadow rounded-circle justify-content-center align-items-center" href="./postSnap" style="color:white; height:52px; background-color:#ffa500">
 				<i class="bi bi-pencil-square" style="color: white;"></i>
 			</a>
 		</div>
