@@ -30,7 +30,7 @@
 }
 
 body {
-	font-family: 'SUITE-Regular', sans-serif;
+	font-family: 'SUITE-Regular' !important;
 }
 
 a {
@@ -88,6 +88,7 @@ a:hover {
 
 #main {
 	color: inherit;
+	text-decoration: none;
 	/* color: #F8961D; */
 	/* font-family:'KorailRoundGothicBold', sans-serif !important; */
 	font-family: 'Jua', sans-serif;
@@ -646,7 +647,7 @@ a:hover {
 			</a>
 		</div>
 	</div>
-	<jsp:include page="../common/bottomNavi.jsp"></jsp:include>
+	<jsp:include page="../common/bottomTabStyle.jsp"></jsp:include>
 
 
 
