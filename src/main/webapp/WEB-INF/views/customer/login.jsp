@@ -52,7 +52,7 @@
 								style="font-size: 1em;">회원가입</a>
 						</div>
 					</div>
-					<div class="row mt-2">
+					<div class="row mt-3">
 						<div class="col justify-content-center">
 
 							<button class="btn" >
