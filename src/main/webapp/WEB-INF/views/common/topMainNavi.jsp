@@ -73,7 +73,7 @@
 </head>
 <body>
 
-<nav class="topNavbar sticky-top bg-body-tertiary shadow-sm px-3 pb-2 pt-1">
+<nav class="topNavbar sticky-top bg-body-tertiary shadow-sm px-3 pb-2 pt-2">
 <div class="container p-0">
 	<div class="container p-0">
   	 <div class="container-fluid">

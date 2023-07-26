@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.text.DecimalFormat" %>
 
 
 <!DOCTYPE html>
@@ -327,6 +328,7 @@ body {
 							<div class="col " style="font-size: 0.9em;">적립금 혜택</div>
 							<div class="col text-end text-primary fw-bold"
 								style="font-size: 0.8em;">
+
 								<span>${((item.optionInfo.product_option_price - item.salePrice) * product_amount[status.index] * 0.03)}</span>원
 								적립
 							</div>

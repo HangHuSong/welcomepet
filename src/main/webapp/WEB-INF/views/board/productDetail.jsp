@@ -979,6 +979,10 @@ body {
 	cursor: pointer;
 	z-index: 10;
 }
+.fLlDaL {
+    background-color: rgb(244, 247, 250);
+    padding: 3rem 1.6rem 12rem;
+}
 
 .swiper-button-prev::after, .swiper-button-next::after {
 	font-size: 24px; /* 아이콘 크기를 조절합니다. */
@@ -1124,7 +1128,7 @@ body {
 
 
 	<div
-		class="container px-0 mx-0 align-items-center justify-content-center">
+		class="container  mx-0 align-items-center justify-content-center">
 		<div class="row shadow-sm p-3 mb-5 bg-body-tertiary rounded">
 			<div class="col">
 				<nav
@@ -1330,9 +1334,9 @@ body {
 	</div>
 
 
-	<div class="row mt-1 ps-2">
-		<jsp:include page="../common/serviceNavi.jsp"></jsp:include>
-	</div>		
+	<div class="row mt-1 ">
+	</div>	
+	<jsp:include page="../common/serviceNavi.jsp"></jsp:include>	
 		<div class="row mb-4">
 			<div class="col">
 				<div class="navbar navbar-dark bg-white fixed-bottom border-top "
@@ -1350,7 +1354,7 @@ body {
 							</div>
 						</div>
 						<div class="row" style="height: 0.9em; margin-top: -0.5em;">
-							<div class="col">
+							<div class="col" style="font-size: 0.9em;">
 								<span id="totalWishCount">3</span>
 							</div>
 						</div>
