@@ -895,7 +895,7 @@ function toggleWish(productNo) {
 		if(xhr.readyState == 4 && xhr.status == 200){
 			const response = JSON.parse(xhr.responseText);
 			// js 작업..
-
+			refreshTotalWishCount();
 			refreshMyHeart(productNo);
 		}
 	}
@@ -1340,7 +1340,7 @@ body {
 							<div class="col">
 
 								<a class="text-danger bi bi-heart" id="heartBox"
-									onclick="toggleWish()" role="button"> </a>
+									onclick="toggleWish(${data.productInfo.product_no})" role="button"> </a>
 
 
 
