@@ -30,7 +30,7 @@
 }
 
 body {
-	font-family: 'SUITE-Regular', sans-serif;
+	font-family: 'SUITE-Regular' !important;
 }
 
 a {
@@ -88,12 +88,12 @@ a:hover {
 
 #main {
 	color: inherit;
-	/* color: #F8961D; */
-	/* font-family:'KorailRoundGothicBold', sans-serif !important; */
+	text-decoration: none;
 	font-family: 'Jua', sans-serif;
 	font-weight: 700;
 	font-size: 1.3em;
 	color: #fd7e14;
+	
 }
 
 #productSnap{
@@ -646,7 +646,7 @@ a:hover {
 			</a>
 		</div>
 	</div>
-	<jsp:include page="../common/bottomNavi.jsp"></jsp:include>
+	<jsp:include page="../common/bottomTabStyle.jsp"></jsp:include>
 
 
 

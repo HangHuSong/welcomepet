@@ -67,7 +67,11 @@ body {
 			<div class="col">
 				<div class="row text-center">
 				 <div class="col">
+<<<<<<< HEAD
 				   <a class="btn bi bi-chat-square-text text-secondary pb-0 d-flex justify-content-center" style="font-size:1.3em"
+=======
+				   <a class="btn bi bi-chat-square-text text-secondary pb-0 d-flex justify-content-center" style="font-size:1.4em"
+>>>>>>> 1da30a9769f33160091cc89dcf32b7190727685a
 				    href="/welcomepet/snap/main" role="button"></a>
 				 </div>
 				 <div class="col" style="font-size:0.6em">커뮤니티</div>
@@ -115,12 +119,6 @@ body {
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"	crossorigin="anonymous">
 </script>
-
-<%-- 왼쪽에서 나오는 카테고리 --%>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" 
-		integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" 
-		integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 <%-- bootstrap : script--%>
 </body>
 </html>
