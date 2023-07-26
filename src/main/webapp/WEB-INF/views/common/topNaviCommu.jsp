@@ -72,22 +72,23 @@
 </head>
 <body>
 
-<nav class="topNavbar sticky-top bg-body-tertiary border-bottom shadow-sm px-3 pt-3">
+<nav class="topNavbar sticky-top bg-body-tertiary border-bottom shadow-sm px-0 pt-3">
 <div class="container p-0">
 	<div class="container p-0">
   	 <div class="container-fluid">
   	 	<%-- 1 --%>
-  	 	<div class="row">
-	     <div class="col-1 p-0">
-	      <a href="/welcomepet/pointProd/board" class="btn bi bi-arrow-left fs-4 py-0 ps-0" role="button"></a>
+  	 	<div class="row d-flex justify-content-between">
+	     <div class="col-1 py-0 pe-0 ms-2">
+	      <a href="/welcomepet/pointProd/board" class="btn bi bi-arrow-left text-secondary py-0 ps-0" role="button" 
+	         style="font-size:1.2em"></a>
 	     </div>
 	      	 
-	  	 <div class="col text-center text-black">
+	  	 <div class="col-9 text-center">
 	      <a id="main" href="../snap/main">커뮤니티</a>
 	     </div>
 	     
-	     <div class="col-1 p-0 text-end">
-	     <a class="btn bi bi bi-search p-0" role="button" href="#"
+	     <div class="col-1 py-0 ps-0 me-2">
+	     <a class="btn bi bi-search text-secondary p-0" role="button" href="#"
 	     	style="font-size:1.2em"></a>
 	     </div>
 
@@ -106,14 +107,14 @@
 			</div>
 		 	
 			<div class="row" style="font-size:0.9em;">
-				<div class="col text-center">
+				<div class="col text-center p-0">
 					<a class="nav-link text-secondary" href="/welcomepet/snap/main">스냅</a>
 				</div>
-				<div class="col text-center">
+				<div class="col text-center p-0">
 					<a class="nav-link text-secondary" href="/welcomepet/pointProd/board">어서대화하개</a>
 				</div>
 				
-				<div class="col text-center fw-bold">
+				<div class="col text-center p-0 fw-bold">
 					<a class="nav-link" href="/welcomepet/community/showDogPostList"
 					   style="border-bottom:2.5px solid gray">어서보여주개</a>
 				</div>
