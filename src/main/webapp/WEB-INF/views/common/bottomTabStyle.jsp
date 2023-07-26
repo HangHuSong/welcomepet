@@ -15,6 +15,34 @@
 	crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <%------ bootstrap height:56px; ------%>
+
+<style type="text/css">
+/* 글꼴모음 */
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+}
+/* 여기까지 글꼴모음 */
+
+body {
+	font-family: 'Pretendard-Regular' !important;
+}
+</style>
+
 </head>
 <body>
 
@@ -29,40 +57,40 @@
 			<div class="col">
 				<div class="row text-center">
 				 <div class="col">
-				   <a class="btn bi bi-list-ul text-secondary pb-0 d-flex justify-content-center" style="font-size:1.4em"
+				   <a class="btn bi bi-list-ul text-secondary pb-0 d-flex justify-content-center" style="font-size:1.3em"
 					  href="#" role="button"></a>
 				 </div>
-				 <div class="col" style="font-size:0.7em">카테고리</div>
+				 <div class="col" style="font-size:0.6em">카테고리</div>
 				</div>
 			</div>
 			<%-- 커뮤니티 ㄱ --%>
 			<div class="col">
 				<div class="row text-center">
 				 <div class="col">
-				   <a class="btn bi bi-chat-square-text text-secondary pb-0 d-flex justify-content-center" style="font-size:1.4em"
-				    href="/welcomepet/community/showDogPostList" role="button"></a>
+				   <a class="btn bi bi-chat-square-text text-secondary pb-0 d-flex justify-content-center" style="font-size:1.3em"
+				    href="/welcomepet/snap/main" role="button"></a>
 				 </div>
-				 <div class="col" style="font-size:0.7em">커뮤니티</div>
+				 <div class="col" style="font-size:0.6em">커뮤니티</div>
 				</div>
 			</div>
 			<%-- 쇼핑몰 홈 ㄱ --%>
 			<div class="col">
 				<div class="row text-center">
 				 <div class="col">
-				   <a class="btn bi bi-house text-secondary pb-0 d-flex justify-content-center" style="font-size:1.4em"
-				    href="/welcomepet/snap/main" role="button"></a>
+				   <a class="btn bi bi-house text-secondary pb-0 d-flex justify-content-center" style="font-size:1.3em"
+				    href="/welcomepet/board/main" role="button"></a>
 				 </div>
-				 <div class="col" style="font-size:0.7em">쇼핑몰</div>
+				 <div class="col" style="font-size:0.6em">쇼핑몰</div>
 				</div>
 			</div>
 			<%-- 찜 목록 ㄱ --%>
 			<div class="col">
 				<div class="row text-center">
 				 <div class="col">
-				   <a class="btn bi bi-heart text-secondary pb-0 d-flex justify-content-center" style="font-size:1.4em"
+				   <a class="btn bi bi-heart text-secondary pb-0 d-flex justify-content-center" style="font-size:1.3em"
 				    href="/welcomepet/customer/wishList" role="button"></a>
 				 </div>
-				 <div class="col" style="font-size:0.7em">좋아요</div>
+				 <div class="col" style="font-size:0.6em">좋아요</div>
 				</div>
 			</div>
 			<%-- 마이페이지 ㄱ --%>
@@ -72,7 +100,7 @@
 				   <a class="btn bi bi-person-circle text-secondary pb-0 d-flex justify-content-center" style="font-size:1.4em"
 				    href="/welcomepet/customer/my" role="button"></a>
 				 </div>
-				 <div class="col" style="font-size:0.7em">마이페이지</div>
+				 <div class="col" style="font-size:0.6em">마이페이지</div>
 				</div>
 			</div>
 		</div>

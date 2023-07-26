@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>bootstrap</title>
 <%------ bootstrap ------%>
 <%-- viewport --%>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,6 +13,8 @@
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<%------ bootstrap ------%>
+
 <%-- font --%>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,39 +22,39 @@
 <%-- font --%>
 
 <style type="text/css">
-
-/* @font-face {
-    font-family: 'KorailRoundGothicBold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KorailRoundGothicBold.woff2') format('woff2');
-    font-weight: 700;
+/* 글꼴모음 */
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
     font-style: normal;
-} */
+}
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+}
+/* 여기까지 글꼴모음 */
 
-/* #main{
-	text-decoration: none;
-	color:inherit;
-	/* color: #F8961D; */
-  	/* font-family:'KorailRoundGothicBold', sans-serif !important; */
-/*  	font-family: 'Jua', sans-serif;
- 	font-weight:700;
- 	font-size:1.3em;
- 	color:#fd7e14;
-} */
+body {
+	font-family: 'Pretendard-Regular, san-serif' !important;
+}
 
 .nav-link{
 	text-decoration: none;
 	color:inherit;
-/*   	font-family: 'Jua', sans-serif;
- 	font-weight:700;
- 	font-size:1.3em; */
-/*  	color:#fd7e14; */
 }
 
 #main{
 	text-decoration: none;
 	color:inherit;
-	/* color: #F8961D; */
-  	/* font-family:'KorailRoundGothicBold', sans-serif !important; */
   	font-family: 'Jua', sans-serif;
  	font-weight:700;
  	font-size:1.3em;
@@ -61,7 +62,6 @@
 }
 
 .topNavbar{
-	/* background-color: #F4AE7A; */
 	background-color: #ffffff;
 }
 
