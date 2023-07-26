@@ -33,7 +33,7 @@
                     <div class="col-9">
                     	<%@ include file="../common/adminHead.jsp" %>
                         <div class="container mt-5">
-					        <h2 class="mt-4 mb-4 text-center fw-bold">Biz 입점 승인 관리</h2>
+					        <h2 class="mt-4 mb-4 fw-bold text-center">Biz 입점 승인 관리</h2>
 					            <div class="row ms-5 mt-1 bg-light font-weight-bold py-2 rounded-top border">
 					                <div class="col-2">사업자등록증</div>
 					                <div class="col">사업자등록번호</div>
@@ -67,6 +67,22 @@
 					           		</div>
 					            </form>
 					            </c:forEach>
+					            
+					            
+					            <div class="row mt-5">
+									<div class="col">
+										<nav aria-label="...">
+											<ul class="pagination justify-content-center">
+												<li class="page-item disabled"><a class="page-link">&lt;</a>
+												</li>
+												<li class="page-item active"><a class="page-link" href="#">1</a>
+												</li>
+												<li class="page-item"><a class="page-link" href="#">&gt;</a>
+												</li>
+											</ul>
+										</nav>
+									</div>
+								</div>
 					    </div>
                     </div>
             </div>

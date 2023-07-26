@@ -602,12 +602,12 @@ a:hover {
 					<div class="col-9">
 						<div class="row align-items-center">
 							<div class="col text-truncate">
-								<span class="">루비디 러블리바니 민소매 티셔츠 민트 M</span>
+								<span>루비디 러블리바니 민소매 티셔츠 민트 M</span>
 							</div>
 						</div>
-						<div class="row align-items-center">
+						<div class="row mt-2 align-items-center">
 							<div class="col">
-								<span>12,900원</span>
+								<span style="font-size: 13px;">12,900원</span>
 							</div>
 						</div>
 					</div>
