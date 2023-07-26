@@ -87,14 +87,19 @@ a:hover {
 }
 
 #main {
+<<<<<<< Updated upstream
 	color: inherit;
 	text-decoration: none;
 	/* color: #F8961D; */
 	/* font-family:'KorailRoundGothicBold', sans-serif !important; */
+=======
+>>>>>>> Stashed changes
 	font-family: 'Jua', sans-serif;
 	font-weight: 700;
 	font-size: 1.3em;
 	color: #fd7e14;
+	text-decoration: none;
+	
 }
 
 #productSnap{
