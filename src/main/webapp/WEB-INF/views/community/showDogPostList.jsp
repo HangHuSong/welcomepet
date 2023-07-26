@@ -59,8 +59,8 @@
 
 
 body {
-	font-family: 'Pretendard-Regular, san-serif' !important;
-	font-weight: 400;
+	font-family:'Pretendard-Regular, san-serif' !important;
+	font-weight:400;
 }
 /* 
 body{

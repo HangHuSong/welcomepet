@@ -35,7 +35,7 @@
 </head>
 <body>
 <%------ 상단 네비  #333333; ------%>
-<nav class="navbar sticky-top bg-body-tertiary shadow-sm p-3" style="background-color:#ffffff">
+<nav class="topNavbar sticky-top bg-body-tertiary shadow-sm p-3" style="background-color:#ffffff">
 <div class="container p-0">
 	<div class="container p-0">
 

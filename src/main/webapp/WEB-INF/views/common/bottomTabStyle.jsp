@@ -38,15 +38,16 @@
 }
 /* 여기까지 글꼴모음 */
 
-body {
+#bottomTab {
 	font-family: 'Pretendard-Regular' !important;
+	font-size:0.9em;
 }
 </style>
 
 </head>
 <body>
 
-<div class="row mb-5">
+<div id="bottomTab" class="row mb-5">
 <nav class="navbar fixed-bottom pt-1 bg-body-tertiary border-top"  style="background-color: #ffffff;">
 <div class="container d-flex justify-content-center">
  <div class="row">
@@ -83,12 +84,12 @@ body {
 				 <div class="col" style="font-size:0.6em">쇼핑몰</div>
 				</div>
 			</div>
-			<%-- 찜 목록 ㄱ --%>
+			<%-- 좋아요 목록 ㄱ --%>
 			<div class="col">
 				<div class="row text-center">
 				 <div class="col">
 				   <a class="btn bi bi-heart text-secondary pb-0 d-flex justify-content-center" style="font-size:1.3em"
-				    href="/welcomepet/customer/wishList" role="button"></a>
+				    href="#" role="button"></a>
 				 </div>
 				 <div class="col" style="font-size:0.6em">좋아요</div>
 				</div>

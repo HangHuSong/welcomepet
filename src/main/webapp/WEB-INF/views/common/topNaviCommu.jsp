@@ -44,7 +44,7 @@
 /* 여기까지 글꼴모음 */
 
 body {
-	font-family: 'Pretendard-Regular, san-serif' !important;
+	font-family: 'Pretendard-Regular,san-serif' !important;
 }
 
 .nav-link{
@@ -61,7 +61,7 @@ body {
  	color:#ffa500;
 }
 
-.topNavbar{
+#postTopNavi{
 	background-color: #ffffff;
 }
 
@@ -72,7 +72,7 @@ body {
 </head>
 <body>
 
-<nav class="topNavbar sticky-top bg-body-tertiary border-bottom shadow-sm px-0 pt-3">
+<nav id ="postTopNavi" class="topNavbar sticky-top bg-body-tertiary border-bottom shadow-sm px-0 pt-3">
 <div class="container p-0">
 	<div class="container p-0">
   	 <div class="container-fluid">
