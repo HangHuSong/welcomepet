@@ -15,9 +15,6 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
 	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
-	rel="stylesheet">
 <title>Snap</title>
 <style type="text/css">
 @font-face {
@@ -607,7 +604,7 @@ a:hover {
 					<div class="col-3">
 						<a href="/welcomepet/board/productDetail?product_no=15"><img id="productSnap" src="/welcomepet/resources/img/snapProduct.png"></a>
 					</div>
-					<div class="col-9">
+					<div class="col-9 px-0">
 						<div class="row mx-0 align-items-center">
 							<div class="col text-truncate">
 								<span>루비디 러블리바니 민소매 티셔츠 민트 M</span>
@@ -627,7 +624,7 @@ a:hover {
 				</div>
 				<div class="row mb-3">
 					<div class="col text-secondary">
-						<i class="bi bi-geo-alt-fill fs-5"></i><span
+						<i class="bi bi-geo-alt-fill" style="font-size: 12px;"></i><span
 							style="font-size: 12px;" class="mx-1">${data.snapBoardDto.snap_location}</span>
 					</div>
 				</div>

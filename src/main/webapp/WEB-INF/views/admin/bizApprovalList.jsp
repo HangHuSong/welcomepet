@@ -69,7 +69,7 @@
 					            </c:forEach>
 					            
 					            
-					            <div class="row mt-5">
+					            <div class="row mt-4">
 									<div class="col">
 										<nav aria-label="...">
 											<ul class="pagination justify-content-center">
