@@ -15,57 +15,102 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/font-awesome@5.15.4/css/fontawesome.min.css"
 	rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
+	rel="stylesheet">
+<style type="text/css">
+@font-face {
+	font-family: 'Pretendard-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+		format('woff');
+	font-weight: 400;
+	font-style: normal;
+}
 
+.container {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+</style>
 </head>
 <body>
 	<div class="container" style="margin: 0 0;">
 
-		<div class="row" style="width: 1900px;">
-			<div
-				class="col-2 text-center ps-4 text-white d-flex align-items-stretch align-top"
-				style="background-color: rgb(29, 33, 42);"><jsp:include
+		<div class="row" style="width: 1920px;">
+			<div class="col-2"
+				style="background-color: rgb(29, 33, 42); height: auto;"><jsp:include
 					page="../common/bizLeftNavi.jsp"></jsp:include></div>
-			<div class="col-8 px-0">
-				<div class="row mx-1">
-					<div class="col text-center">
+			<div class="col-10 bg-light">
+				<div class="row bg-white">
+					<div class="col">
 						<jsp:include page="../common/bizTopNavi.jsp"></jsp:include>
 					</div>
 				</div>
-				<div class="row mx-5 text-center">
-					<div class="col">
+				<div class="row px-5 text-center mb-5">
+					<div class="col px-5">
 						<div class="row my-2">
 							<div class="col fs-5 fw-bold text-start py-3">리뷰관리</div>
 						</div>
-						<div class="row my-2 bg-light px-5">
+						<div class="row mt-2 mb-5">
 							<div class="col">
-								<div class="row mt-5">
-									<div class="col">
-										<div class="row border bg-white">
-											<div class="col-3 border-end py-2">조회기간</div>
-											<div class="col py-2 text-start">
-												<input type="date" id="start_date">~<input
-													type="date" id="end_date">
-											</div>
-										</div>
-										<div class="row justify-content-center my-5">
-											<div class="col-2 d-grid">
-												<button class="btn btn-dark" onclick="getReviewListByDate()">검색</button>
-											</div>
-											<div class="col-2 d-grid">
-												<button class="btn btn-outline-dark" onclick="resetSelect()">초기화</button>
+								<div class="row mt-2 mb-3">
+									<div class="col border bg-white rounded-3 shadow">
+										<div class="row">
+											<div class="col">
+												<div class="row">
+													<div class="col-2 text-start align-self-center px-4">기간</div>
+													<div class="col text-start align-self-center">
+														<input class="text-center rounded-1" type="date"
+															id="start_date"
+															style="width: 200px; border: 1px solid rgb(174, 180, 198);">
+														~ <input class="text-center rounded-1" type="date"
+															id="end_date"
+															style="width: 200px; border: 1px solid rgb(174, 180, 198);">
+													</div>
+													<div class="col-2 px-5 d-grid py-2 border-start"
+														style="background-color: rgb(245, 250, 255);">
+														<button class="btn btn-primary rounded-5"
+															onclick="getReviewListByDate()">검색</button>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-2 text-start align-self-center px-4"
+														style="height: auto;">검색어</div>
+													<div class="col text-start align-self-center">
+														<span> <select class="rounded-1"
+															style="border: 1px solid rgb(174, 180, 198);">
+																<option selected>검색항목 선택</option>
+																<option value="1">주문번호</option>
+																<option value="2">상품명</option>
+																<option value="3">주문자명</option>
+														</select>
+														</span> <span><input class="rounded-1" type="text"
+															style="width: 423px; border: 1px solid rgb(174, 180, 198);"></span>
+
+													</div>
+													<div class="col-2 px-5 d-grid py-2 border-start"
+														style="background-color: rgb(245, 250, 255);">
+														<button class="btn btn-secondary rounded-5"
+															onclick="resetSelect()">초기화</button>
+													</div>
+												</div>
+
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+
 						<div class="row my-5">
 							<div class="col">
 								<div class="row" id="orderList">
-									<div class="col">
+									<div class="col bg-white px-0 shadow">
 										<div class="table-responsive">
-											<table class="table text-nowrap table-bordered">
-												<thead class="table-light">
+											<table class="table text-nowrap table-bordered mb-0" style="max-height:450px;">
+												<thead style="background-color: rgb(245, 250, 255);">
 													<tr>
 														<th scope="col">구매자평점</th>
 														<th scope="col">상품번호</th>
@@ -82,7 +127,8 @@
 													<c:forEach items="${reviewList }" var="review">
 														<tr>
 
-															<td class="text-danger"><c:forEach begin="1" end="5" varStatus="i">
+															<td class="text-danger"><c:forEach begin="1" end="5"
+																	varStatus="i">
 																	<c:if
 																		test="${i.count <= review.productReviewDto.product_review_rating}">
 																		<i class="fas fa-star"></i>
@@ -123,6 +169,10 @@
 							</div>
 						</div>
 					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<jsp:include page="../common/bizFooter.jsp"></jsp:include></div>
 				</div>
 			</div>
 		</div>
@@ -281,7 +331,7 @@
 			orderList.innerHTML='';
         	
 			const col=document.createElement("div");
-			col.classList.add("col");
+			col.classList.add("col", "bg-white", "px-0", "shadow");
 			orderList.appendChild(col);
 			
 			const div=document.createElement("div");
@@ -289,9 +339,10 @@
 			col.appendChild(div);
 			
 			var table = document.createElement("table");
-		    table.classList.add("table", "text-nowrap");
-
+		    table.classList.add("table", "text-nowrap","mb-0","table-bordered");
+		    table.style.maxHeight="450px";
 		    var thead = document.createElement("thead");
+		    thead.style.backgroundColor="rgb(245, 250, 255)";
 		    var tbody = document.createElement("tbody");
 		    
 		    
@@ -313,6 +364,7 @@
         		const tr = document.createElement("tr");
 
         		const reviewRatingTd = document.createElement("td");
+        		reviewRatingTd.classList.add('text-danger');
         		for(var i=1;i<=5;i++){
         			const starIcon=document.createElement("i");
         			

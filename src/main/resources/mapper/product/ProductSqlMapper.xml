@@ -72,7 +72,7 @@
 		product_thumbnail=#{product_thumbnail}
 		WHERE product_no=#{product_no}
 	</update>
-	
+
 
 	<!-- 상품 메인이미지 -->
 	<select id="createProductMainImagePk" resultType="int">
@@ -184,11 +184,14 @@
 
 	<!-- 상품문의 -->
 	<select id="countInquiryByBizNoAndNotReplied" resultType="int">
-		SELECT COUNT(*) FROM product_inquiry pi
+		SELECT
+		COUNT(*) FROM product_inquiry pi
 		WHERE pi.product_no IN
-		(SELECT p.biz_no FROM product p WHERE p.biz_no=#{biz_no})
+		(SELECT p.biz_no
+		FROM product p WHERE p.biz_no=#{biz_no})
 		AND
-		pi.product_inquiry_no NOT IN (SELECT pir.product_inquiry_no FROM
+		pi.product_inquiry_no NOT
+		IN (SELECT pir.product_inquiry_no FROM
 		product_inquiry_reply pir)
 	</select>
 	<select id="getNewProductInquiryByBizNo"
@@ -211,6 +214,14 @@
 		product_inquiry_reply pir)
 	</select>
 
+	<select id="getProductNumPerStatusByBizNo" resultType="Map">
+		<![CDATA[
+		SELECT 
+  			(SELECT COUNT(*) FROM product_option po WHERE po.product_option_stock_quantity > 0 AND po.product_no IN (SELECT p.product_no FROM product p WHERE p.biz_no = #{biz_no})) AS IN_STOCK_PRODUCT,
+  			(SELECT COUNT(*) FROM product_option po WHERE po.product_option_stock_quantity = 0 AND po.product_no IN (SELECT p.product_no FROM product p WHERE p.biz_no = #{biz_no})) AS OUT_OF_STOCK_PRODUCT,
+  			(SELECT COUNT(*) FROM product_option po WHERE po.product_no IN (SELECT p.product_no FROM product p WHERE p.biz_no = #{biz_no})) AS ALL_PRODUCT FROM DUAL
+  			]]>
+	</select>
 	<!-- 상품문의 답변 -->
 	<insert id="createInquiryReply">
 		INSERT INTO product_inquiry_reply VALUES(
@@ -261,27 +272,37 @@
 	<!-- 상품리뷰 -->
 	<select id="getProductReviewByBizNo"
 		resultType="com.bubble.welcomepet.dto.ProductReviewDto">
-		SELECT pr.* FROM product_review pr,product_option po,product p
+		SELECT pr.* FROM product_review pr,product_option
+		po,product p
 		WHERE pr.product_option_no =po.product_option_no
-		AND p.product_no=po.product_no
+		AND
+		p.product_no=po.product_no
 		AND p.biz_no=#{biz_no}
 	</select>
-	<select id="getReviewListByDateAndBizNo" resultType="com.bubble.welcomepet.dto.ProductReviewDto">
-		SELECT pr.* FROM product_review pr,product_option po,product p
+	<select id="getReviewListByDateAndBizNo"
+		resultType="com.bubble.welcomepet.dto.ProductReviewDto">
+		SELECT pr.* FROM product_review pr,product_option
+		po,product p
 		WHERE pr.product_option_no =po.product_option_no
-		AND p.product_no=po.product_no
+		AND
+		p.product_no=po.product_no
 		AND p.biz_no=#{biz_no}
-		AND TO_CHAR(pr.product_review_reg_date,'yyyy.MM.dd') BETWEEN #{start_date} AND #{end_date}
+		AND
+		TO_CHAR(pr.product_review_reg_date,'yyyy.MM.dd') BETWEEN #{start_date}
+		AND #{end_date}
 	</select>
-	
+
 	<!-- 리뷰이미지 -->
-	<select id="getProductReviewImagesByReviewNo" resultType="com.bubble.welcomepet.dto.ProductReviewImagesDto">
-		SELECT * FROM product_review_images WHERE product_review_no=#{product_review_no}
+	<select id="getProductReviewImagesByReviewNo"
+		resultType="com.bubble.welcomepet.dto.ProductReviewImagesDto">
+		SELECT * FROM product_review_images WHERE
+		product_review_no=#{product_review_no}
 	</select>
-	
+
 	<!-- 리뷰좋아요 -->
 	<select id="countProductReviewLikesByReviewNo" resultType="int">
-		SELECT COUNT(*) FROM product_review_likes WHERE product_review_no=#{product_review_no}
+		SELECT COUNT(*) FROM product_review_likes WHERE
+		product_review_no=#{product_review_no}
 	</select>
 	<!-- <resultMap type="com.bubble.welcomepet.dto.ProductReviewDto" id="reviewResultMap"> 
 		<id property="product_review_no" column="product_review_no"/> </resultMap> 

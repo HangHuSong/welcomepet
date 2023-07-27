@@ -12,31 +12,47 @@
 	rel="stylesheet"
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 	crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
+	rel="stylesheet">
+<style type="text/css">
+@font-face {
+	font-family: 'Pretendard-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+		format('woff');
+	font-weight: 400;
+	font-style: normal;
+}
 
+.container {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+</style>
 </head>
 <body>
 	<div class="container" style="margin: 0 0;">
-		<div class="row" style="width: 1900px;">
-			<div
-				class="col-2 text-center ps-4 text-white d-flex align-items-stretch align-top"
-				style="background-color: rgb(29, 33, 42);"><jsp:include
+		<div class="row" style="width: 1920px;">
+			<div class="col-2" style="background-color: rgb(29, 33, 42);"><jsp:include
 					page="../common/bizLeftNavi.jsp"></jsp:include></div>
-			<div class="col-8 px-0">
-				<div class="row mx-1">
+			<div class="col-10 bg-light">
+				<div class="row bg-white">
 					<div class="col">
 						<jsp:include page="../common/bizTopNavi.jsp"></jsp:include>
 					</div>
 				</div>
-				<div class="row px-5 text-center bg-light mx-1">
-					<div class="col">
+				<div class="row px-5 text-center mb-5">
+					<div class="col px-5">
 						<div class="row my-2">
 							<div class="col fs-5 fw-bold text-start py-3">판매성과</div>
 						</div>
-						<div class="row">
+						<div class="row my-4">
 							<div class="col">
 								<div class="row my-3">
 									<!-- 일별결제금액 -->
-									<div class="col border bg-white">
+									<div class="col border bg-white shadow">
 										<div class="row py-3 border-bottom">
 											<div class="col text-start fw-bold align-self-center">일별
 												결제금액</div>
@@ -54,8 +70,8 @@
 										</div>
 									</div>
 								</div>
-								<div class="row">
-									<div class="col border bg-white">
+								<div class="row my-5">
+									<div class="col border bg-white shadow">
 										<!-- 요일별 결제금액 -->
 										<div class="row">
 											<div class="col text-start fw-bold py-2 border-bottom">요일별
@@ -67,7 +83,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="col border ms-2 bg-white">
+									<div class="col border ms-2 bg-white shadow">
 										<!-- 월별 결제금액 -->
 										<div class="row">
 											<div class="col text-start fw-bold py-2 border-bottom">월별
@@ -83,6 +99,10 @@
 							</div>
 						</div>
 					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<jsp:include page="../common/bizFooter.jsp"></jsp:include></div>
 				</div>
 			</div>
 		</div>

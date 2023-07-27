@@ -16,27 +16,67 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 	rel="stylesheet">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
+	rel="stylesheet">
+<style type="text/css">
+@font-face {
+	font-family: 'Pretendard-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+		format('woff');
+	font-weight: 400;
+	font-style: normal;
+}
 
+.container {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.payment-btn {
+	width: 100%;
+	height: 3em;
+	margin: 5px 0;
+	border-radius: 0.3rem;
+	background-color: white;
+	border: 1px solid rgb(194, 200, 207);
+	cursor: pointer;
+	border-style:;
+	cursor: pointer;
+	margin: 5px 0;
+	font-weight: 500;
+}
+
+.payment-btn.active {
+	background-color: rgb(237, 244, 255);
+	border: 1px solid rgb(0, 80, 255);
+}
+
+.pay_img {
+	height: 50%;
+}
+</style>
 </head>
 <body>
 	<div class="container" style="margin: 0 0;">
 		<div class="row" style="width: 1920px;">
-			<div
-				class="col-2 text-center ps-4 text-white d-flex align-items-stretch align-top"
-				style="background-color: rgb(29, 33, 42);"><jsp:include
+			<div class="col-2"
+				style="background-color: rgb(29, 33, 42); height: auto;"><jsp:include
 					page="../common/bizLeftNavi.jsp"></jsp:include></div>
-			<div class="col-8 px-0">
-				<div class="row mx-1">
+			<div class="col-10 bg-light">
+				<div class="row bg-white">
 					<div class="col">
 						<jsp:include page="../common/bizTopNavi.jsp"></jsp:include>
 					</div>
 				</div>
-				<div class="row text-start">
-					<div class="col-8 mx-5">
-						<div class="row">
-							<div class="col fs-4 fw-bold">광고상품 등록</div>
+				<div class="row px-5 text-start mb-5">
+					<div class="col-9 px-5">
+						<div class="row my-2">
+							<div class="col fs-5 fw-bold py-3">광고상품 등록</div>
 						</div>
-						<div class="row">
+						<div class="row pe-5">
 							<div class="col">
 								<div class="row my-5">
 									<div class="col">
@@ -44,11 +84,12 @@
 											<div class="col fw-bold text-start" style="font-size: 18px;">광고
 												카테고리 선택</div>
 										</div>
-										<div class="row px-2">
+										<div class="row">
 											<div class="col border">
-												<div class="row border-bottom">
+												<div class="row border-bottom"
+													style="background-color: rgb(245, 250, 255);">
 													<div class="col-3 py-2 align-self-center">광고 카테고리</div>
-													<div class="col border-start py-2">
+													<div class="col border-start py-2 bg-white">
 														<select class="form-select" name="ad_category_no"
 															onchange="getAdPrice()">
 															<option selected>카테고리를 선택하세요</option>
@@ -59,23 +100,27 @@
 															</c:forEach>
 														</select>
 													</div>
-													<div class="col"></div>
+													<div class="col bg-white"></div>
 												</div>
-												<div class="row border-bottom">
+												<div class="row border-bottom" style="background-color: rgb(245, 250, 255);">
 													<div class="col-3 py-2">일당 가격</div>
-													<div class="col py-2 border-start" id="adPrice"></div>
-													<div class="col"></div>
+													<div class="col py-2 border-start bg-white" id="adPrice"></div>
+													<div class="col bg-white"></div>
 												</div>
-												<div class="row">
+												<div class="row" style="background-color: rgb(245, 250, 255);">
 													<div class="col-3 py-2 align-self-center">광고 기간</div>
-													<div class="col border-start py-2">
-														<input class="form-control" type="date"
-															name="ad_product_start_date">
-													</div>
-													<div class="col-1 align-self-center text-center">~</div>
-													<div class="col py-2">
-														<input class="form-control" type="date"
-															name="ad_product_end_date">
+													<div class="col bg-white">
+														<div class="row">
+															<div class="col border-start py-2">
+																<input class="form-control" type="date"
+																	name="ad_product_start_date">
+															</div>
+															<div class="col-1 align-self-center text-center">~</div>
+															<div class="col py-2">
+																<input class="form-control" type="date"
+																	name="ad_product_end_date">
+															</div>
+														</div>
 													</div>
 												</div>
 											</div>
@@ -93,11 +138,11 @@
 											</div>
 										</div>
 										<div class="row">
-											<div class="col">
-												<div class="table-responsive">
+											<div class="col bg-white px-0">
+												<div class="table-responsive" style="height: 450px;">
 													<table
 														class="table text-nowrap align-middle table-bordered">
-														<thead>
+														<thead style="background-color: rgb(245, 250, 255);">
 															<tr>
 																<th scope="col"><input class="form-check-input"
 																	type="checkbox"></th>
@@ -108,7 +153,7 @@
 																<th scope="col">상품할인율</th>
 															</tr>
 														</thead>
-														<tbody class="table-group-divider">
+														<tbody>
 
 															<c:forEach items="${productDataList }" var="productData">
 																<tr>
@@ -134,34 +179,94 @@
 
 									</div>
 								</div>
+								<div class="row my-5">
+									<div class="col">
+										<div class="row">
+											<div class="col text-start fw-bold" style="font-size: 18px;">결제수단
+												선택</div>
+										</div>
+										<div class="row">
+											<div class="col">
+												<button class="payment-btn" data-payment-method="카카오페이"
+													onclick="toggleActive(event)">
+													<img
+														class="pay_img align-items-center justify-content-center"
+														src="/uploadFiles/WelcomePet/payment/kakao.png">
+												</button>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-6">
+												<button class="payment-btn" data-payment-method="신용카드"
+													onclick="toggleActive(event)">신용카드</button>
+											</div>
+											<div class="col-6">
+												<button class="payment-btn" data-payment-method="네이버페이"
+													onclick="toggleActive(event)">
+													<img
+														class="pay_img align-items-center justify-content-center"
+														src="/uploadFiles/WelcomePet/payment/naver.png">
+												</button>
+											</div>
+											<div class="col-6">
+												<button class="payment-btn" data-payment-method="토스"
+													onclick="toggleActive(event)">
+													<img
+														class="pay_img align-items-center justify-content-center"
+														src="/uploadFiles/WelcomePet/payment/toss.png">
+												</button>
+											</div>
+											<div class="col-6">
+												<button class="payment-btn" data-payment-method="페이코"
+													onclick="toggleActive(event)">
+													<img
+														class="pay_img align-items-center justify-content-center"
+														src="/uploadFiles/WelcomePet/payment/payco.png"
+														style="height: 35%;">
+												</button>
+											</div>
+											<div class="col-6">
+												<button class="payment-btn " data-payment-method="가상계좌"
+													onclick="toggleActive(event)">가상계좌</button>
+											</div>
+											<div class="col-6">
+												<button class="payment-btn" data-payment-method="계좌이체"
+													onclick="toggleActive(event)">계좌이체</button>
+											</div>
+
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="col position-relative" id="cart"
-						style="height: 800px;">
+					<div class="col-3 position-relative pe-5" id="cart"
+						style="height: 1260px;">
 						<div class="row">
 							<div class="col">
 								<div class="row">
 									<div class="col ">
 										<div class="position-fixed" id="adProductCart"
-											style="width: 330px;"></div>
+											style="width: 310px;"></div>
 									</div>
 								</div>
 
-								<div class="row position-fixed bottom-0 my-3">
+								<div class="row position-fixed bottom-0 my-3 ">
 									<div class="col">
-										<div class="row text-danger">
-											<div class="col text-start align-self-center">
+										<div class="row text-danger" style="width: 310px;">
+											<div class="col text-start align-self-center"
+												style="font-size: 16px;">
 												<span>총 </span> <span id="adProductNum">0</span> <span>개</span>
 											</div>
 											<div class="col text-end">
-												<span class="fs-4 fw-bold" id="totalPrice">0</span> <span
-													class="fs-5">원</span>
+												<span class="fs-5 fw-bold" id="totalPrice">0</span> <span
+													style="font-size: 18px;">원</span>
 											</div>
 										</div>
 										<div class="row">
 											<div class="col text-center px-1">
-												<button class="btn btn-danger" style="width: 300px;" onclick="requestPay()">결제하기</button>
+												<button class="btn btn-danger shadow" style="width: 310px;"
+													onclick="requestPay()">결제하기</button>
 											</div>
 										</div>
 									</div>
@@ -169,6 +274,10 @@
 							</div>
 						</div>
 					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<jsp:include page="../common/bizFooter.jsp"></jsp:include></div>
 				</div>
 			</div>
 		</div>
@@ -178,6 +287,19 @@
 		integrity="sha384-x+WG2i7pOR+oWb6O5GV5f1KN2Ko6N7PTGPS7UlasYWNxZMKQA63Cj/B2lbUmUfuC"
 		crossorigin="anonymous"></script>
 	<script>
+	function toggleActive(event){
+		const paymentButtons = document.querySelectorAll(".payment-btn");
+
+		// 모든 버튼에서 "active" 클래스 제거
+		paymentButtons.forEach((btn) => {
+		    btn.classList.remove("active");
+		});
+
+		// 클릭한 버튼에 "active" 클래스 추가
+		const selectedButton = event.currentTarget;
+		selectedButton.classList.add("active");
+		
+	}
 	var adProductDatas=[];
 	var total_price=0;
 	function addAdProductCart() {
@@ -223,7 +345,7 @@
 
 			// 상품 정보를 담을 div 요소 생성
 			const productDiv = document.createElement('div');
-			productDiv.classList.add('row', 'my-2', 'mx-1', 'px-1', 'border');
+			productDiv.classList.add('row','px-1','bg-white', 'border','my-2');
 
 			// 이미지 div 요소 생성
 			const imageDiv = document.createElement('div');
@@ -245,13 +367,15 @@
 			const productNameDiv = createProductInfoDiv(productName);
 			productNameDiv.classList.add('productNo');
 			productNameDiv.setAttribute('data-value',checkedProduct.value);
+			productNameDiv.style='font-size:13px';
 			
 			const adCategoryDiv = createProductInfoDiv(adCategoryName);
 			adCategoryDiv.classList.add('adCategoryNo');
 			adCategoryDiv.setAttribute('data-value',selectedOption.value);
+			adCategoryDiv.style='font-size:13px';
 			
 			const adDurationDiv = createProductInfoDiv(adDuration);
-			adDurationDiv.style.fontSize='13px';
+			adDurationDiv.style.fontSize='8px';
 			adDurationDiv.classList.add('text-secondary');
 			adDurationDiv.classList.add('adDuration');
 			adDurationDiv.setAttribute('data-startDate-value',startDateInput.value);
@@ -530,7 +654,7 @@
 	            	sessionStorage.removeItem('startDate');
 	            	sessionStorage.removeItem('endDate');
 	            	sessionStorage.removeItem('adCategoryNo'); */
-	            	window.location.href="./adProductRegisterComplete"
+	            	alert('광고 상품 등록이 완료 되었습니다');
 	            }
 	        }
 	

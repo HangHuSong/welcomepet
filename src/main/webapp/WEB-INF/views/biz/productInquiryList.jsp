@@ -12,51 +12,90 @@
 	rel="stylesheet"
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 	crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
+	rel="stylesheet">
+<style type="text/css">
+@font-face {
+	font-family: 'Pretendard-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+		format('woff');
+	font-weight: 400;
+	font-style: normal;
+}
 
+.container {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+</style>
 </head>
 <body>
 	<div class="container" style="margin: 0 0;">
 
-		<div class="row" style="width: 1900px;">
-			<div
-				class="col-2 text-center ps-4 text-white d-flex align-items-stretch align-top"
-				style="background-color: rgb(29, 33, 42);"><jsp:include
+		<div class="row" style="width: 1920px; height: auto;">
+			<div class="col-2" style="background-color: rgb(29, 33, 42);"><jsp:include
 					page="../common/bizLeftNavi.jsp"></jsp:include></div>
-			<div class="col-8 px-0">
-				<div class="row mx-1">
+			<div class="col-10 bg-light">
+				<div class="row bg-white">
 					<div class="col">
 						<jsp:include page="../common/bizTopNavi.jsp"></jsp:include>
 					</div>
 				</div>
-				<div class="row mx-5 text-center">
-					<div class="col">
+				<div class="row px-5 text-center mb-5">
+					<div class="col px-5">
 						<div class="row my-2">
 							<div class="col fs-5 fw-bold text-start py-3">문의 내역</div>
 						</div>
-						<div class="row my-2 bg-light px-5">
+						<div class="row mt-2 mb-5">
 							<div class="col">
-								<div class="row my-5">
-									<div class="col border bg-white">
+								<div class="row mt-2 mb-3">
+									<div class="col border bg-white rounded-3 shadow">
 										<div class="row">
-											<div class="col-3 border-end py-2">기간</div>
-											<div class="col py-2 text-start">
-												<input class="text-center" type="date" style="width: 200px;">
-												~ <input class="text-center" type="date"
-													style="width: 200px;">
+											<div class="col">
+												<div class="row">
+													<div class="col-2 text-start align-self-center px-4">기간</div>
+													<div class="col text-start align-self-center">
+														<input class="text-center rounded-1" type="date"
+															style="width: 200px; border: 1px solid rgb(174, 180, 198);">
+														~ <input class="text-center rounded-1" type="date"
+															style="width: 200px; border: 1px solid rgb(174, 180, 198);">
+													</div>
+													<div class="col-2 px-5 d-grid py-2 border-start"
+														style="background-color: rgb(245, 250, 255);">
+														<button class="btn btn-primary rounded-5">검색</button>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-2 text-start align-self-center px-4"
+														style="height: auto;">검색어</div>
+													<div class="col text-start align-self-center">
+														<span> <select class="rounded-1"
+															style="border: 1px solid rgb(174, 180, 198);">
+																<option selected>검색항목 선택</option>
+																<option value="1">주문번호</option>
+																<option value="2">상품명</option>
+																<option value="3">주문자명</option>
+														</select>
+														</span> <span><input class="rounded-1" type="text"
+															style="width: 423px; border: 1px solid rgb(174, 180, 198);"></span>
+
+													</div>
+													<div class="col-2 px-5 d-grid py-2 border-start"
+														style="background-color: rgb(245, 250, 255);">
+														<button class="btn btn-secondary rounded-5">초기화</button>
+													</div>
+												</div>
+
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="row justify-content-center my-5">
-									<div class="col">
-										<span><button class="btn btn-dark">검색</button></span> <span><button
-												class="btn btn-outline-dark">초기화</button></span>
-									</div>
-								</div>
 							</div>
-
 						</div>
-						<div class="row mt-4 mx-2 text-start">
+						<div class="row mt-4 text-start">
 							<div class="col">
 								<span
 									class="btn border-0 border-bottom border-4 rounded-0 border-primary"
@@ -65,52 +104,56 @@
 									onclick="loadCompleteInquiryTab()"> 답변완료</span>
 							</div>
 						</div>
-					</div>
-					<div class="row my-2 mx-2">
-						<div class="col">
-							<div class="row" id="inquiryList">
-								<div class="col">
-									<div class="table-responsive">
-										<table class="table text-nowrap table-bordered">
-											<thead class="table-light">
-												<tr>
-													<th scope="col">상품문의번호</th>
-													<th scope="col">상품명</th>
-													<th scope="col">문의제목</th>
-													<th scope="col">작성자</th>
-													<th scope="col">등록일</th>
-													<th scope="col">문의상세</th>
-												</tr>
-											</thead>
-											<tbody>
-												<c:forEach items="${productInquiryDataList }"
-													var="productInquiryData">
+						<div class="row my-2 mx-2">
+							<div class="col">
+								<div class="row" id="inquiryList">
+									<div class="col bg-white px-0 shadow">
+										<div class="table-responsive">
+											<table class="table text-nowrap table-bordered mb-0">
+												<thead style="background-color: rgb(245, 250, 255);">
 													<tr>
-
-														<td>${productInquiryData.productInquiryDto.product_inquiry_no }</td>
-														<td>${productInquiryData.productDto.product_name }</td>
-														<td>${productInquiryData.productInquiryDto.product_inquiry_title}</td>
-														<td>${productInquiryData.customerDto.customer_name }</td>
-														<td><fmt:formatDate
-																value="${productInquiryData.productInquiryDto.product_inquiry_reg_date }"
-																pattern="yyyy.MM.dd" /></td>
-														<td>
-															<button id="showModalButton"
-																class="btn btn-outline-dark btn-sm"
-																onclick='showModal(${productInquiryData.jsonData})'
-																data-bs-toggle="modal" data-bs-target="#inquiryModal">문의
-																보기</button>
-														</td>
+														<th scope="col">상품문의번호</th>
+														<th scope="col">상품명</th>
+														<th scope="col">문의제목</th>
+														<th scope="col">작성자</th>
+														<th scope="col">등록일</th>
+														<th scope="col">문의상세</th>
 													</tr>
-												</c:forEach>
+												</thead>
+												<tbody>
+													<c:forEach items="${productInquiryDataList }"
+														var="productInquiryData">
+														<tr>
 
-											</tbody>
-										</table>
+															<td>${productInquiryData.productInquiryDto.product_inquiry_no }</td>
+															<td>${productInquiryData.productDto.product_name }</td>
+															<td>${productInquiryData.productInquiryDto.product_inquiry_title}</td>
+															<td>${productInquiryData.customerDto.customer_name }</td>
+															<td><fmt:formatDate
+																	value="${productInquiryData.productInquiryDto.product_inquiry_reg_date }"
+																	pattern="yyyy.MM.dd" /></td>
+															<td>
+																<button id="showModalButton"
+																	class="btn btn-outline-dark btn-sm"
+																	onclick='showModal(${productInquiryData.jsonData})'
+																	data-bs-toggle="modal" data-bs-target="#inquiryModal">문의
+																	보기</button>
+															</td>
+														</tr>
+													</c:forEach>
+
+												</tbody>
+											</table>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<jsp:include page="../common/bizFooter.jsp"></jsp:include></div>
 				</div>
 			</div>
 		</div>
@@ -131,21 +174,26 @@
 								<div class="col py-2 bg-white border-start"
 									id="inquiry_reg_date_content"></div>
 								<div class="col-3 py-2">작성자</div>
-								<div class="col py-2 bg-white border-start" id="customer_name_content"></div>
+								<div class="col py-2 bg-white border-start"
+									id="customer_name_content"></div>
 							</div>
 							<div class="row border-bottom">
 								<div class="col-3 py-2">답변여부</div>
-								<div class="col py-2 bg-white border-start" id="is_replied_content"></div>
+								<div class="col py-2 bg-white border-start"
+									id="is_replied_content"></div>
 								<div class="col-3 py-2">답변일</div>
-								<div class="col py-2 bg-white border-start" id="reply_reg_date_content"></div>
+								<div class="col py-2 bg-white border-start"
+									id="reply_reg_date_content"></div>
 							</div>
 							<div class="row border-bottom">
 								<div class="col-3 py-2">제목</div>
-								<div class="col py-2 bg-white border-start" id="inquiry_title_content"></div>
+								<div class="col py-2 bg-white border-start"
+									id="inquiry_title_content"></div>
 							</div>
 							<div class="row border-bottom">
 								<div class="col-3 py-2 align-self-center">내용</div>
-								<div class="col py-2 bg-white border-start" id="inquiry_context_content"></div>
+								<div class="col py-2 bg-white border-start"
+									id="inquiry_context_content"></div>
 							</div>
 							<div class="row">
 								<div class="col-3 align-self-center">답변 내용</div>
@@ -259,18 +307,19 @@
 			inquiryList.innerHTML='';
         	
 			const col=document.createElement("div");
-			col.classList.add("col");
+			col.classList.add("col", "bg-white", "px-0", "shadow");
 			inquiryList.appendChild(col);
 			
 			const div=document.createElement("div");
 			div.classList.add("table-responsive");
-			inquiryList.appendChild(div);
+			col.appendChild(div);
 			
 			var table = document.createElement("table");
-		    table.classList.add("table", "text-nowrap", "table-bordered");
-
+		    table.classList.add("table", "text-nowrap", "table-bordered","mb-0");
+		    table.style.maxHeight="450px";
+		    
 		    var thead = document.createElement("thead");
-		    thead.classList.add("table-light");
+		    thead.style.backgroundColor="rgb(245, 250, 255)";
 		    var tbody = document.createElement("tbody");
 		    
 		    var tableHeaders = ["상품문의번호", "상품명", "문의제목", "작성자", "등록일", "문의상세"];

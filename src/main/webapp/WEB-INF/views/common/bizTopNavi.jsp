@@ -19,32 +19,29 @@
 </head>
 <body>
 
-	<div class="row py-1 my-1">
+	<div class="row py-1 my-1 px-5">
 		<div class="col"></div>
-		<div class="col">
-			<div class="row text-end align-items-center">
-				<div class="col">
-					<div class="input-group">
-						<input type="text" class="form-control" placeholder="어서오개 통합검색">
-						<span class="input-group-text"><i class="fas fa-search"></i></span>
-					</div>
-				</div>
-
+		<div class="col px-5">
+			<div class="row text-center align-items-center">
+				<div class="col"></div>
+				<div class="col-2 border-end align-self-center">온라인 문의</div>
+				<div class="col-2 border-end align-self-center">도움말</div>
 				<c:choose>
 					<c:when test="${empty bizUser }">
-						<div class="col">
+						<div class="col-2">
 							<a class="btn" href="./login">로그인</a>
 						</div>
-						<div class="col">
+						<div class="col-2">
 							<a class="btn" href="./register">회원가입</a>
 						</div>
 					</c:when>
 					<c:when test="${!empty bizUser && bizUser.biz_status_no eq 4}">
-						<div class="col-2 text-end px-0">
+						<div class="col-1 text-end">
 							<div class="dropdown">
 								<button class="btn dropdown-toggle px-0 py-0" type="button"
 									data-bs-toggle="dropdown" aria-expanded="false">
-									<img class="w-50 rounded-circle" src="/uploadFiles/bizMainImg/${bizUser.biz_store_main_img }">
+									<img class="w-100 rounded-circle"
+										src="/uploadFiles/bizMainImg/${bizUser.biz_store_main_img }">
 								</button>
 								<ul class="dropdown-menu text-start">
 									<li><a class="dropdown-item" href="#">마이페이지</a></li>
@@ -53,7 +50,7 @@
 								</ul>
 							</div>
 						</div>
-						<div class="col-1 text-start px-0">
+						<div class="col-1 text-start px-2 me-3">
 							<div class="dropdown">
 								<button class="btn" type="button" data-bs-toggle="dropdown">
 									<div class="row justify-content-start">
@@ -70,7 +67,7 @@
 						</div>
 					</c:when>
 					<c:otherwise>
-						<div class="col-1">
+						<div class="col px-3 mx-5">
 							<div class="dropdown">
 								<button class="btn dropdown-toggle px-0 " type="button"
 									data-bs-toggle="dropdown" aria-expanded="false">
@@ -83,7 +80,7 @@
 								</ul>
 							</div>
 						</div>
-						<div class="col-1 px-0">
+						<div class="col px-3 mx-3">
 							<div class="dropdown">
 								<button class="btn" type="button" data-bs-toggle="dropdown">
 									<div class="row">
@@ -102,7 +99,6 @@
 			</div>
 
 		</div>
-		<div class="col-2"></div>
 	</div>
 	<script type="text/javascript">
 		if(${!empty bizUser} && ${bizUser.biz_status_no}==4){

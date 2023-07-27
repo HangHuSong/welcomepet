@@ -40,141 +40,174 @@
 </head>
 <body>
 	<div class="container" style="margin: 0 0;">
-		<div class="row" style="width: 1900px;">
-			<div class="col-2 text-center ps-4 text-white"
+		<div class="row" style="width: 1920px;">
+			<div class="col-2"
 				style="background-color: rgb(29, 33, 42); height: auto;"><jsp:include
 					page="../common/bizLeftNavi.jsp"></jsp:include></div>
-			<div class="col-10 px-0 bg-light">
-				<div class="row bg-white ms-1">
-					<div class="col text-center">
+			<div class="col-10 bg-light">
+				<div class="row bg-white">
+					<div class="col">
 						<jsp:include page="../common/bizTopNavi.jsp"></jsp:include>
 					</div>
 				</div>
-				<div class="row mx-5 text-start mb-5">
-					<div class="col-10">
+				<div class="row px-5 text-center mb-5">
+					<div class="col px-5">
 						<div class="row my-2">
 							<div class="col fs-5 fw-bold text-start py-3">상품목록</div>
 						</div>
-						<div class="row my-2 text-start border py-3 px-2 bg-white">
+						<div class="row my-4 text-start border py-3 px-2 bg-white shadow rounded-3">
 							<div class="col align-self-center">
-								<span class="px-2 border-end text-center"><span>전체
-								</span><span class="text-info">2</span><span>건</span></span> <span
-									class="px-2 border-end"><span>판매중 </span><span
-									class="text-info">2</span><span>건</span></span> <span
-									class="px-2 border-end"><span>품절 </span><span
-									class="text-info">2</span><span>건</span></span>
+								<span class="px-3 border-end text-center"><span>전체
+								</span><span class="text-info">${productNumPerStatus.ALL_PRODUCT }</span><span>건</span></span>
+								<span class="px-3 border-end"><span>판매중 </span><span
+									class="text-info">${productNumPerStatus.IN_STOCK_PRODUCT }</span><span>건</span></span>
+								<span class="px-3 border-end"><span>품절 </span><span
+									class="text-info">${productNumPerStatus.OUT_OF_STOCK_PRODUCT }</span><span>건</span></span>
 							</div>
 							<div class="col text-end">
 								<a class="btn btn-primary btn-sm">상품등록</a>
 							</div>
 						</div>
-						<div class="row my-2">
+						<div class="row mt-2 mb-5">
 							<div class="col">
-								<div class="row my-5">
-									<div class="col border bg-white">
-										<div class="row border-bottom">
-											<div class="col-3 border-end py-2">기간</div>
-											<div class="col py-2">
-												<input class="text-center" type="date" style="width: 200px;">
-												~ <input class="text-center" type="date"
-													style="width: 200px;">
-											</div>
-										</div>
+								<div class="row mt-2 mb-3">
+									<div class="col border bg-white rounded-3 shadow">
 										<div class="row">
-											<div class="col-3 border-end py-2">검색어</div>
-											<div class="col py-2 text-start">
-												<input type="text" style="width: 423px;">
+											<div class="col">
+												<div class="row">
+													<div class="col-2 text-start align-self-center px-4">기간</div>
+													<div class="col text-start align-self-center">
+														<input class="text-center rounded-1" type="date"
+															style="width: 200px; border: 1px solid rgb(174, 180, 198);">
+														~ <input class="text-center rounded-1" type="date"
+															style="width: 200px; border: 1px solid rgb(174, 180, 198);">
+													</div>
+													<div class="col-2 px-5 d-grid py-2 border-start"
+														style="background-color: rgb(245, 250, 255);">
+														<button class="btn btn-primary rounded-5">검색</button>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-2 text-start align-self-center px-4"
+														style="height: auto;">검색어</div>
+													<div class="col text-start align-self-center">
+														<span> <select class="rounded-1"
+															style="border: 1px solid rgb(174, 180, 198);">
+																<option selected>검색항목 선택</option>
+																<option value="1">주문번호</option>
+																<option value="2">상품명</option>
+																<option value="3">주문자명</option>
+														</select>
+														</span> <span><input class="rounded-1" type="text"
+															style="width: 423px; border: 1px solid rgb(174, 180, 198);"></span>
+
+													</div>
+													<div class="col-2 px-5 d-grid py-2 border-start"
+														style="background-color: rgb(245, 250, 255);">
+														<button class="btn btn-secondary rounded-5">초기화</button>
+													</div>
+												</div>
+
 											</div>
 										</div>
-									</div>
-								</div>
-								<div class="row justify-content-center my-5">
-									<div class="col text-center">
-										<span><button class="btn btn-dark">검색</button></span> <span><button
-												class="btn btn-outline-dark">초기화</button></span>
 									</div>
 								</div>
 							</div>
-
 						</div>
-						<div class="row mt-2 text-center">
+						<div class="row mt-4 mb-2 text-start">
+							<div class="col border rounded-3 shadow"
+								style="background-color: rgb(255, 255, 250);">
+								<div class="row py-2 px-2">
+									<div class="col align-self-center">
+										<i class="fas fa-exclamation-circle"></i> 도움말
+									</div>
+								</div>
+								<div class="row pb-2 px-2">
+									<div class="col" style="font-size: 12px;">-상세보기에서 상품 수정이 가능합니다.</div>
+								</div>
+							</div>
+						</div>
+						<div class="row text-center">
 							<div class="col">
 								<div class="row">
 									<div class="col text-start py-2 px-0">
-										<span><span>[총 </span><span class="text-info">2</span><span>개]</span></span>
+										<span><span>[총 </span><span class="text-info">${productNumPerStatus.ALL_PRODUCT }</span><span>개]</span></span>
 									</div>
 								</div>
-								<div class="row bg-white">
-									<div class="col table-responsive px-0">
-										<table class="table align-middle table-bordered">
-											<thead>
-												<tr>
-													<th scope="col">상품번호</th>
-													<th scope="col">상품썸네일</th>
-													<th scope="col">상품타입</th>
-													<th scope="col">상품명</th>
-													<th scope="col">재고수량</th>
-													<th scope="col">판매가</th>
-													<th scope="col">할인율</th>
-													<th scope="col">등록일</th>
-													<th scope="col">상세보기</th>
-												</tr>
-											</thead>
-											<tbody class="table-group-divider">
+								<div class="row bg-white shadow">
+									<div class="col px-0">
+										<div class="table-responsive" style="height: 450px;">
+											<table class="table align-middle table-bordered">
+												<thead style="background-color: rgb(245, 250, 255);">
+													<tr>
+														<th scope="col">상품번호</th>
+														<th scope="col">상품썸네일</th>
+														<th scope="col">상품타입</th>
+														<th scope="col">상품명</th>
+														<th scope="col">재고수량</th>
+														<th scope="col">판매가</th>
+														<th scope="col">할인율</th>
+														<th scope="col">등록일</th>
+														<th scope="col">상세보기</th>
+													</tr>
+												</thead>
+												<tbody>
 
-												<c:forEach items="${productDataList }" var="productData">
-													<c:choose>
-														<c:when test="${productData.productOptionNum != 1 }">
-															<c:forEach items="${productData.productOptionDtoList}"
-																var="productOptionDto">
+													<c:forEach items="${productDataList }" var="productData">
+														<c:choose>
+															<c:when test="${productData.productOptionNum != 1 }">
+																<c:forEach items="${productData.productOptionDtoList}"
+																	var="productOptionDto">
+																	<tr>
+																		<td>${productOptionDto.product_option_no }</td>
+																		<td class="col-1"><img
+																			src="/uploadFiles/productThumbnailImg/${productData.productDto.product_thumbnail }"
+																			class="w-100"></td>
+																		<td>옵션상품</td>
+																		<td>${productOptionDto.product_option_name}</td>
+																		<td>${productOptionDto.product_option_stock_quantity}</td>
+																		<td>${productOptionDto.product_option_price}</td>
+																		<td>${productData.productDto.product_discount_rate}</td>
+																		<td><fmt:formatDate
+																				value="${productOptionDto.product_option_reg_date}"
+																				pattern="yyyy.MM.dd" /></td>
+																		<td><a
+																			class="btn btn-outline-dark btn-sm modButton"
+																			href="productDetail?product_no=${productData.productDto.product_no }">상세보기</a>
+																		</td>
+																	</tr>
+																</c:forEach>
+															</c:when>
+															<c:otherwise>
 																<tr>
-																	<td>${productOptionDto.product_option_no }</td>
+																	<td>${productData.productOptionDtoList[0].product_option_no }</td>
 																	<td class="col-1"><img
 																		src="/uploadFiles/productThumbnailImg/${productData.productDto.product_thumbnail }"
 																		class="w-100"></td>
-																	<td>옵션상품</td>
-																	<td>${productOptionDto.product_option_name}</td>
-																	<td>${productOptionDto.product_option_stock_quantity}</td>
-																	<td>${productOptionDto.product_option_price}</td>
+																	<td>단일상품</td>
+																	<td>${productData.productDto.product_name }</td>
+																	<td>${productData.productOptionDtoList[0].product_option_stock_quantity}</td>
+																	<td>${productData.productDto.product_price}</td>
 																	<td>${productData.productDto.product_discount_rate}</td>
 																	<td><fmt:formatDate
-																			value="${productOptionDto.product_option_reg_date}"
+																			value="${productData.productOptionDtoList[0].product_option_reg_date}"
 																			pattern="yyyy.MM.dd" /></td>
-																	<td><a class="btn btn-primary modButton"
+																	<td><a
+																		class="btn btn-outline-dark btn-sm modButton"
 																		href="productDetail?product_no=${productData.productDto.product_no }">상세보기</a>
 																	</td>
 																</tr>
-															</c:forEach>
-														</c:when>
-														<c:otherwise>
-															<tr>
-																<td>${productData.productOptionDto[0].product_option_no }</td>
-																<td class="col-1"><img
-																	src="/uploadFiles/productThumbnailImg/${productData.productDto.product_thumbnail }"
-																	class="w-100"></td>
-																<td>단일상품</td>
-																<td>${productData.productDto.product_name }</td>
-																<td>${productData.productOptionDto[0].product_option_stock_quantity}</td>
-																<td>${productData.productDto.product_price}</td>
-																<td>${productData.productDto.product_discount_rate}</td>
-																<td><fmt:formatDate
-																		value="${productData.productOptionDtoList[0].product_option_reg_date}"
-																		pattern="yyyy.MM.dd" /></td>
-																<td><a class="btn btn-primary modButton"
-																	href="productDetail?product_no=${productData.productDto.product_no }">상세보기</a>
-																</td>
-															</tr>
-														</c:otherwise>
-													</c:choose>
-												</c:forEach>
-											</tbody>
-										</table>
+															</c:otherwise>
+														</c:choose>
+													</c:forEach>
+												</tbody>
+											</table>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="col-2"></div>
 				</div>
 				<div class="row ms-1">
 					<div class="col">

@@ -34,48 +34,81 @@
 </head>
 <body>
 	<div class="container" style="margin: 0 0;">
-		<div class="row text-center" style="width: 1900px;">
-			<div class="col-2 text-center ps-4 text-white"
+		<div class="row" style="width: 1920px;">
+			<div class="col-2"
 				style="height: auto; background-color: rgb(29, 33, 42);"><jsp:include
 					page="../common/bizLeftNavi.jsp"></jsp:include></div>
-			<div class="col-10 px-0 bg-light">
-				<div class="row bg-white ms-1">
-					<div class="col text-center"><jsp:include
+			<div class="col-10 bg-light">
+				<div class="row bg-white">
+					<div class="col"><jsp:include
 							page="../common/bizTopNavi.jsp"></jsp:include></div>
 				</div>
-				<div class="row mx-5 text-center mb-5">
-					<div class="col-10">
+				<div class="row px-5 text-center mb-5">
+					<div class="col px-5">
 						<div class="row my-2">
 							<div class="col fs-5 fw-bold text-start py-3">반품관리</div>
 						</div>
-						<div class="row my-2 bg-light px-5">
-							<div class="col">
-								<div class="row my-5">
-									<div class="col border bg-white">
-										<div class="row border-bottom">
-											<div class="col-3 border-end py-2">기간</div>
-											<div class="col py-2">
-												<input class="text-center" type="date" style="width: 200px;">
-												~ <input class="text-center" type="date"
-													style="width: 200px;">
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-3 border-end py-2">검색어</div>
-											<div class="col py-2 text-start"></div>
-										</div>
+						<div class="row my-2 text-start shadow">
+							<div class="col border rounded-3"
+								style="background-color: rgb(255, 255, 250);">
+								<div class="row py-2 px-2">
+									<div class="col align-self-center">
+										<i class="fas fa-exclamation-circle"></i> 도움말
 									</div>
 								</div>
-								<div class="row justify-content-center my-5">
-									<div class="col">
-										<span><button class="btn btn-dark">검색</button></span> <span><button
-												class="btn btn-outline-dark">초기화</button></span>
+								<div class="row pb-2 px-2">
+									<div class="col" style="font-size: 12px;">-주문을 발주확인하면
+										배송준비중으로 변경되고, 배송할 상품에 운송장정보를 입력하고 발송처리하면 배송중으로 변경됩니다.</div>
+								</div>
+							</div>
+						</div>
+						<div class="row mt-2 mb-5 ">
+							<div class="col">
+								<div class="row mt-2 mb-3">
+									<div class="col border bg-white rounded-3 shadow">
+										<div class="row">
+											<div class="col">
+												<div class="row">
+													<div class="col-2 text-start align-self-center px-4">기간</div>
+													<div class="col text-start align-self-center">
+														<input class="text-center rounded-1" type="date"
+															style="width: 200px; border: 1px solid rgb(174, 180, 198);">
+														~ <input class="text-center rounded-1" type="date"
+															style="width: 200px; border: 1px solid rgb(174, 180, 198);">
+													</div>
+													<div class="col-2 px-5 d-grid py-2 border-start"
+														style="background-color: rgb(245, 250, 255);">
+														<button class="btn btn-primary rounded-5">검색</button>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-2 text-start align-self-center px-4"
+														style="height: auto;">검색어</div>
+													<div class="col text-start align-self-center">
+														<span> <select class="rounded-1"
+															style="border: 1px solid rgb(174, 180, 198);">
+																<option selected>검색항목 선택</option>
+																<option value="1">주문번호</option>
+																<option value="2">상품명</option>
+																<option value="3">주문자명</option>
+														</select>
+														</span> <span><input class="rounded-1" type="text"
+															style="width: 423px; border: 1px solid rgb(174, 180, 198);"></span>
+
+													</div>
+													<div class="col-2 px-5 d-grid py-2 border-start"
+														style="background-color: rgb(245, 250, 255);">
+														<button class="btn btn-secondary rounded-5">초기화</button>
+													</div>
+												</div>
+
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
-
 						</div>
-						<div class="row text-start mt-5">
+						<div class="row text-start">
 							<div class="col">
 								<span class="btn border-0 border-bottom border-4 rounded-0 border-primary"
 									id="newReturnOrderTab" onclick="loadNewReturnOrderTab()">반품요청</span>
@@ -84,8 +117,8 @@
 
 							</div>
 						</div>
-						<div class="row my-2 mx-2 bg-white">
-							<div class="col border">
+						<div class="row my-2 bg-white">
+							<div class="col border shadow">
 								<div class="row py-2 border-bottom">
 									<div class="col text-start">
 										<button class="btn btn-outline-dark btn-sm"
@@ -94,9 +127,9 @@
 								</div>
 								<div class="row" id="orderList">
 									<div class="col px-0">
-										<div class="table-responsive">
+										<div class="table-responsive" style="max-height: 450px; font-size: 13px;">
 											<table class="table text-nowrap">
-												<thead>
+												<thead style="background-color: rgb(245, 250, 255);">
 													<tr>
 														<th scope="col"><input class="form-check-input"
 															type="checkbox" value="" onclick="toggleCheck()"></th>

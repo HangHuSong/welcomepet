@@ -12,8 +12,8 @@
 	crossorigin="anonymous">
 </head>
 <body>
-	<div class="row border-top pt-5 px-5 bg-white">
-		<div class="col-10">
+	<div class="row border-top py-5 px-5 bg-white">
+		<div class="col px-5">
 			<div class="row">
 				<div class="col">
 					<div class="row py-2">
@@ -61,7 +61,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col"></div>
+		
 	</div>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
