@@ -4,20 +4,26 @@
 	style="background-color: rgb(244, 247, 250); padding: 2rem 1rem 5rem; font-size: 0.8em;">
 
 
-		<div class="row ">
+		<div class="row mt-1">
 		  <div class="col">
-		    <img  src="/welcomepet/resources/img/adminLogo.png" style="height:3em; ">
+		    <img  src="/welcomepet/resources/img/LOGO_%236c757d.png" style="height:3em; opacity: 70%;">
 		  </div>
 		</div>
-	<div class="row">
+	<div class="row mt-3">
 		
-		<div class="col fw-bold">
-			<a role="button">이용약관</a> <a role="button">개인(위치)정보 처리방침</a>
+		<div class="col-3 fw-bold">
+			<a role="button">이용약관</a> 
+		</div>
+		<div class="col px-0 fw-bold">
+			<a  role="button">개인(위치)정보 처리방침</a>
 		</div>
 	</div>
-	<div class="row mt-3">
-		<div class="col fw-bold">
-			<a role="button">고객센터 </a> <a role="button"> 공지사항</a>
+	<div class="row mt-1">
+		<div class="col-3 fw-bold">
+			<a role="button">고객센터 </a> 
+		</div>
+		<div class="col px-0 fw-bold">
+		 <a role="button"> 공지사항</a>
 		</div>
 	</div>
 	<div class="row mt-2">

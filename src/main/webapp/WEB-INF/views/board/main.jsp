@@ -647,7 +647,7 @@
 					discountLabel.style.color = "white"; // 글자색 설정
 					discountLabel.style.fontSize = "0.8em"; // 내부 여백 설정
 					discountLabel.style.padding = "0.1em";
-					discountLabel.style.opacity = "0.4";
+					discountLabel.style.opacity = "0.6";
 					discountLabel.style.borderRadius = "0.8em 0px"; 
 					discountLabel.style.minWidth = "1.8rem";
 					colImg.appendChild(discountLabel);
