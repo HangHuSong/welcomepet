@@ -959,7 +959,7 @@ body {
 	<div class="container">
 		
 
-		<div class="row mt-2 border_bottom text-center fw-bold fs-6 text-secondary">
+		<div class="row mt-3 border_bottom text-center fw-bold fs-6 text-secondary">
 			<div class="col pe-0 ps-0">홈</div>
 			<div class="col pe-0 ps-0">베스트</div>
 			<div class="col pe-0 ps-0">특가존</div>
@@ -1122,7 +1122,7 @@ body {
 		</div>
 		<div class="row mt-3"></div>
 	<jsp:include page="../common/serviceNavi.jsp"></jsp:include>
-	<jsp:include page="../common/bottomNavi.jsp"></jsp:include>
+	<jsp:include page="../common/bottomNavi2.jsp"></jsp:include>
 	</div>
 
 
