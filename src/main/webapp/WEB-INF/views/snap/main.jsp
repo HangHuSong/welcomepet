@@ -502,7 +502,7 @@ a:hover {
 									</div>
 
 									<div class="col-6 text-center">
-										<a id="main" href="../snap/main">커뮤니티</a>
+										<a id="main" href="../snap/main" class="fs-2">커뮤니티</a>
 									</div>
 
 									<div class="col d-flex justify-content-end me-1">
@@ -558,9 +558,9 @@ a:hover {
 								onclick="location.href = './dogProfile?dog_no=${data.dogDto.dog_no}';"
 								class="align-middle fw-bold mx-1 my-1 fs-6">${data.dogDto.dog_name}</span>
 						</div>
-						<div class="col d-flex justify-content-end">
-							<button id="followBtn" class="btn btn-sm bi bi-person-plus-fill">
-								팔로우</button>
+						<div class="col-auto d-flex justify-content-end align-items-center">
+							<i class="bi bi-three-dots-vertical"></i>
+							
 						</div>
 					</div>
 				</div>

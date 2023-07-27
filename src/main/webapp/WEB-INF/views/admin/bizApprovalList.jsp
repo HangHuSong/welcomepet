@@ -21,6 +21,7 @@
         	width: 490px;
         	height: auto;
         }
+       
     </style>
 </head>
 
@@ -34,7 +35,7 @@
                     	<%@ include file="../common/adminHead.jsp" %>
                         <div class="container mt-5">
 					        <h2 class="mt-4 mb-4 fw-bold text-center">Biz 입점 승인 관리</h2>
-					            <div class="row ms-5 mt-1 bg-light font-weight-bold py-2 rounded-top border">
+					            <div class="row text-center ms-5 mt-1 bg-light font-weight-bold py-2 rounded-top border">
 					                <div class="col-2">사업자등록증</div>
 					                <div class="col">사업자등록번호</div>
 					                <div class="col">판매자 전달사항</div>
@@ -45,24 +46,31 @@
 					            <form action="./bizApproval?biz_approval_request_no=${i.bizApprovalRequestDto.biz_approval_request_no}" method="post">
 					            	<input type="hidden" name="biz_approval_request_no" ${i.bizApprovalRequestDto.biz_approval_request_no}>
 					            	<input type="hidden" name="biz_approval_request_no" ${i.bizApprovalRequestDto.biz_no}>
-					            	<div class="row border ms-5 py-2">
+					            	<div class="row align-items-center border ms-5 py-2">
 						                <div class="col-2 d-flex justify-content-center align-items-center">
 						                    <img src="/uploadFiles/bizDocument/${i.bizApprovalRequestDto.biz_approval_request_document}" class="img-thumbnail" 
 						                    id="biz_approval_request_document" data-bs-toggle="modal" data-bs-target="#businessLicenseModal-${i.bizApprovalRequestDto.biz_approval_request_no}"> 
 						                </div>
-						                <div class="col d-flex align-items-center">${i.bizApprovalRequestDto.biz_approval_request_brn}</div>
+						                <div class="col d-flex align-items-center justify-content-center">${i.bizApprovalRequestDto.biz_approval_request_brn}</div>
 						             
 						                <div class="col">
-						                    <textarea class="form-control" style="height: 140px;" name="biz_approval_message"></textarea>
+						                    <textarea class="form-control align-items-center justify-content-center" style="height: 100px;" name="biz_approval_message"></textarea>
 						                </div>
 						                <div class="col">
-						                    <textarea class="form-control" style="height: 140px;" name="biz_approval_emp_memo"></textarea>
+						                    <textarea class="form-control " style="height: 100px;" name="biz_approval_emp_memo"></textarea>
 						                </div>
-						                <div class="col-2 d-flex align-items-center justify-content-center">
-						                    <div class="btn-group-vertical">
-						                        <button name="buttonType" value="accept" class="btn btn-success mb-2">승인</button>
-						                        <button name="buttonType" value="reject" class="btn btn-danger">거절</button>
+						                <div class="col-auto  align-items-center justify-content-center">
+						                    <div class="row">
+							                    <div class="col mb-2">
+						                        	<button name="buttonType" value="accept" class="btn px-4 btn-outline-dark py-0" >승인</button>
+							                    </div>
+							                </div>    
+						                    <div class="row">
+							                    <div class="col ">
+						                        	<button name="buttonType" value="reject" class="btn px-4 btn-dark py-0" >거절</button>
+							                	</div>
 						                    </div>
+						                    
 						                </div>
 					           		</div>
 					            </form>
