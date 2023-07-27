@@ -28,7 +28,6 @@
 	font-weight: 400;
 	font-style: normal;
 }
-
 body {
 	font-family: 'SUITE-Regular' !important;
 }
@@ -93,7 +92,6 @@ a:hover {
 	font-weight: 700;
 	font-size: 1.3em;
 	color: #fd7e14;
-	
 }
 
 #productSnap{

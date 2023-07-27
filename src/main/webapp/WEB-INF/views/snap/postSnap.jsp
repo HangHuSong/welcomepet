@@ -69,6 +69,14 @@
 				</div>
 				<div class="row mt-3">
 					<div class="col">
+						<label class="form-label">상품 태그</label>
+						<select class="form-control">
+							<option>루비디 러블리바니 민소매 티셔츠 민트 M</option>
+						</select>
+					</div>
+				</div>
+				<div class="row mt-3">
+					<div class="col">
 						<label class="form-label">위치</label>
 						<input type="text" class="form-control" name="snap_location" placeholder="장소를 입력해주세요">
 					</div>
