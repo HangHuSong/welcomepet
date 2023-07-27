@@ -102,7 +102,7 @@ body{
 	</div>
 
 	<%-- 베스트 3 --%>
-	<div class="row bg-secondary bg-opacity-10 mb-1"> 
+	<div class="row mb-1 bg-secondary bg-opacity-10"> 
 		<div class="col">
 			<div class="row">
 			<c:forEach items="${bestList}" var="bestList">
@@ -113,7 +113,7 @@ body{
 						   <%-- HOT 뱃지 --%>
 						   <div class="col-auto d-flex align-items-center pe-0">
 						   	<span class="badge rounded-pill" 
-						   		  style="font-size:0.6em; background-color:#dc3545; color:#ffffff;">HOT</span>    
+						   		  style="font-size:0.6em; background-color:#f70000; color:#ffffff;">HOT</span>    
 						   </div>
 						   <%-- 제목 --%>
 						   <div id="title1" class="col-auto d-flex align-items-center ps-1 pe-0">
@@ -182,7 +182,7 @@ body{
 						<%-- 댓글 수 뱃지 --%>
 						<div class="col-2" id="commentBadge">
 						<div class="badge d-flex align-items-center justify-content-center" 
-							 style="height:55px; background-color: #F0F0F0;">
+							 style="height:55px; background-color:#F0F0F0;">
 						 
 						 <c:choose>
 							  <c:when test="${map.countComment eq 0}">
