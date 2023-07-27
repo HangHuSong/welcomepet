@@ -24,15 +24,42 @@
 <%-- font link --%>
 
 <style type="text/css">
+/* 글꼴모음 */
 @font-face {
     font-family: 'SUITE-Regular';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family:'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+}
+/* 여기까지 글꼴모음 */
 
-body {
-	font-family: 'SUITE-Regular' !important;
+
+#body {
+	font-family:'Pretendard-Regular';
 }
 /* 
 body{
@@ -75,17 +102,17 @@ body{
   <jsp:include page="../common/topNaviCommu.jsp"></jsp:include>
 <%-- ----------- --%>  
 
-<div class="container body">
+<div class="container" id="body">
 	
 	<%-- 배너이미지 --%>
-	<div class="row mb-1">
+	<div class="row">
 		<div class="col p-0">
-			<%--<img class="img-fluid" src="/welcomepet/resources/board/img/banner.jpg">--%>
+			<img class="img-fluid" src="https://coreadog.hgodo.com/event/202307/Avengers_1920x744.jpg">
 		</div>
 	</div>
 
 	<%-- 베스트 3 --%>
-	<div class="row mt-1 mb-1"> 
+	<div class="row bg-secondary bg-opacity-10 mb-1"> 
 		<div class="col">
 			<div class="row">
 			<c:forEach items="${bestList}" var="bestList">
@@ -95,7 +122,8 @@ body{
 						  <div class="row">
 						   <%-- HOT 뱃지 --%>
 						   <div class="col-auto d-flex align-items-center pe-0">
-						   	<span class="badge rounded-pill text-bg-danger" style="font-size:0.6em">HOT</span>    
+						   	<span class="badge rounded-pill" 
+						   		  style="font-size:0.6em; background-color:#dc3545; color:#ffffff;">HOT</span>    
 						   </div>
 						   <%-- 제목 --%>
 						   <div id="title1" class="col-auto d-flex align-items-center ps-1 pe-0">
@@ -107,7 +135,7 @@ body{
 						   <div class="col d-flex align-items-center ps-1">
 						 	<c:if test="${bestList.checkImg > 0}">
 							   	  <span style="color:#828282">
-							   	  <i class="bi bi-image"></i>
+							   	   <i class="bi bi-image"></i>
 							   	  </span>
 					   	    </c:if>
 						   </div>	   
@@ -219,7 +247,7 @@ body{
 	</div>
 	<div class="col-3 d-flex justify-content-center align-items-center">
 	 	<a class="btn btn-lg shadow rounded-circle d-flex justify-content-center align-items-center" href="./showDogUpload" 
-	 	   style="color:white; height:52px; background-color:#fd7e14">
+	 	   style="color:white; height:52px; background-color:#ffa500">
 	 	<i class="bi bi-pencil-square" style="color: white;"></i></a>
 	</div>
 </div>

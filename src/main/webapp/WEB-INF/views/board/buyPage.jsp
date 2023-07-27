@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.text.DecimalFormat"%>
 
 
 <!DOCTYPE html>
@@ -210,23 +211,38 @@
 
 
 <style type="text/css">
-
 @font-face {
-    font-family: 'SUITE-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'SUITE-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
 }
+
 body {
 	font-family: 'SUITE-Regular';
 }
 
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+	font-family: 'Pretendard-Regular';
+}
+
 .payment-btn {
 	width: 100%;
-	height: 3em; margin : 5px 0;
+	height: 3em;
+	margin: 5px 0;
 	border-radius: 0.3rem;
 	background-color: white;
-	border: 1px solid rgb(194, 200, 207); cursor : pointer;
+	border: 1px solid rgb(194, 200, 207);
+	cursor: pointer;
 	border-style:;
 	cursor: pointer;
 	margin: 5px 0;
@@ -269,11 +285,11 @@ body {
 		</div>
 
 		<div class="row mt-2 border-bottom "></div>
-		<div class="row mt-2 ">
-			<div class=" col-1"></div>
-			<div class="col-7 fw-bold">주문상품</div>
+		<div class="row mt-3 ">
+			
+			<div class="col ms-2 ps-3 fw-bold">주문상품</div>
 			<div class="col "></div>
-			<div class="row mt-2 "></div>
+			<div class="row mt-1 "></div>
 		</div>
 		<div id="buyPageContainer">
 			<c:forEach var="item" items="${data}" varStatus="status">
@@ -300,11 +316,17 @@ body {
 							<div class="col">
 								<div class="row mt-1 fw-bold">
 
-									<div class="col" style="font-size: 0.8em;">${item.productInfo.product_name}</div>
+									<div class="col" style="font-size: 0.9em;">${item.productInfo.product_name}</div>
 								</div>
 								<div class="row mt-1 fw-bold">
 
-									<div class="col text-secondary" style="font-size: 0.7em;">${item.optionInfo.product_option_name}</div>
+									<div class="col text-secondary" style="font-size: 0.8em;">${item.optionInfo.product_option_name}</div>
+
+								</div>
+								<div class="row mt-1 ">
+									<div class="col text-secondary" style="font-size: 0.8em;">
+										수량 <span>${product_amount[status.index]}</span>개
+									</div>
 									<div class="col text-secondary text-end"
 										style="font-size: 0.8em;">
 										<del>
@@ -312,10 +334,7 @@ body {
 										</del>
 									</div>
 								</div>
-								<div class="row fw-bold">
-									<div class="col text-secondary" style="font-size: 0.7em;">
-										수량 <span>${product_amount[status.index]}</span>개
-									</div>
+								<div class="row">
 									<div class="col fw-bold text-end">
 										<span>${(item.optionInfo.product_option_price - item.salePrice) * product_amount[status.index]}</span>원
 									</div>
@@ -327,8 +346,10 @@ body {
 							<div class="col " style="font-size: 0.9em;">적립금 혜택</div>
 							<div class="col text-end text-primary fw-bold"
 								style="font-size: 0.8em;">
-								<span>${((item.optionInfo.product_option_price - item.salePrice) * product_amount[status.index] * 0.03)}</span>원
-								적립
+
+								<span class="point-value"
+									data-point="${((item.optionInfo.product_option_price - item.salePrice) * product_amount[status.index] * 0.03)}"></span>
+
 							</div>
 						</div>
 						<div class="row mt-1 ">
@@ -361,6 +382,7 @@ body {
 				</div>
 			</c:forEach>
 		</div>
+		<div class="row mt-2"></div>
 		<div class="row mt-2 empty"></div>
 
 		<div class="row">
@@ -377,13 +399,16 @@ body {
 						aria-labelledby="flush-headingOne"
 						data-bs-parent="#accordionFlushExample">
 						<div class="accordion-body">
-							<div class="row">
+							<div class="row mt-2">
 								<div class="col">${sessionUser.customer_name}
 									(${sessionUser.customer_phone})</div>
 							</div>
-							<div class="row">
+							<div class="row ">
 								<div class="col">${sessionUser.customer_id}</div>
 							</div>
+							<div class="row mt-3 mb-2">
+								<div class="col text-secondary" style="font-size: 0.7em;">*주문자 정보는 마이페이지 > 내정보 에서 변경가능합니다.</div>
+							</div>							
 						</div>
 					</div>
 				</div>
@@ -393,20 +418,20 @@ body {
 		<div class="row mt-2">
 			<div class="col-1"></div>
 			<div class="col">
-				<div class="row">
-					<div class="col">
+				<div class="row mt-2">
+					<div class="col ps-0">
 						<strong class="me-3">배송지 정보 </strong>
 						<button class=" btn btn-outline-secondary btn-sm" type="button">
 							변경</button>
 					</div>
 				</div>
 				<div class="row  mt-2 border rounded-2">
-					<div class="row mt-2 " style="font-size: 0.9em;">
-						<div class="col">${mainAddress.customer_address_name }</div>
+					<div class="row mt-2 ms-1 " style="font-size: 0.9em;">
+						<div class="col">${mainAddress.customer_address_name }(기본 배송지)</div>
 						<input type="hidden" name="orders_address_name"
 							value="${mainAddress.customer_address_name }">
 					</div>
-					<div class="row text-secondary" style="font-size: 0.9em;">
+					<div class="row mt-2 ms-1 " style="font-size: 0.9em;">
 						<div class="col">${mainAddress.customer_address_receiver}
 							(${mainAddress.customer_address_phone })</div>
 
@@ -415,7 +440,7 @@ body {
 							type="hidden" name="orders_address_phone"
 							value="${mainAddress.customer_address_phone }">
 					</div>
-					<div class="row text-secondary" style="font-size: 0.9em;">
+					<div class="row mt-2 ms-1 " style="font-size: 0.9em;">
 						<div class="col">${mainAddress.customer_address_main }
 							(${mainAddress.customer_address_detail })</div>
 						<input type="hidden" name="orders_address"
@@ -423,19 +448,19 @@ body {
 							type="hidden" name="orders_detail_address"
 							value="${mainAddress.customer_address_detail }">
 					</div>
-					<div class="row mt-2">
-						<div class="col">
+					<div class="row ps-3 mt-2 mb-2">
+						<div class="col pe-0 me-0 text-secondary">
 							<input class="form-control" type="text"
 								name="orders_shipping_message" placeholder="배송 요청사항">
 						</div>
 					</div>
-					<div class="row mt-2"></div>
+					
 				</div>
 			</div>
 			<div class="col-1"></div>
 		</div>
 
-
+		<div class="row mt-2"></div>
 		<div class="row mt-2 empty"></div>
 
 
@@ -562,17 +587,17 @@ body {
 		</div>
 		<div class="row mt-3 border-top">
 			<div class="row mt-3">
-				<div class="col ms-2" style="font-size: 0.9em;">총 상품 금액</div>
+				<div class="col ms-2" style="font-size: 1em;">총 상품 금액</div>
 				<div class="col text-end" id="totalProductPrice"></div>
 			</div>
-			<div class="row mt-2 text-secondary" style="font-size: 0.8em;">
-				<div class="col-1"></div>
-				<div class="col ">상품 금액</div>
+			<div class="row mt-2 text-secondary" style="font-size: 0.9em;">
+				
+				<div class="col ms-3 ">상품 금액</div>
 				<div class="col text-end" id="productTotalPrice"></div>
 			</div>
-			<div class="row mt-1 text-secondary" style="font-size: 0.8em;">
-				<div class="col-1"></div>
-				<div class="col ">할인 합계</div>
+			<div class="row mt-1 text-secondary" style="font-size: 0.9em;">
+				
+				<div class="col ms-3 ">할인 합계</div>
 				<div class="col text-end">
 					<span class="text-end text-danger" id="saleRate"> SAVE</span> <span
 						class="text-end text-primary" id="totalSalePrice3"> 0원</span>
@@ -580,8 +605,9 @@ body {
 			</div>
 
 			<div class="row mt-2 mb-2">
-				<div class="col ms-2" style="font-size: 0.9em;">총 배송비</div>
-				<div class="col text-end" style="font-size: 0.8em;" id="totalShippingPrice"></div>
+				<div class="col ms-2" style="font-size: 1em;">총 배송비</div>
+				<div class="col text-end" style="font-size: 0.9em;"
+					id="totalShippingPrice"></div>
 			</div>
 		</div>
 	</div>
@@ -621,13 +647,13 @@ body {
 					aria-labelledby="flush-headingPoint"
 					data-bs-parent="#accordionFlushPoint">
 					<div class="accordion-body">
-						<div class="row text-secondary" style="font-size: 0.9em;">
+						<div class="row " style="font-size: 0.9em;">
 							<div class="col">구매 확정 시 적립</div>
-							<div class="col text-end" id="buyPoint"></div>
+							<div class="col text-primary text-end" id="buyPoint"></div>
 						</div>
-						<div class="row text-secondary" style="font-size: 0.9em;">
+						<div class="row " style="font-size: 0.9em;">
 							<div class="col">리뷰 작성 시 적립</div>
-							<div class="col text-end" id="reviewPoint"></div>
+							<div class="col text-primary text-end" id="reviewPoint"></div>
 						</div>
 					</div>
 				</div>
@@ -645,7 +671,7 @@ body {
 				<div class="col-1"></div>
 				<div class="col">
 					<div class="d-grid gap-2">
-						<button class="btn btn-primary btn-lg" type="button"
+						<button class="btn  btn-lg" type="button" style="background-color: rgb(253, 152, 67); color: white;"
 							onclick="submitOrderForm()">
 							<div class="row fs-5">
 								<div class="col text-center" id="finalPrice"></div>
@@ -669,5 +695,20 @@ body {
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
 		crossorigin="anonymous"></script>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+   $(document).ready(function() {
+      // 페이지가 완전히 로드된 후에 실행되는 코드
+      const pointElements = document.querySelectorAll('.point-value');
+      pointElements.forEach((element) => {
+         const pointValue = element.dataset.point;
+         const formattedPoint = parseFloat(pointValue).toFixed(0);
+         console.log(formattedPoint);
+         // 여기서부터 formattedPoint 값을 사용하면 됩니다.
+         element.innerText = formattedPoint + '원 적립';
+      });
+   });
+</script>
 </body>
 </html>

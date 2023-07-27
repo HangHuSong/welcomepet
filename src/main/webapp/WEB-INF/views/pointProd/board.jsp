@@ -53,17 +53,17 @@
 						<div class="row">
 							<div class="col-2">
 								<a href="/welcomepet/pointProd/board"
-									class="btn btn-black py-0 ps-2"
+									class="btn btn-black py-0 ps-1"
 									style="border: transparent; outline: none;"><i
-									class="bi bi-arrow-left"></i> </a>
+									class="bi bi-arrow-left" style="font-size: 1.3em;"></i> </a>
 							</div>
 							<div class="col-1"></div>
 							<div class="col-6 text-center" style="color: #fd7e14;">
 								<a id="main" href="../pointProd/board">커뮤니티</a>
 							</div>
 							<div class="col-2"></div>
-							<div class="col-1 p-0">
-								<i class="bi bi-search p-0"></i>
+							<div class="col-1 ps-0">
+								<i class="bi bi-search" style="font-size: 1.2em;"></i>
 							</div>
 						</div>
 						<div class="row my-2">
@@ -95,11 +95,11 @@
 				<div class="row">
 					<div class="col mb-4">
 						<div class="row">
-							<div class="col mt-4">
-								<div class="row mt-5">
+							<div class="col mt-4 pt-3">
+								<div class="row mt-4">
 									<div class="col p-0">
-										<img class="img-fluid"
-											src="https://images.pet-friends.co.kr/storage/pet_friends/tab_banner/8/f/e/3/1/d/2/8fe31d2a601e259b912ac4bb56b21bf7/10000/ca150244df92a8cd209a2bd21ac2c5a1.jpeg">
+										<img class="img-fluid pt-3"
+											src="https://images.pet-friends.co.kr/storage/pet_friends/tab_banner/6/d/a/7/9/b/c/6da79bc359a29e2870714c21fcf3d013/10000/246a857d8ef7463f6b4431269c1f96d6.jpeg">
 									</div>
 								</div>
 							</div>
@@ -116,15 +116,14 @@
 															<!-- 베스트3 -->
 															<c:forEach items="${list2 }" var="map">
 																<div
-																	class="col-12 border-bottom border-light-subtle border-1 fw-semibold"
+																	class="col-12 border-bottom border-light-subtle border-1 fw-medium"
 																	style="padding: 0.3em 0.7em;"
 																	onclick="location.href='./readContent?board_no=${map.boardDto.board_no }'">
 																	<div class="row">
 																		<div class="col">
 																			<a class="text-decoration-none text-black"
-																				style="font-size: 0.9em;"><i
-																				class="bi bi-fire text-danger"></i> <!-- <i
-																				class="bi bi-hand-thumbs-up text-danger"></i> --> <span
+																				style="font-size: 0.95em;"><i
+																				class="bi bi-fire text-danger"></i><span
 																				class="me-1"></span>${map.boardDto.board_title }</a>
 																		</div>
 																	</div>
@@ -139,77 +138,73 @@
 											</div>
 										</div>
 										<div class="row">
-											<c:forEach items="${list }" var="map">
-												<div class="col-12 border-bottom py-2"
-													onclick="location.href='./readContent?board_no=${map.boardDto.board_no }'">
-													<div class="row mb-2">
-														<div class="col">
+											<div class="col">
+												<div class="row">
+													<c:forEach items="${list }" var="map">
+														<div class="col-12 border-bottom"
+															onclick="location.href='./readContent?board_no=${map.boardDto.board_no }'">
 															<div class="row">
-																<div class="col mb-1">
-																	<a class="text-decoration-none text-black fw-semibold"
-																		style="font-size: 1em; font-weight: 2em">${map.boardDto.board_title }</a>
-																</div>
-															</div>
-															<div class="row text-secondary"
-																style="font-size: 0.9em;">
-																<div class="col mb-1">
-																	<span class="me-2">
-																		${map.customerDto.customer_nickname }</span> <span
-																		class="me-2" style="font-size: 0.9em;"> <fmt:formatDate
-																			value="${map.boardDto.board_reg_date }"
-																			pattern="yy.MM.dd" />
-																	</span>
-																	<%-- <span> 조회 ${map.boardDto.board_read_count }</span> --%>
-																</div>
-															</div>
-														</div>
-														<div class="col-3 pe-2 ps-4">
-															<c:forEach items="${map.imageDtoList}" var="imageDto">
-																<img src="/uploadFiles/${imageDto.board_image_link}"
-																	class="w-100">
-															</c:forEach>
-														</div>
-													</div>
-													<div class="row">
-														<div class="col">
-															<div class="row text-secondary"
-																style="font-size: 0.79em;">
 																<div class="col">
-																	<span class="me-2"><i
-																		class="bi bi-chat-square-dots">
-																			${map.countComment}</i></span> <span class="me-2"><i
-																		class="bi bi-hand-thumbs-up"> ${map.countLike}</i></span>
+																	<div class="row">
+																		<div class="col mt-2 pt-1">
+																			<a
+																				class="text-decoration-none text-black fw-semibold"
+																				style="font-size: 1em;">${map.boardDto.board_title }</a>
+																		</div>
+																	</div>
+																	<div class="row text-secondary"
+																		style="font-size: 0.85em;">
+																		<div class="col mb-1">
+																			<span class="me-2">
+																				${map.customerDto.customer_nickname }</span> <span
+																				class="me-2" style="font-size: 0.83em;"> <fmt:formatDate
+																					value="${map.boardDto.board_reg_date }"
+																					pattern="yy.MM.dd" />
+																			</span>
+																		</div>
+																	</div>
+																	<div class="row text-secondary"
+																		style="font-size: 0.79em;">
+																		<div class="col mb-2">
+																			<span class="me-2"><i class="bi bi-eye">
+																					${map.boardDto.board_read_count}</i></span> <span class="me-2"><i
+																				class="bi bi-chat-square-dots">
+																					${map.countComment}</i></span>
+																		</div>
+																	</div>
 																</div>
-																<div class="col-2 text-end">
-																	<span><i class="bi bi-eye">
-																			${map.boardDto.board_read_count}</i></span>
+																<div class="col-3 my-2 ps-1 ms-1 me-0 pe-2">
+																	<c:forEach items="${map.imageDtoList}" var="imageDto">
+																		<img src="/uploadFiles/${imageDto.board_image_link}"
+																			style="width: 100%; border-radius: 10%;">
+																	</c:forEach>
 																</div>
 															</div>
 														</div>
+													</c:forEach>
+												</div>
+												<div class="row fixed-bottom mb-5 pb-4" style="height: 54">
+													<div class="col"></div>
+													<div
+														class="col-3 d-flex justify-content-center align-items-center">
+														<c:choose>
+															<c:when test="${empty customerUser}">
+																<a href="../customer/login"
+																	class="btn btn-lg shadow rounded-circle d-flex justify-content-center align-items-center"
+																	style="color: white; height: 52px; background-color: #fd7e14">
+																	<i class="bi bi-pencil-square" style="color: white;"></i>
+																</a>
+															</c:when>
+															<c:otherwise>
+																<a href="./writeContent"
+																	class="btn btn-lg shadow rounded-circle d-flex justify-content-center align-items-center"
+																	style="color: white; height: 52px; background-color: #fd7e14">
+																	<i class="bi bi-pencil-square" style="color: white;"></i>
+																</a>
+															</c:otherwise>
+														</c:choose>
 													</div>
 												</div>
-											</c:forEach>
-										</div>
-										<div class="row fixed-bottom mb-5 pb-4" style="height: 54">
-											<div class="col"></div>
-											<div
-												class="col-3 d-flex justify-content-center align-items-center">
-												<c:choose>
-													<c:when test="${empty customerUser}">
-														<a href="../customer/login"
-															class="btn btn-lg shadow rounded-circle d-flex justify-content-center align-items-center"
-															style="color: white; height: 52px; background-color: #fd7e14">
-															<i class="bi bi-pencil-square" style="color: white;"></i>
-														</a>
-													</c:when>
-													<c:otherwise>
-														<a href="./writeContent"
-															class="btn btn-lg shadow rounded-circle d-flex justify-content-center align-items-center"
-															style="color: white; height: 52px; background-color: #fd7e14">
-															<i class="bi bi-pencil-square" style="color: white;"></i>
-														</a>
-													</c:otherwise>
-												</c:choose>
 											</div>
 										</div>
 									</div>

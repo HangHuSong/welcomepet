@@ -418,7 +418,7 @@ function refreshTotalWishCount(){
 		        optionDiv.appendChild(optionCol1);
 
 		        const optionNameCol = document.createElement("div");
-		        optionNameCol.classList.add("col");
+		        optionNameCol.classList.add("col-7","px-0");
 		        optionDiv.appendChild(optionNameCol);
 
 		        const optionName = document.createElement("span");
@@ -427,7 +427,7 @@ function refreshTotalWishCount(){
 		        optionNameCol.appendChild(optionName);
 
 		        const optionPriceCol = document.createElement("div");
-		        optionPriceCol.classList.add("col", "text-end","fw-bold");
+		        optionPriceCol.classList.add("col", "text-end","fw-bold","px-0");
 		        optionDiv.appendChild(optionPriceCol);
 
 		        const optionPrice = document.createElement("span");
@@ -895,7 +895,7 @@ function toggleWish(productNo) {
 		if(xhr.readyState == 4 && xhr.status == 200){
 			const response = JSON.parse(xhr.responseText);
 			// js 작업..
-
+			refreshTotalWishCount();
 			refreshMyHeart(productNo);
 		}
 	}
@@ -978,6 +978,10 @@ body {
 	color: grey;
 	cursor: pointer;
 	z-index: 10;
+}
+.fLlDaL {
+    background-color: rgb(244, 247, 250);
+    padding: 3rem 1.6rem 12rem;
 }
 
 .swiper-button-prev::after, .swiper-button-next::after {
@@ -1124,7 +1128,7 @@ body {
 
 
 	<div
-		class="container px-0 mx-0 align-items-center justify-content-center">
+		class="container  mx-0 align-items-center justify-content-center">
 		<div class="row shadow-sm p-3 mb-5 bg-body-tertiary rounded">
 			<div class="col">
 				<nav
@@ -1205,17 +1209,17 @@ body {
 				</div>
 			</div>
 		</div>
-		<div class="row mt-3 ">
+		<div class="row mt-3 mb-4">
 			<div class="col-1"></div>
 			<div class="col">
-				<div class="row mt-2 border align-items-center">
+				<div class="row mt-2 border align-items-center" onclick="location.href='./searchProduct?searchWord=${ data.bizInfo.biz_store_name}'">
 					<div class="col-3 ps-0">
 						<img
-							src="/uploadFiles/WelcomePet/${data.productInfo.product_thumbnail}"
+							src="/uploadFiles/WelcomePet/${data.bizInfo.biz_store_main_img}"
 							class="embed-responsive-item product-thum" alt="...">
 					</div>
 					<div class="col align-items-center fw-bold"
-						style="font-size: 0.9em;">판매자 이름</div>
+						style="font-size: 0.9em;">${data.bizInfo.biz_store_name }</div>
 				</div>
 			</div>
 			<div class="col-1"></div>
@@ -1228,7 +1232,7 @@ body {
 			<div class="row mt-2"></div>
 			<c:forEach items="${data.productImgList }" var="map">
 				<div class="row mt-2 embed-responsive embed-responsive-4by3">
-					<img src="/uploadFiles/WelcomePet/${map.product_detail_image_link}"
+					<img src="/uploadFiles/WelcomePet/productDetailImage/${map.product_detail_image_link}"
 						class="embed-responsive-item product-thum" alt="...">
 				</div>
 			</c:forEach>
@@ -1240,7 +1244,7 @@ body {
 			</div>
 			<div class="row mt-2 px-0" id="relatedList"></div>
 		</div>
-	</div>
+
 	<div class="row mt-2 empty" style="height: 1.5em;"></div>
 
 	<div class="row ps-2">
@@ -1317,6 +1321,7 @@ body {
 				</div>
 			</div>
 		</div>
+		
 		<div class="row mt-2">
 		  <div class="col">
 		  <div class="d-grid gap-2"> 
@@ -1325,28 +1330,31 @@ body {
 		    </button> </div>
 		  </div>
 		</div>
+		<div class="row mt-2"></div>
 	</div>
 
 
-	<div class="row mt-1 ps-2">
-		<jsp:include page="../common/serviceNavi.jsp"></jsp:include>
+	<div class="row mt-1 ">
+	</div>	
+	<jsp:include page="../common/serviceNavi.jsp"></jsp:include>	
 		<div class="row mb-4">
 			<div class="col">
 				<div class="navbar navbar-dark bg-white fixed-bottom border-top "
 					style="height: 4em;">
+					
 					<div class="col-1  mx-2 text-center">
 						<div class="row">
 							<div class="col">
 
 								<a class="text-danger bi bi-heart" id="heartBox"
-									onclick="toggleWish()" role="button"> </a>
+									onclick="toggleWish(${data.productInfo.product_no})" role="button"> </a>
 
 
 
 							</div>
 						</div>
 						<div class="row" style="height: 0.9em; margin-top: -0.5em;">
-							<div class="col">
+							<div class="col" style="font-size: 0.9em;">
 								<span id="totalWishCount">3</span>
 							</div>
 						</div>

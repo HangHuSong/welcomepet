@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,6 +50,12 @@ public class PointProdServiceImpl {
 			int customer_no = commentDto.getCustomer_no();
 
 			CustomerDto customerDto = pointProdSqlMapper.selectCustomerByCustomerNo(customer_no);
+			
+			// BoardDto를 CommentDto로 수정하여 사용한다고 가정합니다.
+			String board_comment_content = commentDto.getBoard_comment_content();
+			board_comment_content = StringEscapeUtils.escapeHtml4(board_comment_content);
+			board_comment_content = board_comment_content.replaceAll("\n", "<br>");
+			commentDto.setBoard_comment_content(board_comment_content);
 
 			map.put("customerDto", customerDto);
 			map.put("commentDto", commentDto);

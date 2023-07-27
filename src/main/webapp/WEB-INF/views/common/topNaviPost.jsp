@@ -1,29 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+    
 <head>
 <meta charset="UTF-8">
-<title>bootstrap</title>
-<%------ bootstrap ------%>
 <%-- viewport --%>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-<%-- link 
-<link 
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-	crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
---%>
+<%-- link --%>
+
 <style type="text/css">
+/* 글꼴모음 */
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family:'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+}
+/* 여기까지 글꼴모음 */
+
+#postTopNavBar {
+	font-family:'Pretendard-Regular';
+}
 #main{
 	text-decoration: none;
 	color:inherit;
   	font-family: 'Jua', sans-serif;
  	font-weight:700;
  	font-size:1.3em;
- 	color:#fd7e14;
+ 	color:#ffa500;
 }
 
 .topNavbar{
@@ -31,11 +53,11 @@
 	background-color: #ffffff;
 }
 </style>
-<%------ bootstrap ------%>
 </head>
+
 <body>
-<%------ 상단 네비  #333333; ------%>
-<nav class="navbar sticky-top bg-body-tertiary shadow-sm p-3" style="background-color:#ffffff">
+
+<nav id="postTopNavBar" class="topNavbar sticky-top bg-body-tertiary shadow-sm p-3" style="background-color:#ffffff">
 <div class="container p-0">
 	<div class="container p-0">
 
@@ -50,22 +72,12 @@
 	     </div>
 	     
 	     <div class="col d-flex justify-content-end p-0">
-	     <a class="btn bi bi-bell-fill text-secondary btn-lg p-0" role="button" href="#"></a>
+	     <a class="btn bi bi-bell text-secondary btn-lg p-0" role="button" href="#"></a>
 	     </div>
 	  	</div>
 	 </div>
   	</div>
 </div>
 </nav>
-<%------ 상단 네비 ------%>
 
-
-<%-- bootstrap : script
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-	crossorigin="anonymous">
-</script> --%>
-<%-- bootstrap : script--%>
 </body>
-</html>

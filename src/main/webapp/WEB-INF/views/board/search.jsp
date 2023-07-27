@@ -134,6 +134,32 @@ window.addEventListener("DOMContentLoaded", function(){
 body {
 	font-family: 'SUITE-Regular';
 }
+
+@import
+	url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css')
+	;
+
+body {
+	font-family: 'NanumSquare', sans-serif;
+}
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+	font-family: 'Pretendard-Regular';
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+body {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
 #biz-slide {
   width: 18%;
 }
@@ -196,7 +222,7 @@ body {
 
 		<div class="row mt-2">
 			<div class="col">
-				<img src="/uploadFiles/WelcomePet/banner/banner3.png"
+				<img src="/welcomepet/resources/img/banner/banner3.png"
 					style="width: 100%;" alt="...">
 			</div>
 		</div>
@@ -235,11 +261,11 @@ body {
 						<a class="btn btn-outline-primary fw-bold reco_search my-1"
 							role="button" href="./searchProduct?searchWord= 인섹트업"> 인섹트업</a>
 						<a class="btn btn-outline-primary fw-bold reco_search my-1"
-							role="button" href="./searchProduct?searchWord=노즈워크"> 영양제</a>
+							role="button" href="./searchProduct?searchWord=영양제"> 영양제</a>
 						<a class="btn btn-outline-primary fw-bold reco_search my-1"
-							role="button" href="./searchProduct?searchWord= 피니키"> 위글펫</a>
+							role="button" href="./searchProduct?searchWord= 위글펫"> 위글펫</a>
 						<a class="btn btn-outline-primary fw-bold reco_search my-1"  
-							role="button" href="./searchProduct?searchWord= 인섹트업"> 키니키니</a>																							
+							role="button" href="./searchProduct?searchWord= 키니키니"> 키니키니</a>																							
 					</div>
 				</div>
 			</div>
@@ -263,8 +289,8 @@ body {
 						</span>
 					</div>
 					<div class="col-6 py-2"
-						onclick="location.href='./searchProduct?searchWord=배변패드'">
-						<span class="fw-bold">6.</span> <span class="ps-2">배변패드</span> <span
+						onclick="location.href='./searchProduct?searchWord=패드'">
+						<span class="fw-bold">6.</span> <span class="ps-2">패드</span> <span
 							class="float-end pe-3"> <i
 							class="bi bi-caret-down-fill text-primary "></i>
 						</span>
@@ -289,8 +315,8 @@ body {
 						</span>
 					</div>
 					<div class="col-6 py-2"
-						onclick="location.href='./searchProduct?searchWord=노즈워크'">
-						<span class="fw-bold">8.</span> <span class="ps-2">노즈워크</span> <span
+						onclick="location.href='./searchProduct?searchWord=인섹트업'">
+						<span class="fw-bold">8.</span> <span class="ps-2">인섹트업</span> <span
 							class="float-end pe-3"> <i class="bi bi-dash "></i>
 						</span>
 					</div>
@@ -308,8 +334,8 @@ body {
 						</span>
 					</div>
 					<div class="col-6 py-2"
-						onclick="location.href='./searchProduct?searchWord=영양제'">
-						<span class="fw-bold">5.</span> <span class="ps-2">영양제</span> <span
+						onclick="location.href='./searchProduct?searchWord=나시'">
+						<span class="fw-bold">5.</span> <span class="ps-2">나시</span> <span
 							class="float-end pe-3"> <i
 							class="bi bi-caret-up-fill text-danger"></i>
 						</span>

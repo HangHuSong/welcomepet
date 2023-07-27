@@ -28,9 +28,8 @@
 	font-weight: 400;
 	font-style: normal;
 }
-
 body {
-	font-family: 'SUITE-Regular', sans-serif;
+	font-family: 'SUITE-Regular' !important;
 }
 
 a {
@@ -44,7 +43,7 @@ a:hover {
 
 #thumbnail {
 	object-fit: cover;
-	width: 387px;
+	width: 425px;
 	height: 376px;
 }
 
@@ -83,13 +82,12 @@ a:hover {
 
 .topNavbar {
 	/* background-color: #F4AE7A; */
-	background-color: #FFE1CF;
+	background-color: white;
 }
 
 #main {
 	color: inherit;
-	/* color: #F8961D; */
-	/* font-family:'KorailRoundGothicBold', sans-serif !important; */
+	text-decoration: none;
 	font-family: 'Jua', sans-serif;
 	font-weight: 700;
 	font-size: 1.3em;
@@ -354,8 +352,19 @@ a:hover {
                row2.appendChild(col3);
                 
                snapDetailContent.appendChild(row2);
-                
-                
+               
+               const hashRow = document.createElement("div");
+               hashRow.classList.add("row")
+               const hashCol = document.createElement("div");
+               hashCol.classList.add("col");
+               const hashSpan = document.createElement("span");
+               hashSpan.classList.add("text-primary");
+               hashSpan.style.fontSize = "14px";
+               hashSpan.innerText = "#애견의류 #애견패션 #반려견티셔츠 #강아지패션 #편안한의류 #강아지스타일 #애견소통";
+               hashCol.appendChild(hashSpan);
+               hashRow.appendChild(hashCol);
+               snapDetailContent.appendChild(hashRow);
+               
                 
 				// insert comment
                 const commentFormRow = document.createElement("div");
@@ -377,11 +386,11 @@ a:hover {
 	            commentSubmitBtnCol.classList.add("col", "d-grid", "px-0","py-0");
 	            const commentSubmitBtn = document.createElement("button");
 	            commentSubmitBtn.onclick = function() { registerComment(response.snapDetail.snap_board_no); };
-	            commentSubmitBtn.classList.add("btn","py-0");
+	            commentSubmitBtn.classList.add("btn","py-0","fw-bold");
 	            commentSubmitBtn.innerText = "게시";
 	            commentSubmitBtn.style.fontSize = "12px";
 	            commentSubmitBtn.style.color = "white";
-	            commentSubmitBtn.style.backgroundColor = "orange";
+	            commentSubmitBtn.style.backgroundColor = "#ffa500";
 	            commentSubmitBtnCol.appendChild(commentSubmitBtn);
 	            commentForm.appendChild(commentContentBoxCol);
 	            commentForm.appendChild(commentSubmitBtnCol);
@@ -515,8 +524,7 @@ a:hover {
 										<div class="row" style="font-size: 0.9em;">
 											<div class="col text-center fw-bold">
 												<a class="nav-link" href="/welcomepet/snap/main"
-													style="border-bottom: 2.5px solid gray"><i
-													class="bi bi-instagram"></i> 스냅</a>
+													style="border-bottom: 2.5px solid gray">스냅</a>
 											</div>
 											<div class="col text-center">
 												<a class="nav-link text-secondary"
@@ -551,7 +559,7 @@ a:hover {
 							<img id="profileImg"
 								src="/uploadFiles/WelcomePet/${data.dogDto.dog_image}"> <span
 								onclick="location.href = './dogProfile?dog_no=${data.dogDto.dog_no}';"
-								class="align-middle fw-bold mx-1 my-1 fs-5">${data.dogDto.dog_name}</span>
+								class="align-middle fw-bold mx-1 my-1 fs-6">${data.dogDto.dog_name}</span>
 						</div>
 						<div class="col d-flex justify-content-end">
 							<button id="followBtn" class="btn btn-sm bi bi-person-plus-fill">
@@ -597,30 +605,30 @@ a:hover {
 				</div>
 				<div class="row my-1">
 					<div class="col-3">
-						<img id="productSnap" src="/welcomepet/resources/img/snapProduct.png">
+						<a href="/welcomepet/board/productDetail?product_no=15"><img id="productSnap" src="/welcomepet/resources/img/snapProduct.png"></a>
 					</div>
 					<div class="col-9">
-						<div class="row align-items-center">
+						<div class="row mx-0 align-items-center">
 							<div class="col text-truncate">
-								<span class="">루비디 러블리바니 민소매 티셔츠 민트 M</span>
+								<span>루비디 러블리바니 민소매 티셔츠 민트 M</span>
 							</div>
 						</div>
-						<div class="row align-items-center">
+						<div class="row mx-0 align-items-center">
 							<div class="col">
-								<span>12,900원</span>
+								<span style="font-size: 13px;">12,900원</span>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="row my-1">
 					<div class="col">
-						<span class="text-primary" style="font-size: 0.9em;">#멍스냅 #강아지 #시츄 #15살 #인형</span>
+						<span class="text-primary" style="font-size: 0.9em;">#애견의류 #애견패션 #반려견티셔츠 #강아지패션 #편안한의류 #강아지스타일 #애견소통</span>
 					</div>
 				</div>
 				<div class="row mb-3">
 					<div class="col text-secondary">
 						<i class="bi bi-geo-alt-fill fs-5"></i><span
-							style="font-size: 13px;" class="mx-1">${data.snapBoardDto.snap_location}</span>
+							style="font-size: 12px;" class="mx-1">${data.snapBoardDto.snap_location}</span>
 					</div>
 				</div>
 			</div>
@@ -630,13 +638,13 @@ a:hover {
 	</div>
 	<div class="row fixed-bottom mb-5 pb-4 text-end">
 		<div class="col"></div>
-		<div class="col-3 me-2">
-			<a class="btn btn-lg shadow rounded-circle justify-content-center align-items-center" href="./postSnap" style="color:white; height:52px; background-color:#fd7e14">
+		<div class="col-3 d-flex justify-content-center align-items-center">
+			<a class="btn btn-lg shadow rounded-circle justify-content-center align-items-center" href="./postSnap" style="color:white; height:52px; background-color:#ffa500">
 				<i class="bi bi-pencil-square" style="color: white;"></i>
 			</a>
 		</div>
 	</div>
-	<jsp:include page="../common/bottomNavi.jsp"></jsp:include>
+	<jsp:include page="../common/bottomTabStyle.jsp"></jsp:include>
 
 
 
