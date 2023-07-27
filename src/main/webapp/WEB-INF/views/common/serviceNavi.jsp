@@ -3,7 +3,14 @@
 <div class="row 	 fLlDaL text-secondary"
 	style="background-color: rgb(244, 247, 250); padding: 2rem 1rem 5rem; font-size: 0.8em;">
 
+
+		<div class="row ">
+		  <div class="col">
+		    <img  src="/welcomepet/resources/img/adminLogo.png" style="height:3em; ">
+		  </div>
+		</div>
 	<div class="row">
+		
 		<div class="col fw-bold">
 			<a role="button">이용약관</a> <a role="button">개인(위치)정보 처리방침</a>
 		</div>
