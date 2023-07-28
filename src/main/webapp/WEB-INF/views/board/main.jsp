@@ -154,7 +154,7 @@
 				colImg.appendChild(img);
 				
 				const rowName = document.createElement("div");
-				rowName.classList.add("row", "r_name")
+				rowName.classList.add("row","mt-1", "r_name")
 				"location.href='./productDetail?product_no=${map.productInfo.product_no}'"
 				rowName.setAttribute("onclick","location.href='./productDetail?product_no="+data.productInfo.product_no+"'");
 				col1.appendChild(rowName);
@@ -441,7 +441,7 @@
 					colImg.appendChild(img);
 					
 					const rowName = document.createElement("div");
-					rowName.classList.add("row", "r_name")
+					rowName.classList.add("row","mt-1", "r_name")
 					rowName.setAttribute("onclick","location.href='./productDetail?product_no="+data.productInfo.product_no+"'");
 					col1.appendChild(rowName);
 					
@@ -720,7 +720,7 @@
 					colImg.appendChild(img);
 					
 					const rowName = document.createElement("div");
-					rowName.classList.add("row", "r_name")
+					rowName.classList.add("row","mt-1", "r_name")
 					"location.href='./productDetail?product_no=${map.productInfo.product_no}'"
 					rowName.setAttribute("onclick","location.href='./productDetail?product_no="+data.productInfo.product_no+"'");
 					col1.appendChild(rowName);
@@ -1080,7 +1080,7 @@ body {
 	<div class="container">
 		
 
-		<div class="row mt-2 border_bottom text-center fw-bold fs-6 text-secondary">
+		<div class="row mt-3 border_bottom text-center fw-bold fs-6 text-secondary">
 			<div class="col pe-0 ps-0">홈</div>
 			<div class="col pe-0 ps-0">베스트</div>
 			<div class="col pe-0 ps-0">특가존</div>

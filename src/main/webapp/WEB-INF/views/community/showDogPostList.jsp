@@ -81,7 +81,7 @@ body{
 }
 
 #commentBadge{
-	font-size: 1em;
+	font-size:1em;
     letter-spacing:0.02em;  
 }
 

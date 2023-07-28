@@ -18,13 +18,13 @@
 <style type="text/css">
 /* 글꼴모음 */
 @font-face {
-    font-family: 'Pretendard-Regular';
+    font-family:'Pretendard-Regular';
     src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
     font-weight: 400;
     font-style: normal;
 }
 @font-face {
-    font-family: 'SUITE-Regular';
+    font-family:'SUITE-Regular';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
@@ -82,7 +82,7 @@
 			<div class="col">
 				<div class="row text-center">
 				 <div class="col">
-				   <a class="btn bi bi-heart text-secondary pb-0 d-flex justify-content-center" style="font-size:1.3em"
+				   <a class="btn bi bi-hand-thumbs-up text-secondary pb-0 d-flex justify-content-center" style="font-size:1.3em"
 				    href="#" role="button"></a>
 				 </div>
 				 <div class="col" style="font-size:0.6em">좋아요</div>
@@ -92,7 +92,7 @@
 			<div class="col">
 				<div class="row text-center">
 				 <div class="col">
-				   <a class="btn bi bi-person-circle text-secondary pb-0 d-flex justify-content-center" style="font-size:1.4em"
+				   <a class="btn bi bi-person-circle text-secondary pb-0 d-flex justify-content-center" style="font-size:1.3em"
 				    href="/welcomepet/customer/my" role="button"></a>
 				 </div>
 				 <div class="col" style="font-size:0.6em">마이페이지</div>

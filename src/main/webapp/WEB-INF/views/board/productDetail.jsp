@@ -758,7 +758,7 @@ function getRelatedList() {
 			heartBox.setAttribute("onclick", "toggleWish("+ data.productInfo.product_no +")");
 			heartBox.style.position = "absolute"; // 절대 위치 설정
 			heartBox.style.bottom = "0"; // 하단 위치
-			heartBox.style.right = "10px"; // 오른쪽 위치
+			heartBox.style.right = "1em"; // 오른쪽 위치
 
 			heartBox.setAttribute("role", "button");
 			colImg.appendChild(heartBox);
@@ -949,16 +949,14 @@ window.addEventListener("DOMContentLoaded", function(){
 
 <style type="text/css">
 @font-face {
-	font-family: 'SUITE-Regular';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2')
-		format('woff2');
-	font-weight: normal;
-	font-style: normal;
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
 }
 
 body {
-	font-family: 'SUITE-Regular';
+	font-family: 'Pretendard-Regular';
 }
 
 /* Swiper 슬라이드 컨테이너 스타일 */
@@ -1195,9 +1193,9 @@ body {
 
 		<div class="row mt-2 empty"></div>
 
-		<div class="row mt-3 delism ps-2">
+		<div class="row mt-3 delism ms-3">
 			<div class="row mt-2">
-				<div class="col-3 text-secondary">배송 안내</div>
+				<div class="col-3 ps-0 text-secondary">배송 안내</div>
 				<div class="col">
 					<div class="row">
 						<div class="col ps-0">배송비 :
@@ -1209,8 +1207,8 @@ body {
 				</div>
 			</div>
 		</div>
-		<div class="row mt-3 mb-4">
-			<div class="col-1"></div>
+		<div class="row ms-3	 mt-3 mb-4">
+
 			<div class="col">
 				<div class="row mt-2 border align-items-center" onclick="location.href='./searchProduct?searchWord=${ data.bizInfo.biz_store_name}'">
 					<div class="col-3 ps-0">
@@ -1260,7 +1258,7 @@ body {
 	<div class="row ps-3 mt-3">
 		<div class="row" style="align-items: center;">
 			<div class="col fw-bold pt-1" style="font-size: 1.2em;">상품 문의</div>
-			<div class="text-end me-3 col ">
+			<div class="text-end me-1 pe-0 col ">
 				<button class="btn btn-sm btn-outline-secondary"
 					style="height: 100%;">문의하기</button>
 			</div>
@@ -1346,15 +1344,15 @@ body {
 						<div class="row">
 							<div class="col">
 
-								<a class="text-danger bi bi-heart" id="heartBox"
-									onclick="toggleWish(${data.productInfo.product_no})" role="button"> </a>
+								<a class="text-danger bi bi-heart" id="heartBox" style="font-size: 1.3em;"
+									onclick="toggleWish(${data.productInfo.product_no});" role="button"> </a>
 
 
 
 							</div>
 						</div>
 						<div class="row" style="height: 0.9em; margin-top: -0.5em;">
-							<div class="col" style="font-size: 0.9em;">
+							<div class="col" style="font-size: 0.8em;">
 								<span id="totalWishCount">3</span>
 							</div>
 						</div>

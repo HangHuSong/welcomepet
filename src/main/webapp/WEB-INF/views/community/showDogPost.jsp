@@ -130,19 +130,28 @@
 }
 /* 여기까지 글꼴설정 */
 
-body{
+#body{
 	font-family: 'SUITE-Regular' !important;
+	letter-spacing:0.02em;
 }
 
 #postTitle{
 	font-size: 1.2em;
 }
+#postDetail{
+	font-size:0.8em;
+}
 
 .nickname{
-	font-size: 0.9em;
+	font-size:0.9em;
+	font-weight:600;
 }
 .date{
 	font-size: 0.75em;
+}
+
+#postContent{
+	
 }
 
 
@@ -160,7 +169,7 @@ body{
   <jsp:include page="../common/topNaviPost.jsp"></jsp:include>
 <%-- ----------- --%>  
 
-<div class="container mt-1 mb-5">
+<div class="container mt-1 mb-5" id="body">
 	<div class="row pb-3 border-bottom">
 		<div class="col">
 			<div class="row">
@@ -194,13 +203,13 @@ body{
 						</div>
 						
 						<%-- 상세글 정보 --%>		 		
-				 		<div class="col text-secondary pt-2" style="font-size:0.8em;">
+				 		<div class="col text-secondary pt-2" id="postDetail">
 				 			<%-- 프사 --%>
 				 			<span class="me-0">
 				 			 <img id="profileImg" class="rounded-circle" src="../resources/img/myDog.jpg" width="33">
 				 			</span>
-				 			<%-- 닉네임 --%>
-					 		<span class="me-2" style="font-weight:bold">
+				 			<%-- 닉네임  style="font-weight:bold"--%>
+					 		<span class="me-2" style="font-weight:600">
 					 		 ${postData.customerDto.customer_nickname}
 					 		</span>
 					 		 <%-- 작성일 --%>
@@ -225,7 +234,7 @@ body{
 							 		 </c:forEach>			 				
 				 				</div>
 				 			</div>
-				 			<div class="row mt-3">
+				 			<div class="row mt-3" id="postContent">
 				 				<div class="col">
 				 					${postData.showDogPostDto.show_dog_post_content}
 				 				</div>
@@ -240,7 +249,7 @@ body{
 					 		<div class="col text-center">
 						 		<c:choose>
 						 		 <c:when test="${checkWhetherLike == 0}">
-						 		 	<button class="btn btn-sm btn-outline-danger"><i class="bi bi-hand-thumbs-up" style="stroke-width:2px;"></i> ${countLike}</button>
+						 		 	<button class="btn btn-sm btn-outline-danger"><i class="bi bi-hand-thumbs-up"></i> ${countLike}</button>
 					 			 </c:when>
 					 			 
 					 			 <c:otherwise>
@@ -259,7 +268,7 @@ body{
 	<%-- 댓글 --%>
 	<div class="row mt-4">	
 		 <%-- 댓글 기타--%>
-		 <div class="col-7 fw-bold text-secondary ps-3 mb-3" style="font-size: 0.9em;">
+		 <div class="col-7 fw-bold ps-3 mb-3" style="font-size: 0.9em;">
 		 	<%-- 댓글수 --%>
 			<span>
 			 댓글 ${countComment}
@@ -381,7 +390,7 @@ body{
 				  	</div>  					  	
 				  </div>
 				 
-				  <div class="row">
+				  <div class="row pt-0 align-items-start">
 				   <%-- 댓글 데이터 --%>
 				   <div class="col-12 content">내용</div>
 				   <div class="col text-secondary date">날짜
