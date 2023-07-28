@@ -1031,7 +1031,7 @@ body {
             position: fixed;
              box-shadow: rgba(0, 0, 0, 0.04) 0.2rem 0.4rem ;
               border: 0.1rem solid rgb(0, 80, 255);
-            bottom: 2.5em;
+            bottom: 2.3em;
             right: 0.6em; 
             width: 1.4em;
             height: 1.4em;
@@ -1043,6 +1043,7 @@ body {
             font-size: 2em; 
             cursor: pointer;
             opacity: 1;
+                      z-index : 1000;
         }
 
         /* 스크롤 시 나타나는 버튼 스타일 */
@@ -1064,6 +1065,7 @@ body {
             cursor: pointer;
             opacity: 0; /* 초기에는 버튼 숨김 */
             transition: opacity 0.3s;
+            z-index : 1000;
         }
 
         .scroll-button.show {
@@ -1084,7 +1086,7 @@ body {
 			<div class="col pe-0 ps-0">특가존</div>
 			<div class="col">리뷰이벤트</div>
 		</div>
-		<div class="row mt-3 ps-0 pe-0">
+		<div class="row mt-2 ps-0 pe-0">
 			<div id="carouselExampleIndicators" class="carousel slide ps-0 pe-0"
 				data-bs-ride="true">
 				<div class="carousel-indicators">
