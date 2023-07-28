@@ -12,7 +12,7 @@
 			<div class="col-1"></div>
 			<div class="col-6" style="text-align: center;">마이페이지</div>
 			<div class="col-1 ">
-				<a class="btn bi bi-search fs-3" role="button"
+				<a class="btn bi bi-search fs-4" role="button"
 					href="/welcomepet/board/search"> </a>
 			</div>
 			<div class="col-2">

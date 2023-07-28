@@ -26,13 +26,13 @@
 		 <a role="button"> 공지사항</a>
 		</div>
 	</div>
-	<div class="row mt-2">
+	<div class="row mt-3">
 		<div class="col">평일 9:00~20:00 | 주말(토,일) 9:00~18:00</div>
 	</div>
 	<div class="row">
 		<div class="col">공휴일 휴무 | 점심시간 13:00~14:00</div>
 	</div>
-	<div class="row">
+	<div class="row mt-3">
 		<div class="col">어서오개 입점 또는 제휴 문의 md@welcomepet.co.kr</div>
 	</div>
 	<div class="row">

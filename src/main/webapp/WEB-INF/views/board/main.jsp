@@ -1030,7 +1030,7 @@ body {
         .always-show-button {
             position: fixed;
              box-shadow: rgba(0, 0, 0, 0.04) 0.2rem 0.4rem ;
-              border: solid 1px rgb(223, 227, 232);
+              border: 0.1rem solid rgb(0, 80, 255);
             bottom: 2.5em;
             right: 0.6em; 
             width: 1.4em;

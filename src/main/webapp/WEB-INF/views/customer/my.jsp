@@ -17,16 +17,14 @@
 
 <style type="text/css">
 @font-face {
-	font-family: 'SUITE-Regular';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2')
-		format('woff2');
-	font-weight: normal;
-	font-style: normal;
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
 }
 
 body {
-	font-family: 'SUITE-Regular';
+	font-family: 'Pretendard-Regular';
 }
 
 .product-thum {
@@ -179,6 +177,10 @@ body {
 				</div>
 				<div class="row mt-1 border-bottom">
 					<div class="col btn text-start"
+						onclick="location.href='../board/recentProductList?customer_no=${sessionUser.customer_no}'">최근 본 상품</div>
+				</div>				
+				<div class="row mt-1 border-bottom">
+					<div class="col btn text-start"
 						onclick="location.href='./wishList'">
 						찜한상품 <span class=" ps-2 text-primary fw-bold">3</span>
 					</div>
@@ -208,15 +210,16 @@ body {
 				<div class="row mt-1 border-bottom">
 					<div class="col btn text-start" onclick="location.href='./addInquiry'">1:1 문의하기</div>
 				</div>
-				<div class="row mt-1 border-bottom">
+				<div class="row mt-1 ">
 					<div class="col btn text-start">공지사항</div>
-				</div>				
+				</div>
+				<div class="row mt-2"></div>				
 			</div>
 		</div>
 
 		<div class="row">
 			<jsp:include page="../common/serviceNavi.jsp"></jsp:include>
-			<jsp:include page="../common/bottomNavi.jsp"></jsp:include>
+			<jsp:include page="../common/bottomNavi2.jsp"></jsp:include>
 		</div>
 	</div>
 
