@@ -26,8 +26,8 @@
 		object-fit: cover;
 	}
 	.img{
-		width: 138px;
-		height: 138px;
+		width: 125px;
+		height: 125px;
 		overflow: hidden;
 		object-fit: cover;
 	}
@@ -115,7 +115,7 @@
 			<div class="col text-center">
 				<div class="row">
 					<div class="col">
-						<span class="fw-bold">10</span>
+						<span class="fw-bold">11</span>
 					</div>
 				</div>
 				<div class="row mt-1">
@@ -127,7 +127,7 @@
 			<div class="col text-center">
 				<div class="row">
 					<div class="col">
-						<span class="fw-bold">10</span>
+						<span class="fw-bold">5</span>
 					</div>
 				</div>
 				<div class="row mt-1">
@@ -139,7 +139,7 @@
 			<div class="col text-center">
 				<div class="row">
 					<div class="col">
-						<span class="fw-bold">10</span>
+						<span class="fw-bold">7</span>
 					</div>
 				</div>
 				<div class="row mt-1">
@@ -181,9 +181,9 @@
 		</div>
 		
 		<!-- dog의 게시글 -->
-		<div class="row row-cols-3 pt-2">
+		<div class="row row-cols-3 pt-2 px-0">
 			<c:forEach items="${list}" var="img">
-				<div class="col px-0">
+				<div class="col-auto px-0">
 					<a href="./readSnap?snap_board_no=${img.snap_board_no}">
 						<img class="img" src="/uploadFiles/thumbnail/${img.snap_thumbnail}">
 					</a>

@@ -645,7 +645,7 @@ a:hover {
 
 
 	<!-- Modal -->
-	<div class="modal fade" id="snapDetailModal" tabindex="-1"
+	<div class="modal fa0de" id="snapDetailModal" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
