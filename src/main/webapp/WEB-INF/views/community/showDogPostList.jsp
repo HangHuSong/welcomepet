@@ -124,7 +124,7 @@ body{
 						   <%-- 이미지 유무 --%>
 						   <div class="col d-flex align-items-center ps-1">
 						 	<c:if test="${bestList.checkImg > 0}">
-							   	  <span style="color:#828282">
+							   	  <span style="color:#5c5c5c">
 							   	   <i class="bi bi-image"></i>
 							   	  </span>
 					   	    </c:if>
@@ -238,7 +238,7 @@ body{
 	<div class="col-3 d-flex justify-content-center align-items-center">
 	 	<a class="btn btn-lg shadow rounded-circle d-flex justify-content-center align-items-center" href="./showDogUpload" 
 	 	   style="color:white; height:52px; background-color:#ffa500">
-	 	<i class="bi bi-pencil-square" style="color: white;"></i></a>
+	 	<i class="bi bi-pencil-square d-flex justify-content-center" style="color: white;"></i></a>
 	</div>
 </div>
 

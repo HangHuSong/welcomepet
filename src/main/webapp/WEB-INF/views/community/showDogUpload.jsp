@@ -106,7 +106,7 @@
 		 
 		 <div class="row">
 		 	<div class="col border-bottom py-2 fw-bold fs-5">
-			 <input type="text" class="form-control-plaintext" name="show_dog_post_title" placeholder="제목을 입력해주세요">
+			 <input type="text" class="form-control-plaintext" name="show_dog_post_title" placeholder="제목을 입력하세요">
 			</div>
 		 </div>
 		 
