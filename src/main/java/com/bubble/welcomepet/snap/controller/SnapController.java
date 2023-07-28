@@ -38,6 +38,7 @@ public class SnapController {
 		int customer_no = customerUser.getCustomer_no();
 		List<Map<String, Object>> list = snapService.getSnapList(customer_no);
 		model.addAttribute("list", list);
+		
 		return "snap/main";
 	}
 	

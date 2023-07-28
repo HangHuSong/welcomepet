@@ -37,8 +37,8 @@
 					const tr = document.createElement("tr");
 					tr.classList.add("align-middle");
 					tr.style.height = "48px";
-					const td1 =  document.createElement("td");
-					tr.appendChild(td1);
+					/* const td1 =  document.createElement("td");
+					tr.appendChild(td1); */
 					
 					const td2 =  document.createElement("td");
 					td2.innerText = request.bizDto.biz_store_name;
@@ -49,7 +49,7 @@
 					tr.appendChild(td3);
 					
 					const td31 = document.createElement("td");
-					td31.innerText = request.statementDto.statement_price + "원"; 
+					td31.innerText = request.statementDto.statement_price + "원";
 					tr.appendChild(td31);
 					
 					const td4 = document.createElement("td"); 
@@ -105,8 +105,6 @@
 		
 		<div class="row">
 			<%@ include file="../common/adminTab.jsp"%>
-			
-			
 			<div class="col">
 				<div class="row">
 					<div class="col">
@@ -123,12 +121,11 @@
 						<table class="table text-center">
 							<thead class="table-dark">
 								<tr>
-									<td></td>
-									<td scope="col">판매자</td>
-									<td scope="col">정산년월</td>
+									<td>판매자</td>
+									<td>정산년월</td>
 									<td>정산금액</td>
-									<td scope="col">요청일</td>
-									<td scope="col">처리여부</td>
+									<td>요청일</td>
+									<td>처리여부</td>
 								</tr>
 							</thead>
 							<tbody id="settlementRequestListBox" class="align-items-center justify-content-center">
