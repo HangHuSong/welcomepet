@@ -1096,11 +1096,13 @@ body {
 					<button type="button" data-bs-target="#carouselExampleIndicators"
 						data-bs-slide-to="2" aria-label="Slide 3"></button>
 					<button type="button" data-bs-target="#carouselExampleIndicators"
-						data-bs-slide-to="3" aria-label="Slide 4"></button>						
+						data-bs-slide-to="3" aria-label="Slide 4"></button>
+					<button type="button" data-bs-target="#carouselExampleIndicators"
+						data-bs-slide-to="4" aria-label="Slide 5"></button>													
 				</div>
 				<div class="carousel-inner">
 					<div class="carousel-item active">
-						<img src="/welcomepet/resources/img/banner/MainBanner1.png"
+						<img src="/welcomepet/resources/img/banner/MainBanner3.png"
 							class="d-block w-100" alt="...">
 					</div>
 					<div class="carousel-item">
@@ -1108,13 +1110,17 @@ body {
 							class="d-block w-100" alt="...">
 					</div>
 					<div class="carousel-item">
-						<img src="/welcomepet/resources/img/banner/MainBanner3.jpg"
+						<img src="/welcomepet/resources/img/banner/MainBanner1.png"
 							class="d-block w-100" alt="...">
 					</div>
 					<div class="carousel-item">
 						<img src="/welcomepet/resources/img/banner/MainBanner4.png"
 							class="d-block w-100" alt="...">
-					</div>					
+					</div>
+					<div class="carousel-item">
+						<img src="/welcomepet/resources/img/banner/MainBanner3.jpg"
+							class="d-block w-100" alt="...">
+					</div>											
 				</div>
 				<button class="carousel-control-prev" type="button"
 					data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">

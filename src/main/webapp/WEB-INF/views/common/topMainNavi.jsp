@@ -86,7 +86,7 @@
 	     </div>
 	      	 
 	  	 <div class="col text-center text-black">
-	     <img  src="/welcomepet/resources/img/logo.png" style="height:3em; ">
+	     <img  src="/welcomepet/resources/img/logo.png" style="height:2.7em; ">
 	     </div>
 	     
 	     <div class="col-1 p-0">
@@ -94,7 +94,7 @@
 	     </div>
 	     
 	     <div class="col-1 d-flex justify-content-end p-0">
-	     <a class="btn bi bi-cart2  btn-lg p-0" role="button" href="/welcomepet/customer/cart"></a>
+	     <a class="btn bi bi-cart2 text-secondary  btn-lg p-0" role="button" href="/welcomepet/customer/cart"></a>
 	     </div>
 	  	</div>
 	  	</div>
