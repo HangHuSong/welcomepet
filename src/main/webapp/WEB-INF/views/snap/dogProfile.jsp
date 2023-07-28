@@ -13,6 +13,8 @@
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
+	rel="stylesheet">
 <title></title>
 <style type="text/css">
 	#profileImage {
@@ -33,6 +35,12 @@
 		color: white;
 		background-color: orange;
 	}
+	#profile{
+		font-family: 'Jua', sans-serif;
+		font-weight: 700;
+		font-size: 1.3em;
+		color: #fd7e14;
+	}
 </style>
 </head>
 <body>
@@ -44,7 +52,7 @@
 						<a class="btn bi bi-bell text-secondary fs-4 " data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample"></a>
 					</div>
 					<div class="col-1"></div>
-					<div class="col-6" style="text-align: center;">프로필</div>
+					<div class="col-6" style="text-align: center;" id="profile">프로필</div>
 					<div class="col-1 text-center">
 						<a class="btn bi bi-search fs-4" role="button" href="/welcomepet/board/search"> </a>
 					</div>
