@@ -83,7 +83,7 @@
 				<div class="row text-center">
 				 <div class="col">
 				   <a class="btn bi bi-hand-thumbs-up text-secondary pb-0 d-flex justify-content-center" style="font-size:1.3em"
-				    href="#" role="button"></a>
+				    href="/welcomepet/community/postLikeList" role="button"></a>
 				 </div>
 				 <div class="col" style="font-size:0.6em">좋아요</div>
 				</div>

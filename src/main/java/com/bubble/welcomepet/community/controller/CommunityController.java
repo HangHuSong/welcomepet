@@ -268,6 +268,12 @@ public class CommunityController {
 //		return "redirect:./showDogPost?show_dog_post_no=" + show_dog_comment_no;
 //	}
 		
+	@RequestMapping("postLikeList")
+	public String gotoPostLikeList() {
+		return "community/postLikeList";
+	}
+	
+//	AJAX
 	@ResponseBody
 	@RequestMapping("getCommentDatas")
 	public List<Map<String, Object>> getCommentDatas(int show_dog_post_no) {
