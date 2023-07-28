@@ -161,11 +161,29 @@ public class CustomerService {
 
 		for (ProductWishDto productWishDto : wishList) {
 			int product_no = productWishDto.getProduct_no();
+			
+			
 			ProductDto productDto = customerMapper.getProductInfoByNo(product_no);
+			
+		    List<ProductReviewDto> reviewList = customerMapper.getProductReview(product_no);
+		    int totalRating = 0;
+		    int ratingCount = 0;
+		    for (ProductReviewDto productReviewDto : reviewList) {
+		        int rating = productReviewDto.getProduct_review_rating();
+		        totalRating += rating;
+		        ratingCount++;
+		    }
+
+		    double aveRating = (double) totalRating / ratingCount;
+		    DecimalFormat df = new DecimalFormat("#.#");
+		    String formattedAveRating = df.format(aveRating);
+		    
 			List<ProductOptionDto> productOptionList = customerMapper.getProductOptionByNo(product_no);
 			double saleRate = (double) (productDto.getProduct_discount_rate()) / 100;
 			int salePrice = (int) ((productDto.getProduct_price()) * saleRate);
-			Map<String, Object> map = new HashMap<>();     
+			Map<String, Object> map = new HashMap<>();    
+		    map.put("aveRating", Double.parseDouble(formattedAveRating));
+		    map.put("ratingCount", ratingCount);
 			map.put("optionList", productOptionList);
 			map.put("salePrice", salePrice);
 			map.put("productInfo", productDto);

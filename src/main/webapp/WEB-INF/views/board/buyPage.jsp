@@ -255,7 +255,7 @@ body {
 }
 
 .product-thum {
-	height: 5em;
+	height: 6em;
 }
 
 .empty {
@@ -305,8 +305,8 @@ body {
 					value="${item.optionInfo.product_option_no}">
 
 				<div class="row mt-2">
-					<div class="col-1"></div>
-					<div class="col-10 border rounded-2">
+
+					<div class="col mx-3 border rounded-2">
 						<div class="row mt-2">
 							<div class="col-4 embed-responsive embed-responsive-4by3">
 								<img
@@ -377,7 +377,7 @@ body {
 							</div>
 						</div>
 
-						<div class="row mt-2"></div>
+						<div class="row mt-3"></div>
 					</div>
 				</div>
 			</c:forEach>
@@ -465,9 +465,9 @@ body {
 
 
 		<div class="row">
-			<div class="accordion accordion-flush mx-0 px-0 "
+			<div class="accordion accordion-flush "
 				id="accordionFlush3">
-				<div class="accordion-item mx-0 px-0">
+				<div class="accordion-item" >
 					<h2 class="accordion-header" id="flush-headingTwo">
 						<button class="accordion-button collapsed " type="button"
 							data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
@@ -522,13 +522,13 @@ body {
 		<div class="row mt-2 empty"></div>
 
 		<div class="row">
-			<div class="col mx-0 ps-3 pe-1">
+			<div class="col mx-0 ">
 				<div class="row mt-2">
 					<div class="col">
 						<strong>결제 수단</strong>
 					</div>
 				</div>
-				<div class="row mt-2 mx-0" id="payment">
+				<div class="row mt-2 ms-1" id="payment">
 					<input type="hidden" id="orders_payment_method"
 						name="orders_payment_method" value="카카오페이">
 					<div class="row">
@@ -610,7 +610,7 @@ body {
 					id="totalShippingPrice"></div>
 			</div>
 		</div>
-	</div>
+
 	<div class="row border-top mt-2"></div>
 	<div class="row mt-3 mb-3 fw-bold" style="font-size: 1.2em;">
 
@@ -661,15 +661,15 @@ body {
 		</div>
 	</div>
 
-	<div class="row mt-2 empty"></div>
+	<div class="row mt-2 "></div>
 
 
 
 	<div class="row mt-2">
 		<div class="col ">
-			<div class="row">
-				<div class="col-1"></div>
-				<div class="col">
+			<div class="row mb-3 mt-2">
+
+				<div class="col mx-2">
 					<div class="d-grid gap-2">
 						<button class="btn  btn-lg" type="button" style="background-color: rgb(253, 152, 67); color: white;"
 							onclick="submitOrderForm()">
@@ -679,14 +679,14 @@ body {
 						</button>
 					</div>
 				</div>
-				<div class="col-1"></div>
+
 			</div>
 		</div>
 
 	</div>
 
 	<div class="row mt-2"></div>
-
+	</div>
 
 
 

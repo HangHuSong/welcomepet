@@ -210,7 +210,7 @@ body {
 </head>
 <body>
 
-	<div class="container align-items-center justify-content-center pe-0 ">
+	<div class="container align-items-center justify-content-center ">
 
 		<div class="row  mt-2 align-items-center">
 			<div class="col-1 d-flex ps-1">
@@ -223,8 +223,8 @@ body {
 
 		<div class="row border-bottom "></div>
 		<div class="row mt-2 ">
-			<div class="col ps-0 ms-0">
-			<img src="/welcomepet/resources/img/banner/banner6.jpg"
+			<div class="col px-0">
+			<img src="/welcomepet/resources/img/banner/banner7.png"
 				class="banner_img" style="width:  ;" alt="...">
 			</div>		
 		</div>
@@ -267,16 +267,16 @@ body {
 			            </div>
 			          </div>
 			        </div>
-			        <div class="col-1 ps-0 pe-0"></div>
+
 			      </div>
 			      <div class="row mt-3">
 			        <div class="col-1"></div>
 			        <div class="col ps-2 ms-2 border rounded-2 d-flex align-items-center" style="background-color: rgb(244, 247, 250); height: 4em; font-size: 0.9em;">
 			          <span class="ps-2 text-secondary ">${map.productOptionInfo.product_option_name}</span>
 			        </div>
-			        <div class="col-1"></div>
+
 			      </div>
-			      <div class="row mt-2">
+			      <div class="row mt-3">
 			        <div class="col"> </div>
 			        <div class="col pe-0">
 			          <button type="button" class="btn btn-outline-secondary" style="width: 5em; height: 2.3em;">
@@ -290,8 +290,8 @@ body {
 			            <button type="button" class="btn btn-outline-secondary btn-equal-size" onclick="increaseQuantity(this, ${status.index})">+</button>
 			          </div>
 			        </div>
-			        <div class="col-1 ps-0"></div>
-			        <div class="row mt-2"></div>
+
+			        <div class="row mt-3"></div>
 			      </div>
 			    </div>
 			</c:forEach>
@@ -301,7 +301,7 @@ body {
 		<div class="row mt-3 ">
 			<div class="col">
 				<div class="row ">
-					<div class="row"  >
+					<div class="row mt-2 "  >
 						<div class="col text-secondary">총 상품 금액</div>
 						<div class="col text-end fw-bold text-secondary">
 							<del id="totalRealPrice"> </del>
@@ -330,7 +330,7 @@ body {
 
 						<div class="col ps-2 pe-1 ">
 							<div class="row">
-								<div class="col">
+								<div class="col px-4">
 									<div class="d-grid gap-2">
 										<button class="btn  btn-lg" type="button" onclick="buyNow()" style="background-color: rgb(253, 152, 67);
 													color: white;">
@@ -340,7 +340,7 @@ body {
 										</button>
 									</div>
 								</div>
-								<div class="col-1"></div>
+
 							</div>
 						</div>
 					</div>
