@@ -80,6 +80,16 @@ public class RestBoardController {
 	}
 	
 	
+	@RequestMapping("getRecentImg")
+	public Map<String, Object> getRecentImg(int customer_no) {
+		Map<String , Object> map = new HashMap<>();
+		
+		map.put("recentImg", customerService.recentProductImg(customer_no));
+		map.put("result", "success");
+		return map;
+	}
+	
+	
 	// 리뷰 관련
 	
 	@RequestMapping("getProductReview")

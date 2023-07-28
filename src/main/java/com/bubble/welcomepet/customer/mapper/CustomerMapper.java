@@ -17,6 +17,7 @@ import com.bubble.welcomepet.dto.ProductDetailImageDto;
 import com.bubble.welcomepet.dto.ProductOptionDto;
 import com.bubble.welcomepet.dto.ProductReviewDto;
 import com.bubble.welcomepet.dto.ProductWishDto;
+import com.bubble.welcomepet.dto.RecentProductDto;
 import com.bubble.welcomepet.dto.ProductReviewImagesDto;
 
 
@@ -103,6 +104,12 @@ public interface CustomerMapper {
 	public List<BizDto> getBizList();
 	
 	public BizDto getBizInfoByBizNo(int biz_no);
+	
+	public void addRecentProduct(RecentProductDto recentProductDto);
+	
+	public List<RecentProductDto> getRecentProductList(int customer_no);
+	
+	public RecentProductDto getRecentProduct(int customer_no);
 	//주문
 	
 	public int createOrdersPk();

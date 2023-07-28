@@ -23,6 +23,7 @@ import com.bubble.welcomepet.dto.CustomerSearchDto;
 import com.bubble.welcomepet.dto.OrderProductDto;
 import com.bubble.welcomepet.dto.OrdersDto;
 import com.bubble.welcomepet.dto.ProductDetailImageDto;
+import com.bubble.welcomepet.dto.RecentProductDto;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -127,14 +128,38 @@ public class BoardController {
 	// 상품
 	
 	@RequestMapping("productDetail")
-	public String productDetail(Model model, int product_no) {
+	public String productDetail(Model model, int product_no, HttpSession session, RecentProductDto recentProductDto) {
+		
+		CustomerDto sessionUser = (CustomerDto) session.getAttribute("customerUser");
 		
 		Map<String, Object> map = customerService.getByProductNo(product_no);
 	
 		model.addAttribute("data", map);
 		
+		if(sessionUser != null) {
+			int customer_no = sessionUser.getCustomer_no();
+			recentProductDto.setCustomer_no(customer_no);
+			recentProductDto.setProduct_no(product_no);
+			customerService.addRecentProduct(recentProductDto);
+		}
+		
 		return "board/productDetail";
 		
+	}
+	
+	@RequestMapping("recentProductList")
+	public String recentProductList(HttpSession session, Model model) {
+		CustomerDto sessionUser = (CustomerDto) session.getAttribute("customerUser");
+		if (sessionUser == null) {
+			return "customer/login";
+		} 		
+		int customer_no = sessionUser.getCustomer_no();
+		
+		List<Map<String, Object>> list = customerService.getRecentProductByCutomerNo(customer_no);
+		
+		model.addAttribute("recentInfo", list);
+		
+		return "board/recentProductList";
 	}
 	
 	@RequestMapping("categoryProduct")

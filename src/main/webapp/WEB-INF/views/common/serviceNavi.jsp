@@ -6,7 +6,7 @@
 
 		<div class="row mt-1">
 		  <div class="col">
-		    <img  src="/welcomepet/resources/img/LOGO_%236c757d.png" style="height:3em; opacity: 70%;">
+		    <img  src="/welcomepet/resources/img/LOGO_%236c757d.png" style="height:2.5em; opacity: 70%;">
 		  </div>
 		</div>
 	<div class="row mt-3">

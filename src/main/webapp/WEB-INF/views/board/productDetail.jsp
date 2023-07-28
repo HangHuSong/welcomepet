@@ -1258,10 +1258,10 @@ body {
 	</div>
 	<div class="row mt-2 empty"></div>
 	<div class="row ps-3 mt-3">
-		<div class="row">
+		<div class="row" style="align-items: center;">
 			<div class="col fw-bold pt-1" style="font-size: 1.2em;">상품 문의</div>
 			<div class="text-end me-3 col ">
-				<button class="btn  btn-outline-secondary"
+				<button class="btn btn-sm btn-outline-secondary"
 					style="height: 100%;">문의하기</button>
 			</div>
 		</div>
@@ -1322,19 +1322,19 @@ body {
 			</div>
 		</div>
 		
-		<div class="row mt-2">
-		  <div class="col">
-		  <div class="d-grid gap-2"> 
-		    <button class="btn btn-outline-secondary text-center">
-		     더 많은 상품 문의 보기 <a class="btn bi bi-chevron-right"> </a>
+		<div class="row mt-3 ">
+		  <div class="col text-center">
+		  <div class=""> 
+		    <button class="btn btn-outline-secondary text-center btn-sm" style="width: 80%;">
+		     더 많은 상품 문의 보기 <a class="btn py-0 bi bi-chevron-right"> </a>
 		    </button> </div>
 		  </div>
 		</div>
-		<div class="row mt-2"></div>
+		<div class="row mt-3"></div>
 	</div>
 
 
-	<div class="row mt-1 ">
+	<div class="row mt-2 ">
 	</div>	
 	<jsp:include page="../common/serviceNavi.jsp"></jsp:include>	
 		<div class="row mb-4">
