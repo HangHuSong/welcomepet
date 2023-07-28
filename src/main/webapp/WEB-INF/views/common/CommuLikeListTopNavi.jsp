@@ -1,15 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>postLikeList.jsp</title>
-</head>
-<body>
-<%-- 상단내비 
-  <jsp:include page="../common/CommuLikeListTopNavi.jsp"></jsp:include>--%>
-<%-- ----- --%>
+
+<style type="text/css">
+#postTopNavBar{
+	background-color:#ffffff;
+}
+</style>
 
 <nav id="postTopNavBar" class="topNavbar sticky-top bg-body-tertiary shadow-sm p-3" style="background-color:#ffffff">
 <div class="container p-0">
@@ -33,13 +29,3 @@
   	 </div>
 </div>
 </nav>
-
-<div class="container">
-<div class="row">
- <div class="col">
- 왜 이상하게 나오지
- </div>
-</div>
-</div>
-</body>
-</html>

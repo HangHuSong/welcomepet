@@ -273,7 +273,7 @@ public class CommunityController {
 		return "community/postLikeList";
 	}
 	
-//	AJAX
+//	여기서부터 AJAX
 	@ResponseBody
 	@RequestMapping("getCommentDatas")
 	public List<Map<String, Object>> getCommentDatas(int show_dog_post_no) {
