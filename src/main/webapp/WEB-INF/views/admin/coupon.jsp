@@ -51,7 +51,15 @@
 								<label>고객번호</label>
 								<input type="text" class="form-control">
 							</div>
-						</div>					
+						</div>		
+						
+						<div class="row my-1">
+							<label>쿠폰유형</label>
+							<select class="form-control dropdown-toggle">
+								<option>쿠폰유형</option>
+							</select>
+						</div>
+									
 					</div>
 				</div>
 				
