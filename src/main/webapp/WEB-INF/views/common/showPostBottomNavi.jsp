@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%--
 <div class="fixed-bottom border-top" style="background-color:white;">
 <div class="row">
  <div class="col">
@@ -27,9 +27,9 @@
   </div>
  </div>
 </div>
-</div>    
+</div>    --%>
     
-<%--     
+     
 <div class="fixed-bottom border-top" style="background-color:white;">
 <div class="row px-0" style="height:48px;">
  <div class="col mt-1">	 
@@ -56,7 +56,7 @@
  </div>
 </div>
 </div>
---%>
+
 
 <%-- <div class="row fixed-bottom bg-white">
 						<div class="col-12 border-top">
