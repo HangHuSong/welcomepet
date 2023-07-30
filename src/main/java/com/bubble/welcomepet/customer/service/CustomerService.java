@@ -504,7 +504,7 @@ public class CustomerService {
 	
 	//주문
 	
-	public void addOrders(OrdersDto ordersDto,  List<OrderProductDto> orderProductDtoList) {
+	public int addOrders(OrdersDto ordersDto,  List<OrderProductDto> orderProductDtoList) {
 		int orders_no = customerMapper.createOrdersPk();
 		ordersDto.setOrders_no(orders_no);
 
@@ -526,6 +526,8 @@ public class CustomerService {
 	        orderProductDto.setOrders_no(orders_no);
 	        customerMapper.AddOrderProduct(orderProductDto);
 	    }
+	    
+	    return  orders_no;
 	}
 
 	

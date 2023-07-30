@@ -17,10 +17,12 @@
 
 <style type="text/css">
 @font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
+	font-family: 'Pretendard-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+		format('woff');
+	font-weight: 400;
+	font-style: normal;
 }
 
 body {
@@ -60,6 +62,25 @@ body {
 	align-items: center;
 	color: rgb(27, 30, 33);
 }
+
+.always-show-button {
+	position: fixed;
+	box-shadow: rgba(0, 0, 0, 0.04) 0.2rem 0.4rem;
+	
+	bottom: 3em;
+	right: 1.5em;
+	width: 1.2em;
+	height: 1.2em;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	font-size: 2em;
+	cursor: pointer;
+	opacity: 1;
+	z-index: 1000;
+}
 </style>
 </head>
 <body>
@@ -70,12 +91,12 @@ body {
 		<jsp:include page="../common/topMyNavi.jsp"></jsp:include>
 
 		<div class="row mb-3">
-			<div class="col btn text-start" >
+			<div class="col btn text-start">
 				<div class="row mt-2">
 					<div class="col fw-bold">${sessionUser.customer_nickname }님</div>
-					<div class="col-3 text-end" style="font-size: 0.8em;">
-						<a href="./updateMyInfo" class="text-decoration-none text-secondary ">
-							내 정보 변경</a>
+					<div class="col-4 text-end" style="font-size: 0.8em;">
+						<a href="./updateMyInfo"
+							class="text-decoration-none text-secondary "> 내 정보 변경</a>
 					</div>
 				</div>
 				<div class="row mt-2">
@@ -96,8 +117,8 @@ body {
 				<div class="row mt-2">
 					<div class="col fw-bold">반려동물</div>
 					<div class="col-3 text-end">
-						<a href="./registDog" class="text-decoration-none text-secondary " style="font-size: 0.8em;">
-							추가하기</a>
+						<a href="./registDog" class="text-decoration-none text-secondary "
+							style="font-size: 0.8em;"> 추가하기</a>
 					</div>
 				</div>
 				<div class="row mt-2 mb-3">
@@ -177,8 +198,9 @@ body {
 				</div>
 				<div class="row mt-1 border-bottom">
 					<div class="col btn text-start"
-						onclick="location.href='../board/recentProductList?customer_no=${sessionUser.customer_no}'">최근 본 상품</div>
-				</div>				
+						onclick="location.href='../board/recentProductList?customer_no=${sessionUser.customer_no}'">최근
+						본 상품</div>
+				</div>
 				<div class="row mt-1 border-bottom">
 					<div class="col btn text-start"
 						onclick="location.href='./wishList'">
@@ -189,11 +211,11 @@ body {
 					<div class="col btn text-start"
 						onclick="location.href='./myReview'">리뷰관리</div>
 				</div>
-		<div class="row mt-1 border-bottom ">
-			<div class="col btn text-start"
-				onclick="location.href='./address?customer_no=${sessionUser.customer_no}'">
-				배송지 관리</div>
-		</div>				
+				<div class="row mt-1 border-bottom ">
+					<div class="col btn text-start"
+						onclick="location.href='./address?customer_no=${sessionUser.customer_no}'">
+						배송지 관리</div>
+				</div>
 			</div>
 		</div>
 		<div class="row mt-4">
@@ -205,17 +227,24 @@ body {
 					<div class="col btn text-start">자주하는 질문</div>
 				</div>
 				<div class="row mt-1 border-bottom">
-					<div class="col btn text-start" onclick="location.href='./myInquiry'">문의내역</div>
+					<div class="col btn text-start"
+						onclick="location.href='./myInquiry'">문의내역</div>
 				</div>
 				<div class="row mt-1 border-bottom">
-					<div class="col btn text-start" onclick="location.href='./addInquiry'">1:1 문의하기</div>
+					<div class="col btn text-start"
+						onclick="location.href='./addInquiry'">1:1 문의하기</div>
 				</div>
 				<div class="row mt-1 ">
 					<div class="col btn text-start">공지사항</div>
 				</div>
-				<div class="row mt-2"></div>				
+				<div class="row mt-2"></div>
 			</div>
 		</div>
+		<div class="always-show-button" id="kakao-talk-channel-chat-button"
+			data-channel-public-id="_BMbZG" data-title="consult"
+			data-size="small" data-color="yellow" data-shape="pc"
+			data-support-multiple-densities="true"></div>
+
 
 		<div class="row">
 			<jsp:include page="../common/serviceNavi.jsp"></jsp:include>
@@ -232,4 +261,23 @@ body {
 		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
 		crossorigin="anonymous"></script>
 </body>
+<script>
+	window.kakaoAsyncInit = function() {
+		Kakao.Channel.createChatButton({
+			container : '#kakao-talk-channel-chat-button',
+		});
+	};
+
+	(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id))
+			return;
+		js = d.createElement(s);
+		js.id = id;
+		js.src = 'https://t1.kakaocdn.net/kakao_js_sdk/2.3.0/kakao.channel.min.js';
+		js.integrity = 'sha384-suN4Zc1CFiRm8j96GVFtk9WqRwjWWhDoYbIrYCXyrsvKZZ2XRUIoUyH/AyjszUEj';
+		js.crossOrigin = 'anonymous';
+		fjs.parentNode.insertBefore(js, fjs);
+	})(document, 'script', 'kakao-js-sdk');
+</script>
 </html>

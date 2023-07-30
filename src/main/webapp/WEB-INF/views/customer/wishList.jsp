@@ -138,7 +138,8 @@ body {
 									<div class="row">
 										<div class="col pe-0  fw-bold ">
 											<span class="text-danger pe-1">
-												${map.productInfo.product_discount_rate}% </span> <span> <fmt:formatNumber
+												${map.productInfo.product_discount_rate}% </span> <span> 
+												<fmt:formatNumber
 													value="${map.productInfo.product_price - map.salePrice}"
 													pattern="###,###원" />
 											</span>

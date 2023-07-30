@@ -30,10 +30,30 @@ body {
 <body>
 	<div class="container">
 		<%-- top navigation --%>
-		<jsp:include page="../common/topNaviLogin.jsp"></jsp:include>
+		<div class="row shadow-sm p-3 mb-5 bg-body-tertiary rounded">
+	<div class="col">
+		<nav
+			class="navbar navbar-dark bg-white d-flex fixed-top  border-bottom fw-bold 
+			">
+			<div class="col-2">
+				<a class="btn bi bi-arrow-left fs-4" role="button"
+					href="/welcomepet/board/main"> </a>
+			</div>
+			<div class="col-8" style="text-align: center;">
+				로그인 
+			</div>
+
+			<div class="col-2"></div>
+		</nav>
+	</div>
+</div>
 		<%-- -------------- --%>
 		<form action="..	/customer/loginProcess" method="post">
-			<div class="row mt-3"></div>
+			<div class="row mt-3">
+			<div class="col text-center">
+			 <img  src="/welcomepet/resources/img/logo.png" style="height:3em; ">
+			 </div>
+			</div>
 			<div class="row mt-3">
 				<div class="col-1"></div>
 				<div class="col">
@@ -57,9 +77,9 @@ body {
 					</div>
 
 					<div class="row mt-2 text-secondary" style="font-size: 0.8em;">
-						<div class="col border-end align-self-center pe-0">아이디 찾기</div>
-						<div class="col border-end align-self-center">비밀번호 찾기</div>
-						<div class="col pe-0">
+						<div class="col text-center border-end align-self-center pe-0">아이디 찾기</div>
+						<div class="col text-center border-end align-self-center">비밀번호 찾기</div>
+						<div class="col ">
 							<a class="btn px-0 py-0 text-secondary" href="./regist"
 								style="font-size: 1em;">회원가입</a>
 						</div>
