@@ -191,6 +191,7 @@
 			              console.log(response);
 			              order_no = response.orders_no;
 			              console.log("${sessionScope.order_no}");
+			              requestPay();
 			             
 			              // 추가적인 처리 작업 수행
 			          } else {
@@ -208,11 +209,11 @@
 		
 		} 
 		
-		function requestPay() {
+		function requestPay() { 
 			
 			var productAmount = ${product_amount}.length;
 			
-			 var approval_url = "http://localhost:8181/welcomepet/board/payPage?order_no=${sessionScope.order_no}";
+			 var approval_url = "http://localhost:8181/welcomepet/board/payPage?order_no=${sessionScope.order_no + 1}";
 			
 			
 			console.log(order_no);
@@ -788,7 +789,7 @@ body {
 				<div class="col mx-2">
 					<div class="d-grid gap-2">
 						<button class="btn  btn-lg" type="button" style="background-color: rgb(253, 152, 67); color: white;"
-							onclick="submitOrderForm(); requestPay();">
+							onclick="submitOrderForm();">
 							<div class="row fs-5">
 								<div class="col text-center" id="finalPrice"></div>
 							</div>
