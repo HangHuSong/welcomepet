@@ -16,7 +16,9 @@
 	rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
+	rel="stylesheet">
 
 <style type="text/css">
 #section {
@@ -48,20 +50,26 @@
 	<div class="container" style="margin: 0 0;">
 		<c:choose>
 			<c:when test="${bizUser.biz_status_no eq 4}">
-				<div class="row" style="width: 1900px;">
-					<div class="col-2 text-center ps-4 text-white"
+				<div class="row" style="width: 1920px;">
+					<div class="col-2"
 						style="height: auto; background-color: rgb(29, 33, 42);"><jsp:include
 							page="../common/bizLeftNavi.jsp"></jsp:include></div>
-					<div class="col-10 px-0 bg-light">
-						<div class="row bg-white px-3 mx-0">
+					<div class="col-10 bg-light">
+						<div class="row bg-white">
 							<div class="col text-center"><jsp:include
 									page="../common/bizTopNavi.jsp"></jsp:include></div>
 						</div>
 
-						<div class="row ms-1 bg-light pb-5 px-3">
-							<div class="col">
+						<div class="row ms-1 bg-light pb-5">
+							<div class="col-10 px-5">
+								<div class="row my-4">
+									<div class="col">
+										<img class="w-100"
+											src="/welcomepet/resources/img/bizAd/bizTopAd.jpg">
+									</div>
+								</div>
 								<div class="row">
-									<div class="col border mt-3 mx-3 py-3 bg-white">
+									<div class="col border mb-3 mx-3 py-3 bg-white shadow">
 										<div class="row">
 											<div class="col">
 												<div class="row">
@@ -111,7 +119,7 @@
 									</div>
 								</div>
 								<div class="row ">
-									<div class="col my-3 mx-3 bg-white border">
+									<div class="col my-3 mx-3 bg-white border shadow">
 										<div class="row py-3 px-2 border-bottom">
 											<div class="col fs-5 fw-bold">주문/배송</div>
 										</div>
@@ -164,7 +172,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="col my-3 mx-3 bg-white border align-items-center">
+									<div class="col my-3 mx-3 bg-white border shadow">
 										<div class="row py-3 px-2 border-bottom">
 											<div class="col fs-5 fw-bold">취소/환불/교환</div>
 										</div>
@@ -187,7 +195,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="col my-3 mx-3 bg-white border align-items-center">
+									<div class="col my-3 mx-3 bg-white border align-items-center shadow">
 										<div class="row py-3 px-2 border-bottom">
 											<div class="col fs-5 fw-bold">상점등급</div>
 										</div>
@@ -199,7 +207,7 @@
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-4 my-3 mx-3 bg-white border">
+									<div class="col-4 my-3 mx-3 bg-white border shadow">
 										<div class="row py-3 px-2 border-bottom">
 											<div class="col fs-5 fw-bold">판매현황</div>
 										</div>
@@ -287,7 +295,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="col my-3 mx-3 bg-white border align-items-center">
+									<div class="col my-3 mx-3 bg-white border shadow">
 										<div class="row py-3 px-2">
 											<div class="col fs-5 fw-bold">TOP5 상품</div>
 										</div>
@@ -320,9 +328,25 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-2 bg-light"></div>
+							<div class="col-2 my-4">
+								<div class="row my-1">
+									<div class="col">
+										<img src="/welcomepet/resources/img/bizAd/ad1.png">
+									</div>
+								</div>
+								<div class="row my-1">
+									<div class="col">
+										<img src="/welcomepet/resources/img/bizAd/ad2.png">
+									</div>
+								</div>
+								<div class="row my-1">
+									<div class="col">
+										<img src="/welcomepet/resources/img/bizAd/ad3.png">
+									</div>
+								</div>
+							</div>
 						</div>
-						<div class="row ms-1">
+						<div class="row">
 							<div class="col">
 								<jsp:include page="../common/bizFooter.jsp"></jsp:include></div>
 						</div>
@@ -341,6 +365,12 @@
 						</div>
 						<div class="row">
 							<div class="col-10 py-5 mb-5">
+								<div class="row my-4">
+									<div class="col">
+										<img class="w-100"
+											src="/welcomepet/resources/img/bizAd/bizTopAd.jpg">
+									</div>
+								</div>
 								<c:if test="${bizUser.biz_status_no eq 1}">
 									<div class="row my-3 mx-3 px-3 rounded-4">
 										<div class="col-8 text-start">

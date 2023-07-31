@@ -15,12 +15,25 @@
 	crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <%------ bootstrap ------%>
+
+<style type="text/css">
+@font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#updatePost{
+	font-family:'SUITE-Regular';
+}
+</style>
 </head>
 <body>
 <%-- mobileStyle --%>
 
 <%-- ----------- --%>  
-<div class="container">
+<div id="updatePost" class="container">
  	<div class="row mt-2 mb-5">		
  	<div class="col">
 	 	<form action="./showDogUpdateProcess" method="post" enctype="multipart/form-data">

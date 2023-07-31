@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
@@ -16,14 +15,18 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-<title>찜한상품</title>
-<style type="text/css">
+<title>Insert title here</title>
 
+<style type="text/css">
 @font-face {
     font-family: 'Pretendard-Regular';
     src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
     font-weight: 400;
     font-style: normal;
+}
+
+body {
+	font-family: 'Pretendard-Regular';
 }
 .empty {
 	height: 2.5em;
@@ -84,36 +87,28 @@
 	font-size:  0.8em;
 	font-weight: 700;
 }
-
-body {
-	font-family: 'Pretendard-Regular';
-}
 </style>
 </head>
 <body>
 
 	<div class="container align-items-center justify-content-center">
-
 		<div class="row  mt-2 align-items-center">
-			<div class="col-1 d-flex ">
-				<a class="btn bi bi-arrow-left fs-4" role="button"
+			<div class="col-1 d-flex ps-1">
+				<a class="btn bi bi-arrow-left fs-4 py-1" role="button"
 					onclick="history.back()"> </a>
 			</div>
-			<div class="col fw-bold" style="text-align: center;">찜한상품</div>
+			<div class="col fw-bold ps-0" style="text-align: center;">최근 본
+				상품</div>
 			<div class="col-1"></div>
 		</div>
-
-		<div class="row mt-2 border-bottom "></div>
+		<div class="row mt-2 empty"> 
+		 <div class="col text-secondary" style="font-size: 0.8em; ">
+		 최근 본 상품은 30일간 보관됩니다.
+		 </div>
+		</div>
 		<div class="row mt-2 ">
-			<div class="col-1"></div>
-			<div class="col-7 fw-bold">상품</div>
-			<div class="col "></div>
-			<div class="row mt-2 border-bottom"></div>
-		</div>
-	
-		<c:forEach items="${data}" var="map">
-
-					<div class="col-12 mt-3  embed-responsive embed-responsive-4by3">
+			<c:forEach items="${recentInfo}" var="map">
+				<div class="col-12 mt-3  embed-responsive embed-responsive-4by3">
 					<div class="row ps-1 me-1">
 						<div class="col-4 pe-0">
 							<img
@@ -138,8 +133,7 @@ body {
 									<div class="row">
 										<div class="col pe-0  fw-bold ">
 											<span class="text-danger pe-1">
-												${map.productInfo.product_discount_rate}% </span> <span> 
-												<fmt:formatNumber
+												${map.productInfo.product_discount_rate}% </span> <span> <fmt:formatNumber
 													value="${map.productInfo.product_price - map.salePrice}"
 													pattern="###,###원" />
 											</span>
@@ -177,11 +171,12 @@ body {
 					</div>
 				</div>
 				<div class="row mt-3 border-top"></div>
-		</c:forEach>
-	
-
+			</c:forEach>
+		</div>
+		<div class="row mt-4"></div>
 
 	</div>
+	
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"

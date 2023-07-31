@@ -12,6 +12,12 @@
 	rel="stylesheet"
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 	crossorigin="anonymous">
+	<style type="text/css">
+	@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+	body{
+		font-family: "NanumSquare";
+	}
+	</style>
 <script type="text/javascript">
 	const settlement_request_no = new URLSearchParams(location.search).get("settlement_request_no");
 	const formData = new FormData();

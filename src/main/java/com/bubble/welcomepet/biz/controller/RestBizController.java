@@ -512,6 +512,18 @@ public class RestBizController {
 		map.put("adProductDataList", adProductDataList);
 		return map;
 	}
+	
+	
+	@RequestMapping("getNewSettlement")
+	public Map<String,Object> getNewSettlement(HttpSession session) {
+		Map<String,Object> map=new HashMap<String, Object>();
+		BizDto bizUser = (BizDto) session.getAttribute("bizUser");
+		List<Map<String, Object>> settlementList = bizService.getNewSettlementByBizNo(bizUser.getBiz_no());
+		
+		
+		map.put("settlementList", settlementList);
+		return map;
+	}
 //	@RequestMapping("productRegisterRequest")
 //	public void productRegisterRequest(@RequestBody ProductRegisterRequestDto productRegisterRequest) {
 //		System.out.println(productRegisterRequest);

@@ -34,44 +34,75 @@
 					<div class="col text-center"><jsp:include
 							page="../common/bizTopNavi.jsp"></jsp:include></div>
 				</div>
-				<div class="row mx-5 text-center mb-5">
-					<div class="col-10">
+				<div class="row px-5 text-center mb-5">
+					<div class="col px-5">
 						<div class="row my-2">
 							<div class="col fs-5 fw-bold text-start py-3">구매확정내역</div>
 						</div>
-						<div class="row my-2 bg-light px-5">
-							<div class="col">
-								<div class="row my-5">
-									<div class="col border bg-white">
-										<div class="row border-bottom">
-											<div class="col-3 border-end py-2">기간</div>
-											<div class="col py-2 text-start">
-												<input class="text-center" type="date" style="width: 200px;">
-												~ <input class="text-center" type="date"
-													style="width: 200px;">
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-3 border-end py-2">검색어</div>
-											<div class="col py-2 text-start">
-												<input type="text" style="width: 423px;">
-											</div>
-										</div>
+						<div class="row my-2 text-start">
+							<div class="col border rounded-3 shadow"
+								style="background-color: rgb(255, 255, 250);">
+								<div class="row py-2 px-2">
+									<div class="col align-self-center">
+										<i class="fas fa-exclamation-circle"></i> 도움말
 									</div>
 								</div>
-								<div class="row justify-content-center my-5">
-									<div class="col">
-										<span><button class="btn btn-dark">검색</button></span> <span><button
-												class="btn btn-outline-dark">초기화</button></span>
+								<div class="row pb-2 px-2">
+									<div class="col" style="font-size: 12px;">-구매확정된 상품은 다음달에
+										정산됩니다.</div>
+								</div>
+							</div>
+						</div>
+						<div class="row mt-2 mb-5">
+							<div class="col">
+								<div class="row mt-2 mb-5">
+									<div class="col border bg-white rounded-3 shadow">
+										<div class="row">
+											<div class="col">
+												<div class="row">
+													<div class="col-2 text-start align-self-center px-4">기간</div>
+													<div class="col text-start align-self-center">
+														<input class="text-center rounded-1" type="date"
+															style="width: 200px; border: 1px solid rgb(174, 180, 198);">
+														~ <input class="text-center rounded-1" type="date"
+															style="width: 200px; border: 1px solid rgb(174, 180, 198);">
+													</div>
+													<div class="col-2 px-5 d-grid py-2 border-start"
+														style="background-color: rgb(245, 250, 255);">
+														<button class="btn btn-primary rounded-5">검색</button>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-2 text-start align-self-center px-4"
+														style="height: auto;">검색어</div>
+													<div class="col text-start align-self-center">
+														<span> <select class="rounded-1"
+															style="border: 1px solid rgb(174, 180, 198);">
+																<option selected>검색항목 선택</option>
+																<option value="1">주문번호</option>
+																<option value="2">상품명</option>
+																<option value="3">주문자명</option>
+														</select>
+														</span> <span><input class="rounded-1" type="text"
+															style="width: 423px; border: 1px solid rgb(174, 180, 198);"></span>
+
+													</div>
+													<div class="col-2 px-5 d-grid py-2 border-start"
+														style="background-color: rgb(245, 250, 255);">
+														<button class="btn btn-secondary rounded-5">초기화</button>
+													</div>
+												</div>
+
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
-
 						</div>
-						<div class="row text-center mt-5 mb-2 mx-2 bg-white">
-							<div class="col px-0">
-								<div class="row text-start py-2 border border-bottom-0 mx-0">
-									<div class="col mx-1 px-0">
+						<div class="row my-2 bg-white">
+							<div class="col border px-0 shadow">
+								<div class="row text-start py-2 border-bottom mx-0">
+									<div class="col">
 										<select class="border-secondary border-opacity-50 rounded-2">
 											<option selected>주문일 역순</option>
 										</select> <select class="border-secondary border-opacity-50 rounded-2">
@@ -81,9 +112,9 @@
 								</div>
 								<div class="row" id="orderList">
 									<div class="col">
-										<div class="table-responsive">
-											<table class="table text-nowrap table-bordered">
-												<thead class="table-light">
+										<div class="table-responsive" style="max-height: 450px; font-size: 13px;">
+											<table class="table text-nowrap">
+												<thead style="background-color: rgb(245, 250, 255);">
 													<tr>
 														<th scope="col">상품주문번호</th>
 														<th scope="col">주문번호</th>

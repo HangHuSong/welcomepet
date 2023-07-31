@@ -36,6 +36,33 @@
 			
 			<div class="col">
 				<%@ include file="../common/adminHead.jsp" %>
+				
+				<div class="row mt-5">
+					<div class="col text-center">
+						<h2 class="fw-bold">쿠폰 발급</h2>
+					</div>
+				</div>
+				
+				<div class="row mt-4">
+					<div class="col-3"></div>
+					<div class="col-6">
+						<div class="row my-1">
+							<div class="col">
+								<label>고객번호</label>
+								<input type="text" class="form-control">
+							</div>
+						</div>		
+						
+						<div class="row my-1">
+							<label>쿠폰유형</label>
+							<select class="form-control dropdown-toggle">
+								<option>쿠폰유형</option>
+							</select>
+						</div>
+									
+					</div>
+				</div>
+				
 			</div>
 		</div>
 	</div>

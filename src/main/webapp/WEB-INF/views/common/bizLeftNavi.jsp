@@ -40,12 +40,12 @@
 </head>
 <body>
 
-	<div class="row mx-2 text-center">
+	<div class="row text-center px-5">
 		<div class="col">
 			<div class="row py-2">
 				<div class="col">
 					<div class="row">
-						<div class="col fw-bold btn text-white text-start"
+						<div class="col fw-bold btn text-white text-start pt-3"
 							onclick="location.href='./main'">
 							<div class="row">
 								<div class="col " style="font-family: 'GmarketSansMedium'">어서오개</div>
@@ -228,7 +228,7 @@
 						</div>
 					</div>
 					<div class="row py-2">
-						<div class="py-2 btn text-white" onclick="toggleMenuList(event)"
+						<div class="col py-2 btn text-white" onclick="toggleMenuList(event)"
 							style="font-size: 18px;">
 							<div class="row text-start">
 								<div class="col-2 fw-bold px-2 text-center">

@@ -56,14 +56,15 @@ public class RestBoardController {
 
 	// 주문 
 	@RequestMapping("orders")
-	public  Map<String, Object> orders(@RequestBody OrderRequestDto orderRequestDto) { 
+	public  Map<String, Object> orders(@RequestBody OrderRequestDto orderRequestDto, HttpSession session) { 
 	    List<OrderProductDto> orderProductDtoList = orderRequestDto.getOrderProductDtoList();
 	    OrdersDto ordersDto = orderRequestDto.getOrdersDto();
 		System.out.println("어쩌꾸");
 		Map<String , Object> map = new HashMap<>();
-	    customerService.addOrders(ordersDto, orderProductDtoList);
-
-	    
+		
+	    int order_no = customerService.addOrders(ordersDto, orderProductDtoList);
+	    session.setAttribute("order_no", order_no);
+	    map.put("orders_no", order_no);
 	    map.put("result", "success");
 	    return map;
 	}
@@ -75,6 +76,16 @@ public class RestBoardController {
 		
 
 		map.put("categoryList", customerService.getCategoryList(main_category_no));	
+		map.put("result", "success");
+		return map;
+	}
+	
+	
+	@RequestMapping("getRecentImg")
+	public Map<String, Object> getRecentImg(int customer_no) {
+		Map<String , Object> map = new HashMap<>();
+		
+		map.put("recentImg", customerService.recentProductImg(customer_no));
 		map.put("result", "success");
 		return map;
 	}

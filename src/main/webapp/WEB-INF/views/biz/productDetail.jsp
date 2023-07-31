@@ -14,295 +14,313 @@
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
 	rel="stylesheet">
-<script>
-	
-</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
+	rel="stylesheet">
+<style type="text/css">
+@font-face {
+	font-family: 'Pretendard-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+		format('woff');
+	font-weight: 400;
+	font-style: normal;
+}
 
-
+.container {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+</style>
 </head>
 <body>
-	<div class="container">
-		<div class="row">
-			<div class="col">
-				<jsp:include page="../common/bizTopNavi.jsp"></jsp:include>
-			</div>
-		</div>
-		<div class="row text-center">
-			<div class="col-3"><jsp:include
+	<div class="container" style="margin: 0 0;">
+		<div class="row" style="width: 1900px;">
+			<div class="col-2 text-center ps-4 text-white"
+				style="background-color: rgb(29, 33, 42); height: auto;"><jsp:include
 					page="../common/bizLeftNavi.jsp"></jsp:include></div>
-			<div class="col">
-				<div class="row mx-2 my-3">
-					<div class="col fs-4 fw-bold text-start">상품 상세/수정</div>
-				</div>
-				<div class="row mx-2 my-3">
-					<div class="col">
-						<div class="row border my-3">
-							<div class="col align-self-center">상품 타입</div>
-							<div class="col align-self-center">
-								<c:choose>
-									<c:when test="${productData.productOptionNum eq 1 }">단일상품</c:when>
-									<c:otherwise>옵션상품</c:otherwise>
-								</c:choose>
-							</div>
-						</div>
-						<div class="row border my-3">
-							<div class="col align-self-center">카테고리</div>
-							<div class="col">
-								<div class="row">
-									<div class="col align-self-center" id="categoryContent">
-										${productData.mainCategoryDto.main_category_name }>${productData.subCategoryDto.sub_category_name }
-									</div>
-									<div class="col align-self-center">
-										<button id="categoryModButton" class="btn btn-primary"
-											onclick="makeCategorySelect()">수정</button>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row border my-3">
-							<div class="col">
-								<div class="row py-2">
-									<div class="col align-self-center">상품명</div>
-									<div class="col">
-										<div class="row">
-											<div class="col align-self-center" id="productNameContent">${productData.productDto.product_name }
-											</div>
-											<div class="col align-self-center">
-												<button id="productNameModButton" class="btn btn-primary"
-													onclick="makeProductNameInput()">수정</button>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row border my-3">
-							<div class="col">
-								<div class="row py-2 border-bottom">
-									<div class="col fw-bold">상품이미지</div>
-									<div class="col"></div>
-								</div>
-								<div class="row py-2 border-bottom">
-									<div class="col align-self-center">상품 썸네일</div>
-									<div class="col">
-										<div class="row" id="thumbnailImageContainer">
-											<div class="col-3 position-relative px-0 mx-2">
-												<img class="img-thumbnail w-100"
-													src="/uploadFiles/productThumbnailImg/${productData.productDto.product_thumbnail}">
-												<label
-													class="btn btn-danger deleteButton position-absolute top-0 end-0 justify-content-center"
-													onclick="deleteThumbnail(${productData.productDto.product_no})">
-													<i class="fas fa-times"></i>
-												</label>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="row py-2 border-bottom">
-									<div class="col align-self-center">
-										상품 대표이미지<label for="mainImageInput" class="btn"> <i
-											class="fas fa-plus fa-lg"></i>
-										</label> <input type="file" id="mainImageInput" style="display: none;"
-											multiple accept="image/*" onchange="saveMainImage(event)">
-									</div>
-									<div class="col">
-										<div class="row" id="mainImageContainer">
-											<c:forEach items="${productData.productMainImageDtoList}"
-												var="productMainImageDto">
-												<div class="col-3 position-relative px-0 mx-2">
-													<img class="img-thumbnail"
-														src="/uploadFiles/productMainImg/${productMainImageDto.product_main_image_link }">
-													<label
-														class="btn btn-danger deleteButton position-absolute top-0 end-0 justify-content-center"
-														onclick="deleteMainImage(${productMainImageDto.product_main_image_no},event)">
-														<i class="fas fa-times"></i>
-													</label>
-												</div>
-											</c:forEach>
-										</div>
-									</div>
-								</div>
-								<div class="row py-2">
-									<div class="col align-self-center">
-										상품 상세이미지<label for="detailImageInput" class="btn"> <i
-											class="fas fa-plus fa-lg"></i>
-										</label> <input type="file" id="detailImageInput"
-											style="display: none;" multiple accept="image/*"
-											onchange="saveDetailImage(event)">
-									</div>
-									<div class="col">
-										<div class="row" id="detailImageContainer">
-											<c:forEach items="${productData.productDetailImageDtoList}"
-												var="productDetailImageDto">
-												<div class="col-3 position-relative px-0 mx-2">
-													<img class="w-100"
-														src="/uploadFiles/productDetailImg/${productDetailImageDto.product_detail_image_link }">
-													<label
-														class="btn btn-danger deleteButton position-absolute top-0 end-0 justify-content-center"
-														onclick="deleteDetailImage(${productDetailImageDto.product_detail_image_no},event)">
-														<i class="fas fa-times"></i>
-													</label>
-												</div>
-											</c:forEach>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="row my-2 border">
-							<div class="col align-self-center">상품 정보</div>
-							<div class="col">
-								<div class="row">
-									<div class="col align-self-center"
-										id="productDescriptionContent">
-										${productData.productDto.product_description }</div>
-									<div class="col align-self-center">
-										<button id="productDescriptionModButton"
-											class="btn btn-primary"
-											onclick="makeProductDescriptionInput()">수정</button>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row border my-3">
-							<div class="col">
-								<div class="row border-bottom py-3">
-									<div class="col fw-bold">판매가</div>
-									<div class="col"></div>
-								</div>
-								<div class="row py-2">
-									<div class="col align-self-center">상품 가격</div>
-									<div class="col">
-										<div class="row">
-											<div class="col align-self-center" id="productPriceContent">
-												${productData.productDto.product_price }</div>
-											<div class="col align-self-center">원</div>
-											<div class="col align-self-center">
-												<button id="productPriceModButton" class="btn btn-primary"
-													onclick="makeProductPriceInput()">수정</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="row py-2 justify-content-center">
-									<div class="col align-self-center">상품 배송비</div>
-									<div class="col align-self-center">
-										<div class="row">
-											<div class="col" id="productShippingPriceContent">
-												${productData.productDto.product_shipping_price }</div>
-											<div class="col align-self-center">원</div>
-											<div class="col align-self-center">
-												<button id="productShippingPriceModButton"
-													class="btn btn-primary"
-													onclick="makeProductShippingPriceInput()">수정</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="row py-3">
-									<div class="col align-self-center">상품 할인율</div>
-									<div class="col align-self-center">
-										<div class="row">
-											<div class="col" id="productDiscountContent">
-												${productData.productDto.product_discount_rate }</div>
-											<div class="col align-self-center">%</div>
-											<div class="col align-self-center">
-												<button id="productDiscountModButton"
-													class="btn btn-primary"
-													onclick="makeProductDiscountInput()">수정</button>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<c:choose>
-							<c:when test="${productData.productOptionNum eq 1 }">
-								<div class="row my-3">
-									<div class="col align-self-center">상품 재고</div>
-									<div class="col">
-										<div class="row">
-											<div class="col align-self-center" id="productStockContent">${productData.productOptionDtoList[0].product_option_stock_quantity }</div>
-											<div class="col align-self-center">개</div>
-											<div class="col align-self-center">
-												<button id="productStockModButton" class="btn btn-primary"
-													onclick="makeProductStockInput(${productData.productOptionDtoList[0].product_option_no})">수정</button>
-											</div>
-										</div>
-									</div>
-								</div>
-							</c:when>
-							<c:otherwise>
-								<div class="row my-3">
-									<div class="col" id="productOptionBoxContainer">
-										<c:forEach items="${productData.productOptionDtoList }"
-											var="productOptionDto">
-											<div class="row productOptionBox border">
-												<div class="col">
-													<div class="row py-2 border-bottom">
-														<div class="col fw-bold align-self-center">상품 옵션</div>
-														<div class="col"></div>
-													</div>
-													<div class="row py-1">
-														<div class="col align-self-center">상품 옵션 이름</div>
-														<div class="col">
-															<div class="row">
-																<div class="col align-self-center"
-																	id="optionNameContent${productOptionDto.product_option_no }">${productOptionDto.product_option_name }</div>
-																<div class="col align-self-center">
-																	<button
-																		id="optionNameModButton${productOptionDto.product_option_no }"
-																		class="btn btn-primary"
-																		onclick="makeOptionNameInput(${productOptionDto.product_option_no })">수정</button>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="row py-1">
-														<div class="col align-self-center">상품 옵션 가격</div>
-														<div class="col">
-															<div class="row">
-																<div class="col align-self-center"
-																	id="optionPriceContent${productOptionDto.product_option_no }">
-																	${productOptionDto.product_option_price }</div>
-																<div class="col align-self-center">
-																	<button
-																		id="optionPriceModButton${productOptionDto.product_option_no }"
-																		class="btn btn-primary"
-																		onclick="makeOptionPriceInput(${productOptionDto.product_option_no })">수정</button>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="row py-1">
-														<div class="col align-self-center">상품 옵션 재고 수량</div>
-														<div class="col">
-															<div class="row">
-																<div class="col align-self-center"
-																	id="optionStockContent${productOptionDto.product_option_no }">
-																	${productOptionDto.product_option_stock_quantity}</div>
-																<div class="col align-self-center">
-																	<button
-																		id="optionStockModButton${productOptionDto.product_option_no }"
-																		class="btn btn-primary"
-																		onclick="makeOptionStockInput(${productOptionDto.product_option_no })">수정</button>
-																</div>
-															</div>
-														</div>
-													</div>
-
-												</div>
-											</div>
-
-										</c:forEach>
-									</div>
-								</div>
-							</c:otherwise>
-						</c:choose>
+			<div class="col-10 px-0 bg-light">
+				<div class="row bg-white ms-1">
+					<div class="col text-center">
+						<jsp:include page="../common/bizTopNavi.jsp"></jsp:include>
 					</div>
 				</div>
+				<div class="row mx-5 text-start mb-5">
+					<div class="col-10">
+						<div class="row my-2">
+							<div class="col fs-5 fw-bold py-3">상품 상세/수정</div>
+						</div>
+						<div class="row mt-4 mb-2">
+							<div class="col" style="font-size: 13px;">
+								<div class="row bg-white">
+									<div class="col border">
+										<div class="row py-2 border-bottom">
+											<div class="col fw-bold" style="font-size: 15px;">상품 정보</div>
+										</div>
+										<div class="row border-bottom">
+											<div class="col-3 align-self-center">카테고리</div>
+											<div class="col border-start">
+												<div class="row">
+													<div class="col py-2">
+														<span class="py-2" id="categoryContent">${productData.mainCategoryDto.main_category_name }
+															&gt; ${productData.subCategoryDto.sub_category_name }</span><span
+															class="py-2 mx-4"><button id="categoryModButton"
+																class="btn btn-outline-dark btn-sm"
+																onclick="makeCategorySelect()">수정</button></span>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row border-bottom">
+											<div class="col-3 align-self-center">상품명</div>
+											<div class="col border-start">
+												<div class="row">
+													<div class="col align-self-center py-2">
+														<span id="productNameContent">${productData.productDto.product_name }</span>
+														<span class="py-2 mx-4"><button
+																id="productNameModButton" class="btn btn-outline-dark btn-sm"
+																onclick="makeProductNameInput()">수정</button></span>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-3 align-self-center">상품 정보</div>
+											<div class="col border-start">
+												<div class="row">
+													<div class="col align-self-center py-2"
+														id="productDescriptionContent">
+														${productData.productDto.product_description }</div>
+													<div class="col align-self-center">
+														<button id="productDescriptionModButton"
+															class="btn btn-outline-dark btn-sm"
+															onclick="makeProductDescriptionInput()">수정</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row mt-4">
+									<div class="col border bg-white">
+										<div class="row border-bottom py-2">
+											<div class="col fw-bold" style="font-size: 15px;">판매정보</div>
+											<div class="col"></div>
+										</div>
+										<div class="row border-bottom">
+											<div class="col-3 align-self-center">상품 가격</div>
+											<div class="col border-start">
+												<div class="row py-2">
+													<div class="col-3 align-self-center">
+														<span id="productPriceContent">${productData.productDto.product_price }</span>
+														<span>원</span> <span class="py-2 mx-4"><button
+																id="productPriceModButton" class="btn btn-outline-dark btn-sm"
+																onclick="makeProductPriceInput()">수정</button></span>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row border-bottom">
+											<div class="col-3 align-self-center">상품 배송비</div>
+											<div class="col border-start">
+												<div class="row py-2">
+													<div class="col align-self-center">
+														<span id="productShippingPriceContent">${productData.productDto.product_shipping_price }</span>
+														<span>원</span> <span class="py-2 mx-4"><button
+																id="productShippingPriceModButton"
+																class="btn btn-outline-dark btn-sm"
+																onclick="makeProductShippingPriceInput()">수정</button></span>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-3 align-self-center">상품 할인율</div>
+											<div class="col border-start">
+												<div class="row py-2">
+													<div class="col">
+														<span id="productDiscountContent">${productData.productDto.product_discount_rate }</span>
+														<span>%</span> <span class="py-2 mx-4"><button
+																id="productDiscountModButton"
+																class="btn btn-outline-dark btn-sm"
+																onclick="makeProductDiscountInput()">수정</button></span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row mt-4">
+									<div class="col border bg-white">
+										<div class="row border-bottom py-2">
+											<div class="col fw-bold" style="font-size: 15px;">옵션/재고
+												설정</div>
+										</div>
+										<div class="row border-bottom">
+											<div class="col-3 align-self-center py-2">상품 타입</div>
+											<div class="col border-start py-2">
+												<c:choose>
+													<c:when test="${productData.productOptionNum eq 1 }">단일상품</c:when>
+													<c:otherwise>옵션상품</c:otherwise>
+												</c:choose>
+											</div>
+										</div>
+										<c:choose>
+											<c:when test="${productData.productOptionNum eq 1 }">
+												<div class="row">
+													<div class="col-3 align-self-center">상품 재고</div>
+													<div class="col border-start">
+														<div class="row">
+															<div class="col align-self-center py-2">
+																<span id="productStockContent">${productData.productOptionDtoList[0].product_option_stock_quantity }</span>
+																<span>개</span> <span class="py-2 mx-4"><button
+																		id="productStockModButton" class="btn btn-outline-dark btn-sm"
+																		onclick="makeProductStockInput(${productData.productOptionDtoList[0].product_option_no})">수정</button></span>
+															</div>
+														</div>
+													</div>
+												</div>
+											</c:when>
+											<c:otherwise>
+												<div class="row">
+													<div class="col" id="productOptionBoxContainer">
+														<div class="row">
+															<div class="col-3 align-self-center">옵션 입력</div>
+															<div class="col border-start py-2">
+																<div class="row">
+																	<div class="col">
+																		<table class="table table-bordered mb-0">
+																			<thead class="table-light text-center">
+																				<tr>
+																					<th scope="col">옵션명</th>
+																					<th scope="col">옵션가격</th>
+																					<th scope="col">옵션수량</th>
+																				</tr>
+																			</thead>
+																			<tbody>
+																				<c:forEach
+																					items="${productData.productOptionDtoList }"
+																					var="productOptionDto">
+																					<tr class="productOptionBox text-center">
+																						<td><span class="mx-auto"
+																							id="optionNameContent${productOptionDto.product_option_no }">${productOptionDto.product_option_name }</span>&nbsp;&nbsp;
+																							<span class="py-2 mx-auto"><button
+																									id="optionNameModButton${productOptionDto.product_option_no }"
+																									class="btn btn-outline-dark btn-sm"
+																									onclick="makeOptionNameInput(${productOptionDto.product_option_no })">수정</button></span>
+																						</td>
+																						<td><span class="mx-auto"
+																							id="optionPriceContent${productOptionDto.product_option_no }">${productOptionDto.product_option_price }</span>&nbsp;&nbsp;
+																							<span class="py-2 mx-auto"><button
+																									id="optionPriceModButton${productOptionDto.product_option_no }"
+																									class="btn btn-outline-dark btn-sm"
+																									onclick="makeOptionPriceInput(${productOptionDto.product_option_no })">수정</button></span>
+																						</td>
+																						<td><span class="mx-auto"
+																							id="optionStockContent${productOptionDto.product_option_no }">${productOptionDto.product_option_stock_quantity}</span>
+																							&nbsp;&nbsp; <span class="py-2 mx-auto"><button
+																									id="optionStockModButton${productOptionDto.product_option_no }"
+																									class="btn btn-outline-dark btn-sm"
+																									onclick="makeOptionStockInput(${productOptionDto.product_option_no })">수정</button></span>
+																					</tr>
+																				</c:forEach>
+																			</tbody>
+																		</table>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</c:otherwise>
+										</c:choose>
+									</div>
+								</div>
 
+
+								<div class="row mt-4">
+									<div class="col bg-white border">
+										<div class="row py-2 border-bottom">
+											<div class="col-3 fw-bold" style="font-size: 15px;">상품이미지</div>
+											<div class="col"></div>
+										</div>
+										<div class="row border-bottom">
+											<div class="col-3 align-self-center px-2">상품 썸네일</div>
+											<div class="col border-start px-0">
+												<div class="row" id="thumbnailImageContainer">
+													<div class="col-2 position-relative px-0 mx-2">
+														<img class="img-thumbnail w-100"
+															src="/uploadFiles/productThumbnailImg/${productData.productDto.product_thumbnail}">
+														<label
+															class="btn btn-secondary opacity-50 deleteButton position-absolute top-0 end-0 justify-content-center"
+															onclick="deleteThumbnail(${productData.productDto.product_no})">
+															<i class="fas fa-trash-alt"></i>
+														</label>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row border-bottom">
+											<div class="col-3 align-self-center px-2">
+												상품 대표이미지<label for="mainImageInput" class="btn"> <i
+													class="fas fa-plus fa-lg"></i>
+												</label> <input type="file" id="mainImageInput"
+													style="display: none;" multiple accept="image/*"
+													onchange="saveMainImage(event)">
+											</div>
+											<div class="col border-start px-0">
+												<div class="row" id="mainImageContainer">
+													<c:forEach items="${productData.productMainImageDtoList}"
+														var="productMainImageDto">
+														<div class="col-2 position-relative px-0 mx-2">
+															<img class="img-thumbnail"
+																src="/uploadFiles/productMainImg/${productMainImageDto.product_main_image_link }">
+															<label
+																class="btn btn-secondary opacity-50 deleteButton position-absolute top-0 end-0 justify-content-center"
+																onclick="deleteMainImage(${productMainImageDto.product_main_image_no},event)">
+																<i class="fas fa-trash-alt"></i>
+															</label>
+														</div>
+													</c:forEach>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-3 align-self-center px-2">
+												상품 상세이미지<label for="detailImageInput" class="btn"> <i
+													class="fas fa-plus fa-lg"></i>
+												</label> <input type="file" id="detailImageInput"
+													style="display: none;" multiple accept="image/*"
+													onchange="saveDetailImage(event)">
+											</div>
+											<div class="col border-start px-0">
+												<div class="row" id="detailImageContainer">
+													<c:forEach items="${productData.productDetailImageDtoList}"
+														var="productDetailImageDto">
+														<div class="col-2 position-relative px-0 mx-2">
+															<img class="w-100"
+																src="/uploadFiles/productDetailImg/${productDetailImageDto.product_detail_image_link }">
+															<label
+																class="btn btn-secondary opacity-50 deleteButton position-absolute top-0 end-0 justify-content-center"
+																onclick="deleteDetailImage(${productDetailImageDto.product_detail_image_no},event)">
+																<i class="fas fa-trash-alt"></i>
+															</label>
+														</div>
+													</c:forEach>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<jsp:include page="../common/bizFooter.jsp"></jsp:include></div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -314,7 +332,7 @@
 			const xhr = new XMLHttpRequest();
 	        xhr.onreadystatechange = function () {
 	            if (xhr.readyState == 4 && xhr.status == 200) {
-	            	const deleteElement=imgDeleteButton.closest('.col-3');
+	            	const deleteElement=imgDeleteButton.closest('.col-2');
 	            	deleteElement.remove();
 	            	
 	            }
@@ -345,7 +363,7 @@
 					
 					for(detailImageDto of response.productDetailImageDtoList){
 						var divElement = document.createElement("div");
-						divElement.classList.add("col-3", "position-relative", "px-0", "mx-2");
+						divElement.classList.add("col-2", "position-relative", "px-0", "mx-2");
 			
 					
 						var imgElement = document.createElement("img");
@@ -354,13 +372,12 @@
 			
 						
 						var labelElement = document.createElement("label");
-						labelElement.classList.add("btn", "btn-danger", "deleteButton", "position-absolute", "top-0", "end-0", "justify-content-center");
+						labelElement.classList.add("btn", "btn-secondary", "opacity-50", "deleteButton", "position-absolute", "top-0", "end-0", "justify-content-center");
 						labelElement.setAttribute("onclick", "deleteDetailImage(" + detailImageDto.product_detail_image_no + ",event)");
 			
 						
 						var iElement = document.createElement("i");
-						iElement.classList.add("fas", "fa-times");
-			
+						iElement.classList.add("fas", "fa-trash-alt");
 						
 						labelElement.appendChild(iElement);
 			
@@ -385,7 +402,7 @@
 			const xhr = new XMLHttpRequest();
 	        xhr.onreadystatechange = function () {
 	            if (xhr.readyState == 4 && xhr.status == 200) {
-	            	const deleteElement=imgDeleteButton.closest('.col-3');
+	            	const deleteElement=imgDeleteButton.closest('.col-2');
 	            	deleteElement.remove();
 	            	
 	            }
@@ -422,7 +439,7 @@
 					console.log(mainImageDto.product_main_image_link);
 					
 					var divElement = document.createElement("div");
-					divElement.classList.add("col-3", "position-relative", "px-0", "mx-2");
+					divElement.classList.add("col-2", "position-relative", "px-0", "mx-2");
 		
 				
 					var imgElement = document.createElement("img");
@@ -431,12 +448,12 @@
 		
 					
 					var labelElement = document.createElement("label");
-					labelElement.classList.add("btn", "btn-danger", "deleteButton", "position-absolute", "top-0", "end-0", "justify-content-center");
+					labelElement.classList.add("btn", "btn-secondary", "opacity-50", "deleteButton", "position-absolute", "top-0", "end-0", "justify-content-center");
 					labelElement.setAttribute("onclick", "deleteMainImage(" + mainImageDto.product_main_image_no + ",event)");
 		
 					
 					var iElement = document.createElement("i");
-					iElement.classList.add("fas", "fa-times");
+					iElement.classList.add("fas", "fa-trash-alt");
 		
 					
 					labelElement.appendChild(iElement);
@@ -519,7 +536,7 @@
 			
 			
 			var divElement = document.createElement("div");
-			divElement.classList.add("col-3", "position-relative", "px-0", "mx-2");
+			divElement.classList.add("col-2", "position-relative", "px-0", "mx-2");
 	
 		
 			var imgElement = document.createElement("img");
@@ -528,12 +545,12 @@
 	
 			
 			var labelElement = document.createElement("label");
-			labelElement.classList.add("btn", "btn-danger", "deleteButton", "position-absolute", "top-0", "end-0", "justify-content-center");
+			labelElement.classList.add("btn", "btn-secondary", "opacity-50", "deleteButton", "position-absolute", "top-0", "end-0", "justify-content-center");
 			labelElement.setAttribute("onclick", "deleteThumbnail(" + response.productDto.product_no + ")");
 	
 			
 			var iElement = document.createElement("i");
-			iElement.classList.add("fas", "fa-times");
+			iElement.classList.add("fas", "fa-trash-alt");
 	
 			
 			labelElement.appendChild(iElement);

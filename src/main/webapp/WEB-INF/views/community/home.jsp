@@ -17,7 +17,7 @@
 	</div>
 
 <%-- mobileStyle --%>
-  <jsp:include page="../common/bottomTabStyle.jsp"></jsp:include>
+  <jsp:include page="../common/bottomTabCommu.jsp"></jsp:include>
 <%-- ----------- --%>  
 </body>
 </html>

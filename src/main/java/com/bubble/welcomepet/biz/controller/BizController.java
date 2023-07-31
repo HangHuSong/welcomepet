@@ -130,7 +130,10 @@ public class BizController {
 
 		List<Map<String, Object>> productDataList = bizService.getProductByBizNo(bizUser.getBiz_no());
 		model.addAttribute("productDataList", productDataList);
-
+		
+		Map<String,Object> productNumPerStatus=bizService.getProductNumPerStatusByBizNo(bizUser.getBiz_no());
+		model.addAttribute("productNumPerStatus", productNumPerStatus);
+		
 		List<MainCategoryDto> mainCategoryList = bizService.getMainCategoryList();
 		model.addAttribute("mainCategoryList", mainCategoryList);
 

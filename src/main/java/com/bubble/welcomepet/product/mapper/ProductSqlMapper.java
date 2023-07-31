@@ -103,6 +103,8 @@ public interface ProductSqlMapper {
 
 	public int countLowStockNumByBizNo(int biz_no);
 
+	public Map<String, Object> getProductNumPerStatusByBizNo(int biz_no);
+
 
 
 }

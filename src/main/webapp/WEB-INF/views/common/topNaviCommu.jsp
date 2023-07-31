@@ -24,23 +24,18 @@
 <style type="text/css">
 /* 글꼴모음 */
 @font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
     font-family: 'Pretendard-Regular';
     src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
     font-weight: 400;
     font-style: normal;
 }
-@font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 600;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 800;
-    font-style: normal;
-}
+
 /* 여기까지 글꼴모음 */
 
 
@@ -59,7 +54,7 @@
 }
 
 #postTopNavi{
-	font-family:'Pretendard-Regular';
+/* 	font-family:'SUITE-Regular'; */
 	background-color: #ffffff;
 }
 </style>
@@ -109,9 +104,9 @@
 					<a class="nav-link text-secondary" href="/welcomepet/pointProd/board">어서대화하개</a>
 				</div>
 				
-				<div class="col text-center p-0">
+				<div class="col text-center p-0 fw-bold">
 					<a class="nav-link" href="/welcomepet/community/showDogPostList"
-					   style="font-weight:800 !important; border-bottom:2.5px solid gray">어서보여주개</a>
+					   style="border-bottom:2.5px solid gray">어서보여주개</a>
 				</div>
 			</div>
 			

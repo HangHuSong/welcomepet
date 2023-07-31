@@ -19,13 +19,14 @@
 <title>주문목록</title>
 <style type="text/css">
 @font-face {
-    font-family: 'SUITE-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
-    font-weight: normal;
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
     font-style: normal;
 }
+
 body {
-	font-family: 'SUITE-Regular';
+	font-family: 'Pretendard-Regular';
 }
 
 .product-thum {
@@ -127,7 +128,7 @@ body {
 								            </div>
 								        </c:when>
 								        <c:when test="${orderProduct.order_product_status_no == 2}">
-								            <div class="col ">
+								            <div class="col d-grid ">
 								                <button type="button" class="btn btn-sm btn-outline-secondary">취소상세</button>
 								            </div>
 								        </c:when>

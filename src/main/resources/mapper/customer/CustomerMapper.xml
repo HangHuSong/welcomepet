@@ -422,7 +422,34 @@
 		select * from sub_category where main_category_no = #{main_category_no}
 	</select>
 
-
+	<select id="getRecentProductList" resultType="com.bubble.welcomepet.dto.RecentProductDto">
+					SELECT *
+			FROM (
+			    SELECT *
+			    FROM recent_product
+			    WHERE customer_no = #{customer_no}
+			    ORDER BY recent_product_reg_date  DESC )
+			WHERE ROWNUM <![CDATA[ <= 10  ]]> 
+	</select>
+	
+	<select id="getRecentProduct" resultType="com.bubble.welcomepet.dto.RecentProductDto">
+					SELECT *
+			FROM (
+			    SELECT *
+			    FROM recent_product
+			    WHERE customer_no = #{customer_no}
+			    ORDER BY recent_product_reg_date  DESC )
+			WHERE ROWNUM <![CDATA[ <= 1  ]]> 
+	</select>	
+	
+	<insert id="addRecentProduct">
+	 insert into recent_product values(
+	  recent_product_seq.nextval,
+	  #{customer_no},
+	  #{product_no},
+	  sysdate
+	 )	 
+	</insert>
 
 
 

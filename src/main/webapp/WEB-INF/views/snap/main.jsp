@@ -15,9 +15,6 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
 	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
-	rel="stylesheet">
 <title>Snap</title>
 <style type="text/css">
 @font-face {
@@ -43,7 +40,7 @@ a:hover {
 
 #thumbnail {
 	object-fit: cover;
-	width: 425px;
+	width: 100%;
 	height: 376px;
 }
 
@@ -505,7 +502,7 @@ a:hover {
 									</div>
 
 									<div class="col-6 text-center">
-										<a id="main" href="../snap/main">커뮤니티</a>
+										<a id="main" href="../snap/main" class="fs-2">커뮤니티</a>
 									</div>
 
 									<div class="col d-flex justify-content-end me-1">
@@ -552,83 +549,82 @@ a:hover {
 		<c:forEach items="${list}" var="data">
 			<div class="row mb-1">
 				<div class="col">
-					<div
-						class="row border-bottom border-top align-items-center justify-content-center"
-						style="height: 48px;">
+					<div class="row">
 						<div class="col">
-							<img id="profileImg"
-								src="/uploadFiles/WelcomePet/${data.dogDto.dog_image}"> <span
-								onclick="location.href = './dogProfile?dog_no=${data.dogDto.dog_no}';"
-								class="align-middle fw-bold mx-1 my-1 fs-6">${data.dogDto.dog_name}</span>
-						</div>
-						<div class="col d-flex justify-content-end">
-							<button id="followBtn" class="btn btn-sm bi bi-person-plus-fill">
-								팔로우</button>
-						</div>
-					</div>
-				</div>
-				<div class="row p-0">
-					<div class="col-12 px-0">
-						<a href="javascript:void(0);"
-							onclick="readSnap(${data.snapBoardDto.snap_board_no});"> <img
-							src="/uploadFiles/thumbnail/${data.snapBoardDto.snap_thumbnail}"
-							id="thumbnail">
-						</a>
-					</div>
-				</div>
-				<div class="row mt-1 px-0">
-					<div class="col mx-2">
-						<c:choose>
-							<c:when test="${data.checkLike == 0}">
-								<i id="heart-${data.snapBoardDto.snap_board_no}"
-									class="bi bi-heart fs-5" style="color: #ff2465;"
-									data-snapBoardNo="${data.snapBoardDto.snap_board_no}"
-									onclick="like(${data.snapBoardDto.snap_board_no});"></i>
-							</c:when>
-							<c:otherwise>
-								<i id="heart-${data.snapBoardDto.snap_board_no}"
-									class="bi bi-heart-fill fs-5" style="color: #ff2465;"
-									data-snapBoardNo="${data.snapBoardDto.snap_board_no}"
-									onclick="unLike(${data.snapBoardDto.snap_board_no});"></i>
-							</c:otherwise>
-						</c:choose>
-						<i class="bi bi-chat mx-2 fs-5"></i> <i class="bi bi-send fs-5"></i>
-					</div>
-					<div class="col px-0 p-0 text-end">
-						<i class="bi bi-bookmark fs-5"></i>
-					</div>
-				</div>
-				<div class="row my-1">
-					<div class="col">
-						<span style="font-size: 14px;">좋아요 ${data.countLike}개</span>
-					</div>
-				</div>
-				<div class="row my-1">
-					<div class="col-3">
-						<a href="/welcomepet/board/productDetail?product_no=15"><img id="productSnap" src="/welcomepet/resources/img/snapProduct.png"></a>
-					</div>
-					<div class="col-9">
-						<div class="row mx-0 align-items-center">
-							<div class="col text-truncate">
-								<span>루비디 러블리바니 민소매 티셔츠 민트 M</span>
-							</div>
-						</div>
-						<div class="row mx-0 align-items-center">
-							<div class="col">
-								<span style="font-size: 13px;">12,900원</span>
+							<div class="row border-bottom border-top align-items-center justify-content-center" style="height: 48px;">
+								<div class="col">
+									<img id="profileImg"
+										src="/uploadFiles/WelcomePet/${data.dogDto.dog_image}"> <span
+										onclick="location.href = './dogProfile?dog_no=${data.dogDto.dog_no}';"
+										class="align-middle fw-bold mx-1 my-1 fs-6">${data.dogDto.dog_name}</span>
+								</div>
+								<div class="col-auto d-flex justify-content-end align-items-center">
+									<i class="bi bi-three-dots-vertical"></i>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="row my-1">
-					<div class="col">
-						<span class="text-primary" style="font-size: 0.9em;">#애견의류 #애견패션 #반려견티셔츠 #강아지패션 #편안한의류 #강아지스타일 #애견소통</span>
+					<div class="row p-0">
+						<div class="col-12 px-0">
+							<a href="javascript:void(0);" onclick="readSnap(${data.snapBoardDto.snap_board_no});"> 
+								<img src="/uploadFiles/thumbnail/${data.snapBoardDto.snap_thumbnail}" id="thumbnail">
+							</a>
+						</div>
 					</div>
-				</div>
-				<div class="row mb-3">
-					<div class="col text-secondary">
-						<i class="bi bi-geo-alt-fill fs-5"></i><span
-							style="font-size: 12px;" class="mx-1">${data.snapBoardDto.snap_location}</span>
+					<div class="row mt-1">
+						<div class="col">
+							<c:choose>
+								<c:when test="${data.checkLike == 0}">
+									<i id="heart-${data.snapBoardDto.snap_board_no}"
+										class="bi bi-heart fs-5" style="color: #ff2465;"
+										data-snapBoardNo="${data.snapBoardDto.snap_board_no}"
+										onclick="like(${data.snapBoardDto.snap_board_no});"></i>
+								</c:when>
+								<c:otherwise>
+									<i id="heart-${data.snapBoardDto.snap_board_no}"
+										class="bi bi-heart-fill fs-5" style="color: #ff2465;"
+										data-snapBoardNo="${data.snapBoardDto.snap_board_no}"
+										onclick="unLike(${data.snapBoardDto.snap_board_no});"></i>
+								</c:otherwise>
+							</c:choose>
+							<i class="bi bi-chat mx-2 fs-5"></i> <i class="bi bi-send fs-5"></i>
+						</div>
+						<div class="col text-end">
+							<i class="bi bi-bookmark fs-5"></i>
+						</div>
+					</div>
+					<div class="row my-1">
+						<div class="col">
+							<span style="font-size: 14px;">좋아요 ${data.countLike}개</span>
+						</div>
+					</div>
+					<div class="row my-1">
+						<div class="col-3">
+							<a href="/welcomepet/board/productDetail?product_no=15"><img id="productSnap" src="/welcomepet/resources/img/snapProduct.png"></a>
+						</div>
+						<div class="col-9 px-0">
+							<div class="row mx-0 align-items-center">
+								<div class="col text-truncate">
+									<span>루비디 러블리바니 민소매 티셔츠 민트 M</span>
+								</div>
+							</div>
+							<div class="row mx-0 align-items-center">
+								<div class="col">
+									<span style="font-size: 13px;">12,900원</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row my-1">
+						<div class="col">
+							<span class="text-primary" style="font-size: 0.9em;">#애견의류 #애견패션 #반려견티셔츠 #강아지스타일<br>#강아지패션 #애견소통</span>
+						</div>
+					</div>
+					<div class="row mb-3">
+						<div class="col text-secondary">
+							<i class="bi bi-geo-alt-fill" style="font-size: 12px;"></i><span
+								style="font-size: 12px;" class="mx-1">${data.snapBoardDto.snap_location}</span>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -644,12 +640,12 @@ a:hover {
 			</a>
 		</div>
 	</div>
-	<jsp:include page="../common/bottomTabStyle.jsp"></jsp:include>
+	<jsp:include page="../common/bottomTabCommu.jsp"></jsp:include>
 
 
 
 	<!-- Modal -->
-	<div class="modal fade" id="snapDetailModal" tabindex="-1"
+	<div class="modal fa0de" id="snapDetailModal" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">

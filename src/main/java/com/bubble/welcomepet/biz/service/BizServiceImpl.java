@@ -108,7 +108,9 @@ public class BizServiceImpl {
 			SubCategoryDto subCategoryDto = productSqlMapper.getSubCategoryByNo(productDto.getSub_category_no());
 			MainCategoryDto mainCategoryDto = productSqlMapper
 					.getMainCategoryByNo(subCategoryDto.getMain_category_no());
-
+			int productOptionNum=productOptionDtoList.size();
+			
+			map.put("productOptionNum", productOptionNum);
 			map.put("productDto", productDto);
 			map.put("productOptionDtoList", productOptionDtoList);
 			map.put("subCategoryDto", subCategoryDto);
@@ -1368,5 +1370,15 @@ public class BizServiceImpl {
 	public int getBizLikesNumByBizNo(int biz_no) {
 		
 		return bizSqlMapper.getBizLikesNumByBizNo(biz_no);
+	}
+
+	public Map<String, Object> getProductNumPerStatusByBizNo(int biz_no) {
+		return productSqlMapper.getProductNumPerStatusByBizNo(biz_no);
+	}
+
+	public List<Map<String, Object>> getNewSettlementByBizNo(int biz_no) {
+		List<Map<String, Object>> list=new ArrayList<Map<String,Object>>();
+		
+		return null;
 	}
 }

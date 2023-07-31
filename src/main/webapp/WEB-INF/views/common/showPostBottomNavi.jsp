@@ -1,31 +1,63 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%--
 <div class="fixed-bottom border-top" style="background-color:white;">
-<div class="row px-2" style="height:48px;">
+<div class="row">
+ <div class="col">
+  <div class="row">
+  	<div class="col-8">
+  	 <textarea id="inputCommentText" class="form-control-plaintext" name="show_dog_comment_content" 
+		 	   placeholder="댓글을 작성하세요" style="height:2.5em; font-size:1em"></textarea>
+  	</div>
+  	
+  	<div class="col-1">
+  	 <i class="bi bi-emoji-smile"></i>
+  	</div>
+  	
+  	<div class="col-1">
+  	 <i class="bi bi-camera"></i>
+  	</div>
+  	
+  	<div>
+  	 <button onclick="registerComment()" class="btn" style="color:white; background-color:#fd7e14; height:2em; width:2em">
+		  <i class="bi bi-arrow-up"></i>
+	</button>
+  	</div>
+  
+  </div>
+ </div>
+</div>
+</div>    --%>
+    
+     
+<div class="fixed-bottom border-top" style="background-color:white;">
+<div class="row px-0" style="height:48px;">
  <div class="col mt-1">	 
-	<div class="row d-flex justify-content-center align-items-center">
-		<div class="col-8 pe-0">
-		 <textarea id="inputCommentText" class="form-control-plaintext fw-bold" name="show_dog_comment_content" 
-		 		   placeholder="댓글 작성하기" style="height:2.5em; font-size:0.9em"></textarea>
+	<div class="row pe-1 justify-content-center align-items-center">
+		<div class="col-8 ps-2 pe-0">
+		 <textarea id="inputCommentText" class="form-control-plaintext" name="show_dog_comment_content" 
+		 		   placeholder="댓글을 작성하세요" style="height:2.5em; font-size:1em"></textarea>
 		</div>
 		
 		<div class="col-1 px-0 d-flex justify-content-center text-secondary">
-		 <i class="bi bi-emoji-smile d-flex align-items-center" style="font-size:1.3rem"></i>
+		 <i class="bi bi-emoji-smile d-flex align-items-center" style="font-size:1.3em"></i>
 		</div>
 		
 		<div class="col-1 px-0 d-flex justify-content-center text-secondary">
-		 <i class="bi bi-camera d-flex align-items-center" style="font-size:1.5rem"></i>
+		 <i class="bi bi-camera d-flex align-items-center" style="font-size:1.5em"></i>
 		</div>
 		
-		<div class="col-2 text-end">
-		 <button onclick="registerComment()" class="btn p-2" style="color:white; background-color:#fd7e14; width:42px">
-		  <i class="bi bi-arrow-return-left" style="stroke-width:2;"></i>
+		<div class="col-auto px-0 text-end">
+		 <button onclick="registerComment()" class="btn btn-lg p-1" style="color:white; background-color:#fd7e14;height:2em;width:2em">
+		  <i class="bi bi-arrow-up" style="stroke-width:2;"></i>
 		 </button>
 		</div>
 	</div>
  </div>
 </div>
 </div>
+
+
 <%-- <div class="row fixed-bottom bg-white">
 						<div class="col-12 border-top">
 							<form action="./insertComment" method="post">

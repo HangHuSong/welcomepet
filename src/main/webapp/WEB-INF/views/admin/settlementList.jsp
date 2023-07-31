@@ -37,16 +37,20 @@
 					const tr = document.createElement("tr");
 					tr.classList.add("align-middle");
 					tr.style.height = "48px";
-					const td1 =  document.createElement("td");
-					tr.appendChild(td1);
+					/* const td1 =  document.createElement("td");
+					tr.appendChild(td1); */
 					
 					const td2 =  document.createElement("td");
 					td2.innerText = request.bizDto.biz_store_name;
 					tr.appendChild(td2);
 					
 					const td3 =  document.createElement("td");
-					td3.innerText = request.statementDto.statement_year + "년." + request.statementDto.statement_month + "월 / " + request.statementDto.statement_price + "원";
+					td3.innerText = request.statementDto.statement_year + "년." + request.statementDto.statement_month + "월";
 					tr.appendChild(td3);
+					
+					const td31 = document.createElement("td");
+					td31.innerText = request.statementDto.statement_price + "원";
+					tr.appendChild(td31);
 					
 					const td4 = document.createElement("td"); 
 					td4.innerText = formatDate(request.settlementRequestDto.settlement_request_date);
@@ -101,8 +105,6 @@
 		
 		<div class="row">
 			<%@ include file="../common/adminTab.jsp"%>
-			
-			
 			<div class="col">
 				<div class="row">
 					<div class="col">
@@ -116,19 +118,34 @@
 				</div>
 				<div class="row ms-5 mt-3">
 					<div class="col">
-						<table class="table">
+						<table class="table text-center">
 							<thead class="table-dark">
 								<tr>
-									<td scope="col"></td>
-									<td scope="col">판매자</td>
-									<td scope="col">정산년월/정산금액</td>
-									<td scope="col">요청일</td>
-									<td scope="col">처리여부</td>
+									<td>판매자</td>
+									<td>정산년월</td>
+									<td>정산금액</td>
+									<td>요청일</td>
+									<td>처리여부</td>
 								</tr>
 							</thead>
 							<tbody id="settlementRequestListBox" class="align-items-center justify-content-center">
 							</tbody>
 						</table>
+					</div>
+				</div>
+				
+				<div class="row mt-4">
+					<div class="col">
+						<nav aria-label="...">
+							<ul class="pagination justify-content-center">
+								<li class="page-item disabled"><a class="page-link">&lt;</a>
+								</li>
+								<li class="page-item active"><a class="page-link" href="#">1</a>
+								</li>
+								<li class="page-item"><a class="page-link" href="#">&gt;</a>
+								</li>
+							</ul>
+						</nav>
 					</div>
 				</div>
 			</div>
