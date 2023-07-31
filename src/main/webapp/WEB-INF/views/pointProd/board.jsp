@@ -99,7 +99,7 @@
 								<div class="row mt-4">
 									<div class="col p-0">
 										<img class="img-fluid pt-3"
-											src="https://images.pet-friends.co.kr/storage/pet_friends/tab_banner/6/d/a/7/9/b/c/6da79bc359a29e2870714c21fcf3d013/10000/246a857d8ef7463f6b4431269c1f96d6.jpeg">
+											src="/welcomepet/resources/img/nybanner1.jpeg">
 									</div>
 								</div>
 							</div>
@@ -117,13 +117,13 @@
 															<c:forEach items="${list2 }" var="map">
 																<div
 																	class="col-12 border-bottom border-light-subtle border-1 fw-medium"
-																	style="padding: 0.3em 0.7em;"
+																	style="padding: 0.1em 0.7em;"
 																	onclick="location.href='./readContent?board_no=${map.boardDto.board_no }'">
 																	<div class="row">
 																		<div class="col">
 																			<a class="text-decoration-none text-black"
-																				style="font-size: 0.95em;"><i
-																				class="bi bi-fire text-danger"></i><span
+																				style="font-size: 0.9em;"><i
+																				class="bi bi-fire text-danger" style="font-size: 0.95em;"></i><span
 																				class="me-1"></span>${map.boardDto.board_title }</a>
 																		</div>
 																	</div>
@@ -146,7 +146,7 @@
 															<div class="row">
 																<div class="col">
 																	<div class="row">
-																		<div class="col mt-2 pt-1">
+																		<div class="col" style="padding-top: 0.8em;">
 																			<a
 																				class="text-decoration-none text-black fw-semibold"
 																				style="font-size: 1em;">${map.boardDto.board_title }</a>
@@ -154,10 +154,10 @@
 																	</div>
 																	<div class="row text-secondary"
 																		style="font-size: 0.85em;">
-																		<div class="col mb-1">
+																		<div class="col">
 																			<span class="me-2">
 																				${map.customerDto.customer_nickname }</span> <span
-																				class="me-2" style="font-size: 0.83em;"> <fmt:formatDate
+																				class="me-2" style="font-size: 0.9em;"> <fmt:formatDate
 																					value="${map.boardDto.board_reg_date }"
 																					pattern="yy.MM.dd" />
 																			</span>
@@ -165,7 +165,7 @@
 																	</div>
 																	<div class="row text-secondary"
 																		style="font-size: 0.79em;">
-																		<div class="col mb-2">
+																		<div class="col" style="padding-bottom: 0.8em; padding-top: 0.05em;">
 																			<span class="me-2"><i class="bi bi-eye">
 																					${map.boardDto.board_read_count}</i></span> <span class="me-2"><i
 																				class="bi bi-chat-square-dots">
@@ -173,10 +173,10 @@
 																		</div>
 																	</div>
 																</div>
-																<div class="col-3 my-2 ps-1 ms-1 me-0 pe-2">
+																<div class="col-3 ps-1 ms-1 me-0 pe-2 d-flex justify-content-center align-items-center">
 																	<c:forEach items="${map.imageDtoList}" var="imageDto">
 																		<img src="/uploadFiles/${imageDto.board_image_link}"
-																			style="width: 100%; border-radius: 10%;">
+																			style="width: 90%;">
 																	</c:forEach>
 																</div>
 															</div>
