@@ -33,7 +33,7 @@
 	font-family: 'Jua', sans-serif;
 	font-weight: 700;
 	font-size: 1.3em;
-	color: #fd7e14;
+	color: #ffa500;
 }
 </style>
 </head>

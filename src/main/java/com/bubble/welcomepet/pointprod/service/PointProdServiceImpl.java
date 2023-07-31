@@ -92,6 +92,8 @@ public class PointProdServiceImpl {
 			int board_no = boardDto.getBoard_no();
 
 			CustomerDto customerDto = pointProdSqlMapper.selectCustomerByCustomerNo(customer_no);
+			
+			PointProdCategoryDto pointProdCategoryDto = pointProdSqlMapper.selectByCategoryNo(boardDto.getBoard_category_no());
 
 			// 댓글 카운트
 
@@ -106,6 +108,7 @@ public class PointProdServiceImpl {
 			map.put("countComment", countComment);
 			map.put("imageDtoList", imageDtoList);
 			map.put("countLike", countLike);
+			map.put("pointProdCategoryDto", pointProdCategoryDto);
 
 			list.add(map);
 		}
