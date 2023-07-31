@@ -476,12 +476,13 @@ function handleOptionSelect(event) {
   optionContainer.appendChild(optionOuter);
 
   const optionCol1 = document.createElement("div");
-  optionCol1.classList.add("col-1");
+  optionCol1.classList.add("col-1","ms-3");
   optionOuter.appendChild(optionCol1);
 
   const optionDiv = document.createElement("div");
   optionDiv.classList.add("col", "mt-2", "border", "rounded-2");
   optionDiv.style.backgroundColor = "rgb(244, 247, 250)";
+  optionDiv.style.fontSize = "0.9em";
   optionOuter.appendChild(optionDiv);
 
   const optionRow = document.createElement("div");
@@ -489,12 +490,12 @@ function handleOptionSelect(event) {
   optionDiv.appendChild(optionRow);
 
   const optionCol = document.createElement("div");
-  optionCol.classList.add("col-10");
+  optionCol.classList.add("col-10","ms-2");
   optionCol.innerText = optionName;
   optionRow.appendChild(optionCol);
 
   const deleteCol = document.createElement("div");
-  deleteCol.classList.add("col-2");
+  deleteCol.classList.add("col");
   optionRow.appendChild(deleteCol);
 
   const quantityRow = document.createElement("div");
@@ -507,6 +508,7 @@ function handleOptionSelect(event) {
   
   const priceCol = document.createElement("div");
   priceCol.classList.add("col-6", "text-end", "fw-bold");
+  priceCol.style.fontSize = "1.2em";
   priceCol.innerText = optionPrice +"원";
 
   quantityRow.appendChild(priceCol);
@@ -1377,7 +1379,7 @@ body {
 											<div class="row" id="optionRow">
 												<div class="col-1"></div>
 												<div class="col" id="colOption"></div>
-												<div class="col-1"></div>
+											
 											</div>
 											<div class="row mt-3" id="optionContainer"></div>
 
