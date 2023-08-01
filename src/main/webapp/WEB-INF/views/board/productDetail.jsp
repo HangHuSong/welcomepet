@@ -1255,17 +1255,17 @@ body {
 		<div class="row mt-2 ">
 			<div class="col" id="colProductRating"></div>
 		</div>
-		<div class="row mt-2  ps-3 mx-0" id="reviewListBox"></div>
+		<div class="row mt-3  ps-3 mx-0" id="reviewListBox"></div>
 		<div class="row mt-3 ">
 		  <div class="col text-center">
 		  <div class=""> 
 		    <button class="btn btn-outline-primary text-center btn-sm" style="width: 80%;">
-		     더 많은 리뷰 보기<a class="btn py-0 bi bi-chevron-right"> </a>
+		     더 많은 리뷰 보기<a class="btn text-primary py-0 bi bi-chevron-right"> </a>
 		    </button> </div>
 		  </div>
 		</div>		
 	</div>
-	<div class="row mt-2 empty"></div>
+	<div class="row mt-3 empty"></div>
 	<div class="row ps-3 mt-3">
 		<div class="row" style="align-items: center;">
 			<div class="col fw-bold pt-1" style="font-size: 1.2em;">상품 문의</div>
