@@ -123,10 +123,15 @@ body {
 								            </div>
 								        </c:when>
 								        <c:when test="${orderProduct.order_product_status_no == 7}">
-								            <div class="col ">
+								            <div class="col d-grid">
 								                <button type="button" class="btn btn-sm btn-outline-secondary">반품상세</button>
 								            </div>
 								        </c:when>
+								        <c:when test="${orderProduct.order_product_status_no == 10}">
+								            <div class="col d-grid">
+								                <button type="button" class="btn btn-sm btn-outline-secondary">반품상세</button>
+								            </div>
+								        </c:when>								        
 								        <c:when test="${orderProduct.order_product_status_no == 2}">
 								            <div class="col d-grid ">
 								                <button type="button" class="btn btn-sm btn-outline-secondary">취소상세</button>

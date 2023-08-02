@@ -333,10 +333,13 @@ public class BizServiceImpl {
 						.getSettlememtProcessBySettlementRequestNo(settlementRequestDto.getSettlement_request_no());
 				BizAccountDto bizAccountDto = accountSqlMapper
 						.getBizAccountByNo(settlementRequestDto.getBiz_account_no());
-				BankDto bankDto = accountSqlMapper.getBankByNo(bizAccountDto.getBank_no());
+				if(bizAccountDto != null) {
+					BankDto bankDto = accountSqlMapper.getBankByNo(bizAccountDto.getBank_no());
 
-				map.put("bizAccountDto", bizAccountDto);
-				map.put("bankDto", bankDto);
+					map.put("bizAccountDto", bizAccountDto);
+					map.put("bankDto", bankDto);
+				}
+				
 				if (settlementProcessDto == null) {
 					map.put("settlementStatus", "정산대기");
 				} else {
