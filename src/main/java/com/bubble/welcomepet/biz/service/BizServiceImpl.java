@@ -779,9 +779,9 @@ public class BizServiceImpl {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 
 		List<AdProductDto> adProductDtoList = adSqlMapper.getOngoingAdProductByBizNo(biz_no);
+		System.out.println(adProductDtoList.toString());
 		for (AdProductDto adProductDto : adProductDtoList) {
 			Map<String, Object> map = new HashMap<String, Object>();
-
 			ProductDto productDto = productSqlMapper.getProductByNo(adProductDto.getProduct_no());
 
 			AdCategoryDto adCategoryDto = adSqlMapper.getAdCategoryByNo(adProductDto.getAd_category_no());
