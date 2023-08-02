@@ -58,6 +58,7 @@
 					</div>
 				</div>
 			</div>
+
 			<div class="row text-start">
 				<div class="col">
 					<div class="row py-2">
@@ -228,8 +229,8 @@
 						</div>
 					</div>
 					<div class="row py-2">
-						<div class="col py-2 btn text-white" onclick="toggleMenuList(event)"
-							style="font-size: 18px;">
+						<div class="col py-2 btn text-white"
+							onclick="toggleMenuList(event)" style="font-size: 18px;">
 							<div class="row text-start">
 								<div class="col-2 fw-bold px-2 text-center">
 									<i class="fas fa-chart-line"></i>

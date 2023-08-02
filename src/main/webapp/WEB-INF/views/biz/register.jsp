@@ -31,16 +31,14 @@
 </style>
 </head>
 <body>
-	<div class="row my-5 pt-5 text-center">
-		<div class="col">
-			<span class="fs-3 fw-bold" style="font-family: 'GmarketSansMedium'">어서오개
-				seller office </span> <span class="fs-3 fw-bold">회원가입</span>
-		</div>
+	<div class="row shadow px-3 mx-0"
+		style="width: 1900px; font-family: 'Pretendard-Regular';">
+		<div class="col py-4 fs-3 fw-bold">어서오개 seller office</div>
 	</div>
-	<div class="row text-start my-5"
+	<div class="row text-start py-5"
 		style="font-family: 'Pretendard-Regular';">
 		<div class="col"></div>
-		<div class="col-2">
+		<div class="col-3 bg-white py-3 px-5">
 			<!-- 회원가입정보 -->
 			<div class="row text-center border-start border-end">
 				<div class="col border-top border-3 border-primary px-0 py-2">일반회원</div>

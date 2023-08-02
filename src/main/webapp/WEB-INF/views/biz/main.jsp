@@ -60,8 +60,8 @@
 									page="../common/bizTopNavi.jsp"></jsp:include></div>
 						</div>
 
-						<div class="row ms-1 bg-light pb-5">
-							<div class="col-10 px-5">
+						<div class="row ms-1 bg-light pb-5 px-5">
+							<div class="col-10 pe-5">
 								<div class="row my-4">
 									<div class="col">
 										<img class="w-100"
@@ -195,7 +195,8 @@
 											</div>
 										</div>
 									</div>
-									<div class="col my-3 mx-3 bg-white border align-items-center shadow">
+									<div
+										class="col my-3 mx-3 bg-white border align-items-center shadow">
 										<div class="row py-3 px-2 border-bottom">
 											<div class="col fs-5 fw-bold">상점등급</div>
 										</div>
@@ -328,20 +329,20 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-2 my-4">
-								<div class="row my-1">
+							<div class="col-2">
+								<div class="row">
+									<div class="col" style="height: 265px;"></div>
+								</div>
+								<div class="row pb-4">
 									<div class="col">
-										<img src="/welcomepet/resources/img/bizAd/ad1.png">
+										<img class="w-100"
+											src="/welcomepet/resources/img/bizAd/ad7.jpg">
 									</div>
 								</div>
-								<div class="row my-1">
+								<div class="row py-4">
 									<div class="col">
-										<img src="/welcomepet/resources/img/bizAd/ad2.png">
-									</div>
-								</div>
-								<div class="row my-1">
-									<div class="col">
-										<img src="/welcomepet/resources/img/bizAd/ad3.png">
+										<img class="w-100"
+											src="/welcomepet/resources/img/bizAd/ad6.png">
 									</div>
 								</div>
 							</div>
@@ -354,8 +355,8 @@
 				</div>
 			</c:when>
 			<c:otherwise>
-				<div class="row" style="width: 1900px;">
-					<div class="col-2 text-center ps-4 text-white"
+				<div class="row" style="width: 1920px;">
+					<div class="col-2"
 						style="height: auto; background-color: rgb(29, 33, 42);"><jsp:include
 							page="../common/bizLeftNavi.jsp"></jsp:include></div>
 					<div class="col-10 bg-light">
@@ -363,169 +364,590 @@
 							<div class="col text-center"><jsp:include
 									page="../common/bizTopNavi.jsp"></jsp:include></div>
 						</div>
-						<div class="row">
-							<div class="col-10 py-5 mb-5">
-								<div class="row my-4">
-									<div class="col">
-										<img class="w-100"
-											src="/welcomepet/resources/img/bizAd/bizTopAd.jpg">
-									</div>
-								</div>
-								<c:if test="${bizUser.biz_status_no eq 1}">
-									<div class="row my-3 mx-3 px-3 rounded-4">
-										<div class="col-8 text-start">
-											가입을 축하합니다!<br>판매자님은 현재 입점 정보 미등록 상태입니다. 입점절차 완료를 위하여 판매자
-											정보를 입력해주세요.
-										</div>
-									</div>
-									<div class="row my-3 mx-3">
-										<div
-											class="col-8 mt-2 px-5 py-3 mx-4 bg-white rounded-4 border">
-											<div class="row my-4">
-												<div class="col fs-4 fw-bold text-start">판매자 정보를
-													입력해주세요.</div>
+						<div class="row px-5">
+							<div class="col-10 px-5">
+								<div class="row text-start my-2 py-3">
+									<div class="col py-3 px-5 rounded-4 text-white"
+										style="background-color: rgb(70, 81, 241);">
+										<div class="row">
+											<div class="col">
+												<div class="row">
+													<div class="col fs-4 fw-bold">어서오개 판매자센터 교육자료 오픈!</div>
+												</div>
+												<div class="row mt-4">
+													<div class="col" style="font-size: 14px;">상품등록부터
+														재고관리까지 어서오개 교육자료를 활용해보세요!</div>
+												</div>
 											</div>
-											<div class="row my-2">
-												<div class="col text-start">사업자 인증 후 입점이 승인되면 어서오개
-													판매자센터의 모든 서비스를 이용하실 수 있습니다.</div>
+											<div class="col-3">
+												<div class="row py-1">
+													<div class="col-1 fs-4" style="color: rgb(34, 34, 245);">
+														<i class="fas fa-check-circle"></i>
+													</div>
+													<div class="col ms-1 align-self-center">어서오개 판매자센터
+														이해하기</div>
+												</div>
+												<div class="row py-1">
+													<div class="col-1 fs-4" style="color: rgb(34, 34, 245);">
+														<i class="fas fa-check-circle"></i>
+													</div>
+													<div class="col ms-1 align-self-center">재고관리 활용하기</div>
+												</div>
+												<div class="row py-1">
+													<div class="col-1 fs-4" style="color: rgb(34, 34, 245);">
+														<i class="fas fa-check-circle"></i>
+													</div>
+													<div class="col ms-1 align-self-center">주문/배송/통합CS처리하기</div>
+												</div>
 											</div>
-											<div class="row my-3"></div>
-											<div class="row mt-5 mb-2">
-												<div class="col text-start">
-													<button class="btn btn-primary"
-														onclick="showApprovalRequestRegisterModal()"
-														data-bs-toggle="modal"
-														data-bs-target="#approvalRequestRegisterModal">사업자
-														인증하기</button>
+											<div class="col-2 pt-5">
+												<div class="row mt-4 px-2">
+													<div
+														class="col bg-white text-dark rounded-5 py-2 text-center">
+														다운로드 하기 <i class="fas fa-long-arrow-alt-right"></i>
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-
+								</div>
+								<c:if test="${bizUser.biz_status_no eq 1}">
+									<div class="row my-4 pb-5">
+										<div class="col rounded-4 shadow">
+											<div class="row bg-white py-3">
+												<div class="col fs-4">
+													<span class="text-secondary"><i
+														class="fas fa-info-circle"></i> </span> <span>어서오개를 시작하는</span> <span
+														class="text-info">${bizUser.biz_id }</span> <span>님을
+														위한 가이드</span>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col mx-2">
+													<div class="row bg-white py-3 px-2 mt-3 mb-4"
+														style="border: 3px solid #ff476a;">
+														<div class="col-2 text-white rounded-2 text-center"
+															style="background-color: #ff476a;">STEP 1</div>
+														<div class="col" style="color: #ff476a;">스토어 입점
+															신청해주세요.</div>
+													</div>
+													<div class="row bg-white py-2 my-4">
+														<div class="col-1 fs-4" style="color: #d7dce3;">
+															<i class="fas fa-check-circle"></i>
+														</div>
+														<div
+															class="col-2 rounded-2 text-info px-0 align-self-center">STEP
+															2</div>
+														<div class="col px-0 align-self-center">입점신청 승인을
+															기다려주세요.</div>
+													</div>
+													<div class="row bg-white py-2 my-4">
+														<div class="col-1 fs-4" style="color: #d7dce3;">
+															<i class="fas fa-check-circle"></i>
+														</div>
+														<div
+															class="col-2 rounded-2 text-info px-0 align-self-center">STEP
+															3</div>
+														<div class="col px-0 align-self-center">입점이 승인되면 스토어
+															정보를 입력해주세요.</div>
+													</div>
+													<div class="row bg-white py-2 my-4">
+														<div class="col-1 fs-4" style="color: #d7dce3;">
+															<i class="fas fa-check-circle"></i>
+														</div>
+														<div
+															class="col-2 rounded-2 text-info px-0 align-self-center">STEP
+															4</div>
+														<div class="col px-0 align-self-center">스토어 정보를 입력하면
+															상품 판매를 시작해보세요.</div>
+													</div>
+												</div>
+												<div class="col bg-white ms-2">
+													<div class="row py-3">
+														<div class="col fs-5 fw-bold">사업자등록번호와 등본을 입력해주세요.</div>
+													</div>
+													<div class="row my-3">
+														<div class="col">스토어 입점신청하신 후 어서오개 판매자센터의 서비스를 이용하실
+															수 있습니다.</div>
+													</div>
+													<div class="row bg-light mx-2 px-2 mt-2 mb-4">
+														<div
+															class="col-1 text-info bg-white my-3 rounded-4 shadow fs-3 text-center py-2 px-2">
+															<i class="far fa-file-alt"></i>
+														</div>
+														<div class="col align-self-center"
+															style="font-size: 15px;">입점서류 확인 및 제출</div>
+														<div
+															class="col-2 text-info fs-4 align-self-center text-start">
+															<i class="fas fa-long-arrow-alt-right"></i>
+														</div>
+														<div
+															class="col-1 text-info bg-white my-3 rounded-4 shadow fs-4 text-center py-2 px-2">
+															<i class="fas fa-users-cog"></i>
+														</div>
+														<div class="col align-self-center"
+															style="font-size: 15px;">관리자 승인 대기</div>
+													</div>
+													<div class="row pt-4 mb-3">
+														<div class="col text-end">
+															<button class="btn btn-primary"
+																onclick="showApprovalRequestRegisterModal()"
+																data-bs-toggle="modal"
+																data-bs-target="#approvalRequestRegisterModal">사업자
+																인증하기</button>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
 								</c:if>
 								<c:if test="${bizUser.biz_status_no eq 2}">
-
-									<div class="row mx-3 my-3 rounded-4">
-										<div
-											class="col-6 mt-2 px-4 py-3 mx-4 bg-white rounded-4 border">
-											<div class="row my-2 mx-2">
-												<div class="col fs-4 fw-bold text-start">판매자님은 현재 입점
-													승인 대기 상태입니다.</div>
+									<div class="row my-4 pb-5">
+										<div class="col rounded-4 shadow">
+											<div class="row bg-white py-3">
+												<div class="col fs-4">
+													<span class="text-secondary"><i
+														class="fas fa-info-circle"></i> </span> <span>어서오개를 시작하는</span> <span
+														class="text-info">${bizUser.biz_id }</span> <span>님을
+														위한 가이드</span>
+												</div>
 											</div>
-											<div class="row my-2 mx-2">
-												<div class="col text-start">운영팀에서 귀하의 신청을 검토중입니다. 입점
-													승인 완료 후 어서오개 판매자센터의 모든 서비스를 이용하실 수 있습니다.</div>
-											</div>
-											<div class="row my-2 mx-2">
-												<div class="col text-start">
-													<button id="bizApprovalInformButton"
-														class="btn btn-primary" data-bs-toggle="modal"
-														data-bs-target="#approvalRequestInformModal"
-														onclick="showApprovalRequestInfoModal()">내 신청 정보
-														보기</button>
+											<div class="row">
+												<div class="col mx-2">
+													<div class="row bg-white py-2 my-4">
+														<div class="col-1 fs-4 text-primary">
+															<i class="fas fa-check-circle"></i>
+														</div>
+														<div
+															class="col-2 rounded-2 text-info px-0 align-self-center">STEP
+															1</div>
+														<div class="col px-0 align-self-center">스토어 입점
+															신청해주세요.</div>
+													</div>
+													<div class="row bg-white py-3 px-2 mt-3 mb-4"
+														style="border: 3px solid #ff476a;">
+														<div class="col-2 me-1 text-white rounded-2 text-center"
+															style="background-color: #ff476a;">STEP 2</div>
+														<div class="col ms-4" style="color: #ff476a;">입점신청
+															승인을 기다려주세요.</div>
+													</div>
+													<div class="row bg-white py-2 my-4">
+														<div class="col-1 fs-4" style="color: #d7dce3;">
+															<i class="fas fa-check-circle"></i>
+														</div>
+														<div
+															class="col-2 rounded-2 text-info px-0 align-self-center">STEP
+															3</div>
+														<div class="col px-0 align-self-center">입점이 승인되면 스토어
+															정보를 입력해주세요.</div>
+													</div>
+													<div class="row bg-white py-2 my-4">
+														<div class="col-1 fs-4" style="color: #d7dce3;">
+															<i class="fas fa-check-circle"></i>
+														</div>
+														<div
+															class="col-2 rounded-2 text-info px-0 align-self-center">STEP
+															4</div>
+														<div class="col px-0 align-self-center">스토어 정보를 입력하면
+															상품 판매를 시작해보세요.</div>
+													</div>
+												</div>
+												<div class="col bg-white ms-2">
+													<div class="row py-3">
+														<div class="col fs-5 fw-bold">관리자가 ${bizUser.biz_id }님의
+															입점 신청을 검토하고있습니다.</div>
+													</div>
+													<div class="row my-3">
+														<div class="col">관리자의 입점 승인 후 스토어 정보를 입력해주시면 어서오개의
+															서비스를 이용하실 수 있습니다.</div>
+													</div>
+													<div class="row bg-light mx-2 px-2 mt-2 mb-4">
+														<div
+															class="col-1 text-info bg-white my-3 rounded-4 shadow fs-4 text-center py-2 px-2">
+															<i class="fas fa-users-cog"></i>
+														</div>
+														<div class="col align-self-center"
+															style="font-size: 15px;">관리자 승인 대기</div>
+														<div
+															class="col-2 text-info fs-4 align-self-center text-start">
+															<i class="fas fa-long-arrow-alt-right"></i>
+														</div>
+														<div
+															class="col-1 text-info bg-white my-3 rounded-4 shadow fs-4 text-center py-2 px-2">
+															<i class="fas fa-store"></i>
+														</div>
+														<div class="col align-self-center"
+															style="font-size: 15px;">스토어 정보 입력</div>
+													</div>
+													<div class="row pt-4 mb-3">
+														<div class="col text-end">
+															<button id="bizApprovalInformButton"
+																class="btn btn-primary" data-bs-toggle="modal"
+																data-bs-target="#approvalRequestInformModal"
+																onclick="showApprovalRequestInfoModal()">내 신청
+																정보 보기</button>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
 								</c:if>
 								<c:if test="${bizUser.biz_status_no eq 5}">
-									<div class="row mx-3 my-3 rounded-4">
-										<div
-											class="col-8 mt-2 px-4 py-3 mx-4 bg-white rounded-4 border">
-											<div class="row my-2 mx-2">
-												<div class="col fs-4 fw-bold text-start">판매자님이 신청하신 입점
-													승인 요청이 거절되었습니다.</div>
+									<div class="row my-4 pb-5">
+										<div class="col rounded-4 shadow">
+											<div class="row bg-white py-3">
+												<div class="col fs-4">
+													<span class="text-secondary"><i
+														class="fas fa-info-circle"></i> </span> <span>어서오개를 시작하는</span> <span
+														class="text-info">${bizUser.biz_id }</span> <span>님을
+														위한 가이드</span>
+												</div>
 											</div>
-											<div class="row my-2 mx-2">
-												<div class="col text-start">사유:
-													${bizApprovalDto.biz_approval_message }</div>
-											</div>
-											<div class="row my-2 mx-2">
-												<div class="col text-start">입점 승인 재요청 후 어서오개 판매자 서비스
-													센터를 이용해주세요.</div>
-											</div>
-											<div class="row my-2 mx-2">
-												<div class="col text-start">
-													<button class="btn btn-primary"
-														onclick="showApprovalRequestRegisterModal()"
-														data-bs-toggle="modal"
-														data-bs-target="#approvalRequestRegisterModal">사업자
-														인증하기</button>
+											<div class="row">
+												<div class="col mx-2">
+													<div class="row bg-white py-3 px-2 mt-3 mb-4"
+														style="border: 3px solid #ff476a;">
+														<div class="col-2 text-white rounded-2 text-center"
+															style="background-color: #ff476a;">STEP 1</div>
+														<div class="col" style="color: #ff476a;">스토어 입점
+															신청해주세요.</div>
+													</div>
+													<div class="row bg-white py-2 my-4">
+														<div class="col-1 fs-4" style="color: #d7dce3;">
+															<i class="fas fa-check-circle"></i>
+														</div>
+														<div
+															class="col-2 rounded-2 text-info px-0 align-self-center">STEP
+															2</div>
+														<div class="col px-0 align-self-center">입점신청 승인을
+															기다려주세요.</div>
+													</div>
+													<div class="row bg-white py-2 my-4">
+														<div class="col-1 fs-4" style="color: #d7dce3;">
+															<i class="fas fa-check-circle"></i>
+														</div>
+														<div
+															class="col-2 rounded-2 text-info px-0 align-self-center">STEP
+															3</div>
+														<div class="col px-0 align-self-center">입점이 승인되면 스토어
+															정보를 입력해주세요.</div>
+													</div>
+													<div class="row bg-white py-2 my-4">
+														<div class="col-1 fs-4" style="color: #d7dce3;">
+															<i class="fas fa-check-circle"></i>
+														</div>
+														<div
+															class="col-2 rounded-2 text-info px-0 align-self-center">STEP
+															4</div>
+														<div class="col px-0 align-self-center">스토어 정보를 입력하면
+															상품 판매를 시작해보세요.</div>
+													</div>
+												</div>
+												<div class="col bg-white ms-2">
+													<div class="row py-3">
+														<div class="col fs-5 fw-bold">
+															<span class="text-info">${bizUser.biz_id}</span> <span>님의
+																입점 요청이 거절되었습니다.
+																(사유:${bizApprovalDto.biz_approval_message })</span>
+														</div>
+													</div>
+													<div class="row my-3">
+														<div class="col">스토어 입점을 재신청하신 후 어서오개 판매자센터의 서비스를
+															이용하실 수 있습니다.</div>
+													</div>
+													<div class="row bg-light mx-2 px-2 mt-2 mb-4">
+														<div
+															class="col-1 text-info bg-white my-3 rounded-4 shadow fs-3 text-center py-2 px-2">
+															<i class="far fa-file-alt"></i>
+														</div>
+														<div class="col align-self-center"
+															style="font-size: 15px;">입점서류 확인 및 제출</div>
+														<div
+															class="col-2 text-info fs-4 align-self-center text-start">
+															<i class="fas fa-long-arrow-alt-right"></i>
+														</div>
+														<div
+															class="col-1 text-info bg-white my-3 rounded-4 shadow fs-4 text-center py-2 px-2">
+															<i class="fas fa-users-cog"></i>
+														</div>
+														<div class="col align-self-center"
+															style="font-size: 15px;">관리자 승인 대기</div>
+													</div>
+													<div class="row pt-4 mb-3">
+														<div class="col text-end">
+															<button class="btn btn-primary"
+																onclick="showApprovalRequestRegisterModal()"
+																data-bs-toggle="modal"
+																data-bs-target="#approvalRequestRegisterModal">사업자
+																인증하기</button>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
 								</c:if>
 								<c:if test="${bizUser.biz_status_no eq 3}">
-									<div class="row mx-3 my-3 rounded-4">
-										<div
-											class="col-8 mt-2 px-3 py-3 mx-4 bg-white rounded-4 border">
-											<div class="row my-2 mx-2">
-												<div class="col fs-4 fw-bold text-start">입점 승인이
-													완료되었습니다.</div>
+									<div class="row my-4 pb-5">
+										<div class="col rounded-4 shadow">
+											<div class="row bg-white py-3">
+												<div class="col fs-4">
+													<span class="text-secondary"><i
+														class="fas fa-info-circle"></i> </span> <span>어서오개를 시작하는</span> <span
+														class="text-info">${bizUser.biz_id }</span> <span>님을
+														위한 가이드</span>
+												</div>
 											</div>
-											<div class="row my-2 mx-2">
-												<div class="col text-start">상점 정보를 등록하시면 어서오개 판매자 서비스
-													센터를 이용하실 수 있습니다.</div>
-											</div>
-											<div class="row my-2 mx-2">
-												<div class="col text-start">
-													<a class="btn btn-primary" href="./shopInformRegister">상점
-														정보 등록하기</a>
+											<div class="row">
+												<div class="col mx-2">
+													<div class="row bg-white py-2 my-4">
+														<div class="col-1 fs-4 text-primary">
+															<i class="fas fa-check-circle"></i>
+														</div>
+														<div
+															class="col-2 rounded-2 text-info px-0 align-self-center">STEP
+															1</div>
+														<div class="col px-0 align-self-center">스토어 입점
+															신청해주세요.</div>
+													</div>
+													<div class="row bg-white py-2 my-4">
+														<div class="col-1 fs-4 text-primary">
+															<i class="fas fa-check-circle"></i>
+														</div>
+														<div
+															class="col-2 rounded-2 text-info px-0 align-self-center">STEP
+															2</div>
+														<div class="col px-0 align-self-center">입점신청 승인을
+															기다려주세요.</div>
+													</div>
+													<div class="row bg-white py-3 px-2 mt-3 mb-4"
+														style="border: 3px solid #ff476a;">
+														<div class="col-2 me-1 text-white rounded-2 text-center"
+															style="background-color: #ff476a;">STEP 3</div>
+														<div class="col ms-4" style="color: #ff476a;">입점이
+															승인되면 스토어 정보를 입력해주세요.</div>
+													</div>
+													<div class="row bg-white py-2 my-4">
+														<div class="col-1 fs-4" style="color: #d7dce3;">
+															<i class="fas fa-check-circle"></i>
+														</div>
+														<div
+															class="col-2 rounded-2 text-info px-0 align-self-center">STEP
+															4</div>
+														<div class="col px-0 align-self-center">스토어 정보를 입력하면
+															상품 판매를 시작해보세요.</div>
+													</div>
+												</div>
+												<div class="col bg-white ms-2">
+													<div class="row py-3">
+														<div class="col fs-5 fw-bold">입점 승인이 완료되었습니다.</div>
+													</div>
+													<div class="row my-3">
+														<div class="col">스토어 정보를 입력해주시면 어서오개의 서비스를 이용하실 수
+															있습니다.</div>
+													</div>
+													<div class="row bg-light mx-2 px-2 mt-2 mb-4">
+														<div
+															class="col-1 text-info bg-white my-3 rounded-4 shadow fs-4 text-center py-2 px-2 ms-2">
+															<i class="fas fa-store"></i>
+														</div>
+														<div class="col align-self-center"
+															style="font-size: 15px;">스토어 정보 입력</div>
+														<div
+															class="col-2 text-info fs-4 align-self-center text-start">
+															<i class="fas fa-long-arrow-alt-right"></i>
+														</div>
+														<div
+															class="col-1 text-info bg-white my-3 rounded-4 shadow fs-4 text-center py-2 px-2">
+															<i class="fas fa-box-open"></i>
+														</div>
+														<div class="col align-self-center"
+															style="font-size: 15px;">상품 판매 시작</div>
+													</div>
+													<div class="row pt-4 mb-3">
+														<div class="col text-end">
+															<a class="btn btn-primary" href="./shopInformRegister">상점
+																정보 등록하기</a>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
 								</c:if>
-								<div class="row my-5 mx-3">
-									<div class="col mt-2 px-5 py-3 mx-4 bg-white rounded-4 border">
-										<div class="row my-4">
-											<div class="col fs-4 fw-bold text-start">단 10초만에 완성!
-												사업자등록 안내</div>
+								<div class="row mb-5">
+									<div class="col bg-white rounded-4">
+										<div class="row py-3 border-bottom">
+											<div class="col fs-5">함께 이용하면 더 편리한 앱 추천</div>
 										</div>
-										<div class="row my-2">
-											<div class="col text-start">사업자 등록하고 어서오개 판매를 시작해보세요</div>
-										</div>
-										<div class="row my-3"></div>
-										<div class="row mb-2">
-											<div class="col text-start">
-												<a class="btn btn-outline-primary" href="#">사업자 등록 가이드</a>
+										<div class="row py-3 px-5">
+											<div class="col">
+												<div class="row">
+													<div class="col-3 align-self-center">
+														<img class="w-100 border rounded-4"
+															src="/welcomepet/resources/img/bizAd/app1.png">
+													</div>
+													<div class="col">
+														<div class="row py-1">
+															<div class="col fw-bold" style="font-size: 14px;">어서오개
+																스타터 패키지</div>
+														</div>
+														<div class="row py-1">
+															<div class="col text-secondary" style="font-size: 13px;">어서오게
+																셀러를 위한 자사몰 구축</div>
+														</div>
+														<div class="row py-1">
+															<div class="col text-primary" style="font-size: 13px;">
+																<span class="text-decoration-underline">설치하기</span> <span><i
+																	class="fas fa-external-link-alt"></i></span>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col">
+												<div class="row">
+													<div class="col-3 align-self-center">
+														<img class="w-100 border rounded-4"
+															src="/welcomepet/resources/img/bizAd/app2.png">
+													</div>
+													<div class="col">
+														<div class="row py-1">
+															<div class="col fw-bold" style="font-size: 14px;">쇼피스타터
+																패키지</div>
+														</div>
+														<div class="row py-1">
+															<div class="col text-secondary" style="font-size: 13px;">쇼피
+																입점부터 상품등록까지</div>
+														</div>
+														<div class="row py-1">
+															<div class="col text-primary" style="font-size: 13px;">
+																<span class="text-decoration-underline">설치하기</span> <span><i
+																	class="fas fa-external-link-alt"></i></span>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col">
+												<div class="row">
+													<div class="col-3 align-self-center">
+														<img class="w-100 border rounded-4"
+															src="/welcomepet/resources/img/bizAd/app3.png">
+													</div>
+													<div class="col">
+														<div class="row py-1">
+															<div class="col fw-bold" style="font-size: 14px;">FASTBOX
+																해외배송</div>
+														</div>
+														<div class="row py-1">
+															<div class="col text-secondary" style="font-size: 13px;">저렴하고
+																손쉬운 해외배송</div>
+														</div>
+														<div class="row py-1">
+															<div class="col text-primary" style="font-size: 13px;">
+																<span class="text-decoration-underline">설치하기</span> <span><i
+																	class="fas fa-external-link-alt"></i></span>
+															</div>
+														</div>
+													</div>
+												</div>
 											</div>
 										</div>
-									</div>
-									<div class="col mt-2 px-5 py-3 mx-4 bg-white rounded-4 border">
-										<div class="row my-4">
-											<div class="col fs-4 fw-bold text-start">쉽고 빠른 상품등록</div>
-										</div>
-										<div class="row my-2">
-											<div class="col text-start">모든 상품을 몇 번의 클릭으로 한번에 등록해
-												보세요</div>
-										</div>
-										<div class="row my-3"></div>
-										<div class="row mb-2">
-											<div class="col text-start">
-												<a class="btn btn-outline-primary" href="#">상품 등록 가이드</a>
+										<div class="row py-3 px-5">
+											<div class="col">
+												<div class="row">
+													<div class="col-3 align-self-center">
+														<img class="w-100 border rounded-4"
+															src="/welcomepet/resources/img/bizAd/app4.png">
+													</div>
+													<div class="col">
+														<div class="row py-1">
+															<div class="col fw-bold" style="font-size: 14px;">셀러봇캐시</div>
+														</div>
+														<div class="row py-1">
+															<div class="col text-secondary" style="font-size: 13px;">정산금
+																관리 한 번에</div>
+														</div>
+														<div class="row py-1">
+															<div class="col text-primary" style="font-size: 13px;">
+																<span class="text-decoration-underline">설치하기</span> <span><i
+																	class="fas fa-external-link-alt"></i></span>
+															</div>
+														</div>
+													</div>
+												</div>
 											</div>
-										</div>
-									</div>
-									<div class="col mt-2 px-5 py-3 mx-4 bg-white rounded-4 border">
-										<div class="row my-4">
-											<div class="col fs-4 fw-bold text-start">판매자 교육 오픈</div>
-										</div>
-										<div class="row my-2">
-											<div class="col text-start">어서오개 판매 교육을 위한 컨텐츠가 새롭게
-												찾아옵니다</div>
-										</div>
-										<div class="row my-3"></div>
-										<div class="row mb-2">
-											<div class="col text-start">
-												<a class="btn btn-outline-primary" href="#">판매자 교육</a>
+											<div class="col">
+												<div class="row">
+													<div class="col-3 align-self-center">
+														<img class="w-100 border rounded-4"
+															src="/welcomepet/resources/img/bizAd/app5.png">
+													</div>
+													<div class="col">
+														<div class="row py-1">
+															<div class="col fw-bold" style="font-size: 14px;">지그재그
+																상품연동</div>
+														</div>
+														<div class="row py-1">
+															<div class="col text-secondary" style="font-size: 13px;">등록절차없이
+																자동상품노출</div>
+														</div>
+														<div class="row py-1">
+															<div class="col text-primary" style="font-size: 13px;">
+																<span class="text-decoration-underline">설치하기</span> <span><i
+																	class="fas fa-external-link-alt"></i></span>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col">
+												<div class="row">
+													<div class="col-3 align-self-center">
+														<img class="w-100 border rounded-4"
+															src="/welcomepet/resources/img/bizAd/app6.png">
+													</div>
+													<div class="col">
+														<div class="row py-1">
+															<div class="col fw-bold" style="font-size: 14px;">네이버톡톡</div>
+														</div>
+														<div class="row py-1">
+															<div class="col text-secondary" style="font-size: 13px;">스마트스토어
+																무료상담</div>
+														</div>
+														<div class="row py-1">
+															<div class="col text-primary" style="font-size: 13px;">
+																<span class="text-decoration-underline">설치하기</span> <span><i
+																	class="fas fa-external-link-alt"></i></span>
+															</div>
+														</div>
+													</div>
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div class="col-2 bg-light"></div>
+							<div class="col-2">
+								<div class="row">
+									<div class="col" style="height: 230px;"></div>
+								</div>
+								<div class="row pb-4">
+									<div class="col">
+										<img class="w-100"
+											src="/welcomepet/resources/img/bizAd/ad7.jpg">
+									</div>
+								</div>
+								<div class="row py-4">
+									<div class="col">
+										<img class="w-100"
+											src="/welcomepet/resources/img/bizAd/ad6.png">
+									</div>
+								</div>
+							</div>
 						</div>
 						<div class="row">
 							<div class="col">

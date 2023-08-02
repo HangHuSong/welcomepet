@@ -40,7 +40,7 @@ public class BizController {
 	public String logoutProcess(HttpSession session) {
 		session.invalidate();
 		
-		return "biz/member/login";
+		return "biz/login";
 	}
 	
 	@RequestMapping("main")
