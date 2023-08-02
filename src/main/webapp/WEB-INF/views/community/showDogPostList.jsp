@@ -31,35 +31,20 @@
     font-weight: normal;
     font-style: normal;
 }
-@font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 200;
-    font-style: normal;
-}
+
 @font-face {
     font-family: 'Pretendard-Regular';
     src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
     font-weight: 400;
     font-style: normal;
 }
-@font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 600;
-    font-style: normal;
-}
-@font-face {
-    font-family:'Pretendard-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 800;
-    font-style: normal;
-}
+
+
 /* 여기까지 글꼴모음 */
 
 
 #body {
-	font-family:'Pretendard-Regular';
+	font-family:'SUITE-Regular';
 }
 /* 
 body{
@@ -71,11 +56,10 @@ body{
 	width:55px;
 }
 
-
 #title1{
-    font-size:0.9em;
-    font-weight:800;
-/* 	letter-spacing:-0.3px; */
+    font-size:0.95em;
+    font-weight:600;
+    letter-spacing:0.02em;  
     
     white-space: nowrap; /* 텍스트가 한 줄에서 줄 바꿈하지 않도록 설정 */
     overflow: hidden; /* 내용이 영역을 벗어날 때 숨기기 */
@@ -84,15 +68,21 @@ body{
 }
 
 #title2{
-    font-size:0.9em;
+    font-size:0.95em;
     font-weight:600;
+    letter-spacing:0.02em;
  	line-height: 20px;
 }
 
- #else{
-    font-size: 0.7em;
-    font-weight:600;
-    color: #BABABA;
+#else{
+    font-size: 0.8em;
+    font-weight:400;
+    letter-spacing:0.02em;  
+}
+
+#commentBadge{
+	font-size:1em;
+    letter-spacing:0.02em;  
 }
 
 </style>
@@ -112,7 +102,7 @@ body{
 	</div>
 
 	<%-- 베스트 3 --%>
-	<div class="row bg-secondary bg-opacity-10 mb-1"> 
+	<div class="row mb-1 bg-secondary bg-opacity-10"> 
 		<div class="col">
 			<div class="row">
 			<c:forEach items="${bestList}" var="bestList">
@@ -123,7 +113,7 @@ body{
 						   <%-- HOT 뱃지 --%>
 						   <div class="col-auto d-flex align-items-center pe-0">
 						   	<span class="badge rounded-pill" 
-						   		  style="font-size:0.6em; background-color:#dc3545; color:#ffffff;">HOT</span>    
+						   		  style="font-size:0.6em; background-color:#f70000; color:#ffffff;">HOT</span>    
 						   </div>
 						   <%-- 제목 --%>
 						   <div id="title1" class="col-auto d-flex align-items-center ps-1 pe-0">
@@ -134,7 +124,7 @@ body{
 						   <%-- 이미지 유무 --%>
 						   <div class="col d-flex align-items-center ps-1">
 						 	<c:if test="${bestList.checkImg > 0}">
-							   	  <span style="color:#828282">
+							   	  <span style="color:#5c5c5c">
 							   	   <i class="bi bi-image"></i>
 							   	  </span>
 					   	    </c:if>
@@ -168,15 +158,15 @@ body{
 						  <%-- 닉네임/날짜/조회수 --%>
 						  <div id="else" class="row mt-1">
 							<div class="col">
-								<span class="me-2">
+								<span class="me-2 text-secondary">
 								 ${map.customerDto.customer_nickname}
 								</span>
 							
-								<span class="me-2">
+								<span class="me-2 text-secondary">
 								 <fmt:formatDate value="${map.showDogPostDto.show_dog_post_reg_date}" pattern="yy.MM.dd"/>
 								</span>
 								
-								<span>
+								<span class="text-secondary">
 								 조회수 ${map.showDogPostDto.show_dog_post_view_count}
 								</span>
 							</div>
@@ -190,9 +180,9 @@ body{
 						</div>
 						
 						<%-- 댓글 수 뱃지 --%>
-						<div class="col-2">
+						<div class="col-2" id="commentBadge">
 						<div class="badge d-flex align-items-center justify-content-center" 
-							 style="height:55px; background-color: #F0F0F0;">
+							 style="height:55px; background-color:#F0F0F0;">
 						 
 						 <c:choose>
 							  <c:when test="${map.countComment eq 0}">
@@ -204,7 +194,7 @@ body{
 							    </div>
 							   
 							    <div class="row mt-1">
-							     <div class="col" style="color:#9c9c9c; font-size:0.9em">댓글</div>
+							     <div class="col " style="color:#9c9c9c; font-size:0.9em">댓글</div>
 							    </div>
 							   
 							    </div>
@@ -248,12 +238,17 @@ body{
 	<div class="col-3 d-flex justify-content-center align-items-center">
 	 	<a class="btn btn-lg shadow rounded-circle d-flex justify-content-center align-items-center" href="./showDogUpload" 
 	 	   style="color:white; height:52px; background-color:#ffa500">
-	 	<i class="bi bi-pencil-square" style="color: white;"></i></a>
+	 	<i class="bi bi-pencil-square d-flex justify-content-center" style="color: white;"></i></a>
 	</div>
 </div>
 
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"	crossorigin="anonymous">
+</script>
+
 <%-- mobileStyle --%>
-  <jsp:include page="../common/bottomTabStyle.jsp"></jsp:include>
+  <jsp:include page="../common/bottomTabCommu.jsp"></jsp:include>
 <%-- ----------- --%>  
 </body>
 </html>

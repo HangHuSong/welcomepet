@@ -149,6 +149,8 @@
 			    });
 		  });
 		
+		var order_no = "";
+
 		function submitOrderForm() {
 			  var orderProductDtoList = [];
 			  <%-- orderProductDtoList에 데이터 추가하는 부분 --%>
@@ -187,8 +189,10 @@
 			              
 			              var response = JSON.parse(xhr.responseText);
 			              console.log(response);
-			              
-			              window.location.href = "./payPage"; 
+			              order_no = response.orders_no;
+			              console.log("${sessionScope.order_no}");
+			              requestPay();
+			             
 			              // 추가적인 처리 작업 수행
 			          } else {
 			              // 처리 중 오류가 발생한 경우
@@ -204,6 +208,119 @@
 			  xhr.send(JSON.stringify(requestData));	
 		
 		} 
+		
+		function requestPay() { 
+			
+			var productAmount = ${product_amount}.length;
+			
+			 var approval_url = "http://localhost:8181/welcomepet/board/payPage?order_no=${sessionScope.order_no + 1}";
+			
+			
+			console.log(order_no);
+			
+			var	total_price = document.getElementById("ordersTotalPrice").value;
+			 
+			var paymentRequestVal = {
+	                cid: 'TC0ONETIME',
+	                partner_order_id: "1",
+	                partner_user_id: "${sessionUser.customer_name}",
+	                item_name: "어서오개 상품 "+productAmount +"건 주문",
+	                item_code:1,
+	                quantity: productAmount,
+	                total_amount: total_price,
+	                tax_free_amount:0,
+	                approval_url: approval_url,
+	                cancel_url:"http://localhost:8181/welcomepet/board/buyPage?alert=cancel",
+	                fail_url:"http://localhost:8181/welcomepet/board/buyPage?alert=fail"
+	               
+	         };
+			
+			var keyVals=['cid','partner_order_id','cid','partner_user_id','item_name','quantity','total_amount','tax_free_amount','approval_url','cancel_url','fail_url']
+			
+			paymentRequest="";
+			
+			for(keyVal of keyVals){
+				paymentRequest+=keyVal+"="+paymentRequestVal[keyVal]+"&";
+			}
+			
+			console.log(paymentRequest);
+			
+			const xhr = new XMLHttpRequest();
+			
+	        xhr.onreadystatechange = function () {
+	            if (xhr.readyState == 4 && xhr.status == 200) {
+	            	const response = JSON.parse(xhr.responseText);
+	            	
+	            	var left = (window.innerWidth - 700) / 2;
+	            	var top = (window.innerHeight - 800) / 2;
+	            	var popup=window.open(response.next_redirect_pc_url,"Popup","width=600,height=700,left="+left+",top="+top);
+	            	 
+	            	sessionStorage.setItem('tid', response.tid);
+/* 	            	
+	            	if(popup){
+	            		var intervalId=setInterval(function(){
+		            		if(popup.location.href.includes(paymentRequestVal.approval_url)){
+		            			window.location.href=popup.location.href;
+		            			clearInterval(intervalId);
+		            			popup.close();
+		            		}
+		            	},500);
+	            	}
+	            	 */
+	            }
+	        }
+	
+	        
+	       
+	        xhr.open("post", "https://kapi.kakao.com/v1/payment/ready");
+	        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	        xhr.setRequestHeader("Authorization", "KakaoAK 87f9df6baf803baebce7425e8dfff0a7");
+	        xhr.send(paymentRequest);
+			
+			
+		}
+		
+		var urlParams= new URLSearchParams(window.location.search);
+	    var alert = urlParams.get('alert');
+	    if(alert=='approve'){
+	    	approvePay()
+	    }else if(alert=='cancel'){
+	    	alert('결제 취소');
+	    }else if(alert=='fail'){
+	    	alert('결제 실패');
+	    }
+	    
+		function approvePay() {
+			
+		    	var pg_token=urlParams.get('pg_token');
+		    	var partner_order_id= "1";
+	            var partner_user_id="${sessionUser.customer_name}";
+	            var tid = sessionStorage.getItem('tid');
+	            sessionStorage.removeItem('tid');
+	            
+				var payApproval="cid=TC0ONETIME&tid="+tid+"&pg_token="+pg_token+"&partner_order_id="+partner_order_id+"&partner_user_id="+partner_user_id;
+				
+				
+			
+				
+				const xhr = new XMLHttpRequest();
+				
+		        xhr.onreadystatechange = function () {
+		            if (xhr.readyState == 4 && xhr.status == 200) {
+		            	const response = JSON.parse(xhr.responseText);
+		            	console.log(response);
+		            	submitOrderForm() ;
+		            }
+		        }
+		
+		        
+		        
+		        xhr.open("post", "https://kapi.kakao.com/v1/payment/approve");
+		        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		        xhr.setRequestHeader("Authorization", "KakaoAK 87f9df6baf803baebce7425e8dfff0a7");
+		        xhr.send(payApproval);
+
+		}		
 		
 		
 </script>
@@ -255,7 +372,7 @@ body {
 }
 
 .product-thum {
-	height: 5em;
+	height: 6em;
 }
 
 .empty {
@@ -305,8 +422,8 @@ body {
 					value="${item.optionInfo.product_option_no}">
 
 				<div class="row mt-2">
-					<div class="col-1"></div>
-					<div class="col-10 border rounded-2">
+
+					<div class="col mx-3 border rounded-2">
 						<div class="row mt-2">
 							<div class="col-4 embed-responsive embed-responsive-4by3">
 								<img
@@ -377,7 +494,7 @@ body {
 							</div>
 						</div>
 
-						<div class="row mt-2"></div>
+						<div class="row mt-3"></div>
 					</div>
 				</div>
 			</c:forEach>
@@ -465,9 +582,9 @@ body {
 
 
 		<div class="row">
-			<div class="accordion accordion-flush mx-0 px-0 "
+			<div class="accordion accordion-flush "
 				id="accordionFlush3">
-				<div class="accordion-item mx-0 px-0">
+				<div class="accordion-item" >
 					<h2 class="accordion-header" id="flush-headingTwo">
 						<button class="accordion-button collapsed " type="button"
 							data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
@@ -522,13 +639,13 @@ body {
 		<div class="row mt-2 empty"></div>
 
 		<div class="row">
-			<div class="col mx-0 ps-3 pe-1">
+			<div class="col mx-0 ">
 				<div class="row mt-2">
 					<div class="col">
 						<strong>결제 수단</strong>
 					</div>
 				</div>
-				<div class="row mt-2 mx-0" id="payment">
+				<div class="row mt-2 ms-1" id="payment">
 					<input type="hidden" id="orders_payment_method"
 						name="orders_payment_method" value="카카오페이">
 					<div class="row">
@@ -610,7 +727,7 @@ body {
 					id="totalShippingPrice"></div>
 			</div>
 		</div>
-	</div>
+
 	<div class="row border-top mt-2"></div>
 	<div class="row mt-3 mb-3 fw-bold" style="font-size: 1.2em;">
 
@@ -661,32 +778,32 @@ body {
 		</div>
 	</div>
 
-	<div class="row mt-2 empty"></div>
+	<div class="row mt-2 "></div>
 
 
 
 	<div class="row mt-2">
 		<div class="col ">
-			<div class="row">
-				<div class="col-1"></div>
-				<div class="col">
+			<div class="row mb-3 mt-2">
+
+				<div class="col mx-2">
 					<div class="d-grid gap-2">
 						<button class="btn  btn-lg" type="button" style="background-color: rgb(253, 152, 67); color: white;"
-							onclick="submitOrderForm()">
+							onclick="submitOrderForm();">
 							<div class="row fs-5">
 								<div class="col text-center" id="finalPrice"></div>
 							</div>
 						</button>
 					</div>
 				</div>
-				<div class="col-1"></div>
+
 			</div>
 		</div>
 
 	</div>
 
 	<div class="row mt-2"></div>
-
+	</div>
 
 
 

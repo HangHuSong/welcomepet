@@ -36,7 +36,8 @@
 				if(response.result == "success") {
 					
 					mySessionId = response.customerNo; 
-
+		            updateRecentProductButton();
+		            setRecentImgBackground(mySessionId);
 				}
 			}
 		}
@@ -45,7 +46,56 @@
 		xhr.open("get", "../customer/getMyId", false); // 딱 여기만 쓰세요...false 동기식 호출..! 권장되지 않음
 		xhr.send();		
 	}	
+	
+	  function updateRecentProductButton() {
+		    const recentProductButton = document.getElementById("recentProduct");
+		    
+		    // customer_no가 null이면 버튼을 숨깁니다.
+		    if (mySessionId === null) {
+		      recentProductButton.style.display = "none";
+		    } else {
+		      recentProductButton.style.display = "block";
+		    }
+		  }
 
+	  function setRecentImgBackground(customer_no) {
+		  var xhr = new XMLHttpRequest();
+		  xhr.onreadystatechange = function() {
+		    if (xhr.readyState === XMLHttpRequest.DONE) {
+		      if (xhr.status === 200) {
+		        var response = JSON.parse(xhr.responseText);
+		        if (response.result === "success") {
+		          var imgUrl = response.recentImg; // recentImg 값으로부터 이미지 URL 가져오기
+		          var buttonElem = document.getElementById("recentProduct");
+
+		          if (imgUrl !== null) {
+		            // imgUrl이 null이 아닌 경우에만 배경 이미지를 설정합니다.
+		        	  buttonElem.style.backgroundImage = "url('/uploadFiles/WelcomePet/" + imgUrl + "')";
+		        	  buttonElem.addEventListener("click", handleRecentImgClick);
+		          } else {
+		   
+		            buttonElem.style.display = "none";
+		          }
+		        } else {
+		          console.error("Failed to get recentImg: " + response.result);
+		        }
+		      } else {
+		        console.error("Request failed with status: " + xhr.status);
+		      }
+		    }
+		  };
+
+		  // GET 방식으로 customer_no를 가져와서 업데이트합니다.
+		  xhr.open("GET", "./getRecentImg?customer_no=" + customer_no);
+		  xhr.send();
+		}
+	  function handleRecentImgClick() {
+
+		  
+		  location.href = "./recentProductList?customer_no=" + mySessionId;
+		}
+	  
+	  
 	function getSaleList() {
 		
 		const xhr = new XMLHttpRequest();
@@ -104,7 +154,7 @@
 				colImg.appendChild(img);
 				
 				const rowName = document.createElement("div");
-				rowName.classList.add("row", "r_name")
+				rowName.classList.add("row","mt-1", "r_name")
 				"location.href='./productDetail?product_no=${map.productInfo.product_no}'"
 				rowName.setAttribute("onclick","location.href='./productDetail?product_no="+data.productInfo.product_no+"'");
 				col1.appendChild(rowName);
@@ -391,7 +441,7 @@
 					colImg.appendChild(img);
 					
 					const rowName = document.createElement("div");
-					rowName.classList.add("row", "r_name")
+					rowName.classList.add("row","mt-1", "r_name")
 					rowName.setAttribute("onclick","location.href='./productDetail?product_no="+data.productInfo.product_no+"'");
 					col1.appendChild(rowName);
 					
@@ -647,7 +697,7 @@
 					discountLabel.style.color = "white"; // 글자색 설정
 					discountLabel.style.fontSize = "0.8em"; // 내부 여백 설정
 					discountLabel.style.padding = "0.1em";
-					discountLabel.style.opacity = "0.4";
+					discountLabel.style.opacity = "0.7";
 					discountLabel.style.borderRadius = "0.8em 0px"; 
 					discountLabel.style.minWidth = "1.8rem";
 					colImg.appendChild(discountLabel);
@@ -670,7 +720,7 @@
 					colImg.appendChild(img);
 					
 					const rowName = document.createElement("div");
-					rowName.classList.add("row", "r_name")
+					rowName.classList.add("row","mt-1", "r_name")
 					"location.href='./productDetail?product_no=${map.productInfo.product_no}'"
 					rowName.setAttribute("onclick","location.href='./productDetail?product_no="+data.productInfo.product_no+"'");
 					col1.appendChild(rowName);
@@ -747,10 +797,36 @@
 			xhr.open("get", "./relatedProduct?main_category_no="+categoryNo);
 			xhr.send();	
 		}
-	 
-	
-	
-	
+    
+        document.addEventListener("DOMContentLoaded", function () {
+            // 스크롤 버튼 요소
+            const scrollToTopButton = document.getElementById("scrollToTop");
+
+            // 스크롤 이벤트를 감지하여 스크롤 버튼 표시/숨김 처리
+            let isScrollingUp = true; // 스크롤 방향 상태 변수 (true: 위로 스크롤 중, false: 아래로 스크롤 중)
+            let prevScrollY = 0; // 이전 스크롤 위치
+
+            window.addEventListener("scroll", function () {
+                const currentScrollY = window.scrollY;
+                isScrollingUp = currentScrollY < prevScrollY; // 스크롤 방향 업데이트
+                prevScrollY = currentScrollY;
+
+                if (isScrollingUp) {
+                    scrollToTopButton.classList.add("show");
+                } else {
+                    scrollToTopButton.classList.remove("show");
+                }
+            });
+
+            // "맨 위로 가기" 버튼을 눌렀을 때 페이지 맨 위로 스크롤
+        });
+        
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: "auto" // 스크롤 부드럽게 이동
+            });
+        }
 	window.addEventListener("DOMContentLoaded", function(){
 	    //사실상 시작 시점...
 	     getSessionId();
@@ -760,7 +836,8 @@
 		getBizProductList(1);
 		getBizList();
 		getBestList(1);
-	    
+		updateRecentProductButton();
+		setRecentImgBackground(mySessionId);
 	});
 
 
@@ -949,7 +1026,51 @@ body {
 	filter: none;
 	vertical-align: sub;
 }
+        /* 항상 보여지는 버튼 스타일 */
+        .always-show-button {
+            position: fixed;
+             box-shadow: rgba(0, 0, 0, 0.04) 0.2rem 0.4rem ;
+              border: 0.1rem solid rgb(0, 80, 255);
+            bottom: 2.3em;
+            right: 0.6em; 
+            width: 1.4em;
+            height: 1.4em;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 2em; 
+            cursor: pointer;
+            opacity: 1;
+                      z-index : 1000;
+        }
 
+        /* 스크롤 시 나타나는 버튼 스타일 */
+        .scroll-button {
+        	display: flex;
+            position: fixed;
+            border: solid 1px rgb(223, 227, 232);
+            background-color: rgb(255, 255, 255);
+            box-shadow: rgba(0, 0, 0, 0.04) 0.2rem 0.4rem ;
+            bottom: 4em;
+            right: 0.6em; 
+            width: 1.4em;
+            height: 1.4em;
+            border-radius: 50%;
+            justify-content: center;
+            align-items: center;
+            color: grey;
+            font-size: 2em; /* em 단위로 버튼 내용 폰트 크기 조정 */
+            cursor: pointer;
+            opacity: 0; /* 초기에는 버튼 숨김 */
+            transition: opacity 0.3s;
+            z-index : 1000;
+        }
+
+        .scroll-button.show {
+            opacity: 1; 
+ 
 </style>
 </head>
 <body>
@@ -959,13 +1080,13 @@ body {
 	<div class="container">
 		
 
-		<div class="row mt-2 border_bottom text-center fw-bold fs-6 text-secondary">
+		<div class="row mt-3 border_bottom text-center fw-bold fs-6 text-secondary">
 			<div class="col pe-0 ps-0">홈</div>
 			<div class="col pe-0 ps-0">베스트</div>
 			<div class="col pe-0 ps-0">특가존</div>
 			<div class="col">리뷰이벤트</div>
 		</div>
-		<div class="row mt-3 ps-0 pe-0">
+		<div class="row mt-2 ps-0 pe-0">
 			<div id="carouselExampleIndicators" class="carousel slide ps-0 pe-0"
 				data-bs-ride="true">
 				<div class="carousel-indicators">
@@ -977,11 +1098,13 @@ body {
 					<button type="button" data-bs-target="#carouselExampleIndicators"
 						data-bs-slide-to="2" aria-label="Slide 3"></button>
 					<button type="button" data-bs-target="#carouselExampleIndicators"
-						data-bs-slide-to="3" aria-label="Slide 4"></button>						
+						data-bs-slide-to="3" aria-label="Slide 4"></button>
+					<button type="button" data-bs-target="#carouselExampleIndicators"
+						data-bs-slide-to="4" aria-label="Slide 5"></button>													
 				</div>
 				<div class="carousel-inner">
 					<div class="carousel-item active">
-						<img src="/welcomepet/resources/img/banner/MainBanner1.png"
+						<img src="/welcomepet/resources/img/banner/MainBanner3.png"
 							class="d-block w-100" alt="...">
 					</div>
 					<div class="carousel-item">
@@ -989,13 +1112,17 @@ body {
 							class="d-block w-100" alt="...">
 					</div>
 					<div class="carousel-item">
-						<img src="/welcomepet/resources/img/banner/MainBanner3.jpg"
+						<img src="/welcomepet/resources/img/banner/MainBanner1.png"
 							class="d-block w-100" alt="...">
 					</div>
 					<div class="carousel-item">
 						<img src="/welcomepet/resources/img/banner/MainBanner4.png"
 							class="d-block w-100" alt="...">
-					</div>					
+					</div>
+					<div class="carousel-item">
+						<img src="/welcomepet/resources/img/banner/MainBanner3.jpg"
+							class="d-block w-100" alt="...">
+					</div>											
 				</div>
 				<button class="carousel-control-prev" type="button"
 					data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -1120,9 +1247,18 @@ body {
 
 		</div>
 		</div>
+	<div class="always-show-button" id="recentProduct" 
+			style="background-image: url('/uploadFiles/WelcomePet/'); background-size: contain;">
+        
+    </div>
+        <div class="scroll-button " id="scrollToTop" onclick="scrollToTop()" 
+        >
+			<a class="bi-arrow-up-short" style="color: rgb(66, 73, 79);"></a>
+    </div>
 		<div class="row mt-3"></div>
+		
 	<jsp:include page="../common/serviceNavi.jsp"></jsp:include>
-	<jsp:include page="../common/bottomNavi.jsp"></jsp:include>
+	<jsp:include page="../common/bottomNavi2.jsp"></jsp:include>
 	</div>
 
 

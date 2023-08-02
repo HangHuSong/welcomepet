@@ -36,6 +36,8 @@
 			
 			<div class="col">
 				<%@ include file="../common/adminHead.jsp" %>
+				
+					
 			</div>
 		</div>
 	</div>

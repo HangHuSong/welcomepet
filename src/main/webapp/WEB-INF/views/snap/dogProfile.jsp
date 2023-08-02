@@ -13,8 +13,19 @@
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
+	rel="stylesheet">
 <title></title>
 <style type="text/css">
+@font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+body{
+	font-family: 'SUITE-Regular' !important; 
+}
 	#profileImage {
 		width: 80px;
 		height: auto;
@@ -24,14 +35,20 @@
 		object-fit: cover;
 	}
 	.img{
-		width: 138px;
-		height: 138px;
+		width: 125px;
+		height: 125px;
 		overflow: hidden;
 		object-fit: cover;
 	}
 	#btn{
 		color: white;
 		background-color: orange;
+	}
+	#profile{
+		font-family: 'Jua', sans-serif;
+		font-weight: 700;
+		font-size: 1.3em;
+		color: #fd7e14;
 	}
 </style>
 </head>
@@ -44,7 +61,7 @@
 						<a class="btn bi bi-bell text-secondary fs-4 " data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample"></a>
 					</div>
 					<div class="col-1"></div>
-					<div class="col-6" style="text-align: center;">프로필</div>
+					<div class="col-6" style="text-align: center;" id="profile">프로필</div>
 					<div class="col-1 text-center">
 						<a class="btn bi bi-search fs-4" role="button" href="/welcomepet/board/search"> </a>
 					</div>
@@ -107,7 +124,7 @@
 			<div class="col text-center">
 				<div class="row">
 					<div class="col">
-						<span class="fw-bold">10</span>
+						<span class="fw-bold">11</span>
 					</div>
 				</div>
 				<div class="row mt-1">
@@ -119,7 +136,7 @@
 			<div class="col text-center">
 				<div class="row">
 					<div class="col">
-						<span class="fw-bold">10</span>
+						<span class="fw-bold">5</span>
 					</div>
 				</div>
 				<div class="row mt-1">
@@ -131,7 +148,7 @@
 			<div class="col text-center">
 				<div class="row">
 					<div class="col">
-						<span class="fw-bold">10</span>
+						<span class="fw-bold">7</span>
 					</div>
 				</div>
 				<div class="row mt-1">
@@ -173,9 +190,9 @@
 		</div>
 		
 		<!-- dog의 게시글 -->
-		<div class="row row-cols-3 pt-2">
+		<div class="row row-cols-3 pt-2 px-0">
 			<c:forEach items="${list}" var="img">
-				<div class="col px-0">
+				<div class="col-auto px-0">
 					<a href="./readSnap?snap_board_no=${img.snap_board_no}">
 						<img class="img" src="/uploadFiles/thumbnail/${img.snap_thumbnail}">
 					</a>
@@ -184,7 +201,7 @@
 		</div>
 		
 		
-		<jsp:include page="../common/bottomTabStyle.jsp"></jsp:include>
+		<jsp:include page="../common/bottomTabCommu.jsp"></jsp:include>
 	</div>
 	
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>

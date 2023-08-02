@@ -23,15 +23,13 @@
 	<div class="container p-0">
   	 <div class="container-fluid">
   	 	<div class="row justify-content-between">
-	 	 <div class="col-2 p-0">
-	      <a href="../community/showDogPostList" class="btn btn-black py-0 ps-0" style="border: transparent; outline: none;">
-		   <i class="btn bi bi-chevron-left p-0" style="border: transparent; outline: none; font-size: 1.4em;"></i>
-		  </a>
+	 	 <div class="col p-0">
+	      <a href="/welcomepet/community/showDogPostList" class="btn bi bi-arrow-left fs-4 py-0 ps-0" role="button"></a>
 	     </div>
 
 	  	 <div class="col text-end pe-1">
 	 		  <button class="btn" style="pointer-events: none;">임시저장</button>
-	 		  <button class="btn fw-bold" style="color:white; background-color:#fd7e14">등록</button>
+	 		  <button class="btn fw-bold" style="color:white; background-color:#ffa500;">등록</button>
 	 	 </div>
 	  	</div>
 	 </div>

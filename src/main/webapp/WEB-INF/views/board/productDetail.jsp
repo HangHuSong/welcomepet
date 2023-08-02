@@ -98,7 +98,7 @@ function reloadReviewList() {
 				  rowRatingDate.appendChild(colRating);
 				  
 				  const colName = document.createElement("div");
-				  colName.classList.add("col","ps-0","review_name");
+				  colName.classList.add("col","pe-0","review_name");
 				  colName.innerText =data.customerDto.customer_nickname;
 				  rowRatingDate.appendChild(colName);
 
@@ -114,11 +114,12 @@ function reloadReviewList() {
 				  row1.appendChild(rowRatingDate);
 				  
 				  const reviewOptionRow = document.createElement("div");
-				  reviewOptionRow.classList.add("row");
+				  reviewOptionRow.classList.add("row","mt-2");
+				  
 				  row1.appendChild(reviewOptionRow);
 				  
 				  const reviewOptionCol = document.createElement("div");
-				  reviewOptionCol.classList.add("col", "text-secondary","review_date");
+				  reviewOptionCol.classList.add("col", "text-secondary","review_date","ps-0");
 				  reviewOptionCol.innerText = "상품 : " + data.productOptionDto.product_option_name;
 				  reviewOptionRow.appendChild(reviewOptionCol);
 				  
@@ -155,7 +156,7 @@ function reloadReviewList() {
 				  
 				   
 				  const colContext = document.createElement("div");
-				  colContext.classList.add("col", "reviewContext","mb-2");
+				  colContext.classList.add("col","ps-0", "reviewContext","mb-2");
 				  colContext.innerText = data.productReviewDto.product_review_context;
 				  rowContext.appendChild(colContext);
 
@@ -476,12 +477,13 @@ function handleOptionSelect(event) {
   optionContainer.appendChild(optionOuter);
 
   const optionCol1 = document.createElement("div");
-  optionCol1.classList.add("col-1");
+  optionCol1.classList.add("col-1","ms-3");
   optionOuter.appendChild(optionCol1);
 
   const optionDiv = document.createElement("div");
   optionDiv.classList.add("col", "mt-2", "border", "rounded-2");
   optionDiv.style.backgroundColor = "rgb(244, 247, 250)";
+  optionDiv.style.fontSize = "0.9em";
   optionOuter.appendChild(optionDiv);
 
   const optionRow = document.createElement("div");
@@ -489,12 +491,12 @@ function handleOptionSelect(event) {
   optionDiv.appendChild(optionRow);
 
   const optionCol = document.createElement("div");
-  optionCol.classList.add("col-10");
+  optionCol.classList.add("col-10","ms-2");
   optionCol.innerText = optionName;
   optionRow.appendChild(optionCol);
 
   const deleteCol = document.createElement("div");
-  deleteCol.classList.add("col-2");
+  deleteCol.classList.add("col");
   optionRow.appendChild(deleteCol);
 
   const quantityRow = document.createElement("div");
@@ -507,6 +509,7 @@ function handleOptionSelect(event) {
   
   const priceCol = document.createElement("div");
   priceCol.classList.add("col-6", "text-end", "fw-bold");
+  priceCol.style.fontSize = "1.2em";
   priceCol.innerText = optionPrice +"원";
 
   quantityRow.appendChild(priceCol);
@@ -758,7 +761,7 @@ function getRelatedList() {
 			heartBox.setAttribute("onclick", "toggleWish("+ data.productInfo.product_no +")");
 			heartBox.style.position = "absolute"; // 절대 위치 설정
 			heartBox.style.bottom = "0"; // 하단 위치
-			heartBox.style.right = "10px"; // 오른쪽 위치
+			heartBox.style.right = "1em"; // 오른쪽 위치
 
 			heartBox.setAttribute("role", "button");
 			colImg.appendChild(heartBox);
@@ -949,16 +952,14 @@ window.addEventListener("DOMContentLoaded", function(){
 
 <style type="text/css">
 @font-face {
-	font-family: 'SUITE-Regular';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2')
-		format('woff2');
-	font-weight: normal;
-	font-style: normal;
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
 }
 
 body {
-	font-family: 'SUITE-Regular';
+	font-family: 'Pretendard-Regular';
 }
 
 /* Swiper 슬라이드 컨테이너 스타일 */
@@ -1195,9 +1196,9 @@ body {
 
 		<div class="row mt-2 empty"></div>
 
-		<div class="row mt-3 delism ps-2">
+		<div class="row mt-3 delism ms-3">
 			<div class="row mt-2">
-				<div class="col-3 text-secondary">배송 안내</div>
+				<div class="col-3 ps-0 text-secondary">배송 안내</div>
 				<div class="col">
 					<div class="row">
 						<div class="col ps-0">배송비 :
@@ -1209,8 +1210,8 @@ body {
 				</div>
 			</div>
 		</div>
-		<div class="row mt-3 mb-4">
-			<div class="col-1"></div>
+		<div class="row ms-3	 mt-3 mb-4">
+
 			<div class="col">
 				<div class="row mt-2 border align-items-center" onclick="location.href='./searchProduct?searchWord=${ data.bizInfo.biz_store_name}'">
 					<div class="col-3 ps-0">
@@ -1254,14 +1255,22 @@ body {
 		<div class="row mt-2 ">
 			<div class="col" id="colProductRating"></div>
 		</div>
-		<div class="row mt-2  ps-3 mx-0" id="reviewListBox"></div>
+		<div class="row mt-3  ps-3 mx-0" id="reviewListBox"></div>
+		<div class="row mt-3 ">
+		  <div class="col text-center">
+		  <div class=""> 
+		    <button class="btn btn-outline-primary text-center btn-sm" style="width: 80%;">
+		     더 많은 리뷰 보기<a class="btn text-primary py-0 bi bi-chevron-right"> </a>
+		    </button> </div>
+		  </div>
+		</div>		
 	</div>
-	<div class="row mt-2 empty"></div>
+	<div class="row mt-3 empty"></div>
 	<div class="row ps-3 mt-3">
-		<div class="row">
+		<div class="row" style="align-items: center;">
 			<div class="col fw-bold pt-1" style="font-size: 1.2em;">상품 문의</div>
-			<div class="text-end me-3 col ">
-				<button class="btn  btn-outline-secondary"
+			<div class="text-end me-1 pe-0 col ">
+				<button class="btn btn-sm btn-outline-secondary"
 					style="height: 100%;">문의하기</button>
 			</div>
 		</div>
@@ -1322,19 +1331,19 @@ body {
 			</div>
 		</div>
 		
-		<div class="row mt-2">
-		  <div class="col">
-		  <div class="d-grid gap-2"> 
-		    <button class="btn btn-outline-secondary text-center">
-		     더 많은 상품 문의 보기 <a class="btn bi bi-chevron-right"> </a>
+		<div class="row mt-3 ">
+		  <div class="col text-center">
+		  <div class=""> 
+		    <button class="btn btn-outline-secondary text-center btn-sm" style="width: 80%;">
+		     더 많은 상품 문의 보기 <a class="btn py-0 bi bi-chevron-right"> </a>
 		    </button> </div>
 		  </div>
 		</div>
-		<div class="row mt-2"></div>
+		<div class="row mt-3"></div>
 	</div>
 
 
-	<div class="row mt-1 ">
+	<div class="row mt-2 ">
 	</div>	
 	<jsp:include page="../common/serviceNavi.jsp"></jsp:include>	
 		<div class="row mb-4">
@@ -1346,15 +1355,15 @@ body {
 						<div class="row">
 							<div class="col">
 
-								<a class="text-danger bi bi-heart" id="heartBox"
-									onclick="toggleWish(${data.productInfo.product_no})" role="button"> </a>
+								<a class="text-danger bi bi-heart" id="heartBox" style="font-size: 1.3em;"
+									onclick="toggleWish(${data.productInfo.product_no});" role="button"> </a>
 
 
 
 							</div>
 						</div>
 						<div class="row" style="height: 0.9em; margin-top: -0.5em;">
-							<div class="col" style="font-size: 0.9em;">
+							<div class="col" style="font-size: 0.8em;">
 								<span id="totalWishCount">3</span>
 							</div>
 						</div>
@@ -1379,7 +1388,7 @@ body {
 											<div class="row" id="optionRow">
 												<div class="col-1"></div>
 												<div class="col" id="colOption"></div>
-												<div class="col-1"></div>
+											
 											</div>
 											<div class="row mt-3" id="optionContainer"></div>
 

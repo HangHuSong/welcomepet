@@ -26,6 +26,7 @@ import com.bubble.welcomepet.dto.ProductDetailImageDto;
 import com.bubble.welcomepet.dto.ProductOptionDto;
 import com.bubble.welcomepet.dto.ProductReviewDto;
 import com.bubble.welcomepet.dto.ProductWishDto;
+import com.bubble.welcomepet.dto.RecentProductDto;
 import com.bubble.welcomepet.dto.ProductReviewImagesDto;
 
 @Service
@@ -133,7 +134,7 @@ public class CustomerService {
 			list.add(map);
 		}
 		return list;
-	}
+	}		
 	
 	
 	
@@ -160,11 +161,29 @@ public class CustomerService {
 
 		for (ProductWishDto productWishDto : wishList) {
 			int product_no = productWishDto.getProduct_no();
+			
+			
 			ProductDto productDto = customerMapper.getProductInfoByNo(product_no);
+			
+		    List<ProductReviewDto> reviewList = customerMapper.getProductReview(product_no);
+		    int totalRating = 0;
+		    int ratingCount = 0;
+		    for (ProductReviewDto productReviewDto : reviewList) {
+		        int rating = productReviewDto.getProduct_review_rating();
+		        totalRating += rating;
+		        ratingCount++;
+		    }
+
+		    double aveRating = (double) totalRating / ratingCount;
+		    DecimalFormat df = new DecimalFormat("#.#");
+		    String formattedAveRating = df.format(aveRating);
+		    
 			List<ProductOptionDto> productOptionList = customerMapper.getProductOptionByNo(product_no);
 			double saleRate = (double) (productDto.getProduct_discount_rate()) / 100;
 			int salePrice = (int) ((productDto.getProduct_price()) * saleRate);
-			Map<String, Object> map = new HashMap<>();     
+			Map<String, Object> map = new HashMap<>();    
+		    map.put("aveRating", Double.parseDouble(formattedAveRating));
+		    map.put("ratingCount", ratingCount);
 			map.put("optionList", productOptionList);
 			map.put("salePrice", salePrice);
 			map.put("productInfo", productDto);
@@ -485,7 +504,7 @@ public class CustomerService {
 	
 	//주문
 	
-	public void addOrders(OrdersDto ordersDto,  List<OrderProductDto> orderProductDtoList) {
+	public int addOrders(OrdersDto ordersDto,  List<OrderProductDto> orderProductDtoList) {
 		int orders_no = customerMapper.createOrdersPk();
 		ordersDto.setOrders_no(orders_no);
 
@@ -507,6 +526,8 @@ public class CustomerService {
 	        orderProductDto.setOrders_no(orders_no);
 	        customerMapper.AddOrderProduct(orderProductDto);
 	    }
+	    
+	    return  orders_no;
 	}
 
 	
@@ -723,6 +744,60 @@ public class CustomerService {
 		return list;
 	}
 	
+	public void addRecentProduct (RecentProductDto recentProductDto) {
+		
+		customerMapper.addRecentProduct(recentProductDto);
+	}
+	
+	public List<Map<String, Object>> getRecentProductByCutomerNo(int customer_no) {
+
+		List<RecentProductDto> recentProductList = customerMapper.getRecentProductList(customer_no);
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+
+		for (RecentProductDto recentProductDto : recentProductList) {
+			
+			int product_no = recentProductDto.getProduct_no();
+			ProductDto productDto = customerMapper.getProductInfoByNo(product_no);
+			
+		    List<ProductReviewDto> reviewList = customerMapper.getProductReview(product_no);
+		    int totalRating = 0;
+		    int ratingCount = 0;
+		    for (ProductReviewDto productReviewDto : reviewList) {
+		        int rating = productReviewDto.getProduct_review_rating();
+		        totalRating += rating;
+		        ratingCount++;
+		    }
+
+		    double aveRating = (double) totalRating / ratingCount;
+		    DecimalFormat df = new DecimalFormat("#.#");
+		    String formattedAveRating = df.format(aveRating);
+			
+			double saleRate = (double) (productDto.getProduct_discount_rate()) / 100;
+			int salePrice = (int) ((productDto.getProduct_price()) * saleRate);
+			Map<String, Object> map = new HashMap<>();
+		    map.put("aveRating", Double.parseDouble(formattedAveRating));
+		    map.put("ratingCount", ratingCount);
+			map.put("salePrice", salePrice);
+			map.put("productInfo", productDto);
+			map.put("recentInfo", recentProductDto);
+			list.add(map);
+		}
+		return list;
+	}
+	
+	public String recentProductImg(int customer_no) {
+		
+		RecentProductDto recentproductDto = customerMapper.getRecentProduct(customer_no);
+		
+		int product_no = recentproductDto.getProduct_no();
+		
+		ProductDto productDto = customerMapper.getProductInfoByNo(product_no);
+		
+		String productImg = productDto.getProduct_thumbnail();
+
+		
+		return productImg;
+	}
 	
 	
 	

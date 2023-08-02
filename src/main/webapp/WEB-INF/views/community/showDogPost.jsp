@@ -125,37 +125,33 @@
 @font-face {
     font-family: 'Pretendard-Regular';
     src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 200;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
     font-weight: 400;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 600;
-    font-style: normal;
-}
-@font-face {
-    font-family:'Pretendard-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 800;
     font-style: normal;
 }
 /* 여기까지 글꼴설정 */
 
-body{
-	font-family: 'Pretendard-Regular' !important;
+#body{
+	font-family: 'SUITE-Regular' !important;
+	letter-spacing:0.02em;
 }
+
+#postTitle{
+	font-size: 1.2em;
+}
+#postDetail{
+	font-size:0.8em;
+}
+
 .nickname{
-	font-size: 0.9em;
+	font-size:0.9em;
+	font-weight:600;
 }
 .date{
 	font-size: 0.75em;
+}
+
+#postContent{
+	
 }
 
 
@@ -173,7 +169,7 @@ body{
   <jsp:include page="../common/topNaviPost.jsp"></jsp:include>
 <%-- ----------- --%>  
 
-<div class="container mt-1 mb-5">
+<div class="container mt-1 mb-5" id="body">
 	<div class="row pb-3 border-bottom">
 		<div class="col">
 			<div class="row">
@@ -181,7 +177,7 @@ body{
 				 	
 				 	<div class="row border-bottom py-3">
 				 		<%-- 제목 --%>
-				 		<div class="col-10">
+				 		<div class="col-10" id="postTitle">
 				 		 ${postData.showDogPostDto.show_dog_post_title}			 		 
 				 		</div>
 				 		<%-- : --%>
@@ -207,13 +203,13 @@ body{
 						</div>
 						
 						<%-- 상세글 정보 --%>		 		
-				 		<div class="col text-secondary pt-2" style="font-size:0.8em;">
+				 		<div class="col text-secondary pt-2" id="postDetail">
 				 			<%-- 프사 --%>
 				 			<span class="me-0">
 				 			 <img id="profileImg" class="rounded-circle" src="../resources/img/myDog.jpg" width="33">
 				 			</span>
-				 			<%-- 닉네임 --%>
-					 		<span class="me-2" style="font-weight:bold">
+				 			<%-- 닉네임  style="font-weight:bold"--%>
+					 		<span class="me-2" style="font-weight:600">
 					 		 ${postData.customerDto.customer_nickname}
 					 		</span>
 					 		 <%-- 작성일 --%>
@@ -238,7 +234,7 @@ body{
 							 		 </c:forEach>			 				
 				 				</div>
 				 			</div>
-				 			<div class="row mt-3">
+				 			<div class="row mt-3" id="postContent">
 				 				<div class="col">
 				 					${postData.showDogPostDto.show_dog_post_content}
 				 				</div>
@@ -246,34 +242,14 @@ body{
 				 		</div>
 				 	</div>
 				 	
-				 	<%-- 제일 하단 좋아요 --%>
-				 	<%-- 얘도 가능
-				 		<a class="btn btn-lg text-danger bi bi-heart-fill" href="./doLikeProcess?~no=${} }" class></a> 
-				 	--%>
-				 	<%--<form action="doLikeProcess" method="post">
-					 	<input type="hidden" name="show_dog_post_no" value="${postData.showDogPostDto.show_dog_post_no}">
-					 	<div class="row">
-					 		<div class="col text-center">
-						 		<c:choose>
-						 		 <c:when test="${checkWhetherLike == 0}">
-						 		 	<button class="btn btn-sm btn-outline-danger"><i class="bi bi-heart" style="stroke-width:2px;"></i> ${countLike}</button>
-					 			 </c:when>
-					 			 
-					 			 <c:otherwise>
-						 		 	<button class="btn btn-sm btn-outline-danger"><i class="bi bi-heart-fill"></i> ${countLike}</button>
-					 			 </c:otherwise>
-					 			</c:choose>
-					 		</div>
-					 	</div>
-				 	</form>--%>
-					
+				 	<%-- 좋아요 --%>
 				 	<form action="doLikeProcess" method="post">
 					 	<input type="hidden" name="show_dog_post_no" value="${postData.showDogPostDto.show_dog_post_no}">
 					 	<div class="row">
 					 		<div class="col text-center">
 						 		<c:choose>
 						 		 <c:when test="${checkWhetherLike == 0}">
-						 		 	<button class="btn btn-sm btn-outline-danger"><i class="bi bi-hand-thumbs-up" style="stroke-width:2px;"></i> ${countLike}</button>
+						 		 	<button class="btn btn-sm btn-outline-danger"><i class="bi bi-hand-thumbs-up"></i> ${countLike}</button>
 					 			 </c:when>
 					 			 
 					 			 <c:otherwise>
@@ -292,7 +268,7 @@ body{
 	<%-- 댓글 --%>
 	<div class="row mt-4">	
 		 <%-- 댓글 기타--%>
-		 <div class="col-7 fw-bold text-secondary mb-3" style="font-size: 0.9em;">
+		 <div class="col-7 fw-bold ps-3 mb-3" style="font-size: 0.9em;">
 		 	<%-- 댓글수 --%>
 			<span>
 			 댓글 ${countComment}
@@ -300,12 +276,12 @@ body{
 		 </div>
 		 <%-- 댓글수 --%>
 		 <div class="col pe-0 mb-3 text-end">
-		   <button class="btn btn-outline-none btn-sm text-end p-0" style="font-size:0.9em;">
+		   <button class="btn btn-outline-none text-end p-0" style="font-size:0.9em;">
 		    <i class="bi bi-filter-left"></i>등록순
 		   </button>
 		 </div>		 
 		 <div class="col mb-3">
-		   <button class="btn btn-outline-none btn-sm text-end p-0" style="font-size:0.9em;">
+		   <button class="btn btn-outline-none text-end p-0" style="font-size:0.9em;">
 		    <i class="bi bi-filter-right"></i>최신순
 		   </button>
 		 </div>		 
@@ -390,7 +366,6 @@ body{
 	</div>
 	<%-- 댓글 --%>
 	
-	
 	<div id="templete" class="d-none">
 		  <div class="commentWrapper row border-bottom pt-2 pb-3">
 			 <%-- 프사 --%>
@@ -399,7 +374,7 @@ body{
 			 </div>
 			 
 			 <div class="col">
-				  <div class="row">
+				  <div class="row pt-1">
 				  	<%-- 댓글 닉네임 --%>
 				  	<div class="col nickname">닉네임</div>			  	
 				  	<%-- 댓글 수정 삭제 --%>
@@ -409,14 +384,13 @@ body{
 				 	 </a>
 				 	 <ul class="dropdown-menu">
 					 	 <li><a class="dropdown-item" type="button">수정</a></li>
-					 	 <li><a class="dropdown-item" type="button">삭제</a>
-					 	 </li>
+					 	 <li><a class="dropdown-item" type="button">삭제</a></li>
 					 	 <li><a class="dropdown-item" type="button">신고</a></li>
 				 	 </ul>
 				  	</div>  					  	
 				  </div>
 				 
-				  <div class="row">
+				  <div class="row pt-0 align-items-start">
 				   <%-- 댓글 데이터 --%>
 				   <div class="col-12 content">내용</div>
 				   <div class="col text-secondary date">날짜
@@ -429,79 +403,6 @@ body{
 	</div>
 	
 </div>
-<%-- 
-<div class="col mt-2">	 
-		
-			<form action="./writeCommentProcess?show_dog_post_no=${postData.showDogPostDto.show_dog_post_no}" method="post">
-				<div class="row">
-					<div class="col d-grid pe-0" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">
-					 <textarea class="form-control-plaintext" style="height: 50px" name="show_dog_comment_content" placeholder="댓글 작성하기"></textarea>
-					</div>
-					
-					<div class="col-2">
-					 <button class="btn btn-primary"><i class="bi bi-arrow-return-left"></i></button>
-					</div>
-				</div>
-				<!-- 아래에서 올라오기 -->
-				<div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
-			  	 <div class="row d-flex justify-content-end">
-				  	<div class="col">
-				     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-				    </div> 	
-			     	댓글 쓰는 부분
-			     	<div class="row">
-					<div class="col d-grid pe-0" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">
-					 <textarea class="form-control-plaintext" name="show_dog_comment_content" 
-					 		   placeholder="댓글 작성하기"></textarea>
-					</div>
-					
-					<div class="col-2">
-					 <button class="btn btn-primary"><i class="bi bi-arrow-return-left"></i></button>
-					</div>
-					</div>
-			  	 </div>
-				</div>
-			</form> 		
-		</div> --%>
-
-<%-- 댓글 --%>
-
-	<%-- 	
-	<div class="col">
-		<div class="row" style="font-size: 10pt;">게시판 카테고리</div>
-	</div>
-	
-	<div class="col">
-		<div class="row fw-semibold" style="font-size: 15pt;">
-		 ${postData.showDogPostDto.show_dog_post_title}
-		</div>
-		<div class="row mt-2 mb-2" style="font-size: 12pt;">		
-			<div class="col-2 ps-0">img</div>
-			<div class="col">
-				<div class="row">
-				 ${postData.customerDto.customer_nickname}
-				</div>
-		 	 
-		 	 	<div class="row">
-		 	 	 <fmt:formatDate value="${postData.showDogPostDto.show_dog_post_reg_date}" pattern="yy.MM.dd"/>
-		 	 	 조회 ${postData.showDogPostDto.show_dog_post_view_count}
-		 	 	</div> 
-		 	</div>
-		</div>
-		 
-		<!-- 게시글 내용 -->
-		<div class="pt-3 pb-3 border-top border-bottom">
-		 ${postData.showDogPostDto.show_dog_post_content}
-		</div>
-	</div>
---%>
-
-<%-- 
-<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" 
-aria-controls="offcanvasBottom">Toggle bottom offcanvas</button>
---%>
-
-
 
 <%-- mobileStyle --%>
   <jsp:include page="../common/showPostBottomNavi.jsp"></jsp:include>

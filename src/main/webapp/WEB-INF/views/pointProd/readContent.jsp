@@ -35,7 +35,7 @@
 	font-family: 'Jua', sans-serif;
 	font-weight: 700;
 	font-size: 1.3em;
-	color: #fd7e14;
+	color: #ffa500;
 }
 </style>
 </head>
@@ -55,7 +55,7 @@
 									class="bi bi-arrow-left"></i> </a>
 							</div>
 							<div class="col-1"></div>
-							<div class="col-6 text-center" style="color: #fd7e14;">
+							<div class="col-6 text-center">
 								<a id="main" href="../pointProd/board">어서대화하개</a>
 							</div>
 							<div class="col-1"></div>
@@ -129,9 +129,9 @@
 									<div class="col-12 mt-2 border-bottom"></div>
 								</div>
 								<div class="row">
-									<div class="col ps-2 ms-1 pt-2 pb-1">
+									<div class="col ps-2 ms-1 pt-2">
 										<span class="badge rounded-pill"
-											style="font-size: 0.85em; text-color: #fd7e14; border: 1px solid #fd7e14; color: #fd7e14;">${data.pointProdCategoryDto.board_category_name}</span>
+											style="font-size: 0.85em; text-color: #ffa500; border: 1px solid #ffa500; color: #ffa500;">${data.pointProdCategoryDto.board_category_name}</span>
 									</div>
 								</div>
 								<div class="row">
@@ -197,7 +197,7 @@
 															<span class="me-2 text-secondary"
 																style="font-size: 0.88em;">
 																${comment.customerDto.customer_nickname }</span><span
-																class="text-secondary" style="font-size: 0.76em;"><fmt:formatDate
+																class="text-secondary" style="font-size: 0.87em;"><fmt:formatDate
 																	value="${comment.commentDto.board_comment_reg_date}"
 																	pattern="yyyy.MM.dd" /></span>
 														</div>

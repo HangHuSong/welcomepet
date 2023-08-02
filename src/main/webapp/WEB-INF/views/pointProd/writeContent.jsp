@@ -57,7 +57,7 @@
 					<div class="col-2 pe-1">
 						<form action="./writeContentProcess" method="post"
 							enctype="multipart/form-data">
-							<button class="btn text-secondary p-0" type="submit"
+							<button class="btn text-secondary p-0 fw-semibold" type="submit"
 								style="border: transparent; outline: none;">등록</button>
 					</div>
 				</div>

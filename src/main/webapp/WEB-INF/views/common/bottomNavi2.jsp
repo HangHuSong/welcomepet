@@ -24,21 +24,17 @@
     font-style: normal;
 }
 @font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 600;
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: normal;
     font-style: normal;
 }
-@font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 800;
-    font-style: normal;
+
 }
 /* 여기까지 글꼴모음 */
 
 #bottomTab {
-	font-family: 'Pretendard-Regular' !important;
+	font-family:'SUITE-Regular' !important;
 }
 </style>
 
@@ -46,7 +42,7 @@
 <body>
 
 <div id="bottomTab" class="row mb-5">
-<nav class="navbar fixed-bottom pt-1 bg-body-tertiary border-top"  style="background-color: #ffffff;">
+<nav class="navbar fixed-bottom pt-1 bg-body-tertiary border-top" style="background-color: #ffffff;">
 <div class="container d-flex justify-content-center">
  <div class="row">
 	
@@ -87,9 +83,9 @@
 				<div class="row text-center">
 				 <div class="col">
 				   <a class="btn bi bi-heart text-secondary pb-0 d-flex justify-content-center" style="font-size:1.3em"
-				    href="#" role="button"></a>
+				    href="/welcomepet/customer/wishList" role="button"></a>
 				 </div>
-				 <div class="col" style="font-size:0.6em">좋아요</div>
+				 <div class="col" style="font-size:0.6em">찜목록</div>
 				</div>
 			</div>
 			<%-- 마이페이지 ㄱ --%>

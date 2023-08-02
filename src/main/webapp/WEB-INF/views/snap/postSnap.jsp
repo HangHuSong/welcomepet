@@ -12,6 +12,25 @@
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+<style type="text/css">
+@font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+	body{
+		font-family: 'SUITE-Regular'; 		
+	}
+	#postSnap{
+		font-family: 'Jua', sans-serif;
+		font-weight: 700;
+		font-size: 1.3em;
+		color: #fd7e14;
+	}
+</style>
 <title>스냅샷 작성하기</title>
 </head>
 <body>
@@ -26,7 +45,7 @@
 						href="/welcomepet/board/main"> </a>
 				</div>
 				<div class="col-1"></div>
-				<div class="col-6" style="text-align: center;">스냅 작성</div>
+				<div class="col-6" style="text-align: center;" id="postSnap">스냅 작성</div>
 				<div class="col-1 ">
 					<a class="btn bi bi-search fs-3" role="button" href="/welcomepet/board/search"></a>
 				</div>
@@ -83,7 +102,7 @@
 				</div>
 				<div class="row mt-3">
 					<div class="col d-grid">
-						<button class="btn btn-warning bi bi-upload"></button>
+						<button class="btn bi bi-upload" style="background-color: #fd7e14;"></button>
 					</div>
 				</div>
 			</form>
