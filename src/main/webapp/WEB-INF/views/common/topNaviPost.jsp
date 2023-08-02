@@ -68,7 +68,7 @@
 	     </div>
 
 	  	 <div class="col-5 text-center">
-	      <a id="main" href="../community/home">어서보여주개</a>
+	      <a id="main" href="../snap/main">어서보여주개</a>
 	     </div>
 	     
 	     <div class="col d-flex justify-content-end p-0">

@@ -54,7 +54,7 @@
 }
 
 #postTopNavi{
-/* 	font-family:'SUITE-Regular'; */
+ 	font-family:'SUITE-Regular';
 	background-color: #ffffff;
 }
 </style>
@@ -96,7 +96,7 @@
 				<div class="col"></div>
 			</div>
 		 	
-			<div class="row" style="font-size:0.9em;">
+			<div class="row">
 				<div class="col text-center p-0">
 					<a class="nav-link text-secondary" href="/welcomepet/snap/main">스냅</a>
 				</div>

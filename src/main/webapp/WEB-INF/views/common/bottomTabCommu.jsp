@@ -33,8 +33,8 @@
 }
 /* 여기까지 글꼴모음 */
 
-#bottomTab {
-	font-family:'SUITE-Regular' !important;
+.navbar {
+	font-family:'SUITE-Regular';
 }
 </style>
 
