@@ -553,10 +553,10 @@ a:hover {
 						<div class="col">
 							<div class="row border-bottom border-top align-items-center justify-content-center" style="height: 48px;">
 								<div class="col">
-									<img id="profileImg"
+<%-- 									<img id="profileImg"
 										src="/uploadFiles/WelcomePet/${data.dogDto.dog_image}"> <span
 										onclick="location.href = './dogProfile?dog_no=${data.dogDto.dog_no}';"
-										class="align-middle fw-bold mx-1 my-1 fs-6">${data.dogDto.dog_name}</span>
+										class="align-middle fw-bold mx-1 my-1 fs-6"> --%> <span> ${data.dogDto.dog_name}</span>
 								</div>
 								<div class="col-auto d-flex justify-content-end align-items-center">
 									<i class="bi bi-three-dots-vertical"></i>

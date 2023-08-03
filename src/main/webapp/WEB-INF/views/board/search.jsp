@@ -234,7 +234,7 @@ body {
 					<div class="row mt-2 text-center">
 						<div class="col text-start ">
 							<c:forEach items="${searchInfo}" var="map">
-
+									
 								<a class="btn btn-outline-secondary me-1 fw-bold recent_search"
 									role="button"
 									href="./searchProduct?searchWord=${map.searchInfo.search_content}">
@@ -364,7 +364,7 @@ body {
 		<div class="row mt-5"></div>
 
 
-		<jsp:include page="../common/bottomNavi.jsp"></jsp:include>
+		<jsp:include page="../common/bottomNavi2.jsp"></jsp:include>
 	</div>
 
 
