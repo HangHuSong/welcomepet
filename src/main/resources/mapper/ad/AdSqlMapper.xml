@@ -37,7 +37,7 @@
 		SELECT ap.* FROM ad_product ap WHERE ap.product_no IN (SELECT
 		p.product_no FROM product p WHERE p.biz_no=#{biz_no})
 		<![CDATA[
-		AND ad_product_end_date<=SYSDATE
+		AND ad_product_start_date<=SYSDATE AND ad_product_end_date>=SYSDATE
 		]]>
 	</select>
 	<select id="getUpcomingAdProductByBizNo"

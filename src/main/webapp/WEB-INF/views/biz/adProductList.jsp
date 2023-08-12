@@ -128,7 +128,7 @@
 												<th scope="col">광고종료일</th>
 											</tr>
 										</thead>
-										<tbody>
+										<tbody id="adProductList">
 
 											<c:forEach items="${adProductDataList }" var="adProductData">
 												<tr>

@@ -410,12 +410,15 @@
 			
 			const div=document.createElement("div");
 			div.classList.add("table-responsive");
+			div.style.maxHeight="450px";
+			div.style.fontSize= "13px";
 			col.appendChild(div);
 			
 			var table = document.createElement("table");
 		    table.classList.add("table", "text-nowrap");
 
 		    var thead = document.createElement("thead");
+		    thead.style.backgroundColor= "rgb(245, 250, 255)";
 		    var tbody = document.createElement("tbody");
 
 		    var tableHeaders = ["상품주문번호", "주문번호", "택배사", "송장번호", "구매자명", "구매자연락처", "수취인명", "수취인연락처", "배송지", "배송메세지", "주문일", "상품번호", "상품명", "주문수량"];
@@ -556,12 +559,15 @@
 			
 			const div=document.createElement("div");
 			div.classList.add("table-responsive");
+			div.style.maxHeight="450px";
+			div.style.fontSize= "13px";
 			col.appendChild(div);
 			
 			var table = document.createElement("table");
 		    table.classList.add("table", "text-nowrap");
 
 		    var thead = document.createElement("thead");
+		    thead.style.backgroundColor= "rgb(245, 250, 255)";
 		    var tbody = document.createElement("tbody");
 
 		    var tableHeaders = ["상품주문번호", "주문번호", "구매자명", "구매자연락처", "수취인명", "수취인연락처", "배송지", "배송메세지", "주문일", "상품번호", "상품명", "주문수량"];

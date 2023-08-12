@@ -11,88 +11,131 @@
 	rel="stylesheet"
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 	crossorigin="anonymous">
-<script>
-	
-</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
+		rel="stylesheet">
+	<style type="text/css">
+@font-face {
+	font-family: 'Pretendard-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+		format('woff');
+	font-weight: 400;
+	font-style: normal;
+}
 
-
+.container {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+</style>
 </head>
+
 <body>
-	<div class="container">
-		<div class="row bg-dark text-center justify-content-start">
-			<div class="col-2 text-white fs-4 align-self-center">어서오개</div>
-			<div class="col-2 text-white fs-5 align-self-center">판매자 입점 신청</div>
-		</div>
-		<div class="row text-center my-5" id="bizInputFormBox">
-			<div class="col-3"></div>
-			<div class="col border">
-				<div class="row py-2 border-bottom">
-					<div class="col fs-4 text-start">상점 정보 입력</div>
+	
+<body>
+	<div class="container" style="margin: 0 0;">
+		<div class="row" style="width: 1920px;">
+			<div class="col-2"
+				style="background-color: rgb(29, 33, 42); height: auto;"><jsp:include
+					page="../common/bizLeftNavi.jsp"></jsp:include></div>
+			<div class="col-10 bg-light">
+				<div class="row bg-white">
+					<div class="col"><jsp:include page="../common/bizTopNavi.jsp"></jsp:include></div>
 				</div>
-				<div class="row py-2 border-bottom">
-					<div class="col align-self-center">상호명</div>
-					<div class="col">
-						<input type="text" class="form-control" name="biz_store_name">
-					</div>
-				</div>
-				<div class="row py-2 border-bottom">
-					<div class="col align-self-center">상점 메인 이미지</div>
-					<div class="col">
-						<input type="file" class="form-control" name="storeMainImg"
-							onchange="saveFile(event)" accept="image/*">
-					</div>
-				</div>
-				<div class="row py-2 border-bottom">
-					<div class="col align-self-center">사업장 소재지</div>
-					<div class="col">
-						<div class="row my-1">
-							<div class="col"><input class="form-control" type="text" id="postcode" placeholder="우편번호"></div>
+
+				<div class="row px-5 text-center mb-5 py-5" id="bizInputFormBox">
+					<div class="col-3"></div>
+					<div class="col border bg-white my-5">
+						<div class="row py-2 border-bottom">
+							<div class="col fs-4 text-start">상점 정보 입력</div>
+						</div>
+						<div class="row py-2 border-bottom">
+							<div class="col align-self-center">상호명</div>
 							<div class="col">
-								<input type="button" class="btn btn-secondary" onclick="findPostcode()" value="우편번호 찾기">
+								<input type="text" class="form-control" name="biz_store_name">
 							</div>
 						</div>
-						<div class="row my-1">
-							<div class="col"><input class="form-control" type="text" id="address" placeholder="주소"></div>
+						<div class="row py-2 border-bottom">
+							<div class="col align-self-center">상점 메인 이미지</div>
+							<div class="col">
+								<input type="file" class="form-control" name="storeMainImg"
+									onchange="saveFile(event)" accept="image/*">
+							</div>
 						</div>
-						<div class="row my-1">
-							<div class="col"><input class="form-control" type="text" id="detailAddress" placeholder="상세주소"></div>
-							<div class="col"><input class="form-control" type="text" id="extraAddress" placeholder="참고항목"></div>
+						<div class="row py-2 border-bottom">
+							<div class="col align-self-center">사업장 소재지</div>
+							<div class="col">
+								<div class="row my-1">
+									<div class="col">
+										<input class="form-control" type="text" id="postcode"
+											placeholder="우편번호">
+									</div>
+									<div class="col">
+										<input type="button" class="btn btn-secondary"
+											onclick="findPostcode()" value="우편번호 찾기">
+									</div>
+								</div>
+								<div class="row my-1">
+									<div class="col">
+										<input class="form-control" type="text" id="address"
+											placeholder="주소">
+									</div>
+								</div>
+								<div class="row my-1">
+									<div class="col">
+										<input class="form-control" type="text" id="detailAddress"
+											placeholder="상세주소">
+									</div>
+									<div class="col">
+										<input class="form-control" type="text" id="extraAddress"
+											placeholder="참고항목">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row my-2">
+							<div class="col">
+								<button class="btn btn-primary" onclick="registerShopInform()">상점
+									정보 등록하기</button>
+							</div>
 						</div>
 					</div>
+					<div class="col-3"></div>
 				</div>
-				<div class="row my-2">
-					<div class="col">
-						<button class="btn btn-primary" onclick="registerShopInform()">상점 정보 등록하기</button>
+				<div class="row text-center my-5 visually-hidden bg-white"
+					id="bizInformRegisterCompleteBox">
+					<div class="col-3"></div>
+					<div class="col border py-4">
+						<div class="row my-2">
+							<div class="col fs-1">
+								<i class="far fa-check-circle fa-lg"></i>
+							</div>
+						</div>
+						<div class="row my-2">
+							<div class="col fs-3">상점 정보 입력이 완료 되었습니다.</div>
+						</div>
+						<div class="row my-2">
+							<div class="col">어서오개 판매자센터의 모든 서비스를 이용하실 수 있습니다.</div>
+						</div>
+						<div class="row my-2">
+							<div class="col">
+								<a class="btn btn-primary" href="./main">메인</a>
+							</div>
+						</div>
 					</div>
+					<div class="col-3"></div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<jsp:include page="../common/bizFooter.jsp"></jsp:include></div>
 				</div>
 			</div>
-			<div class="col-3"></div>
-		</div>
-		<div class="row text-center my-5 visually-hidden"
-			id="bizInformRegisterCompleteBox">
-			<div class="col-3"></div>
-			<div class="col border py-4">
-				<div class="row my-2">
-					<div class="col fs-1">
-						<i class="far fa-check-circle fa-lg"></i>
-					</div>
-				</div>
-				<div class="row my-2">
-					<div class="col fs-3">상점 정보 입력이 완료 되었습니다.</div>
-				</div>
-				<div class="row my-2">
-					<div class="col">어서오개 판매자센터의 모든 서비스를 이용하실 수 있습니다.</div>
-				</div>
-				<div class="row my-2">
-					<div class="col">
-						<a class="btn btn-primary" href="./main">메인</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-3"></div>
 		</div>
 	</div>
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script
+		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script type="text/javascript">
 		function findPostcode() {
 			new daum.Postcode(
@@ -142,8 +185,7 @@
 							document.getElementById('postcode').value = data.zonecode;
 							document.getElementById("address").value = addr;
 							// 커서를 상세주소 필드로 이동한다.
-							document.getElementById("detailAddress")
-									.focus();
+							document.getElementById("detailAddress").focus();
 						}
 					}).open();
 		}
@@ -158,21 +200,18 @@
 
 		function registerShopInform() {
 			const bizStoreNameInput = document
-			.querySelector('input[name="biz_store_name"]');
-			
-			const addressInput = document
-			.querySelector('#address');
-			const detailAddressInput = document
-			.querySelector('#detailAddress');
-			const extraAddressInput = document
-			.querySelector('#extraAddress');
-			
-			var biz_store_name=bizStoreNameInput.value;
-			var biz_address=addressInput.value+" "+detailAddressInput.value+" "+extraAddressInput.value
+					.querySelector('input[name="biz_store_name"]');
+
+			const addressInput = document.querySelector('#address');
+			const detailAddressInput = document.querySelector('#detailAddress');
+			const extraAddressInput = document.querySelector('#extraAddress');
+
+			var biz_store_name = bizStoreNameInput.value;
+			var biz_address = addressInput.value + " "
+					+ detailAddressInput.value + " " + extraAddressInput.value
 			formData.append('biz_store_name', biz_store_name);
-			formData.append('biz_address',biz_address);
-			
-			
+			formData.append('biz_address', biz_address);
+
 			const xhr = new XMLHttpRequest();
 
 			xhr.onreadystatechange = function() {

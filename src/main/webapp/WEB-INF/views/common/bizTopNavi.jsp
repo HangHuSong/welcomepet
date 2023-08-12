@@ -1,20 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-	crossorigin="anonymous">
 
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
 
 </head>
 <body>
@@ -27,30 +22,27 @@
 				<div class="col-2 border-end align-self-center">온라인 문의</div>
 				<div class="col-2 border-end align-self-center">도움말</div>
 				<c:choose>
-					<c:when test="${empty bizUser }">
-						<div class="col-2">
-							<a class="btn" href="./login">로그인</a>
-						</div>
-						<div class="col-2">
-							<a class="btn" href="./register">회원가입</a>
-						</div>
-					</c:when>
 					<c:when test="${!empty bizUser && bizUser.biz_status_no eq 4}">
-						<div class="col-1 text-end">
+						<div class="col-1 text-end mx-3">
 							<div class="dropdown">
 								<button class="btn dropdown-toggle px-0 py-0" type="button"
 									data-bs-toggle="dropdown" aria-expanded="false">
 									<img class="w-100 rounded-circle"
 										src="/uploadFiles/bizMainImg/${bizUser.biz_store_main_img }">
 								</button>
-								<ul class="dropdown-menu text-start">
-									<li><a class="dropdown-item" href="#">마이페이지</a></li>
-									<li><a class="dropdown-item" href="./logoutProcess">로그아웃</a></li>
+								<ul class="dropdown-menu text-center py-0">
+									<li class="border-bottom"><a class="dropdown-item py-3"
+										href="#"><span class="fw-bold"
+											style="color: rgb(42, 149, 255);">${bizUser.biz_store_name }</span><span>님</span>
+									</a></li>
+									<li><a class="dropdown-item py-3 text-secondary"
+										href="./logoutProcess"><i class="fas fa-sign-out-alt"></i>
+											로그아웃</a></li>
 
 								</ul>
 							</div>
 						</div>
-						<div class="col-1 text-start px-2 me-3">
+						<div class="col-1 text-start px-2">
 							<div class="dropdown">
 								<button class="btn" type="button" data-bs-toggle="dropdown">
 									<div class="row justify-content-start">
@@ -67,20 +59,24 @@
 						</div>
 					</c:when>
 					<c:otherwise>
-						<div class="col px-3 mx-5">
+						<div class="col-1 text-end mx-3">
 							<div class="dropdown">
 								<button class="btn dropdown-toggle px-0 " type="button"
 									data-bs-toggle="dropdown" aria-expanded="false">
 									<i class="fas fa-user-circle fs-3"></i>
 								</button>
-								<ul class="dropdown-menu">
-									<li><a class="dropdown-item" href="#">마이페이지</a></li>
-									<li><a class="dropdown-item" href="./logoutProcess">로그아웃</a></li>
+								<ul class="dropdown-menu text-center py-0">
+									<li class="border-bottom"><a class="dropdown-item py-3"
+										href="#"><span class="fw-bold"
+											style="color: rgb(42, 149, 255);">${bizUser.biz_id }</span><span>님</span>
+									</a></li>
+									<li><a class="dropdown-item py-3" href="./logoutProcess"><i
+											class="fas fa-sign-out-alt"></i> 로그아웃</a></li>
 
 								</ul>
 							</div>
 						</div>
-						<div class="col px-3 mx-3">
+						<div class="col-1 text-start px-2">
 							<div class="dropdown">
 								<button class="btn" type="button" data-bs-toggle="dropdown">
 									<div class="row">
@@ -103,6 +99,8 @@
 	<script type="text/javascript">
 		if(${!empty bizUser} && ${bizUser.biz_status_no}==4){
 			var intervalAlarm=setInterval(getAlarm,100);	
+		}else if(${empty bizUser}){
+			clearInterval(intervalAlarm);
 		}
 		
 		
@@ -194,7 +192,18 @@
 							  const dateColDiv = document.createElement('div');
 							  dateColDiv.classList.add('col');
 							  dateColDiv.style.fontSize = '12px';
-							  dateColDiv.textContent = orderAlarmData.orderAlarmDto.order_alarm_noti_date;
+							  
+							  const date = new Date(orderAlarmData.orderAlarmDto.order_alarm_noti_date);
+
+							  // 원하는 형식으로 날짜 포맷 설정
+							  const formattedDate = date.toLocaleString('ko-KR', {
+							    year: 'numeric',
+							    month: '2-digit',
+							    day: '2-digit',
+							    hour: '2-digit',
+							    minute: '2-digit',
+							  });
+							  dateColDiv.textContent = formattedDate;
 
 							  dateRowDiv.appendChild(dateColDiv);
 
@@ -260,99 +269,8 @@
 			xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 			xhr.send("alarmNoList="+alarmNoList);
 		}
-		/* let bizUser = null;
-		getSession();
-
-		function getSession() {
-			const xhr = new XMLHttpRequest();
-
-			xhr.onreadystatechange = function() {
-				if (xhr.readyState == 4 && xhr.status == 200) {
-					const response = JSON.parse(xhr.responseText);
-					if (response.result == "success") {
-
-						bizUser = response.bizUser;
-						makeLoginOutButton();
-					}
-				}
-			}
-			//get
-			xhr.open("get", "./getBizUser", false);//딱 여기만 false쓰기-->동기식 호출, 권장x
-			xhr.send();
-		}
-
-		function makeLoginOutButton() {
-			const loginOutButtonBox = document
-					.getElementById("loginOutButtonBox");
-
-			loginOutButtonBox.innerHTML = '';
-
-			if (bizUser != null) {
-
-				const logoutButton = document.createElement("button");
-				logoutButton.classList.add('btn');
-				logoutButton.innerText = '로그아웃';
-				logoutButton.addEventListener('click', function() {
-					logout();
-				});
-				loginOutButtonBox.appendChild(logoutButton);
-
-			} else {
-				const loginButton = document.createElement("a");
-				loginButton.classList.add('btn');
-				loginButton.innerText = '로그인';
-				loginButton.setAttribute('href', './login');
-				loginOutButtonBox.appendChild(loginButton);
-			}
-		}
-
-		function logout() {
-			if (bizUser.biz_pw == null) {
-				requestParams = "target_id_type=user_id";
-				requestParams += "&target_id=" + bizUser.biz_id;
-
-				const xhr = new XMLHttpRequest();
-
-				xhr.onreadystatechange = function() {
-					if (xhr.readyState == 4 && xhr.status == 200) {
-						bizUser = null;
-						logoutProcess();
-					}
-				}
-
-				xhr.open("post", "https://kapi.kakao.com/v1/user/logout");
-				xhr.setRequestHeader("Authorization",
-						"KakaoAK bd2ebf176a86be77adf9243df7d009c2");
-				xhr.setRequestHeader("Content-Type",
-						"application/x-www-form-urlencoded");
-				xhr.send(requestParams);
-
-			} else {
-
-				logoutProcess();
-			}
-
-		}
-
-		function logoutProcess() {
-			const xhr = new XMLHttpRequest();
-
-			xhr.onreadystatechange = function() {
-				if (xhr.readyState == 4 && xhr.status == 200) {
-					makeLoginOutButton();
-				}
-			}
-
-			xhr.open("get", "./logoutProcess");
-			xhr.setRequestHeader("Content-type",
-					"application/x-www-form-urlencoded");
-			xhr.send();
-		} */
+		
 	</script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-		crossorigin="anonymous"></script>
 
 </body>
 </html>

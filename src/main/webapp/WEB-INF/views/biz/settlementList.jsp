@@ -95,7 +95,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="row mt-5">
+						<!-- <div class="row mt-5">
 							<div class="col">
 								<span
 									class="btn border-0 border-bottom border-4 rounded-0 border-primary"
@@ -105,7 +105,7 @@
 									class="btn" id="completeSettlementTab"
 									onclick="loadCompleteSettlementTab()">정산완료</span>
 							</div>
-						</div>
+						</div> -->
 						<div class="row my-2 bg-white text-center">
 							<div class="col border shadow">
 								<div class="row text-start py-2 border-bottom">

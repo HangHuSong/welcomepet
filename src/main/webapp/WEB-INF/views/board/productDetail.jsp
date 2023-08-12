@@ -98,7 +98,7 @@ function reloadReviewList() {
 				  rowRatingDate.appendChild(colRating);
 				  
 				  const colName = document.createElement("div");
-				  colName.classList.add("col","ps-0","review_name");
+				  colName.classList.add("col","pe-0","review_name");
 				  colName.innerText =data.customerDto.customer_nickname;
 				  rowRatingDate.appendChild(colName);
 
@@ -114,11 +114,12 @@ function reloadReviewList() {
 				  row1.appendChild(rowRatingDate);
 				  
 				  const reviewOptionRow = document.createElement("div");
-				  reviewOptionRow.classList.add("row");
+				  reviewOptionRow.classList.add("row","mt-2");
+				  
 				  row1.appendChild(reviewOptionRow);
 				  
 				  const reviewOptionCol = document.createElement("div");
-				  reviewOptionCol.classList.add("col", "text-secondary","review_date");
+				  reviewOptionCol.classList.add("col", "text-secondary","review_date","ps-0");
 				  reviewOptionCol.innerText = "상품 : " + data.productOptionDto.product_option_name;
 				  reviewOptionRow.appendChild(reviewOptionCol);
 				  
@@ -155,7 +156,7 @@ function reloadReviewList() {
 				  
 				   
 				  const colContext = document.createElement("div");
-				  colContext.classList.add("col", "reviewContext","mb-2");
+				  colContext.classList.add("col","ps-0", "reviewContext","mb-2");
 				  colContext.innerText = data.productReviewDto.product_review_context;
 				  rowContext.appendChild(colContext);
 
@@ -1254,9 +1255,17 @@ body {
 		<div class="row mt-2 ">
 			<div class="col" id="colProductRating"></div>
 		</div>
-		<div class="row mt-2  ps-3 mx-0" id="reviewListBox"></div>
+		<div class="row mt-3  ps-3 mx-0" id="reviewListBox"></div>
+		<div class="row mt-3 ">
+		  <div class="col text-center">
+		  <div class=""> 
+		    <button class="btn btn-outline-primary text-center btn-sm" style="width: 80%;">
+		     더 많은 리뷰 보기<a class="btn text-primary py-0 bi bi-chevron-right"> </a>
+		    </button> </div>
+		  </div>
+		</div>		
 	</div>
-	<div class="row mt-2 empty"></div>
+	<div class="row mt-3 empty"></div>
 	<div class="row ps-3 mt-3">
 		<div class="row" style="align-items: center;">
 			<div class="col fw-bold pt-1" style="font-size: 1.2em;">상품 문의</div>

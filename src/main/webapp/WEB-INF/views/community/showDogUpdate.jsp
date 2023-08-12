@@ -48,7 +48,7 @@
 		     </div>
 
 	 		 <div class="col text-end pe-3">
-	 		  <button class="btn fw-bold" style="color:white; background-color:#fd7e14">수정</button>
+	 		  <button class="btn fw-bold" style="color:white; background-color:#ffa500">수정</button>
 	 		 </div>
  		 </div>
  		 
@@ -81,8 +81,43 @@
 		 	</div>
 		 </div>
 		 
-		 <%-- bottom --%>
-		 <div class="row py-1 shadow fixed-bottom" style="background-color:white;">
+		 
+		 <div class="row py-0 shadow fixed-bottom" style="background-color:white;">
+		  <div class="col border-top">
+			 <div class="row px-4 d-flex justify-content-between align-items-center">
+			 	<%-- 글꼴 --%>				
+				<div class="col pe-0 text-center">
+				 <p class="btn mb-0 p-0"><i class="bi bi-fonts" style="font-size:1.4em"></i></p>
+				</div>
+				<%-- 첨부파일 --%>
+				<div class="col pe-0 text-center">
+				 <p class="btn mb-0 p-0"><i class="bi bi-paperclip" style="font-size:1.15em"></i></p>
+				</div>
+				<%-- 이미지 첨부--%>
+				<div class="col pe-0 text-center">			 
+				 <label for="uploadImages" class="btn p-0" style="position:relative; overflow:hidden;"> 
+			     <button class="btn"><i class="bi bi-images" style="font-size:1.2em"></i></button>
+			      <input type="file" id="uploadImages" class="form-control" name="show_dog_post_images_name" 
+			      		 style="position:absolute; top:0; left:0; opacity:0;" multiple accept="image/*">	     
+			     </label>
+				</div>
+				<%-- 영상 첨부 --%>
+				<div class="col pe-0 text-center">
+				 <p class="btn mb-0 p-0"><i class="bi bi-camera-video" style="font-size:1.3em"></i></p>
+				</div>	
+				<%-- 해시태그 --%>
+				<div class="col pe-0 text-center">
+				 <p class="btn mb-0 p-0"><i class="bi bi-hash" style="font-size:1.3em"></i></p>
+				</div>
+				<%-- 기타 --%>
+				<div class="col text-center">
+				 <p class="btn mb-0 p-0"><i class="bi bi-three-dots" style="font-size:1.3em"></i></p>
+				</div>
+			 </div>
+		   </div>
+		  </div>
+		 <%-- bottom 
+		 <div class="row py-1 shadow fixed-bottom border-top" style="background-color:white;">
 		  <div class="col">
 			 <div class="row pe-4 ps-4 justify-content-center">				
 				<div class="col-auto">
@@ -110,7 +145,7 @@
 				</div>
 			 </div>
 		   </div>
-		  </div>
+		  </div>--%>
 		<%-- ----------- --%> 
 		</form>	
 	</div>
@@ -119,9 +154,5 @@
 </div>
 <%-- ----------- --%> 
 
-
-<%-- mobileStyle 
-  <jsp:include page="../common/bottomTabStyle.jsp"></jsp:include> --%>
-<%-- ----------- --%>  
 </body>
 </html>

@@ -113,49 +113,56 @@ body {
 								<div class="row mt-3 mb-3 text-center">
 								    <c:choose>
 								        <c:when test="${orderProduct.order_product_status_no == 1}">
-								            <div class="col-6">
+								            <div class="col-6 d-grid">
 								                <button type="button" class="btn btn-sm btn-outline-secondary">배송조회</button>
 								            </div>
-								            <div class="col-6">
+								            <div class="col-6 d-grid">
 								                <button type="button" class="btn btn-sm btn-outline-danger" 
 								                onclick="location.href='./updateProductStatus?order_product_no=${orderProduct.order_product_no}&order_product_status_no=2'">
 								                주문취소</button>
 								            </div>
 								        </c:when>
 								        <c:when test="${orderProduct.order_product_status_no == 7}">
-								            <div class="col ">
+								            <div class="col d-grid">
 								                <button type="button" class="btn btn-sm btn-outline-secondary">반품상세</button>
 								            </div>
 								        </c:when>
+								        <c:when test="${orderProduct.order_product_status_no == 10}">
+								            <div class="col d-grid">
+								                <button type="button" class="btn btn-sm btn-outline-secondary">반품상세</button>
+								            </div>
+								        </c:when>								        
 								        <c:when test="${orderProduct.order_product_status_no == 2}">
 								            <div class="col d-grid ">
 								                <button type="button" class="btn btn-sm btn-outline-secondary">취소상세</button>
 								            </div>
 								        </c:when>
 								        <c:when test="${orderProduct.order_product_status_no == 6}">
-								            <div class="col-6">
+								            <div class="col-6 d-grid">
 								                <button type="button" class="btn btn-sm btn-outline-secondary">배송조회</button>
 								            </div>
-								            <div class="col-6">
+								            <div class="col-6 d-grid">
 								                <button type="button" class="btn btn-sm btn-outline-primary"
 								                onclick="location.href='./writeReviewPage?order_product_no=${orderProduct.order_product_no}'">
 								                후기작성</button>
 								            </div>
 								        </c:when>
 								        <c:otherwise>
-								            <div class="col-3">
+								            <div class="col-6 d-grid">
 								                <button type="button" class="btn btn-sm btn-outline-secondary">배송조회</button>
 								            </div>
-								            <div class="col-3">
-								                <button type="button" class="btn btn-sm btn-outline-secondary">교환요청</button>
-								            </div>
-								            <div class="col-3">
-								                <button type="button" class="btn btn-sm btn-outline-secondary">환불요청</button>		
-								            </div>
-								            <div class="col-3">
-								                <button type="button" class="btn btn-sm btn-outline-secondary"
+								            <div class="col-6 d-grid">
+								                 <button type="button" class="btn btn-sm btn-outline-primary"
 													 onclick="location.href='./updateProductStatus?order_product_no=${orderProduct.order_product_no}&order_product_status_no=6'">
 								                구매확정</button>
+								            </div>
+								            </div>
+								            <div class="row mt-2">
+								            <div class="col-6 d-grid">
+								                <button type="button" class="btn btn-sm btn-outline-secondary">환불요청</button>		
+								            </div>
+								            <div class="col-6 d-grid">
+								               <button type="button" class="btn btn-sm btn-outline-secondary">교환요청</button>
 								            </div>
 								        </c:otherwise>
 								    </c:choose>

@@ -97,7 +97,7 @@ body {
 
 					${fn:length(orderList)}개 상품이 주문완료되었습니다!</div>
 					<div class="col-3 text-end text-primary" style="font-size: 0.7em;">
-					 <span onclick="location.href='./orderDetail?order_no=${ordersDto.orders_no}'">자세히 보기</span>
+					 <span onclick="location.href='../customer/orderDetail?order_no=${ordersDto.orders_no}'">자세히 보기</span>
 					</div>
 				<div class="row mt-2 ">
 

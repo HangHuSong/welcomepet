@@ -333,10 +333,13 @@ public class BizServiceImpl {
 						.getSettlememtProcessBySettlementRequestNo(settlementRequestDto.getSettlement_request_no());
 				BizAccountDto bizAccountDto = accountSqlMapper
 						.getBizAccountByNo(settlementRequestDto.getBiz_account_no());
-				BankDto bankDto = accountSqlMapper.getBankByNo(bizAccountDto.getBank_no());
+				if(bizAccountDto != null) {
+					BankDto bankDto = accountSqlMapper.getBankByNo(bizAccountDto.getBank_no());
 
-				map.put("bizAccountDto", bizAccountDto);
-				map.put("bankDto", bankDto);
+					map.put("bizAccountDto", bizAccountDto);
+					map.put("bankDto", bankDto);
+				}
+				
 				if (settlementProcessDto == null) {
 					map.put("settlementStatus", "정산대기");
 				} else {
@@ -779,9 +782,9 @@ public class BizServiceImpl {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 
 		List<AdProductDto> adProductDtoList = adSqlMapper.getOngoingAdProductByBizNo(biz_no);
+		System.out.println(adProductDtoList.toString());
 		for (AdProductDto adProductDto : adProductDtoList) {
 			Map<String, Object> map = new HashMap<String, Object>();
-
 			ProductDto productDto = productSqlMapper.getProductByNo(adProductDto.getProduct_no());
 
 			AdCategoryDto adCategoryDto = adSqlMapper.getAdCategoryByNo(adProductDto.getAd_category_no());

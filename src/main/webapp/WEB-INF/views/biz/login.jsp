@@ -34,18 +34,18 @@
 </head>
 <body>
 
-	<div class="row text-center">
+	<div class="row text-center mt-5">
 		<div class="col"></div>
-		<div class="col-3 px-5">
+		<div class="col-3 px-5 mt-5">
 			<!-- 로그인정보 -->
 			<div class="row mt-5">
 				<div class="col pt-5">
-					<img class="w-100 px-5" src="/welcomepet/resources/img/logo.png">
+					<img class="w-75 px-5" src="/welcomepet/resources/img/biz_logo.png">
 				</div>
 			</div>
 			<div class="row mb-5" style="">
 				<div class="col fs-5 fw-bold rounded-4 text-white"
-					style="margin:0 68px; font-family: 'GmarketSansMedium'; background-color: rgb(253, 152, 67);">seller
+					style="margin:10px 120px; font-family: 'GmarketSansMedium'; background-color: #198cff;">seller
 					office</div>
 			</div>
 			<div class="row my-2">
@@ -71,7 +71,7 @@
 			<div class="row my-2">
 				<div class="col d-grid">
 					<button class="btn text-white py-2"
-						style="background-color: rgb(253, 152, 67);"
+						style="background-color: #198cff;"
 						onclick="loginProcess()">로그인</button>
 				</div>
 			</div>
