@@ -33,7 +33,7 @@
 	font-family: 'Jua', sans-serif;
 	font-weight: 700;
 	font-size: 1.3em;
-	color: #fd7e14;
+	color: #ffa500;
 }
 </style>
 </head>
@@ -51,7 +51,7 @@
 					</div>
 					<div class="col-1"></div>
 					<div class="col-6 text-center" style="color: #fd7e14;">
-						<a id="main" href="../pointProd/board">어서대화하게</a>
+						<a id="main" href="../pointProd/board">어서대화하개</a>
 					</div>
 					<div class="col"></div>
 					<div class="col-2 pe-1">
