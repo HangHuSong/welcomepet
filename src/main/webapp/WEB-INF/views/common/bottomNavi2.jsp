@@ -23,19 +23,15 @@
     font-weight: 400;
     font-style: normal;
 }
-@font-face {
-    font-family: 'SUITE-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+
+body {
+	font-family: 'Pretendard-Regular';
 }
 
-}
+
 /* 여기까지 글꼴모음 */
 
-#bottomTab {
-	font-family:'SUITE-Regular' !important;
-}
+
 </style>
 
 </head>

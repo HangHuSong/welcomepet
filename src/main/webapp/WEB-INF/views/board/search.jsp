@@ -119,29 +119,7 @@ window.addEventListener("DOMContentLoaded", function(){
 
 </script>
 <style>
-@font-face {
-    font-family: 'GmarketSansMedium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'SUITE-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-body {
-	font-family: 'SUITE-Regular';
-}
 
-@import
-	url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css')
-	;
-
-body {
-	font-family: 'NanumSquare', sans-serif;
-}
 
 @font-face {
     font-family: 'Pretendard-Regular';
@@ -149,20 +127,21 @@ body {
     font-weight: 400;
     font-style: normal;
 }
-
 body {
 	font-family: 'Pretendard-Regular';
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
-
-body {
-	font-family: 'Noto Sans KR', sans-serif;
-}
 
 #biz-slide {
   width: 18%;
 }
+
+.reco_search {
+	font-size: 0.8em;
+	border-radius: 1rem;
+	margin: 0;
+}
+
 .swiper-container {
   width: 100%;
   height: 100%;
@@ -195,11 +174,7 @@ body {
 	border-radius: 1rem;
 }
 
-.reco_search {
-	font-size: 0.8em;
-	border-radius: 1rem;
-	margin: 0;
-}
+
 </style>
 </head>
 <body>
@@ -251,7 +226,7 @@ body {
 			<div class="col  ps-4 pe-3">
 				<div class="row mt-3 fw-bold">추천 검색어</div>
 				<div class="row mt-2 text-start">
-					<div class="col pe-0">
+					<div class="col pe-0" >
 						<a class="btn btn-outline-primary fw-bold reco_search my-1"
 							role="button" href="./searchProduct?searchWord=잇츄"> 잇츄</a>
 						<a class="btn btn-outline-primary fw-bold reco_search my-1"
@@ -364,7 +339,7 @@ body {
 		<div class="row mt-5"></div>
 
 
-		<jsp:include page="../common/bottomNavi2.jsp"></jsp:include>
+		<jsp:include page="../common/bottomNavi.jsp"></jsp:include>
 	</div>
 
 

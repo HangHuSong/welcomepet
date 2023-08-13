@@ -50,6 +50,7 @@ public class BoardController {
 		if (sessionUser == null) {
 			return "board/search";
 		} else {
+			
 			int customer_no = sessionUser.getCustomer_no();
 			List<Map<String, Object>> list = customerService.getSearchByCutomerNo(customer_no);
 			model.addAttribute("customerInfo", sessionUser);

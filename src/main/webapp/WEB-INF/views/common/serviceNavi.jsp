@@ -20,7 +20,7 @@
 	</div>
 	<div class="row mt-1">
 		<div class="col-3 fw-bold">
-			<a role="button">고객센터 </a> 
+			<a role="button">1:1문의 </a> 
 		</div>
 		<div class="col px-0 fw-bold">
 		 <a role="button"> 공지사항</a>

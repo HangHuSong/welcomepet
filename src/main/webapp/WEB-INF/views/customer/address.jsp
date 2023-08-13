@@ -42,7 +42,7 @@
 		
 		<c:forEach items="${addressList}" var="map">
 		<div class="row mt-3"> 
-			<div class="col-2"></div>
+			<div class="col-1"></div>
 			<div class="col border"> 
 				<div class="row mb-2">
 					<div class="col-1"> </div>
@@ -79,7 +79,7 @@
 			 </div>
 			
 		</div>
-		<div class="col-2"></div>
+		<div class="col-1"></div>
 			</div>
 		</c:forEach>
 		 </div>
