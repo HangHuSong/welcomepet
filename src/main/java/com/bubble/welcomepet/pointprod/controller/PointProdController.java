@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.bubble.welcomepet.dto.BoardDto;
@@ -118,7 +119,7 @@ public class PointProdController {
 	}
 
 	@RequestMapping("readContent")
-	public String readContent(Model model, int board_no, LikeDto likeDto) {
+	public String readContent(Model model, int board_no, LikeDto likeDto, @RequestParam(defaultValue="reg" , value="order") String order) {
 
 		pointProdService.increaseReadCount(board_no);
 
@@ -126,7 +127,7 @@ public class PointProdController {
 
 		model.addAttribute("data", map);// 글 불러오기
 
-		List<Map<String, Object>> list = pointProdService.getCommentById(board_no);
+		List<Map<String, Object>> list = pointProdService.getCommentById(board_no, order);
 
 		model.addAttribute("commentList", list);// 댓 불러오기
 

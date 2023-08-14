@@ -37,11 +37,12 @@ public class PointProdServiceImpl {
 
 	}
 
-	public List<Map<String, Object>> getCommentById(int board_no) {
+	public List<Map<String, Object>> getCommentById(int board_no, String order) {
 
 		List<Map<String, Object>> list = new ArrayList<>();
 
-		List<CommentDto> commentDtoList = pointProdSqlMapper.getAllCommentByBoardId(board_no);
+		
+		List<CommentDto> commentDtoList = pointProdSqlMapper.getAllCommentByBoardId(board_no, order);
 
 		for (CommentDto commentDto : commentDtoList) {
 

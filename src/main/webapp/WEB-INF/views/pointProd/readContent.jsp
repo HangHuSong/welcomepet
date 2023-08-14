@@ -170,16 +170,16 @@
 										${countCommentByBoardNo}</div>
 										<div class="col-5 mt-3">
 									<span class="ms-3">
-										<button	class="btn btn-outline-none btn-sm text-end fw-bold text-secondary p-0"
+										<a	href="./readContent?board_no=${data.boardDto.board_no}&order=reg" class="btn btn-outline-none btn-sm text-end fw-bold text-secondary p-0"
 											style="font-size: 0.9em;">
 											<i class="bi bi-filter-left"></i>등록순
-										</button>
+										</a>
 									</span>
 									<span class="me-0 ms-1">
-										<button class="btn btn-outline-none btn-sm text-end text-secondary p-0"
+										<a href="./readContent?board_no=${data.boardDto.board_no}&order=recent" class="btn btn-outline-none btn-sm text-end text-secondary p-0"
 											style="font-size: 0.9em;">
 											<i class="bi bi-filter-right"></i>최신순
-										</button>
+										</a>
 									</span>
 									</div>
 								</div>

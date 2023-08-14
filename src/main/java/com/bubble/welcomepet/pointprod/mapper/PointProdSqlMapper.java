@@ -2,6 +2,8 @@ package com.bubble.welcomepet.pointprod.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.bubble.welcomepet.dto.BoardDto;
 import com.bubble.welcomepet.dto.CommentDto;
 import com.bubble.welcomepet.dto.CustomerDto;
@@ -18,7 +20,7 @@ public interface PointProdSqlMapper {
 
 	public void insertComment(CommentDto commentDto);
 
-	public List<CommentDto> getAllCommentByBoardId(int board_no);
+	public List<CommentDto> getAllCommentByBoardId(@Param("board_no") int board_no, @Param("order") String order);
 	
 	public int createPk();
 

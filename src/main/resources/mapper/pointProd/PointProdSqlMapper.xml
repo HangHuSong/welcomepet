@@ -214,7 +214,17 @@
 		SELECT *
 		FROM board_comment
 		WHERE board_no = #{board_no}
-		ORDER BY board_no DESC
+		<choose>
+			<when test="order == 'reg'">
+				ORDER BY board_comment_no asc			
+			</when>
+			<otherwise>
+				ORDER BY board_comment_no DESC			
+			</otherwise>
+		</choose>
 	</select>
 
 </mapper>
+
+
+
