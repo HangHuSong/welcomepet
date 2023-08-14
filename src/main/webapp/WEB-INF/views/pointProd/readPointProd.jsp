@@ -97,10 +97,11 @@
 		<div class="row fixed-bottom border-top pt-3 bg-white">
 			<div class="col">
 				<div class="row">
-					<div class="col">${data.point_product_price}${data.point_product_total_amount}</div>
-					<form action="./orderPointProdProcs" method="post">
+					<div class="col">${data.pointProdDto.point_product_price}${data.pointProdDto.point_product_total_amount}</div>
+					<form action="./orderPointProdProcs" method="get">
 						<input type="hidden" name="point_product_no"
-							value="${data.point_product_no}" /> <input type="text"
+							value="${data.pointProdDto.point_product_no}" /> 
+						<input type="number"
 							name="point_product_order_amount" placeholder="주문수량" required />
 						<input type="submit" value="주문하기" />
 					</form>

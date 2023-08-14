@@ -10,7 +10,7 @@ public class PointProdOrdDto {
 	private int customer_no;
 	private int point_product_no;
 	private int point_product_order_amount;
-	@DateTimeFormat(pattern = "yy-MM-dd")
+	//@DateTimeFormat(pattern = "yy-MM-dd")
 	private Date point_product_order_reg_date;
 
 	public PointProdOrdDto() {
